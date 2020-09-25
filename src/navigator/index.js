@@ -9,11 +9,24 @@ import {createDrawerNavigator} from '@react-navigation/drawer';
 import {connect} from 'react-redux';
 import {MainNav} from './MainNav';
 
-import About from '../containers/About';
+import AdScreen from '../containers/AdScreen';
 import SignIn from '../containers/SignIn';
 import SignUp from '../containers/SignUp';
 import Splash from '../containers/Splash';
 import DrawerMenu from '../containers/DrawerMenu';
+import Language from '../containers/Language';
+import {ForgotPassword, ResetPassword} from '../containers/Password';
+
+import {
+  FORGOT_PASSWORD_SCREEN,
+  LANGUAGE_SCREEN,
+  SIGNIN_SCREEN,
+  SIGNUP_SCREEN,
+  AD_SCREEN,
+  SIGNUP_SUCCESSFUL_SCREEN,
+  RESET_PASSWORD_SCREEN,
+} from '../constants/Screens';
+import SignUpSuccesful from '../containers/SignUp/SignUpSuccesful';
 
 const Drawer = createDrawerNavigator();
 const AuthScreen = createStackNavigator();
@@ -39,7 +52,7 @@ class Navigator extends Component {
           <RootStack.Navigator screenOptions={{headerShown: false}}>
             <RootStack.Screen name="Splash" component={Splash} />
           </RootStack.Navigator>
-        ) : true ? (
+        ) : false ? (
           <Drawer.Navigator
             initialRouteName="Home"
             drawerContent={() => <DrawerMenu />}
@@ -51,8 +64,22 @@ class Navigator extends Component {
             screenOptions={{
               headerShown: false,
             }}>
-            <AuthScreen.Screen name="login" component={SignIn} />
-            <AuthScreen.Screen name="register" component={SignUp} />
+            <AuthScreen.Screen name={AD_SCREEN} component={AdScreen} />
+            <AuthScreen.Screen name={LANGUAGE_SCREEN} component={Language} />
+            <AuthScreen.Screen name={SIGNIN_SCREEN} component={SignIn} />
+            <AuthScreen.Screen name={SIGNUP_SCREEN} component={SignUp} />
+            <AuthScreen.Screen
+              name={SIGNUP_SUCCESSFUL_SCREEN}
+              component={SignUpSuccesful}
+            />
+            <AuthScreen.Screen
+              name={FORGOT_PASSWORD_SCREEN}
+              component={ForgotPassword}
+            />
+            <AuthScreen.Screen
+              name={RESET_PASSWORD_SCREEN}
+              component={ResetPassword}
+            />
           </AuthScreen.Navigator>
         )}
       </NavigationContainer>

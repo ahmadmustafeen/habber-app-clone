@@ -1,4 +1,4 @@
 import {combineEpics} from 'redux-observable';
-import {CalculateEpic} from './CalculateEpic';
+import {TempEpic} from './TempEpic';
 
-export const epics = combineEpics(CalculateEpic.calculate);
+export const epics = combineEpics(TempEpic.temp);

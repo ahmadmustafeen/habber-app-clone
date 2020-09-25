@@ -1,6 +1,6 @@
 import {combineReducers} from 'redux';
-import results from './resultsReducer';
+import tempReducer from './tempReducer';
 
 export default combineReducers({
-  results,
+  tempReducer,
 });

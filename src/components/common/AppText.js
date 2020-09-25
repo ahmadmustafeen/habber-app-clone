@@ -16,7 +16,7 @@ const AppText = (props) => {
             ? Color.warmGray
             : 'black',
         },
-        props.extraStyling && props.extraStyling,
+        props.style && props.style,
       ]}>
       {props.children}
     </Text>
