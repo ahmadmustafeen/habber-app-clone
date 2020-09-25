@@ -12,6 +12,8 @@ import {MainNav} from './MainNav';
 import About from '../containers/About';
 import SignIn from '../containers/SignIn';
 import SignUp from '../containers/SignUp';
+import Splash from '../containers/Splash';
+import DrawerMenu from '../containers/DrawerMenu';
 
 const Drawer = createDrawerNavigator();
 const AuthScreen = createStackNavigator();
@@ -25,8 +27,8 @@ class Navigator extends Component {
   componentDidMount = async () => {
     new Promise((resolve) =>
       setTimeout(() => {
-        resolve('result');
-      }, 200),
+        resolve();
+      }, 1000),
     ).then(() => this.setState({loading: false}));
   };
 
@@ -35,18 +37,14 @@ class Navigator extends Component {
       <NavigationContainer>
         {this.state.loading ? (
           <RootStack.Navigator screenOptions={{headerShown: false}}>
-            <RootStack.Screen name="Splash" component={About} />
+            <RootStack.Screen name="Splash" component={Splash} />
           </RootStack.Navigator>
         ) : true ? (
           <Drawer.Navigator
             initialRouteName="Home"
-            drawerContent={() => (
-              <View>
-                <Text>Hello From Drawer</Text>
-              </View>
-            )}
+            drawerContent={() => <DrawerMenu />}
             drawerBackgroundColor="transparent">
-            <Drawer.Screen name="Home" component={MainNav} />
+            <Drawer.Screen name="Main" component={MainNav} />
           </Drawer.Navigator>
         ) : (
           <AuthScreen.Navigator

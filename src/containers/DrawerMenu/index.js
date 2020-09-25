@@ -4,14 +4,14 @@ import {AppText, Screen} from '../../components/common';
 
 import {Color} from '../../constants/Colors';
 
-const Home = (props) => {
+const DrawerMenu = (props) => {
   return (
     <Screen backgroundColor={Color.background}>
       <View key="header"></View>
       <View key="content">
-        <AppText>Home</AppText>
+        <AppText>DrawerMenu</AppText>
       </View>
     </Screen>
   );
 };
-export default Home;
+export default DrawerMenu;
