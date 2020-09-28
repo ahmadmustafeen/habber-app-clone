@@ -1,0 +1,48 @@
+import React from 'react';
+import {View, StyleSheet, TextInput} from 'react-native';
+import {Color} from '../constants/Colors';
+
+import {AppText} from './common/AppText';
+
+const InputWithLabel = (props) => {
+  const {viewStyle, label, inputRef, required, maxLength, primary} = props;
+
+  return (
+    <View style={[styles.inputContainerStyle, viewStyle]}>
+      {label && (
+        <AppText secondary={!primary} primary={primary}>
+          {`${label} ` || `Label Name`}
+          {required ? <AppText>*</AppText> : null}
+        </AppText>
+      )}
+      <TextInput
+        {...props}
+        ref={(r) => {
+          inputRef && inputRef(r);
+        }}
+        placeholderTextColor={Color.warmGray}
+        maxLength={maxLength}
+        style={styles.inputFieldStyle}
+      />
+    </View>
+  );
+};
+
+const styles = StyleSheet.create({
+  inputContainerStyle: {
+    paddingBottom: 10,
+    width: '100%',
+  },
+  inputFieldStyle: {
+    marginVertical: 10,
+    height: 45,
+    paddingVertical: 3,
+    paddingLeft: 15,
+    borderRadius: 5,
+    borderWidth: 0.5,
+    fontSize: 20,
+    backgroundColor: 'transparent',
+    borderColor: Color.primary,
+  },
+});
+export {InputWithLabel};

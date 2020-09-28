@@ -11,18 +11,25 @@ import {
 import {AppText} from './AppText';
 import {Color} from '../../constants/Colors';
 const Button = (props) => {
-  const {children, color, onPress} = props;
+  const {children, color, onPress, background} = props;
   return (
     <TouchableOpacity
       style={{
         justifyContent: 'center',
         height: 45,
-        // width: '100%',
+        width: '100%',
         borderRadius: 35,
-        backgroundColor: color || Color.appColor,
+        backgroundColor: background || Color.primary,
       }}
       onPress={onPress}>
-      <AppText style={styles.text}>{children || 'Button'}</AppText>
+      <AppText
+        style={{
+          textAlign: 'center',
+          color: color || 'black',
+          fontSize: 25,
+        }}>
+        {children || 'Button'}
+      </AppText>
     </TouchableOpacity>
   );
 };

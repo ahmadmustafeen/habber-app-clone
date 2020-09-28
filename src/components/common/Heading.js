@@ -10,7 +10,6 @@ const styles = StyleSheet.create({
   title: {
     fontFamily: 'Avenir-Medium',
     fontSize: 30,
-
     color: Color.appColor,
   },
 });

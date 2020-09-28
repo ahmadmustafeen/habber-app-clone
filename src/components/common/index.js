@@ -3,5 +3,5 @@ export * from './ScrollableScreen';
 export * from './Picker';
 export * from './Screen';
 export * from './Button';
-export * from './Heading';
+
 export * from './SubHeading';
