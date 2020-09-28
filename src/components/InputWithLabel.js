@@ -1,10 +1,14 @@
 import React from 'react';
-import {View, StyleSheet, TextInput} from 'react-native';
+import {View, StyleSheet, TextInput, Text} from 'react-native';
+import {useTheme} from '@react-navigation/native';
+
 import {Color} from '../constants/Colors';
 
 import {AppText} from './common/AppText';
 
 const InputWithLabel = (props) => {
+  const {colors} = useTheme();
+
   const {viewStyle, label, inputRef, required, maxLength, primary} = props;
 
   return (

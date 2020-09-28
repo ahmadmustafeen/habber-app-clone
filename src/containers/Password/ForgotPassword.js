@@ -1,21 +1,46 @@
-import React, {useState} from 'react';
-import {View} from 'react-native';
-import {AppText, Button, Screen} from '../../components/common';
-
-import {Color} from '../../constants/Colors';
 import {RESET_PASSWORD_SCREEN} from '../../constants/Screens';
+
+import React, {useState} from 'react';
+import {View, StyleSheet} from 'react-native';
+import {InputWithLabel} from '../../components';
+import {AppText, BackgroundImage, Button} from '../../components/common';
+
+import {FORGOT_PASSWORD_SCREEN, SIGNUP_SCREEN} from '../../constants/Screens';
 
 export const ForgotPassword = (props) => {
   const {navigate} = props.navigation;
   return (
-    <Screen backgroundColor={Color.background}>
-      <View key="header"></View>
+    <BackgroundImage>
+      <View key="header">
+        <AppText bold heading primary>
+          Forgot Password?
+        </AppText>
+        <AppText secondary>
+          Enter the email address you used to create your account and we will
+          email you a link to reset your password
+        </AppText>
+      </View>
       <View key="content">
-        <AppText>Forgot Password</AppText>
-        <Button onPress={() => navigate(RESET_PASSWORD_SCREEN)}>
+        <InputWithLabel placeholder="ahmadalajmi@gmail.com" label="Email" />
+      </View>
+      <View key="footer">
+        <Button
+          style={{borderRadius: 5}}
+          onPress={() => navigate(RESET_PASSWORD_SCREEN)}>
           Reset Password
         </Button>
       </View>
-    </Screen>
+    </BackgroundImage>
   );
 };
+const styles = StyleSheet.create({
+  bgImage: {
+    flex: 1,
+  },
+  forgotPassword: {
+    textAlign: 'right',
+  },
+  createAccount: {
+    textAlign: 'center',
+  },
+});

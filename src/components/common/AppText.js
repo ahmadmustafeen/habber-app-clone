@@ -1,9 +1,10 @@
 import React from 'react';
 import {Text, StyleSheet} from 'react-native';
+import {useTheme} from '@react-navigation/native';
 
-import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
 import {Color} from '../../constants/Colors';
 const AppText = (props) => {
+  const {colors} = useTheme();
   const {
     heading,
     bold,
@@ -15,6 +16,7 @@ const AppText = (props) => {
     center,
     right,
   } = props;
+
   return (
     <Text
       {...props}
@@ -23,8 +25,8 @@ const AppText = (props) => {
         style && style,
         heading && {fontSize: 30},
         bold && {fontWeight: 'bold'},
-        secondary && {color: Color.secondary},
-        primary && {color: Color.primary},
+        secondary && {color: colors.secondary},
+        primary && {color: colors.primary},
         underline && {textDecorationLine: 'underline'},
         size && {fontSize: size},
         center && {textAlign: 'center'},

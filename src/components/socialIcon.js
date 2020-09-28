@@ -8,22 +8,20 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-import {AppText} from './AppText';
-import {Color} from '../../constants/Colors';
-const Button = (props) => {
-  const {children, color, onPress, background, width, style} = props;
+import {AppText} from './common/AppText';
+import {Color} from '../constants/Colors';
+const SocialIcon = (props) => {
+  const {children, color, onPress, background} = props;
   return (
     <TouchableOpacity
-      style={[
-        {
-          justifyContent: 'center',
-          height: 45,
-          width: width || '100%',
-          borderRadius: 35,
-          backgroundColor: background || Color.primary,
-        },
-        style,
-      ]}
+      style={{
+        justifyContent: 'center',
+        width: 60,
+        aspectRatio: 1,
+
+        borderRadius: 30,
+        backgroundColor: background || Color.primary,
+      }}
       onPress={onPress}>
       <AppText
         style={{
@@ -31,7 +29,7 @@ const Button = (props) => {
           color: color || 'black',
           fontSize: 25,
         }}>
-        {children || 'Button'}
+        {'Button'}
       </AppText>
     </TouchableOpacity>
   );
@@ -44,4 +42,4 @@ const styles = StyleSheet.create({
     fontSize: 25,
   },
 });
-export {Button};
+export {SocialIcon};

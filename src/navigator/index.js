@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 import React, {Component} from 'react';
 import {AsyncStorage, View, Text} from 'react-native';
-import {NavigationContainer} from '@react-navigation/native';
+import {NavigationContainer, DefaultTheme} from '@react-navigation/native';
 
 import {createStackNavigator} from '@react-navigation/stack';
 import {createDrawerNavigator} from '@react-navigation/drawer';
@@ -32,6 +32,20 @@ const Drawer = createDrawerNavigator();
 const AuthScreen = createStackNavigator();
 const RootStack = createStackNavigator();
 
+const MyTheme = {
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    appColor: '#014488',
+    primary: 'brown',
+    secondary: 'white',
+    silver: 'silver',
+    warmGray: '#939393',
+    background: '#e8e8e8',
+    textBlack: '#3B3B3B',
+  },
+};
+
 class Navigator extends Component {
   state = {
     loading: true,
@@ -47,7 +61,7 @@ class Navigator extends Component {
 
   render() {
     return (
-      <NavigationContainer>
+      <NavigationContainer theme={MyTheme}>
         {this.state.loading ? (
           <RootStack.Navigator screenOptions={{headerShown: false}}>
             <RootStack.Screen name="Splash" component={Splash} />
