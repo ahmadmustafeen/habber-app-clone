@@ -1,0 +1,15 @@
+Milestone 1 :
+* App Structure
+* 50% UI design
+
+Milestone 2:
+* 60% UI design
+* Authentication
+
+Milestone 3: 
+* 80% UI
+* books listing functional with api integrations
+
+Milestone 4:
+* request a book functional
+* crud operations and cart details 

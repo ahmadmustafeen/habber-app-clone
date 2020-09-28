@@ -1,11 +1,19 @@
 import React, {useState} from 'react';
 import {View} from 'react-native';
-import {InputWithLabel, SocialIcon} from '../../components';
+import {InputWithLabel, RoundIcon, ModalScreen} from '../../components';
 import {BackgroundImage, Button, AppText} from '../../components/common';
-import {SIGNUP_SUCCESSFUL_SCREEN} from '../../constants/Screens';
 
 const SignUp = (props) => {
   const {navigate} = props.navigation;
+  const [isModalVisible, setModalVisible] = useState(false);
+
+  const onSignUp = () => {
+    setModalVisible(true);
+  };
+
+  const handleModalButton = () => {
+    setModalVisible(false);
+  };
   return (
     <BackgroundImage source={require('../../assets/images/background.jpg')}>
       <View key="header"></View>
@@ -30,33 +38,37 @@ const SignUp = (props) => {
           <AppText underline primary size={15}>
             Terms of Services and Privacy Policy
           </AppText>
-          <Button
-            round
-            width="60%"
-            onPress={() => navigate(SIGNUP_SUCCESSFUL_SCREEN)}>
+          <Button round width="60%" onPress={onSignUp}>
             SIGN UP
           </Button>
 
           <AppText secondary>OR</AppText>
         </View>
         <View style={{flexDirection: 'row', justifyContent: 'space-around'}}>
-          <SocialIcon
+          <RoundIcon
             name="sc-facebook"
             type="evilicon"
             color="#fff"
             onPress={() => console.log('hello')}
           />
-          <SocialIcon
+          <RoundIcon
             name="google"
             type="font-awesome"
             color="#fff"
             onPress={() => console.log('hello')}
           />
-          <SocialIcon
+          <RoundIcon
             name="sc-twitter"
             type="evilicon"
             color="#fff"
             onPress={() => console.log('hello')}
+          />
+          <ModalScreen
+            heading="Welcome to habber"
+            description="Your id has regiserd successfully"
+            buttonLabel="Continue"
+            onPress={handleModalButton}
+            visible={isModalVisible}
           />
         </View>
       </View>

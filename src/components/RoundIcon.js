@@ -1,26 +1,20 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import {StyleSheet, TouchableOpacity} from 'react-native';
 
-import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
 import {Icon} from 'react-native-elements';
+import {useTheme} from '@react-navigation/native';
 
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from 'react-native-responsive-screen';
-import {AppText} from './common/AppText';
-import {Color} from '../constants/Colors';
-const SocialIcon = (props) => {
-  const {background} = props;
+const RoundIcon = (props) => {
+  const {background, large} = props;
+  const {colors} = useTheme();
   return (
     <Icon
       containerStyle={{
         justifyContent: 'center',
-        width: 60,
+        width: large ? 90 : 60,
         aspectRatio: 1,
-        borderRadius: 30,
-        backgroundColor: background || Color.primary,
+        borderRadius: large ? 45 : 30,
+        backgroundColor: background || colors.primary,
       }}
       {...props}
       // color
@@ -49,4 +43,4 @@ const styles = StyleSheet.create({
     fontSize: 25,
   },
 });
-export {SocialIcon};
+export {RoundIcon};

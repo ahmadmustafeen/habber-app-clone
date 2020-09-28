@@ -15,7 +15,7 @@ import SignUp from '../containers/SignUp';
 import Splash from '../containers/Splash';
 import DrawerMenu from '../containers/DrawerMenu';
 import Language from '../containers/Language';
-import {ForgotPassword, ResetPassword} from '../containers/Password';
+import ForgotPassword from '../containers/ForgotPassword';
 
 import {
   FORGOT_PASSWORD_SCREEN,
@@ -23,10 +23,7 @@ import {
   SIGNIN_SCREEN,
   SIGNUP_SCREEN,
   AD_SCREEN,
-  SIGNUP_SUCCESSFUL_SCREEN,
-  RESET_PASSWORD_SCREEN,
 } from '../constants/Screens';
-import SignUpSuccesful from '../containers/SignUp/SignUpSuccesful';
 
 const Drawer = createDrawerNavigator();
 const AuthScreen = createStackNavigator();
@@ -82,17 +79,10 @@ class Navigator extends Component {
             <AuthScreen.Screen name={LANGUAGE_SCREEN} component={Language} />
             <AuthScreen.Screen name={SIGNIN_SCREEN} component={SignIn} />
             <AuthScreen.Screen name={SIGNUP_SCREEN} component={SignUp} />
-            <AuthScreen.Screen
-              name={SIGNUP_SUCCESSFUL_SCREEN}
-              component={SignUpSuccesful}
-            />
+
             <AuthScreen.Screen
               name={FORGOT_PASSWORD_SCREEN}
               component={ForgotPassword}
-            />
-            <AuthScreen.Screen
-              name={RESET_PASSWORD_SCREEN}
-              component={ResetPassword}
             />
           </AuthScreen.Navigator>
         )}

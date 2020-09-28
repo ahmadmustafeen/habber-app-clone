@@ -1,2 +1,3 @@
 export * from './InputWithLabel';
-export * from './socialIcon';
+export * from './RoundIcon';
+export * from './ModalScreen';

@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {View, StyleSheet, ImageBackground} from 'react-native';
-import {InputWithLabel, SocialIcon} from '../../components';
+import {InputWithLabel, RoundIcon} from '../../components';
 import {AppText, BackgroundImage, Button} from '../../components/common';
 
 import {Color} from '../../constants/Colors';
@@ -49,19 +49,19 @@ const SignIn = (props) => {
 Login with Social media account`}
         </AppText>
         <View style={{flexDirection: 'row', justifyContent: 'space-around'}}>
-          <SocialIcon
+          <RoundIcon
             name="sc-facebook"
             type="evilicon"
             color="#fff"
             onPress={() => console.log('hello')}
           />
-          <SocialIcon
+          <RoundIcon
             name="google"
             type="font-awesome"
             color="#fff"
             onPress={() => console.log('hello')}
           />
-          <SocialIcon
+          <RoundIcon
             name="sc-twitter"
             type="evilicon"
             color="#fff"
