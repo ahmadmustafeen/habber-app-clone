@@ -31,6 +31,7 @@ const SignUp = (props) => {
             Terms of Services and Privacy Policy
           </AppText>
           <Button
+            round
             width="60%"
             onPress={() => navigate(SIGNUP_SUCCESSFUL_SCREEN)}>
             SIGN UP

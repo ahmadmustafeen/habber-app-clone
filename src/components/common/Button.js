@@ -11,7 +11,7 @@ import {
 import {AppText} from './AppText';
 import {Color} from '../../constants/Colors';
 const Button = (props) => {
-  const {children, color, onPress, background, width, style} = props;
+  const {children, color, onPress, background, width, style, round} = props;
   return (
     <TouchableOpacity
       style={[
@@ -19,7 +19,7 @@ const Button = (props) => {
           justifyContent: 'center',
           height: 45,
           width: width || '100%',
-          borderRadius: 35,
+          borderRadius: round ? 35 : 5,
           backgroundColor: background || Color.primary,
         },
         style,

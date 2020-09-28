@@ -24,9 +24,7 @@ export const ForgotPassword = (props) => {
         <InputWithLabel placeholder="ahmadalajmi@gmail.com" label="Email" />
       </View>
       <View key="footer">
-        <Button
-          style={{borderRadius: 5}}
-          onPress={() => navigate(RESET_PASSWORD_SCREEN)}>
+        <Button onPress={() => navigate(RESET_PASSWORD_SCREEN)}>
           Reset Password
         </Button>
       </View>

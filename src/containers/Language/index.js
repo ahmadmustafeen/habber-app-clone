@@ -16,16 +16,10 @@ const Language = (props) => {
         />
       </View>
       <AppText primary>Select Your Language</AppText>
-      <Button
-        background="white"
-        // color="transparent"
-        onPress={() => navigate(SIGNIN_SCREEN)}>
+      <Button round background="white" onPress={() => navigate(SIGNIN_SCREEN)}>
         English
       </Button>
-      <Button
-        // color="transparent"
-        background="white"
-        onPress={() => navigate(SIGNIN_SCREEN)}>
+      <Button round background="white" onPress={() => navigate(SIGNIN_SCREEN)}>
         عربى
       </Button>
     </View>
