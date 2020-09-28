@@ -2,6 +2,7 @@ import React from 'react';
 import {StyleSheet, TouchableOpacity} from 'react-native';
 
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
+import {Icon} from 'react-native-elements';
 
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {
@@ -11,27 +12,33 @@ import {
 import {AppText} from './common/AppText';
 import {Color} from '../constants/Colors';
 const SocialIcon = (props) => {
-  const {children, color, onPress, background} = props;
+  const {background} = props;
   return (
-    <TouchableOpacity
-      style={{
+    <Icon
+      containerStyle={{
         justifyContent: 'center',
         width: 60,
         aspectRatio: 1,
-
         borderRadius: 30,
         backgroundColor: background || Color.primary,
       }}
-      onPress={onPress}>
-      <AppText
-        style={{
-          textAlign: 'center',
-          color: color || 'black',
-          fontSize: 25,
-        }}>
-        {'Button'}
-      </AppText>
-    </TouchableOpacity>
+      {...props}
+      // color
+      // disabled
+      // disabledStyle
+      // iconStyle
+      // iconProps
+      // name
+      // onPress
+      // onLongPress
+      // raised
+      // reverse
+      // reverseColor
+      // size
+      // solid
+      // type
+      // underlayColor
+    />
   );
 };
 const styles = StyleSheet.create({

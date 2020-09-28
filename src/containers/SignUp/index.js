@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {View} from 'react-native';
-import {InputWithLabel} from '../../components';
+import {InputWithLabel, SocialIcon} from '../../components';
 import {BackgroundImage, Button, AppText} from '../../components/common';
 import {SIGNUP_SUCCESSFUL_SCREEN} from '../../constants/Screens';
 
@@ -36,7 +36,28 @@ const SignUp = (props) => {
             onPress={() => navigate(SIGNUP_SUCCESSFUL_SCREEN)}>
             SIGN UP
           </Button>
+
           <AppText secondary>OR</AppText>
+        </View>
+        <View style={{flexDirection: 'row', justifyContent: 'space-around'}}>
+          <SocialIcon
+            name="sc-facebook"
+            type="evilicon"
+            color="#fff"
+            onPress={() => console.log('hello')}
+          />
+          <SocialIcon
+            name="google"
+            type="font-awesome"
+            color="#fff"
+            onPress={() => console.log('hello')}
+          />
+          <SocialIcon
+            name="sc-twitter"
+            type="evilicon"
+            color="#fff"
+            onPress={() => console.log('hello')}
+          />
         </View>
       </View>
     </BackgroundImage>

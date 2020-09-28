@@ -48,7 +48,26 @@ const SignIn = (props) => {
 
 Login with Social media account`}
         </AppText>
-        <SocialIcon />
+        <View style={{flexDirection: 'row', justifyContent: 'space-around'}}>
+          <SocialIcon
+            name="sc-facebook"
+            type="evilicon"
+            color="#fff"
+            onPress={() => console.log('hello')}
+          />
+          <SocialIcon
+            name="google"
+            type="font-awesome"
+            color="#fff"
+            onPress={() => console.log('hello')}
+          />
+          <SocialIcon
+            name="sc-twitter"
+            type="evilicon"
+            color="#fff"
+            onPress={() => console.log('hello')}
+          />
+        </View>
       </View>
       <View key="footer">
         <AppText
