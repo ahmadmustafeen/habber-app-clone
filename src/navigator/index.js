@@ -1,32 +1,16 @@
 /* eslint-disable prettier/prettier */
-import React, {Component} from 'react';
-import {AsyncStorage, View, Text} from 'react-native';
+import React, {useEffect, useState} from 'react';
 import {NavigationContainer, DefaultTheme} from '@react-navigation/native';
 
 import {createStackNavigator} from '@react-navigation/stack';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 
-import {connect} from 'react-redux';
-import {MainNav} from './MainNav';
-
-import AdScreen from '../containers/AdScreen';
-import SignIn from '../containers/SignIn';
-import SignUp from '../containers/SignUp';
 import Splash from '../containers/Splash';
+import {AuthNav} from './AuthNav';
 import DrawerMenu from '../containers/DrawerMenu';
-import Language from '../containers/Language';
-import ForgotPassword from '../containers/ForgotPassword';
-
-import {
-  FORGOT_PASSWORD_SCREEN,
-  LANGUAGE_SCREEN,
-  SIGNIN_SCREEN,
-  SIGNUP_SCREEN,
-  AD_SCREEN,
-} from '../constants/Screens';
+import {DashboardNav} from './DashboardNav';
 
 const Drawer = createDrawerNavigator();
-const AuthScreen = createStackNavigator();
 const RootStack = createStackNavigator();
 
 const MyTheme = {
@@ -43,52 +27,42 @@ const MyTheme = {
   },
 };
 
-class Navigator extends Component {
-  state = {
-    loading: true,
-  };
+const DrawerNav = () => {
+  return (
+    <Drawer.Navigator
+      initialRouteName="Home"
+      drawerContent={() => <DrawerMenu />}
+      drawerBackgroundColor="transparent">
+      <Drawer.Screen name="Main" component={DashboardNav} />
+    </Drawer.Navigator>
+  );
+};
 
-  componentDidMount = async () => {
+const Navigator = () => {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
     new Promise((resolve) =>
       setTimeout(() => {
         resolve();
       }, 1000),
-    ).then(() => this.setState({loading: false}));
-  };
+    ).then(() => setLoading(false));
+  }, []);
 
-  render() {
-    return (
-      <NavigationContainer theme={MyTheme}>
-        {this.state.loading ? (
-          <RootStack.Navigator screenOptions={{headerShown: false}}>
-            <RootStack.Screen name="Splash" component={Splash} />
-          </RootStack.Navigator>
-        ) : false ? (
-          <Drawer.Navigator
-            initialRouteName="Home"
-            drawerContent={() => <DrawerMenu />}
-            drawerBackgroundColor="transparent">
-            <Drawer.Screen name="Main" component={MainNav} />
-          </Drawer.Navigator>
-        ) : (
-          <AuthScreen.Navigator
-            screenOptions={{
-              headerShown: false,
-            }}>
-            <AuthScreen.Screen name={AD_SCREEN} component={AdScreen} />
-            <AuthScreen.Screen name={LANGUAGE_SCREEN} component={Language} />
-            <AuthScreen.Screen name={SIGNIN_SCREEN} component={SignIn} />
-            <AuthScreen.Screen name={SIGNUP_SCREEN} component={SignUp} />
-
-            <AuthScreen.Screen
-              name={FORGOT_PASSWORD_SCREEN}
-              component={ForgotPassword}
-            />
-          </AuthScreen.Navigator>
-        )}
-      </NavigationContainer>
-    );
-  }
-}
+  return (
+    <NavigationContainer theme={MyTheme}>
+      {loading ? (
+        <RootStack.Navigator screenOptions={{headerShown: false}}>
+          <RootStack.Screen name="Splash" component={Splash} />
+        </RootStack.Navigator>
+      ) : (
+        <RootStack.Navigator screenOptions={{headerShown: false}}>
+          <RootStack.Screen name="Drawer" component={DrawerNav} />
+          <RootStack.Screen name="Auth" component={AuthNav} />
+        </RootStack.Navigator>
+      )}
+    </NavigationContainer>
+  );
+};
 
 export default Navigator;

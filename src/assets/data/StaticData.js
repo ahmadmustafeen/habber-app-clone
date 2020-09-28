@@ -9,3 +9,14 @@ export const forgotPassword = {
     buttonLabel: 'Continue',
   },
 };
+
+export const signUp = {
+  agreement: 'By creating an account you agree to our',
+  TermsAndPolicies: 'Terms of Services and Privacy Policy',
+  sign_up: 'SIGN UP',
+  modalData: {
+    heading: 'Welcome to habber',
+    description: 'Your id has regiserd successfully',
+    buttonLabel: 'Continue',
+  },
+};

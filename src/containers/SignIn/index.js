@@ -31,7 +31,9 @@ const SignIn = (props) => {
           onPress={() => navigate(FORGOT_PASSWORD_SCREEN)}>
           Forgot Password
         </AppText>
-        <Button round>SIGN IN</Button>
+        <Button round onPress={() => navigate('Home')}>
+          SIGN IN
+        </Button>
 
         <AppText
           primary

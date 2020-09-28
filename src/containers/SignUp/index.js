@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {View} from 'react-native';
 import {InputWithLabel, RoundIcon, ModalScreen} from '../../components';
 import {BackgroundImage, Button, AppText} from '../../components/common';
-
+import {signUp} from '../../assets/data/StaticData';
 const SignUp = (props) => {
   const {navigate} = props.navigation;
   const [isModalVisible, setModalVisible] = useState(false);
@@ -33,13 +33,13 @@ const SignUp = (props) => {
         />
         <View style={{alignItems: 'center'}}>
           <AppText secondary size={15}>
-            By creating an account you agree to our
+            {signUp.agreement}
           </AppText>
           <AppText underline primary size={15}>
-            Terms of Services and Privacy Policy
+            {signUp.TermsAndPolicies}
           </AppText>
           <Button round width="60%" onPress={onSignUp}>
-            SIGN UP
+            {signUp.sign_up}
           </Button>
 
           <AppText secondary>OR</AppText>
@@ -64,9 +64,7 @@ const SignUp = (props) => {
             onPress={() => console.log('hello')}
           />
           <ModalScreen
-            heading="Welcome to habber"
-            description="Your id has regiserd successfully"
-            buttonLabel="Continue"
+            {...signUp.modalData}
             onPress={handleModalButton}
             visible={isModalVisible}
           />

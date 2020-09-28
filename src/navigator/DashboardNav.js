@@ -1,14 +1,9 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
-import {TouchableOpacity} from 'react-native';
-import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
 
 import Home from '../containers/Home';
-import {AppText} from '../components/common';
-import {Color} from '../constants/Colors';
 
 const Stack = createStackNavigator();
-
 const HeaderLeftComponent = (props) => {
   return (
     <TouchableOpacity
@@ -24,7 +19,7 @@ const HeaderLeftComponent = (props) => {
   );
 };
 
-export const MainNav = () => {
+export const DashboardNav = () => {
   return (
     <Stack.Navigator
     // screenOptions={({navigation}) => ({
