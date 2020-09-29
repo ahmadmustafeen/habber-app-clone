@@ -21,10 +21,14 @@ const ImageSlider = (props) => {
         width: 30,
         height: 5,
         borderRadius: 15,
-        top: 25,
       }}
       circleLoop
-      ImageComponentStyle={{borderRadius: 5, width: '97%', marginTop: 5}}
+      ImageComponentStyle={{
+        borderRadius: 5,
+        width: '97%',
+        marginTop: 5,
+        marginBottom: 30,
+      }}
       imageLoadingColor="#2196F3"
       dotColor={colors.primary}
       inactiveDotColor="#90A4AE"

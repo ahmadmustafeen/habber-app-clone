@@ -19,7 +19,7 @@ const MyTheme = {
     ...DefaultTheme.colors,
     appColor: '#014488',
     primary: 'brown',
-    secondary: 'white',
+    secondary: 'green',
     silver: 'silver',
     warmGray: '#939393',
     background: '#e8e8e8',

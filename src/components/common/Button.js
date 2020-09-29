@@ -1,9 +1,7 @@
 import React from 'react';
 import {StyleSheet, TouchableOpacity} from 'react-native';
+import {useTheme} from '@react-navigation/native';
 
-import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
-
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -11,7 +9,19 @@ import {
 import {AppText} from './AppText';
 import {Color} from '../../constants/Colors';
 const Button = (props) => {
-  const {children, color, onPress, background, width, style, round} = props;
+  const {
+    children,
+    color,
+    onPress,
+    background,
+    width,
+    style,
+    round,
+    fontSize,
+    secondary,
+    primary,
+  } = props;
+  const {colors} = useTheme();
   return (
     <TouchableOpacity
       style={[
@@ -20,12 +30,15 @@ const Button = (props) => {
           height: 45,
           width: width || '100%',
           borderRadius: round ? 35 : 5,
-          backgroundColor: background || Color.primary,
+          backgroundColor: background || 'white',
         },
+        primary && {backgroundColor: colors.primary},
+        secondary && {backgroundColor: colors.secondary},
         style,
       ]}
       onPress={onPress}>
       <AppText
+        size={fontSize}
         style={{
           textAlign: 'center',
           color: color || 'black',
