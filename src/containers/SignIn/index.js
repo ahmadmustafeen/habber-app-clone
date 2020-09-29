@@ -4,19 +4,19 @@ import {InputWithLabel, RoundIcon} from '../../components';
 import {AppText, BackgroundImage, Button} from '../../components/common';
 
 import {Color} from '../../constants/Colors';
-import {FORGOT_PASSWORD_SCREEN, SIGNUP_SCREEN} from '../../constants/Screens';
+import {FORGOT_PASSWORD_SCREEN,DRAWERMENU, SIGNUP_SCREEN} from '../../constants/Screens';
 
 const SignIn = (props) => {
   const {navigate} = props.navigation;
   return (
     <BackgroundImage>
       <View key="header">
-        <AppText bold heading primary>
+        <AppText bold style={styles.hellotxt}>
           Hello !
         </AppText>
-        <AppText secondary>Sign in to your account</AppText>
+        <AppText secondary style={{marginBottom:10}}>Sign in to your account</AppText>
       </View>
-      <View key="content">
+      <View key="content" style={styles.content}>
         <InputWithLabel placeholder="ahmadalajmi@gmail.com" label="Email" />
         <InputWithLabel
           secureTextEntry
@@ -26,8 +26,7 @@ const SignIn = (props) => {
         <AppText
           underline
           style={styles.forgotPassword}
-          primary
-          size={15}
+          size={18}
           onPress={() => navigate(FORGOT_PASSWORD_SCREEN)}>
           Forgot Password
         </AppText>
@@ -36,14 +35,13 @@ const SignIn = (props) => {
         </Button>
 
         <AppText
-          primary
           underline
           style={styles.createAccount}
           onPress={() => navigate(SIGNUP_SCREEN)}>
           Create New Account
         </AppText>
         <AppText
-          style={{textAlign: 'center'}}
+          style={{textAlign: 'center',marginBottom:10}}
           secondary
           onPress={() => navigate(SIGNUP_SCREEN)}>
           {`OR
@@ -76,9 +74,10 @@ Login with Social media account`}
           style={{
             textAlign: 'right',
             textDecorationLine: 'underline',
+            color: '#c27e12',
+            fontSize: 25,
           }}
-          primary
-          onPress={() => navigate(FORGOT_PASSWORD_SCREEN)}>
+          onPress={() => navigate('Home')}>
           Skip
         </AppText>
       </View>
@@ -86,14 +85,29 @@ Login with Social media account`}
   );
 };
 const styles = StyleSheet.create({
+  content:{
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'center',
+  },
   bgImage: {
     flex: 1,
   },
+  hellotxt: {
+    color: '#c27e12',
+    fontSize: 35,
+    marginTop: 30,
+  },
   forgotPassword: {
     textAlign: 'right',
+    color: '#c27e12',
+    marginBottom: 20,
   },
   createAccount: {
     textAlign: 'center',
+    color: '#c27e12',
+    marginTop: 20,
+    marginBottom: 20,
   },
 });
 export default SignIn;

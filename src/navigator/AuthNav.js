@@ -6,7 +6,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import AdScreen from '../containers/AdScreen';
 import SignIn from '../containers/SignIn';
 import SignUp from '../containers/SignUp';
-
+import DrawerMenu from '../containers/DrawerMenu';
 import Language from '../containers/Language';
 import ForgotPassword from '../containers/ForgotPassword';
 
@@ -16,6 +16,8 @@ import {
   SIGNIN_SCREEN,
   SIGNUP_SCREEN,
   AD_SCREEN,
+  DRAWERMENU,
+
 } from '../constants/Screens';
 const AuthScreen = createStackNavigator();
 export const AuthNav = () => {
@@ -28,6 +30,7 @@ export const AuthNav = () => {
       <AuthScreen.Screen name={LANGUAGE_SCREEN} component={Language} />
       <AuthScreen.Screen name={SIGNIN_SCREEN} component={SignIn} />
       <AuthScreen.Screen name={SIGNUP_SCREEN} component={SignUp} />
+      <AuthScreen.Screen name={DRAWERMENU} component={DrawerMenu} />
 
       <AuthScreen.Screen
         name={FORGOT_PASSWORD_SCREEN}
