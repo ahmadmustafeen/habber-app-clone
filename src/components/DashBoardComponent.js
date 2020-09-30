@@ -13,7 +13,7 @@ const DashboardComponent = (props) => {
       <FlatList
         showsHorizontalScrollIndicator={false}
         horizontal
-        data={data.items}
+        data={data}
         keyExtractor={(item, index) => index.toString() + item}
         renderItem={(item) => renderComponent(item)}
         ListEmptyComponent={() => (

@@ -6,7 +6,7 @@ import {FastImage} from './FastImage';
 export const ThumbnailBook = (props) => {
   return (
     <View style={styles.containerStyle}>
-      <FastImage source={require('../assets/images/background.jpg')} />
+      <FastImage source={{uri: props.url}} />
     </View>
   );
 };

@@ -1,4 +1,4 @@
-export const bookListData = [
+export const booksData = [
   {
     image:
       'https://images.unsplash.com/photo-1567226475328-9d6baaf565cf?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=60',

@@ -6,11 +6,7 @@ import {FastImage} from './FastImage';
 export const ThumbnailBookmarks = (props) => {
   return (
     <View style={styles.containerStyle}>
-      <FastImage
-        source={{
-          uri: 'https://unsplash.it/400/400?image=1',
-        }}
-      />
+      <FastImage source={{uri: props.url}} />
     </View>
   );
 };

@@ -6,11 +6,7 @@ import {FastImage} from './FastImage';
 export const ThumbnailClub = (props) => {
   return (
     <View style={styles.containerStyle}>
-      <FastImage
-        source={{
-          uri: 'https://unsplash.it/400/400?image=1',
-        }}
-      />
+      <FastImage source={{uri: props.url}} />
     </View>
   );
 };
@@ -21,5 +17,6 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     marginHorizontal: 10,
     borderRadius: 10,
+    overflow: 'hidden',
   },
 });
