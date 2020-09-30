@@ -6,3 +6,5 @@ export * from './DashBoardComponent';
 export * from './ThumbnailBook';
 export * from './ThumbnailClub';
 export * from './ThumbnailBookmarks';
+export * from './TitleBarWithIcon';
+export * from './BookCard';

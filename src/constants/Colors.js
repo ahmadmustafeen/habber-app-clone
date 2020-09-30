@@ -1,5 +1,5 @@
 export const Color = {
-  appColor: '#014488',
+  appColor: 'black',
   primary: 'brown',
   secondary: 'white',
   silver: 'silver',

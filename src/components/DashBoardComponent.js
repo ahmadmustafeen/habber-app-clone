@@ -1,29 +1,14 @@
 import React from 'react';
 import {View, StyleSheet, ScrollView} from 'react-native';
-import {useTheme} from '@react-navigation/native';
 
-import {AppText} from './common/AppText';
-import {Icon} from 'react-native-elements';
+import {TitleBarWithIcon} from './TitleBarWithIcon';
 
 const DashboardComponent = (props) => {
-  const {colors} = useTheme();
-  const {viewStyle, label, data, renderComponent} = props;
+  const {viewStyle, data, renderComponent} = props;
 
   return (
     <View style={[styles.containerStyle, viewStyle]}>
-      <View
-        style={{
-          flexDirection: 'row',
-          borderLeftWidth: 6,
-          justifyContent: 'space-between',
-          padding: 10,
-          borderLeftColor: colors.primary,
-        }}>
-        <AppText primary bold>
-          {label || data.label}
-        </AppText>
-        <Icon name="rightcircleo" type="antdesign" color={colors.primary} />
-      </View>
+      <TitleBarWithIcon {...props} />
       {data && (
         <ScrollView
           horizontal

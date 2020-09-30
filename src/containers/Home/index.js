@@ -11,6 +11,7 @@ import {
 import {booksData, sliderImages} from './dummydata';
 import {ThumbnailBook} from '../../components/ThumbnailBook';
 import {AppText, Button} from '../../components/common';
+import {BOOKLIST_SCREEN} from '../../constants/Screens';
 
 const Home = (props) => {
   const {navigate} = props.navigation;
@@ -21,12 +22,14 @@ const Home = (props) => {
       <ImageSlider images={images} />
       <DashboardComponent
         data={data}
-        renderComponent={(item) => <ThumbnailClub url={item.image} />}
-        label="BOOK CLUBS"
+        label="ENGLISH BOOK"
+        renderComponent={(item) => <ThumbnailBook url={item.image} />}
       />
       <DashboardComponent
         data={data}
-        renderComponent={(item) => <ThumbnailBook url={item.image} />}
+        renderComponent={(item) => <ThumbnailClub url={item.image} />}
+        label="BOOK CLUBS"
+        onIconPress={() => navigate(BOOKLIST_SCREEN, {label: 'BOOKS CLUB'})}
       />
       <DashboardComponent
         data={data}

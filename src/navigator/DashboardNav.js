@@ -2,6 +2,8 @@ import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 
 import Home from '../containers/Home';
+import BooksList from '../containers/BooksList';
+import {BOOKLIST_SCREEN} from '../constants/Screens';
 
 const Stack = createStackNavigator();
 const HeaderLeftComponent = (props) => {
@@ -32,6 +34,7 @@ export const DashboardNav = () => {
     // })}
     >
       <Stack.Screen name="Home" component={Home} />
+      <Stack.Screen name={BOOKLIST_SCREEN} component={BooksList} />
     </Stack.Navigator>
   );
 };
