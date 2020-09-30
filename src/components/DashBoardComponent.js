@@ -1,5 +1,6 @@
 import React from 'react';
-import {View, StyleSheet, ScrollView} from 'react-native';
+import {View, FlatList, StyleSheet, ScrollView} from 'react-native';
+import {AppText} from './common';
 
 import {TitleBarWithIcon} from './TitleBarWithIcon';
 
@@ -9,17 +10,18 @@ const DashboardComponent = (props) => {
   return (
     <View style={[styles.containerStyle, viewStyle]}>
       <TitleBarWithIcon {...props} />
-      {data && (
-        <ScrollView
-          horizontal
-          contentContainerStyle={{flexGrow: 1}}
-          showsHorizontalScrollIndicator={false}
-          scrollEventThrottle={200}
-          decelerationRate="fast"
-          scrollEnabled>
-          {data.items.map((item) => renderComponent(item))}
-        </ScrollView>
-      )}
+      <FlatList
+        horizontal
+        data={data.items}
+        keyExtractor={(item, index) => index.toString() + item}
+        renderItem={(item) => renderComponent(item)}
+        ListEmptyComponent={() => (
+          <View>
+            <AppText>No Book Available</AppText>
+          </View>
+        )}
+        ListFooterComponent={() => <View style={{paddingBottom: 50}} />}
+      />
     </View>
   );
 };

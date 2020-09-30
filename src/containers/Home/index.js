@@ -7,6 +7,7 @@ import {
   ImageSlider,
   ThumbnailBookmarks,
   ThumbnailClub,
+  TitleBarWithIcon,
 } from '../../components';
 import {booksData, sliderImages} from './dummydata';
 import {ThumbnailBook} from '../../components/ThumbnailBook';
@@ -36,7 +37,7 @@ const Home = (props) => {
         renderComponent={(item) => <ThumbnailBookmarks url={item.image} />}
         label="BOOKMARKS"
       />
-      <DashboardComponent label="REQUEST BOOKS" />
+      <TitleBarWithIcon label="REQUEST BOOKS" />
       <View style={styles.requestBooks}>
         <View style={{width: '29%'}}>
           <Button secondary fontSize={15}>
