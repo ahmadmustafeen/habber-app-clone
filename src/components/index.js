@@ -9,3 +9,4 @@ export * from './ThumbnailBookmarks';
 export * from './TitleBarWithIcon';
 export * from './BookCard';
 export * from './ModalImage';
+export * from './BookDetailsCard';

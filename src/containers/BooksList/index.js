@@ -1,5 +1,5 @@
 import React from 'react';
-import {FlatList, View} from 'react-native';
+import {FlatList, View, ScrollView} from 'react-native';
 import {BookCard, TitleBarWithIcon} from '../../components';
 
 import {AppText} from '../../components/common';
@@ -8,7 +8,7 @@ const BooksList = (props) => {
   const {label, data} = props.route.params;
 
   return (
-    <View>
+    <ScrollView>
       <TitleBarWithIcon label={label} />
 
       <FlatList
@@ -17,7 +17,7 @@ const BooksList = (props) => {
         keyExtractor={(item, index) => index.toString() + item}
         columnWrapperStyle={{justifyContent: 'space-between'}}
         numColumns={2}
-        renderItem={(book) => <BookCard {...book.item} />}
+        renderItem={(book) => <BookCard {...book.item} {...props} />}
         ItemSeparatorComponent={() => (
           <View style={{marginVertical: 20, borderWidth: 0.5}} />
         )}
@@ -28,7 +28,7 @@ const BooksList = (props) => {
         )}
         ListFooterComponent={() => <View style={{paddingBottom: 50}} />}
       />
-    </View>
+    </ScrollView>
   );
 };
 export default BooksList;

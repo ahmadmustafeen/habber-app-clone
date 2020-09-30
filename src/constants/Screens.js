@@ -4,3 +4,4 @@ export const SIGNIN_SCREEN = 'SignIn';
 export const FORGOT_PASSWORD_SCREEN = 'ForgotPassword';
 export const AD_SCREEN = 'AdScreen';
 export const BOOKLIST_SCREEN = 'BooksList';
+export const BOOK_DETAILS_SCREEN = 'BookDetails';
