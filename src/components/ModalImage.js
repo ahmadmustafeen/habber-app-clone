@@ -24,7 +24,12 @@ const ModalComponent = ({source}, ref) => {
             type="antdesign"
             color="white"
           />
-          <FastImage source={source} resizeMode="contain" />
+
+          <FastImage
+            // source={require('../assets/images/background.jpg')}
+            source={source}
+            resizeMode="contain"
+          />
         </View>
       </View>
     </Modal>
@@ -37,14 +42,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   imageContainer: {
-    height: '80%',
+    height: '75%',
     width: '100%',
-    backgroundColor: 'pink',
   },
   iconContainerStyle: {
     position: 'absolute',
     right: 0,
-    margin: 10,
+    top: -20,
+    marginRight: 10,
     zIndex: 1,
   },
 });

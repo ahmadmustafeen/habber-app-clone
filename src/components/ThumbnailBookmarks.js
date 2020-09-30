@@ -17,5 +17,6 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     marginHorizontal: 3,
     borderRadius: 10,
+    overflow: 'hidden',
   },
 });

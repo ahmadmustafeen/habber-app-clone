@@ -1,20 +1,16 @@
-import React, {useRef} from 'react';
+import React from 'react';
 import {FlatList, View} from 'react-native';
-import {ModalScreen, BookCard, TitleBarWithIcon} from '../../components';
+import {BookCard, TitleBarWithIcon} from '../../components';
 
-import {AppText, Button, Screen} from '../../components/common';
+import {AppText} from '../../components/common';
 
 const BooksList = (props) => {
   const {label, data} = props.route.params;
-  const modalRef = useRef(null);
-  const toggleModal = () => {
-    modalRef.current.toggle();
-  };
+
   return (
     <View>
       <TitleBarWithIcon label={label} />
-      <Button onPress={toggleModal}>Press</Button>
-      <ModalScreen ref={modalRef} />
+
       <FlatList
         data={data}
         showsVerticalScrollIndicator={false}
