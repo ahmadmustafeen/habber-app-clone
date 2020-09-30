@@ -8,3 +8,4 @@ export * from './ThumbnailClub';
 export * from './ThumbnailBookmarks';
 export * from './TitleBarWithIcon';
 export * from './BookCard';
+export * from './ModalImage';

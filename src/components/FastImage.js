@@ -1,20 +1,22 @@
 import React from 'react';
-import {StyleSheet} from 'react-native';
+import {StyleSheet, TouchableWithoutFeedback} from 'react-native';
 
 import RNFastImage from 'react-native-fast-image';
 
 const FastImage = (props) => {
-  const {resizeMode} = props;
+  const {resizeMode, onPress} = props;
   return (
-    <RNFastImage
-      {...props}
-      style={styles.image}
-      resizeMode={
-        resizeMode
-          ? RNFastImage.resizeMode[resizeMode]
-          : RNFastImage.resizeMode.cover
-      }
-    />
+    <TouchableWithoutFeedback onPress={onPress}>
+      <RNFastImage
+        {...props}
+        style={styles.image}
+        resizeMode={
+          resizeMode
+            ? RNFastImage.resizeMode[resizeMode]
+            : RNFastImage.resizeMode.cover
+        }
+      />
+    </TouchableWithoutFeedback>
   );
 };
 
