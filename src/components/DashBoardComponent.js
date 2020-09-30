@@ -11,6 +11,7 @@ const DashboardComponent = (props) => {
     <View style={[styles.containerStyle, viewStyle]}>
       <TitleBarWithIcon {...props} />
       <FlatList
+        showsHorizontalScrollIndicator={false}
         horizontal
         data={data.items}
         keyExtractor={(item, index) => index.toString() + item}

@@ -12,7 +12,7 @@ import {
 import {booksData, sliderImages} from './dummydata';
 import {ThumbnailBook} from '../../components/ThumbnailBook';
 import {AppText, Button} from '../../components/common';
-import {BOOKLIST_SCREEN} from '../../constants/Screens';
+import {BOOKLIST_SCREEN, LANGUAGE_SCREEN} from '../../constants/Screens';
 
 const Home = (props) => {
   const {navigate} = props.navigation;
@@ -21,6 +21,9 @@ const Home = (props) => {
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       <ImageSlider images={images} />
+      <Button onPress={() => navigate('Auth', {screen: LANGUAGE_SCREEN})}>
+        Auth Navigation
+      </Button>
       <DashboardComponent
         data={data}
         label="ENGLISH BOOK"
