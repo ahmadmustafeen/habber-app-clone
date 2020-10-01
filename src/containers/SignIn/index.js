@@ -4,7 +4,7 @@ import {InputWithLabel, RoundIcon} from '../../components';
 import {AppText, BackgroundImage, Button} from '../../components/common';
 
 import {Color} from '../../constants/Colors';
-import {FORGOT_PASSWORD_SCREEN,DRAWERMENU, SIGNUP_SCREEN} from '../../constants/Screens';
+import {FORGOT_PASSWORD_SCREEN,MY_PROFILE, SIGNUP_SCREEN} from '../../constants/Screens';
 
 const SignIn = (props) => {
   const {navigate} = props.navigation;
@@ -77,7 +77,7 @@ Login with Social media account`}
             color: '#c27e12',
             fontSize: 25,
           }}
-          onPress={() => navigate('Home')}>
+          onPress={() => navigate(MY_PROFILE)}>
           Skip
         </AppText>
       </View>

@@ -10,12 +10,12 @@ const DrawerMenu = (props) => {
     <Screen backgroundColor='#005f69'>
       <View key="header"></View>
       <View key="content" style={styles.content}>
-        <View style={{flexDirection: 'row'}}>
+        <View style={{flexDirection: 'row',marginBottom:40,marginTop:20,justifyContent:'center'}}>
         <Image
           style={styles.image}
           source={require('../../assets/images/Screenshot_Logo.jpg')}
         />
-        <Text style={{color:'white',marginTop:40,fontSize: 18}}>Khaled Ammar</Text>
+        <Text style={{color:'white',marginLeft:10,marginTop:20,fontSize: 17,fontWeight:'bold'}}>Khaled Ammar</Text>
         </View>
         <View>
         <AppText style={styles.navbtn}>
@@ -81,8 +81,8 @@ const styles = StyleSheet.create({
   },
   image: {
     width: '30%',
-    height: '100%',
-    borderRadius: 400/ 2
+    height: '150%',
+    borderRadius: 400/ 2,
   },
 });
 export default DrawerMenu;
