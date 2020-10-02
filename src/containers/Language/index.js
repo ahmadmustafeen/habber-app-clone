@@ -15,8 +15,8 @@ const Language = (props) => {
           source={require('../../assets/images/Screenshot_Logo.jpg')}
         />
       </View>
-      <AppText primary>Select Your Language</AppText>
-      <Button round background="white" onPress={() => navigate(SIGNIN_SCREEN)}>
+      <AppText style={styles.selecttxt}>Select Your Language</AppText>
+      <Button style={styles.btn} round background="white" onPress={() => navigate(SIGNIN_SCREEN)}>
         English
       </Button>
       <Button round background="white" onPress={() => navigate(SIGNIN_SCREEN)}>
@@ -28,6 +28,8 @@ const Language = (props) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'center',
     alignSelf: 'center',
     alignItems: 'center',
     width: '60%',
@@ -35,10 +37,20 @@ const styles = StyleSheet.create({
   imageContainer: {
     width: 100,
     height: 100,
+    marginBottom: 20,
   },
   image: {
     width: '100%',
     height: '100%',
   },
+  selecttxt: {
+    color: '#c27e12',
+    marginBottom: 40,
+    display: 'flex',
+    justifyContent: 'center',
+  },
+  btn: {
+    marginBottom: 25,
+  }
 });
 export default Language;
