@@ -16,6 +16,7 @@ const AppText = (props) => {
     center,
     right,
     color,
+    white,
   } = props;
 
   return (
@@ -29,6 +30,7 @@ const AppText = (props) => {
         color && {color},
         secondary && {color: colors.secondary},
         primary && {color: colors.primary},
+        white && {color: colors.white},
         underline && {textDecorationLine: 'underline'},
         size && {fontSize: parseInt(size)},
         center && {textAlign: 'center'},

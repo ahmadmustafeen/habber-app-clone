@@ -3,6 +3,7 @@ import React, {useState} from 'react';
 import {ScrollView, View, StyleSheet} from 'react-native';
 
 import {
+  Counter,
   DashboardComponent,
   ImageSlider,
   ThumbnailBookmarks,
@@ -23,6 +24,7 @@ const Home = (props) => {
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       <Header {...props} />
+      <Counter />
       <ImageSlider images={images} />
       <Button onPress={() => navigate('Auth', {screen: LANGUAGE_SCREEN})}>
         Auth Navigation

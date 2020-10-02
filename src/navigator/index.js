@@ -20,7 +20,7 @@ const MyTheme = {
     appColor: '#014488',
     primary: '#c27e12',
     secondary: 'green',
-    silver: 'silver',
+    white: 'white',
     warmGray: '#939393',
     background: '#e8e8e8',
     textBlack: '#3B3B3B',
