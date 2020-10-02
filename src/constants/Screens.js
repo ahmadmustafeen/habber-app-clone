@@ -9,6 +9,8 @@ export const REQUESTBOOKS = 'RequestBooks';
 export const MY_PROFILE = 'MyProfile';
 export const MY_ADDRESS_BOOK = 'MyAddressBook';
 export const ADD_NEW_ADDRESS = 'AddNewAddress';
+export const CHANGE_PASSWORD = 'ChangePassword';
+export const EDIT_PROFILE = 'EditProfile';
 
 
 

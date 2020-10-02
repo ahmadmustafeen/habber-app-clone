@@ -14,6 +14,8 @@ import ForgotPassword from '../containers/ForgotPassword';
 import MyProfile from '../containers/MyProfile';
 import MyAddressBook from '../containers/MyAddressBook';
 import AddNewAddress from '../containers/AddNewAddress';
+import ChangePassword from '../containers/ChangePassword';
+import EditProfile from '../containers/EditProfile';
 
 import {
   FORGOT_PASSWORD_SCREEN,
@@ -26,7 +28,9 @@ import {
   REQUESTBOOKS,
   MY_PROFILE,
   MY_ADDRESS_BOOK,
-  ADD_NEW_ADDRESS
+  ADD_NEW_ADDRESS,
+  CHANGE_PASSWORD,
+  EDIT_PROFILE
 } from '../constants/Screens';
 const AuthScreen = createStackNavigator();
 export const AuthNav = () => {
@@ -45,6 +49,8 @@ export const AuthNav = () => {
       <AuthScreen.Screen name={MY_PROFILE} component={MyProfile} />
       <AuthScreen.Screen name={MY_ADDRESS_BOOK} component={MyAddressBook} />
       <AuthScreen.Screen name={ADD_NEW_ADDRESS} component={AddNewAddress} />
+      <AuthScreen.Screen name={CHANGE_PASSWORD} component={ChangePassword} />
+      <AuthScreen.Screen name={EDIT_PROFILE} component={EditProfile} />
 
       <AuthScreen.Screen
         name={FORGOT_PASSWORD_SCREEN}
