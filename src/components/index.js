@@ -10,3 +10,5 @@ export * from './TitleBarWithIcon';
 export * from './BookCard';
 export * from './ModalImage';
 export * from './BookDetailsCard';
+export * from './SettingsComponent';
+export * from './HorizontalRow';
