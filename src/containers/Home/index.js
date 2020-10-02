@@ -9,6 +9,7 @@ import {
   ThumbnailClub,
   TitleBarWithIcon,
 } from '../../components';
+import { REQUESTBOOKS } from '../../constants/Screens';
 import {sliderImages} from './dummydata';
 import {ThumbnailBook} from '../../components/ThumbnailBook';
 import {AppText, Button} from '../../components/common';
@@ -49,12 +50,12 @@ const Home = (props) => {
       <TitleBarWithIcon label="REQUEST BOOKS" />
       <View style={styles.requestBooks}>
         <View style={{width: '29%'}}>
-          <Button secondary fontSize={15}>
+          <Button secondary fontSize={15} onPress={() => navigate(REQUESTBOOKS)}>
             Request Book
           </Button>
         </View>
         <View style={{width: '69%'}}>
-          <Button primary fontSize="15">
+          <Button primary fontSize={15} onPress={() => navigate(REQUESTBOOKS)}>
             Request Educational Book
           </Button>
         </View>

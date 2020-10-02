@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {View, StyleSheet, Text, Image} from 'react-native';
 import {AppText, Screen} from '../../components/common';
 import {RoundIcon} from '../../components';
+import { MY_PROFILE } from '../../constants/Screens';
 
 const DrawerMenu = (props) => {
   return (
@@ -32,7 +33,7 @@ const DrawerMenu = (props) => {
         </View>
         <View>
           <AppText style={styles.navbtn}>Home</AppText>
-          <AppText style={styles.navbtn}>Profile</AppText>
+          <AppText style={styles.navbtn} onPress={() => navigate(MY_PROFILE)}>Profile</AppText>
           <AppText style={styles.navbtn}>Favorites</AppText>
           <AppText style={styles.navbtn}>My orders</AppText>
           <AppText style={styles.navbtn}>About us</AppText>
