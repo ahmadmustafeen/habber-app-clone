@@ -19,10 +19,10 @@ const ForgotPassword = (props) => {
   return (
     <BackgroundImage>
       <View key="header">
-        <AppText bold heading primary>
+        <AppText bold heading style={{marginTop:40,marginBottom:10, color: '#c27e12'}}>
           {forgotPassword.forgot_password}
         </AppText>
-        <AppText secondary>{forgotPassword.enter_email}</AppText>
+        <AppText secondary style={{marginBottom:20}}>{forgotPassword.enter_email}</AppText>
       </View>
       <View key="content">
         <InputWithLabel placeholder="ahmadalajmi@gmail.com" label="Email" />

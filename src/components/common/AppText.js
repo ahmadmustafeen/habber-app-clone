@@ -26,7 +26,7 @@ const AppText = (props) => {
         heading && {fontSize: 30},
         bold && {fontWeight: 'bold'},
         secondary && {color: colors.secondary},
-        primary && {color: colors.primary},
+        primary && {color: '#c27e12'},
         underline && {textDecorationLine: 'underline'},
         size && {fontSize: parseInt(size)},
         center && {textAlign: 'center'},

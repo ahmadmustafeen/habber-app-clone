@@ -42,7 +42,7 @@ const Button = (props) => {
         style={{
           textAlign: 'center',
           color: color || 'black',
-          fontSize: 25,
+          fontSize: 20,
         }}>
         {children || 'Button'}
       </AppText>
