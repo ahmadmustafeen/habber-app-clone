@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useRef} from 'react';
 import {View, StyleSheet} from 'react-native';
 import {forgotPassword} from '../../assets/data/StaticData';
 import {InputWithLabel, ModalScreen} from '../../components';
@@ -7,14 +7,14 @@ import {AppText, BackgroundImage, Button} from '../../components/common';
 const ForgotPassword = (props) => {
   const {navigate} = props.navigation;
 
-  const [isModalVisible, setModalVisible] = useState(false);
-
   const onSubmit = () => {
-    setModalVisible(true);
+    toggleModal();
   };
 
-  const handleModalButton = () => {
-    setModalVisible(false);
+  const modalRef = useRef(null);
+
+  const toggleModal = () => {
+    modalRef.current.toggle();
   };
   return (
     <BackgroundImage>
@@ -29,11 +29,7 @@ const ForgotPassword = (props) => {
       </View>
       <View key="footer">
         <Button onPress={onSubmit}>{forgotPassword.resetPassword}</Button>
-        <ModalScreen
-          {...forgotPassword.modalData}
-          onPress={handleModalButton}
-          visible={isModalVisible}
-        />
+        <ModalScreen ref={modalRef} {...forgotPassword.modalData} />
       </View>
     </BackgroundImage>
   );

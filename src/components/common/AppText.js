@@ -28,7 +28,7 @@ const AppText = (props) => {
         secondary && {color: colors.secondary},
         primary && {color: '#c27e12'},
         underline && {textDecorationLine: 'underline'},
-        size && {fontSize: size},
+        size && {fontSize: parseInt(size)},
         center && {textAlign: 'center'},
         right && {textAlign: 'right'},
       ]}>

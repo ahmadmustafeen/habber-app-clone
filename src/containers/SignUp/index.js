@@ -1,18 +1,20 @@
-import React, {useState} from 'react';
 import {View, StyleSheet} from 'react-native';
+import React, {useState, useRef} from 'react';
+
 import {InputWithLabel, RoundIcon, ModalScreen} from '../../components';
 import {BackgroundImage, Button, AppText} from '../../components/common';
 import {signUp} from '../../assets/data/StaticData';
 const SignUp = (props) => {
   const {navigate} = props.navigation;
-  const [isModalVisible, setModalVisible] = useState(false);
 
   const onSignUp = () => {
-    setModalVisible(true);
+    toggleModal();
   };
 
-  const handleModalButton = () => {
-    setModalVisible(false);
+  const modalRef = useRef(null);
+
+  const toggleModal = () => {
+    modalRef.current.toggle();
   };
   return (
     <BackgroundImage source={require('../../assets/images/background.jpg')}>
@@ -65,11 +67,7 @@ const SignUp = (props) => {
             color="#fff"
             onPress={() => console.log('hello')}
           />
-          <ModalScreen
-            {...signUp.modalData}
-            onPress={handleModalButton}
-            visible={isModalVisible}
-          />
+          <ModalScreen ref={modalRef} {...signUp.modalData} />
         </View>
       </View>
     </BackgroundImage>
