@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {View, StyleSheet, Image} from 'react-native';
-import {AppText, Button, Screen} from '../../components/common';
+import {AppText, Button, BackgroundImage} from '../../components/common';
 
 import {Color} from '../../constants/Colors';
 import {SIGNIN_SCREEN} from '../../constants/Screens';
@@ -8,36 +8,38 @@ import {SIGNIN_SCREEN} from '../../constants/Screens';
 const Language = (props) => {
   const {navigate} = props.navigation;
   return (
-    <View style={styles.container}>
-      <View style={styles.imageContainer}>
+    <BackgroundImage>
+      <View key="header" style={styles.imageContainer}>
         <Image
           style={styles.image}
           source={require('../../assets/images/Screenshot_Logo.jpg')}
         />
       </View>
-      <AppText style={styles.selecttxt}>Select Your Language</AppText>
-      <Button style={styles.btn} round background="white" onPress={() => navigate(SIGNIN_SCREEN)}>
-        English
-      </Button>
-      <Button round background="white" onPress={() => navigate(SIGNIN_SCREEN)}>
-        عربى
-      </Button>
-    </View>
+      <View key="content">
+        <AppText style={styles.selecttxt}>Select Your Language</AppText>
+        <Button
+          style={styles.btn}
+          round
+          background="white"
+          onPress={() => navigate(SIGNIN_SCREEN)}>
+          English
+        </Button>
+        <Button
+          round
+          background="white"
+          onPress={() => navigate(SIGNIN_SCREEN)}>
+          عربى
+        </Button>
+      </View>
+    </BackgroundImage>
   );
 };
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignSelf: 'center',
-    alignItems: 'center',
-    width: '60%',
-  },
   imageContainer: {
     width: 100,
     height: 100,
-    marginBottom: 20,
+    marginVertical: 20,
+    alignSelf: 'center',
   },
   image: {
     width: '100%',
@@ -51,6 +53,6 @@ const styles = StyleSheet.create({
   },
   btn: {
     marginBottom: 25,
-  }
+  },
 });
 export default Language;
