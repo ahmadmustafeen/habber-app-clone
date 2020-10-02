@@ -20,6 +20,7 @@ const Button = (props) => {
     fontSize,
     secondary,
     primary,
+    bold
   } = props;
   const {colors} = useTheme();
   return (
@@ -30,18 +31,18 @@ const Button = (props) => {
           height: 45,
           width: width || '100%',
           borderRadius: round ? 35 : 5,
-          backgroundColor: background || 'white',
+          backgroundColor: background || colors.primary,
         },
-        primary && {backgroundColor: colors.primary},
         secondary && {backgroundColor: colors.secondary},
         style,
       ]}
       onPress={onPress}>
       <AppText
         size={fontSize}
+        bold={bold}
         style={{
           textAlign: 'center',
-          color: color || 'black',
+          color: color || 'white',
           fontSize: 20,
         }}>
         {children || 'Button'}

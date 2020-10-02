@@ -1,138 +1,79 @@
 import React from 'react';
-import {View, Text, StyleSheet, Image} from 'react-native';
+import {View, StyleSheet, Image} from 'react-native';
 import {AppText, Button, Screen} from '../../components/common';
-import {ADD_NEW_ADDRESS} from '../../constants/Screens';
+import {ADD_NEW_ADDRESS, EDIT_PROFILE} from '../../constants/Screens';
+import { HorizontalRow } from '../../components/HorizontalRow';
+
 const MyAddressBook = (props) => {
   const {navigate} = props.navigation;
   return (
     <Screen>
       <View key="header"></View>
-      <View key="content" style={styles.content}>
-        <View
-          style={{
-            flexDirection: 'row',
-            justifyContent: 'center',
-            marginBottom: 40,
-            marginTop: 20,
-          }}>
-          <Image
-            style={styles.image}
-            source={require('../../assets/images/Screenshot_Logo.jpg')}
-          />
-          <Text
-            style={{
-              color: 'black',
-              marginLeft: 10,
-              marginTop: 20,
-              fontSize: 17,
-              fontWeight: 'bold',
-            }}>
-            {`Khaled Ammar
-Khaled.Ammar@gmail.com`}
-          </Text>
-          <AppText style={styles.editbtn}>Edit</AppText>
-        </View>
-        <View
-          style={{
-            borderBottomColor: 'grey',
-            borderBottomWidth: 0.4,
-          }}
+      <View key="content">
+        <View style={styles.profiletop}>
+        <View style={styles.imgContainer}>
+        <Image
+          style={styles.image}
+          source={require('../../assets/images/Screenshot_Logo.jpg')}
         />
-        <View style={{paddingHorizontal: 30, marginTop: 30}}>
+        </View>
+        <AppText bold size={15} style={styles.txt}>
+{`Khaled Ammar
+Khaled.Ammar@gmail.com`}
+        </AppText>
+        <AppText size={17} center appColor onPress={() => navigate(EDIT_PROFILE)} style={styles.editbtn}>Edit</AppText>
+        </View>
+        <HorizontalRow/>
+        <View style={styles.addressbookview}>
           <View style={styles.addressbook}>
-            <Text
-              style={{
-                fontSize: 17,
-                marginBottom: 15,
-                marginLeft: 15,
-                color: 'black',
-              }}>
+            <AppText size={17} style={styles.addressbookheading}>
               MY ADDRESS BOOK
-            </Text>
-            <View
-              style={{
-                borderBottomColor: 'rgb(221, 221, 221)',
-                borderBottomWidth: 2,
-              }}
-            />
+            </AppText>
+            <HorizontalRow/>
             <View>
-              <Text
-                style={{
-                  fontSize: 15,
-                  marginLeft: 15,
-                  marginTop: 20,
-                  color: '#c27e12',
-                }}>
+              <AppText size={15} primary
+                style={styles.spacebtwaddresses}>
                 Bae's Home
-              </Text>
-              <Text
-                style={{
-                  fontSize: 15,
-                  marginLeft: 15,
-                  marginTop: 10,
-                  color: 'black',
-                }}>
+              </AppText>
+              <AppText 
+                size={15}
+                style={styles.spacebtwaddresses}>
                 D/11 Cross Street, New York, USA, 39001
-              </Text>
-              <Text
-                style={{
-                  fontSize: 15,
-                  marginLeft: 15,
-                  marginTop: 20,
-                  color: '#c27e12',
-                }}>
+              </AppText>
+              <AppText
+                size={15} primary
+                style={styles.spacebtwaddresses}>
                 Work
-              </Text>
-              <Text
-                style={{
-                  fontSize: 15,
-                  marginLeft: 15,
-                  marginTop: 10,
-                  color: 'black',
-                }}>
+              </AppText>
+              <AppText 
+                size={15}
+                style={styles.spacebtwaddresses}>
                 D/11 Cross Street, New York, USA, 39001
-              </Text>
-              <Text
-                style={{
-                  fontSize: 15,
-                  marginLeft: 15,
-                  marginTop: 20,
-                  color: '#c27e12',
-                }}>
+              </AppText>
+              <AppText
+                size={15} primary
+                style={styles.spacebtwaddresses}>
                 Bae's Home
-              </Text>
-              <Text
-                style={{
-                  fontSize: 15,
-                  marginLeft: 15,
-                  marginTop: 10,
-                  color: 'black',
-                }}>
+              </AppText>
+              <AppText 
+                size={15}
+                style={styles.spacebtwaddresses}>
                 D/11 Cross Street, New York, USA, 39001
-              </Text>
-              <Text
-                style={{
-                  fontSize: 15,
-                  marginLeft: 15,
-                  marginTop: 20,
-                  color: '#c27e12',
-                }}>
+              </AppText>
+              <AppText
+                size={15} primary
+                style={styles.spacebtwaddresses}>
                 Other
-              </Text>
-              <Text
-                style={{
-                  fontSize: 15,
-                  marginLeft: 15,
-                  marginTop: 10,
-                  color: 'black',
-                }}>
+              </AppText>
+              <AppText 
+                size={15}
+                style={styles.spacebtwaddresses}>
                 D/11 Cross Street, New York, USA, 39001
-              </Text>
+              </AppText>
             </View>
           </View>
           <Button
-            fontSize={17}
-            color="black"
+            fontSize={17} primary
             onPress={() => navigate(ADD_NEW_ADDRESS)}>
             ADD NEW ADDRESS
           </Button>
@@ -143,26 +84,40 @@ Khaled.Ammar@gmail.com`}
 };
 
 const styles = StyleSheet.create({
-  content: {
-    marginTop: 50,
+  imgContainer:{
+    height: 100,
+    aspectRatio: 1,
+    borderRadius: 50,
+    borderWidth: 2,
+    overflow: 'hidden'
   },
   image: {
-    width: '20%',
-    height: '120%',
-    borderRadius: 400 / 2,
+    width: '100%',
+    height:'100%',  
   },
-  editbtn: {
-    backgroundColor: '#c27e12',
-    width: '22%',
-    height: '50%',
-    position: 'absolute',
-    right: 10,
-    top: -10,
-    color: 'black',
-    borderRadius: 400 / 2,
-    textAlign: 'center',
-    fontSize: 18,
-    paddingTop: 3,
+  profiletop:{
+    flexDirection: 'row',
+    justifyContent:'center',
+    marginBottom:20,
+    marginTop:20
+  },
+  editbtn:{
+    backgroundColor:'#c27e12',
+    width: 100,
+    height: 30,
+    position:'absolute',
+    right:10,
+    top:-10,
+    color:'black',
+    borderRadius: 400/ 2,
+  },
+  txt:{
+    marginLeft:10,
+    marginTop:20
+  },
+  addressbookheading:{
+    marginBottom: 15,
+    marginLeft: 15,
   },
   addressbook: {
     borderRadius: 5,
@@ -172,6 +127,14 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     marginBottom: 20,
   },
+  addressbookview:{
+    paddingHorizontal: 30,
+    marginTop: 30
+  },
+  spacebtwaddresses:{
+    marginLeft: 15,
+    marginTop: 10,
+  }
 });
 
 export default MyAddressBook;
