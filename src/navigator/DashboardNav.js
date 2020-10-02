@@ -22,8 +22,10 @@ import {
   ADD_NEW_ADDRESS,
   CHANGE_PASSWORD,
   EDIT_PROFILE,
+  SETTINGS_SCREEN,
 } from '../constants/Screens';
 import BookDetails from '../containers/BookDetails';
+import Settings from '../containers/Settings';
 
 const Stack = createStackNavigator();
 // const HeaderLeftComponent = (props) => {
@@ -63,6 +65,7 @@ export const DashboardNav = () => {
       <Stack.Screen name={ADD_NEW_ADDRESS} component={AddNewAddress} />
       <Stack.Screen name={CHANGE_PASSWORD} component={ChangePassword} />
       <Stack.Screen name={EDIT_PROFILE} component={EditProfile} />
+      <Stack.Screen name={SETTINGS_SCREEN} component={Settings} />
     </Stack.Navigator>
   );
 };
