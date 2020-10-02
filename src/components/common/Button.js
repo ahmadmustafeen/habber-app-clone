@@ -20,6 +20,7 @@ const Button = (props) => {
     fontSize,
     secondary,
     primary,
+    borderRadius,
   } = props;
   const {colors} = useTheme();
   return (
@@ -32,6 +33,7 @@ const Button = (props) => {
           borderRadius: round ? 35 : 5,
           backgroundColor: background || 'white',
         },
+        borderRadius && {borderRadius: parseInt(borderRadius)},
         primary && {backgroundColor: colors.primary},
         secondary && {backgroundColor: colors.secondary},
         style,

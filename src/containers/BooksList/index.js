@@ -3,12 +3,14 @@ import {FlatList, View, ScrollView} from 'react-native';
 import {BookCard, TitleBarWithIcon} from '../../components';
 
 import {AppText} from '../../components/common';
+import Header from '../../components/Header';
 
 const BooksList = (props) => {
   const {label, data} = props.route.params;
 
   return (
     <ScrollView>
+      <Header {...props} />
       <TitleBarWithIcon label={label} />
 
       <FlatList
