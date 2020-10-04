@@ -11,11 +11,11 @@ import {
   TitleBarWithIcon,
 } from '../../components';
 import {sliderImages} from './dummydata';
-import {ThumbnailBook} from '../../components/ThumbnailBook';
-import {AppText, Button} from '../../components/common';
-import {BOOKLIST_SCREEN, LANGUAGE_SCREEN} from '../../constants/Screens';
-import {booksData} from '../../assets/data/dummydata';
-import Header from '../../components/Header';
+import {ThumbnailBook} from '_components/ThumbnailBook';
+import {AppText, Button} from '_components/common';
+import {BOOKLIST_SCREEN, LANGUAGE_SCREEN} from '_constants/Screens';
+import {booksData} from '_assets/data/dummydata';
+import Header from '_components/Header';
 
 const Home = (props) => {
   const {navigate} = props.navigation;
