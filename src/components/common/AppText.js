@@ -15,6 +15,8 @@ const AppText = (props) => {
     size,
     center,
     right,
+    color,
+    white,
   } = props;
 
   return (
@@ -25,8 +27,10 @@ const AppText = (props) => {
         style && style,
         heading && {fontSize: 30},
         bold && {fontWeight: 'bold'},
+        color && {color},
         secondary && {color: colors.secondary},
-        primary && {color: '#c27e12'},
+        primary && {color: colors.primary},
+        white && {color: colors.white},
         underline && {textDecorationLine: 'underline'},
         size && {fontSize: parseInt(size)},
         center && {textAlign: 'center'},

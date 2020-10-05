@@ -12,3 +12,4 @@ export * from './ModalImage';
 export * from './BookDetailsCard';
 export * from './SettingsComponent';
 export * from './HorizontalRow';
+export * from './Counter';

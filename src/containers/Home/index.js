@@ -3,6 +3,7 @@ import React, {useState} from 'react';
 import {ScrollView, View, StyleSheet} from 'react-native';
 
 import {
+  Counter,
   DashboardComponent,
   ImageSlider,
   ThumbnailBookmarks,
@@ -15,6 +16,7 @@ import {ThumbnailBook} from '../../components/ThumbnailBook';
 import {AppText, Button} from '../../components/common';
 import {BOOKLIST_SCREEN, LANGUAGE_SCREEN} from '../../constants/Screens';
 import {booksData} from '../../assets/data/dummydata';
+import Header from '../../components/Header';
 
 const Home = (props) => {
   const {navigate} = props.navigation;
@@ -22,6 +24,8 @@ const Home = (props) => {
   const [data] = useState(booksData);
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
+      <Header {...props} />
+      <Counter />
       <ImageSlider images={images} />
       <Button onPress={() => navigate('Auth', {screen: LANGUAGE_SCREEN})}>
         Auth Navigation
@@ -48,14 +52,14 @@ const Home = (props) => {
         label="BOOKMARKS"
       />
       <TitleBarWithIcon label="REQUEST BOOKS" />
-      <View style={styles.requestBooks}>
+      <View style={styles.requestBooksBtns}>
         <View style={{width: '29%'}}>
-          <Button secondary fontSize={15} onPress={() => navigate(REQUESTBOOKS)}>
+          <Button borderRadius={2} secondary fontSize={15}>
             Request Book
           </Button>
         </View>
         <View style={{width: '69%'}}>
-          <Button primary fontSize={15} onPress={() => navigate(REQUESTBOOKS)}>
+          <Button borderRadius={2} primary fontSize={15}>
             Request Educational Book
           </Button>
         </View>
@@ -64,7 +68,7 @@ const Home = (props) => {
   );
 };
 const styles = StyleSheet.create({
-  requestBooks: {
+  requestBooksBtns: {
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
