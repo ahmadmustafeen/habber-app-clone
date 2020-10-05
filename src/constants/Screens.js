@@ -13,5 +13,7 @@ export const CHANGE_PASSWORD = 'ChangePassword';
 export const EDIT_PROFILE = 'EditProfile';
 export const BOOKLIST_SCREEN = 'BooksList';
 export const BOOK_DETAILS_SCREEN = 'BookDetails';
+export const BOOK_DESCRIPTION = 'BookDescription';
+export const FAVORITES = 'Favorites';
 
 export const SETTINGS_SCREEN = 'Settings';

@@ -20,6 +20,7 @@ const Button = (props) => {
     fontSize,
     secondary,
     primary,
+    bold,
     borderRadius,
   } = props;
   const {colors} = useTheme();
