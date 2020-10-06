@@ -11,6 +11,7 @@ import {
   ThumbnailClub,
   TitleBarWithIcon,
 } from '../../components';
+import { REQUESTBOOKS } from '../../constants/Screens';
 import {sliderImages} from './dummydata';
 import {ThumbnailBook} from '_components/ThumbnailBook';
 import {AppText, Button} from '_components/common';

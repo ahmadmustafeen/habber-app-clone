@@ -8,7 +8,7 @@ const AddNewAddress = (props) => {
   return (
     <Screen>
       <View key="header"></View>
-      <View key="content" style={styles.content}>
+      <View key="content">
         <InputWithLabel placeholder="Country*" required/>
         <InputWithLabel placeholder="State*" required/>
         <InputWithLabel placeholder="City*" required/>
@@ -18,18 +18,12 @@ const AddNewAddress = (props) => {
         <InputWithLabel placeholder="Mobile Number*" required/>
       </View>
       <View key="footer">
-            <Button color="white" onPress={() => navigate(MY_PROFILE)}>
+            <Button primary onPress={() => navigate(MY_PROFILE)}>
               Add Address
             </Button>
       </View>
       </Screen>
   );
 };
-
-const styles = StyleSheet.create({
-  content:{
-    marginTop: 50,
-  },
-});
 
 export default AddNewAddress;

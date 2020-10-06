@@ -77,7 +77,7 @@ Login with Social media account`}
             color: '#c27e12',
             fontSize: 25,
           }}
-          onPress={() => navigate(MY_PROFILE)}>
+          onPress={() => navigate('Home')}>
           Skip
         </AppText>
       </View>

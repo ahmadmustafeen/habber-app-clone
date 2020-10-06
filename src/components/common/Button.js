@@ -20,6 +20,7 @@ const Button = (props) => {
     fontSize,
     secondary,
     primary,
+    bold,
     borderRadius,
   } = props;
   const {colors} = useTheme();
@@ -31,7 +32,7 @@ const Button = (props) => {
           height: 45,
           width: width || '100%',
           borderRadius: round ? 35 : 5,
-          backgroundColor: background || 'white',
+          backgroundColor: background || colors.primary,
         },
         borderRadius && {borderRadius: parseInt(borderRadius)},
         primary && {backgroundColor: colors.primary},
@@ -41,9 +42,10 @@ const Button = (props) => {
       onPress={onPress}>
       <AppText
         size={fontSize}
+        bold={bold}
         style={{
           textAlign: 'center',
-          color: color || 'black',
+          color: color || 'white',
           fontSize: 20,
         }}>
         {children || 'Button'}
