@@ -6,6 +6,7 @@ import {Color} from '../../constants/Colors';
 const AppText = (props) => {
   const {colors} = useTheme();
   const {
+    children,
     heading,
     bold,
     secondary,
@@ -36,7 +37,7 @@ const AppText = (props) => {
         center && {textAlign: 'center'},
         right && {textAlign: 'right'},
       ]}>
-      {props.children}
+      {children}
     </Text>
   );
 };
@@ -44,7 +45,6 @@ const styles = StyleSheet.create({
   TextStyle: {
     fontFamily: 'Avenir-Medium',
     fontSize: 20,
-    color: Color.appColor,
   },
 });
 export {AppText};
