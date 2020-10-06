@@ -23,7 +23,7 @@ const Home = (props) => {
   const [images] = useState(sliderImages);
   const [data] = useState(booksData);
   const {t, i18n} = useTranslation();
-  console.log('isRTL', I18nManager.isRTL, 'Language', i18n.language);
+  console.log('isRTL', I18nManager.isRTL, 'Language', i18n);
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       <Header {...props} />

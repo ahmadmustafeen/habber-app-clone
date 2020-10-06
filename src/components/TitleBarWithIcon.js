@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, StyleSheet, ScrollView} from 'react-native';
+import {View, StyleSheet, I18nManager} from 'react-native';
 import {useTheme} from '@react-navigation/native';
 
 import {AppText} from './common/AppText';
@@ -21,9 +21,10 @@ const TitleBarWithIcon = (props) => {
       </AppText>
       <Icon
         onPress={onIconPress}
-        name={iconName || 'rightcircleo'}
+        name={iconName || I18nManager.isRTL ? 'leftcircleo' : 'rightcircleo'}
         type={iconType || 'antdesign'}
         color={colors.primary}
+        // style={{transform: [{scaleX: I18nManager.isRTL ? -1 : 1}]}}
       />
     </View>
   );
