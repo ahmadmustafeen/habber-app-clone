@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
 
-import {ScrollView, View, StyleSheet} from 'react-native';
-
+import {ScrollView, View, StyleSheet, I18nManager} from 'react-native';
+import {useTranslation} from 'react-i18next';
+import RNRestart from 'react-native-restart';
 import {
   Counter,
   DashboardComponent,
@@ -21,13 +22,25 @@ const Home = (props) => {
   const {navigate} = props.navigation;
   const [images] = useState(sliderImages);
   const [data] = useState(booksData);
+  const {t, i18n} = useTranslation();
+  console.log('isRTL', I18nManager.isRTL, 'Language', i18n.language);
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       <Header {...props} />
-      <Counter />
+      <AppText>{t('hello')}</AppText>
+      <AppText>{t('bye')}</AppText>
       <ImageSlider images={images} />
       <Button onPress={() => navigate('Auth', {screen: LANGUAGE_SCREEN})}>
         Auth Navigation
+      </Button>
+      <Button
+        onPress={() =>
+          i18n.changeLanguage(i18n.language === 'ar' ? 'en' : 'ar').then(() => {
+            I18nManager.forceRTL(i18n.language === 'ar');
+            RNRestart.Restart();
+          })
+        }>
+        Language
       </Button>
       <DashboardComponent
         data={data}
