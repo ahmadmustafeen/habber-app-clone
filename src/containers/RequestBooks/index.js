@@ -10,13 +10,13 @@ const RequestBooks = (props) => {
       <View key="content" style={styles.content}>
         <InputWithLabel placeholder="Book Title*" required/>
         <InputWithLabel placeholder="Author Name*" required/>
-        <Button color="white">
+        <Button primary>
               Upload Image
         </Button>
-        <Text style={{marginVertical:10,color:'grey'}}>* 1 Image allowed (PNG,JPEG,JPG) formats ONLY maximum size 5 MB</Text>
+        <AppText size={15} style={styles.txt}>* 1 Image allowed (PNG,JPEG,JPG) formats ONLY maximum size 5 MB</AppText>
       </View>
       <View key="footer">
-            <Button color="white" onPress={() => navigate(JOINUS)}>
+            <Button primary onPress={() => navigate(JOINUS)}>
               Send Request
             </Button>
       </View>
@@ -25,9 +25,10 @@ const RequestBooks = (props) => {
 };
 
 const styles = StyleSheet.create({
-  content:{
-    marginTop: 50,
-  },
+  txt:{
+    marginVertical:10,
+    color:'grey'
+  }
 });
 
 export default RequestBooks;

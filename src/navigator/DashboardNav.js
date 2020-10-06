@@ -4,6 +4,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {
   BOOKLIST_SCREEN,
   BOOK_DETAILS_SCREEN,
+  BOOK_DESCRIPTION,
   JOINUS,
   REQUESTBOOKS,
   MY_PROFILE,
@@ -11,7 +12,7 @@ import {
   ADD_NEW_ADDRESS,
   CHANGE_PASSWORD,
   EDIT_PROFILE,
-  SETTINGS_SCREEN,
+  SETTINGS_SCREEN,FAVORITES
 } from '../constants/Screens';
 
 import Home from '../containers/Home';
@@ -25,6 +26,8 @@ import ChangePassword from '../containers/ChangePassword';
 import EditProfile from '../containers/EditProfile';
 import BookDetails from '../containers/BookDetails';
 import Settings from '../containers/Settings';
+import BookDescription from '../containers/BookDescription';
+import Favorites from '../containers/Favorites';
 
 const Stack = createStackNavigator();
 
@@ -37,6 +40,7 @@ export const DashboardNav = () => {
       <Stack.Screen name="Home" component={Home} />
       <Stack.Screen name={BOOKLIST_SCREEN} component={BooksList} />
       <Stack.Screen name={BOOK_DETAILS_SCREEN} component={BookDetails} />
+      <Stack.Screen name={BOOK_DESCRIPTION} component={BookDescription} />
       <Stack.Screen name={JOINUS} component={JoinUs} />
       <Stack.Screen name={REQUESTBOOKS} component={RequestBooks} />
       <Stack.Screen name={MY_PROFILE} component={MyProfile} />
@@ -45,6 +49,7 @@ export const DashboardNav = () => {
       <Stack.Screen name={CHANGE_PASSWORD} component={ChangePassword} />
       <Stack.Screen name={EDIT_PROFILE} component={EditProfile} />
       <Stack.Screen name={SETTINGS_SCREEN} component={Settings} />
+      <Stack.Screen name={FAVORITES} component={Favorites} />
     </Stack.Navigator>
   );
 };

@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {View, StyleSheet, Switch, Picker} from 'react-native';
-import {AppText, Screen} from '../../components/common';
-import {RoundIcon, SettingsComponent, TitleBarWithIcon} from '../../components';
+import {Screen,Button} from '../../components/common';
+import {SettingsComponent} from '../../components';
 import {useTheme} from '@react-navigation/native';
 
 const Settings = (props) => {
@@ -30,7 +30,7 @@ const Settings = (props) => {
           }
         />
         <SettingsComponent
-          label="Language"
+          label="Notifications"
           rightComponent={
             <Switch
               trackColor={{false: colors.primary, true: colors.textBlack}}
@@ -41,30 +41,23 @@ const Settings = (props) => {
             />
           }
         />
-        <SettingsComponent label="Language" />
+        <SettingsComponent label="Currency" />
+        <SettingsComponent label="Terms & Conditions" />
+        <SettingsComponent label="Privacy Policy" />
+        <SettingsComponent label="Return Policy" />
+        <SettingsComponent label="Join Us" />
       </View>
-      <View key="footer"></View>
+      <View key="footer">
+          <Button
+            fontSize={19} bold>
+            LOGOUT
+          </Button>
+      </View>
     </Screen>
   );
 };
 
 const styles = StyleSheet.create({
-  content: {
-    marginTop: 20,
-  },
-  navbtn: {
-    backgroundColor: 'transparent',
-    borderBottomColor: '#c27e12',
-    paddingVertical: 12,
-    color: 'white',
-    alignItems: 'flex-start',
-    borderBottomWidth: 0.3,
-    fontWeight: 'bold',
-  },
-  image: {
-    width: '30%',
-    height: '150%',
-    borderRadius: 400 / 2,
-  },
+ 
 });
 export default Settings;

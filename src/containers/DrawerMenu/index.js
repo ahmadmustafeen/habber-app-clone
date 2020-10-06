@@ -2,42 +2,31 @@ import React, {useState} from 'react';
 import {View, StyleSheet, Text, Image} from 'react-native';
 import {AppText, Screen} from '../../components/common';
 import {RoundIcon} from '../../components';
-import {SETTINGS_SCREEN} from '../../constants/Screens';
+import {SETTINGS_SCREEN,FAVORITES,MY_PROFILE,BOOK_DESCRIPTION} from '../../constants/Screens';
 
 const DrawerMenu = (props) => {
   return (
     <Screen backgroundColor="#005f69">
       <View key="header"></View>
-      <View key="content" style={styles.content}>
-        <View
-          style={{
-            flexDirection: 'row',
-            marginBottom: 40,
-            marginTop: 20,
-            justifyContent: 'center',
-          }}>
-          <Image
-            style={styles.image}
-            source={require('../../assets/images/Screenshot_Logo.jpg')}
-          />
-          <Text
-            style={{
-              color: 'white',
-              marginLeft: 10,
-              marginTop: 20,
-              fontSize: 17,
-              fontWeight: 'bold',
-            }}>
-            Khaled Ammar
-          </Text>
+      <View key="content">
+        <View style={styles.profiletop}>
+        <View style={styles.imgContainer}>
+        <Image
+          style={styles.image}
+          source={require('../../assets/images/Screenshot_Logo.jpg')}
+        />
+        </View>
+        <AppText white bold size={15} style={styles.txt}>
+          Khaled Ammar
+        </AppText>
         </View>
         <View>
-          <AppText style={styles.navbtn}>Home</AppText>
-          <AppText style={styles.navbtn}>Profile</AppText>
-          <AppText style={styles.navbtn}>Favorites</AppText>
-          <AppText style={styles.navbtn}>My orders</AppText>
-          <AppText style={styles.navbtn}>About us</AppText>
-          <AppText style={styles.navbtn}>Contact us</AppText>
+          <AppText bold white style={styles.navbtn}>Home</AppText>
+          <AppText bold white style={styles.navbtn} onPress={() => props.navigation.navigate(MY_PROFILE)}>Profile</AppText>
+          <AppText bold white style={styles.navbtn} onPress={() => props.navigation.navigate(FAVORITES)}>Favorites</AppText>
+          <AppText bold white style={styles.navbtn}>My orders</AppText>
+          <AppText bold white style={styles.navbtn}>About us</AppText>
+          <AppText bold white style={styles.navbtn}>Contact us</AppText>
           <AppText
             style={styles.navbtn}
             onPress={() => props.navigation.navigate(SETTINGS_SCREEN)}>
@@ -45,7 +34,9 @@ const DrawerMenu = (props) => {
           </AppText>
           <AppText
             secondary
-            style={{fontSize: 18, marginTop: 30, marginBottom: 20}}>
+            size={18}
+            white
+            style={styles.poweredbyline}>
             Powered By Line
           </AppText>
         </View>
@@ -75,22 +66,36 @@ const DrawerMenu = (props) => {
 };
 
 const styles = StyleSheet.create({
-  content: {
-    marginTop: 20,
-  },
   navbtn: {
-    backgroundColor: 'transparent',
     borderBottomColor: '#c27e12',
     paddingVertical: 12,
-    color: 'white',
     alignItems: 'flex-start',
     borderBottomWidth: 0.3,
-    fontWeight: 'bold',
+  },
+  txt:{
+    marginLeft:10,
+    marginTop:30
+  },
+  imgContainer:{
+    height: 80,
+    aspectRatio: 1,
+    borderRadius: 50,
+    borderWidth: 2,
+    overflow: 'hidden'
   },
   image: {
-    width: '30%',
-    height: '150%',
-    borderRadius: 400 / 2,
+    width: '100%',
+    height:'100%',  
   },
+  profiletop:{
+    flexDirection: 'row',
+    justifyContent:'center',
+    marginBottom:20,
+    marginTop:20
+  },
+  poweredbyline:{
+    marginTop: 30, 
+    marginBottom: 20
+  }
 });
 export default DrawerMenu;
