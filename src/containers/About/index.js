@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 import {View} from 'react-native';
-import {AppText, Screen} from '../../components/common';
+import {AppText, Screen} from '_components/common';
 
-import {Color} from '../../constants/Colors';
+import {Color} from '_constants/Colors';
 
 const About = (props) => {
   return (

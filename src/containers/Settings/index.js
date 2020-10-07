@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {View, StyleSheet, Switch, Picker} from 'react-native';
-import {Screen,Button} from '../../components/common';
-import {SettingsComponent} from '../../components';
+import {Screen, Button} from '_components/common';
+import {SettingsComponent} from '_components';
 import {useTheme} from '@react-navigation/native';
 
 const Settings = (props) => {
@@ -48,16 +48,13 @@ const Settings = (props) => {
         <SettingsComponent label="Join Us" />
       </View>
       <View key="footer">
-          <Button
-            fontSize={19} bold>
-            LOGOUT
-          </Button>
+        <Button fontSize={19} bold>
+          LOGOUT
+        </Button>
       </View>
     </Screen>
   );
 };
 
-const styles = StyleSheet.create({
- 
-});
+const styles = StyleSheet.create({});
 export default Settings;

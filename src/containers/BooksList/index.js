@@ -1,9 +1,9 @@
 import React from 'react';
 import {FlatList, View, ScrollView} from 'react-native';
-import {BookCard, TitleBarWithIcon} from '../../components';
+import {BookCard, TitleBarWithIcon} from '_components';
 
-import {AppText} from '../../components/common';
-import Header from '../../components/Header';
+import {AppText} from '_components/common';
+import Header from '_components/Header';
 
 const BooksList = (props) => {
   const {label, data} = props.route.params;

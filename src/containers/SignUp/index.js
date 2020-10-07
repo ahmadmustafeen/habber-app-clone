@@ -1,9 +1,9 @@
 import {View, StyleSheet} from 'react-native';
 import React, {useState, useRef} from 'react';
 
-import {InputWithLabel, RoundIcon, ModalScreen} from '../../components';
-import {BackgroundImage, Button, AppText} from '../../components/common';
-import {signUp} from '../../assets/data/StaticData';
+import {InputWithLabel, RoundIcon, ModalScreen} from '_components';
+import {BackgroundImage, Button, AppText} from '_components/common';
+import {signUp} from '_assets/data/StaticData';
 const SignUp = (props) => {
   const {navigate} = props.navigation;
 
@@ -17,12 +17,21 @@ const SignUp = (props) => {
     modalRef.current.toggle();
   };
   return (
-    <BackgroundImage source={require('../../assets/images/background.jpg')}>
+    <BackgroundImage source={require('_assets/images/background.jpg')}>
       <View key="header"></View>
       <View key="content" style={styles.content}>
-        <InputWithLabel style={styles.inputfield} placeholder="Khaled" label="First Name" required/>
-        <InputWithLabel placeholder="Ammar" label="Last Name" required/>
-        <InputWithLabel placeholder="ahmadalajmi@gmail.com" label="Email" required/>
+        <InputWithLabel
+          style={styles.inputfield}
+          placeholder="Khaled"
+          label="First Name"
+          required
+        />
+        <InputWithLabel placeholder="Ammar" label="Last Name" required />
+        <InputWithLabel
+          placeholder="ahmadalajmi@gmail.com"
+          label="Email"
+          required
+        />
         <InputWithLabel
           secureTextEntry
           placeholder="*********"
@@ -46,7 +55,9 @@ const SignUp = (props) => {
             {signUp.sign_up}
           </Button>
 
-          <AppText secondary style={{marginTop: 10,marginBottom: 10}}>OR</AppText>
+          <AppText secondary style={{marginTop: 10, marginBottom: 10}}>
+            OR
+          </AppText>
         </View>
         <View style={{flexDirection: 'row', justifyContent: 'space-around'}}>
           <RoundIcon
@@ -75,14 +86,14 @@ const SignUp = (props) => {
 };
 
 const styles = StyleSheet.create({
-  content:{
+  content: {
     marginTop: 50,
   },
-  termsandservices:{
+  termsandservices: {
     color: '#c27e12',
     marginTop: 5,
     marginBottom: 25,
-  }
+  },
 });
 
 export default SignUp;
