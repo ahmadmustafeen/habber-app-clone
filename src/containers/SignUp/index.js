@@ -36,7 +36,7 @@ const SignUp = (props) => {
           required
         />
         <View style={{alignItems: 'center'}}>
-          <AppText secondary size={17}>
+          <AppText white secondary size={17}>
             {signUp.agreement}
           </AppText>
           <AppText underline style={styles.termsandservices} size={17}>

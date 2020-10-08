@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {View, StyleSheet, Text, Image} from 'react-native';
 import {AppText, Screen} from '../../components/common';
 import {RoundIcon} from '../../components';
-import {SETTINGS_SCREEN,FAVORITES,MY_PROFILE,BOOK_DESCRIPTION} from '../../constants/Screens';
+import {SETTINGS_SCREEN,CONTACT_US,FAVORITES,MY_PROFILE} from '../../constants/Screens';
 
 const DrawerMenu = (props) => {
   return (
@@ -26,9 +26,11 @@ const DrawerMenu = (props) => {
           <AppText bold white style={styles.navbtn} onPress={() => props.navigation.navigate(FAVORITES)}>Favorites</AppText>
           <AppText bold white style={styles.navbtn}>My orders</AppText>
           <AppText bold white style={styles.navbtn}>About us</AppText>
-          <AppText bold white style={styles.navbtn}>Contact us</AppText>
+          <AppText bold white style={styles.navbtn} onPress={() => props.navigation.navigate(CONTACT_US)}>Contact us</AppText>
           <AppText
             style={styles.navbtn}
+            white
+            bold
             onPress={() => props.navigation.navigate(SETTINGS_SCREEN)}>
             Settings
           </AppText>

@@ -12,7 +12,9 @@ import {
   ADD_NEW_ADDRESS,
   CHANGE_PASSWORD,
   EDIT_PROFILE,
-  SETTINGS_SCREEN,FAVORITES
+  SETTINGS_SCREEN,FAVORITES,
+  CONTACT_US,
+  BOOK_CLUBS
 } from '../constants/Screens';
 
 import Home from '../containers/Home';
@@ -28,6 +30,8 @@ import BookDetails from '../containers/BookDetails';
 import Settings from '../containers/Settings';
 import BookDescription from '../containers/BookDescription';
 import Favorites from '../containers/Favorites';
+import ContactUs from '../containers/ContactUs';
+import BookClubs from '../containers/BookClubs';
 
 const Stack = createStackNavigator();
 
@@ -50,6 +54,8 @@ export const DashboardNav = () => {
       <Stack.Screen name={EDIT_PROFILE} component={EditProfile} />
       <Stack.Screen name={SETTINGS_SCREEN} component={Settings} />
       <Stack.Screen name={FAVORITES} component={Favorites} />
+      <Stack.Screen name={CONTACT_US} component={ContactUs} />
+      <Stack.Screen name={BOOK_CLUBS} component={BookClubs} />
     </Stack.Navigator>
   );
 };

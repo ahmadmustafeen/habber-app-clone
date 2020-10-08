@@ -14,7 +14,7 @@ const SignIn = (props) => {
         <AppText bold style={styles.hellotxt}>
           Hello !
         </AppText>
-        <AppText secondary style={{marginBottom:10}}>Sign in to your account</AppText>
+        <AppText white style={{marginBottom:10}}>Sign in to your account</AppText>
       </View>
       <View key="content" style={styles.content}>
         <InputWithLabel placeholder="ahmadalajmi@gmail.com" label="Email" />
@@ -40,7 +40,8 @@ const SignIn = (props) => {
           onPress={() => navigate(SIGNUP_SCREEN)}>
           Create New Account
         </AppText>
-        <AppText
+        {/* <AppText
+          white
           style={{textAlign: 'center',marginBottom:10}}
           secondary
           onPress={() => navigate(SIGNUP_SCREEN)}>
@@ -67,7 +68,7 @@ Login with Social media account`}
             color="#fff"
             onPress={() => console.log('hello')}
           />
-        </View>
+        </View> */}
       </View>
       <View key="footer">
         <AppText

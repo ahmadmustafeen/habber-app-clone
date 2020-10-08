@@ -14,7 +14,7 @@ const InputWithLabel = (props) => {
   return (
     <View style={[styles.inputContainerStyle, viewStyle]}>
       {label && (
-        <AppText secondary={!primary} primary={primary}>
+        <AppText secondary={!primary} white primary={primary}>
           {`${label} ` || `Label Name`}
           {required ? <AppText>*</AppText> : null}
         </AppText>
