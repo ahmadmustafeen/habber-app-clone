@@ -1,45 +1,49 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-class Screen extends Component {
-  getComponent(key) {
-    const {children} = this.props;
-    return children.filter((comp) => comp.key === key);
-  }
 
-  render() {
-    return (
-      <KeyboardAwareScrollView
-        //resetScrollToCoords={{ x: 0, y: 0 }}
-        contentContainerStyle={{flexGrow: 1}}
-        automaticallyAdjustContentInsets={true}
-        keyboardDismissMode="on-drag"
-        scrollsToTop={false}
-        keyboardShouldPersistTaps="never"
-        enableResetScrollToCoords={false}>
-        <View
-          style={[
-            styles.formContainer,
-            {backgroundColor: this.props.backgroundColor},
-          ]}>
-          {this.getComponent('header').length ? (
-            <View style={styles.header}>{this.getComponent('header')}</View>
-          ) : null}
-          {this.getComponent('content').length ? (
-            <View style={styles.content}>{this.getComponent('content')}</View>
-          ) : null}
-          {this.getComponent('footer').length ? (
-            <View style={styles.footer}>{this.getComponent('footer')}</View>
-          ) : null}
-        </View>
-      </KeyboardAwareScrollView>
-    );
+const Screen = (props)=>{
+ 
+const getComponent = (key) => {
+  
+    const {children} = props;
+    
+    return children.filter(view => view.key === key);
   }
+const {noPadding} = props;
+  return (
+    <KeyboardAwareScrollView
+      //resetScrollToCoords={{ x: 0, y: 0 }}
+      contentContainerStyle={{flexGrow: 1}}
+      automaticallyAdjustContentInsets={true}
+      keyboardDismissMode="on-drag"
+      scrollsToTop={false}
+      keyboardShouldPersistTaps="never"
+      enableResetScrollToCoords={false}>
+      <View
+        style={[
+          styles.formContainer,
+          {backgroundColor: props.backgroundColor},
+          noPadding && {paddingHorizontal : 0, paddingBottom : 0}
+        ]}>
+        {getComponent('header').length ? (
+          <View style={styles.header}>{getComponent('header')}</View>
+        ) : null}
+        {getComponent('content').length ? (
+          <View style={styles.content}>{getComponent('content')}</View>
+        ) : null}
+        {getComponent('footer').length ? (
+          <View style={styles.footer}>{getComponent('footer')}</View>
+        ) : null}
+      </View>
+    </KeyboardAwareScrollView>
+  );
 }
+
 
 const styles = StyleSheet.create({
   formContainer: {

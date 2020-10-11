@@ -1,22 +1,23 @@
+import { useTheme } from '@react-navigation/native';
 import React, {useState} from 'react';
 import {View, TouchableOpacity} from 'react-native';
-import {AppText, Screen} from '_components/common';
+import {AppText, BackgroundImage} from '_components/common';
 
 import {Color} from '_constants/Colors';
 import {LANGUAGE_SCREEN} from '_constants/Screens';
 
 const AdScreen = (props) => {
+  const {colors} = useTheme();
   const {navigate} = props.navigation;
   return (
-    <Screen backgroundColor={Color.background}>
-      <View key="header"></View>
-      <View key="content">
-        <AppText>AdScreen</AppText>
-        <TouchableOpacity onPress={() => navigate(LANGUAGE_SCREEN)}>
-          <AppText>Skip</AppText>
+    <BackgroundImage noPadding resizeMode='cover' source={require('_assets/images/ad.png')}>
+      <View key="content" />
+      <View key="footer">
+        <TouchableOpacity style= {{flex:1, height : 50, backgroundColor:colors.primary, borderWidth:1, borderTopStartRadius :15, borderTopEndRadius:15, justifyContent :'center' }} onPress={() => navigate(LANGUAGE_SCREEN)}>
+          <AppText center bold>SKIP AD</AppText>
         </TouchableOpacity>
       </View>
-    </Screen>
+      </BackgroundImage>
   );
 };
 export default AdScreen;

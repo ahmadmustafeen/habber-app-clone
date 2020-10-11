@@ -18,6 +18,10 @@ import {AppText, Button} from '_components/common';
 import {BOOKLIST_SCREEN, LANGUAGE_SCREEN} from '_constants/Screens';
 import {booksData} from '_assets/data/dummydata';
 import Header from '_components/Header';
+import {useDispatch} from 'react-redux';
+import {withDataActions} from '../../redux/actions/basicActions';
+import {SIGN_UP} from '../../redux/actionTypes';
+import { AD_SCREEN } from '../../constants/Screens';
 
 const Home = (props) => {
   const {navigate} = props.navigation;
@@ -25,13 +29,15 @@ const Home = (props) => {
   const [data] = useState(booksData);
   const {t, i18n} = useTranslation();
   console.log('isRTL', I18nManager.isRTL, 'Language', i18n);
+
+  const dispatch = useDispatch();
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
       <Header {...props} />
       <AppText>{t('hello')}</AppText>
       <AppText>{t('bye')}</AppText>
       <ImageSlider images={images} />
-      <Button onPress={() => navigate('Auth', {screen: LANGUAGE_SCREEN})}>
+      <Button onPress={() => navigate('Auth', {screen: AD_SCREEN})}>
         Auth Navigation
       </Button>
       <Button
@@ -42,6 +48,9 @@ const Home = (props) => {
           })
         }>
         Language
+      </Button>
+      <Button onPress={() => dispatch(withDataActions('Hello', SIGN_UP))}>
+        SignUp
       </Button>
       <DashboardComponent
         data={data}
