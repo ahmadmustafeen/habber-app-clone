@@ -33,6 +33,7 @@ const Button = (props) => {
           width: width || '100%',
           borderRadius: round ? 35 : 5,
           backgroundColor: background || colors.primary,
+          marginVertical: 3,
         },
         borderRadius && {borderRadius: parseInt(borderRadius)},
         primary && {backgroundColor: colors.primary},

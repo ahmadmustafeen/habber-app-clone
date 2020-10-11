@@ -1,13 +1,15 @@
 /* eslint-disable no-undef */
 import {applyMiddleware, compose, createStore} from 'redux';
 import {createLogger} from 'redux-logger';
-import {createEpicMiddleware} from 'redux-observable';
-import {epics} from './epics';
+import createSagaMiddleware from 'redux-saga';
+import rootSaga from '../redux/sagas';
 import appReducer from './reducers';
-import thunk from 'redux-thunk';
+
 // eslint-disable-next-line no-underscore-dangle
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const epicMiddleware = createEpicMiddleware();
+
+// create the saga middleware
+const sagaMiddleware = createSagaMiddleware();
 
 const rootReducer = (state, action) => {
   return appReducer(state, action);
@@ -20,9 +22,9 @@ const logger = createLogger({
 const store = createStore(
   rootReducer,
   {},
-  composeEnhancers(applyMiddleware(epicMiddleware, logger)),
+  composeEnhancers(applyMiddleware(sagaMiddleware, logger)),
 );
 
-epicMiddleware.run(epics);
+sagaMiddleware.run(rootSaga);
 
 export default store;
