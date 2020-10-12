@@ -73,7 +73,7 @@ Login with Social media account`}
             color="#fff"
             onPress={() => console.log('hello')}
           />
-        </View>
+        </View> 
       </View>
       <View key="footer">
         <AppText

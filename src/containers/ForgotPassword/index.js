@@ -27,7 +27,7 @@ const ForgotPassword = (props) => {
           style={{marginTop: 40, marginBottom: 10, color: '#c27e12'}}>
           {t('forgot_password')}
         </AppText>
-        <AppText secondary style={{marginBottom: 20}}>
+        <AppText secondary white style={{marginBottom: 20}}>
           {t('enter_email')}
         </AppText>
       </View>

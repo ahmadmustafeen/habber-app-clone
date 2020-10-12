@@ -3,19 +3,19 @@ import {View,ScrollView} from 'react-native';
 import {AppText, Screen} from '../../components/common';
 import Header from '../../components/Header';
 
-import {Color} from '_constants/Colors';
+import {Color} from '../../constants/Colors';
 
-const About = (props) => {
+const TermsAndConditions = (props) => {
   return (
     <ScrollView>
-    <Header {...props} title={"About Us"} />
+    <Header {...props} title={"Terms & Conditions"} />
     <Screen backgroundColor={Color.background}>
       <View key="header"></View>
       <View key="content">
-        <AppText>About Content</AppText>
+        <AppText>TermsAndConditions Content</AppText>
       </View>
     </Screen>
     </ScrollView>
   );
 };
-export default About;
+export default TermsAndConditions;

@@ -3,6 +3,8 @@ import {View, StyleSheet, Switch, Picker} from 'react-native';
 import {Screen, Button} from '_components/common';
 import {SettingsComponent} from '_components';
 import {useTheme} from '@react-navigation/native';
+import Header from '../../components/Header';
+import { JOINUS } from '../../constants/Screens';
 
 const Settings = (props) => {
   const {colors} = useTheme();
@@ -12,6 +14,8 @@ const Settings = (props) => {
     setIsEnabled(!isEnabled);
   };
   return (
+    <View>
+    <Header {...props} title={"Settings"} />
     <Screen>
       <View key="header"></View>
       <View key="content" style={styles.content}>
@@ -53,6 +57,7 @@ const Settings = (props) => {
         </Button>
       </View>
     </Screen>
+    </View>
   );
 };
 
