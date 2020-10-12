@@ -36,6 +36,7 @@ const styles = StyleSheet.create({
     borderLeftWidth: 6,
     justifyContent: 'space-between',
     padding: 10,
+    marginBottom: 10,
   },
 });
 export {TitleBarWithIcon};
