@@ -1,8 +1,8 @@
 import React, {useState, useRef} from 'react';
 import {View, StyleSheet} from 'react-native';
-// import {forgotPassword} from '../../assets/data/StaticData';
-import {InputWithLabel, ModalScreen} from '../../components';
-import {AppText, BackgroundImage, Button} from '../../components/common';
+// import {forgotPassword} from '_assets/data/StaticData';
+import {InputWithLabel, ModalScreen} from '_components';
+import {AppText, BackgroundImage, Button} from '_components/common';
 import {useTranslation} from 'react-i18next';
 
 const ForgotPassword = (props) => {

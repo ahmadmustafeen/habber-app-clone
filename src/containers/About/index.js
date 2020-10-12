@@ -3,7 +3,7 @@ import {View,ScrollView} from 'react-native';
 import {AppText, Screen} from '../../components/common';
 import Header from '../../components/Header';
 
-import {Color} from '../../constants/Colors';
+import {Color} from '_constants/Colors';
 
 const About = (props) => {
   return (

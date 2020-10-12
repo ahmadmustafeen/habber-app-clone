@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
 import {View, TouchableOpacity} from 'react-native';
-import {AppText, Screen} from '../../components/common';
+import {AppText, Screen} from '_components/common';
 
-import {Color} from '../../constants/Colors';
-import {LANGUAGE_SCREEN} from '../../constants/Screens';
+import {Color} from '_constants/Colors';
+import {LANGUAGE_SCREEN} from '_constants/Screens';
 
 const AdScreen = (props) => {
   const {navigate} = props.navigation;

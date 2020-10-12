@@ -10,15 +10,15 @@ const DrawerMenu = (props) => {
       <View key="header"></View>
       <View key="content">
         <View style={styles.profiletop}>
-        <View style={styles.imgContainer}>
-        <Image
-          style={styles.image}
-          source={require('../../assets/images/Screenshot_Logo.jpg')}
-        />
-        </View>
-        <AppText white bold size={15} style={styles.txt}>
-          Khaled Ammar
-        </AppText>
+          <View style={styles.imgContainer}>
+            <Image
+              style={styles.image}
+              source={require('../../assets/images/Screenshot_Logo.jpg')}
+            />
+          </View>
+          <AppText white bold size={15} style={styles.txt}>
+            Khaled Ammar
+          </AppText>
         </View>
         <View>
           <AppText bold white style={styles.navbtn}>Home</AppText>
@@ -28,6 +28,8 @@ const DrawerMenu = (props) => {
           <AppText bold white style={styles.navbtn} onPress={() => props.navigation.navigate(ABOUT_US)}>About us</AppText>
           <AppText bold white style={styles.navbtn} onPress={() => props.navigation.navigate(CONTACT_US)}>Contact us</AppText>
           <AppText
+            bold
+            white
             style={styles.navbtn}
             white
             bold
@@ -35,10 +37,27 @@ const DrawerMenu = (props) => {
             Settings
           </AppText>
           <AppText
-            secondary
-            size={18}
+            bold
             white
-            style={styles.poweredbyline}>
+            style={styles.navbtn}
+            onPress={() => props.navigation.navigate(FAVORITES)}>
+            Favorites
+          </AppText>
+          <AppText bold white style={styles.navbtn}>
+            My orders
+          </AppText>
+          <AppText bold white style={styles.navbtn}>
+            About us
+          </AppText>
+          <AppText bold white style={styles.navbtn}>
+            Contact us
+          </AppText>
+          <AppText
+            style={styles.navbtn}
+            onPress={() => props.navigation.navigate(SETTINGS_SCREEN)}>
+            Settings
+          </AppText>
+          <AppText secondary size={18} white style={styles.poweredbyline}>
             Powered By Line
           </AppText>
         </View>
@@ -74,30 +93,30 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     borderBottomWidth: 0.3,
   },
-  txt:{
-    marginLeft:10,
-    marginTop:30
+  txt: {
+    marginLeft: 10,
+    marginTop: 30,
   },
-  imgContainer:{
+  imgContainer: {
     height: 80,
     aspectRatio: 1,
     borderRadius: 50,
     borderWidth: 2,
-    overflow: 'hidden'
+    overflow: 'hidden',
   },
   image: {
     width: '100%',
-    height:'100%',  
+    height: '100%',
   },
-  profiletop:{
+  profiletop: {
     flexDirection: 'row',
-    justifyContent:'center',
-    marginBottom:20,
-    marginTop:20
+    justifyContent: 'center',
+    marginBottom: 20,
+    marginTop: 20,
   },
-  poweredbyline:{
-    marginTop: 30, 
-    marginBottom: 20
-  }
+  poweredbyline: {
+    marginTop: 30,
+    marginBottom: 20,
+  },
 });
 export default DrawerMenu;

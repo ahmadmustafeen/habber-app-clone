@@ -10,8 +10,8 @@ import {
   ThumbnailBookmarks,
   ThumbnailClub,
   TitleBarWithIcon,
-} from '../../components';
-import { BOOK_CLUBS, REQUESTBOOKS } from '../../constants/Screens';
+} from '_components';
+import {REQUESTBOOKS} from '_constants/Screens';
 import {sliderImages} from './dummydata';
 import {ThumbnailBook} from '_components/ThumbnailBook';
 import {AppText, Button} from '_components/common';

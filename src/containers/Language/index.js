@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
 import {View, StyleSheet, Image} from 'react-native';
-import {AppText, Button, BackgroundImage} from '../../components/common';
+import {AppText, Button, BackgroundImage} from '_components/common';
 
-import {Color} from '../../constants/Colors';
-import {SIGNIN_SCREEN} from '../../constants/Screens';
+import {Color} from '_constants/Colors';
+import {SIGNIN_SCREEN} from '_constants/Screens';
 
 const Language = (props) => {
   const {navigate} = props.navigation;
@@ -12,7 +12,7 @@ const Language = (props) => {
       <View key="header" style={styles.imageContainer}>
         <Image
           style={styles.image}
-          source={require('../../assets/images/Screenshot_Logo.jpg')}
+          source={require('_assets/images/Screenshot_Logo.jpg')}
         />
       </View>
       <View key="content">

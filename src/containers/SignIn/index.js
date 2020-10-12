@@ -1,10 +1,14 @@
 import React, {useState} from 'react';
 import {View, StyleSheet, ImageBackground} from 'react-native';
-import {InputWithLabel, RoundIcon} from '../../components';
-import {AppText, BackgroundImage, Button} from '../../components/common';
+import {InputWithLabel, RoundIcon} from '_components';
+import {AppText, BackgroundImage, Button} from '_components/common';
 
-import {Color} from '../../constants/Colors';
-import {FORGOT_PASSWORD_SCREEN,MY_PROFILE, SIGNUP_SCREEN} from '../../constants/Screens';
+import {Color} from '_constants/Colors';
+import {
+  FORGOT_PASSWORD_SCREEN,
+  MY_PROFILE,
+  SIGNUP_SCREEN,
+} from '_constants/Screens';
 
 const SignIn = (props) => {
   const {navigate} = props.navigation;
@@ -14,7 +18,9 @@ const SignIn = (props) => {
         <AppText bold style={styles.hellotxt}>
           Hello !
         </AppText>
-        <AppText white style={{marginBottom:10}}>Sign in to your account</AppText>
+        <AppText secondary style={{marginBottom: 10}}>
+          Sign in to your account
+        </AppText>
       </View>
       <View key="content" style={styles.content}>
         <InputWithLabel placeholder="ahmadalajmi@gmail.com" label="Email" />
@@ -40,9 +46,8 @@ const SignIn = (props) => {
           onPress={() => navigate(SIGNUP_SCREEN)}>
           Create New Account
         </AppText>
-        {/* <AppText
-          white
-          style={{textAlign: 'center',marginBottom:10}}
+        <AppText
+          style={{textAlign: 'center', marginBottom: 10}}
           secondary
           onPress={() => navigate(SIGNUP_SCREEN)}>
           {`OR
@@ -68,7 +73,7 @@ Login with Social media account`}
             color="#fff"
             onPress={() => console.log('hello')}
           />
-        </View> */}
+        </View> 
       </View>
       <View key="footer">
         <AppText
@@ -86,7 +91,7 @@ Login with Social media account`}
   );
 };
 const styles = StyleSheet.create({
-  content:{
+  content: {
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'center',
