@@ -4,14 +4,28 @@ export const booksData = [
       'https://images.unsplash.com/photo-1567226475328-9d6baaf565cf?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=60',
     author: 'Himilayas',
     price: 10,
-    title: 'This Book',
+    title: 'This Books only in',
+    description: `We are the best world Information Technology Company. 
+Providing the highest quality in hardware & Network solutions. About more than 20 years of experience and 1000 of innovative achievements.
+                
+We are the best world Information Technology Company. 
+Providing the highest quality in hardware & Network solutions. 
+                
+We are the best world Information Technology Company. 
+Providing the highest quality in hardware & Network solutions. `,
   },
   {
     image:
       'https://images.unsplash.com/photo-1455620611406-966ca6889d80?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1130&q=80',
-    author: ' humans',
+    author: 'Humans',
     price: 10,
     title: 'This Book',
+    description: `We are the best world Information Technology Company. 
+Providing the highest quality in hardware & Network solutions. About more than 20 years of experience and 1000 of innovative achievements.
+                    
+We are the best world Information Technology Company. 
+Providing the highest quality in hardware & Network solutions. 
+`,
   },
   {
     image:
@@ -19,6 +33,13 @@ export const booksData = [
     author: 'only',
     title: 'This Book',
     price: 10,
+    description: `We are the best world Information Technology Company. 
+Providing the highest quality in hardware & Network solutions. About more than 20 years of experience and 1000 of innovative achievements.
+                
+We are the best world Information Technology Company. 
+Providing the highest quality in hardware & Network solutions. 
+              
+ `,
   },
   {
     image:
@@ -26,6 +47,14 @@ export const booksData = [
     author: 'only',
     price: 10,
     title: 'This Book',
+    description: `We are the best world Information Technology Company. 
+Providing the highest quality in hardware & Network solutions. About more than 20 years of experience and 1000 of innovative achievements.
+                
+We are the best world Information Technology Company. 
+Providing the highest quality in hardware & Network solutions. 
+                
+We are the best world Information Technology Company. 
+Providing the highest quality in hardware & Network solutions. `,
   },
   {
     image:
@@ -33,5 +62,13 @@ export const booksData = [
     author: ' purpose only',
     price: 10,
     title: 'This Book',
+    description: `We are the best world Information Technology Company. 
+Providing the highest quality in hardware & Network solutions. About more than 20 years of experience and 1000 of innovative achievements.
+                
+We are the best world Information Technology Company. 
+Providing the highest quality in hardware & Network solutions. 
+                
+We are the best world Information Technology Company. 
+Providing the highest quality in hardware & Network solutions. `,
   },
 ];

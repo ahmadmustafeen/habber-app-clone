@@ -4,10 +4,8 @@ import {useTranslation} from 'react-i18next';
 import RNRestart from 'react-native-restart';
 
 import {Screen, Button} from '_components/common';
-import {SettingsComponent} from '_components';
+import {SettingsComponent, Header} from '_components';
 import {useTheme} from '@react-navigation/native';
-import Header from '../../components/Header';
-import {JOINUS} from '../../constants/Screens';
 
 const Settings = (props) => {
   const {colors} = useTheme();

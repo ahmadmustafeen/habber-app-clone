@@ -1,12 +1,18 @@
 import React from 'react';
 import {FlatList, View, ScrollView} from 'react-native';
-import {BookCard, TitleBarWithIcon} from '_components';
+import {BookCard, TitleBarWithIcon, Header} from '_components';
 
 import {AppText} from '_components/common';
-import Header from '_components/Header';
+
+import {BOOK_DETAILS_SCREEN} from '_constants/Screens';
 
 const BooksList = (props) => {
-  const {label, data} = props.route.params;
+  const {
+    route: {
+      params: {label, data},
+    },
+    navigation: {navigate},
+  } = props;
 
   return (
     <ScrollView>
@@ -19,7 +25,13 @@ const BooksList = (props) => {
         keyExtractor={(item, index) => index.toString() + item}
         columnWrapperStyle={{justifyContent: 'space-between'}}
         numColumns={2}
-        renderItem={(book) => <BookCard {...book.item} {...props} />}
+        renderItem={(book) => (
+          <BookCard
+            {...book.item}
+            {...props}
+            onPress={() => navigate(BOOK_DETAILS_SCREEN, {...book.item})}
+          />
+        )}
         ItemSeparatorComponent={() => (
           <View style={{marginVertical: 20, borderWidth: 0.5}} />
         )}

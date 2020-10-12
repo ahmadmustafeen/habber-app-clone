@@ -13,3 +13,4 @@ export * from './BookDetailsCard';
 export * from './SettingsComponent';
 export * from './HorizontalRow';
 export * from './Counter';
+export * from './Header';

@@ -10,6 +10,7 @@ import {
   ThumbnailBookmarks,
   ThumbnailClub,
   TitleBarWithIcon,
+  Header,
 } from '_components';
 import {REQUESTBOOKS, BOOK_CLUBS} from '_constants/Screens';
 import {sliderImages} from './dummydata';
@@ -17,7 +18,6 @@ import {ThumbnailBook} from '_components/ThumbnailBook';
 import {AppText, Button, Screen} from '_components/common';
 import {BOOKLIST_SCREEN, LANGUAGE_SCREEN} from '_constants/Screens';
 import {booksData} from '_assets/data/dummydata';
-import Header from '_components/Header';
 import {useDispatch} from 'react-redux';
 import {withDataActions} from '../../redux/actions/basicActions';
 import {SIGN_UP} from '../../redux/actionTypes';
@@ -89,6 +89,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     paddingEnd: 10,
+    paddingBottom: 20,
   },
 });
 export default Home;
