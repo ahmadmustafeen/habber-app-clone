@@ -29,10 +29,26 @@ const ModalComponent = (
               color="#fff"
               size={iconSize || 50}
             />
-            <AppText bold primary style={{paddingHorizontal:20,textAlign: 'center',fontSize: 25,marginTop:20,marginBottom:20}}>
+            <AppText
+              bold
+              primary
+              style={{
+                paddingHorizontal: 20,
+                textAlign: 'center',
+                fontSize: 25,
+                marginTop: 20,
+                marginBottom: 20,
+              }}>
               {heading}
             </AppText>
-            <AppText style={{paddingHorizontal:20,fontSize: 18,textAlign: 'center'}}>{description}</AppText>
+            <AppText
+              style={{
+                paddingHorizontal: 20,
+                fontSize: 18,
+                textAlign: 'center',
+              }}>
+              {description}
+            </AppText>
           </View>
           <View key="footer">
             <Button color="white" onPress={toggle}>

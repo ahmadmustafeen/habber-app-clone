@@ -6,15 +6,14 @@ import {
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 
-const Screen = (props)=>{
- 
-const getComponent = (key) => {
-  
+const Screen = (props) => {
+  const {noPadding} = props;
+
+  const getComponent = (key) => {
     const {children} = props;
-    
-    return children.filter(view => view.key === key);
-  }
-const {noPadding} = props;
+    return children.filter((view) => view.key === key);
+  };
+
   return (
     <KeyboardAwareScrollView
       //resetScrollToCoords={{ x: 0, y: 0 }}
@@ -28,7 +27,7 @@ const {noPadding} = props;
         style={[
           styles.formContainer,
           {backgroundColor: props.backgroundColor},
-          noPadding && {paddingHorizontal : 0, paddingBottom : 0}
+          noPadding && {paddingHorizontal: 0, paddingBottom: 0},
         ]}>
         {getComponent('header').length ? (
           <View style={styles.header}>{getComponent('header')}</View>
@@ -42,8 +41,7 @@ const {noPadding} = props;
       </View>
     </KeyboardAwareScrollView>
   );
-}
-
+};
 
 const styles = StyleSheet.create({
   formContainer: {
