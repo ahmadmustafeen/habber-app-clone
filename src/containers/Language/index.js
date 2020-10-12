@@ -1,12 +1,13 @@
 import React, {useState} from 'react';
 import {View, StyleSheet, Image} from 'react-native';
-import {AppText, Button, BackgroundImage} from '_components/common';
+import {useTheme} from '@react-navigation/native';
 
-import {Color} from '_constants/Colors';
+import {AppText, Button, BackgroundImage} from '_components/common';
 import {SIGNIN_SCREEN} from '_constants/Screens';
 
 const Language = (props) => {
   const {navigate} = props.navigation;
+  const {colors} = useTheme();
   return (
     <BackgroundImage>
       <View key="header" style={styles.imageContainer}>
@@ -15,18 +16,22 @@ const Language = (props) => {
           source={require('_assets/images/Screenshot_Logo.jpg')}
         />
       </View>
-      <View key="content">
+      <View key="content" style={{alignItems: 'center'}}>
         <AppText style={styles.selecttxt}>Select Your Language</AppText>
         <Button
           style={styles.btn}
           round
+          width="60%"
           background="white"
+          color={colors.secondary}
           onPress={() => navigate(SIGNIN_SCREEN)}>
           English
         </Button>
         <Button
           round
+          width="60%"
           background="white"
+          color={colors.secondary}
           onPress={() => navigate(SIGNIN_SCREEN)}>
           عربى
         </Button>
@@ -39,6 +44,7 @@ const styles = StyleSheet.create({
     width: 100,
     height: 100,
     marginVertical: 20,
+    marginTop: '30%',
     alignSelf: 'center',
   },
   image: {

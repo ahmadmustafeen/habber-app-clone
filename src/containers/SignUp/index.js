@@ -1,23 +1,23 @@
+import React, {useRef} from 'react';
 import {View, StyleSheet} from 'react-native';
-import React, {useState, useRef} from 'react';
 
 import {InputWithLabel, RoundIcon, ModalScreen} from '_components';
 import {BackgroundImage, Button, AppText} from '_components/common';
 import {signUp} from '_assets/data/StaticData';
 const SignUp = (props) => {
   const {navigate} = props.navigation;
+  const modalRef = useRef(null);
 
   const onSignUp = () => {
     toggleModal();
   };
 
-  const modalRef = useRef(null);
-
   const toggleModal = () => {
     modalRef.current.toggle();
   };
+
   return (
-    <BackgroundImage source={require('_assets/images/background.jpg')}>
+    <BackgroundImage>
       <View key="header"></View>
       <View key="content" style={styles.content}>
         <InputWithLabel
@@ -55,11 +55,11 @@ const SignUp = (props) => {
             {signUp.sign_up}
           </Button>
 
-          <AppText secondary style={{marginTop: 10, marginBottom: 10}}>
+          {/* <AppText white secondary style={{marginTop: 10, marginBottom: 10}}>
             OR
-          </AppText>
+          </AppText> */}
         </View>
-        <View style={{flexDirection: 'row', justifyContent: 'space-around'}}>
+        {/* <View style={{flexDirection: 'row', justifyContent: 'space-around'}}>
           <RoundIcon
             name="sc-facebook"
             type="evilicon"
@@ -78,8 +78,8 @@ const SignUp = (props) => {
             color="#fff"
             onPress={() => console.log('hello')}
           />
-          <ModalScreen ref={modalRef} {...signUp.modalData} />
-        </View>
+        </View> */}
+        <ModalScreen ref={modalRef} {...signUp.modalData} />
       </View>
     </BackgroundImage>
   );

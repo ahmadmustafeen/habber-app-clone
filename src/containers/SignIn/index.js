@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
-import {View, StyleSheet, ImageBackground} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 import {InputWithLabel, RoundIcon} from '_components';
-import {AppText, BackgroundImage, Button} from '_components/common';
+import {useTheme} from '@react-navigation/native';
 
-import {Color} from '_constants/Colors';
+import {AppText, BackgroundImage, Button} from '_components/common';
 import {
   FORGOT_PASSWORD_SCREEN,
   MY_PROFILE,
@@ -12,13 +12,14 @@ import {
 
 const SignIn = (props) => {
   const {navigate} = props.navigation;
+  const {colors} = useTheme();
   return (
     <BackgroundImage>
       <View key="header">
-        <AppText bold style={styles.hellotxt}>
+        <AppText bold color={colors.primary} heading style={styles.hellotxt}>
           Hello !
         </AppText>
-        <AppText secondary style={{marginBottom: 10}}>
+        <AppText white secondary style={{marginBottom: 10}}>
           Sign in to your account
         </AppText>
       </View>
@@ -36,25 +37,34 @@ const SignIn = (props) => {
           onPress={() => navigate(FORGOT_PASSWORD_SCREEN)}>
           Forgot Password
         </AppText>
-        <Button round onPress={() => navigate('Home')}>
-          SIGN IN
-        </Button>
-
-        <AppText
-          underline
-          style={styles.createAccount}
-          onPress={() => navigate(SIGNUP_SCREEN)}>
-          Create New Account
-        </AppText>
-        <AppText
+        <View style={{alignItems: 'center'}}>
+          <Button
+            width="70%"
+            color={colors.secondary}
+            round
+            onPress={() => navigate('Home')}>
+            SIGN IN
+          </Button>
+          <AppText
+            underline
+            center
+            primary
+            onPress={() => navigate(SIGNUP_SCREEN)}
+            style={{
+              marginVertical: 20,
+            }}>
+            Create New Account
+          </AppText>
+          {/* <AppText
+          white
           style={{textAlign: 'center', marginBottom: 10}}
           secondary
           onPress={() => navigate(SIGNUP_SCREEN)}>
           {`OR
 
 Login with Social media account`}
-        </AppText>
-        <View style={{flexDirection: 'row', justifyContent: 'space-around'}}>
+        </AppText> */}
+          {/* <View style={{flexDirection: 'row', justifyContent: 'space-around'}}>
           <RoundIcon
             name="sc-facebook"
             type="evilicon"
@@ -73,16 +83,15 @@ Login with Social media account`}
             color="#fff"
             onPress={() => console.log('hello')}
           />
-        </View> 
+        </View>  */}
+        </View>
       </View>
       <View key="footer">
         <AppText
-          style={{
-            textAlign: 'right',
-            textDecorationLine: 'underline',
-            color: '#c27e12',
-            fontSize: 25,
-          }}
+          right
+          underline
+          primary
+          size={30}
           onPress={() => navigate('Home')}>
           Skip
         </AppText>
@@ -100,19 +109,11 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   hellotxt: {
-    color: '#c27e12',
-    fontSize: 35,
     marginTop: 30,
   },
   forgotPassword: {
     textAlign: 'right',
     color: '#c27e12',
-    marginBottom: 20,
-  },
-  createAccount: {
-    textAlign: 'center',
-    color: '#c27e12',
-    marginTop: 20,
     marginBottom: 20,
   },
 });
