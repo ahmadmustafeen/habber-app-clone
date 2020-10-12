@@ -1,9 +1,17 @@
-import React from 'react';
-import {View, StyleSheet, Image} from 'react-native';
-import {AppText, Button, Screen} from '_components/common';
-import {RoundIcon, Counter} from '_components';
+import React,{useState} from 'react';
+import {View, StyleSheet,Image,ScrollView} from 'react-native';
+import { AppText, Button, Screen} from '../../components/common';
+import {RoundIcon,Counter,DashboardComponent,ThumbnailClub} from '../../components';
+import {booksData} from '_assets/data/dummydata';
+import {BOOK_CLUBS} from '../../constants/Screens';
+import Header from '../../components/Header';
+
 const BookDescription = (props) => {
+  const [data] = useState(booksData);
+
   return (
+    <ScrollView>
+    <Header {...props} title={"Book Name"} />
     <Screen>
       <View key="header"></View>
       <View key="content">
@@ -86,11 +94,11 @@ Providing the highest quality in hardware & Network solutions. `}</AppText>
         </View>
       </View>
       <View key="footer">
-        <Button bold secondary>
-          Add To Cart
-        </Button>
+       <Button bold secondary>Add To Cart</Button>
       </View>
     </Screen>
+    </ScrollView>
+
   );
 };
 
@@ -110,9 +118,9 @@ const styles = StyleSheet.create({
   },
   profiletop: {
     flexDirection: 'row',
-    justifyContent: 'flex-start',
-    marginBottom: 20,
-    marginTop: 20,
+    justifyContent:'flex-start',
+    marginBottom:20,
+    marginTop:10
   },
   counter: {
     flexDirection: 'row',

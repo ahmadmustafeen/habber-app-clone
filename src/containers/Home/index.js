@@ -15,7 +15,7 @@ import {REQUESTBOOKS} from '_constants/Screens';
 import {sliderImages} from './dummydata';
 import {ThumbnailBook} from '_components/ThumbnailBook';
 import {AppText, Button} from '_components/common';
-import {BOOKLIST_SCREEN, LANGUAGE_SCREEN} from '_constants/Screens';
+import {BOOKLIST_SCREEN,LANGUAGE_SCREEN} from '_constants/Screens';
 import {booksData} from '_assets/data/dummydata';
 import Header from '_components/Header';
 import {useDispatch} from 'react-redux';
@@ -65,7 +65,7 @@ const Home = (props) => {
         renderComponent={(item) => <ThumbnailClub url={item.item.image} />}
         label="BOOK CLUBS"
         onIconPress={() =>
-          navigate(BOOKLIST_SCREEN, {label: 'BOOKS CLUB', data})
+          navigate(BOOK_CLUBS, {label: 'BOOKS CLUB', data})
         }
       />
       <DashboardComponent

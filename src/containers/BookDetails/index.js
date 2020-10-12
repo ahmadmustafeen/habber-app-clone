@@ -9,7 +9,7 @@ const BookDetails = (props) => {
 
   return (
     <ScrollView>
-      <TitleBarWithIcon label="BookDetaisl" />
+      <TitleBarWithIcon label="BookDetails" />
       <BookDetailsCard />
     </ScrollView>
   );
