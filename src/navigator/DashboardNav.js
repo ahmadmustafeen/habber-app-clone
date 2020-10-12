@@ -14,12 +14,14 @@ import {
   EDIT_PROFILE,
   SETTINGS_SCREEN,FAVORITES,
   CONTACT_US,
-  BOOK_CLUBS
+  BOOK_CLUBS,
+  ABOUT_US
 } from '../constants/Screens';
 
 import Home from '../containers/Home';
 import BooksList from '../containers/BooksList';
 import JoinUs from '../containers/JoinUs';
+import About from '../containers/About';
 import RequestBooks from '../containers/RequestBooks';
 import MyProfile from '../containers/MyProfile';
 import MyAddressBook from '../containers/MyAddressBook';
@@ -56,6 +58,7 @@ export const DashboardNav = () => {
       <Stack.Screen name={FAVORITES} component={Favorites} />
       <Stack.Screen name={CONTACT_US} component={ContactUs} />
       <Stack.Screen name={BOOK_CLUBS} component={BookClubs} />
+      <Stack.Screen name={ABOUT_US} component={About} />
     </Stack.Navigator>
   );
 };

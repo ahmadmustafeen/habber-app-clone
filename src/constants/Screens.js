@@ -16,5 +16,6 @@ export const BOOK_DETAILS_SCREEN = 'BookDetails';
 export const BOOK_DESCRIPTION = 'BookDescription';
 export const FAVORITES = 'Favorites';
 export const CONTACT_US = 'ContactUs';
+export const ABOUT_US = 'AboutUs';
 export const BOOK_CLUBS = 'BookClubs';
 export const SETTINGS_SCREEN = 'Settings';
