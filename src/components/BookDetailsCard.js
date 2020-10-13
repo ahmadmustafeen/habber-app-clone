@@ -14,7 +14,7 @@ const BookDetailsCard = (props) => {
       <View style={styles.imgContainer}>
         <FastImage
           style={styles.image}
-          source={require('_assets/images/briefHistory.png')}
+          source={require('_assets/images/background.jpg')}
           resizeMode="contain"
         />
       </View>
