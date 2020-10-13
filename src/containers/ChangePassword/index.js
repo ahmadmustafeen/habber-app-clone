@@ -1,11 +1,14 @@
 import React from 'react';
-import {View, StyleSheet} from 'react-native';
+import {View, ScrollView} from 'react-native';
 import {InputWithLabel} from '_components';
 import {Button, Screen} from '_components/common';
 import {MY_PROFILE} from '_constants/Screens';
+import {Header} from '_components/Header';
 const ChangePassword = (props) => {
   const {navigate} = props.navigation;
   return (
+    <ScrollView>
+    <Header {...props} title={'Change Password'} />
     <Screen>
       <View key="header"></View>
       <View key="content">
@@ -22,6 +25,7 @@ const ChangePassword = (props) => {
         </Button>
       </View>
     </Screen>
+    </ScrollView>
   );
 };
 

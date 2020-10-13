@@ -8,6 +8,7 @@ import {
   ABOUT_US,
   CONTACT_US,
   FAVORITES,
+  MY_ORDERS,
   MY_PROFILE,
 } from '../../constants/Screens';
 
@@ -45,7 +46,8 @@ const DrawerMenu = (props) => {
             onPress={() => props.navigation.navigate(FAVORITES)}>
             Favorites
           </AppText>
-          <AppText bold white style={styles.navbtn}>
+          <AppText bold white style={styles.navbtn}
+          onPress={() => props.navigation.navigate(MY_ORDERS)}>
             My orders
           </AppText>
           <AppText

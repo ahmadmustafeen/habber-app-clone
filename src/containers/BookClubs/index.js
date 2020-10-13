@@ -1,132 +1,49 @@
 import React from 'react';
-import {View, StyleSheet, Image, ScrollView} from 'react-native';
-import {AppText, Button, Screen} from '../../components/common';
-import {HorizontalRow, Header} from '../../components';
-import {BOOK_DESCRIPTION} from '../../constants/Screens';
+import {FlatList, View, ScrollView} from 'react-native';
+import {BookCard, TitleBarWithIcon, Header} from '_components';
+
+import {AppText} from '_components/common';
+
+import {BOOK_DETAILS_SCREEN} from '_constants/Screens';
 
 const BookClubs = (props) => {
+  const {
+    route: {
+      params: {label, data_book_club},
+    },
+    navigation: {navigate},
+  } = props;
+
   return (
     <ScrollView>
-      <Header {...props} title={'Book Clubs'} />
-      <Screen>
-        <View key="header"></View>
-        <View key="content">
-          <View style={styles.profiletop}>
-            <View style={styles.imgContainer}>
-              <Image
-                style={styles.image}
-                source={require('../../assets/images/stephen.png')}
-              />
-              <AppText
-                style={styles.bookname}
-                onPress={() => props.navigation.navigate(BOOK_DESCRIPTION)}>
-                Little Brown & Company
-              </AppText>
-            </View>
-            <View style={styles.imgContainer}>
-              <Image
-                style={styles.image}
-                source={require('../../assets/images/Screenshot_Logo.jpg')}
-              />
-              <AppText
-                style={styles.bookname}
-                onPress={() => props.navigation.navigate(BOOK_DESCRIPTION)}>
-                The Big Book Club
-              </AppText>
-            </View>
-          </View>
-          <HorizontalRow />
+      <Header {...props} />
+      <TitleBarWithIcon label={label} />
 
-          <View style={styles.profiletop}>
-            <View style={styles.imgContainer}>
-              <Image
-                style={styles.image}
-                source={require('../../assets/images/Screenshot_Logo.jpg')}
-              />
-              <AppText
-                style={styles.bookname}
-                onPress={() => props.navigation.navigate(BOOK_DESCRIPTION)}>
-                Sunshine Book Club
-              </AppText>
-            </View>
-            <View style={styles.imgContainer}>
-              <Image
-                style={styles.image}
-                source={require('../../assets/images/stephen.png')}
-              />
-              <AppText
-                style={styles.bookname}
-                onPress={() => props.navigation.navigate(BOOK_DESCRIPTION)}>
-                Free Minds Book Club
-              </AppText>
-            </View>
+      <FlatList
+        data={data_book_club}
+        showsVerticalScrollIndicator={false}
+        keyExtractor={(item, index) => index.toString() + item}
+        columnWrapperStyle={{justifyContent: 'space-between'}}
+        numColumns={2}
+        renderItem={(book) => (
+          <BookCard
+            {...book.item}
+            {...props}
+            onPress={() => navigate(BOOK_DETAILS_SCREEN, {...book.item})}
+          />
+        )}
+        ItemSeparatorComponent={() => (
+          <View style={{marginVertical: 20, borderWidth: 0.5}} />
+        )}
+        ListEmptyComponent={() => (
+          <View>
+            <AppText>No Book Available</AppText>
           </View>
-          <HorizontalRow />
-
-          <View style={styles.profiletop}>
-            <View style={styles.imgContainer}>
-              <Image
-                style={styles.image}
-                source={require('../../assets/images/stephen.png')}
-              />
-              <AppText
-                style={styles.bookname}
-                onPress={() => props.navigation.navigate(BOOK_DESCRIPTION)}>
-                Action Book Club
-              </AppText>
-            </View>
-            <View style={styles.imgContainer}>
-              <Image
-                style={styles.image}
-                source={require('../../assets/images/Screenshot_Logo.jpg')}
-              />
-              <AppText
-                style={styles.bookname}
-                onPress={() => props.navigation.navigate(BOOK_DESCRIPTION)}>
-                Andrew Book Club
-              </AppText>
-            </View>
-          </View>
-        </View>
-      </Screen>
+        )}
+        ListFooterComponent={() => <View style={{paddingBottom: 50}} />}
+      />
     </ScrollView>
   );
 };
-
-const styles = StyleSheet.create({
-  imgContainer: {
-    height: 150,
-    aspectRatio: 1.25,
-    flexDirection: 'column',
-    justifyContent: 'center',
-    marginBottom: 10,
-    marginTop: 10,
-    paddingHorizontal: 12,
-  },
-  image: {
-    width: '100%',
-    height: '100%',
-  },
-  viewtxt: {
-    flexDirection: 'column',
-    marginLeft: 15,
-    marginTop: 10,
-    maxWidth: '100%',
-  },
-  bookname: {
-    marginTop: 5,
-    height: 50,
-  },
-  pricetxt: {
-    marginTop: 20,
-    width: 200,
-  },
-  profiletop: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    marginBottom: 20,
-    marginTop: 20,
-  },
-});
 
 export default BookClubs;

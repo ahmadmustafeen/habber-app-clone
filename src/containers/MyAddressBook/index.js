@@ -1,12 +1,15 @@
 import React from 'react';
-import {View, StyleSheet, Image} from 'react-native';
+import {View,ScrollView, StyleSheet, Image} from 'react-native';
 import {AppText, Button, Screen} from '_components/common';
 import {ADD_NEW_ADDRESS, EDIT_PROFILE} from '_constants/Screens';
 import {HorizontalRow} from '_components/HorizontalRow';
+import {Header} from '_components/Header';
 
 const MyAddressBook = (props) => {
   const {navigate} = props.navigation;
   return (
+    <ScrollView>
+    <Header {...props} title={'My Profile'} />
     <Screen>
       <View key="header"></View>
       <View key="content">
@@ -73,6 +76,7 @@ Khaled.Ammar@gmail.com`}
         </View>
       </View>
     </Screen>
+    </ScrollView>
   );
 };
 

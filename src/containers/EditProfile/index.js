@@ -1,12 +1,16 @@
 import React from 'react';
-import {View, StyleSheet, Image} from 'react-native';
+import {View,ScrollView, StyleSheet, Image} from 'react-native';
 import {Button, Screen} from '_components/common';
 import {InputWithLabel} from '_components';
 import {HorizontalRow} from '_components/HorizontalRow';
 import {MY_PROFILE} from '_constants/Screens';
+import {Header} from '_components/Header';
+
 const EditProfile = (props) => {
   const {navigate} = props.navigation;
   return (
+    <ScrollView>
+    <Header {...props} title={'Edit Profile'} />
     <Screen>
       <View key="header"></View>
       <View key="content" style={styles.content}>
@@ -31,6 +35,7 @@ const EditProfile = (props) => {
         </Button>
       </View>
     </Screen>
+    </ScrollView>
   );
 };
 
