@@ -51,14 +51,15 @@ const Navigator = () => {
 
   return (
     <NavigationContainer theme={MyTheme}>
-      {loading ? (
+      {false ? (
         <RootStack.Navigator screenOptions={{headerShown: false}}>
           <RootStack.Screen name="Splash" component={Splash} />
         </RootStack.Navigator>
       ) : (
         <RootStack.Navigator screenOptions={{headerShown: false}}>
+             <RootStack.Screen name="Auth" component={AuthNav} />
           <RootStack.Screen name="Drawer" component={DrawerNav} />
-          <RootStack.Screen name="Auth" component={AuthNav} />
+       
         </RootStack.Navigator>
       )}
     </NavigationContainer>

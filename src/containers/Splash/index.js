@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {Image, StyleSheet} from 'react-native';
 
 const Splash = (props) => {
+  console.log("Hello From Habber");
   return (
     <Image
       style={styles.Image}
