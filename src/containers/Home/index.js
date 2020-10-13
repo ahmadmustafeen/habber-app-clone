@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 
 import {ScrollView, View, StyleSheet, I18nManager} from 'react-native';
 import {useTranslation} from 'react-i18next';
-import RNRestart from 'react-native-restart';
+import {useDispatch} from 'react-redux';
 import {
   Counter,
   DashboardComponent,
@@ -11,17 +11,15 @@ import {
   ThumbnailClub,
   TitleBarWithIcon,
 } from '_components';
-import {REQUESTBOOKS,BOOK_CLUBS} from '_constants/Screens';
+import {REQUESTBOOKS, BOOK_CLUBS} from '_constants/Screens';
 import {sliderImages} from './dummydata';
 import {ThumbnailBook} from '_components/ThumbnailBook';
 import {AppText, Button} from '_components/common';
-import {BOOKLIST_SCREEN,LANGUAGE_SCREEN} from '_constants/Screens';
+import {BOOKLIST_SCREEN, LANGUAGE_SCREEN} from '_constants/Screens';
 import {booksData} from '_assets/data/dummydata';
-import Header from '_components/Header';
-import {useDispatch} from 'react-redux';
 import {withDataActions} from '../../redux/actions/basicActions';
 import {SIGN_UP} from '../../redux/actionTypes';
-import { AD_SCREEN } from '../../constants/Screens';
+import {AD_SCREEN} from '../../constants/Screens';
 
 const Home = (props) => {
   const {navigate} = props.navigation;
@@ -64,9 +62,7 @@ const Home = (props) => {
         data={data}
         renderComponent={(item) => <ThumbnailClub url={item.item.image} />}
         label="BOOK CLUBS"
-        onIconPress={() =>
-          navigate(BOOK_CLUBS, {label: 'BOOKS CLUB', data})
-        }
+        onIconPress={() => navigate(BOOK_CLUBS, {label: 'BOOKS CLUB', data})}
       />
       <DashboardComponent
         data={data}

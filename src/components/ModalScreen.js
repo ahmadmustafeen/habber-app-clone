@@ -1,19 +1,17 @@
-import React, {useState, useImperativeHandle, forwardRef} from 'react';
+import React from 'react';
 import {Modal, View, StyleSheet} from 'react-native';
 import {AppText, Button, Screen} from './common';
 import {RoundIcon} from './RoundIcon';
-const ModalComponent = (
-  {heading, description, iconType, iconName, iconSize, buttonLabel},
-  ref,
-) => {
-  const [visible, setVisible] = useState(false);
-
-  const toggle = () => {
-    setVisible(!visible);
-  };
-  useImperativeHandle(ref, () => ({
-    toggle,
-  }));
+const ModalScreen = ({
+  heading,
+  description,
+  iconType,
+  iconName,
+  iconSize,
+  buttonLabel,
+  visible,
+  onContinue,
+}) => {
   return (
     <Modal animationType="fade" visible={visible}>
       <View style={styles.container}>
@@ -35,7 +33,7 @@ const ModalComponent = (
             <AppText style={{paddingHorizontal:20,fontSize: 18,textAlign: 'center'}}>{description}</AppText>
           </View>
           <View key="footer">
-            <Button color="white" onPress={toggle}>
+            <Button color="white" onPress={onContinue}>
               {buttonLabel}
             </Button>
           </View>
@@ -51,5 +49,4 @@ const styles = StyleSheet.create({
   },
 });
 
-const ModalScreen = forwardRef(ModalComponent);
 export {ModalScreen};

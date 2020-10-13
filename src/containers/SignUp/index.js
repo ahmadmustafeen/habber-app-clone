@@ -1,19 +1,42 @@
-import React, {useRef} from 'react';
+import React, {useState} from 'react';
 import {View, StyleSheet} from 'react-native';
+import {shallowEqual, useDispatch, useSelector} from 'react-redux';
 
 import {InputWithLabel, RoundIcon, ModalScreen} from '_components';
 import {BackgroundImage, Button, AppText} from '_components/common';
 import {signUp} from '_assets/data/StaticData';
-const SignUp = (props) => {
-  const {navigate} = props.navigation;
-  const modalRef = useRef(null);
+import {withDataActions} from '_redux/actions/basicActions';
+import {SIGN_UP} from '_redux/actionTypes';
+import {withoutDataActions} from 'redux/actions';
+import {HIDE_MODAL} from 'redux/actionTypes';
 
-  const onSignUp = () => {
-    toggleModal();
+const SignUp = (props) => {
+  const dispatch = useDispatch();
+  const {navigate} = props.navigation;
+
+  const {visible} = useSelector(
+    (state) => ({
+      visible: state.ModalReducer.visible,
+    }),
+    shallowEqual,
+  );
+
+  const [state, setState] = useState({
+    first_name: '',
+    last_name: '',
+    email: '',
+    password: '',
+    password_confirmation: '',
+  });
+
+  const {first_name, last_name, email, password, password_confirmation} = state;
+
+  const handleChange = (key, value) => {
+    setState((state) => ({...state, [key]: value}));
   };
 
-  const toggleModal = () => {
-    modalRef.current.toggle();
+  const onSignUp = () => {
+    dispatch(withDataActions(state, SIGN_UP));
   };
 
   return (
@@ -25,24 +48,38 @@ const SignUp = (props) => {
           placeholder="Khaled"
           label="First Name"
           required
+          value={first_name}
+          onChangeText={(value) => handleChange('first_name', value)}
         />
-        <InputWithLabel placeholder="Ammar" label="Last Name" required />
+        <InputWithLabel
+          placeholder="Ammar"
+          label="Last Name"
+          required
+          value={last_name}
+          onChangeText={(value) => handleChange('last_name', value)}
+        />
         <InputWithLabel
           placeholder="ahmadalajmi@gmail.com"
           label="Email"
           required
+          value={email}
+          onChangeText={(value) => handleChange('email', value)}
         />
         <InputWithLabel
           secureTextEntry
           placeholder="*********"
           label="Password"
           required
+          value={password}
+          onChangeText={(value) => handleChange('password', value)}
         />
         <InputWithLabel
           secureTextEntry
           placeholder="*********"
           label="Confirm Password"
           required
+          value={password_confirmation}
+          onChangeText={(value) => handleChange('password_confirmation', value)}
         />
         <View style={{alignItems: 'center'}}>
           <AppText white secondary size={17}>
@@ -79,7 +116,11 @@ const SignUp = (props) => {
             onPress={() => console.log('hello')}
           />
         </View> */}
-        <ModalScreen ref={modalRef} {...signUp.modalData} />
+        <ModalScreen
+          visible={visible}
+          onContinue={() => dispatch(withoutDataActions(HIDE_MODAL))}
+          {...signUp.modalData}
+        />
       </View>
     </BackgroundImage>
   );
