@@ -5,23 +5,19 @@ import {InputWithLabel, ModalScreen} from '_components';
 import {AppText, BackgroundImage, Button} from '_components/common';
 import {useTranslation} from 'react-i18next';
 import {shallowEqual, useDispatch, useSelector} from 'react-redux';
-import {HIDE_MODAL, SHOW_MODAL} from 'redux/actionTypes';
+import {SHOW_MODAL} from 'redux/actionTypes';
 import {withoutDataActions} from 'redux/actions';
+import useModal from 'utils/customHooks/useModal';
 
 const ForgotPassword = (props) => {
   const dispatch = useDispatch();
-  const {visible} = useSelector(
-    (state) => ({
-      visible: state.ModalReducer.visible,
-    }),
-    shallowEqual,
-  );
+  const {visible, toggleModal} = useModal();
+
   const {t} = useTranslation(['forgotPassword']);
   const {navigate} = props.navigation;
 
   const onSubmit = () => {
-    dispatch(withoutDataActions(SHOW_MODAL));
-    // toggleModal();
+    toggleModal();
   };
 
   // const modalRef = useRef(null);
@@ -49,7 +45,7 @@ const ForgotPassword = (props) => {
         <Button onPress={onSubmit}>{t('resetPassword')}</Button>
         <ModalScreen
           visible={visible}
-          onContinue={() => dispatch(withoutDataActions(HIDE_MODAL))}
+          onContinue={toggleModal}
           heading={t('modal_heading')}
           description={t('modal_description')}
           buttonLabel={t('modal_button_label')}

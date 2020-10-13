@@ -9,17 +9,12 @@ import {withDataActions} from '_redux/actions/basicActions';
 import {SIGN_UP} from '_redux/actionTypes';
 import {withoutDataActions} from 'redux/actions';
 import {HIDE_MODAL} from 'redux/actionTypes';
+import useModal from 'utils/customHooks/useModal';
 
 const SignUp = (props) => {
   const dispatch = useDispatch();
   const {navigate} = props.navigation;
-
-  const {visible} = useSelector(
-    (state) => ({
-      visible: state.ModalReducer.visible,
-    }),
-    shallowEqual,
-  );
+  const {visible, toggleModal} = useModal();
 
   const [state, setState] = useState({
     first_name: '',
@@ -118,7 +113,7 @@ const SignUp = (props) => {
         </View> */}
         <ModalScreen
           visible={visible}
-          onContinue={() => dispatch(withoutDataActions(HIDE_MODAL))}
+          onContinue={toggleModal}
           {...signUp.modalData}
         />
       </View>

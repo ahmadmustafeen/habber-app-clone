@@ -1,8 +1,10 @@
 import React, {useState} from 'react';
-import {shallowEqual, useSelector} from 'react-redux';
+import {shallowEqual, useDispatch, useSelector} from 'react-redux';
+import {withoutDataActions} from 'redux/actions';
+import {HIDE_MODAL, SHOW_MODAL} from 'redux/actionTypes';
 
 export default () => {
-  let [visible, setModal] = useState(false);
+  const dispatch = useDispatch();
   const {visible} = useSelector(
     (state) => ({
       visible: state.ModalReducer.visible,
@@ -10,7 +12,9 @@ export default () => {
     shallowEqual,
   );
   let toggleModal = () => {
-    setModal(!visible);
+    visible
+      ? dispatch(withoutDataActions(HIDE_MODAL))
+      : dispatch(withoutDataActions(SHOW_MODAL));
   };
 
   return {visible, toggleModal};
