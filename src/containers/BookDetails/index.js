@@ -11,7 +11,7 @@ import {
   Header,
 } from '_components';
 import {booksData} from '_assets/data/dummydata';
-import {BOOK_CLUBS} from '../../constants/Screens';
+import {ADD_TO_CART} from '../../constants/Screens';
 
 const BookDetails = (props) => {
   const [data] = useState(booksData);
@@ -56,7 +56,7 @@ const BookDetails = (props) => {
           </View>
         </View>
         <View key="footer">
-          <Button bold secondary>
+          <Button bold secondary onPress={() => props.navigation.navigate(ADD_TO_CART)}>
             Add To Cart
           </Button>
         </View>
