@@ -1,8 +1,15 @@
 import React, {useState} from 'react';
-import {View, StyleSheet, Text, Image} from 'react-native';
+import {View, StyleSheet, Image} from 'react-native';
+
 import {AppText, Screen} from '../../components/common';
 import {RoundIcon} from '../../components';
-import {SETTINGS_SCREEN,ABOUT_US,CONTACT_US,FAVORITES,MY_PROFILE} from '../../constants/Screens';
+import {
+  SETTINGS_SCREEN,
+  ABOUT_US,
+  CONTACT_US,
+  FAVORITES,
+  MY_PROFILE,
+} from '../../constants/Screens';
 
 const DrawerMenu = (props) => {
   return (
@@ -21,12 +28,40 @@ const DrawerMenu = (props) => {
           </AppText>
         </View>
         <View>
-          <AppText bold white style={styles.navbtn}>Home</AppText>
-          <AppText bold white style={styles.navbtn} onPress={() => props.navigation.navigate(MY_PROFILE)}>Profile</AppText>
-          <AppText bold white style={styles.navbtn} onPress={() => props.navigation.navigate(FAVORITES)}>Favorites</AppText>
-          <AppText bold white style={styles.navbtn}>My orders</AppText>
-          <AppText bold white style={styles.navbtn} onPress={() => props.navigation.navigate(ABOUT_US)}>About us</AppText>
-          <AppText bold white style={styles.navbtn} onPress={() => props.navigation.navigate(CONTACT_US)}>Contact us</AppText>
+          <AppText bold white style={styles.navbtn}>
+            Home
+          </AppText>
+          <AppText
+            bold
+            white
+            style={styles.navbtn}
+            onPress={() => props.navigation.navigate(MY_PROFILE)}>
+            Profile
+          </AppText>
+          <AppText
+            bold
+            white
+            style={styles.navbtn}
+            onPress={() => props.navigation.navigate(FAVORITES)}>
+            Favorites
+          </AppText>
+          <AppText bold white style={styles.navbtn}>
+            My orders
+          </AppText>
+          <AppText
+            bold
+            white
+            style={styles.navbtn}
+            onPress={() => props.navigation.navigate(ABOUT_US)}>
+            About us
+          </AppText>
+          <AppText
+            bold
+            white
+            style={styles.navbtn}
+            onPress={() => props.navigation.navigate(CONTACT_US)}>
+            Contact us
+          </AppText>
           <AppText
             bold
             white

@@ -67,4 +67,4 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
   },
 });
-export default Header;
+export {Header};

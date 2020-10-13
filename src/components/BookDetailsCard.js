@@ -4,36 +4,62 @@ import {useTheme} from '@react-navigation/native';
 
 import {AppText} from './common/AppText';
 import {FastImage} from './FastImage';
+import {RoundIcon} from './RoundIcon';
 
 const BookDetailsCard = (props) => {
   const {colors} = useTheme();
-
+  const {author, image, price, title} = props;
   return (
-    <View style={styles.containerStyle}>
-      <View style={styles.imageContainer}>
-        <FastImage source={require('../assets/images/background.jpg')} />
+    <View style={styles.container}>
+      <View style={styles.imgContainer}>
+        <FastImage
+          style={styles.image}
+          source={require('_assets/images/background.jpg')}
+          resizeMode="contain"
+        />
       </View>
-      <View style={styles.textContainer}>
-        <AppText style={{paddingVertical: 5}}>stitles</AppText>
-        <AppText primary bold style={{paddingVertical: 5}}>
-          aauthors
-        </AppText>
+
+      <View
+        style={{
+          flex: 3,
+          justifyContent: 'space-between',
+          paddingStart: 10,
+        }}>
+        <View>
+          <AppText bold>{title}</AppText>
+          <AppText bold size={15}>
+            by {author}
+          </AppText>
+          <AppText bold size={15}>
+            Price: {price} KD
+          </AppText>
+        </View>
+        <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+          <RoundIcon name="heart" type="font-awesome" color="#fff" small />
+          <RoundIcon name="share-alt" type="font-awesome" color="#fff" small />
+          <RoundIcon name="glide-g" type="font-awesome" color="#fff" small />
+        </View>
       </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  containerStyle: {
-    flex: 1,
-    borderWidth: 1,
+  container: {
     flexDirection: 'row',
+    marginBottom: 20,
   },
-  imageContainer: {
-    flex: 1,
-  },
-  textContainer: {
+  imgContainer: {
     flex: 2,
+    height: 180,
+  },
+  image: {
+    width: '100%',
+    height: '100%',
+  },
+  txt: {
+    marginLeft: 10,
+    marginTop: 10,
   },
 });
 export {BookDetailsCard};
