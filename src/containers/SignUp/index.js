@@ -6,10 +6,9 @@ import {InputWithLabel, RoundIcon, ModalScreen} from '_components';
 import {BackgroundImage, Button, AppText} from '_components/common';
 import {signUp} from '_assets/data/StaticData';
 import {withDataActions} from '_redux/actions/basicActions';
-import {SIGN_UP} from '_redux/actionTypes';
-import {withoutDataActions} from 'redux/actions';
-import {HIDE_MODAL} from 'redux/actionTypes';
+import {SIGN_UP} from 'redux/actionTypes';
 import useModal from 'utils/customHooks/useModal';
+import {validateEmail, validatePassword} from 'helpers/Validators';
 
 const SignUp = (props) => {
   const dispatch = useDispatch();
@@ -83,15 +82,25 @@ const SignUp = (props) => {
           <AppText underline style={styles.termsandservices} size={17}>
             {signUp.TermsAndPolicies}
           </AppText>
-          <Button round width="60%" onPress={onSignUp}>
+          <Button
+            round
+            width="60%"
+            onPress={() =>
+              first_name &&
+              last_name &&
+              validateEmail(email) &&
+              validatePassword(password) &&
+              validatePassword(password_confirmation)
+                ? onSignUp()
+                : null
+            }>
             {signUp.sign_up}
           </Button>
-
-          {/* <AppText white secondary style={{marginTop: 10, marginBottom: 10}}>
-            OR
-          </AppText> */}
         </View>
-        {/* <View style={{flexDirection: 'row', justifyContent: 'space-around'}}>
+        {/* <AppText white secondary style={{marginTop: 10, marginBottom: 10}}>
+            OR
+          </AppText> 
+        <View style={{flexDirection: 'row', justifyContent: 'space-around'}}>
           <RoundIcon
             name="sc-facebook"
             type="evilicon"

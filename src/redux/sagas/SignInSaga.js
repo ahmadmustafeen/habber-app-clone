@@ -1,17 +1,17 @@
 import {API_ENDPOINTS} from '_constants/Network';
 import {RestClient} from '_network/RestClient';
 import {put, call} from 'redux-saga/effects';
-import {SHOW_MODAL, SIGN_UP_FAILURE} from 'redux/actionTypes';
+import {SHOW_MODAL} from 'redux/actionTypes';
 
 export function* signupSaga({type, payload}) {
   try {
-    console.log('SIgnUp Saga . . . .  .1', payload);
+    console.log('SIgnIp Saga . . . .  .1', payload);
     const data = yield call(() =>
-      RestClient.post(API_ENDPOINTS.signup, payload),
+      RestClient.post(API_ENDPOINTS.signin, payload),
     );
-    console.log('SIgnUp Saga . . . .  .', data);
+    console.log('SIgnIp Saga Response . . . .  .', data);
     yield put({type: SHOW_MODAL, paylaod: null});
   } catch (error) {
-    yield put({type: SIGN_UP_FAILURE, error});
+    yield put({type: 'FETCH_FAILED', error});
   }
 }
