@@ -2,6 +2,9 @@ import React, {useState} from 'react';
 import {View, StyleSheet} from 'react-native';
 import {InputWithLabel, RoundIcon} from '_components';
 import {useTheme} from '@react-navigation/native';
+import {withDataActions} from '_redux/actions/basicActions';
+import {SIGN_IN} from 'redux/actionTypes';
+import { useDispatch } from 'react-redux';
 
 import {AppText, BackgroundImage, Button} from '_components/common';
 import {
@@ -12,9 +15,26 @@ import {
 import useModal from 'utils/customHooks/useModal';
 
 const SignIn = (props) => {
+  const dispatch = useDispatch();
   const {navigate} = props.navigation;
   const {colors} = useTheme();
   const {visible, toggleModal} = useModal();
+
+  const [state, setState] = useState({
+    email: '',
+    password: '',
+  });
+
+  const {email, password} = state;
+
+  const handleChange = (key, value) => {
+    setState((state) => ({...state, [key]: value}));
+  };
+
+
+  const onSignIn =()=>{
+    dispatch(withDataActions(state, SIGN_IN));
+  }
   return (
     <BackgroundImage>
       <View key="header">
@@ -26,11 +46,13 @@ const SignIn = (props) => {
         </AppText>
       </View>
       <View key="content" style={styles.content}>
-        <InputWithLabel placeholder="ahmadalajmi@gmail.com" label="Email" />
+        <InputWithLabel placeholder="ahmadalajmi@gmail.com" label="Email" value = {email}  onChangeText={(value) => handleChange('email', value)} />
         <InputWithLabel
           secureTextEntry
           placeholder="*********"
           label="Password"
+          value={password}
+          onChangeText={(value) => handleChange('password', value)}
         />
         <AppText
           underline
@@ -44,7 +66,7 @@ const SignIn = (props) => {
             width="70%"
             color={colors.secondary}
             round
-            onPress={() => toggleModal()}>
+            onPress={() =>onSignIn()}>
             SIGN IN
           </Button>
           <AppText
