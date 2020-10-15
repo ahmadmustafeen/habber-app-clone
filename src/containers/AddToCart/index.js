@@ -1,12 +1,13 @@
 import React from 'react';
-import {View, StyleSheet, Image} from 'react-native';
+import {View,ScrollView, StyleSheet, Image} from 'react-native';
 import {AppText, Button, Screen} from '_components/common';
-import {HorizontalRow} from '_components';
-import {Icon} from 'react-native-elements';
-import {ADD_TO_CART} from '_constants/Screens';
-
-const Favorites = (props) => {
+import {HorizontalRow,Counter} from '_components';
+import {CHECKOUT} from '_constants/Screens';
+import {Header} from '_components/Header';
+const AddToCart = (props) => {
   return (
+    <ScrollView>
+    <Header {...props} title={'Cart'} />
     <Screen>
       <View key="header"></View>
       <View key="content">
@@ -14,7 +15,7 @@ const Favorites = (props) => {
           <View style={styles.imgContainer}>
             <Image
               style={styles.image}
-              source={require('../../assets/images/background.jpg')}
+              source={require('../../assets/images/stephen.png')}
             />
           </View>
 
@@ -28,16 +29,7 @@ const Favorites = (props) => {
             <AppText bold size={20} style={styles.pricetxt}>
               Price: 30 KW
             </AppText>
-            <Button
-              bold
-              fontSize={15}
-              primary
-              color="black"
-              style={styles.pricetxt}
-              onPress={() => props.navigation.navigate(ADD_TO_CART)}
-              round>
-              Add To Cart
-            </Button>
+            <View style={{width:300,marginVertical:10}}><Counter /></View>
             <HorizontalRow />
             <AppText bold size={17} primary style={styles.txt}>
               Remove
@@ -45,12 +37,11 @@ const Favorites = (props) => {
           </View>
         </View>
         <HorizontalRow />
-
         <View style={styles.profiletop}>
           <View style={styles.imgContainer}>
             <Image
               style={styles.image}
-              source={require('../../assets/images/Screenshot_Logo.jpg')}
+              source={require('../../assets/images/stephen.png')}
             />
           </View>
 
@@ -59,65 +50,39 @@ const Favorites = (props) => {
               Lolita
             </AppText>
             <AppText bold size={15} style={styles.txt}>
-              by Neil Gaiman
+              by Niel Galman
             </AppText>
             <AppText bold size={20} style={styles.pricetxt}>
               Price: 30 KW
             </AppText>
-            <Button
-              bold
-              fontSize={15}
-              primary
-              color="black"
-              style={styles.pricetxt}
-              onPress={() => props.navigation.navigate(ADD_TO_CART)}
-              round>
-              Add To Cart
-            </Button>
+            <View style={{width:300,marginVertical:10}}><Counter /></View>
             <HorizontalRow />
             <AppText bold size={17} primary style={styles.txt}>
               Remove
             </AppText>
           </View>
         </View>
-        <HorizontalRow />
-
-        <View style={styles.profiletop}>
-          <View style={styles.imgContainer}>
-            <Image
-              style={styles.image}
-              source={require('../../assets/images/background.jpg')}
-            />
-          </View>
-
-          <View style={styles.viewtxt}>
-            <AppText bold size={20}>
-              A Brief History of time
-            </AppText>
-            <AppText bold size={15}>
-              by brom
-            </AppText>
-            <AppText bold size={20} style={styles.pricetxt}>
-              Price: 30 KW
-            </AppText>
-            <Button
-              bold
-              fontSize={15}
-              primary
-              color="black"
-              style={styles.pricetxt}
-              onPress={() => props.navigation.navigate(ADD_TO_CART)}
-              round>
-              Add To Cart
-            </Button>
-            <HorizontalRow />
-            <AppText bold size={17} primary style={styles.txt}>
-              Remove
-            </AppText>
-          </View>
+        <View style={styles.totalcontainer}>
+            <View style={{flex:1,flexDirection: 'column',justifyContent:'flex-start'}}>
+            <AppText bold>Sub Total</AppText>
+            <AppText bold>Shipping Charges</AppText>
+            <AppText primary bold>Total</AppText>
+            </View>
+            <View style={{flexDirection: 'column',justifyContent:'flex-end'}}>
+            <AppText bold>$90</AppText>
+            <AppText bold>$10</AppText>
+            <AppText primary bold>$100</AppText>
+            </View>
         </View>
       </View>
+      <View key="footer">
+          <Button bold primary style={styles.footerbtn}
+          onPress={() => props.navigation.navigate(CHECKOUT)}>
+            Checkout
+          </Button>
+      </View>
     </Screen>
+    </ScrollView>
   );
 };
 
@@ -147,6 +112,12 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     marginTop: 20,
   },
+  totalcontainer:{
+    flexDirection: 'row',
+  },
+  footerbtn:{
+    marginTop:40
+  }
 });
 
-export default Favorites;
+export default AddToCart;

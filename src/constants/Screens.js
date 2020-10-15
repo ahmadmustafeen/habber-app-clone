@@ -19,3 +19,7 @@ export const CONTACT_US = 'ContactUs';
 export const ABOUT_US = 'AboutUs';
 export const BOOK_CLUBS = 'BookClubs';
 export const SETTINGS_SCREEN = 'Settings';
+export const MY_ORDERS = 'MyOrders';
+export const BOOKMARKS = 'Bookmarks';
+export const ADD_TO_CART = 'AddToCart';
+export const CHECKOUT = 'Checkout';

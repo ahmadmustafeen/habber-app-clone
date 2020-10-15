@@ -1,11 +1,14 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, ScrollView} from 'react-native';
 import {InputWithLabel} from '_components';
 import {Button, Screen} from '_components/common';
 import {MY_PROFILE} from '_constants/Screens';
+import {Header} from '_components/Header';
 const AddNewAddress = (props) => {
   const {navigate} = props.navigation;
   return (
+    <ScrollView>
+    <Header {...props} title={'Add New Address'} />
     <Screen>
       <View key="header"></View>
       <View key="content">
@@ -23,6 +26,7 @@ const AddNewAddress = (props) => {
         </Button>
       </View>
     </Screen>
+    </ScrollView>
   );
 };
 

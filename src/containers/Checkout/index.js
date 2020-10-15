@@ -5,41 +5,31 @@ import {ADD_NEW_ADDRESS, EDIT_PROFILE} from '_constants/Screens';
 import {HorizontalRow} from '_components/HorizontalRow';
 import {Header} from '_components/Header';
 
-const MyAddressBook = (props) => {
+const Checkout = (props) => {
   const {navigate} = props.navigation;
   return (
     <ScrollView>
-    <Header {...props} title={'My Profile'} />
+    <Header {...props} title={'Checkout'} />
     <Screen>
       <View key="header"></View>
       <View key="content">
-        <View style={styles.profiletop}>
-          <View style={styles.imgContainer}>
-            <Image
-              style={styles.image}
-              source={require('_assets/images/Screenshot_Logo.jpg')}
-            />
+      <View style={styles.addressbookview}>
+            <AppText bold style={{paddingStart:10,paddingVertical:10}}>Select Payment Option</AppText>
+          <View style={styles.addressbook}>
+              <AppText size={16}>
+                Online Payment
+              </AppText>
           </View>
-          <AppText bold size={15} style={styles.txt}>
-            {`Khaled Ammar
-Khaled.Ammar@gmail.com`}
-          </AppText>
-          <AppText
-            size={17}
-            center
-            appColor
-            onPress={() => navigate(EDIT_PROFILE)}
-            style={styles.editbtn}>
-            Edit
-          </AppText>
+          <View style={styles.addressbook}>
+              <AppText size={16}>
+                Cash On Delivery              
+              </AppText>
+          </View>
         </View>
         <HorizontalRow />
         <View style={styles.addressbookview}>
+            <AppText bold style={{paddingStart:10,paddingVertical:10}}>Deliver To:</AppText>
           <View style={styles.addressbook}>
-            <AppText size={17} style={styles.addressbookheading}>
-              MY ADDRESS BOOK
-            </AppText>
-            <HorizontalRow />
             <View>
               <AppText size={15} primary style={styles.spacebtwaddresses}>
                 Bae's Home
@@ -70,8 +60,16 @@ Khaled.Ammar@gmail.com`}
           <Button
             fontSize={17}
             primary
+            bold
             onPress={() => navigate(ADD_NEW_ADDRESS)}>
             ADD NEW ADDRESS
+          </Button>
+          <Button
+            fontSize={17}
+            secondary
+            bold
+            onPress={() => navigate(ADD_NEW_ADDRESS)}>
+            PAY NOW
           </Button>
         </View>
       </View>
@@ -134,4 +132,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default MyAddressBook;
+export default Checkout;
