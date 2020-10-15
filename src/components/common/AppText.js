@@ -43,7 +43,6 @@ const AppText = (props) => {
 };
 const styles = StyleSheet.create({
   TextStyle: {
-    fontFamily: 'Avenir-Medium',
     fontSize: 20,
     color: 'black',
   },
