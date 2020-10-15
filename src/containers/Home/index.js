@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 
 import {ScrollView, View, StyleSheet} from 'react-native';
 import {useTranslation} from 'react-i18next';
-
 import {
   Counter,
   DashboardComponent,

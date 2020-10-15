@@ -24,7 +24,7 @@ const BookDescription = (props) => {
             <View style={styles.imgContainer}>
               <Image
                 style={styles.image}
-                source={require('../../assets/images/stephen.png')}
+                source={require('../../assets/images/background.jpg')}
               />
             </View>
 

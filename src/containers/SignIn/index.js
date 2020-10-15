@@ -9,10 +9,12 @@ import {
   MY_PROFILE,
   SIGNUP_SCREEN,
 } from '_constants/Screens';
+import useModal from 'utils/customHooks/useModal';
 
 const SignIn = (props) => {
   const {navigate} = props.navigation;
   const {colors} = useTheme();
+  const {visible, toggleModal} = useModal();
   return (
     <BackgroundImage>
       <View key="header">
@@ -42,7 +44,7 @@ const SignIn = (props) => {
             width="70%"
             color={colors.secondary}
             round
-            onPress={() => navigate('Home')}>
+            onPress={() => toggleModal()}>
             SIGN IN
           </Button>
           <AppText
