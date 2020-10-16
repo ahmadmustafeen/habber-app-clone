@@ -6,16 +6,17 @@ import {
   BOOK_DETAILS_SCREEN,
   BOOK_DESCRIPTION,
   JOINUS,
-  REQUESTBOOKS,
+  REQUESTBOOKS_SCREEN,
   MY_PROFILE,
   MY_ADDRESS_BOOK,
   ADD_NEW_ADDRESS,
   CHANGE_PASSWORD,
   EDIT_PROFILE,
-  SETTINGS_SCREEN,FAVORITES,
+  SETTINGS_SCREEN,
+  FAVORITES,
   CONTACT_US,
   BOOK_CLUBS,
-  ABOUT_US
+  ABOUT_US,
 } from '../constants/Screens';
 
 import Home from '../containers/Home';
@@ -48,7 +49,7 @@ export const DashboardNav = () => {
       <Stack.Screen name={BOOK_DETAILS_SCREEN} component={BookDetails} />
       <Stack.Screen name={BOOK_DESCRIPTION} component={BookDescription} />
       <Stack.Screen name={JOINUS} component={JoinUs} />
-      <Stack.Screen name={REQUESTBOOKS} component={RequestBooks} />
+      <Stack.Screen name={REQUESTBOOKS_SCREEN} component={RequestBooks} />
       <Stack.Screen name={MY_PROFILE} component={MyProfile} />
       <Stack.Screen name={MY_ADDRESS_BOOK} component={MyAddressBook} />
       <Stack.Screen name={ADD_NEW_ADDRESS} component={AddNewAddress} />

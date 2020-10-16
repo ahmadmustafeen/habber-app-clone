@@ -7,7 +7,7 @@ export const RestClient = create({
   baseURL: `${BASE_URL}/${API_VERSION}`,
   headers: {
     Accept: 'application/json',
-    Authorization: '',
+    'Content-Type': 'application/json',
   },
   timeout: 30000,
 });

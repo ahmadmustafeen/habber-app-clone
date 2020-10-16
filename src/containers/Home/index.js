@@ -11,11 +11,14 @@ import {
   TitleBarWithIcon,
   Header,
 } from '_components';
-import {REQUESTBOOKS, BOOK_CLUBS} from '_constants/Screens';
+import {
+  REQUESTBOOKS_SCREEN,
+  BOOKLIST_SCREEN,
+  BOOK_CLUBS,
+} from '_constants/Screens';
 import {sliderImages} from './dummydata';
 import {ThumbnailBook} from '_components/ThumbnailBook';
 import {AppText, Button, Screen} from '_components/common';
-import {BOOKLIST_SCREEN, LANGUAGE_SCREEN} from '_constants/Screens';
 import {booksData} from '_assets/data/dummydata';
 import {useDispatch} from 'react-redux';
 import {withDataActions} from '../../redux/actions/basicActions';
@@ -68,12 +71,24 @@ const Home = (props) => {
         <TitleBarWithIcon label="REQUEST BOOKS" />
         <View style={styles.requestBooksBtns}>
           <View style={{width: '29%'}}>
-            <Button borderRadius={2} secondary fontSize={15}>
+            <Button
+              borderRadius={2}
+              secondary
+              fontSize={15}
+              onPress={() =>
+                navigate(REQUESTBOOKS_SCREEN, {book_type: 'random'})
+              }>
               Request Book
             </Button>
           </View>
           <View style={{width: '69%'}}>
-            <Button borderRadius={2} primary fontSize={15}>
+            <Button
+              borderRadius={2}
+              primary
+              fontSize={15}
+              onPress={() =>
+                navigate(REQUESTBOOKS_SCREEN, {book_type: 'educational'})
+              }>
               Request Educational Book
             </Button>
           </View>
