@@ -9,7 +9,7 @@ import {
   Header,
 } from '../../components';
 import {booksData} from '_assets/data/dummydata';
-import {BOOK_CLUBS} from '../../constants/Screens';
+import {BOOK_CLUBS,ADD_TO_CART} from '../../constants/Screens';
 
 const BookDescription = (props) => {
   const [data] = useState(booksData);
@@ -99,7 +99,8 @@ Providing the highest quality in hardware & Network solutions. `}</AppText>
           </View>
         </View>
         <View key="footer">
-          <Button bold secondary>
+          <Button bold secondary 
+          onPress={() => props.navigation.navigate(ADD_TO_CART)}>
             Add To Cart
           </Button>
         </View>

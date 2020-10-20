@@ -6,10 +6,10 @@ import {AppText} from '_components/common';
 
 import {BOOK_DETAILS_SCREEN} from '_constants/Screens';
 
-const BookClubs = (props) => {
+const Bookmarks = (props) => {
   const {
     route: {
-      params: {label, data_book_club},
+      params: {label, bookmark_data},
     },
     navigation: {navigate},
   } = props;
@@ -20,7 +20,7 @@ const BookClubs = (props) => {
       <TitleBarWithIcon label={label} />
 
       <FlatList
-        data={data_book_club}
+        data={bookmark_data}
         showsVerticalScrollIndicator={false}
         keyExtractor={(item, index) => index.toString() + item}
         columnWrapperStyle={{justifyContent: 'space-between'}}
@@ -46,4 +46,4 @@ const BookClubs = (props) => {
   );
 };
 
-export default BookClubs;
+export default Bookmarks;

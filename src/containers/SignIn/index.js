@@ -1,25 +1,22 @@
 import React, {useState} from 'react';
-import {View, StyleSheet} from 'react-native';
-import {InputWithLabel, RoundIcon} from '_components';
+import {View, StyleSheet, Alert} from 'react-native';
 import {useTheme} from '@react-navigation/native';
-import {withDataActions} from '_redux/actions/basicActions';
-import {SIGN_IN} from 'redux/actionTypes';
 import { useDispatch } from 'react-redux';
 
+import {withDataActions} from '_redux/actions/basicActions';
+import {SIGN_IN} from '_redux/actionTypes';
+import {InputWithLabel, RoundIcon} from '_components';
 import {AppText, BackgroundImage, Button} from '_components/common';
 import {
   FORGOT_PASSWORD_SCREEN,
-  MY_PROFILE,
   SIGNUP_SCREEN,
 } from '_constants/Screens';
-import useModal from 'utils/customHooks/useModal';
 
 const SignIn = (props) => {
   const dispatch = useDispatch();
   const {navigate} = props.navigation;
   const {colors} = useTheme();
-  const {visible, toggleModal} = useModal();
-
+ 
   const [state, setState] = useState({
     email: '',
     password: '',
@@ -66,7 +63,7 @@ const SignIn = (props) => {
             width="70%"
             color={colors.secondary}
             round
-            onPress={() =>onSignIn()}>
+            onPress={() =>email && password ? onSignIn() : Alert.alert("Please enter email and password")}>
             SIGN IN
           </Button>
           <AppText

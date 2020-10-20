@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import React, {useState} from 'react';
-import {View, StyleSheet, Image, ImageBackground} from 'react-native';
+import {View, StyleSheet, Image, ImageBackground, Platform} from 'react-native';
 import {Icon} from 'react-native-elements';
 import {AppText} from './common';
 import {useTheme} from '@react-navigation/native';
@@ -55,7 +55,7 @@ const Header = (props) => {
 };
 const styles = StyleSheet.create({
   container: {
-    height: 60,
+    height: Platform.OS == 'ios' ? 100 : 60,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',

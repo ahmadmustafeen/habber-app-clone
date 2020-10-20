@@ -1,7 +1,8 @@
 import React from 'react';
-import {View, Text, StyleSheet, Image} from 'react-native';
+import {View, ScrollView, StyleSheet, Image} from 'react-native';
 import {AppText, Button, Screen} from '_components/common';
 import {HorizontalRow} from '_components/HorizontalRow';
+import {Header} from '_components/Header';
 import {
   CHANGE_PASSWORD,
   EDIT_PROFILE,
@@ -10,6 +11,8 @@ import {
 const MyProfile = (props) => {
   const {navigate} = props.navigation;
   return (
+    <ScrollView>
+    <Header {...props} title={'My Profile'} />
     <Screen>
       <View key="header"></View>
       <View key="content">
@@ -51,6 +54,7 @@ Khaled.Ammar@gmail.com`}
         </View>
       </View>
     </Screen>
+    </ScrollView>
   );
 };
 

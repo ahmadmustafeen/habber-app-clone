@@ -1,7 +1,7 @@
 import {API_ENDPOINTS} from '_constants/Network';
 import {RestClient} from '_network/RestClient';
 import {put, call} from 'redux-saga/effects';
-import {SHOW_MODAL, SIGN_IN_FAILURE, SIGN_IN_SUCCESS} from 'redux/actionTypes';
+import {SIGN_IN_FAILURE, SIGN_IN_SUCCESS} from 'redux/actionTypes';
 
 export function* signinSaga({type, payload}) {
   try {
@@ -14,7 +14,7 @@ export function* signinSaga({type, payload}) {
       yield put({type: SIGN_IN_SUCCESS, paylaod: null});
     }
     console.log('SIgnIp Saga Response . . . .  .', data);
-    yield put({type: SHOW_MODAL, paylaod: null});
+  
     yield put({type: SIGN_IN_SUCCESS, paylaod: null});
   } catch (error) {
     yield put({type: SIGN_IN_FAILURE, error});

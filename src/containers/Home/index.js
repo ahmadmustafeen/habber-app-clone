@@ -15,11 +15,12 @@ import {
   REQUESTBOOKS_SCREEN,
   BOOKLIST_SCREEN,
   BOOK_CLUBS,
+  BOOKMARKS,
 } from '_constants/Screens';
 import {sliderImages} from './dummydata';
 import {ThumbnailBook} from '_components/ThumbnailBook';
 import {AppText, Button, Screen} from '_components/common';
-import {booksData} from '_assets/data/dummydata';
+import {booksData, booksClub, bookmarkdata} from '_assets/data/dummydata';
 import {useDispatch} from 'react-redux';
 import {withDataActions} from '../../redux/actions/basicActions';
 import {SIGN_UP} from '../../redux/actionTypes';
@@ -29,6 +30,8 @@ const Home = (props) => {
   const {navigate} = props.navigation;
   const [images] = useState(sliderImages);
   const [data] = useState(booksData);
+  const [data_book_club] = useState(booksClub);
+  const [bookmark_data] = useState(bookmarkdata);
   const {t} = useTranslation();
 
   const dispatch = useDispatch();
@@ -56,17 +59,22 @@ const Home = (props) => {
           }
         />
         <DashboardComponent
-          data={data}
+          data={data_book_club}
           renderComponent={(item) => <ThumbnailClub url={item.item.image} />}
           label="BOOK CLUBS"
-          onIconPress={() => navigate(BOOK_CLUBS, {label: 'BOOKS CLUB', data})}
+          onIconPress={() =>
+            navigate(BOOK_CLUBS, {label: 'BOOKS CLUB', data_book_club})
+          }
         />
         <DashboardComponent
-          data={data}
+          data={bookmark_data}
           renderComponent={(item) => (
             <ThumbnailBookmarks url={item.item.image} />
           )}
           label="BOOKMARKS"
+          onIconPress={() =>
+            navigate(BOOKMARKS, {label: 'BOOKMARKS', bookmark_data})
+          }
         />
         <TitleBarWithIcon label="REQUEST BOOKS" />
         <View style={styles.requestBooksBtns}>
