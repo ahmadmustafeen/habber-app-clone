@@ -10,7 +10,8 @@
       "_network": ["src/network/*"],
       "_redux": ["src/redux/*"],
       "_styles": ["src/styles/*"],
+      "_helpers": ["src/helpers/*"],
       "_utils": ["src/utils/*"],
-    }
-  }
+    },
+  },
 }

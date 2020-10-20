@@ -6,9 +6,9 @@ import {InputWithLabel, RoundIcon, ModalScreen} from '_components';
 import {BackgroundImage, Button, AppText} from '_components/common';
 import {signUp} from '_assets/data/StaticData';
 import {withDataActions} from '_redux/actions/basicActions';
-import {SIGN_UP} from 'redux/actionTypes';
-import useModal from 'utils/customHooks/useModal';
-import {validateEmail, validatePassword} from 'helpers/Validators';
+import {SIGN_UP} from '_redux/actionTypes';
+import useModal from '_utils/customHooks/useModal';
+import {validateEmail, validatePassword} from '../../helpers/Validators';
 
 const SignUp = (props) => {
   const dispatch = useDispatch();

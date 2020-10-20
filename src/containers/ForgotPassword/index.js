@@ -5,9 +5,9 @@ import {InputWithLabel, ModalScreen} from '_components';
 import {AppText, BackgroundImage, Button} from '_components/common';
 import {useTranslation} from 'react-i18next';
 import {useDispatch} from 'react-redux';
-import {FORGOT_PASSWORD} from 'redux/actionTypes';
-import {withDataActions} from 'redux/actions';
-import useModal from 'utils/customHooks/useModal';
+import {FORGOT_PASSWORD} from '_redux/actionTypes';
+import {withDataActions} from '_redux/actions';
+import useModal from '_utils/customHooks/useModal';
 
 const ForgotPassword = (props) => {
   const dispatch = useDispatch();
