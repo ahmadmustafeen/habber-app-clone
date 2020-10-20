@@ -16,7 +16,6 @@ const SubHeading = ({extraStyling, children, blue, gray}) => {
 };
 const styles = StyleSheet.create({
   subTitle: {
-    fontFamily: 'Avenir-Medium',
     fontSize: 24,
     color: Color.appColor,
   },

@@ -94,7 +94,6 @@ const styles = StyleSheet.create({
     borderColor: Color.warmGray,
   },
   textStyle: {
-    fontFamily: 'Avenir-Medium',
     paddingLeft: 0,
     textAlign: 'left',
     color: Color.textBlack,

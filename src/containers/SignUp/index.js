@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {View, StyleSheet} from 'react-native';
-import {shallowEqual, useDispatch, useSelector} from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import {InputWithLabel, RoundIcon, ModalScreen} from '_components';
 import {BackgroundImage, Button, AppText} from '_components/common';
@@ -85,14 +85,14 @@ const SignUp = (props) => {
           <Button
             round
             width="60%"
-            onPress={() =>
-              first_name &&
-              last_name &&
-              validateEmail(email) &&
-              validatePassword(password) &&
-              validatePassword(password_confirmation)
-                ? onSignUp()
-                : null
+            onPress={() =>onSignUp()
+              // first_name &&
+              // last_name &&
+              // validateEmail(email) &&
+              // validatePassword(password) &&
+              // validatePassword(password_confirmation)
+              //   ? onSignUp()
+              //   : null
             }>
             {signUp.sign_up}
           </Button>
