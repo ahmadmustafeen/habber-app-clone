@@ -5,4 +5,5 @@ export const API_ENDPOINTS = {
   signup: '/register',
   signin: '/login',
   forgotPassword: '/forgot-password',
+  requestBook: '/request/book',
 };

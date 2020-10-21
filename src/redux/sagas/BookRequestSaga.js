@@ -8,17 +8,18 @@ import {
   FORGOT_PASSWORD_SUCCESS,
 } from '_redux/actionTypes';
 
-export function* ForgotPasswordSaga({type, payload}) {
+export function* BookRequestSaga({type, payload}) {
   try {
-    console.log('ForgotPassword Saga . . . .  .1', payload);
+    console.log('BookRequestSaga Saga . . . .  .1', payload);
     const response = yield call(() =>
-      RestClient.post(API_ENDPOINTS.forgotPassword, payload),
+      RestClient.post(API_ENDPOINTS.requestBook, payload),
     );
     const {status, data, message} = response;
+    console.log('BookRequestSaga Saga Response . . . .  .', response);
     if (status === 200) {
       yield put({type: FORGOT_PASSWORD_SUCCESS, paylaod: null});
     }
-    console.log('ForgotPasswordSaga Saga Response . . . .  .', data);
+
     yield put({type: SHOW_MODAL, paylaod: null});
     yield put({type: FORGOT_PASSWORD_SUCCESS, paylaod: null});
   } catch (error) {

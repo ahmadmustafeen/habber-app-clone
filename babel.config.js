@@ -16,6 +16,7 @@ module.exports = {
           _redux: './src/redux',
           _styles: './src/styles',
           _utils: './src/utils',
+          _helpers: './src/helpers',
         },
       },
     ],

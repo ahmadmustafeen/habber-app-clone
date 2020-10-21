@@ -1,8 +1,9 @@
 import {JOINUS} from 'constants/Screens';
 import React, {useState} from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, Alert} from 'react-native';
 import {useDispatch} from 'react-redux';
-import {withDataActions} from 'redux/actions';
+import {withDataActions} from '_redux/actions';
+import {REQUEST_BOOK} from '_redux/actionTypes';
 import {InputWithLabel, Header} from '_components';
 import {Button, AppText, Screen} from '_components/common';
 const RequestBooks = (props) => {
@@ -18,15 +19,29 @@ const RequestBooks = (props) => {
     title: '',
     author_name: '',
   });
+  const {title, author_name} = state;
+
   const dispatch = useDispatch();
+
   const handleChange = (key, value) => {
     setState((state) => ({...state, [key]: value}));
   };
 
-  const onSubmit = () => {
-    // dispatch(withDataActions(state, SIGN_UP));
+  const validate = () => {
+    if (!title) {
+      Alert.alert('Please Enter Title');
+      return false;
+    }
+    if (!author_name) {
+      Alert.alert('Please Enter Author Name');
+      return false;
+    }
+    return true;
   };
-  const {title, author_name} = state;
+
+  const onSubmit = () => {
+    validate() && dispatch(withDataActions(state, REQUEST_BOOK));
+  };
 
   return (
     <Screen>
@@ -55,7 +70,7 @@ const RequestBooks = (props) => {
         </AppText>
       </View>
       <View key="footer">
-        <Button primary onPress={() => onSubmit()}>
+        <Button primary onPress={onSubmit}>
           Send Request
         </Button>
       </View>
