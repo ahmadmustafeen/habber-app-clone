@@ -1,3 +1,4 @@
+import {Alert} from 'react-native';
 import {put, call} from 'redux-saga/effects';
 
 import {API_ENDPOINTS} from '_constants/Network';
@@ -12,17 +13,17 @@ export function* signinSaga({type, payload}) {
     );
     const {
       status,
-      data: {data: res},
-      message,
+      data: {data: res, message, status: login_status},
     } = response;
     console.log('SIgnIp Saga Response . . . .  .', response);
 
-    if (status === 200) {
+    if (login_status) {
       RestClient.setHeader('Authorization', `Bearer ${res.token}`);
       yield put({type: SIGN_IN_SUCCESS, paylaod: null});
+    } else {
+      Alert.alert('Login Failed', message);
+      yield put({type: SIGN_IN_FAILURE, paylaod: null});
     }
-
-    yield put({type: SIGN_IN_SUCCESS, paylaod: null});
   } catch (error) {
     yield put({type: SIGN_IN_FAILURE, error});
   }
