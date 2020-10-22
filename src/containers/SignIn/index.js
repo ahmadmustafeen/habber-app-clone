@@ -8,7 +8,7 @@ import {SIGN_IN} from '_redux/actionTypes';
 import {InputWithLabel, RoundIcon} from '_components';
 import {AppText, BackgroundImage, Button} from '_components/common';
 import {FORGOT_PASSWORD_SCREEN, SIGNUP_SCREEN} from '_constants/Screens';
-import {validateEmail, validatePassword} from '_helpers/Validators';
+import {validateEmail, validatePassword} from '../../helpers/Validators';
 const SignIn = (props) => {
   const dispatch = useDispatch();
   const {navigate} = props.navigation;
