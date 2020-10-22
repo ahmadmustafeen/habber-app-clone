@@ -1,5 +1,8 @@
 import {put, call} from 'redux-saga/effects';
-import { FETCH_BOOK_LISTS_FAILURE, FETCH_BOOK_LISTS_SUCCESS } from '_redux/actionTypes';
+import {
+  FETCH_BOOK_LISTS_FAILURE,
+  FETCH_BOOK_LISTS_SUCCESS,
+} from '_redux/actionTypes';
 
 import {API_ENDPOINTS} from '_constants/Network';
 import {RestClient} from '_network/RestClient';

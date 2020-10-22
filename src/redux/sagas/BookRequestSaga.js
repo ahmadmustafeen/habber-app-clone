@@ -2,10 +2,7 @@ import {put, call} from 'redux-saga/effects';
 
 import {API_ENDPOINTS} from '_constants/Network';
 import {RestClient} from '_network/RestClient';
-import {
-  REQUEST_BOOK_SUCCESS,
-  REQUEST_BOOK_FAILURE,
-} from '_redux/actionTypes';
+import {REQUEST_BOOK_SUCCESS, REQUEST_BOOK_FAILURE} from '_redux/actionTypes';
 
 export function* BookRequestSaga({type, payload}) {
   try {

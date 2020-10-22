@@ -10,23 +10,24 @@ const TitleBarWithIcon = (props) => {
   const {viewStyle, label, onIconPress, iconType, iconName} = props;
 
   return (
-   <TouchableOpacity onPress={onIconPress}> 
-     <View
-      style={[
-        styles.containerStyle,
-        viewStyle,
-        {borderLeftColor: colors.primary},
-      ]}>
-      <AppText primary bold>
-        {label || 'Title'}
-      </AppText>
-      <Icon
-        name={iconName || I18nManager.isRTL ? 'leftcircleo' : 'rightcircleo'}
-        type={iconType || 'antdesign'}
-        color={colors.primary}
-        // style={{transform: [{scaleX: I18nManager.isRTL ? -1 : 1}]}}
-      />
-    </View></TouchableOpacity>
+    <TouchableOpacity onPress={onIconPress}>
+      <View
+        style={[
+          styles.containerStyle,
+          viewStyle,
+          {borderLeftColor: colors.primary},
+        ]}>
+        <AppText primary bold>
+          {label || 'Title'}
+        </AppText>
+        <Icon
+          name={iconName || I18nManager.isRTL ? 'leftcircleo' : 'rightcircleo'}
+          type={iconType || 'antdesign'}
+          color={colors.primary}
+          // style={{transform: [{scaleX: I18nManager.isRTL ? -1 : 1}]}}
+        />
+      </View>
+    </TouchableOpacity>
   );
 };
 

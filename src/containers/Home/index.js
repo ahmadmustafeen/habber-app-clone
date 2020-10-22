@@ -44,9 +44,9 @@ const Home = (props) => {
         <Button onPress={() => navigate('Auth', {screen: AD_SCREEN})}>
           Auth Navigation
         </Button>
-        <Button onPress={() => dispatch(withDataActions('Hello', FETCH_BOOK_LISTS))}>
-                Fetch Books
-              </Button>
+        <Button onPress={() => dispatch(withDataActions('', FETCH_BOOK_LISTS))}>
+          Fetch Books
+        </Button>
         <ImageSlider images={images} />
       </View>
       <View key="content" style={{paddingStart: 10}}>
