@@ -8,6 +8,7 @@ export const RestClient = create({
   headers: {
     Accept: 'application/json',
     'Content-Type': 'application/json',
+    Authorization: '',
   },
   timeout: 30000,
 });
