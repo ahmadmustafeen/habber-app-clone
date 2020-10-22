@@ -6,5 +6,6 @@ export const API_ENDPOINTS = {
   signin: '/login',
   forgotPassword: '/forgot-password',
   requestBook: '/request/book',
-  booksList : '/books'
+  booksList: '/books',
+  relatedBooks: '/related/books',
 };

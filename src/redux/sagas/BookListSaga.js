@@ -10,9 +10,7 @@ import {RestClient} from '_network/RestClient';
 export function* BookListSaga({type, payload}) {
   try {
     console.log('BookList Saga . . . .  .1', payload);
-    const response = yield call(() =>
-      RestClient.get(API_ENDPOINTS.booksList, payload),
-    );
+    const response = yield call(() => RestClient.get(API_ENDPOINTS.booksList));
     const {status, data, message} = response;
     console.log('BookList Saga Response . . . .  .', response);
     if (status === 200) {

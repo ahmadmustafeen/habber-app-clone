@@ -56,7 +56,10 @@ const Navigator = () => {
           <RootStack.Screen name="Splash" component={Splash} />
         </RootStack.Navigator>
       ) : (
-        <RootStack.Navigator screenOptions={{headerShown: false}}>
+        <RootStack.Navigator
+          screenOptions={{
+            headerShown: false,
+          }}>
           <RootStack.Screen name="Drawer" component={DrawerNav} />
           <RootStack.Screen name="Auth" component={AuthNav} />
         </RootStack.Navigator>

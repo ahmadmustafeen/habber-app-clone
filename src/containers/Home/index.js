@@ -23,7 +23,7 @@ import {AppText, Button, Screen} from '_components/common';
 import {booksData, booksClub, bookmarkdata} from '_assets/data/dummydata';
 import {useDispatch} from 'react-redux';
 import {withDataActions} from '../../redux/actions/basicActions';
-import {FETCH_BOOK_LISTS, SIGN_UP} from '../../redux/actionTypes';
+import {FETCH_BOOK_LISTS, FETCH_RELATED_BOOKS} from '../../redux/actionTypes';
 import {AD_SCREEN} from '../../constants/Screens';
 
 const Home = (props) => {
@@ -46,6 +46,10 @@ const Home = (props) => {
         </Button>
         <Button onPress={() => dispatch(withDataActions('', FETCH_BOOK_LISTS))}>
           Fetch Books
+        </Button>
+        <Button
+          onPress={() => dispatch(withDataActions('', FETCH_RELATED_BOOKS))}>
+          Fetch Related Books
         </Button>
         <ImageSlider images={images} />
       </View>
