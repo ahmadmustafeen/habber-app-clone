@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, StyleSheet, I18nManager} from 'react-native';
+import {View, StyleSheet, I18nManager, TouchableOpacity} from 'react-native';
 import {useTheme} from '@react-navigation/native';
 
 import {AppText} from './common/AppText';
@@ -10,7 +10,8 @@ const TitleBarWithIcon = (props) => {
   const {viewStyle, label, onIconPress, iconType, iconName} = props;
 
   return (
-    <View
+   <TouchableOpacity onPress={onIconPress}> 
+     <View
       style={[
         styles.containerStyle,
         viewStyle,
@@ -20,13 +21,12 @@ const TitleBarWithIcon = (props) => {
         {label || 'Title'}
       </AppText>
       <Icon
-        onPress={onIconPress}
         name={iconName || I18nManager.isRTL ? 'leftcircleo' : 'rightcircleo'}
         type={iconType || 'antdesign'}
         color={colors.primary}
         // style={{transform: [{scaleX: I18nManager.isRTL ? -1 : 1}]}}
       />
-    </View>
+    </View></TouchableOpacity>
   );
 };
 

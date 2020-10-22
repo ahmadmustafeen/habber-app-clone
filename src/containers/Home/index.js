@@ -23,7 +23,7 @@ import {AppText, Button, Screen} from '_components/common';
 import {booksData, booksClub, bookmarkdata} from '_assets/data/dummydata';
 import {useDispatch} from 'react-redux';
 import {withDataActions} from '../../redux/actions/basicActions';
-import {SIGN_UP} from '../../redux/actionTypes';
+import {FETCH_BOOK_LISTS, SIGN_UP} from '../../redux/actionTypes';
 import {AD_SCREEN} from '../../constants/Screens';
 
 const Home = (props) => {
@@ -44,9 +44,9 @@ const Home = (props) => {
         <Button onPress={() => navigate('Auth', {screen: AD_SCREEN})}>
           Auth Navigation
         </Button>
-        {/* <Button onPress={() => dispatch(withDataActions('Hello', SIGN_UP))}>
-                SignUp
-              </Button> */}
+        <Button onPress={() => dispatch(withDataActions('Hello', FETCH_BOOK_LISTS))}>
+                Fetch Books
+              </Button>
         <ImageSlider images={images} />
       </View>
       <View key="content" style={{paddingStart: 10}}>
