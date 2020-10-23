@@ -38,7 +38,6 @@ const SignUp = (props) => {
       <View key="header"></View>
       <View key="content" style={styles.content}>
         <InputWithLabel
-          style={styles.inputfield}
           placeholder="Khaled"
           label="First Name"
           required

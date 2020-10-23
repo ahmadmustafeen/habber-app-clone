@@ -1,14 +1,14 @@
 import React, {useState} from 'react';
 import {View, StyleSheet, Alert} from 'react-native';
 import {useTheme} from '@react-navigation/native';
-import {useDispatch} from 'react-redux';
+import {shallowEqual, useDispatch, useSelector} from 'react-redux';
 
 import {withDataActions} from '_redux/actions/basicActions';
 import {SIGN_IN} from '_redux/actionTypes';
 import {InputWithLabel, RoundIcon} from '_components';
 import {AppText, BackgroundImage, Button} from '_components/common';
 import {FORGOT_PASSWORD_SCREEN, SIGNUP_SCREEN} from '_constants/Screens';
-import {validateEmail, validatePassword} from '_helpers/Validators';
+import {validateEmail, validatePassword} from '../../helpers/Validators';
 const SignIn = (props) => {
   const dispatch = useDispatch();
   const {navigate} = props.navigation;
@@ -25,6 +25,11 @@ const SignIn = (props) => {
     setState((state) => ({...state, [key]: value}));
   };
 
+  const {loading} = useSelector(({LoadingReducer}) => {
+    return {
+      loading: LoadingReducer.loading,
+    };
+  }, shallowEqual);
   const validate = () => {
     if (!validateEmail(email)) {
       Alert.alert('Invalid Email');
@@ -72,7 +77,12 @@ const SignIn = (props) => {
           Forgot Password
         </AppText>
         <View style={{alignItems: 'center'}}>
-          <Button width="70%" color={colors.secondary} round onPress={onSignIn}>
+          <Button
+            loading={loading}
+            width="70%"
+            color={colors.secondary}
+            round
+            onPress={onSignIn}>
             SIGN IN
           </Button>
           <AppText

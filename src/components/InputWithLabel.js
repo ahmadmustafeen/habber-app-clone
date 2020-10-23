@@ -45,6 +45,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     borderWidth: 0.5,
     fontSize: 20,
+    color:'#fff',
     backgroundColor: 'transparent',
   },
 });
