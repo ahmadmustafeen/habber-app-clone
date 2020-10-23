@@ -1,14 +1,14 @@
 import React, {useState} from 'react';
-import {View, StyleSheet} from 'react-native';
+import {View, StyleSheet, Alert} from 'react-native';
 import { useDispatch } from 'react-redux';
 
 import {InputWithLabel, RoundIcon, ModalScreen} from '_components';
 import {BackgroundImage, Button, AppText} from '_components/common';
 import {signUp} from '_assets/data/StaticData';
 import {withDataActions} from '_redux/actions/basicActions';
-import {SIGN_UP} from 'redux/actionTypes';
-import useModal from 'utils/customHooks/useModal';
-import {validateEmail, validatePassword} from 'helpers/Validators';
+import {SIGN_UP} from '_redux/actionTypes';
+import useModal from '_utils/customHooks/useModal';
+import {validateEmail, validatePassword} from '../../helpers/Validators';
 
 const SignUp = (props) => {
   const dispatch = useDispatch();
@@ -38,7 +38,6 @@ const SignUp = (props) => {
       <View key="header"></View>
       <View key="content" style={styles.content}>
         <InputWithLabel
-          style={styles.inputfield}
           placeholder="Khaled"
           label="First Name"
           required
@@ -85,14 +84,14 @@ const SignUp = (props) => {
           <Button
             round
             width="60%"
-            onPress={() =>onSignUp()
-              // first_name &&
-              // last_name &&
-              // validateEmail(email) &&
-              // validatePassword(password) &&
-              // validatePassword(password_confirmation)
-              //   ? onSignUp()
-              //   : null
+            onPress={() =>
+              first_name &&
+              last_name &&
+              validateEmail(email) &&
+              validatePassword(password) &&
+              validatePassword(password_confirmation)
+                ? onSignUp()
+                : Alert.alert("Please fill the forms")
             }>
             {signUp.sign_up}
           </Button>

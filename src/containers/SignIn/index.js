@@ -1,24 +1,18 @@
 import React, {useState} from 'react';
-import {View, StyleSheet} from 'react-native';
-import {InputWithLabel, RoundIcon} from '_components';
+import {View, StyleSheet, Alert} from 'react-native';
 import {useTheme} from '@react-navigation/native';
+import {useDispatch} from 'react-redux';
+
 import {withDataActions} from '_redux/actions/basicActions';
-import {SIGN_IN} from 'redux/actionTypes';
-import { useDispatch } from 'react-redux';
-
+import {SIGN_IN} from '_redux/actionTypes';
+import {InputWithLabel, RoundIcon} from '_components';
 import {AppText, BackgroundImage, Button} from '_components/common';
-import {
-  FORGOT_PASSWORD_SCREEN,
-  MY_PROFILE,
-  SIGNUP_SCREEN,
-} from '_constants/Screens';
-import useModal from 'utils/customHooks/useModal';
-
+import {FORGOT_PASSWORD_SCREEN, SIGNUP_SCREEN} from '_constants/Screens';
+import {validateEmail, validatePassword} from '../../helpers/Validators';
 const SignIn = (props) => {
   const dispatch = useDispatch();
   const {navigate} = props.navigation;
   const {colors} = useTheme();
-  const {visible, toggleModal} = useModal();
 
   const [state, setState] = useState({
     email: '',
@@ -31,10 +25,21 @@ const SignIn = (props) => {
     setState((state) => ({...state, [key]: value}));
   };
 
+  const validate = () => {
+    if (!validateEmail(email)) {
+      Alert.alert('Invalid Email');
+      return false;
+    }
+    if (!validatePassword(password)) {
+      Alert.alert('Invalid Password');
+      return false;
+    }
+    return true;
+  };
 
-  const onSignIn =()=>{
-    dispatch(withDataActions(state, SIGN_IN));
-  }
+  const onSignIn = () => {
+    validate() && dispatch(withDataActions(state, SIGN_IN));
+  };
   return (
     <BackgroundImage>
       <View key="header">
@@ -46,7 +51,12 @@ const SignIn = (props) => {
         </AppText>
       </View>
       <View key="content" style={styles.content}>
-        <InputWithLabel placeholder="ahmadalajmi@gmail.com" label="Email" value = {email}  onChangeText={(value) => handleChange('email', value)} />
+        <InputWithLabel
+          placeholder="ahmadalajmi@gmail.com"
+          label="Email"
+          value={email}
+          onChangeText={(value) => handleChange('email', value)}
+        />
         <InputWithLabel
           secureTextEntry
           placeholder="*********"
@@ -62,11 +72,7 @@ const SignIn = (props) => {
           Forgot Password
         </AppText>
         <View style={{alignItems: 'center'}}>
-          <Button
-            width="70%"
-            color={colors.secondary}
-            round
-            onPress={() =>onSignIn()}>
+          <Button width="70%" color={colors.secondary} round onPress={onSignIn}>
             SIGN IN
           </Button>
           <AppText

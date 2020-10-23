@@ -6,8 +6,9 @@ import {BASE_URL, API_VERSION} from '_constants/Network';
 export const RestClient = create({
   baseURL: `${BASE_URL}/${API_VERSION}`,
   headers: {
-    Accept: 'application/json', 
-    'Content-Type': 'application/x-www-form-urlencoded',
+    Accept: 'application/json',
+    'Content-Type': 'application/json',
+    Authorization: '',
   },
   timeout: 30000,
 });

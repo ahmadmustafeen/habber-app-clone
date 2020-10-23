@@ -1,7 +1,8 @@
+import {put, call} from 'redux-saga/effects';
+
 import {API_ENDPOINTS} from '_constants/Network';
 import {RestClient} from '_network/RestClient';
-import {put, call} from 'redux-saga/effects';
-import {SHOW_MODAL, SIGN_UP_FAILURE, SIGN_UP_SUCCESS} from 'redux/actionTypes';
+import {SHOW_MODAL, SIGN_UP_FAILURE, SIGN_UP_SUCCESS} from '_redux/actionTypes';
 
 export function* signupSaga({type, payload}) {
   try {
@@ -10,7 +11,7 @@ export function* signupSaga({type, payload}) {
       RestClient.post(API_ENDPOINTS.signup, payload),
     );
     const {status, data, message} = response;
-    if (status === 200){
+    if (status === 200) {
       yield put({type: SIGN_UP_SUCCESS, paylaod: null});
     }
     console.log('SIgnUp Saga . . . .  .', data);

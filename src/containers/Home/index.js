@@ -11,12 +11,16 @@ import {
   TitleBarWithIcon,
   Header,
 } from '_components';
-import {REQUESTBOOKS, BOOK_CLUBS} from '_constants/Screens';
+import {
+  REQUESTBOOKS_SCREEN,
+  BOOKLIST_SCREEN,
+  BOOK_CLUBS,
+  BOOKMARKS,
+} from '_constants/Screens';
 import {sliderImages} from './dummydata';
 import {ThumbnailBook} from '_components/ThumbnailBook';
 import {AppText, Button, Screen} from '_components/common';
-import {BOOKLIST_SCREEN,BOOKMARKS, LANGUAGE_SCREEN} from '_constants/Screens';
-import {booksData,booksClub,bookmarkdata} from '_assets/data/dummydata';
+import {booksData, booksClub, bookmarkdata} from '_assets/data/dummydata';
 import {useDispatch} from 'react-redux';
 import {withDataActions} from '../../redux/actions/basicActions';
 import {SIGN_UP} from '../../redux/actionTypes';
@@ -58,7 +62,9 @@ const Home = (props) => {
           data={data_book_club}
           renderComponent={(item) => <ThumbnailClub url={item.item.image} />}
           label="BOOK CLUBS"
-          onIconPress={() => navigate(BOOK_CLUBS, {label: 'BOOKS CLUB', data_book_club})}
+          onIconPress={() =>
+            navigate(BOOK_CLUBS, {label: 'BOOKS CLUB', data_book_club})
+          }
         />
         <DashboardComponent
           data={bookmark_data}
@@ -66,17 +72,31 @@ const Home = (props) => {
             <ThumbnailBookmarks url={item.item.image} />
           )}
           label="BOOKMARKS"
-          onIconPress={() => navigate(BOOKMARKS, {label: 'BOOKMARKS', bookmark_data})}
+          onIconPress={() =>
+            navigate(BOOKMARKS, {label: 'BOOKMARKS', bookmark_data})
+          }
         />
         <TitleBarWithIcon label="REQUEST BOOKS" />
         <View style={styles.requestBooksBtns}>
           <View style={{width: '29%'}}>
-            <Button borderRadius={2} secondary fontSize={15}>
+            <Button
+              borderRadius={2}
+              secondary
+              fontSize={15}
+              onPress={() =>
+                navigate(REQUESTBOOKS_SCREEN, {book_type: 'random'})
+              }>
               Request Book
             </Button>
           </View>
           <View style={{width: '69%'}}>
-            <Button borderRadius={2} primary fontSize={15}>
+            <Button
+              borderRadius={2}
+              primary
+              fontSize={15}
+              onPress={() =>
+                navigate(REQUESTBOOKS_SCREEN, {book_type: 'educational'})
+              }>
               Request Educational Book
             </Button>
           </View>
