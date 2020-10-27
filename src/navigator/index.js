@@ -9,6 +9,7 @@ import Splash from '../containers/Splash';
 import {AuthNav} from './AuthNav';
 import DrawerMenu from '../containers/DrawerMenu';
 import {DashboardNav} from './DashboardNav';
+import {shallowEqual, useSelector} from 'react-redux';
 
 const Drawer = createDrawerNavigator();
 const RootStack = createStackNavigator();
@@ -39,19 +40,15 @@ const DrawerNav = () => {
 };
 
 const Navigator = (props, ref) => {
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    new Promise((resolve) =>
-      setTimeout(() => {
-        resolve();
-      }, 1000),
-    ).then(() => setLoading(false));
-  }, []);
+  const {splashScreen} = useSelector(({LoadingReducer}) => {
+    return {
+      splashScreen: LoadingReducer.splashScreen,
+    };
+  }, shallowEqual);
 
   return (
     <NavigationContainer ref={ref} theme={MyTheme}>
-      {loading ? (
+      {splashScreen ? (
         <RootStack.Navigator screenOptions={{headerShown: false}}>
           <RootStack.Screen name="Splash" component={Splash} />
         </RootStack.Navigator>

@@ -1,3 +1,6 @@
+export const SPLASH_ACTION = 'SPLASH_ACTION';
+export const SPLASH_COMPLETE = 'SPLASH_COMPLETE';
+
 export const SHOW_MODAL = 'SHOW_MODAL';
 export const HIDE_MODAL = 'HIDE_MODAL';
 

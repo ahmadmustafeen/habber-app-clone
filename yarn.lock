@@ -1022,6 +1022,13 @@
     "@types/yargs" "^15.0.0"
     chalk "^4.0.0"
 
+"@react-native-async-storage/async-storage@^1.13.1":
+  version "1.13.1"
+  resolved "https://registry.yarnpkg.com/@react-native-async-storage/async-storage/-/async-storage-1.13.1.tgz#c24200b33946f253e1d198d730548385a8904ecc"
+  integrity sha512-yNTjYah8LuCZDqD+kbPdgyfht1uW2uEf5OKlaAthcmKz9wOf68ccO7PFXyLXlFIEZDWkRcEk4Cu4MSsQYI9pBQ==
+  dependencies:
+    deep-assign "^3.0.0"
+
 "@react-native-community/async-storage@^1.12.0":
   version "1.12.0"
   resolved "https://registry.yarnpkg.com/@react-native-community/async-storage/-/async-storage-1.12.0.tgz#d2fc65bc08aa1c3e9514bbe9fe7095eab8e8aca3"
@@ -6070,11 +6077,6 @@ react-native-restart@^0.0.17:
   version "0.0.17"
   resolved "https://registry.yarnpkg.com/react-native-restart/-/react-native-restart-0.0.17.tgz#c1f38e019d1a2114248d496698e7951e9435ba91"
   integrity sha512-UwFPDssMFoyDbF2aLARIHWt5g/o0TtxCXK9WIY+0iNpkgG9qWd+n80XBwXioNCdgy39ZQ5yfJBJRwtMLDgABag==
-
-react-native-rtl-layout@^0.0.1:
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/react-native-rtl-layout/-/react-native-rtl-layout-0.0.1.tgz#a4d016e69339f40ee7f197ddd8c6177c10002dd2"
-  integrity sha1-pNAW5pM59A7n8Zfd2MYXfBAALdI=
 
 react-native-safe-area-context@^3.1.4:
   version "3.1.8"

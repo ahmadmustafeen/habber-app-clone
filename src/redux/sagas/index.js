@@ -7,6 +7,7 @@ import {
   FETCH_BOOK_LISTS,
   FETCH_RELATED_BOOKS,
   SWITCH_LANG,
+  SPLASH_ACTION,
 } from '../actionTypes';
 import {signupSaga} from './SignupSaga';
 import {signinSaga} from './SignInSaga';
@@ -15,6 +16,7 @@ import {BookRequestSaga} from './BookRequestSaga';
 import {BookListSaga} from './BookListSaga';
 import {RelatedBooksSaga} from './RelatedBooksSaga';
 import {switchLangSaga} from './SwitchLanguageSaga';
+import {splashSaga} from './SplashSaga';
 
 function* actionWatcher() {
   yield takeLatest(SIGN_UP, signupSaga);
@@ -24,6 +26,7 @@ function* actionWatcher() {
   yield takeLatest(FETCH_BOOK_LISTS, BookListSaga);
   yield takeLatest(FETCH_RELATED_BOOKS, RelatedBooksSaga);
   yield takeLatest(SWITCH_LANG, switchLangSaga);
+  yield takeLatest(SPLASH_ACTION, splashSaga);
 }
 
 export default function* rootSaga() {
