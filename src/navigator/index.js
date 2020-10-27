@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import React, {useEffect, useState} from 'react';
+import React, {forwardRef, useEffect, useState} from 'react';
 import {NavigationContainer, DefaultTheme} from '@react-navigation/native';
 
 import {createStackNavigator} from '@react-navigation/stack';
@@ -38,7 +38,7 @@ const DrawerNav = () => {
   );
 };
 
-const Navigator = () => {
+const Navigator = (props, ref) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -50,7 +50,7 @@ const Navigator = () => {
   }, []);
 
   return (
-    <NavigationContainer theme={MyTheme}>
+    <NavigationContainer ref={ref} theme={MyTheme}>
       {loading ? (
         <RootStack.Navigator screenOptions={{headerShown: false}}>
           <RootStack.Screen name="Splash" component={Splash} />
@@ -68,4 +68,4 @@ const Navigator = () => {
   );
 };
 
-export default Navigator;
+export default forwardRef(Navigator);
