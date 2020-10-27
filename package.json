@@ -32,6 +32,7 @@
     "react-native-reanimated": "^1.13.0",
     "react-native-responsive-screen": "^1.4.1",
     "react-native-restart": "^0.0.17",
+    "react-native-rtl-layout": "^0.0.1",
     "react-native-safe-area-context": "^3.1.4",
     "react-native-screens": "^2.10.1",
     "react-native-vector-icons": "^7.0.0",

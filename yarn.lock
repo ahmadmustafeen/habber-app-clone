@@ -6071,6 +6071,11 @@ react-native-restart@^0.0.17:
   resolved "https://registry.yarnpkg.com/react-native-restart/-/react-native-restart-0.0.17.tgz#c1f38e019d1a2114248d496698e7951e9435ba91"
   integrity sha512-UwFPDssMFoyDbF2aLARIHWt5g/o0TtxCXK9WIY+0iNpkgG9qWd+n80XBwXioNCdgy39ZQ5yfJBJRwtMLDgABag==
 
+react-native-rtl-layout@^0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/react-native-rtl-layout/-/react-native-rtl-layout-0.0.1.tgz#a4d016e69339f40ee7f197ddd8c6177c10002dd2"
+  integrity sha1-pNAW5pM59A7n8Zfd2MYXfBAALdI=
+
 react-native-safe-area-context@^3.1.4:
   version "3.1.8"
   resolved "https://registry.yarnpkg.com/react-native-safe-area-context/-/react-native-safe-area-context-3.1.8.tgz#7a9883aa0f38f9c77d4bef2b89e4e285bc1024a3"

@@ -45,6 +45,7 @@ const styles = StyleSheet.create({
   TextStyle: {
     fontSize: 20,
     color: 'black',
+    textAlign: 'left',
   },
 });
 export {AppText};
