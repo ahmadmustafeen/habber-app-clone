@@ -14,7 +14,7 @@ const Splash = (props) => {
     <Image
       style={styles.Image}
       resizeMode="stretch"
-      source={require('../../assets/images/background.jpg')}
+      source={require('../../assets/images/splash.png')}
     />
   );
 };

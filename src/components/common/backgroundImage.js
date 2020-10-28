@@ -9,7 +9,7 @@ const BackgroundImage = (props) => {
       {...props}
       style={styles.bgImage}
       resizeMode={resizeMode || 'stretch'}
-      source={source || require('../../assets/images/background.jpg')}>
+      source={source || require('../../assets/images/splash.png')}>
       <Screen noPadding={noPadding}>{children}</Screen>
     </ImageBackground>
   );
