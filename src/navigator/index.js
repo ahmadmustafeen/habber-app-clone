@@ -57,8 +57,8 @@ const Navigator = (props, ref) => {
           screenOptions={{
             headerShown: false,
           }}>
-          <RootStack.Screen name="Drawer" component={DrawerNav} />
           <RootStack.Screen name="Auth" component={AuthNav} />
+          <RootStack.Screen name="Drawer" component={DrawerNav} />
         </RootStack.Navigator>
       )}
     </NavigationContainer>

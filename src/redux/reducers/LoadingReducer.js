@@ -2,7 +2,8 @@ import {
   SIGN_IN_SUCCESS,
   SIGN_IN,
   SIGN_IN_FAILURE,
-  SPLASH_COMPLETE,
+  FETCH_AD_SUCCESS,
+  FETCH_AD_FAILURE,
 } from '_redux/actionTypes';
 
 const initialState = {
@@ -21,7 +22,10 @@ export default (state = initialState, action) => {
       return {loading: false};
     }
 
-    case SPLASH_COMPLETE: {
+    case FETCH_AD_SUCCESS: {
+      return {splashScreen: false};
+    }
+    case FETCH_AD_FAILURE: {
       return {splashScreen: false};
     }
     default:
