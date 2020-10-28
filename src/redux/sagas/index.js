@@ -9,6 +9,7 @@ import {
   SWITCH_LANG,
   SPLASH_ACTION,
   SKIP_AD,
+  FETCH_ENGLISH_BOOKS,
 } from '../actionTypes';
 import {signupSaga} from './SignupSaga';
 import {signinSaga} from './SignInSaga';
@@ -19,6 +20,7 @@ import {RelatedBooksSaga} from './RelatedBooksSaga';
 import {switchLangSaga} from './SwitchLanguageSaga';
 import {splashSaga} from './SplashSaga';
 import {splashAdSaga} from './SplashAdSaga';
+import {EnglishBookListSaga} from './EnglishBooksListSaga';
 
 function* actionWatcher() {
   yield takeLatest(SPLASH_ACTION, splashSaga);
@@ -28,6 +30,7 @@ function* actionWatcher() {
   yield takeLatest(FORGOT_PASSWORD, ForgotPasswordSaga);
   yield takeLatest(REQUEST_BOOK, BookRequestSaga);
   yield takeLatest(FETCH_BOOK_LISTS, BookListSaga);
+  yield takeLatest(FETCH_ENGLISH_BOOKS, EnglishBookListSaga);
   yield takeLatest(FETCH_RELATED_BOOKS, RelatedBooksSaga);
   yield takeLatest(SWITCH_LANG, switchLangSaga);
 }

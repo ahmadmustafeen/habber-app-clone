@@ -132,7 +132,7 @@ Login with Social media account`}
           underline
           primary
           size={30}
-          onPress={() => navigate('Home')}>
+          onPress={() => navigate('Drawer', {screen: 'Home'})}>
           Skip
         </AppText>
       </View>

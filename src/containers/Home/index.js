@@ -23,7 +23,12 @@ import {AppText, Button, Screen} from '_components/common';
 import {booksData, booksClub, bookmarkdata} from '_assets/data/dummydata';
 import {useDispatch} from 'react-redux';
 import {withDataActions} from '../../redux/actions/basicActions';
-import {FETCH_BOOK_LISTS, FETCH_RELATED_BOOKS} from '../../redux/actionTypes';
+import {
+  FETCH_ARABIC_BOOKS,
+  FETCH_BOOK_LISTS,
+  FETCH_ENGLISH_BOOKS,
+  FETCH_RELATED_BOOKS,
+} from '../../redux/actionTypes';
 import {AD_SCREEN} from '../../constants/Screens';
 
 const Home = (props) => {
@@ -44,8 +49,13 @@ const Home = (props) => {
         <Button onPress={() => navigate('Auth', {screen: AD_SCREEN})}>
           Auth Navigation
         </Button>
-        <Button onPress={() => dispatch(withDataActions('', FETCH_BOOK_LISTS))}>
-          Fetch Books
+        <Button
+          onPress={() => dispatch(withDataActions('', FETCH_ENGLISH_BOOKS))}>
+          Fetch English Books
+        </Button>
+        <Button
+          onPress={() => dispatch(withDataActions('', FETCH_ARABIC_BOOKS))}>
+          Fetch Arabic Books
         </Button>
         <Button
           onPress={() => dispatch(withDataActions('', FETCH_RELATED_BOOKS))}>

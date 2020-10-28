@@ -8,5 +8,7 @@ export const API_ENDPOINTS = {
   forgotPassword: '/forgot-password',
   requestBook: '/request/book',
   booksList: '/books',
+  booksArabic: '/books/arabic',
+  booksEnglish: '/books/english',
   relatedBooks: '/related/books',
 };
