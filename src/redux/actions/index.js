@@ -1,1 +1,1 @@
-export * from './basicActions';
+export * from './GenericActions.js';

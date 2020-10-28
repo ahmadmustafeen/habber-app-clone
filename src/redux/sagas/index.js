@@ -11,6 +11,8 @@ import {
   SKIP_AD,
   FETCH_ENGLISH_BOOKS,
   FETCH_ARABIC_BOOKS,
+  FETCH_BOOKMARKS,
+  FETCH_BOOKCLUBS,
 } from '../actionTypes';
 import {signupSaga} from './SignupSaga';
 import {signinSaga} from './SignInSaga';
@@ -23,6 +25,8 @@ import {splashSaga} from './SplashSaga';
 import {splashAdSaga} from './SplashAdSaga';
 import {EnglishBookListSaga} from './EnglishBooksListSaga';
 import {ArabicBookListSaga} from './ArabicBooksListSaga';
+import {BookmarksSaga} from './BookmarksSaga';
+import {BookClubsSaga} from './BookClubsSaga';
 
 function* actionWatcher() {
   yield takeLatest(SPLASH_ACTION, splashSaga);
@@ -36,6 +40,8 @@ function* actionWatcher() {
   yield takeLatest(FETCH_ARABIC_BOOKS, ArabicBookListSaga);
   yield takeLatest(FETCH_RELATED_BOOKS, RelatedBooksSaga);
   yield takeLatest(SWITCH_LANG, switchLangSaga);
+  yield takeLatest(FETCH_BOOKMARKS, BookmarksSaga);
+  yield takeLatest(FETCH_BOOKCLUBS, BookClubsSaga);
 }
 
 export default function* rootSaga() {

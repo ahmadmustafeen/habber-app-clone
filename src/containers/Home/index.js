@@ -22,7 +22,7 @@ import {ThumbnailBook} from '_components/ThumbnailBook';
 import {AppText, Button, Screen} from '_components/common';
 import {booksData, booksClub, bookmarkdata} from '_assets/data/dummydata';
 import {useDispatch} from 'react-redux';
-import {withDataActions} from '../../redux/actions/basicActions';
+import {withDataActions} from '../../redux/actions/GenericActions';
 import {
   FETCH_ARABIC_BOOKS,
   FETCH_BOOK_LISTS,

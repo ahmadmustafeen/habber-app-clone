@@ -11,4 +11,6 @@ export const API_ENDPOINTS = {
   booksArabic: '/books/arabic',
   booksEnglish: '/books/english',
   relatedBooks: '/related/books',
+  bookmarks: '/bookmarks',
+  bookclubs: '/bookclubs',
 };

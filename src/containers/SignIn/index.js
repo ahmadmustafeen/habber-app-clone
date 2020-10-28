@@ -3,7 +3,7 @@ import {View, StyleSheet, Alert} from 'react-native';
 import {useTheme} from '@react-navigation/native';
 import {shallowEqual, useDispatch, useSelector} from 'react-redux';
 
-import {withDataActions} from '_redux/actions/basicActions';
+import {withDataActions} from '_redux/actions/GenericActions';
 import {SIGN_IN} from '_redux/actionTypes';
 import {InputWithLabel, RoundIcon} from '_components';
 import {AppText, BackgroundImage, Button} from '_components/common';
