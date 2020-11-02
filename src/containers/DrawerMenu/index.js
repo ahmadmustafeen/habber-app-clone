@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {View, StyleSheet, Image} from 'react-native';
 
-import {AppText, Screen} from '../../components/common';
+import {AppText, BackgroundImage, Screen} from '../../components/common';
 import {RoundIcon} from '../../components';
 import {
   SETTINGS_SCREEN,
@@ -14,7 +14,7 @@ import {
 
 const DrawerMenu = (props) => {
   return (
-    <Screen backgroundColor="#005f69">
+    <BackgroundImage source={require('_assets/images/drawer_menu.png')}>
       <View key="header"></View>
       <View key="content">
         <View style={styles.profiletop}>
@@ -46,8 +46,11 @@ const DrawerMenu = (props) => {
             onPress={() => props.navigation.navigate(FAVORITES)}>
             Favorites
           </AppText>
-          <AppText bold white style={styles.navbtn}
-          onPress={() => props.navigation.navigate(MY_ORDERS)}>
+          <AppText
+            bold
+            white
+            style={styles.navbtn}
+            onPress={() => props.navigation.navigate(MY_ORDERS)}>
             My orders
           </AppText>
           <AppText
@@ -98,7 +101,7 @@ const DrawerMenu = (props) => {
           />
         </View>
       </View>
-    </Screen>
+    </BackgroundImage>
   );
 };
 

@@ -33,7 +33,8 @@ const DrawerNav = () => {
     <Drawer.Navigator
       initialRouteName="Home"
       drawerContent={(props) => <DrawerMenu {...props} />}
-      drawerBackgroundColor="transparent">
+      drawerStyle={{backgroundColor: 'transparent', width: '90%'}}
+      drawerType="front">
       <Drawer.Screen name="Main" component={DashboardNav} />
     </Drawer.Navigator>
   );
