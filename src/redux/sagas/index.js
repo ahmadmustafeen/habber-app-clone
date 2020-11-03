@@ -13,6 +13,9 @@ import {
   FETCH_ARABIC_BOOKS,
   FETCH_BOOKMARKS,
   FETCH_BOOKCLUBS,
+  UPDATE_PASSWORD,
+  SUBMIT_JOIN_US,
+  SUBMIT_CONTACT_US,
 } from '../actionTypes';
 import {signupSaga} from './SignupSaga';
 import {signinSaga} from './SignInSaga';
@@ -27,6 +30,9 @@ import {EnglishBookListSaga} from './EnglishBooksListSaga';
 import {ArabicBookListSaga} from './ArabicBooksListSaga';
 import {BookmarksSaga} from './BookmarksSaga';
 import {BookClubsSaga} from './BookClubsSaga';
+import {contactUsSaga} from './ContactUsSaga';
+import {JoinUsSaga} from './JoinUsSaga';
+import {UpdatePasswordSaga} from './UpdatePasswordSaga';
 
 function* actionWatcher() {
   yield takeLatest(SPLASH_ACTION, splashSaga);
@@ -42,6 +48,9 @@ function* actionWatcher() {
   yield takeLatest(SWITCH_LANG, switchLangSaga);
   yield takeLatest(FETCH_BOOKMARKS, BookmarksSaga);
   yield takeLatest(FETCH_BOOKCLUBS, BookClubsSaga);
+  yield takeLatest(SUBMIT_CONTACT_US, contactUsSaga);
+  yield takeLatest(SUBMIT_JOIN_US, JoinUsSaga);
+  yield takeLatest(UPDATE_PASSWORD, UpdatePasswordSaga);
 }
 
 export default function* rootSaga() {

@@ -13,4 +13,7 @@ export const API_ENDPOINTS = {
   relatedBooks: '/related/books',
   bookmarks: '/bookmarks',
   bookclubs: '/bookclubs',
+  contactus: '/contactus',
+  joinus: '/joinus',
+  updatepassword: '/users/password',
 };
