@@ -1,8 +1,8 @@
-import React, {useState} from 'react';
-import {View, StyleSheet, Image} from 'react-native';
+import React, { useState } from 'react';
+import { View, StyleSheet, Image } from 'react-native';
 
-import {AppText, BackgroundImage, Screen} from '../../components/common';
-import {RoundIcon} from '../../components';
+import { AppText, BackgroundImage, Screen } from '../../components/common';
+import { RoundIcon } from '../../components';
 import {
   SETTINGS_SCREEN,
   ABOUT_US,
@@ -11,7 +11,30 @@ import {
   MY_ORDERS,
   MY_PROFILE,
 } from '../../constants/Screens';
-
+const DrawerText = (props) => {
+  const { Title, onPress } = props;
+  return (
+    <>
+      <AppText bold white style={styles.navbtn} onPress={onPress}>
+        {Title}
+      </AppText>
+      <View style={styles.Horizontalrow} />
+    </>
+  )
+}
+const DrawerIcon = (props) => {
+  const { name, onPress } = props;
+  return (
+    <>
+      <RoundIcon
+        name={name}
+        type="font-awesome"
+        color="#fff"
+        onPress={onPress}
+      />
+    </>
+  )
+}
 const DrawerMenu = (props) => {
   return (
     <BackgroundImage source={require('_assets/images/drawer_menu.png')}>
@@ -38,59 +61,16 @@ const DrawerMenu = (props) => {
           </View>
         </View>
         <View>
-          <AppText bold white style={styles.navbtn}>
-            Home
-          </AppText>
-          <View style={styles.Horizontalrow} />
-          <AppText
-            white
-            bold
-            style={styles.navbtn}
-            onPress={() => props.navigation.navigate(MY_PROFILE)}>
-            Profile
-          </AppText>
-          <View style={styles.Horizontalrow} />
-          <AppText
-            bold
-            white
-            style={styles.navbtn}
-            onPress={() => props.navigation.navigate(FAVORITES)}>
-            Favorites
-          </AppText>
-          <View style={styles.Horizontalrow} />
-          <AppText
-            bold
-            white
-            style={styles.navbtn}
-            onPress={() => props.navigation.navigate(MY_ORDERS)}>
-            My orders
-          </AppText>
-          <View style={styles.Horizontalrow} />
-          <AppText
-            bold
-            white
-            style={styles.navbtn}
-            white
-            onPress={() => props.navigation.navigate(ABOUT_US)}>
-            About us
-          </AppText>
-          <View style={styles.Horizontalrow} />
-          <AppText
-            bold
-            white
-            style={styles.navbtn}
-            onPress={() => props.navigation.navigate(CONTACT_US)}>
-            Contact us
-          </AppText>
-          <View style={styles.Horizontalrow} />
-          <AppText
-            bold
-            white
-            style={styles.navbtn}
-            onPress={() => props.navigation.navigate(SETTINGS_SCREEN)}>
-            Settings
-          </AppText>
-          <View style={styles.Horizontalrow} />
+          <DrawerText Title="Home" />
+          <DrawerText Title="Profile" onPress={() => props.navigation.navigate(MY_PROFILE)} />
+          <DrawerText Title="Favorites" onPress={() => props.navigation.navigate(FAVORITES)} />
+          <DrawerText Title="My orders" onPress={() => props.navigation.navigate(MY_ORDERS)} />
+          <DrawerText Title="About us" onPress={() => props.navigation.navigate(ABOUT_US)} />
+          <DrawerText Title="Contact us" onPress={() => props.navigation.navigate(CONTACT_US)} />
+          <DrawerText Title="Settings" onPress={() => props.navigation.navigate(SETTINGS_SCREEN)} />
+
+
+
           <AppText secondary size={18} white style={styles.poweredbyline}>
             Powered By Line
           </AppText>
@@ -101,24 +81,9 @@ const DrawerMenu = (props) => {
             justifyContent: 'space-around',
             width: '70%',
           }}>
-          <RoundIcon
-            name="snapchat"
-            type="font-awesome"
-            color="#fff"
-            onPress={() => console.log('hello')}
-          />
-          <RoundIcon
-            name="instagram"
-            type="font-awesome"
-            color="#fff"
-            onPress={() => console.log('hello')}
-          />
-          <RoundIcon
-            name="sc-twitter"
-            type="evilicon"
-            color="#fff"
-            onPress={() => console.log('hello')}
-          />
+          <DrawerIcon name="snapchat" onPress={() => console.log('hello')} />
+          <DrawerIcon name="instagram" onPress={() => console.log('hello')} />
+          <DrawerIcon name="sc-twitter" onPress={() => console.log('hello')} />
         </View>
       </View>
     </BackgroundImage>
