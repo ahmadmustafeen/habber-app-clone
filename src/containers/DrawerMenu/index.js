@@ -21,24 +21,35 @@ const DrawerMenu = (props) => {
           <View style={styles.imgContainer}>
             <Image
               style={styles.image}
-              source={require('../../assets/images/Screenshot_Logo.jpg')}
+              source={require('../../assets/images/logo.png')}
             />
           </View>
-          <AppText white bold size={15} style={styles.txt}>
-            Khaled Ammar
-          </AppText>
+          <View style={styles.row}>
+            <View style={styles.imageProfile}>
+              <Image
+                style={styles.imageAvatar}
+                source={require('../../assets/images/Screenshot_Logo.jpg')}
+              />
+            </View>
+
+            <AppText white bold size={16} style={styles.txt}>
+              Khaled Ammar
+            </AppText>
+          </View>
         </View>
         <View>
           <AppText bold white style={styles.navbtn}>
             Home
           </AppText>
+          <View style={styles.Horizontalrow} />
           <AppText
-            bold
             white
+            bold
             style={styles.navbtn}
             onPress={() => props.navigation.navigate(MY_PROFILE)}>
             Profile
           </AppText>
+          <View style={styles.Horizontalrow} />
           <AppText
             bold
             white
@@ -46,6 +57,7 @@ const DrawerMenu = (props) => {
             onPress={() => props.navigation.navigate(FAVORITES)}>
             Favorites
           </AppText>
+          <View style={styles.Horizontalrow} />
           <AppText
             bold
             white
@@ -53,13 +65,16 @@ const DrawerMenu = (props) => {
             onPress={() => props.navigation.navigate(MY_ORDERS)}>
             My orders
           </AppText>
+          <View style={styles.Horizontalrow} />
           <AppText
             bold
             white
             style={styles.navbtn}
+            white
             onPress={() => props.navigation.navigate(ABOUT_US)}>
             About us
           </AppText>
+          <View style={styles.Horizontalrow} />
           <AppText
             bold
             white
@@ -67,20 +82,25 @@ const DrawerMenu = (props) => {
             onPress={() => props.navigation.navigate(CONTACT_US)}>
             Contact us
           </AppText>
+          <View style={styles.Horizontalrow} />
           <AppText
             bold
             white
             style={styles.navbtn}
-            white
-            bold
             onPress={() => props.navigation.navigate(SETTINGS_SCREEN)}>
             Settings
           </AppText>
+          <View style={styles.Horizontalrow} />
           <AppText secondary size={18} white style={styles.poweredbyline}>
             Powered By Line
           </AppText>
         </View>
-        <View style={{flexDirection: 'row', justifyContent: 'space-around'}}>
+        <View
+          style={{
+            flexDirection: 'row',
+            justifyContent: 'space-around',
+            width: '70%',
+          }}>
           <RoundIcon
             name="snapchat"
             type="font-awesome"
@@ -107,35 +127,60 @@ const DrawerMenu = (props) => {
 
 const styles = StyleSheet.create({
   navbtn: {
-    borderBottomColor: '#c27e12',
-    paddingVertical: 12,
-    alignItems: 'flex-start',
-    borderBottomWidth: 0.3,
+    paddingLeft: 10,
+    paddingVertical: 14,
   },
   txt: {
     marginLeft: 10,
-    marginTop: 30,
   },
   imgContainer: {
-    height: 80,
+    height: 100,
     aspectRatio: 1,
-    borderRadius: 50,
-    borderWidth: 2,
-    overflow: 'hidden',
   },
   image: {
     width: '100%',
     height: '100%',
   },
   profiletop: {
-    flexDirection: 'row',
+    width: '70%',
+    display: 'flex',
+    flexDirection: 'column',
     justifyContent: 'center',
+    alignItems: 'center',
     marginBottom: 20,
-    marginTop: 20,
+    marginTop: 50,
   },
   poweredbyline: {
     marginTop: 30,
     marginBottom: 20,
+  },
+  row: {
+    marginTop: 15,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  imageProfile: {
+    height: 45,
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: 90,
+    aspectRatio: 1,
+    borderRadius: 75,
+    borderWidth: 2,
+    borderColor: 'white',
+    overflow: 'hidden',
+  },
+  imageAvatar: {
+    height: '100%',
+    width: '100%',
+  },
+  Horizontalrow: {
+    width: '80%',
+    borderColor: 'brown',
+    borderWidth: 0,
+    padding: 1,
+    borderBottomWidth: 0.75,
   },
 });
 export default DrawerMenu;

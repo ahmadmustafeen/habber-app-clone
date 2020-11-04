@@ -1,0 +1,14 @@
+{
+  "translation": {
+    "hello": "مرحبا",
+    "bye": "وداعا"
+  },
+  "forgotPassword": {
+    "forgot_password": "مرحبا",
+    "enter_email": "مرحبا وداعا",
+    "resetPassword": "مرحبا",
+    "modal_heading": "Please check your Registered Email",
+    "modal_description": "Your Password Reset Link Has Been Sent To Your Email",
+    "modal_button_label": "Continue"
+  }
+}

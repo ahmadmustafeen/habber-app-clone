@@ -1,0 +1,14 @@
+{
+  "translation": {
+    "hello": "Hello",
+    "bye": "bye"
+  },
+  "forgotPassword": {
+    "forgot_password": "Forgot Password?",
+    "enter_email": "Enter the email address you used to create your account and we will email you a link to reset your password",
+    "resetPassword": "Reset Password",
+    "modal_heading": "Please check your Registered Email",
+    "modal_description": "Your Password Reset Link Has Been Sent To Your Email",
+    "modal_button_label": "Continue"
+  }
+}
