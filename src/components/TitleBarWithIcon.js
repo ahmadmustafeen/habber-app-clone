@@ -7,7 +7,16 @@ import {Icon} from 'react-native-elements';
 
 const TitleBarWithIcon = (props) => {
   const {colors} = useTheme();
-  const {viewStyle, label, onIconPress, iconType, iconName} = props;
+  const {
+    viewStyle,
+    label,
+    onIconPress,
+    iconType,
+    color,
+    iconName,
+    noIcon,
+    small,
+  } = props;
 
   return (
     <TouchableOpacity onPress={onIconPress}>
@@ -15,17 +24,26 @@ const TitleBarWithIcon = (props) => {
         style={[
           styles.containerStyle,
           viewStyle,
-          {borderLeftColor: colors.primary},
+          {
+            borderLeftColor: colors.primary,
+            padding: small ? 5 : 10,
+            paddingLeft: 10,
+            marginBottom: small ? 7 : 10,
+          },
         ]}>
-        <AppText primary bold>
+        <AppText primary={!color} bold {...props}>
           {label || 'Title'}
         </AppText>
-        <Icon
-          name={iconName || I18nManager.isRTL ? 'leftcircleo' : 'rightcircleo'}
-          type={iconType || 'antdesign'}
-          color={colors.primary}
-          // style={{transform: [{scaleX: I18nManager.isRTL ? -1 : 1}]}}
-        />
+        {!noIcon && (
+          <Icon
+            name={
+              iconName || I18nManager.isRTL ? 'leftcircleo' : 'rightcircleo'
+            }
+            type={iconType || 'antdesign'}
+            color={colors.primary}
+            // style={{transform: [{scaleX: I18nManager.isRTL ? -1 : 1}]}}
+          />
+        )}
       </View>
     </TouchableOpacity>
   );
@@ -36,8 +54,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     borderLeftWidth: 6,
     justifyContent: 'space-between',
-    padding: 10,
-    marginBottom: 10,
   },
 });
 export {TitleBarWithIcon};

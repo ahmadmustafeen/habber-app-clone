@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
-import {View, StyleSheet, Image} from 'react-native';
+import {View, StyleSheet, ImageBackground, Image} from 'react-native';
 
 import {AppText, BackgroundImage, Screen} from '../../components/common';
-import {RoundIcon} from '../../components';
+import {HorizontalRow, RoundIcon, TitleBarWithIcon} from '../../components';
 import {
   SETTINGS_SCREEN,
   ABOUT_US,
@@ -14,118 +14,233 @@ import {
 
 const DrawerMenu = (props) => {
   return (
-    <BackgroundImage source={require('_assets/images/drawer_menu.png')}>
-      <View key="header"></View>
-      <View key="content">
-        <View style={styles.profiletop}>
-          <View style={styles.imgContainer}>
+    <ImageBackground
+      {...props}
+      style={styles.bgImage}
+      resizeMode={'stretch'}
+      source={require('_assets/images/drawer_menu.png')}>
+      <View style={styles.profiletop}>
+        <View style={styles.imgContainer}>
+          <Image
+            style={styles.image}
+            source={require('../../assets/images/logo.png')}
+          />
+        </View>
+        <View style={styles.row}>
+          <View style={styles.imageProfile}>
             <Image
-              style={styles.image}
-              source={require('../../assets/images/logo.png')}
+              style={styles.imageAvatar}
+              source={require('../../assets/images/Screenshot_Logo.jpg')}
             />
           </View>
-          <View style={styles.row}>
-            <View style={styles.imageProfile}>
-              <Image
-                style={styles.imageAvatar}
-                source={require('../../assets/images/Screenshot_Logo.jpg')}
-              />
-            </View>
 
-            <AppText white bold size={16} style={styles.txt}>
-              Khaled Ammar
-            </AppText>
-          </View>
-        </View>
-        <View>
-          <AppText bold white style={styles.navbtn}>
-            Home
+          <AppText white bold size={16} style={styles.txt}>
+            Khaled Ammar
           </AppText>
-          <View style={styles.Horizontalrow} />
-          <AppText
-            white
-            bold
-            style={styles.navbtn}
-            onPress={() => props.navigation.navigate(MY_PROFILE)}>
-            Profile
-          </AppText>
-          <View style={styles.Horizontalrow} />
-          <AppText
-            bold
-            white
-            style={styles.navbtn}
-            onPress={() => props.navigation.navigate(FAVORITES)}>
-            Favorites
-          </AppText>
-          <View style={styles.Horizontalrow} />
-          <AppText
-            bold
-            white
-            style={styles.navbtn}
-            onPress={() => props.navigation.navigate(MY_ORDERS)}>
-            My orders
-          </AppText>
-          <View style={styles.Horizontalrow} />
-          <AppText
-            bold
-            white
-            style={styles.navbtn}
-            white
-            onPress={() => props.navigation.navigate(ABOUT_US)}>
-            About us
-          </AppText>
-          <View style={styles.Horizontalrow} />
-          <AppText
-            bold
-            white
-            style={styles.navbtn}
-            onPress={() => props.navigation.navigate(CONTACT_US)}>
-            Contact us
-          </AppText>
-          <View style={styles.Horizontalrow} />
-          <AppText
-            bold
-            white
-            style={styles.navbtn}
-            onPress={() => props.navigation.navigate(SETTINGS_SCREEN)}>
-            Settings
-          </AppText>
-          <View style={styles.Horizontalrow} />
-          <AppText secondary size={18} white style={styles.poweredbyline}>
-            Powered By Line
-          </AppText>
-        </View>
-        <View
-          style={{
-            flexDirection: 'row',
-            justifyContent: 'space-around',
-            width: '70%',
-          }}>
-          <RoundIcon
-            name="snapchat"
-            type="font-awesome"
-            color="#fff"
-            onPress={() => console.log('hello')}
-          />
-          <RoundIcon
-            name="instagram"
-            type="font-awesome"
-            color="#fff"
-            onPress={() => console.log('hello')}
-          />
-          <RoundIcon
-            name="sc-twitter"
-            type="evilicon"
-            color="#fff"
-            onPress={() => console.log('hello')}
-          />
         </View>
       </View>
-    </BackgroundImage>
+      <View>
+        <TitleBarWithIcon label="Home" small color="white" noIcon />
+
+        <View style={styles.Horizontalrow} />
+
+        <TitleBarWithIcon
+          label="Profile"
+          onPress={() => props.navigation.navigate(MY_PROFILE)}
+          small
+          color="white"
+          noIcon
+        />
+        <View style={styles.Horizontalrow} />
+
+        <TitleBarWithIcon
+          label="Favorites"
+          onPress={() => props.navigation.navigate(FAVORITES)}
+          small
+          color="white"
+          noIcon
+        />
+        <View style={styles.Horizontalrow} />
+        <TitleBarWithIcon
+          label="My orders"
+          onPress={() => props.navigation.navigate(MY_ORDERS)}
+          color="white"
+          noIcon
+          small
+        />
+        <View style={styles.Horizontalrow} />
+        <TitleBarWithIcon
+          label="About us"
+          onPress={() => props.navigation.navigate(ABOUT_US)}
+          white
+          small
+          noIcon
+        />
+
+        <View style={styles.Horizontalrow} />
+        <TitleBarWithIcon
+          label="Contact us"
+          small
+          onPress={() => props.navigation.navigate(CONTACT_US)}
+          white
+          noIcon
+        />
+        <View style={styles.Horizontalrow} />
+
+        <TitleBarWithIcon
+          label="Settings"
+          small
+          onPress={() => props.navigation.navigate(SETTINGS_SCREEN)}
+          white
+          noIcon
+        />
+
+        <View style={styles.Horizontalrow} />
+        <AppText secondary size={18} white style={styles.poweredbyline}>
+          Powered By Line
+        </AppText>
+      </View>
+      <View
+        style={{
+          flexDirection: 'row',
+          justifyContent: 'space-around',
+          width: '70%',
+        }}>
+        <RoundIcon
+          name="snapchat"
+          type="font-awesome"
+          color="#fff"
+          onPress={() => console.log('hello')}
+        />
+        <RoundIcon
+          name="instagram"
+          type="font-awesome"
+          color="#fff"
+          onPress={() => console.log('hello')}
+        />
+        <RoundIcon
+          name="sc-twitter"
+          type="evilicon"
+          color="#fff"
+          onPress={() => console.log('hello')}
+        />
+      </View>
+    </ImageBackground>
+    // <BackgroundImage source={require('_assets/images/drawer_menu.png')}>
+    //   <View key="header"></View>
+    //   <View key="content">
+    //     <View style={styles.profiletop}>
+    //       <View style={styles.imgContainer}>
+    //         <Image
+    //           style={styles.image}
+    //           source={require('../../assets/images/logo.png')}
+    //         />
+    //       </View>
+    //       <View style={styles.row}>
+    //         <View style={styles.imageProfile}>
+    //           <Image
+    //             style={styles.imageAvatar}
+    //             source={require('../../assets/images/Screenshot_Logo.jpg')}
+    //           />
+    //         </View>
+
+    //         <AppText white bold size={16} style={styles.txt}>
+    //           Khaled Ammar
+    //         </AppText>
+    //       </View>
+    //     </View>
+    //     <View>
+    //       <AppText bold white style={styles.navbtn}>
+    //         Home
+    //       </AppText>
+    //       <View style={styles.Horizontalrow} />
+    //       <AppText
+    //         white
+    //         bold
+    //         style={styles.navbtn}
+    //         onPress={() => props.navigation.navigate(MY_PROFILE)}>
+    //         Profile
+    //       </AppText>
+    //       <View style={styles.Horizontalrow} />
+    //       <AppText
+    //         bold
+    //         white
+    //         style={styles.navbtn}
+    //         onPress={() => props.navigation.navigate(FAVORITES)}>
+    //         Favorites
+    //       </AppText>
+    //       <View style={styles.Horizontalrow} />
+    //       <AppText
+    //         bold
+    //         white
+    //         style={styles.navbtn}
+    //         onPress={() => props.navigation.navigate(MY_ORDERS)}>
+    //         My orders
+    //       </AppText>
+    //       <View style={styles.Horizontalrow} />
+    //       <AppText
+    //         bold
+    //         white
+    //         style={styles.navbtn}
+    //         white
+    //         onPress={() => props.navigation.navigate(ABOUT_US)}>
+    //         About us
+    //       </AppText>
+    //       <View style={styles.Horizontalrow} />
+    //       <AppText
+    //         bold
+    //         white
+    //         style={styles.navbtn}
+    //         onPress={() => props.navigation.navigate(CONTACT_US)}>
+    //         Contact us
+    //       </AppText>
+    //       <View style={styles.Horizontalrow} />
+    //       <AppText
+    //         bold
+    //         white
+    //         style={styles.navbtn}
+    //         onPress={() => props.navigation.navigate(SETTINGS_SCREEN)}>
+    //         Settings
+    //       </AppText>
+    //       <View style={styles.Horizontalrow} />
+    //       <AppText secondary size={18} white style={styles.poweredbyline}>
+    //         Powered By Line
+    //       </AppText>
+    //     </View>
+    //     <View
+    //       style={{
+    //         flexDirection: 'row',
+    //         justifyContent: 'space-around',
+    //         width: '70%',
+    //       }}>
+    //       <RoundIcon
+    //         name="snapchat"
+    //         type="font-awesome"
+    //         color="#fff"
+    //         onPress={() => console.log('hello')}
+    //       />
+    //       <RoundIcon
+    //         name="instagram"
+    //         type="font-awesome"
+    //         color="#fff"
+    //         onPress={() => console.log('hello')}
+    //       />
+    //       <RoundIcon
+    //         name="sc-twitter"
+    //         type="evilicon"
+    //         color="#fff"
+    //         onPress={() => console.log('hello')}
+    //       />
+    //     </View>
+    //   </View>
+    // </BackgroundImage>
   );
 };
 
 const styles = StyleSheet.create({
+  bgImage: {
+    flex: 1,
+  },
   navbtn: {
     paddingLeft: 10,
     paddingVertical: 14,
@@ -143,28 +258,25 @@ const styles = StyleSheet.create({
   },
   profiletop: {
     width: '70%',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
     alignItems: 'center',
     marginBottom: 20,
-    marginTop: 50,
+    marginTop: 10,
   },
   poweredbyline: {
     marginTop: 30,
     marginBottom: 20,
   },
   row: {
-    marginTop: 15,
+    marginVertical: 5,
     flexDirection: 'row',
-    justifyContent: 'center',
+    justifyContent: 'space-around',
     alignItems: 'center',
   },
   imageProfile: {
-    height: 45,
+    height: 20,
     justifyContent: 'center',
     alignItems: 'center',
-    width: 90,
+    width: 70,
     aspectRatio: 1,
     borderRadius: 75,
     borderWidth: 2,

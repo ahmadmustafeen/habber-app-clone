@@ -18,6 +18,7 @@ const AppText = (props) => {
     right,
     color,
     white,
+    small,
   } = props;
 
   return (
@@ -36,6 +37,7 @@ const AppText = (props) => {
         size && {fontSize: parseInt(size)},
         center && {textAlign: 'center'},
         right && {textAlign: 'right'},
+        small && {fontSize: 17},
       ]}>
       {children}
     </Text>

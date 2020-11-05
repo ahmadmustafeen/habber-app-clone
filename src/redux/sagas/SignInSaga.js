@@ -20,7 +20,7 @@ export function* signinSaga({type, payload}) {
     if (login_status) {
       RestClient.setHeader('Authorization', `Bearer ${res.token}`);
       Alert.alert('Login Successful', message);
-      yield put({type: SIGN_IN_SUCCESS, paylaod: null});
+      yield put({type: SIGN_IN_SUCCESS, paylaod: res});
     } else {
       Alert.alert('Login Failed', message);
       yield put({type: SIGN_IN_FAILURE, paylaod: null});
