@@ -4,7 +4,7 @@ import { View, StyleSheet, Image, ImageBackground, Platform } from 'react-native
 import { Icon } from 'react-native-elements';
 import { AppText } from './common';
 import { useTheme } from '@react-navigation/native';
-import { ADD_TO_CART } from 'constants/Screens';
+import { ADD_TO_CART, SEARCH } from 'constants/Screens';
 
 const Header = (props) => {
   const { colors } = useTheme();
@@ -50,7 +50,12 @@ const Header = (props) => {
                 name="shopping-bag"
                 type="font-awesome-5"
               />
-              <Icon color={headerColor} name="search1" type="antdesign" />
+              <Icon
+                props={props}
+                onPress={() =>
+                  navigation.navigate(SEARCH, { label: 'SEARCH', SEARCH })
+                }
+                color={headerColor} name="search1" type="antdesign" />
             </View>
           )}
       </View>

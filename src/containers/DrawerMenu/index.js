@@ -83,7 +83,7 @@ const DrawerMenu = (props) => {
           }}>
           <DrawerIcon name="snapchat" onPress={() => console.log('hello')} />
           <DrawerIcon name="instagram" onPress={() => console.log('hello')} />
-          <DrawerIcon name="sc-twitter" onPress={() => console.log('hello')} />
+          <DrawerIcon name="twitter" onPress={() => console.log('hello')} />
         </View>
       </View>
     </BackgroundImage>

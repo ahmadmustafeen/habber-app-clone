@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 
-import { ScrollView, View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Text } from 'react-native';
 // import { useTranslation } from 'react-i18next';
 import {
     // Counter,
-    // DashboardComponent,
+    DashboardComponent,
     // ImageSlider,
     // ThumbnailBookmarks,
     // ThumbnailClub,
     // TitleBarWithIcon,
-    Header,
+    HeaderSearch,
 } from '_components';
 // import {
 //     REQUESTBOOKS_SCREEN,
@@ -19,7 +19,7 @@ import {
 // } from '_constants/Screens';
 // import { sliderImages } from './dummydata';
 // import { ThumbnailBook } from '_components/ThumbnailBook';
-import { AppText, Button, Screen } from '_components/common';
+// import { Screen } from '_components/common';
 // import { booksData, booksClub, bookmarkdata } from '_assets/data/dummydata';
 // import { useDispatch } from 'react-redux';
 // import { withDataActions } from '../../redux/actions/GenericActions';
@@ -29,22 +29,19 @@ import { AppText, Button, Screen } from '_components/common';
 //     FETCH_ENGLISH_BOOKS,
 //     FETCH_RELATED_BOOKS,
 // } from '../../redux/actionTypes';
-import { AD_SCREEN } from '../../constants/Screens';
 
 const Search = (props) => {
     const { navigate } = props.navigation;
-    const [images] = useState(sliderImages);
-    const [data] = useState(booksData);
-    const [data_book_club] = useState(booksClub);
-    const [bookmark_data] = useState(bookmarkdata);
-    const { t } = useTranslation();
-    const dispatch = useDispatch();
+    // const [images] = useState(sliderImages);
+    // const [data] = useState(booksData);
+    // const [data_book_club] = useState(booksClub);
+    // const [bookmark_data] = useState(bookmarkdata);
+    // const { t } = useTranslation();
+    // const dispatch = useDispatch();
     return (
-        <Screen noPadding>
-            <View key="header">
-                <Header />
-            </View>
-        </Screen>
+        <View>
+            <HeaderSearch />
+        </View>
     );
 };
 const styles = StyleSheet.create({
