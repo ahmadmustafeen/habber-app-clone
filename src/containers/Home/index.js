@@ -21,7 +21,7 @@ import {sliderImages} from './dummydata';
 import {ThumbnailBook} from '_components/ThumbnailBook';
 import {AppText, Button, Screen} from '_components/common';
 import {booksData, booksClub, bookmarkdata} from '_assets/data/dummydata';
-import {useDispatch} from 'react-redux';
+import {shallowEqual, useDispatch, useSelector} from 'react-redux';
 import {withDataActions} from '../../redux/actions/GenericActions';
 import {
   FETCH_ARABIC_BOOKS,
@@ -38,8 +38,12 @@ const Home = (props) => {
   const [data_book_club] = useState(booksClub);
   const [bookmark_data] = useState(bookmarkdata);
   const {t} = useTranslation();
-
+  const {EnglishBooksReducer} = useSelector((state) => {
+    return {EnglishBooksReducer: state.EnglishBooksReducer};
+  }, shallowEqual);
   const dispatch = useDispatch();
+  // console.log('EnglishBooksReducer', EnglishBooksReducer);
+  // console.log('data', data);
   return (
     <Screen noPadding>
       <View key="header">
@@ -65,11 +69,14 @@ const Home = (props) => {
       </View>
       <View key="content" style={{paddingStart: 10}}>
         <DashboardComponent
-          data={data}
+          data={EnglishBooksReducer}
           label="ENGLISH BOOK"
           renderComponent={(item) => <ThumbnailBook url={item.item.image} />}
           onIconPress={() =>
-            navigate(BOOKLIST_SCREEN, {label: 'ENGLISH BOOK', data})
+            navigate(BOOKLIST_SCREEN, {
+              label: 'ENGLISH BOOK',
+              data: EnglishBooksReducer,
+            })
           }
         />
         <DashboardComponent

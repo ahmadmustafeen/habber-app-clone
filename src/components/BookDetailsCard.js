@@ -8,13 +8,13 @@ import {RoundIcon} from './RoundIcon';
 
 const BookDetailsCard = (props) => {
   const {colors} = useTheme();
-  const {author, image, price, title} = props;
+  const {author_name, image, price, title} = props;
   return (
     <View style={styles.container}>
       <View style={styles.imgContainer}>
         <FastImage
           style={styles.image}
-          source={require('_assets/images/background.jpg')}
+          source={{uri: image}}
           resizeMode="contain"
         />
       </View>
@@ -28,7 +28,7 @@ const BookDetailsCard = (props) => {
         <View>
           <AppText bold>{title}</AppText>
           <AppText bold size={15}>
-            by {author}
+            by {author_name}
           </AppText>
           <AppText bold size={15}>
             Price: {price} KD
