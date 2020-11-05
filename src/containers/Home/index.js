@@ -61,7 +61,7 @@ const Home = (props) => {
           onPress={() => dispatch(withDataActions('', FETCH_RELATED_BOOKS))}>
           Fetch Related Books
         </Button>
-        <ImageSlider images={images} />
+        {/* <ImageSlider images={images} /> */}
       </View>
       <View key="content" style={{paddingStart: 10}}>
         <DashboardComponent
