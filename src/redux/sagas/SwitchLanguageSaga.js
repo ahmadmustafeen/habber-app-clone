@@ -10,9 +10,9 @@ import RNRestart from 'react-native-restart';
 export function* switchLangSaga({type, payload}) {
   try {
     // console.log('A', i18n.language, I18nManager);
-    yield i18n.changeLanguage(payload);
-    yield I18nManager.forceRTL(payload == 'ar');
-
+    yield i18n.changeLanguage(payload.name);
+    yield I18nManager.forceRTL(payload.name == 'ar');
+    yield setItem('@userProfile', JSON.stringify({payload}));
     let backUser = yield getItem('@backUser');
     // console.log(backUser);
     if (!backUser) {

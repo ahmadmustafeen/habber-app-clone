@@ -7,6 +7,8 @@ import {SHOW_MODAL, SIGN_UP_FAILURE, SIGN_UP_SUCCESS} from '_redux/actionTypes';
 export function* signupSaga({type, payload}) {
   try {
     console.log('SIgnUp Saga . . . .  .1', payload);
+    let userProfile = yield getItem('@userProfile');
+    userProfile = JSON.parse(userProfile);
     const response = yield call(() =>
       RestClient.post(API_ENDPOINTS.signup, payload),
     );

@@ -28,7 +28,9 @@ const Language = (props) => {
           width="60%"
           background="white"
           color={colors.secondary}
-          onPress={() => dispatch(withDataActions('en', SWITCH_LANG))}>
+          onPress={() =>
+            dispatch(withDataActions({id: 2, name: 'en'}, SWITCH_LANG))
+          }>
           English
         </Button>
         <Button
@@ -36,7 +38,9 @@ const Language = (props) => {
           width="60%"
           background="white"
           color={colors.secondary}
-          onPress={() => dispatch(withDataActions('ar', SWITCH_LANG))}>
+          onPress={() =>
+            dispatch(withDataActions({id: 1, name: 'ar'}, SWITCH_LANG))
+          }>
           عربى
         </Button>
       </View>
