@@ -20,7 +20,7 @@ export function* contactUsSaga({type, payload}) {
     console.log('contactUsSaga  Response . . . .  .', response);
     if (status === 200) {
       Alert.alert('Success', message);
-      yield put({type: SUBMIT_CONTACT_US_SUCCESS, paylaod: null});
+      yield put({type: SUBMIT_CONTACT_US_SUCCESS, payload: null});
     }
   } catch (error) {
     yield put({type: SUBMIT_CONTACT_US_FAILURE, error});

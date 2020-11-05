@@ -23,7 +23,7 @@ export function* signinSaga({type, payload}) {
       yield put({type: SIGN_IN_SUCCESS, paylaod: res});
     } else {
       Alert.alert('Login Failed', message);
-      yield put({type: SIGN_IN_FAILURE, paylaod: null});
+      yield put({type: SIGN_IN_FAILURE, payload: null});
     }
   } catch (error) {
     yield put({type: SIGN_IN_FAILURE, error});

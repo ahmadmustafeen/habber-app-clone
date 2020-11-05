@@ -17,10 +17,10 @@ export function* BookClubsSaga({type, payload}) {
     const {status, data, message} = response;
     console.log('BookClubsSaga Response . . . .  .', response);
     if (status === 200) {
-      yield put({type: FETCH_BOOKCLUBS_SUCCESS, paylaod: null});
+      yield put({type: FETCH_BOOKCLUBS_SUCCESS, payload: null});
     }
 
-    yield put({type: FETCH_BOOKCLUBS_SUCCESS, paylaod: null});
+    yield put({type: FETCH_BOOKCLUBS_SUCCESS, payload: null});
   } catch (error) {
     yield put({type: FETCH_BOOKCLUBS_FAILURE, error});
   }

@@ -16,11 +16,11 @@ export function* ForgotPasswordSaga({type, payload}) {
     );
     const {status, data, message} = response;
     if (status === 200) {
-      yield put({type: FORGOT_PASSWORD_SUCCESS, paylaod: null});
+      yield put({type: FORGOT_PASSWORD_SUCCESS, payload: null});
     }
     console.log('ForgotPasswordSaga Saga Response . . . .  .', data);
-    yield put({type: SHOW_MODAL, paylaod: null});
-    yield put({type: FORGOT_PASSWORD_SUCCESS, paylaod: null});
+    yield put({type: SHOW_MODAL, payload: null});
+    yield put({type: FORGOT_PASSWORD_SUCCESS, payload: null});
   } catch (error) {
     yield put({type: FORGOT_PASSWORD_FAILURE, error});
   }
