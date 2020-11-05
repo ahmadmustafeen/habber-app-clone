@@ -12,11 +12,11 @@ export function* signupSaga({type, payload}) {
     );
     const {status, data, message} = response;
     if (status === 200) {
-      yield put({type: SIGN_UP_SUCCESS, paylaod: null});
+      yield put({type: SIGN_UP_SUCCESS, payload: null});
     }
     console.log('SIgnUp Saga . . . .  .', data);
-    yield put({type: SHOW_MODAL, paylaod: null});
-    yield put({type: SIGN_UP_FAILURE, paylaod: null});
+    yield put({type: SHOW_MODAL, payload: null});
+    yield put({type: SIGN_UP_FAILURE, payload: null});
   } catch (error) {
     yield put({type: SIGN_UP_FAILURE, error});
   }

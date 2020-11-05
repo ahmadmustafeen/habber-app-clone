@@ -18,7 +18,7 @@ export function* JoinUsSaga({type, payload}) {
     } = response;
     console.log('JoinUsSaga  Response . . . .  .', response);
 
-    yield put({type: SUBMIT_JOIN_US_SUCCESS, paylaod: null});
+    yield put({type: SUBMIT_JOIN_US_SUCCESS, payload: null});
   } catch (error) {
     yield put({type: SUBMIT_JOIN_US_FAILURE, error});
   }

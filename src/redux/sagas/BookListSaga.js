@@ -17,10 +17,10 @@ export function* BookListSaga({type, payload}) {
     const {status, data, message} = response;
     console.log('BookList Saga Response . . . .  .', response);
     if (status === 200) {
-      yield put({type: FETCH_BOOK_LISTS_SUCCESS, paylaod: null});
+      yield put({type: FETCH_BOOK_LISTS_SUCCESS, payload: null});
     }
 
-    yield put({type: FETCH_BOOK_LISTS_SUCCESS, paylaod: null});
+    yield put({type: FETCH_BOOK_LISTS_SUCCESS, payload: null});
   } catch (error) {
     yield put({type: FETCH_BOOK_LISTS_FAILURE, error});
   }

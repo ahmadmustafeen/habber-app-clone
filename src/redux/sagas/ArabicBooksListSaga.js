@@ -20,10 +20,10 @@ export function* ArabicBookListSaga({type, payload}) {
     const {status, data, message} = response;
     console.log('ARABIC_BOOKS Saga Response . . . .  .', response);
     if (status === 200) {
-      yield put({type: FETCH_ARABIC_BOOKS_SUCCESS, paylaod: null});
+      yield put({type: FETCH_ARABIC_BOOKS_SUCCESS, payload: null});
     }
 
-    yield put({type: FETCH_ARABIC_BOOKS_FAILURE, paylaod: null});
+    yield put({type: FETCH_ARABIC_BOOKS_FAILURE, payload: null});
   } catch (error) {
     yield put({type: FETCH_ARABIC_BOOKS_FAILURE, error});
   }

@@ -13,10 +13,10 @@ export function* BookRequestSaga({type, payload}) {
     const {status, data, message} = response;
     console.log('BookRequestSaga Saga Response . . . .  .', response);
     if (status === 200) {
-      yield put({type: REQUEST_BOOK_SUCCESS, paylaod: null});
+      yield put({type: REQUEST_BOOK_SUCCESS, payload: null});
     }
 
-    yield put({type: REQUEST_BOOK_FAILURE, paylaod: null});
+    yield put({type: REQUEST_BOOK_FAILURE, payload: null});
   } catch (error) {
     yield put({type: REQUEST_BOOK_FAILURE, error});
   }

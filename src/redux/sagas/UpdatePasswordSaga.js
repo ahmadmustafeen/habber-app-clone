@@ -16,11 +16,11 @@ export function* UpdatePasswordSaga({type, payload}) {
     );
     const {status, data, message} = response;
     if (status === 200) {
-      yield put({type: UPDATE_PASSWORD_SUCCESS, paylaod: null});
+      yield put({type: UPDATE_PASSWORD_SUCCESS, payload: null});
     }
     console.log('UpdatePasswordSagaSaga Saga Response . . . .  .', data);
-    // yield put({type: SHOW_MODAL, paylaod: null});
-    yield put({type: UPDATE_PASSWORD_SUCCESS, paylaod: null});
+    // yield put({type: SHOW_MODAL, payload: null});
+    yield put({type: UPDATE_PASSWORD_SUCCESS, payload: null});
   } catch (error) {
     yield put({type: UPDATE_PASSWORD_FAILURE, error});
   }

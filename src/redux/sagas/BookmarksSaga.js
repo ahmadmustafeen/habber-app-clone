@@ -17,10 +17,10 @@ export function* BookmarksSaga({type, payload}) {
     const {status, data, message} = response;
     console.log('BookmarksSaga Response . . . .  .', response);
     if (status === 200) {
-      yield put({type: FETCH_BOOKMARKS_SUCCESS, paylaod: null});
+      yield put({type: FETCH_BOOKMARKS_SUCCESS, payload: null});
     }
 
-    yield put({type: FETCH_BOOKMARKS_SUCCESS, paylaod: null});
+    yield put({type: FETCH_BOOKMARKS_SUCCESS, payload: null});
   } catch (error) {
     yield put({type: FETCH_BOOKMARKS_FAILURE, error});
   }
