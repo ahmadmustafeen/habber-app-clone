@@ -1,3 +1,4 @@
+import {Alert} from 'react-native';
 import {put, call} from 'redux-saga/effects';
 
 import {API_ENDPOINTS} from '_constants/Network';
@@ -17,8 +18,10 @@ export function* contactUsSaga({type, payload}) {
       data: {data: res, message, status},
     } = response;
     console.log('contactUsSaga  Response . . . .  .', response);
-
-    yield put({type: SUBMIT_CONTACT_US_SUCCESS, paylaod: null});
+    if (status === 200) {
+      Alert.alert('Success', message);
+      yield put({type: SUBMIT_CONTACT_US_SUCCESS, paylaod: null});
+    }
   } catch (error) {
     yield put({type: SUBMIT_CONTACT_US_FAILURE, error});
   }
