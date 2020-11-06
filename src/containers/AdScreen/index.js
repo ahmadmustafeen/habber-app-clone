@@ -1,14 +1,15 @@
 import {useTheme} from '@react-navigation/native';
 import React, {useState} from 'react';
 import {View, TouchableOpacity} from 'react-native';
+import {useDispatch} from 'react-redux';
+import {withoutDataActions} from 'redux/actions';
+import {SKIP_AD} from 'redux/actionTypes';
 import {AppText, BackgroundImage} from '_components/common';
-
-import {Color} from '_constants/Colors';
-import {LANGUAGE_SCREEN} from '_constants/Screens';
 
 const AdScreen = (props) => {
   const {colors} = useTheme();
-  const {navigate} = props.navigation;
+  const dispatch = useDispatch();
+  console.log('AD PROPS', props);
   return (
     <BackgroundImage
       noPadding
@@ -26,7 +27,7 @@ const AdScreen = (props) => {
             borderTopEndRadius: 15,
             justifyContent: 'center',
           }}
-          onPress={() => navigate(LANGUAGE_SCREEN)}>
+          onPress={() => dispatch(withoutDataActions(SKIP_AD))}>
           <AppText center bold>
             SKIP AD
           </AppText>

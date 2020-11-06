@@ -1,11 +1,11 @@
 import React, {useState} from 'react';
 import {View, StyleSheet, Alert} from 'react-native';
-import { useDispatch } from 'react-redux';
+import {useDispatch} from 'react-redux';
 
 import {InputWithLabel, RoundIcon, ModalScreen} from '_components';
 import {BackgroundImage, Button, AppText} from '_components/common';
 import {signUp} from '_assets/data/StaticData';
-import {withDataActions} from '_redux/actions/basicActions';
+import {withDataActions} from '_redux/actions/GenericActions';
 import {SIGN_UP} from '_redux/actionTypes';
 import useModal from '_utils/customHooks/useModal';
 import {validateEmail, validatePassword} from '../../helpers/Validators';
@@ -91,7 +91,7 @@ const SignUp = (props) => {
               validatePassword(password) &&
               validatePassword(password_confirmation)
                 ? onSignUp()
-                : Alert.alert("Please fill the forms")
+                : Alert.alert('Please fill the forms')
             }>
             {signUp.sign_up}
           </Button>

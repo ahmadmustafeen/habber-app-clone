@@ -4,10 +4,14 @@ import {useTheme} from '@react-navigation/native';
 
 import {AppText, Button, BackgroundImage} from '_components/common';
 import {SIGNIN_SCREEN} from '_constants/Screens';
+import {useDispatch} from 'react-redux';
+import {withDataActions} from '_redux/actions';
+import {SWITCH_LANG} from '_redux/actionTypes';
 
 const Language = (props) => {
   const {navigate} = props.navigation;
   const {colors} = useTheme();
+  const dispatch = useDispatch();
   return (
     <BackgroundImage>
       <View key="header" style={styles.imageContainer}>
@@ -24,7 +28,9 @@ const Language = (props) => {
           width="60%"
           background="white"
           color={colors.secondary}
-          onPress={() => navigate(SIGNIN_SCREEN)}>
+          onPress={() =>
+            dispatch(withDataActions({id: 2, name: 'en'}, SWITCH_LANG))
+          }>
           English
         </Button>
         <Button
@@ -32,7 +38,9 @@ const Language = (props) => {
           width="60%"
           background="white"
           color={colors.secondary}
-          onPress={() => navigate(SIGNIN_SCREEN)}>
+          onPress={() =>
+            dispatch(withDataActions({id: 1, name: 'ar'}, SWITCH_LANG))
+          }>
           عربى
         </Button>
       </View>

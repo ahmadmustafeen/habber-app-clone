@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, TouchableOpacity} from 'react-native';
+import {StyleSheet, ActivityIndicator, TouchableOpacity} from 'react-native';
 import {useTheme} from '@react-navigation/native';
 
 import {
@@ -7,7 +7,6 @@ import {
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 import {AppText} from './AppText';
-import {Color} from '../../constants/Colors';
 const Button = (props) => {
   const {
     children,
@@ -22,6 +21,7 @@ const Button = (props) => {
     primary,
     bold,
     borderRadius,
+    loading,
   } = props;
   const {colors} = useTheme();
   return (
@@ -51,6 +51,12 @@ const Button = (props) => {
         }}>
         {children || 'Button'}
       </AppText>
+      <ActivityIndicator
+        animating={loading || false}
+        size="small"
+        color={color || 'white'}
+        style={styles.loadingIndicator}
+      />
     </TouchableOpacity>
   );
 };
@@ -60,6 +66,10 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: 'white',
     fontSize: 25,
+  },
+  loadingIndicator: {
+    position: 'absolute',
+    right: 15,
   },
 });
 export {Button};

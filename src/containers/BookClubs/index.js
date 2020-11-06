@@ -1,17 +1,17 @@
 import React from 'react';
-import {FlatList, View, ScrollView} from 'react-native';
-import {BookCard, TitleBarWithIcon, Header} from '_components';
+import { FlatList, View, ScrollView } from 'react-native';
+import { BookCard, TitleBarWithIcon, Header } from '_components';
 
-import {AppText} from '_components/common';
+import { AppText } from '_components/common';
 
-import {BOOK_DETAILS_SCREEN} from '_constants/Screens';
+import { BOOK_DETAILS_SCREEN } from '_constants/Screens';
 
 const BookClubs = (props) => {
   const {
     route: {
-      params: {label, data_book_club},
+      params: { label, data },
     },
-    navigation: {navigate},
+    navigation: { navigate },
   } = props;
 
   return (
@@ -20,27 +20,27 @@ const BookClubs = (props) => {
       <TitleBarWithIcon label={label} />
 
       <FlatList
-        data={data_book_club}
+        data={data}
         showsVerticalScrollIndicator={false}
         keyExtractor={(item, index) => index.toString() + item}
-        columnWrapperStyle={{justifyContent: 'space-between'}}
+        columnWrapperStyle={{ justifyContent: 'space-between' }}
         numColumns={2}
         renderItem={(book) => (
           <BookCard
             {...book.item}
             {...props}
-            onPress={() => navigate(BOOK_DETAILS_SCREEN, {...book.item})}
+            onPress={() => navigate(BOOK_DETAILS_SCREEN, { ...book.item })}
           />
         )}
         ItemSeparatorComponent={() => (
-          <View style={{marginVertical: 20, borderWidth: 0.5}} />
+          <View style={{ marginVertical: 20, borderWidth: 0.5 }} />
         )}
         ListEmptyComponent={() => (
           <View>
             <AppText>No Book Available</AppText>
           </View>
         )}
-        ListFooterComponent={() => <View style={{paddingBottom: 50}} />}
+        ListFooterComponent={() => <View style={{ paddingBottom: 50 }} />}
       />
     </ScrollView>
   );

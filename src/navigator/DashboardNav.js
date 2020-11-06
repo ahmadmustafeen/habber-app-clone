@@ -1,5 +1,5 @@
 import React from 'react';
-import {createStackNavigator} from '@react-navigation/stack';
+import { createStackNavigator } from '@react-navigation/stack';
 
 import {
   BOOKLIST_SCREEN,
@@ -21,6 +21,7 @@ import {
   BOOKMARKS,
   ADD_TO_CART,
   CHECKOUT,
+  SEARCH,
 } from '../constants/Screens';
 
 import Home from '../containers/Home';
@@ -43,6 +44,7 @@ import MyOrders from '../containers/MyOrders';
 import Bookmarks from '../containers/Bookmarks';
 import AddToCart from '../containers/AddToCart';
 import Checkout from '../containers/Checkout';
+import Search from '../containers/Search';
 
 const Stack = createStackNavigator();
 
@@ -72,6 +74,7 @@ export const DashboardNav = () => {
       <Stack.Screen name={BOOKMARKS} component={Bookmarks} />
       <Stack.Screen name={ADD_TO_CART} component={AddToCart} />
       <Stack.Screen name={CHECKOUT} component={Checkout} />
+      <Stack.Screen name={SEARCH} component={Search} />
     </Stack.Navigator>
   );
 };

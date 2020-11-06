@@ -7,7 +7,7 @@ import {
 } from 'react-native-responsive-screen';
 
 const Screen = (props) => {
-  const {noPadding} = props;
+  const {noPadding, contentPadding} = props;
 
   const getComponent = (key) => {
     const {children} = props;
@@ -33,7 +33,10 @@ const Screen = (props) => {
           <View style={styles.header}>{getComponent('header')}</View>
         ) : null}
         {getComponent('content').length ? (
-          <View style={styles.content}>{getComponent('content')}</View>
+          <View
+            style={[styles.content, contentPadding && {paddingHorizontal: 20}]}>
+            {getComponent('content')}
+          </View>
         ) : null}
         {getComponent('footer').length ? (
           <View style={styles.footer}>{getComponent('footer')}</View>

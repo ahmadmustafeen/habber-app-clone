@@ -9,7 +9,13 @@
     "build": "react-native run-android --variant=release",
     "build debug": "react-native run-android --variant=debug",
     "test": "jest",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "iPhone5s": "react-native run-ios --simulator=\"iPhone 5s\"",
+    "iPhone6s": "react-native run-ios --simulator=\"iphone 6s\"",
+    "iPhone6": "react-native run-ios --simulator=\"iPhone 6\"",
+    "iPhone8": "react-native run-ios --simulator=\"iPhone 8\"",
+    "iPhone8Plus": "react-native run-ios --simulator=\"iPhone 8 Plus\"",
+    "build:ios": "react-native bundle --entry-file='index.js' --bundle-output='./ios/main.jsbundle' --dev=false --platform='ios'"
   },
   "dependencies": {
     "@react-native-community/async-storage": "^1.12.0",

@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import React, {useEffect, useState} from 'react';
+import React, {forwardRef, useEffect, useState} from 'react';
 import {NavigationContainer, DefaultTheme} from '@react-navigation/native';
 
 import {createStackNavigator} from '@react-navigation/stack';
@@ -9,6 +9,7 @@ import Splash from '../containers/Splash';
 import {AuthNav} from './AuthNav';
 import DrawerMenu from '../containers/DrawerMenu';
 import {DashboardNav} from './DashboardNav';
+import {shallowEqual, useSelector} from 'react-redux';
 
 const Drawer = createDrawerNavigator();
 const RootStack = createStackNavigator();
@@ -32,37 +33,38 @@ const DrawerNav = () => {
     <Drawer.Navigator
       initialRouteName="Home"
       drawerContent={(props) => <DrawerMenu {...props} />}
-      drawerBackgroundColor="transparent">
+      statusBarAnimation="fade"
+      drawerStyle={{backgroundColor: 'transparent', width: '90%'}}
+      drawerType="front">
       <Drawer.Screen name="Main" component={DashboardNav} />
     </Drawer.Navigator>
   );
 };
 
-const Navigator = () => {
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    new Promise((resolve) =>
-      setTimeout(() => {
-        resolve();
-      }, 1000),
-    ).then(() => setLoading(false));
-  }, []);
+const Navigator = (props, ref) => {
+  const {splashScreen} = useSelector(({LoadingReducer}) => {
+    return {
+      splashScreen: LoadingReducer.splashScreen,
+    };
+  }, shallowEqual);
 
   return (
-    <NavigationContainer theme={MyTheme}>
-      {loading ? (
+    <NavigationContainer ref={ref} theme={MyTheme}>
+      {splashScreen ? (
         <RootStack.Navigator screenOptions={{headerShown: false}}>
           <RootStack.Screen name="Splash" component={Splash} />
         </RootStack.Navigator>
       ) : (
-        <RootStack.Navigator screenOptions={{headerShown: false}}>
-          <RootStack.Screen name="Drawer" component={DrawerNav} />
+        <RootStack.Navigator
+          screenOptions={{
+            headerShown: false,
+          }}>
           <RootStack.Screen name="Auth" component={AuthNav} />
+          <RootStack.Screen name="Drawer" component={DrawerNav} />
         </RootStack.Navigator>
       )}
     </NavigationContainer>
   );
 };
 
-export default Navigator;
+export default forwardRef(Navigator);
