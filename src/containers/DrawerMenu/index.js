@@ -11,7 +11,30 @@ import {
   MY_ORDERS,
   MY_PROFILE,
 } from '../../constants/Screens';
-
+const DrawerText = (props) => {
+  const {Title, onPress} = props;
+  return (
+    <>
+      <AppText bold white style={styles.navbtn} onPress={onPress}>
+        {Title}
+      </AppText>
+      <View style={styles.Horizontalrow} />
+    </>
+  );
+};
+const DrawerIcon = (props) => {
+  const {name, onPress} = props;
+  return (
+    <>
+      <RoundIcon
+        name={name}
+        type="font-awesome"
+        color="#fff"
+        onPress={onPress}
+      />
+    </>
+  );
+};
 const DrawerMenu = (props) => {
   return (
     <ImageBackground
