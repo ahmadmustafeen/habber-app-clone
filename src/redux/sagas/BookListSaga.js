@@ -12,7 +12,6 @@ import {ABOUT_US} from 'constants/Screens';
 export function* BookListSaga({type, payload}) {
   try {
     console.log('BookList Saga . . . .  .1', payload);
-    NavigationService.navigate(ABOUT_US);
     const response = yield call(() => RestClient.get(API_ENDPOINTS.booksList));
     const {status, data, message} = response;
     console.log('BookList Saga Response . . . .  .', response);

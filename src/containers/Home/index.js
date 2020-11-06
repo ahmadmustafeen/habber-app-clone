@@ -40,9 +40,11 @@ const Home = (props) => {
   const [data_book_club] = useState(booksClub);
   const [bookmark_data] = useState(bookmarkdata);
   const { t } = useTranslation();
-  const { EnglishBooksReducer, BookClubReducer } = useSelector((state) => {
+  const { EnglishBooksReducer, ArabicBooksReducer,BookmarksReducer, BookClubReducer  } = useSelector((state) => {
     return {
       EnglishBooksReducer: state.EnglishBooksReducer,
+      ArabicBooksReducer: state.ArabicBooksReducer,
+      BookmarksReducer: state.BookmarksReducer,
       BookClubReducer: state.BookClubReducer
     };
   }, shallowEqual);
@@ -51,9 +53,9 @@ const Home = (props) => {
     <Screen noPadding>
       <View key="header">
         <Header {...props} />
-        <AppText>{t('hello')}</AppText>
-        <AppText>{t('bye')}</AppText>
-        <Button onPress={() => navigate('Auth', { screen: AD_SCREEN })}>
+        {/* <AppText>{t('hello')}</AppText>
+        <AppText>{t('bye')}</AppText> */}
+        {/* <Button onPress={() => navigate('Auth', { screen: AD_SCREEN })}>
           Auth Navigation
         </Button>
         <Button
@@ -71,7 +73,7 @@ const Home = (props) => {
         <Button
           onPress={() => dispatch(withDataActions('', FETCH_RELATED_BOOKS))}>
           Fetch Related Books
-        </Button>
+        </Button> */}
       </View>
       <View key="content" style={{ paddingStart: 10 }}>
         <DashboardComponent
@@ -86,24 +88,35 @@ const Home = (props) => {
           }
         />
         <DashboardComponent
-          data={EnglishBooksReducer}
+          data={ArabicBooksReducer}
+          label="ARABIC BOOK"
+          renderComponent={(item) => <ThumbnailBook url={item.item.image} />}
+          onIconPress={() =>
+            navigate(BOOKLIST_SCREEN, {
+              label: 'ARABIC BOOK',
+              data: ArabicBooksReducer,
+            })
+          }
+        />
+        <DashboardComponent
+          data={BookClubReducer}
           label="BOOK CLUBS"
           renderComponent={(item) => <ThumbnailClub url={item.item.image} />}
           onIconPress={() =>
             navigate(BOOKLIST_SCREEN, {
               label: 'BOOKS CLUB',
-              data: EnglishBooksReducer
+              data: BookClubReducer
             })
           }
         />
         <DashboardComponent
-          data={EnglishBooksReducer}
+          data={BookmarksReducer}
           renderComponent={(item) => (
             <ThumbnailBookmarks url={item.item.image} />
           )}
           label="BOOKMARKS"
           onIconPress={() =>
-            navigate(BOOKLIST_SCREEN, { label: 'BOOKMARKS', data: EnglishBooksReducer })
+            navigate(BOOKLIST_SCREEN, { label: 'BOOKMARKS', data: BookmarksReducer })
           }
         />
         <TitleBarWithIcon label="REQUEST BOOKS" />

@@ -4,6 +4,7 @@ import {View, StyleSheet, ImageBackground, Image} from 'react-native';
 import {AppText, BackgroundImage, Screen} from '../../components/common';
 import {HorizontalRow, RoundIcon, TitleBarWithIcon} from '../../components';
 import {
+  HOME,
   SETTINGS_SCREEN,
   ABOUT_US,
   CONTACT_US,
@@ -63,7 +64,9 @@ const DrawerMenu = (props) => {
         </View>
       </View>
       <View>
-        <TitleBarWithIcon label="Home" small color="white" noIcon />
+        <TitleBarWithIcon label="Home" small color="white"
+         onPress={() => props.navigation.navigate(HOME)}
+         noIcon />
 
         <View style={styles.Horizontalrow} />
 

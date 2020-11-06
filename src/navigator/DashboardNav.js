@@ -22,6 +22,7 @@ import {
   ADD_TO_CART,
   CHECKOUT,
   SEARCH,
+  HOME,
 } from '../constants/Screens';
 
 import Home from '../containers/Home';
@@ -54,7 +55,7 @@ export const DashboardNav = () => {
       screenOptions={{
         headerShown: false,
       }}>
-      <Stack.Screen name="Home" component={Home} />
+      <Stack.Screen name={HOME} component={Home} />
       <Stack.Screen name={BOOKLIST_SCREEN} component={BooksList} />
       <Stack.Screen name={BOOK_DETAILS_SCREEN} component={BookDetails} />
       <Stack.Screen name={BOOK_DESCRIPTION} component={BookDescription} />

@@ -4,7 +4,7 @@ const initialState = {};
 export default (state = initialState, action) => {
   switch (action.type) {
     case FETCH_BOOKMARKS_SUCCESS: {
-      return;
+      return action.payload;
     }
 
     default:

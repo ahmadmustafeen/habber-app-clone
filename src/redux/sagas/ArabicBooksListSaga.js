@@ -13,9 +13,8 @@ import {
 export function* ArabicBookListSaga({ type, payload }) {
   try {
     console.log('ARABIC_BOOKS Saga . . . .  .1', payload);
-    NavigationService.navigate(ABOUT_US);
     const response = yield call(() =>
-      RestClient.get(API_ENDPOINTS.booksEnglish),
+      RestClient.get(API_ENDPOINTS.booksArabic),
     );
     const { status, data, message } = response;
     console.log('ARABIC_BOOKS Saga Response . . . .  .', response);

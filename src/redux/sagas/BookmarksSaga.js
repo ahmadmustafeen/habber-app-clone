@@ -16,11 +16,12 @@ export function* BookmarksSaga({type, payload}) {
     const response = yield call(() => RestClient.get(API_ENDPOINTS.bookmarks));
     const {status, data, message} = response;
     console.log('BookmarksSaga Response . . . .  .', response);
-    if (status === 200) {
-      yield put({type: FETCH_BOOKMARKS_SUCCESS, payload: null});
+    if (status !== 200) {
+    yield put({type: FETCH_BOOKMARKS_FAILURE, error});
+  }
+    else{
+      yield put({type: FETCH_BOOKMARKS_SUCCESS, payload: data.data});
     }
-
-    yield put({type: FETCH_BOOKMARKS_SUCCESS, payload: null});
   } catch (error) {
     yield put({type: FETCH_BOOKMARKS_FAILURE, error});
   }
