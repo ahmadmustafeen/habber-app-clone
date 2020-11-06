@@ -1,27 +1,28 @@
-import {put, call} from 'redux-saga/effects';
+import { put, call } from 'redux-saga/effects';
 
-import {API_ENDPOINTS} from '_constants/Network';
-import {RestClient} from '_network/RestClient';
+import { API_ENDPOINTS } from '_constants/Network';
+import { RestClient } from '_network/RestClient';
 import * as NavigationService from '../../../NavigationService';
 
-import {ABOUT_US} from 'constants/Screens';
+import { ABOUT_US } from 'constants/Screens';
 import {
   FETCH_BOOKCLUBS_FAILURE,
   FETCH_BOOKCLUBS_SUCCESS,
 } from '_redux/actionTypes';
-export function* BookClubsSaga({type, payload}) {
+export function* BookClubsSaga({ type, payload }) {
   try {
     console.log('BookClubsSaga Saga . . . .  .1', payload);
 
     const response = yield call(() => RestClient.get(API_ENDPOINTS.bookclubs));
-    const {status, data, message} = response;
+    const { status, data, message } = response;
     console.log('BookClubsSaga Response . . . .  .', response);
     if (status === 200) {
-      yield put({type: FETCH_BOOKCLUBS_SUCCESS, payload: null});
+      console.log(response)
+      yield put({ type: FETCH_BOOKCLUBS_SUCCESS, payload: null });
     }
 
-    yield put({type: FETCH_BOOKCLUBS_SUCCESS, payload: null});
+    yield put({ type: FETCH_BOOKCLUBS_SUCCESS, payload: null });
   } catch (error) {
-    yield put({type: FETCH_BOOKCLUBS_FAILURE, error});
+    yield put({ type: FETCH_BOOKCLUBS_FAILURE, error });
   }
 }
