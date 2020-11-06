@@ -2,13 +2,17 @@ import React, { useState } from 'react';
 import { validatePhone, validateEmail } from '_helpers/Validators';
 import { useDispatch } from 'react-redux';
 import { View, TextInput, StyleSheet, Alert } from 'react-native';
-import { InputWithLabel, RadioButton } from '_components';
+import { InputWithLabel, RadioButton, ModalScreen } from '_components';
 import { withDataActions } from '_redux/actions';
 import { Button, AppText } from '_components/common';
+import { JOIN_US } from '_assets/data/StaticData';
 import { JOINUS, REQUESTBOOKS } from '_constants/Screens';
 import { SUBMIT_JOIN_US } from 'redux/actionTypes';
+import useModal from '_utils/customHooks/useModal';
+import { ScrollView } from 'react-native-gesture-handler';
 
 const JoinUs = (props) => {
+  const { visible, toggleModal } = useModal();
   const dispatch = useDispatch();
   const [state, setState] = useState({
     name: '',
@@ -55,13 +59,16 @@ const JoinUs = (props) => {
   const productTypeFunc = (id) => {
     setStateHandler('product_type', id)
   }
-
+  const onContinue = () => {
+    toggleModal()
+    props.navigation.goBack()
+  }
   const onSubmit = () => {
     validate() && dispatch(withDataActions(state, SUBMIT_JOIN_US));
   };
   const { navigate } = props.navigation;
   return (
-    <View style={{ paddingHorizontal: 25, marginTop: 20 }}>
+    <ScrollView style={{ paddingHorizontal: 25, marginTop: 20 }}>
       <View key="header"></View>
       <View key="content" style={styles.content}>
         <InputWithLabel
@@ -106,7 +113,12 @@ const JoinUs = (props) => {
           Submit
         </Button>
       </View>
-    </View >
+      <ModalScreen
+        visible={visible}
+        onContinue={onContinue}
+        {...JOIN_US.modalData}
+      />
+    </ScrollView >
   );
 };
 

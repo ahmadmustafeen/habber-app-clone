@@ -20,3 +20,12 @@ export const signUp = {
     buttonLabel: 'Continue',
   },
 };
+
+
+export const JOIN_US = {
+  modalData: {
+    heading: 'Your Response is Noted',
+    description: 'We will Contact you soon',
+    buttonLabel: 'Continue',
+  },
+};
