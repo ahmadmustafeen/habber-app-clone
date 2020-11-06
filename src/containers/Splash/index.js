@@ -1,14 +1,17 @@
-import React, {useEffect, useState} from 'react';
-import {Image, StyleSheet} from 'react-native';
-import {useDispatch} from 'react-redux';
-import {withoutDataActions} from '_redux/actions';
-import {SPLASH_ACTION} from '_redux/actionTypes';
+import React, { useEffect, useState } from 'react';
+import { Image, StyleSheet } from 'react-native';
+import { useDispatch } from 'react-redux';
+import { withoutDataActions, withDataActions } from '_redux/actions';
+import {
+  SPLASH_ACTION,
+  FETCH_BOOKCLUBS,
+} from '_redux/actionTypes';
 
 const Splash = (props) => {
   console.log('Hello From Habber');
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(withoutDataActions(SPLASH_ACTION));
+    dispatch(withoutDataActions(SPLASH_ACTION))
   }, []);
   return (
     <Image

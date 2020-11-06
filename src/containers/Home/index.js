@@ -26,6 +26,7 @@ import { withDataActions } from '../../redux/actions/GenericActions';
 import {
   FETCH_ARABIC_BOOKS,
   FETCH_BOOK_LISTS,
+  FETCH_BOOKCLUBS,
   FETCH_ENGLISH_BOOKS,
   FETCH_RELATED_BOOKS,
 } from '../../redux/actionTypes';
@@ -39,8 +40,11 @@ const Home = (props) => {
   const [data_book_club] = useState(booksClub);
   const [bookmark_data] = useState(bookmarkdata);
   const { t } = useTranslation();
-  const { EnglishBooksReducer } = useSelector((state) => {
-    return { EnglishBooksReducer: state.EnglishBooksReducer };
+  const { EnglishBooksReducer, BookClubReducer } = useSelector((state) => {
+    return {
+      EnglishBooksReducer: state.EnglishBooksReducer,
+      BookClubReducer: state.BookClubReducer
+    };
   }, shallowEqual);
   const dispatch = useDispatch();
   // console.log('EnglishBooksReducer', EnglishBooksReducer);
@@ -63,6 +67,10 @@ const Home = (props) => {
           Fetch Arabic Books
         </Button>
         <Button
+          onPress={() => dispatch(withDataActions('', FETCH_BOOKCLUBS))}>
+          Fetch BookClubs
+        </Button>
+        <Button
           onPress={() => dispatch(withDataActions('', FETCH_RELATED_BOOKS))}>
           Fetch Related Books
         </Button>
@@ -80,24 +88,24 @@ const Home = (props) => {
           }
         />
         <DashboardComponent
-          data={data_book_club}
+          data={EnglishBooksReducer}
           label="BOOK CLUBS"
           renderComponent={(item) => <ThumbnailClub url={item.item.image} />}
           onIconPress={() =>
             navigate(BOOK_CLUBS, {
               label: 'BOOKS CLUB',
-              data: data_book_club
+              data: EnglishBooksReducer
             })
           }
         />
         <DashboardComponent
-          data={bookmark_data}
+          data={EnglishBooksReducer}
           renderComponent={(item) => (
             <ThumbnailBookmarks url={item.item.image} />
           )}
           label="BOOKMARKS"
           onIconPress={() =>
-            navigate(BOOKMARKS, { label: 'BOOKMARKS', bookmark_data })
+            navigate(BOOKMARKS, { label: 'BOOKMARKS', data: EnglishBooksReducer })
           }
         />
         <TitleBarWithIcon label="REQUEST BOOKS" />

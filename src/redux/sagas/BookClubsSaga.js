@@ -16,12 +16,16 @@ export function* BookClubsSaga({ type, payload }) {
     const response = yield call(() => RestClient.get(API_ENDPOINTS.bookclubs));
     const { status, data, message } = response;
     console.log('BookClubsSaga Response . . . .  .', response);
-    if (status === 200) {
+    if (status !== 200) {
       console.log(response)
       yield put({ type: FETCH_BOOKCLUBS_SUCCESS, payload: null });
     }
+    else {
+      console.log(response)
+      yield put({ type: FETCH_BOOKCLUBS_SUCCESS, payload: data.data });
+    }
 
-    yield put({ type: FETCH_BOOKCLUBS_SUCCESS, payload: null });
+
   } catch (error) {
     yield put({ type: FETCH_BOOKCLUBS_FAILURE, error });
   }
