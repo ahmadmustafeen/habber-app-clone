@@ -24,8 +24,8 @@ export const signUp = {
 
 export const JOIN_US = {
   modalData: {
-    heading: 'Your Response is Noted',
-    description: 'We will Contact you soon',
+    heading: 'Your response is noted!',
+    description: 'We will contact you soon',
     buttonLabel: 'Continue',
   },
 };

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { validatePhone, validateEmail } from '_helpers/Validators';
 import { useDispatch } from 'react-redux';
 import { View, TextInput, StyleSheet, Alert } from 'react-native';
-import { InputWithLabel, RadioButton, ModalScreen } from '_components';
+import { InputWithLabel, RadioButton, ModalScreen, Header} from '../../components';
 import { withDataActions } from '_redux/actions';
 import { Button, AppText } from '_components/common';
 import { JOIN_US } from '_assets/data/StaticData';
@@ -69,7 +69,8 @@ const JoinUs = (props) => {
   const { navigate } = props.navigation;
   return (
     <ScrollView style={{ paddingHorizontal: 25, marginTop: 20 }}>
-      <View key="header"></View>
+      
+      <Header {...props} title={'Contact Us'} />
       <View key="content" style={styles.content}>
         <InputWithLabel
           style={styles.inputfield}

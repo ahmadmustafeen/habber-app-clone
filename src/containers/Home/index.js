@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { ScrollView, View, StyleSheet } from 'react-native';
+import {  View, StyleSheet } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import {
   Counter,
@@ -47,8 +47,6 @@ const Home = (props) => {
     };
   }, shallowEqual);
   const dispatch = useDispatch();
-  // console.log('EnglishBooksReducer', EnglishBooksReducer);
-  // console.log('data', data);
   return (
     <Screen noPadding>
       <View key="header">
@@ -92,7 +90,7 @@ const Home = (props) => {
           label="BOOK CLUBS"
           renderComponent={(item) => <ThumbnailClub url={item.item.image} />}
           onIconPress={() =>
-            navigate(BOOK_CLUBS, {
+            navigate(BOOKLIST_SCREEN, {
               label: 'BOOKS CLUB',
               data: EnglishBooksReducer
             })
@@ -105,7 +103,7 @@ const Home = (props) => {
           )}
           label="BOOKMARKS"
           onIconPress={() =>
-            navigate(BOOKMARKS, { label: 'BOOKMARKS', data: EnglishBooksReducer })
+            navigate(BOOKLIST_SCREEN, { label: 'BOOKMARKS', data: EnglishBooksReducer })
           }
         />
         <TitleBarWithIcon label="REQUEST BOOKS" />

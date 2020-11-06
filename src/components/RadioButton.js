@@ -8,7 +8,7 @@ const RadioButton = (props) => {
 
         <View key={key} style={styles.buttonContainer}  >
             <TouchableOpacity style={business == title ? styles.checkedCircle : styles.circle} onPress={onPress} />
-            <Text style={(business == title ? { color: '#794F98', marginLeft: 10, marginRight: 10 } : { color: 'black', marginLeft: 10, marginRight: 10 })} >{title}</Text>
+            <Text style={(business == title ? { color: '#c27e12', marginLeft: 10, marginRight: 10 } : { color: 'black', marginLeft: 10, marginRight: 10 })} >{title}</Text>
         </View >
     )
 }
@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
         borderColor: '#ACACAC',
         width: 20,
         borderRadius: 10,
-        backgroundColor: '#794F9B',
+        backgroundColor: '#c27e12',
     },
 })
 export { RadioButton }
