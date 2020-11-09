@@ -22,6 +22,6 @@ export const BOOK_CLUBS = 'BookClubs';
 export const SETTINGS_SCREEN = 'Settings';
 export const MY_ORDERS = 'MyOrders';
 export const BOOKMARKS = 'Bookmarks';
-export const ADD_TO_CART = 'AddToCart';
+export const CART_SCREEN = 'AddToCart';
 export const CHECKOUT = 'Checkout';
 export const SEARCH = 'Search';

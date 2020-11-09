@@ -1,21 +1,45 @@
-import React, {useState} from 'react';
-import {View, StyleSheet, Image, ScrollView} from 'react-native';
-import {AppText, Button, Screen} from '../../components/common';
+import React, { useState } from 'react';
+import { View, StyleSheet, Image, ScrollView } from 'react-native';
+import { AppText, Button, Screen } from '../../components/common';
+import { useDispatch } from 'react-redux'
 import {
   Counter,
   BookDetailsCard,
   HorizontalRow,
   Header,
 } from '../../components';
-import {booksData} from '_assets/data/dummydata';
-import {ADD_TO_CART} from '../../constants/Screens';
+import { CART_SCREEN } from '../../constants/Screens';
+import { ADD_TO_CART } from '_redux/actionTypes';
+import { withDataActions } from '_redux/actions/GenericActions';
 
 const BookDetails = (props) => {
   const {
-    route: {params},
-    navigation: {navigate},
+    route: { params },
+    navigation: { navigate },
   } = props;
-  const {title, isbn, total_pages, description, cover_type} = params;
+  const dispatch = useDispatch()
+  const { title, isbn, total_pages, description, cover_type, quantity, price, image, typeOfItem = "book", author_name } = params;
+  const [value, setValue] = useState(0)
+  const add = (prevValue) => {
+    if (prevValue === quantity) {
+      return false
+    }
+    else {
+      setValue(prevValue + 1)
+    }
+  }
+  const subtract = (prevValue) => {
+    if (prevValue === 0) {
+      return false
+    }
+    else {
+      setValue(prevValue - 1)
+    }
+  }
+  const addtocart = () => {
+    dispatch(withDataActions({ isbn, quantity: value, price, description, title, image, author_name, typeOfItem }, ADD_TO_CART));
+    props.navigation.navigate(CART_SCREEN)
+  }
   console.log('BookDetails', params);
   return (
     <Screen noPadding contentPadding>
@@ -40,8 +64,8 @@ const BookDetails = (props) => {
           </AppText>
         </View>
         <HorizontalRow />
-        <View style={{marginTop: 20}}>
-          <AppText bold style={{marginBottom: 10}}>
+        <View style={{ marginTop: 20 }}>
+          <AppText bold style={{ marginBottom: 10 }}>
             Description:
           </AppText>
           <AppText size={14}>{description}</AppText>
@@ -49,16 +73,18 @@ const BookDetails = (props) => {
       </View>
       <View key="footer">
         <View style={styles.counter}>
-          <Counter />
+          {quantity && <Counter onIncrement={() => add(value)} onDecrement={() => subtract(value)} value={value} />}
         </View>
+
         <Button
           bold
           secondary
-          onPress={() => props.navigation.navigate(ADD_TO_CART)}>
-          Add To Cart
+
+          onPress={() => quantity && addtocart()}>
+          {quantity ? "Add to Cart" : "Out of Stock"}
         </Button>
       </View>
-    </Screen>
+    </Screen >
   );
 };
 

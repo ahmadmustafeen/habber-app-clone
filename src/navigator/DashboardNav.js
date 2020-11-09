@@ -18,7 +18,7 @@ import {
   ABOUT_US,
   MY_ORDERS,
   BOOKMARKS,
-  ADD_TO_CART,
+  CART_SCREEN,
   CHECKOUT,
   SEARCH,
   HOME,
@@ -70,7 +70,7 @@ export const DashboardNav = () => {
       <Stack.Screen name={ABOUT_US} component={About} />
       <Stack.Screen name={MY_ORDERS} component={MyOrders} />
       <Stack.Screen name={BOOKMARKS} component={Bookmarks} />
-      <Stack.Screen name={ADD_TO_CART} component={AddToCart} />
+      <Stack.Screen name={CART_SCREEN} component={AddToCart} />
       <Stack.Screen name={CHECKOUT} component={Checkout} />
       <Stack.Screen name={SEARCH} component={Search} />
     </Stack.Navigator>

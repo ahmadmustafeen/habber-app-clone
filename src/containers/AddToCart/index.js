@@ -1,49 +1,71 @@
 import React from 'react';
-import {View, ScrollView, StyleSheet, Image} from 'react-native';
-import {AppText, Button, Screen} from '_components/common';
-import {HorizontalRow, Counter} from '_components';
-import {CHECKOUT} from '_constants/Screens';
-import {Header} from '_components/Header';
+import { View, ScrollView, StyleSheet, Image } from 'react-native';
+import { AppText, Button, Screen } from '_components/common';
+import { HorizontalRow, Counter } from '_components';
+import { CHECKOUT } from '_constants/Screens';
+import { Header } from '_components/Header';
+import { useSelector, shallowEqual } from 'react-redux'
+import CartReducer from 'redux/reducers/CartReducer';
+
+
+
+
 const AddToCart = (props) => {
+
+
+  const { CartReducer } = useSelector((state) => {
+
+    return {
+
+      CartReducer: state.CartReducer,
+    };
+  }, shallowEqual);
+  console.log(CartReducer)
+
+  // const BookSection = (props) => {
+  //   <View style={styles.profiletop}>
+  //   <View style={styles.imgContainer}>
+  //     <Image
+  //       style={styles.image}
+  //       source={require('../../assets/images/background.jpg')}
+  //     />
+  //   </View>
+
+  //   <View style={styles.viewtxt}>
+  //     <AppText bold size={20} style={styles.txt}>
+  //         A Brief History of time
+  //     </AppText>
+  //     <AppText bold size={15} style={styles.txt}>
+  //         by brom
+  //     </AppText>
+  //     <AppText bold size={20} style={styles.pricetxt}>
+  //         Price: 30 KW
+  //     </AppText>
+  //     <View style={{ width: 300, marginVertical: 10 }}>
+  //       <Counter />
+  //     </View>
+  //     <HorizontalRow />
+  //     <AppText bold size={17} primary style={styles.txt}>
+  //         Remove
+  //     </AppText>
+  //   </View>
+  // </View>
+  // <HorizontalRow />
+  // }
   return (
     <ScrollView>
       <Header {...props} title={'Cart'} />
       <Screen>
         <View key="header"></View>
         <View key="content">
-          <View style={styles.profiletop}>
-            <View style={styles.imgContainer}>
-              <Image
-                style={styles.image}
-                source={require('../../assets/images/background.jpg')}
-              />
-            </View>
+          {
+          }
 
-            <View style={styles.viewtxt}>
-              <AppText bold size={20} style={styles.txt}>
-                A Brief History of time
-              </AppText>
-              <AppText bold size={15} style={styles.txt}>
-                by brom
-              </AppText>
-              <AppText bold size={20} style={styles.pricetxt}>
-                Price: 30 KW
-              </AppText>
-              <View style={{width: 300, marginVertical: 10}}>
-                <Counter />
-              </View>
-              <HorizontalRow />
-              <AppText bold size={17} primary style={styles.txt}>
-                Remove
-              </AppText>
-            </View>
-          </View>
-          <HorizontalRow />
           <View style={styles.profiletop}>
             <View style={styles.imgContainer}>
               <Image
                 style={styles.image}
-                source={require('../../assets/images/background.jpg')}
+                source={('http://habber.attribes.com/storage/books/4/book1604572263.png')}
               />
             </View>
 
@@ -57,7 +79,7 @@ const AddToCart = (props) => {
               <AppText bold size={20} style={styles.pricetxt}>
                 Price: 30 KW
               </AppText>
-              <View style={{width: 300, marginVertical: 10}}>
+              <View style={{ width: 300, marginVertical: 10 }}>
                 <Counter />
               </View>
               <HorizontalRow />
@@ -79,7 +101,7 @@ const AddToCart = (props) => {
                 Total
               </AppText>
             </View>
-            <View style={{flexDirection: 'column', justifyContent: 'flex-end'}}>
+            <View style={{ flexDirection: 'column', justifyContent: 'flex-end' }}>
               <AppText bold>$90</AppText>
               <AppText bold>$10</AppText>
               <AppText primary bold>

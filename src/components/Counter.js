@@ -1,22 +1,23 @@
 import React from 'react';
-import {View, StyleSheet, Text} from 'react-native';
-import {useTheme} from '@react-navigation/native';
-import {AppText} from './common';
+import { View, StyleSheet, Text } from 'react-native';
+import { useTheme } from '@react-navigation/native';
+import { AppText } from './common';
 
 const Counter = (props) => {
-  const {colors} = useTheme();
+  const { colors } = useTheme();
+  const { onDecrement, onIncrement, value } = props
   return (
     <View style={styles.counter}>
-      <View style={[styles.operatorBtns, {backgroundColor: colors.secondary}]}>
-        <AppText bold white center>
+      <View style={[styles.operatorBtns, { backgroundColor: colors.secondary }]}>
+        <AppText bold white center onPress={onDecrement}>
           -
         </AppText>
       </View>
       <AppText center bold style={styles.counterValue}>
-        1
+        {value}
       </AppText>
-      <View style={[styles.operatorBtns, {backgroundColor: colors.primary}]}>
-        <AppText center bold white>
+      <View style={[styles.operatorBtns, { backgroundColor: colors.primary }]}>
+        <AppText center bold white onPress={onIncrement}>
           +
         </AppText>
       </View>
@@ -45,4 +46,4 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
 });
-export {Counter};
+export { Counter };
