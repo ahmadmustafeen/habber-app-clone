@@ -4,7 +4,6 @@ import { createStackNavigator } from '@react-navigation/stack';
 import {
   BOOKLIST_SCREEN,
   BOOK_DETAILS_SCREEN,
-  BOOK_DESCRIPTION,
   JOINUS,
   REQUESTBOOKS_SCREEN,
   MY_PROFILE,
@@ -37,7 +36,6 @@ import ChangePassword from '../containers/ChangePassword';
 import EditProfile from '../containers/EditProfile';
 import BookDetails from '../containers/BookDetails';
 import Settings from '../containers/Settings';
-import BookDescription from '../containers/BookDescription';
 import Favorites from '../containers/Favorites';
 import ContactUs from '../containers/ContactUs';
 import BookClubs from '../containers/BookClubs';
@@ -58,7 +56,6 @@ export const DashboardNav = () => {
       <Stack.Screen name={HOME} component={Home} />
       <Stack.Screen name={BOOKLIST_SCREEN} component={BooksList} />
       <Stack.Screen name={BOOK_DETAILS_SCREEN} component={BookDetails} />
-      <Stack.Screen name={BOOK_DESCRIPTION} component={BookDescription} />
       <Stack.Screen name={JOINUS} component={JoinUs} />
       <Stack.Screen name={REQUESTBOOKS_SCREEN} component={RequestBooks} />
       <Stack.Screen name={MY_PROFILE} component={MyProfile} />

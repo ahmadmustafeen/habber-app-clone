@@ -11,8 +11,14 @@ export const validateEmail = (email) => {
 
 export const validatePassword = (password) => password.length >= 6;
 export const validatePhone = (phone) => phone && phone.length > 9;
-
-export const validateWordCount = (value, length) => {
+export const validateIsTrue = (val, text='details') => {
+  if(!val) {
+    Alert.alert(`Please enter ${text}`)
+ return false
+  } 
+return true
+}
+export const validateWordCount = (value, lengßth) => {
   if (value.split(' ').length >= length) return true;
   // Alert.alert(`Minimum ${length} words required`);
   return false;

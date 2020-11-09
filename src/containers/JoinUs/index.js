@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { validatePhone, validateEmail } from '_helpers/Validators';
+import { validatePhone, validateEmail,validateIsTrue } from '_helpers/Validators';
 import { useDispatch } from 'react-redux';
 import { View, TextInput, StyleSheet, Alert } from 'react-native';
 import { InputWithLabel, RadioButton, ModalScreen, Header} from '../../components';
@@ -35,23 +35,15 @@ const JoinUs = (props) => {
       Alert.alert('Invalid Email');
       return false;
     }
+
     if (!validatePhone(state.phone)) {
       Alert.alert('Invalid Phone Number');
       return false;
     }
-    if (!state.details) {
-      Alert.alert('Please Enter Details');
-      return false;
-    }
-    if (!state.business_type) {
-      Alert.alert('Please Select A Business Type');
-      return false;
-    }
-    if (!state.product_type) {
-      Alert.alert('Please Select A Product Type');
-      return false;
-    }
-    return true;
+    validateIsTrue(state.details,"Details");
+    validateIsTrue(state.business_type,"Business Type");
+    validateIsTrue(state.product_type,"Product Type");
+    validateIsTrue(state.details,"Details");
   };
   const businessTypeFunc = (id) => {
     setStateHandler('business_type', id)
@@ -64,6 +56,7 @@ const JoinUs = (props) => {
     props.navigation.goBack()
   }
   const onSubmit = () => {
+    console.log("SADAS")
     validate() && dispatch(withDataActions(state, SUBMIT_JOIN_US));
   };
   const { navigate } = props.navigation;

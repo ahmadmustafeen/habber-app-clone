@@ -12,7 +12,7 @@ import {
 export function* EnglishBookListSaga({ type, payload }) {
   try {
     console.log('ENGBookList Saga . . . .  .1', payload);
-    NavigationService.navigate(ABOUT_US);
+  
     const response = yield call(() =>
       RestClient.get(API_ENDPOINTS.booksEnglish),
     );
