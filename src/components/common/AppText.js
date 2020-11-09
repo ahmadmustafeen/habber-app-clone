@@ -1,8 +1,11 @@
 import React from 'react';
 import {Text, StyleSheet} from 'react-native';
 import {useTheme} from '@react-navigation/native';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
 
-import {Color} from '../../constants/Colors';
 const AppText = (props) => {
   const {colors} = useTheme();
   const {
@@ -45,7 +48,8 @@ const AppText = (props) => {
 };
 const styles = StyleSheet.create({
   TextStyle: {
-    fontSize: 20,
+    // fontSize: 20,
+    fontSize: hp(2.6),
     color: 'black',
     textAlign: 'left',
   },

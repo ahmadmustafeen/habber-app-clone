@@ -14,5 +14,4 @@ export * from './SettingsComponent';
 export * from './HorizontalRow';
 export * from './Counter';
 export * from './Header';
-export * from './HeaderSearch';
 export * from './RadioButton';

@@ -1,56 +1,48 @@
-import React, { useState } from 'react';
+import {Header} from '_components';
+import React, {useState} from 'react';
+import {Icon} from 'react-native-elements';
 
-import { View, StyleSheet, Text } from 'react-native';
-// import { useTranslation } from 'react-i18next';
-import {
-    // Counter,
-    DashboardComponent,
-    // ImageSlider,
-    // ThumbnailBookmarks,
-    // ThumbnailClub,
-    // TitleBarWithIcon,
-    HeaderSearch,
-} from '_components';
-// import {
-//     REQUESTBOOKS_SCREEN,
-//     BOOKLIST_SCREEN,
-//     BOOK_CLUBS,
-//     BOOKMARKS,
-// } from '_constants/Screens';
-// import { sliderImages } from './dummydata';
-// import { ThumbnailBook } from '_components/ThumbnailBook';
-// import { Screen } from '_components/common';
-// import { booksData, booksClub, bookmarkdata } from '_assets/data/dummydata';
-// import { useDispatch } from 'react-redux';
-// import { withDataActions } from '../../redux/actions/GenericActions';
-// import {
-//     FETCH_ARABIC_BOOKS,
-//     FETCH_BOOK_LISTS,
-//     FETCH_ENGLISH_BOOKS,
-//     FETCH_RELATED_BOOKS,
-// } from '../../redux/actionTypes';
+import {View, StyleSheet, Text, TextInput} from 'react-native';
+import {Screen} from '_components/common';
+import {useTheme} from '@react-navigation/native';
 
 const Search = (props) => {
-    const { navigate } = props.navigation;
-    // const [images] = useState(sliderImages);
-    // const [data] = useState(booksData);
-    // const [data_book_club] = useState(booksClub);
-    // const [bookmark_data] = useState(bookmarkdata);
-    // const { t } = useTranslation();
-    // const dispatch = useDispatch();
-    return (
+  const {navigate} = props.navigation;
+  const {colors} = useTheme();
+  return (
+    <Screen noPadding>
+      <View
+        key="header"
+        style={{backgroundColor: colors.secondary, padding: 10}}>
+        <Header {...props} />
         <View>
-            <HeaderSearch />
+          <TextInput style={styles.textInput} placeholder="Search keyword" />
+          <Icon
+            containerStyle={styles.iconStyle}
+            name="search1"
+            type="antdesign"
+          />
         </View>
-    );
+      </View>
+      <View key="content"></View>
+    </Screen>
+  );
 };
 const styles = StyleSheet.create({
-    requestBooksBtns: {
-        flex: 1,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        paddingEnd: 10,
-        paddingBottom: 20,
-    },
+  textInput: {
+    height: 45,
+    paddingVertical: 3,
+    paddingHorizontal: 20,
+    borderRadius: 5,
+    borderWidth: 0.5,
+    color: '#000000',
+    backgroundColor: '#fff',
+  },
+  iconStyle: {
+    height: '100%',
+    position: 'absolute',
+    right: 20,
+    justifyContent: 'center',
+  },
 });
 export default Search;
