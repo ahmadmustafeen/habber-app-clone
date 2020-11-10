@@ -12,16 +12,17 @@ const AuthHeader = (props) => {
     return (
         <View style={styles.container}>
             <View style={styles.icon}>
-                <Icon
+                {!props.noIcon && <Icon
                     onPress={() => props.navigation.goBack()}
                     color="#c27e12"
                     name="leftcircleo"
                     type="antdesign"
-                />
+                />}
             </View>
             <View style={styles.logo}>
                 <Image
-                    source={require('../assets/images/Screenshot_Logo.jpg')}
+                    style={styles.imageAvatar}
+                    source={require('../assets/images/logo.png')}
                 />
             </View>
         </View>
@@ -29,14 +30,14 @@ const AuthHeader = (props) => {
 }
 const styles = StyleSheet.create({
     container: {
-        marginTop: hp(3.6),
+        marginTop: hp(7.6),
         flexDirection: 'row',
-        height: 100
+        height: 50
     },
     icon: {
         width: '15.33%',
         height: '50%',
-        justifyContent: 'center',
+        justifyContent: 'flex-start',
         alignContent: 'center'
     },
     logo: {
@@ -45,8 +46,8 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     imageAvatar: {
-        height: '100%',
-        width: '100%',
+        height: 120,
+        width: 120,
     }
 })
 export { AuthHeader };

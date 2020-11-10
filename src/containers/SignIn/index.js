@@ -1,31 +1,31 @@
-import React, {useState} from 'react';
-import {View, StyleSheet, Alert} from 'react-native';
-import {useTheme} from '@react-navigation/native';
-import {shallowEqual, useDispatch, useSelector} from 'react-redux';
+import React, { useState } from 'react';
+import { View, StyleSheet, Alert } from 'react-native';
+import { useTheme } from '@react-navigation/native';
+import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 
-import {withDataActions} from '_redux/actions/GenericActions';
-import {SIGN_IN} from '_redux/actionTypes';
-import {InputWithLabel, RoundIcon} from '_components';
-import {AppText, BackgroundImage, Button} from '_components/common';
-import {FORGOT_PASSWORD_SCREEN, SIGNUP_SCREEN} from '_constants/Screens';
-import {validateEmail, validatePassword} from '../../helpers/Validators';
+import { withDataActions } from '_redux/actions/GenericActions';
+import { SIGN_IN } from '_redux/actionTypes';
+import { InputWithLabel, RoundIcon, AuthHeader } from '_components';
+import { AppText, BackgroundImage, Button } from '_components/common';
+import { FORGOT_PASSWORD_SCREEN, SIGNUP_SCREEN } from '_constants/Screens';
+import { validateEmail, validatePassword } from '../../helpers/Validators';
 const SignIn = (props) => {
   const dispatch = useDispatch();
-  const {navigate} = props.navigation;
-  const {colors} = useTheme();
+  const { navigate } = props.navigation;
+  const { colors } = useTheme();
 
   const [state, setState] = useState({
     email: '',
     password: '',
   });
 
-  const {email, password} = state;
+  const { email, password } = state;
 
   const handleChange = (key, value) => {
-    setState((state) => ({...state, [key]: value}));
+    setState((state) => ({ ...state, [key]: value }));
   };
 
-  const {loading} = useSelector(({LoadingReducer}) => {
+  const { loading } = useSelector(({ LoadingReducer }) => {
     return {
       loading: LoadingReducer.loading,
     };
@@ -48,10 +48,12 @@ const SignIn = (props) => {
   return (
     <BackgroundImage>
       <View key="header">
+        <AuthHeader {...props} noIcon />
+
         <AppText bold color={colors.primary} heading style={styles.hellotxt}>
           Hello !
         </AppText>
-        <AppText white secondary style={{marginBottom: 10}}>
+        <AppText white secondary style={{ marginBottom: 10 }}>
           Sign in to your account
         </AppText>
       </View>
@@ -76,7 +78,7 @@ const SignIn = (props) => {
           onPress={() => navigate(FORGOT_PASSWORD_SCREEN)}>
           Forgot Password
         </AppText>
-        <View style={{alignItems: 'center'}}>
+        <View style={{ alignItems: 'center' }}>
           <Button
             loading={loading}
             width="70%"
@@ -132,7 +134,7 @@ Login with Social media account`}
           underline
           primary
           size={30}
-          onPress={() => navigate('Drawer', {screen: 'Home'})}>
+          onPress={() => navigate('Drawer', { screen: 'Home' })}>
           Skip
         </AppText>
       </View>

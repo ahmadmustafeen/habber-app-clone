@@ -1,19 +1,19 @@
-import React, {useState} from 'react';
-import {View, StyleSheet, Alert} from 'react-native';
-import {useDispatch} from 'react-redux';
+import React, { useState } from 'react';
+import { View, StyleSheet, Alert } from 'react-native';
+import { useDispatch } from 'react-redux';
 
-import {InputWithLabel, RoundIcon, ModalScreen} from '_components';
-import {BackgroundImage, Button, AppText} from '_components/common';
-import {signUp} from '_assets/data/StaticData';
-import {withDataActions} from '_redux/actions/GenericActions';
-import {SIGN_UP} from '_redux/actionTypes';
+import { InputWithLabel, RoundIcon, ModalScreen, AuthHeader } from '_components';
+import { BackgroundImage, Button, AppText } from '_components/common';
+import { signUp } from '_assets/data/StaticData';
+import { withDataActions } from '_redux/actions/GenericActions';
+import { SIGN_UP } from '_redux/actionTypes';
 import useModal from '_utils/customHooks/useModal';
-import {validateEmail, validatePassword} from '../../helpers/Validators';
+import { validateEmail, validatePassword } from '../../helpers/Validators';
 
 const SignUp = (props) => {
   const dispatch = useDispatch();
-  const {navigate} = props.navigation;
-  const {visible, toggleModal} = useModal();
+  const { navigate } = props.navigation;
+  const { visible, toggleModal } = useModal();
 
   const [state, setState] = useState({
     first_name: '',
@@ -23,10 +23,10 @@ const SignUp = (props) => {
     password_confirmation: '',
   });
 
-  const {first_name, last_name, email, password, password_confirmation} = state;
+  const { first_name, last_name, email, password, password_confirmation } = state;
 
   const handleChange = (key, value) => {
-    setState((state) => ({...state, [key]: value}));
+    setState((state) => ({ ...state, [key]: value }));
   };
 
   const onSignUp = () => {
@@ -35,7 +35,9 @@ const SignUp = (props) => {
 
   return (
     <BackgroundImage>
-      <View key="header"></View>
+      <View key="header">
+        <AuthHeader {...props} />
+      </View>
       <View key="content" style={styles.content}>
         <InputWithLabel
           placeholder="Khaled"
@@ -74,7 +76,7 @@ const SignUp = (props) => {
           value={password_confirmation}
           onChangeText={(value) => handleChange('password_confirmation', value)}
         />
-        <View style={{alignItems: 'center'}}>
+        <View style={{ alignItems: 'center' }}>
           <AppText white secondary size={17}>
             {signUp.agreement}
           </AppText>
@@ -86,10 +88,10 @@ const SignUp = (props) => {
             width="60%"
             onPress={() =>
               first_name &&
-              last_name &&
-              validateEmail(email) &&
-              validatePassword(password) &&
-              validatePassword(password_confirmation)
+                last_name &&
+                validateEmail(email) &&
+                validatePassword(password) &&
+                validatePassword(password_confirmation)
                 ? onSignUp()
                 : Alert.alert('Please fill the forms')
             }>
