@@ -14,10 +14,8 @@ import {
   SETTINGS_SCREEN,
   FAVORITES,
   CONTACT_US,
-  BOOK_CLUBS,
   ABOUT_US,
   MY_ORDERS,
-  BOOKMARKS,
   CART_SCREEN,
   CHECKOUT,
   SEARCH,
@@ -38,9 +36,7 @@ import BookDetails from '../containers/BookDetails';
 import Settings from '../containers/Settings';
 import Favorites from '../containers/Favorites';
 import ContactUs from '../containers/ContactUs';
-import BookClubs from '../containers/BookClubs';
 import MyOrders from '../containers/MyOrders';
-import Bookmarks from '../containers/Bookmarks';
 import AddToCart from '../containers/AddToCart';
 import Checkout from '../containers/Checkout';
 import Search from '../containers/Search';
@@ -66,10 +62,8 @@ export const DashboardNav = () => {
       <Stack.Screen name={SETTINGS_SCREEN} component={Settings} />
       <Stack.Screen name={FAVORITES} component={Favorites} />
       <Stack.Screen name={CONTACT_US} component={ContactUs} />
-      <Stack.Screen name={BOOK_CLUBS} component={BookClubs} />
       <Stack.Screen name={ABOUT_US} component={About} />
       <Stack.Screen name={MY_ORDERS} component={MyOrders} />
-      <Stack.Screen name={BOOKMARKS} component={Bookmarks} />
       <Stack.Screen name={CART_SCREEN} component={AddToCart} />
       <Stack.Screen name={CHECKOUT} component={Checkout} />
       <Stack.Screen name={SEARCH} component={Search} />
