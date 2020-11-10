@@ -1,12 +1,13 @@
 import React from 'react';
-import {StyleSheet, ActivityIndicator, TouchableOpacity} from 'react-native';
-import {useTheme} from '@react-navigation/native';
+import { StyleSheet, ActivityIndicator, TouchableOpacity } from 'react-native';
+import { useTheme } from '@react-navigation/native';
+import { Icon } from 'react-native-elements';
 
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-import {AppText} from './AppText';
+import { AppText } from './AppText';
 const Button = (props) => {
   const {
     children,
@@ -22,8 +23,9 @@ const Button = (props) => {
     bold,
     borderRadius,
     loading,
+    icon
   } = props;
-  const {colors} = useTheme();
+  const { colors } = useTheme();
   return (
     <TouchableOpacity
       style={[
@@ -35,9 +37,9 @@ const Button = (props) => {
           backgroundColor: background || colors.primary,
           marginVertical: 3,
         },
-        borderRadius && {borderRadius: parseInt(borderRadius)},
-        primary && {backgroundColor: colors.primary},
-        secondary && {backgroundColor: colors.secondary},
+        borderRadius && { borderRadius: parseInt(borderRadius) },
+        primary && { backgroundColor: colors.primary },
+        secondary && { backgroundColor: colors.secondary },
         style,
       ]}
       onPress={onPress}>
@@ -46,11 +48,20 @@ const Button = (props) => {
         bold={bold}
         style={{
           textAlign: 'center',
-          color: color || 'white',
+          color: color || 'black',
           fontSize: 20,
         }}>
         {children || 'Button'}
       </AppText>
+
+      {props.icon && <Icon
+        size={15}
+        containerStyle={styles.iconStyle}
+        color="black"
+        name="rightcircleo"
+        type="antdesign"
+      />
+      }
       <ActivityIndicator
         animating={loading || false}
         size="small"
@@ -71,5 +82,11 @@ const styles = StyleSheet.create({
     position: 'absolute',
     right: 15,
   },
+  iconStyle: {
+    height: '60%',
+    position: 'absolute',
+    right: 20,
+    justifyContent: 'center',
+  }
 });
-export {Button};
+export { Button };

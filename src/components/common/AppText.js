@@ -1,13 +1,14 @@
 import React from 'react';
-import {Text, StyleSheet} from 'react-native';
-import {useTheme} from '@react-navigation/native';
+import { Text, View, StyleSheet } from 'react-native';
+import { useTheme } from '@react-navigation/native';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
+import { Icon } from 'react-native-elements';
 
 const AppText = (props) => {
-  const {colors} = useTheme();
+  const { colors } = useTheme();
   const {
     children,
     heading,
@@ -22,28 +23,43 @@ const AppText = (props) => {
     color,
     white,
     small,
+    icon,
+    iconName,
+    iconType
   } = props;
 
   return (
-    <Text
-      {...props}
-      style={[
-        styles.TextStyle,
-        style && style,
-        heading && {fontSize: 30},
-        bold && {fontWeight: 'bold'},
-        color && {color},
-        secondary && {color: colors.secondary},
-        primary && {color: colors.primary},
-        white && {color: colors.white},
-        underline && {textDecorationLine: 'underline'},
-        size && {fontSize: parseInt(size)},
-        center && {textAlign: 'center'},
-        right && {textAlign: 'right'},
-        small && {fontSize: 17},
-      ]}>
-      {children}
-    </Text>
+    <>
+
+      {icon && <Icon
+        size={15}
+        containerStyle={styles.iconStyle}
+        color="black"
+        name={iconName || "rightcircleo"}
+        type={iconType || "antdesign"}
+      />
+      }
+      <Text
+        {...props}
+        style={[
+          styles.TextStyle,
+          style && style,
+          heading && { fontSize: 30 },
+          bold && { fontWeight: 'bold' },
+          color && { color },
+          secondary && { color: colors.secondary },
+          primary && { color: colors.primary },
+          white && { color: colors.white },
+          underline && { textDecorationLine: 'underline' },
+          size && { fontSize: parseInt(size) },
+          center && { textAlign: 'center' },
+          right && { textAlign: 'right' },
+          small && { fontSize: 17 },
+
+        ]}>
+        {children}
+      </Text>
+    </>
   );
 };
 const styles = StyleSheet.create({
@@ -53,5 +69,13 @@ const styles = StyleSheet.create({
     color: 'black',
     textAlign: 'left',
   },
+  iconStyle: {
+    top: -15,
+    height: 20,
+    zIndex: 999,
+    position: 'absolute',
+    right: 70,
+    justifyContent: 'center',
+  }
 });
-export {AppText};
+export { AppText };
