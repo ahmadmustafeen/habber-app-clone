@@ -16,3 +16,4 @@ export * from './Counter';
 export * from './Header';
 export * from './RadioButton';
 export * from './BookListContainer';
+export * from './AuthHeader';
