@@ -16,4 +16,5 @@ export const API_ENDPOINTS = {
   contactus: '/contactus',
   joinus: '/joinus',
   updatepassword: '/users/password',
+  booksSearch: '/books/search',
 };

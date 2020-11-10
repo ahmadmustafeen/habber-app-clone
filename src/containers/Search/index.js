@@ -1,14 +1,32 @@
-import {Header} from '_components';
 import React, {useState} from 'react';
 import {Icon} from 'react-native-elements';
-
-import {View, StyleSheet, Text, TextInput} from 'react-native';
-import {Screen} from '_components/common';
+import {View, StyleSheet, Text, TextInput, FlatList} from 'react-native';
 import {useTheme} from '@react-navigation/native';
+import {shallowEqual, useDispatch, useSelector} from 'react-redux';
+
+import {Screen, AppText} from '_components/common';
+import {withDataActions} from '_redux/actions';
+import {SEARCH_BOOKS} from '_redux/actionTypes';
+import {BookCard, TitleBarWithIcon, Header} from '_components';
+import {BOOK_DETAILS_SCREEN} from 'constants/Screens';
+import {BookListContainer} from 'components';
 
 const Search = (props) => {
   const {navigate} = props.navigation;
   const {colors} = useTheme();
+  const [keyword, setKeyword] = useState('');
+  const dispatch = useDispatch();
+
+  const {SearchBooksReducer} = useSelector(({SearchBooksReducer}) => {
+    return {
+      SearchBooksReducer,
+    };
+  }, shallowEqual);
+
+  onSubmit = () => {
+    dispatch(withDataActions({keyword}, SEARCH_BOOKS));
+  };
+  console.log('SearchBooksReducer', SearchBooksReducer);
   return (
     <Screen noPadding>
       <View
@@ -16,7 +34,12 @@ const Search = (props) => {
         style={{backgroundColor: colors.secondary, padding: 10}}>
         <Header {...props} />
         <View>
-          <TextInput style={styles.textInput} placeholder="Search keyword" />
+          <TextInput
+            style={styles.textInput}
+            placeholder="Search keyword"
+            onChangeText={(val) => setKeyword(val)}
+            onSubmitEditing={onSubmit}
+          />
           <Icon
             containerStyle={styles.iconStyle}
             name="search1"
@@ -24,7 +47,9 @@ const Search = (props) => {
           />
         </View>
       </View>
-      <View key="content"></View>
+      <View key="content">
+        <BookListContainer data={SearchBooksReducer} />
+      </View>
     </Screen>
   );
 };

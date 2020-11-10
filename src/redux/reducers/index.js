@@ -1,4 +1,4 @@
-import { combineReducers } from 'redux';
+import {combineReducers} from 'redux';
 import LoadingReducer from './LoadingReducer';
 import ModalReducer from './ModalReducer';
 import UserProfileReducer from './UserProfileReducer';
@@ -7,6 +7,7 @@ import ArabicBooksReducer from './ArabicBookListReducer';
 import BookmarksReducer from './BookmarksReducer';
 import BookClubReducer from './BookClubReducer';
 import CartReducer from './CartReducer';
+import SearchBooksReducer from './SearchBooksReducer';
 
 export default combineReducers({
   ModalReducer,
@@ -16,6 +17,6 @@ export default combineReducers({
   ArabicBooksReducer,
   BookmarksReducer,
   BookClubReducer,
-  CartReducer
-
+  CartReducer,
+  SearchBooksReducer,
 });
