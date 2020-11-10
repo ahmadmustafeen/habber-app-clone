@@ -4,15 +4,15 @@ import { AppText, Button, Screen } from '_components/common';
 import { HorizontalRow, Counter } from '_components';
 import { CHECKOUT } from '_constants/Screens';
 import { Header } from '_components/Header';
-import { useSelector, shallowEqual } from 'react-redux'
-import CartReducer from 'redux/reducers/CartReducer';
+import { withDataActions } from '_redux/actions/GenericActions';
+import { useSelector, shallowEqual, useDispatch } from 'react-redux'
 
-
+import { ADD_TO_CART } from '_redux/actionTypes';
 
 
 const AddToCart = (props) => {
 
-
+  const dispatch = useDispatch()
   const { CartReducer } = useSelector((state) => {
 
     return {
@@ -20,7 +20,16 @@ const AddToCart = (props) => {
       CartReducer: state.CartReducer,
     };
   }, shallowEqual);
-  console.log(CartReducer)
+  const addCartItem = (book) => {
+    let value = book.quantity + 1
+    const { isbn, price, description, title, image, author_name, typeOfItem } = book
+    dispatch(withDataActions({ isbn, quantity: value, price, description, title, image, author_name, typeOfItem }, ADD_TO_CART))
+  }
+  const subtractCartItem = (book) => {
+    let value = book.quantity - 1
+    const { isbn, price, description, title, image, author_name, typeOfItem } = book
+    dispatch(withDataActions({ isbn, quantity: value, price, description, title, image, author_name, typeOfItem }, ADD_TO_CART))
+  }
 
   // const BookSection = (props) => {
   //   <View style={styles.profiletop}>
@@ -58,36 +67,41 @@ const AddToCart = (props) => {
       <Screen>
         <View key="header"></View>
         <View key="content">
-          {
+          {CartReducer.product.map((book) => {
+            const { image, title, price, author_name, quantity } = book;
+            console.log(image);
+            return (< View style={styles.profiletop} >
+              <View style={styles.imgContainer}>
+                <Image
+                  style={styles.image}
+                  source={{ uri: image }}
+                />
+              </View>
+              <View style={styles.viewtxt}>
+                <AppText bold size={20} style={styles.txt}>
+                  {title}
+                </AppText>
+                <AppText bold size={15} style={styles.txt}>
+                  by {author_name}
+                </AppText>
+                <AppText bold size={20} style={styles.pricetxt}>
+                  Price: {price} KW
+              </AppText>
+                <View style={{ width: 300, marginVertical: 10 }}>
+                  <Counter value={quantity} onIncrement={() => addCartItem(book)} onDecrement={() => subtractCartItem(book)} />
+                </View>
+                <HorizontalRow />
+                <AppText bold size={17} primary style={styles.txt}>
+                  Remove
+              </AppText>
+              </View>
+
+            </View>)
+
+
+          })
           }
 
-          <View style={styles.profiletop}>
-            <View style={styles.imgContainer}>
-              <Image
-                style={styles.image}
-                source={('http://habber.attribes.com/storage/books/4/book1604572263.png')}
-              />
-            </View>
-
-            <View style={styles.viewtxt}>
-              <AppText bold size={20} style={styles.txt}>
-                Lolita
-              </AppText>
-              <AppText bold size={15} style={styles.txt}>
-                by Niel Galman
-              </AppText>
-              <AppText bold size={20} style={styles.pricetxt}>
-                Price: 30 KW
-              </AppText>
-              <View style={{ width: 300, marginVertical: 10 }}>
-                <Counter />
-              </View>
-              <HorizontalRow />
-              <AppText bold size={17} primary style={styles.txt}>
-                Remove
-              </AppText>
-            </View>
-          </View>
           <View style={styles.totalcontainer}>
             <View
               style={{
@@ -120,7 +134,7 @@ const AddToCart = (props) => {
           </Button>
         </View>
       </Screen>
-    </ScrollView>
+    </ScrollView >
   );
 };
 
