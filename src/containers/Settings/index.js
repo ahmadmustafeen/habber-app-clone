@@ -1,25 +1,22 @@
-import React, { useState } from 'react';
-import { View, StyleSheet, Switch, Picker, I18nManager } from 'react-native';
-import { useTranslation } from 'react-i18next';
+import React, {useState} from 'react';
+import {View, StyleSheet, Switch, Picker, I18nManager} from 'react-native';
+import {useTranslation} from 'react-i18next';
 import RNRestart from 'react-native-restart';
 
-import { Screen, Button } from '_components/common';
-import { SettingsComponent, Header } from '_components';
-import { useTheme } from '@react-navigation/native';
-import {
-  JOINUS
-} from
-  '../../constants/Screens'
+import {Screen, Button} from '_components/common';
+import {SettingsComponent, Header} from '_components';
+import {useTheme} from '@react-navigation/native';
+import {JOINUS} from '../../constants/Screens';
 const Settings = (props) => {
-  const { colors } = useTheme();
+  const {colors} = useTheme();
   const [isEnabled, setIsEnabled] = useState(false);
 
-  const { i18n } = useTranslation();
+  const {i18n} = useTranslation();
 
   const toggleSwitch = () => {
     setIsEnabled(!isEnabled);
   };
-  const { navigation } = props
+  const {navigation} = props;
   return (
     <View>
       <Header {...props} title={'Settings'} />
@@ -48,8 +45,8 @@ const Settings = (props) => {
             label="Notifications"
             rightComponent={
               <Switch
-                trackColor={{ false: colors.primary, true: colors.textBlack }}
-                thumbColor={!isEnabled ? colors.warmGray : colors.appColor}
+                trackColor={{false: colors.primary, true: colors.textBlack}}
+                thumbColor={!isEnabled ? colors.secondary : colors.appColor}
                 ios_backgroundColor="#3e3e3e"
                 onValueChange={toggleSwitch}
                 value={isEnabled}
@@ -63,7 +60,6 @@ const Settings = (props) => {
           <SettingsComponent
             onIconPress={() => navigation.navigate(JOINUS)}
             label="Join Us"
-
           />
         </View>
         <View key="footer">

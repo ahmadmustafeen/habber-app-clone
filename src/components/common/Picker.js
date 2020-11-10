@@ -67,7 +67,7 @@ class Picker extends Component {
                 <SimpleLineIcons
                   name="arrow-down"
                   size={20}
-                  color={Color.warmGray}
+                  color={Color.textBlack}
                 />
               </TouchableWithoutFeedback>
             </View>
@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     backgroundColor: 'white',
     height: 45,
-    borderColor: Color.warmGray,
+    borderColor: Color.border,
   },
   textStyle: {
     paddingLeft: 0,

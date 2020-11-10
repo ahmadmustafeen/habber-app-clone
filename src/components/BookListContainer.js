@@ -7,7 +7,7 @@ import {BOOK_DETAILS_SCREEN} from '../constants/Screens';
 import {BookCard} from './BookCard';
 
 const BookListContainer = (props) => {
-  const {data} = props;
+  const {data, navigation} = props;
 
   return (
     <FlatList
@@ -20,7 +20,9 @@ const BookListContainer = (props) => {
         <BookCard
           {...book.item}
           {...props}
-          onPress={() => navigate(BOOK_DETAILS_SCREEN, {...book.item})}
+          onPress={() =>
+            navigation.navigate(BOOK_DETAILS_SCREEN, {...book.item})
+          }
         />
       )}
       ItemSeparatorComponent={() => (

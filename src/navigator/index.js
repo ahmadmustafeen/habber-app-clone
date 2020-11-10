@@ -22,9 +22,10 @@ const MyTheme = {
     primary: '#c27e12',
     secondary: '#010A2A',
     white: 'white',
-    warmGray: '#939393',
+    border: '#939393',
     background: '#e8e8e8',
     textBlack: '#3B3B3B',
+    placeholder: '#939393',
   },
 };
 

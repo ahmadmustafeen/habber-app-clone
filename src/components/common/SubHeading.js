@@ -7,7 +7,7 @@ const SubHeading = ({extraStyling, children, blue, gray}) => {
     <Text
       style={[
         styles.subTitle,
-        {color: blue ? Color.appColor : gray ? Color.warmGray : 'black'},
+        {color: blue ? Color.appColor : 'black'},
         extraStyling && extraStyling,
       ]}>
       {children}

@@ -15,7 +15,7 @@ const BooksList = (props) => {
     <ScrollView>
       <Header {...props} />
       <TitleBarWithIcon label={label} />
-      <BookListContainer data={data} />
+      <BookListContainer data={data} {...props} />
     </ScrollView>
   );
 };
