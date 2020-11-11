@@ -7,7 +7,7 @@ const Counter = (props) => {
   const { colors } = useTheme();
   const { onDecrement, onIncrement, value } = props
   return (
-    <View style={styles.counter}>
+    <View style={[styles.counter, { backgroundColor: colors.borderColor }]}>
       <View style={[styles.operatorBtns, { backgroundColor: colors.secondary }]}>
         <AppText bold white center onPress={onDecrement}>
           -
@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
   counter: {
     flexDirection: 'row',
     justifyContent: 'center',
-    backgroundColor: '#BDBDBD',
+    // backgroundColor: '',
     alignItems: 'center',
     width: '40%',
     borderRadius: 20,

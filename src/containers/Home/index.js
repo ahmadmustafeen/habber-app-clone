@@ -32,7 +32,11 @@ import {
 } from '../../redux/actionTypes';
 import { AD_SCREEN } from '../../constants/Screens';
 import BookClubReducer from 'redux/reducers/BookClubReducer';
-
+import { useTheme } from '@react-navigation/native';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
 const Home = (props) => {
   const { navigate } = props.navigation;
   const [images] = useState(sliderImages);
@@ -48,7 +52,9 @@ const Home = (props) => {
       BookClubReducer: state.BookClubReducer
     };
   }, shallowEqual);
+
   const dispatch = useDispatch();
+  const { colors } = useTheme()
   return (
     <Screen noPadding>
       <View key="header">
@@ -122,22 +128,25 @@ const Home = (props) => {
         />
         <TitleBarWithIcon label="REQUEST BOOKS" />
         <View style={styles.requestBooksBtns}>
-          <View style={{ width: '29%' }}>
+          <View style={{ width: wp(28) }}>
             <Button
+              bold
+              color={colors.white}
               borderRadius={2}
               secondary
-              fontSize={15}
+              fontSize={13}
               onPress={() =>
                 navigate(REQUESTBOOKS_SCREEN, { book_type: 'random' })
               }>
               Request Book
             </Button>
           </View>
-          <View style={{ width: '69%' }}>
+          <View style={{ width: wp(58) }}>
             <Button
+              // bold
               borderRadius={2}
               primary
-              fontSize={15}
+              fontSize={13}
               onPress={() =>
                 navigate(REQUESTBOOKS_SCREEN, { book_type: 'educational' })
               }>

@@ -1,8 +1,8 @@
 import React from 'react';
 import { View, StyleSheet, TextInput, Text } from 'react-native';
 
-const HorizontalRow = () => {
-  return <View style={styles.line} />;
+const HorizontalRow = (props) => {
+  return <View style={[styles.line, props.style]} />;
 };
 
 const styles = StyleSheet.create({

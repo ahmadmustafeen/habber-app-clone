@@ -7,15 +7,13 @@ import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import { Screen, AppText } from '_components/common';
 import { withDataActions } from '_redux/actions';
 import { SEARCH_BOOKS } from '_redux/actionTypes';
-import { BookCard, TitleBarWithIcon, Header } from '_components';
-import { BOOK_DETAILS_SCREEN } from 'constants/Screens';
+import { Header } from '_components';
 import { BookListContainer } from 'components';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 const Search = (props) => {
-  const { navigate } = props.navigation;
   const { colors } = useTheme();
   const [keyword, setKeyword] = useState('');
   const dispatch = useDispatch();
@@ -38,7 +36,7 @@ const Search = (props) => {
         <Header {...props} />
         <View>
           <TextInput
-            style={styles.textInput}
+            style={[styles.textInput, { color: colors.text, backgroundColor: colors.background }]}
             placeholder="Search keyword"
             onChangeText={(val) => setKeyword(val)}
             onSubmitEditing={onSubmit}
@@ -63,8 +61,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     borderRadius: 5,
     borderWidth: 0.5,
-    color: '#000000',
-    backgroundColor: '#fff',
   },
   iconStyle: {
     height: '100%',

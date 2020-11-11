@@ -5,10 +5,11 @@ import { useTheme } from '@react-navigation/native';
 import { AppText } from './common/AppText';
 import { BOOK_DETAILS_SCREEN } from '../constants/Screens';
 import { BookCard } from './BookCard';
+// import { colors } from 'react-native-elements';
 
 const BookListContainer = (props) => {
   const { data, navigation } = props;
-
+  const { colors } = useTheme()
   return (
     <FlatList
       data={data}
@@ -26,7 +27,7 @@ const BookListContainer = (props) => {
         />
       )}
       ItemSeparatorComponent={() => (
-        <View style={{ marginVertical: 20, borderWidth: 0.5, borderColor: 'rgb(200,200,200)' }} />
+        <View style={{ marginVertical: 20, borderWidth: 0.5, borderColor: colors.borderColor }} />
       )}
       ListEmptyComponent={() => (
         <View>

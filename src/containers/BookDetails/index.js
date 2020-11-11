@@ -13,6 +13,7 @@ import { ADD_TO_CART } from '_redux/actionTypes';
 import { withDataActions } from '_redux/actions/GenericActions';
 
 
+import { useTheme } from '@react-navigation/native';
 
 
 
@@ -21,7 +22,7 @@ const BookDetails = (props) => {
     route: { params },
     navigation: { navigate },
   } = props;
-
+  const { colors } = useTheme()
 
   const dispatch = useDispatch()
   const { CartReducer } = useSelector((state) => {
@@ -105,12 +106,13 @@ const BookDetails = (props) => {
 
         <Button
           bold
+          color={colors.white}
           secondary
-          onPress={() => quantity && addtocart()}>
-          {quantity ? "Add to Cart" : "Out of Stock"}
+          onPress={() => value && addtocart()}>
+          {value ? "Add to Cart" : "Out of Stock"}
         </Button>
       </View>
-    </Screen>
+    </Screen >
   );
 };
 

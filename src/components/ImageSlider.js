@@ -1,15 +1,15 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 
-import {SliderBox} from 'react-native-image-slider-box';
+import { SliderBox } from 'react-native-image-slider-box';
 
-import {useTheme} from '@react-navigation/native';
+import { useTheme } from '@react-navigation/native';
 
 import FastImage from 'react-native-fast-image';
 
 const ImageSlider = (props) => {
-  const {images} = props;
+  const { images } = props;
 
-  const {colors} = useTheme();
+  const { colors } = useTheme();
   return (
     <SliderBox
       // resizeMethod={'resize'}
@@ -29,11 +29,11 @@ const ImageSlider = (props) => {
         marginTop: 5,
         marginBottom: 30,
       }}
-      imageLoadingColor="#2196F3"
+      imageLoadingColor={colors.imageLoadingColor}
       dotColor={colors.primary}
       inactiveDotColor="#90A4AE"
       autoplay
     />
   );
 };
-export {ImageSlider};
+export { ImageSlider };

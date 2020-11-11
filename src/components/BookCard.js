@@ -5,10 +5,8 @@ import { useTheme } from '@react-navigation/native';
 import { AppText } from './common/AppText';
 import { FastImage } from './FastImage';
 import { ModalImage } from './ModalImage';
-import { BOOK_DETAILS_SCREEN } from '../constants/Screens';
 import {
   widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 const BookCard = (props) => {
   const { image, author_name, title, price, onPress } = props;
@@ -22,7 +20,7 @@ const BookCard = (props) => {
 
   return (
     <TouchableWithoutFeedback onPress={onPress}>
-      <View style={styles.containerStyle}>
+      <View style={[styles.containerStyle, { borderColor: colors.borderColor }]}>
         <AppText bold style={{ backgroundColor: colors.primary, padding: 10 }}>
           Price : {price}
         </AppText>
@@ -51,7 +49,6 @@ const styles = StyleSheet.create({
   containerStyle: {
     width: wp(40.6),
     borderWidth: 0.5,
-    borderColor: 'rgb(200,200,200)',
     margin: 3,
   },
   imageContainer: {

@@ -26,6 +26,8 @@ const MyTheme = {
     background: 'white',
     textBlack: '#3B3B3B',
     placeholder: '#939393',
+    borderColor: 'rgb(200,200,200)',
+    imageLoadingColor: '#2196F3'
   },
 };
 

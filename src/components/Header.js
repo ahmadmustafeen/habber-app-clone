@@ -1,8 +1,8 @@
 /* eslint-disable prettier/prettier */
 import React, { useState } from 'react';
-import { View, StyleSheet, Image, ImageBackground, Platform } from 'react-native';
+import { View, StyleSheet, Image, Platform } from 'react-native';
 import { Icon } from 'react-native-elements';
-import { AppText } from './common';
+import { AppText, BackgroundImage } from './common';
 import { useTheme } from '@react-navigation/native';
 import { CART_SCREEN, SEARCH } from 'constants/Screens';
 

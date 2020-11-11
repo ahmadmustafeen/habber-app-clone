@@ -8,7 +8,9 @@ import {
   EDIT_PROFILE,
   MY_ADDRESS_BOOK,
 } from '_constants/Screens';
+import { useTheme } from '@react-navigation/native';
 const MyProfile = (props) => {
+  const { colors } = useTheme()
   const { navigate } = props.navigation;
   return (
     <ScrollView>
@@ -17,7 +19,7 @@ const MyProfile = (props) => {
         <View key="header"></View>
         <View key="content">
           <View style={styles.profiletop}>
-            <View style={styles.imgContainer}>
+            <View style={[styles.imgContainer, { borderColor: colors.borderColor }]}>
               <Image
                 style={styles.image}
                 source={require('_assets/images/logo.png')}
@@ -39,13 +41,13 @@ const MyProfile = (props) => {
               iconType="entypo"
               iconName="pencil"
               onPress={() => navigate(EDIT_PROFILE)}
-              style={styles.editbtn}>
+              style={[styles.editbtn, { backgroundColor: colors.primary }]}>
               Edit
           </AppText>
 
 
           </View>
-          <HorizontalRow style={styles.row} />
+          <HorizontalRow style={[styles.row, { backgroundColor: colors.borderColor }]} />
           <View style={styles.btnview}>
             <Button
               icon
@@ -85,18 +87,14 @@ const styles = StyleSheet.create({
   txt: {
     marginLeft: 10,
     marginBottom: 10,
-    // marginTop: 20,
   },
   btnview: {
     marginTop: 30,
   },
   editbtn: {
-    backgroundColor: '#c27e12',
     width: 80,
-    // height: 30,
     paddingVertical: 5,
     textAlign: 'center',
-    // padding: 5,
     position: 'absolute',
     right: 10,
     top: -20,
@@ -105,13 +103,11 @@ const styles = StyleSheet.create({
   profiletop: {
     width: '100%',
     flexDirection: 'row',
-    // justifyContent: 'center',
     marginBottom: 20,
     marginTop: 20,
   },
   row: {
     width: '100%',
-    color: 'rgb(200,200,200)'
   }
 
 });

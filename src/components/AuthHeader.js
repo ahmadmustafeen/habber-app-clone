@@ -1,20 +1,20 @@
 import React from 'react'
-import { from } from 'rxjs'
 import { View, Text, StyleSheet, Image } from 'react-native'
 import { Icon } from 'react-native-elements'; import {
     widthPercentageToDP as wp,
     heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-
+import { useTheme } from '@react-navigation/native';
 
 
 const AuthHeader = (props) => {
+    const { colors } = useTheme()
     return (
         <View style={styles.container}>
             <View style={styles.icon}>
                 {!props.noIcon && <Icon
                     onPress={() => props.navigation.goBack()}
-                    color="#c27e12"
+                    color={colors.primary}
                     name="leftcircleo"
                     type="antdesign"
                 />}
