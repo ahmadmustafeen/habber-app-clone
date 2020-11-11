@@ -75,7 +75,7 @@ const Home = (props) => {
           Fetch Related Books
         </Button> */}
       </View>
-      <View key="content" style={{ paddingStart: 10 }}>
+      <View key="content" style={styles.container}>
 
         <DashboardComponent
           data={ArabicBooksReducer}
@@ -89,7 +89,7 @@ const Home = (props) => {
           }
         />
         <DashboardComponent
-          data={EnglishBooksReducer}
+          data={BookmarksReducer}
           label="ENGLISH BOOK"
           renderComponent={(item) => <ThumbnailBook url={item.item.image} />}
           onIconPress={() =>
@@ -150,6 +150,11 @@ const Home = (props) => {
   );
 };
 const styles = StyleSheet.create({
+  container: {
+    paddingStart: 10,
+    marginLeft: 10,
+    width: '95%'
+  },
   requestBooksBtns: {
     flex: 1,
     flexDirection: 'row',

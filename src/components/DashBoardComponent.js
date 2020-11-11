@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   flatlist: {
-    marginLeft: 7,
+    marginLeft: 9,
   }
 });
 export { DashboardComponent };
