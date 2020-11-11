@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, StyleSheet, Image, ScrollView } from 'react-native';
 import { AppText, Button, Screen } from '../../components/common';
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector, shallowEqual } from 'react-redux'
 import {
   Counter,
   BookDetailsCard,
@@ -12,14 +12,38 @@ import { CART_SCREEN } from '../../constants/Screens';
 import { ADD_TO_CART } from '_redux/actionTypes';
 import { withDataActions } from '_redux/actions/GenericActions';
 
+
+
+
+
 const BookDetails = (props) => {
   const {
     route: { params },
     navigation: { navigate },
   } = props;
+
+
   const dispatch = useDispatch()
-  const { title, isbn, total_pages, description, cover_type, quantity, price, image, typeOfItem = "book", author_name } = params;
+  const { CartReducer } = useSelector((state) => {
+    return {
+      CartReducer: state.CartReducer,
+    };
+  }, shallowEqual);
+
+
+  useEffect(() => {
+    checkExistance()
+  }, [])
+
   const [value, setValue] = useState(0)
+
+  const { title, isbn, total_pages, description, cover_type, quantity, price, image, typeOfItem = "book", author_name } = params;
+  const checkExistance = () => {
+    CartReducer.product.map((book) => {
+      (book.isbn === isbn) && (setValue(book.quantity))
+    })
+  }
+
   const add = (prevValue) => {
     if (prevValue === quantity) {
       return false
@@ -42,7 +66,7 @@ const BookDetails = (props) => {
   }
   console.log('BookDetails', params);
   return (
-    <Screen noPadding contentPadding>
+    < Screen noPadding contentPadding >
       <View key="header">
         <Header {...props} title={title} />
       </View>
@@ -79,12 +103,11 @@ const BookDetails = (props) => {
         <Button
           bold
           secondary
-
           onPress={() => quantity && addtocart()}>
           {quantity ? "Add to Cart" : "Out of Stock"}
         </Button>
       </View>
-    </Screen >
+    </Screen>
   );
 };
 
