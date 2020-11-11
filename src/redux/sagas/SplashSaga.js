@@ -11,35 +11,35 @@ import {
   FETCH_ARABIC_BOOKS,
   FETCH_BOOKCLUBS,
   FETCH_ENGLISH_BOOKS,
-  FETCH_BOOKMARKS
+  FETCH_BOOKMARKS,
+  SKIP_AD,
 } from '_redux/actionTypes';
+import {HOME} from 'constants/Screens';
 
 export function* splashSaga({type}) {
   try {
-    let backUser = yield getItem('@backUser');
     const response = yield call(() => RestClient.get(API_ENDPOINTS.ads));
-    yield put({type: FETCH_ENGLISH_BOOKS});
-    yield put({type: FETCH_ARABIC_BOOKS});
-    yield put({type: FETCH_BOOKCLUBS});
-    yield put({type: FETCH_BOOKMARKS});
+    // yield put({type: FETCH_ENGLISH_BOOKS});
+    // yield put({type: FETCH_ARABIC_BOOKS});
+    // yield put({type: FETCH_BOOKCLUBS});
+    // yield put({type: FETCH_BOOKMARKS});
     const {
       status,
       data: {data: res, message},
     } = response;
 
-    if (res.length) {
+    if (!res.length) {
+      yield put({type: SKIP_AD});
+      yield put({type: FETCH_AD_FAILURE});
+    } else {
       yield put({type: FETCH_AD_SUCCESS});
       NavigationService.navigate('Auth', {
         screen: AD_SCREEN,
         params: {res},
       });
-    } else {
-      yield put({type: FETCH_AD_FAILURE});
-      NavigationService.navigate('Auth', {
-        screen: backUser ? SIGNIN_SCREEN : LANGUAGE_SCREEN,
-      });
     }
   } catch (error) {
-    Alert.alert('Error');
+    console.log(error);
+    Alert.alert('Error', error);
   }
 }

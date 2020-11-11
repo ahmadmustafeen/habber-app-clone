@@ -8,7 +8,7 @@ export default (state = initialState, action) => {
     //   return {...state, language: action.payload};
     // }
     case SIGN_IN_SUCCESS: {
-      return {...state, ...action.payload};
+      return {...action.payload};
     }
     default:
       return state;

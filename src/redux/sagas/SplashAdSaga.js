@@ -1,16 +1,27 @@
 import {Alert} from 'react-native';
-import {put, delay} from 'redux-saga/effects';
 
 import * as NavigationService from '../../../NavigationService';
-import {SIGNIN_SCREEN, LANGUAGE_SCREEN} from '_constants/Screens';
+import {SIGNIN_SCREEN, LANGUAGE_SCREEN, HOME} from '_constants/Screens';
 import {getItem} from 'helpers/Localstorage';
 
-export function* splashAdSaga({type}) {
+export function* splashAdSaga() {
   try {
-    let backUser = yield getItem('@backUser');
-    NavigationService.navigate('Auth', {
-      screen: backUser ? SIGNIN_SCREEN : LANGUAGE_SCREEN,
-    });
+    const backUser = yield getItem('@backUser');
+    const userProfile = yield getItem('@userProfile');
+    // if (userProfile) {
+    //   return NavigationService.navigate('Drawer', {
+    //     screen: HOME,
+    //   });
+    // } else
+    if (backUser) {
+      return NavigationService.navigate('Auth', {
+        screen: SIGNIN_SCREEN,
+      });
+    } else {
+      return NavigationService.navigate('Auth', {
+        screen: LANGUAGE_SCREEN,
+      });
+    }
   } catch (error) {
     Alert.alert('Error');
   }

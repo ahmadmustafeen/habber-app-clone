@@ -23,7 +23,6 @@ export const AuthNav = () => {
       screenOptions={{
         headerShown: false,
       }}>
-      <AuthScreen.Screen name={AD_SCREEN} component={AdScreen} />
       <AuthScreen.Screen name={LANGUAGE_SCREEN} component={Language} />
       <AuthScreen.Screen name={SIGNIN_SCREEN} component={SignIn} />
       <AuthScreen.Screen name={SIGNUP_SCREEN} component={SignUp} />

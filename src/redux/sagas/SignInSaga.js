@@ -1,26 +1,32 @@
+import {HOME} from 'constants/Screens';
+import {getItem, setItem} from 'helpers/Localstorage';
 import {Alert} from 'react-native';
-import {put, call} from 'redux-saga/effects';
+import {put, call, all} from 'redux-saga/effects';
 
 import {API_ENDPOINTS} from '_constants/Network';
 import {RestClient} from '_network/RestClient';
-import {SIGN_IN_FAILURE, SIGN_IN_SUCCESS} from '_redux/actionTypes';
-
-export function* signinSaga({type, payload}) {
+import {SIGN_IN_FAILURE, SIGN_IN_SUCCESS, HIDE_MODAL} from '_redux/actionTypes';
+import * as NavigationService from '../../../NavigationService';
+export function* signinSaga({payload}) {
   try {
-    console.log('SIgnIp Saga . . . .  .1', payload);
+    const {email, password} = payload;
     const response = yield call(() =>
-      RestClient.post(API_ENDPOINTS.signin, payload),
+      RestClient.post(API_ENDPOINTS.signin, {email, password}),
     );
     const {
       status,
-      data: {data: res, message, status: login_status},
+      data: {data: res, message, success},
     } = response;
-    console.log('SIgnIp Saga Response . . . .  .', response);
-
-    if (login_status) {
+    if (success) {
+      yield setItem('@userProfile', JSON.stringify(res));
       RestClient.setHeader('Authorization', `Bearer ${res.token}`);
-      Alert.alert('Login Successful', message);
-      yield put({type: SIGN_IN_SUCCESS, paylaod: res});
+      yield all([
+        put({type: SIGN_IN_SUCCESS, payload: res}),
+        put({type: HIDE_MODAL}),
+      ]);
+      NavigationService.navigate('Drawer', {
+        screen: HOME,
+      });
     } else {
       Alert.alert('Login Failed', message);
       yield put({type: SIGN_IN_FAILURE, payload: null});

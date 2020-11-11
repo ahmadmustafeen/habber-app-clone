@@ -8,6 +8,7 @@ import BookmarksReducer from './BookmarksReducer';
 import BookClubReducer from './BookClubReducer';
 import CartReducer from './CartReducer';
 import SearchBooksReducer from './SearchBooksReducer';
+import SplashReducer from './SplashReducer';
 
 export default combineReducers({
   ModalReducer,
@@ -19,4 +20,5 @@ export default combineReducers({
   BookClubReducer,
   CartReducer,
   SearchBooksReducer,
+  SplashReducer,
 });

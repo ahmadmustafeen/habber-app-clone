@@ -1,24 +1,30 @@
+import {Alert} from 'react-native';
 import {put, call} from 'redux-saga/effects';
 
+import {getItem} from '_helpers/Localstorage';
 import {API_ENDPOINTS} from '_constants/Network';
 import {RestClient} from '_network/RestClient';
 import {SHOW_MODAL, SIGN_UP_FAILURE, SIGN_UP_SUCCESS} from '_redux/actionTypes';
 
-export function* signupSaga({type, payload}) {
+export function* signupSaga({payload}) {
   try {
     console.log('SIgnUp Saga . . . .  .1', payload);
     let userProfile = yield getItem('@userProfile');
     userProfile = JSON.parse(userProfile);
     const response = yield call(() =>
-      RestClient.post(API_ENDPOINTS.signup, payload),
+      RestClient.post(API_ENDPOINTS.signup, {
+        ...payload,
+        language_id: userProfile.language.id,
+      }),
     );
-    const {status, data, message} = response;
+    const {status, data} = response;
     if (status === 200) {
-      yield put({type: SIGN_UP_SUCCESS, payload: null});
+      yield put({type: SIGN_UP_SUCCESS});
+      yield put({type: SHOW_MODAL});
+    } else {
+      Alert.alert('Registration Failed', data.message);
+      yield put({type: SIGN_UP_FAILURE});
     }
-    console.log('SIgnUp Saga . . . .  .', data);
-    yield put({type: SHOW_MODAL, payload: null});
-    yield put({type: SIGN_UP_FAILURE, payload: null});
   } catch (error) {
     yield put({type: SIGN_UP_FAILURE, error});
   }

@@ -1,22 +1,22 @@
-import React, { useState } from 'react';
-import { View, StyleSheet, Alert } from 'react-native';
-import { useDispatch } from 'react-redux';
+import React, {useState} from 'react';
+import {View, StyleSheet, Alert} from 'react-native';
+import {useDispatch} from 'react-redux';
 
-import { InputWithLabel, RoundIcon, ModalScreen, AuthHeader } from '_components';
-import { BackgroundImage, Button, AppText } from '_components/common';
-import { signUp } from '_assets/data/StaticData';
-import { withDataActions } from '_redux/actions/GenericActions';
-import { SIGN_UP } from '_redux/actionTypes';
+import {InputWithLabel, RoundIcon, ModalScreen} from '_components';
+import {BackgroundImage, Button, AppText} from '_components/common';
+import {signUp} from '_assets/data/StaticData';
+import {withDataActions} from '_redux/actions/GenericActions';
+import {SIGN_UP, SIGN_IN} from '_redux/actionTypes';
 import useModal from '_utils/customHooks/useModal';
-import { validateEmail, validatePassword } from '../../helpers/Validators';
+import {validateEmail, validatePassword} from '../../helpers/Validators';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 const SignUp = (props) => {
   const dispatch = useDispatch();
-  const { navigate } = props.navigation;
-  const { visible, toggleModal } = useModal();
+  const {navigate} = props.navigation;
+  const {visible} = useModal();
 
   const [state, setState] = useState({
     first_name: '',
@@ -26,21 +26,28 @@ const SignUp = (props) => {
     password_confirmation: '',
   });
 
-  const { first_name, last_name, email, password, password_confirmation } = state;
+  const {first_name, last_name, email, password, password_confirmation} = state;
 
   const handleChange = (key, value) => {
-    setState((state) => ({ ...state, [key]: value }));
+    setState((state) => ({...state, [key]: value}));
   };
-
+  const validate = () => {
+    // first_name &&
+    // last_name &&
+    // validateEmail(email) &&
+    // validatePassword(password) &&
+    // validatePassword(password_confirmation)
+    return true;
+  };
   const onSignUp = () => {
-    dispatch(withDataActions(state, SIGN_UP));
+    validate() && dispatch(withDataActions(state, SIGN_UP));
   };
-
+  const onContinueModal = () => {
+    dispatch(withDataActions(state, SIGN_IN));
+  };
   return (
     <BackgroundImage>
-      <View key="header">
-        <AuthHeader {...props} />
-      </View>
+      <View key="header"></View>
       <View key="content" style={styles.content}>
         <InputWithLabel
           placeholder="Khaled"
@@ -79,25 +86,14 @@ const SignUp = (props) => {
           value={password_confirmation}
           onChangeText={(value) => handleChange('password_confirmation', value)}
         />
-        <View style={{ alignItems: 'center' }}>
+        <View style={{alignItems: 'center'}}>
           <AppText white secondary size={17}>
             {signUp.agreement}
           </AppText>
           <AppText underline style={styles.termsandservices} size={17}>
             {signUp.TermsAndPolicies}
           </AppText>
-          <Button
-            round
-            width="60%"
-            onPress={() =>
-              first_name &&
-                last_name &&
-                validateEmail(email) &&
-                validatePassword(password) &&
-                validatePassword(password_confirmation)
-                ? onSignUp()
-                : Alert.alert('Please fill the forms')
-            }>
+          <Button round width="60%" onPress={onSignUp}>
             {signUp.sign_up}
           </Button>
         </View>
@@ -126,7 +122,7 @@ const SignUp = (props) => {
         </View> */}
         <ModalScreen
           visible={visible}
-          onContinue={toggleModal}
+          onContinue={onContinueModal}
           {...signUp.modalData}
         />
       </View>

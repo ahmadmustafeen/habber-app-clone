@@ -16,4 +16,5 @@ export * from './Counter';
 export * from './Header';
 export * from './RadioButton';
 export * from './BookListContainer';
+export * from './FilterModal';
 export * from './AuthHeader';

@@ -1,15 +1,17 @@
 /* eslint-disable prettier/prettier */
-import React, { forwardRef, useEffect, useState } from 'react';
-import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
+import React, {forwardRef, useEffect, useState} from 'react';
+import {NavigationContainer, DefaultTheme} from '@react-navigation/native';
 
-import { createStackNavigator } from '@react-navigation/stack';
-import { createDrawerNavigator } from '@react-navigation/drawer';
+import {createStackNavigator} from '@react-navigation/stack';
+import {createDrawerNavigator} from '@react-navigation/drawer';
 
 import Splash from '../containers/Splash';
-import { AuthNav } from './AuthNav';
+import {AuthNav} from './AuthNav';
 import DrawerMenu from '../containers/DrawerMenu';
-import { DashboardNav } from './DashboardNav';
-import { shallowEqual, useSelector } from 'react-redux';
+import {DashboardNav} from './DashboardNav';
+import {shallowEqual, useSelector} from 'react-redux';
+import {AD_SCREEN} from 'constants/Screens';
+import AdScreen from 'containers/AdScreen';
 
 const Drawer = createDrawerNavigator();
 const RootStack = createStackNavigator();
@@ -27,7 +29,7 @@ const MyTheme = {
     textBlack: '#3B3B3B',
     placeholder: '#939393',
     borderColor: 'rgb(200,200,200)',
-    imageLoadingColor: '#2196F3'
+    imageLoadingColor: '#2196F3',
   },
 };
 
@@ -37,7 +39,7 @@ const DrawerNav = () => {
       initialRouteName="Home"
       drawerContent={(props) => <DrawerMenu {...props} />}
       statusBarAnimation="fade"
-      drawerStyle={{ backgroundColor: 'transparent', width: '90%' }}
+      drawerStyle={{backgroundColor: 'transparent', width: '90%'}}
       drawerType="front">
       <Drawer.Screen name="Main" component={DashboardNav} />
     </Drawer.Navigator>
@@ -45,27 +47,34 @@ const DrawerNav = () => {
 };
 
 const Navigator = (props, ref) => {
-  const { splashScreen } = useSelector(({ LoadingReducer }) => {
+  const {splashScreen, ad} = useSelector(({SplashReducer}) => {
     return {
-      splashScreen: LoadingReducer.splashScreen,
+      splashScreen: SplashReducer.splashScreen,
+      ad: SplashReducer.ad,
     };
   }, shallowEqual);
-
   return (
     <NavigationContainer ref={ref} theme={MyTheme}>
       {splashScreen ? (
-        <RootStack.Navigator screenOptions={{ headerShown: false }}>
+        <RootStack.Navigator screenOptions={{headerShown: false}}>
           <RootStack.Screen name="Splash" component={Splash} />
         </RootStack.Navigator>
+      ) : ad ? (
+        <RootStack.Navigator
+          screenOptions={{
+            headerShown: false,
+          }}>
+          <RootStack.Screen name={AD_SCREEN} component={AdScreen} />
+        </RootStack.Navigator>
       ) : (
-          <RootStack.Navigator
-            screenOptions={{
-              headerShown: false,
-            }}>
-            <RootStack.Screen name="Auth" component={AuthNav} />
-            <RootStack.Screen name="Drawer" component={DrawerNav} />
-          </RootStack.Navigator>
-        )}
+        <RootStack.Navigator
+          screenOptions={{
+            headerShown: false,
+          }}>
+          <RootStack.Screen name="Auth" component={AuthNav} />
+          <RootStack.Screen name="Drawer" component={DrawerNav} />
+        </RootStack.Navigator>
+      )}
     </NavigationContainer>
   );
 };
