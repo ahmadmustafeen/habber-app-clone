@@ -1,16 +1,17 @@
 import React from 'react';
-import {View, FlatList, StyleSheet, ScrollView} from 'react-native';
-import {AppText} from './common';
+import { View, FlatList, StyleSheet, ScrollView } from 'react-native';
+import { AppText } from './common';
 
-import {TitleBarWithIcon} from './TitleBarWithIcon';
+import { TitleBarWithIcon } from './TitleBarWithIcon';
 
 const DashboardComponent = (props) => {
-  const {viewStyle, data, renderComponent} = props;
+  const { viewStyle, data, renderComponent } = props;
 
   return (
     <View style={[styles.containerStyle, viewStyle]}>
       <TitleBarWithIcon {...props} />
       <FlatList
+        style={styles.flatlist}
         showsHorizontalScrollIndicator={false}
         horizontal
         data={data}
@@ -21,7 +22,7 @@ const DashboardComponent = (props) => {
             <AppText>No Book Available</AppText>
           </View>
         )}
-        ListFooterComponent={() => <View style={{paddingBottom: 50}} />}
+        ListFooterComponent={() => <View style={{ paddingBottom: 50 }} />}
       />
     </View>
   );
@@ -32,5 +33,8 @@ const styles = StyleSheet.create({
     paddingBottom: 10,
     width: '100%',
   },
+  flatlist: {
+    marginLeft: 7,
+  }
 });
-export {DashboardComponent};
+export { DashboardComponent };

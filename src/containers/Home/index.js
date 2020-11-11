@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import {  View, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import {
   Counter,
@@ -40,7 +40,7 @@ const Home = (props) => {
   const [data_book_club] = useState(booksClub);
   const [bookmark_data] = useState(bookmarkdata);
   const { t } = useTranslation();
-  const { EnglishBooksReducer, ArabicBooksReducer,BookmarksReducer, BookClubReducer  } = useSelector((state) => {
+  const { EnglishBooksReducer, ArabicBooksReducer, BookmarksReducer, BookClubReducer } = useSelector((state) => {
     return {
       EnglishBooksReducer: state.EnglishBooksReducer,
       ArabicBooksReducer: state.ArabicBooksReducer,
@@ -76,17 +76,7 @@ const Home = (props) => {
         </Button> */}
       </View>
       <View key="content" style={{ paddingStart: 10 }}>
-        <DashboardComponent
-          data={EnglishBooksReducer}
-          label="ENGLISH BOOK"
-          renderComponent={(item) => <ThumbnailBook url={item.item.image} />}
-          onIconPress={() =>
-            navigate(BOOKLIST_SCREEN, {
-              label: 'ENGLISH BOOK',
-              data: EnglishBooksReducer,
-            })
-          }
-        />
+
         <DashboardComponent
           data={ArabicBooksReducer}
           label="ARABIC BOOK"
@@ -95,6 +85,17 @@ const Home = (props) => {
             navigate(BOOKLIST_SCREEN, {
               label: 'ARABIC BOOK',
               data: ArabicBooksReducer,
+            })
+          }
+        />
+        <DashboardComponent
+          data={EnglishBooksReducer}
+          label="ENGLISH BOOK"
+          renderComponent={(item) => <ThumbnailBook url={item.item.image} />}
+          onIconPress={() =>
+            navigate(BOOKLIST_SCREEN, {
+              label: 'ENGLISH BOOK',
+              data: EnglishBooksReducer,
             })
           }
         />

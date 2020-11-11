@@ -1,12 +1,12 @@
 import React from 'react';
-import {View, StyleSheet} from 'react-native';
+import { View, StyleSheet } from 'react-native';
 
-import {FastImage} from './FastImage';
+import { FastImage } from './FastImage';
 
 export const ThumbnailBookmarks = (props) => {
   return (
     <View style={styles.containerStyle}>
-      <FastImage source={{uri: props.url}} />
+      <FastImage source={{ uri: props.url }} />
     </View>
   );
 };
@@ -16,6 +16,7 @@ const styles = StyleSheet.create({
     height: 230,
     borderWidth: 1,
     marginHorizontal: 3,
+    // marginLeft: 20,
     borderRadius: 10,
     overflow: 'hidden',
   },
