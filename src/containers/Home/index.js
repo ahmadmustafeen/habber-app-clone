@@ -20,6 +20,7 @@ import {
 import { sliderImages } from './dummydata';
 import { ThumbnailBook } from '_components/ThumbnailBook';
 import { AppText, Button, Screen } from '_components/common';
+import { FlatListSlider } from '_components';
 import { booksData, booksClub, bookmarkdata } from '_assets/data/dummydata';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import { withDataActions } from '../../redux/actions/GenericActions';
@@ -55,6 +56,7 @@ const Home = (props) => {
 
   const dispatch = useDispatch();
   const { colors } = useTheme()
+
   return (
     <Screen noPadding>
       <View key="header">
@@ -81,8 +83,11 @@ const Home = (props) => {
           Fetch Related Books
         </Button> */}
       </View>
-      <View key="content" style={styles.container}>
 
+      <View key="content" style={styles.container}>
+        <View style={{ width: '100%', height: 200 }}>
+          <FlatListSlider />
+        </View>
         <DashboardComponent
           data={ArabicBooksReducer}
           label="ARABIC BOOK"
