@@ -6,7 +6,10 @@ import { AppText } from './common/AppText';
 import { FastImage } from './FastImage';
 import { ModalImage } from './ModalImage';
 import { BOOK_DETAILS_SCREEN } from '../constants/Screens';
-
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
 const BookCard = (props) => {
   const { image, author_name, title, price, onPress } = props;
   const { colors } = useTheme();
@@ -46,14 +49,14 @@ const BookCard = (props) => {
 
 const styles = StyleSheet.create({
   containerStyle: {
-    width: '45%',
+    width: wp(40.6),
     borderWidth: 0.5,
     borderColor: 'rgb(200,200,200)',
     margin: 3,
   },
   imageContainer: {
-    width: '100%',
-    height: 200,
+    width: wp(40.6),
+    height: 175,
   },
 });
 export { BookCard };
