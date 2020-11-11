@@ -36,7 +36,7 @@ const BookDetails = (props) => {
       checkExistance()
 
     });
-  }, [])
+  })
 
   const [value, setValue] = useState(0)
 

@@ -26,41 +26,12 @@ const AddToCart = (props) => {
     dispatch(withDataActions({ isbn, quantity: value, price, description, title, image, author_name, typeOfItem }, ADD_TO_CART))
   }
   const subtractCartItem = (book) => {
-    let value = book.quantity - 1
-    const { isbn, price, description, title, image, author_name, typeOfItem } = book
+    ((book.quantity - 1) !== 0) ? (value = book.quantity - 1) : (value = book.quantity);
+    const { isbn, price, description, title, image, author_name, typeOfItem } = book;
     dispatch(withDataActions({ isbn, quantity: value, price, description, title, image, author_name, typeOfItem }, ADD_TO_CART))
   }
 
-  // const BookSection = (props) => {
-  //   <View style={styles.profiletop}>
-  //   <View style={styles.imgContainer}>
-  //     <Image
-  //       style={styles.image}
-  //       source={require('../../assets/images/background.jpg')}
-  //     />
-  //   </View>
 
-  //   <View style={styles.viewtxt}>
-  //     <AppText bold size={20} style={styles.txt}>
-  //         A Brief History of time
-  //     </AppText>
-  //     <AppText bold size={15} style={styles.txt}>
-  //         by brom
-  //     </AppText>
-  //     <AppText bold size={20} style={styles.pricetxt}>
-  //         Price: 30 KW
-  //     </AppText>
-  //     <View style={{ width: 300, marginVertical: 10 }}>
-  //       <Counter />
-  //     </View>
-  //     <HorizontalRow />
-  //     <AppText bold size={17} primary style={styles.txt}>
-  //         Remove
-  //     </AppText>
-  //   </View>
-  // </View>
-  // <HorizontalRow />
-  // }
   return (
     <ScrollView>
       <Header {...props} title={'Cart'} />
