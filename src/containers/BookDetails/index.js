@@ -32,7 +32,10 @@ const BookDetails = (props) => {
 
 
   useEffect(() => {
-    checkExistance()
+    props.navigation.addListener('focus', () => {
+      checkExistance()
+
+    });
   }, [])
 
   const [value, setValue] = useState(0)
