@@ -9,7 +9,10 @@ import { withDataActions } from '_redux/actions/GenericActions';
 import { SIGN_UP } from '_redux/actionTypes';
 import useModal from '_utils/customHooks/useModal';
 import { validateEmail, validatePassword } from '../../helpers/Validators';
-
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
 const SignUp = (props) => {
   const dispatch = useDispatch();
   const { navigate } = props.navigation;
@@ -133,7 +136,7 @@ const SignUp = (props) => {
 
 const styles = StyleSheet.create({
   content: {
-    marginTop: 50,
+    marginTop: hp(5.4),
   },
   termsandservices: {
     color: '#c27e12',

@@ -1,15 +1,18 @@
 import React from 'react';
-import {View, StyleSheet, TextInput, Text} from 'react-native';
-import {useTheme} from '@react-navigation/native';
+import { View, StyleSheet, TextInput, Text } from 'react-native';
+import { useTheme } from '@react-navigation/native';
 
-import {Color} from '../constants/Colors';
+import { Color } from '../constants/Colors';
 
-import {AppText} from './common/AppText';
-
+import { AppText } from './common/AppText';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
 const InputWithLabel = (props) => {
-  const {colors} = useTheme();
+  const { colors } = useTheme();
 
-  const {viewStyle, label, inputRef, required, maxLength, primary} = props;
+  const { viewStyle, label, inputRef, required, maxLength, primary } = props;
 
   return (
     <View style={[styles.inputContainerStyle, viewStyle]}>
@@ -26,7 +29,7 @@ const InputWithLabel = (props) => {
         }}
         placeholderTextColor={Color.placeholder}
         maxLength={maxLength}
-        style={[styles.inputFieldStyle, {borderColor: colors.primary}]}
+        style={[styles.inputFieldStyle, { borderColor: colors.primary }]}
       />
     </View>
   );
@@ -38,8 +41,8 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   inputFieldStyle: {
-    marginVertical: 10,
-    height: 45,
+    marginVertical: hp(1.0),
+    height: hp(5.8),
     paddingVertical: 3,
     paddingLeft: 15,
     borderRadius: 5,
@@ -49,4 +52,4 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
   },
 });
-export {InputWithLabel};
+export { InputWithLabel };
