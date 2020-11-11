@@ -1,8 +1,7 @@
 import {Alert} from 'react-native';
 import {put, call} from 'redux-saga/effects';
 import * as NavigationService from '../../../NavigationService';
-import {SIGNIN_SCREEN, LANGUAGE_SCREEN} from '_constants/Screens';
-import {getItem} from '_helpers/Localstorage';
+
 import {RestClient} from '_network/RestClient';
 import {API_ENDPOINTS} from 'constants/Network';
 import {FETCH_AD_SUCCESS, FETCH_AD_FAILURE} from '_redux/actionTypes';
@@ -19,10 +18,10 @@ import {HOME} from 'constants/Screens';
 export function* splashSaga({type}) {
   try {
     const response = yield call(() => RestClient.get(API_ENDPOINTS.ads));
-    // yield put({type: FETCH_ENGLISH_BOOKS});
-    // yield put({type: FETCH_ARABIC_BOOKS});
-    // yield put({type: FETCH_BOOKCLUBS});
-    // yield put({type: FETCH_BOOKMARKS});
+    yield put({type: FETCH_ENGLISH_BOOKS});
+    yield put({type: FETCH_ARABIC_BOOKS});
+    yield put({type: FETCH_BOOKCLUBS});
+    yield put({type: FETCH_BOOKMARKS});
     const {
       status,
       data: {data: res, message},

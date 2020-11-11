@@ -3,7 +3,6 @@ import {View, StyleSheet, Image} from 'react-native';
 import {useTheme} from '@react-navigation/native';
 
 import {AppText, Button, BackgroundImage} from '_components/common';
-import {SIGNIN_SCREEN} from '_constants/Screens';
 import {useDispatch} from 'react-redux';
 import {withDataActions} from '_redux/actions';
 import {SWITCH_LANG} from '_redux/actionTypes';
@@ -29,7 +28,7 @@ const Language = (props) => {
           background="white"
           color={colors.secondary}
           onPress={() =>
-            dispatch(withDataActions({id: 2, name: 'en'}, SWITCH_LANG))
+            dispatch(withDataActions({id: 2, iso: 'en'}, SWITCH_LANG))
           }>
           English
         </Button>
@@ -39,7 +38,7 @@ const Language = (props) => {
           background="white"
           color={colors.secondary}
           onPress={() =>
-            dispatch(withDataActions({id: 1, name: 'ar'}, SWITCH_LANG))
+            dispatch(withDataActions({id: 1, iso: 'ar'}, SWITCH_LANG))
           }>
           عربى
         </Button>

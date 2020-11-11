@@ -1,37 +1,32 @@
-import { BookListContainer } from 'components';
-import React from 'react';
-import { ScrollView, StyleSheet, View } from 'react-native';
-import { TitleBarWithIcon, Header } from '_components';
-
+import {BookListContainer, FilterModal} from 'components';
+import React, {useState} from 'react';
+import {ScrollView} from 'react-native';
+import useFilter from 'utils/customHooks/useFilter';
+import {TitleBarWithIcon, Header} from '_components';
+import {setFilterHandler} from '../../helpers/Filter';
 const BooksList = (props) => {
   const {
     route: {
-      params: { label, data },
+      params: {label, data},
     },
-    navigation: { navigate },
+    navigation: {navigate},
   } = props;
-
+  const {visible, toggleFilter} = useFilter();
+  const [bookData, setBookData] = useState(data);
+  const onApplyFilter = (item) => {
+    console.log(item);
+    console.log('data', data);
+    toggleFilter();
+    let filtered = setFilterHandler(bookData, ['Delectus nostrum mo']);
+    console.log('filtered', filtered);
+  };
   return (
-    <ScrollView >
+    <ScrollView>
       <Header {...props} />
-      <View style={styles.book}>
-        <View style={styles.width}>
-          <TitleBarWithIcon label={label} />
-          <BookListContainer data={data} {...props} />
-        </View>
-      </View>
+      <TitleBarWithIcon label={label} onIconPress={toggleFilter} />
+      <BookListContainer data={bookData} {...props} />
+      <FilterModal {...props} visible={visible} onApply={onApplyFilter} />
     </ScrollView>
   );
 };
-const styles = StyleSheet.create({
-
-  book: {
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  width: {
-    width: '90%',
-  }
-})
 export default BooksList;
