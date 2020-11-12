@@ -17,5 +17,5 @@ export const API_ENDPOINTS = {
   joinus: '/joinus',
   updatepassword: '/users/password',
   booksSearch: '/books/search',
-  cart: '/cart'
+  cart: '/cart',
 };

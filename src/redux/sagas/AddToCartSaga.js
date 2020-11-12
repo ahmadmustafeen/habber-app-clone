@@ -1,29 +1,47 @@
 import {Alert} from 'react-native';
-import {put, call, select} from 'redux-saga/effects';
-
+import {put, call, select, all} from 'redux-saga/effects';
+import {
+  ADD_TO_CART_FAILURE,
+  ADD_TO_CART_SUCCESS,
+  FETCH_USER_CART,
+} from '_redux/actionTypes';
+import * as NavigationService from '../../../NavigationService';
 import {API_ENDPOINTS} from '_constants/Network';
 import {RestClient} from '_network/RestClient';
-import {CART_SUCCESS, CART_FAILURE} from '_redux/actionTypes';
+import {CART_SCREEN} from '_constants/Screens';
 
 export function* AddToCartSaga({type, payload}) {
   try {
-    console.log('CartSAGA  Response . . . .  .', response);
-    const CartReducer = yield select(({CartReducer}) => CartReducer);
+    const {CartReducer, UserProfileReducer} = yield select(
+      ({CartReducer, UserProfileReducer}) => {
+        return {CartReducer, UserProfileReducer};
+      },
+    );
+    if (!UserProfileReducer.token) {
+      NavigationService.navigate(CART_SCREEN);
+      return;
+    }
+
     const obj = {
       product: CartReducer[payload.product_type],
       total_price: CartReducer.total_price,
     };
-
     const response = yield call(() => RestClient.post(API_ENDPOINTS.cart, obj));
     const {
       data: {data: res, message, status},
     } = response;
     console.log('CartSAGA  Response . . . .  .', response);
-    if (status === 200) {
-      Alert.alert('Success', message);
-      yield put({type: CART_SUCCESS, payload: null});
+    if (status) {
+      yield all([
+        put({type: FETCH_USER_CART}),
+        put({type: ADD_TO_CART_SUCCESS}),
+      ]);
+      NavigationService.navigate(CART_SCREEN);
+    } else {
+      console.error('Error', response);
+      yield put({type: ADD_TO_CART_FAILURE});
     }
   } catch (error) {
-    yield put({type: CART_FAILURE, error});
+    yield put({type: ADD_TO_CART_FAILURE, error});
   }
 }

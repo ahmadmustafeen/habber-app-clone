@@ -23,19 +23,12 @@ const BookDetails = (props) => {
     navigation: {navigate},
   } = props;
   const {colors} = useTheme();
-  console.log('26', params);
   const dispatch = useDispatch();
   const {CartReducer} = useSelector((state) => {
     return {
       CartReducer: state.CartReducer,
     };
   }, shallowEqual);
-
-  useEffect(() => {
-    props.navigation.addListener('focus', () => {
-      checkExistance();
-    });
-  });
 
   const [value, setValue] = useState(0);
 
@@ -52,11 +45,6 @@ const BookDetails = (props) => {
     isbn,
     author_name,
   } = params;
-  const checkExistance = () => {
-    CartReducer.product.map((book) => {
-      book.isbn === id && setValue(book.quantity);
-    });
-  };
 
   const add = (prevValue) => {
     if (prevValue === quantity) {
@@ -88,8 +76,6 @@ const BookDetails = (props) => {
         ADD_TO_CART,
       ),
     );
-    // dispatch(withoutDataActions(ADD_TO_CART));
-    props.navigation.navigate(CART_SCREEN);
   };
   console.log('BookDetails', params);
   return (

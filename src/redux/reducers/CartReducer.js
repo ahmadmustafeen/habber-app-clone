@@ -1,35 +1,8 @@
-import {ADD_TO_CART} from '_redux/actionTypes';
+import {ADD_TO_CART, FETCH_USER_CART_SUCCESS} from '_redux/actionTypes';
 const initialState = {
   total_price: 0,
   product: [],
 };
-// {
-//   "product": [
-//     {
-//       "product_id": 1,
-//       "product_type": "book",
-//       "price": 3000,
-//       "quantity": 3
-//     },
-//     {
-//       "product_id": 2,
-//       "product_type": "bookmark",
-//       "price": 1900,
-//       "quantity": 2
-//     }
-//   ],
-//   "total_price": 2000
-// }
-
-// author_name: "Brock Vazquez"
-// description: "Cum quia possimus f"
-// image: "http://habber.attribes.com/storage/books/4/book1604572263.png"
-// price: "596.0000"
-// product_id: undefined
-// product_type: "book"
-// quantity: 3
-// title: "Explicabo Ad iste q"
-// typeOfItem: "book"
 
 export default (state = initialState, {type, payload}) => {
   switch (type) {
@@ -61,6 +34,9 @@ export default (state = initialState, {type, payload}) => {
       return {
         ...updatedState,
       };
+    }
+    case FETCH_USER_CART_SUCCESS: {
+      console.log('38', payload);
     }
     default:
       return state;
