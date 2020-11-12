@@ -3,7 +3,7 @@ import {View, StyleSheet, Image} from 'react-native';
 import {AppText, Button, Screen} from '_components/common';
 import {HorizontalRow} from '_components';
 import {Icon} from 'react-native-elements';
-import {ADD_TO_CART} from '_constants/Screens';
+import {CART_SCREEN} from '_constants/Screens';
 
 const Favorites = (props) => {
   return (
@@ -34,7 +34,7 @@ const Favorites = (props) => {
               primary
               color="black"
               style={styles.pricetxt}
-              onPress={() => props.navigation.navigate(ADD_TO_CART)}
+              onPress={() => props.navigation.navigate(CART_SCREEN)}
               round>
               Add To Cart
             </Button>
@@ -70,7 +70,7 @@ const Favorites = (props) => {
               primary
               color="black"
               style={styles.pricetxt}
-              onPress={() => props.navigation.navigate(ADD_TO_CART)}
+              onPress={() => props.navigation.navigate(CART_SCREEN)}
               round>
               Add To Cart
             </Button>
@@ -106,7 +106,7 @@ const Favorites = (props) => {
               primary
               color="black"
               style={styles.pricetxt}
-              onPress={() => props.navigation.navigate(ADD_TO_CART)}
+              onPress={() => props.navigation.navigate(CART_SCREEN)}
               round>
               Add To Cart
             </Button>

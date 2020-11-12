@@ -7,7 +7,7 @@ import {setFilterHandler} from '../../helpers/Filter';
 const BooksList = (props) => {
   const {
     route: {
-      params: {label, data},
+      params: {label, data, type},
     },
     navigation: {navigate},
   } = props;
@@ -24,7 +24,7 @@ const BooksList = (props) => {
     <ScrollView>
       <Header {...props} />
       <TitleBarWithIcon label={label} onIconPress={toggleFilter} />
-      <BookListContainer data={bookData} {...props} />
+      <BookListContainer data={bookData} {...props} type={type} />
       <FilterModal {...props} visible={visible} onApply={onApplyFilter} />
     </ScrollView>
   );
