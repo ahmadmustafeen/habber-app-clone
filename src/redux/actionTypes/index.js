@@ -73,3 +73,9 @@ export const ADD_TO_CART = 'ADD_TO_CART';
 export const SEARCH_BOOKS = 'SEARCH_BOOKS';
 export const SEARCH_BOOKS_SUCCESS = 'SEARCH_BOOKS_SUCCESS';
 export const SEARCH_BOOKS_FAILURE = 'SEARCH_BOOKS_FAILURE';
+
+
+
+export const ADD_TO_CART_SAGA = 'ADD_TO_CART_SAGA';
+export const CART_SUCCESS = 'CART_SUCCESS';
+export const CART_FAILURE = 'CART_FAILURE';

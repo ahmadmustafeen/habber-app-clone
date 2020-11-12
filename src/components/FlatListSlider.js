@@ -33,12 +33,12 @@ const FlatListSlider = (props) => {
     };
     const flatList = React.useRef(null);
     const _goToNextPage = () => {
-        if (CurrentSlide >= images.length - 1) CurrentSlide = 0;
-        // console.log(CurrentSlide);
-        flatList.current.scrollToIndex({
-            index: ++CurrentSlide,
-            animated: true,
-        })
+        // if (CurrentSlide >= images.length - 1) CurrentSlide = 0;
+        // // console.log(CurrentSlide);
+        // flatList.current.scrollToIndex({
+        //     index: ++CurrentSlide,
+        //     animated: true,
+        // })
     };
 
     const _keyExtractor = (item, index) => {

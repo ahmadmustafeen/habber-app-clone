@@ -43,7 +43,8 @@ const SignIn = (props) => {
   };
 
   const onSignIn = () => {
-    validate() && dispatch(withDataActions(state, SIGN_IN));
+    // validate() && 
+    dispatch(withDataActions(state, SIGN_IN));
   };
   return (
     <BackgroundImage>

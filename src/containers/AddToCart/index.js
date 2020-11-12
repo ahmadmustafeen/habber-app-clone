@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View, ScrollView, StyleSheet, Image } from 'react-native';
 import { AppText, Button, Screen } from '_components/common';
 import { HorizontalRow, Counter } from '_components';
@@ -6,8 +6,8 @@ import { CHECKOUT } from '_constants/Screens';
 import { Header } from '_components/Header';
 import { withDataActions } from '_redux/actions/GenericActions';
 import { useSelector, shallowEqual, useDispatch } from 'react-redux'
+import { ADD_TO_CART_SAGA } from '_redux/actionTypes';
 
-import { ADD_TO_CART } from '_redux/actionTypes';
 
 
 const AddToCart = (props) => {
@@ -20,15 +20,24 @@ const AddToCart = (props) => {
       CartReducer: state.CartReducer,
     };
   }, shallowEqual);
+  // useEffect(() => {
+  //   apiAction()
+  // }, [])
+
+  const book = CartReducer
+  dispatch(withDataActions(book.product, ADD_TO_CART_SAGA))
+
+
+
   const addCartItem = (book) => {
     let value = book.quantity + 1
-    const { isbn, price, description, title, image, author_name, typeOfItem } = book
-    dispatch(withDataActions({ isbn, quantity: value, price, description, title, image, author_name, typeOfItem }, ADD_TO_CART))
+    const { id, price, description, title, image, author_name, typeOfItem } = book
+    dispatch(withDataActions({ id, quantity: value, price, description, title, image, author_name, typeOfItem }, ADD_TO_CART))
   }
   const subtractCartItem = (book) => {
     ((book.quantity - 1) !== 0) ? (value = book.quantity - 1) : (value = book.quantity);
-    const { isbn, price, description, title, image, author_name, typeOfItem } = book;
-    dispatch(withDataActions({ isbn, quantity: value, price, description, title, image, author_name, typeOfItem }, ADD_TO_CART))
+    const { id, price, description, title, image, author_name, typeOfItem } = book;
+    dispatch(withDataActions({ id, quantity: value, price, description, title, image, author_name, typeOfItem }, ADD_TO_CART))
   }
 
 

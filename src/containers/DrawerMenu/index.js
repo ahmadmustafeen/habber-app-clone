@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import {
   View,
   StyleSheet,
@@ -10,9 +10,9 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-
-import {AppText, BackgroundImage, Screen} from '../../components/common';
-import {HorizontalRow, RoundIcon, TitleBarWithIcon} from '../../components';
+import { shallowEqual, useSelector } from 'react-redux'
+import { AppText, BackgroundImage, Screen } from '../../components/common';
+import { HorizontalRow, RoundIcon, TitleBarWithIcon } from '../../components';
 import {
   HOME,
   SETTINGS_SCREEN,
@@ -21,10 +21,15 @@ import {
   FAVORITES,
   MY_ORDERS,
   MY_PROFILE,
+  SIGNIN_SCREEN,
 } from '../../constants/Screens';
+import UserProfileReducer from 'redux/reducers/UserProfileReducer';
+import { colors } from 'react-native-elements';
+
 
 const DrawerIcon = (props) => {
-  const {name, onPress} = props;
+
+  const { name, onPress } = props;
   return (
     <>
       <RoundIcon
@@ -38,6 +43,12 @@ const DrawerIcon = (props) => {
 };
 console.log(Dimensions);
 const DrawerMenu = (props) => {
+  const { UserProfileReducer } = useSelector((state) => {
+
+    return {
+      UserProfileReducer: state.UserProfileReducer,
+    };
+  }, shallowEqual);
   return (
     <ImageBackground
       {...props}
@@ -61,43 +72,63 @@ const DrawerMenu = (props) => {
             </View>
 
             <AppText white bold size={16} style={styles.txt}>
-              Khaled Ammar
+              {UserProfileReducer.first_name ? (UserProfileReducer.first_name + " " + UserProfileReducer.last_name) : 'GUEST USER'}
             </AppText>
           </View>
         </View>
         <View>
           <TitleBarWithIcon
             label="Home"
+            color={colors.white}
             onPress={() => props.navigation.navigate(HOME)}
             noIcon
           />
           <View style={styles.Horizontalrow} />
-          <TitleBarWithIcon
-            label="Profile"
-            onPress={() => props.navigation.navigate(MY_PROFILE)}
-            noIcon
-          />
-          <View style={styles.Horizontalrow} />
+          {UserProfileReducer.token ?
+            <>
+              <TitleBarWithIcon
+                label="Profile"
+                color={colors.white}
+                onPress={() => props.navigation.navigate(MY_PROFILE)}
+                noIcon
+              />
+              <View style={styles.Horizontalrow} />
+            </> :
+            <>
+              <TitleBarWithIcon
+                label="Sign In"
+                color={colors.white}
+                onPress={() => props.navigation.navigate(SIGNIN_SCREEN)}
+                noIcon
+              />
+              <View style={styles.Horizontalrow} />
+            </>
+          }
+
           <TitleBarWithIcon
             label="Favorites"
+            color={colors.white}
             onPress={() => props.navigation.navigate(FAVORITES)}
             noIcon
           />
           <View style={styles.Horizontalrow} />
           <TitleBarWithIcon
             label="My orders"
+            color={colors.white}
             onPress={() => props.navigation.navigate(MY_ORDERS)}
             noIcon
           />
           <View style={styles.Horizontalrow} />
           <TitleBarWithIcon
             label="About us"
+            color={colors.white}
             onPress={() => props.navigation.navigate(ABOUT_US)}
             noIcon
           />
           <View style={styles.Horizontalrow} />
           <TitleBarWithIcon
             label="Settings"
+            color={colors.white}
             onPress={() => props.navigation.navigate(SETTINGS_SCREEN)}
             noIcon
           />

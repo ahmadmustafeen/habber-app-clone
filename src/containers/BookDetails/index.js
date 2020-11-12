@@ -10,7 +10,7 @@ import {
 } from '../../components';
 import { CART_SCREEN } from '../../constants/Screens';
 import { ADD_TO_CART } from '_redux/actionTypes';
-import { withDataActions } from '_redux/actions/GenericActions';
+import { withDataActions, withoutDataActions } from '_redux/actions/GenericActions';
 
 
 import { useTheme } from '@react-navigation/native';
@@ -41,10 +41,10 @@ const BookDetails = (props) => {
 
   const [value, setValue] = useState(0)
 
-  const { title, isbn, total_pages, description, cover_type, quantity, price, image, typeOfItem = "book", author_name } = params;
+  const { title, product_id, total_pages, description, cover_type, quantity, price, image, typeOfItem = "book", author_name } = params;
   const checkExistance = () => {
     CartReducer.product.map((book) => {
-      (book.isbn === isbn) && (setValue(book.quantity))
+      (book.isbn === product_id) && (setValue(book.quantity))
     })
   }
 
@@ -65,7 +65,8 @@ const BookDetails = (props) => {
     }
   }
   const addtocart = () => {
-    dispatch(withDataActions({ isbn, quantity: value, price, description, title, image, author_name, typeOfItem }, ADD_TO_CART));
+    dispatch(withDataActions({ product_id, quantity: value, price, description, title, image, author_name, typeOfItem }, ADD_TO_CART));
+    // dispatch(withoutDataActions(ADD_TO_CART));
     props.navigation.navigate(CART_SCREEN)
   }
   console.log('BookDetails', params);
@@ -79,7 +80,7 @@ const BookDetails = (props) => {
         <HorizontalRow />
         <View>
           <AppText bold size={15} primary>
-            ISBN: {isbn}
+            ISBN: {product_id}
           </AppText>
           <AppText bold size={15}>
             Pages: {total_pages}
@@ -109,7 +110,7 @@ const BookDetails = (props) => {
           color={colors.white}
           secondary
           onPress={() => value && addtocart()}>
-          {value ? "Add to Cart" : "Out of Stock"}
+          {quantity ? "Add to Cart" : "Out of Stock"}
         </Button>
       </View>
     </Screen >
