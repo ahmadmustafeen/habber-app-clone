@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
   },
   imageContainer: {
     width: wp(40.6),
-    height: 175,
+    aspectRatio: 0.9
   },
 });
 export { BookCard };

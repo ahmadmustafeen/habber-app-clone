@@ -6,17 +6,17 @@ import {
   TouchableOpacity,
   Dimensions,
 } from 'react-native';
-import {useTheme} from '@react-navigation/native';
+import { useTheme } from '@react-navigation/native';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 
-import {AppText} from './common/AppText';
-import {Icon} from 'react-native-elements';
+import { AppText } from './common/AppText';
+import { Icon } from 'react-native-elements';
 
 const TitleBarWithIcon = (props) => {
-  const {colors} = useTheme();
+  const { colors } = useTheme();
   const {
     viewStyle,
     label,
@@ -51,7 +51,7 @@ const TitleBarWithIcon = (props) => {
             }
             type={iconType || 'antdesign'}
             color={colors.primary}
-            // style={{transform: [{scaleX: I18nManager.isRTL ? -1 : 1}]}}
+          // style={{transform: [{scaleX: I18nManager.isRTL ? -1 : 1}]}}
           />
         )}
       </View>
@@ -63,7 +63,8 @@ const styles = StyleSheet.create({
   containerStyle: {
     flexDirection: 'row',
     borderLeftWidth: 6,
+    width: wp(90),
     justifyContent: 'space-between',
   },
 });
-export {TitleBarWithIcon};
+export { TitleBarWithIcon };

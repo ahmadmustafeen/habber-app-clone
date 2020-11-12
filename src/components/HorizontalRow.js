@@ -2,7 +2,7 @@ import React from 'react';
 import { View, StyleSheet, TextInput, Text } from 'react-native';
 
 const HorizontalRow = (props) => {
-  return <View style={[styles.line, props.style]} />;
+  return <View style={props.style || styles.line} />;
 };
 
 const styles = StyleSheet.create({

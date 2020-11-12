@@ -15,6 +15,7 @@
     "iPhone6": "react-native run-ios --simulator=\"iPhone 6\"",
     "iPhone8": "react-native run-ios --simulator=\"iPhone 8\"",
     "iPhone8Plus": "react-native run-ios --simulator=\"iPhone 8 Plus\"",
+    "iPhone11": "react-native run-ios --simulator=\"iPhone 11\"",
     "build:ios": "react-native bundle --entry-file='index.js' --bundle-output='./ios/main.jsbundle' --dev=false --platform='ios'"
   },
   "dependencies": {

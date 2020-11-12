@@ -25,16 +25,19 @@ const AppText = (props) => {
     small,
     icon,
     iconName,
-    iconType
+    iconType,
+    iconsize,
+    iconColor,
+    iconStyle
   } = props;
 
   return (
     <>
 
       {icon && <Icon
-        size={15}
-        containerStyle={styles.iconStyle}
-        color="black"
+        size={iconsize || 15}
+        containerStyle={iconStyle || styles.iconStyle}
+        color={iconColor || "black"}
         name={iconName || "rightcircleo"}
         type={iconType || "antdesign"}
       />
