@@ -1,6 +1,6 @@
 import {ADD_TO_CART} from '_redux/actionTypes';
 const initialState = {
-  totalAmount: 0,
+  total_price: 0,
   product: [],
 };
 // {

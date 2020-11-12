@@ -41,7 +41,7 @@ const BookDetails = (props) => {
 
   const {
     title,
-    product_id,
+    id,
     total_pages,
     description,
     cover_type,
@@ -49,11 +49,12 @@ const BookDetails = (props) => {
     price,
     image,
     type,
+    isbn,
     author_name,
   } = params;
   const checkExistance = () => {
     CartReducer.product.map((book) => {
-      book.isbn === product_id && setValue(book.quantity);
+      book.isbn === id && setValue(book.quantity);
     });
   };
 
@@ -75,7 +76,7 @@ const BookDetails = (props) => {
     dispatch(
       withDataActions(
         {
-          product_id,
+          product_id: id,
           quantity: value,
           price,
           description,
@@ -101,7 +102,7 @@ const BookDetails = (props) => {
         <HorizontalRow />
         <View>
           <AppText bold size={15} primary>
-            ISBN: {product_id}
+            ISBN: {isbn}
           </AppText>
           <AppText bold size={15}>
             Pages: {total_pages}

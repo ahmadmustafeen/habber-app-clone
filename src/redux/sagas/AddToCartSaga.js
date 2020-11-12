@@ -5,19 +5,20 @@ import {API_ENDPOINTS} from '_constants/Network';
 import {RestClient} from '_network/RestClient';
 import {CART_SUCCESS, CART_FAILURE} from '_redux/actionTypes';
 
-export function* cartSaga({type, payload}) {
+export function* AddToCartSaga({type, payload}) {
   try {
-    // console.log('cartSaga  . . . .  .1', payload);
+    console.log('CartSAGA  Response . . . .  .', response);
     const CartReducer = yield select(({CartReducer}) => CartReducer);
-    // console.log('cartSagaState  . . . .  .', CartReducer);
+    const obj = {
+      product: CartReducer[payload.product_type],
+      total_price: CartReducer.total_price,
+    };
 
-    const response = yield call(() =>
-      RestClient.post(API_ENDPOINTS.cart, payload),
-    );
+    const response = yield call(() => RestClient.post(API_ENDPOINTS.cart, obj));
     const {
       data: {data: res, message, status},
     } = response;
-    // console.log('CartSAGA  Response . . . .  .', response);
+    console.log('CartSAGA  Response . . . .  .', response);
     if (status === 200) {
       Alert.alert('Success', message);
       yield put({type: CART_SUCCESS, payload: null});

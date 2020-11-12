@@ -38,7 +38,7 @@ import {contactUsSaga} from './ContactUsSaga';
 import {JoinUsSaga} from './JoinUsSaga';
 import {UpdatePasswordSaga} from './UpdatePasswordSaga';
 import {SearchBooksSaga} from './SearchBooksSaga';
-import {cartSaga} from './CartSaga';
+import {AddToCartSaga} from './AddToCartSaga';
 
 function* actionWatcher() {
   yield takeLatest(SPLASH_ACTION, splashSaga);
@@ -58,8 +58,8 @@ function* actionWatcher() {
   yield takeLatest(SUBMIT_JOIN_US, JoinUsSaga);
   yield takeLatest(UPDATE_PASSWORD, UpdatePasswordSaga);
   yield takeLatest(SEARCH_BOOKS, SearchBooksSaga);
-  yield takeLatest(ADD_TO_CART_SAGA, cartSaga);
-  yield takeLatest(ADD_TO_CART, cartSaga);
+  // yield takeLatest(ADD_TO_CART_SAGA, cartSaga);
+  yield takeLatest(ADD_TO_CART, AddToCartSaga);
 }
 
 export default function* rootSaga() {
