@@ -100,7 +100,7 @@ const Home = (props) => {
           }
         />
         <DashboardComponent
-          data={BookmarksReducer}
+          data={EnglishBooksReducer}
           label="ENGLISH BOOK"
           renderComponent={(item) => <ThumbnailBook url={item.item.image} />}
           onIconPress={() =>
