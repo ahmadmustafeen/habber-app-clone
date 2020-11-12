@@ -1,4 +1,8 @@
-import {ADD_TO_CART, FETCH_USER_CART_SUCCESS} from '_redux/actionTypes';
+import {
+  ADD_TO_CART,
+  FETCH_USER_CART_SUCCESS,
+  UPDATE_CART_ITEM,
+} from '_redux/actionTypes';
 const initialState = {
   total_price: 0,
   product: [],
@@ -6,6 +10,15 @@ const initialState = {
 
 export default (state = initialState, {type, payload}) => {
   switch (type) {
+    case UPDATE_CART_ITEM: {
+      console.log('10', payload);
+      let position = state[payload.product_type].findIndex(
+        (obj) => obj.isbn === payload.isbn,
+      );
+      const updatedState = {...state};
+      updatedState[payload.product_type][position].quantity = payload.quantity;
+      return {...updatedState};
+    }
     case ADD_TO_CART: {
       let alreadyAvailable;
       if (!state[payload.product_type]) {

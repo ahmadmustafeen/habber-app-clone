@@ -24,11 +24,11 @@ const BookDetails = (props) => {
   } = props;
   const {colors} = useTheme();
   const dispatch = useDispatch();
-  const {CartReducer} = useSelector((state) => {
-    return {
-      CartReducer: state.CartReducer,
-    };
-  }, shallowEqual);
+  // const {CartReducer} = useSelector((state) => {
+  //   return {
+  //     CartReducer: state.CartReducer,
+  //   };
+  // }, shallowEqual);
 
   const [value, setValue] = useState(0);
 
