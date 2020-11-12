@@ -18,5 +18,6 @@ export const API_ENDPOINTS = {
   updatepassword: '/users/password',
   booksSearch: '/books/search',
   cart: '/cart',
-  addresses: '/addresses'
+  addresses: '/addresses',
+  fetch_addresses: '/user/addresses'
 };
