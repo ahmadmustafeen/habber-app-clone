@@ -1,15 +1,20 @@
-import React, {useEffect} from 'react';
-import {View, ScrollView, StyleSheet, Image} from 'react-native';
-import {AppText, Button, Screen} from '_components/common';
-import {HorizontalRow, Counter} from '_components';
-import {CHECKOUT} from '_constants/Screens';
-import {Header} from '_components/Header';
-import {withDataActions} from '_redux/actions/GenericActions';
-import {useSelector, shallowEqual, useDispatch} from 'react-redux';
-import {ADD_TO_CART_SAGA} from '_redux/actionTypes';
-import {UPDATE_CART_ITEM} from '_redux/actionTypes';
-
+import React, { useEffect } from 'react';
+import { View, ScrollView, StyleSheet, Image } from 'react-native';
+import { AppText, Button, Screen } from '_components/common';
+import { HorizontalRow, Counter } from '_components';
+import { CHECKOUT } from '_constants/Screens';
+import { Header } from '_components/Header';
+import { withDataActions } from '_redux/actions/GenericActions';
+import { useSelector, shallowEqual, useDispatch } from 'react-redux';
+import { ADD_TO_CART_SAGA } from '_redux/actionTypes';
+import { UPDATE_CART_ITEM } from '_redux/actionTypes';
+import { useTheme } from '@react-navigation/native';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
 const AddToCart = (props) => {
+  const { colors } = useTheme()
   const dispatch = useDispatch();
   const CartReducer = useSelector((state) => state.CartReducer);
 
@@ -49,31 +54,31 @@ const AddToCart = (props) => {
         <View key="content">
           {CartReducer.book &&
             CartReducer.book.map((book) => {
-              const {image, title, price, author_name, quantity} = book;
+              const { image, title, price, author_name, quantity } = book;
               console.log('QUANTITY', quantity);
               return (
                 <View style={styles.profiletop}>
                   <View style={styles.imgContainer}>
-                    <Image style={styles.image} source={{uri: image}} />
+                    <Image style={styles.image} source={{ uri: image }} />
                   </View>
                   <View style={styles.viewtxt}>
-                    <AppText bold size={20} style={styles.txt}>
+                    <AppText bold size={18} style={styles.txt}>
                       {title}
                     </AppText>
-                    <AppText bold size={15} style={styles.txt}>
+                    <AppText size={15} style={[styles.txt, styles.author]}>
                       by {author_name}
                     </AppText>
-                    <AppText bold size={20} style={styles.pricetxt}>
+                    <AppText bold size={17} style={styles.pricetxt}>
                       Price: {price} KW
                     </AppText>
-                    <View style={{width: 300, marginVertical: 10}}>
+                    <View style={{ width: 300, marginVertical: 10 }}>
                       <Counter
                         value={quantity}
                         onIncrement={() => updateItemQuantity(book, 'add')}
                         onDecrement={() => updateItemQuantity(book, 'sub')}
                       />
                     </View>
-                    <HorizontalRow />
+                    <HorizontalRow style={{ color: 'rgb(200, 200, 200)', borderWidth: hp(0.1), width: wp(45) }} />
                     <AppText bold size={17} primary style={styles.txt}>
                       Remove
                     </AppText>
@@ -95,7 +100,7 @@ const AddToCart = (props) => {
                 Total
               </AppText>
             </View>
-            <View style={{flexDirection: 'column', justifyContent: 'flex-end'}}>
+            <View style={{ flexDirection: 'column', justifyContent: 'flex-end' }}>
               <AppText bold>$90</AppText>
               <AppText bold>$10</AppText>
               <AppText primary bold>
@@ -150,6 +155,10 @@ const styles = StyleSheet.create({
   footerbtn: {
     marginTop: 40,
   },
+  author: {
+    marginTop: 10,
+    fontStyle: 'italic'
+  }
 });
 
 export default AddToCart;
