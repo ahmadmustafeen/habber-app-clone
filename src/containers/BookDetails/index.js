@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   View,
   StyleSheet,
@@ -6,29 +6,29 @@ import {
   ScrollView,
   ImageBackground,
 } from 'react-native';
-import {AppText, Button, Screen} from '../../components/common';
-import {useDispatch, useSelector, shallowEqual} from 'react-redux';
+import { AppText, Button, Screen } from '../../components/common';
+import { useDispatch, useSelector, shallowEqual } from 'react-redux';
 import {
   Counter,
   BookDetailsCard,
   HorizontalRow,
   Header,
 } from '../../components';
-import {CART_SCREEN} from '../../constants/Screens';
-import {ADD_TO_CART} from '_redux/actionTypes';
+import { CART_SCREEN } from '../../constants/Screens';
+import { ADD_TO_CART } from '_redux/actionTypes';
 import {
   withDataActions,
   withoutDataActions,
 } from '_redux/actions/GenericActions';
 
-import {useTheme} from '@react-navigation/native';
+import { useTheme } from '@react-navigation/native';
 
 const BookDetails = (props) => {
   const {
-    route: {params},
-    navigation: {navigate},
+    route: { params },
+    navigation: { navigate },
   } = props;
-  const {colors} = useTheme();
+  const { colors } = useTheme();
   const dispatch = useDispatch();
   // const {CartReducer} = useSelector((state) => {
   //   return {
@@ -88,7 +88,7 @@ const BookDetails = (props) => {
     <Screen noPadding contentPadding>
       <View key="header">
         <ImageBackground
-          style={{flex: 1, paddingHorizontal: 10}}
+          style={{ flex: 1, paddingHorizontal: 10 }}
           source={require('_assets/images/book-detail.png')}>
           <Header {...props} noTitle color={colors.secondary} />
           <BookDetailsCard {...params} />
@@ -111,8 +111,8 @@ const BookDetails = (props) => {
           </AppText>
         </View>
         <HorizontalRow />
-        <View style={{marginTop: 20}}>
-          <AppText bold style={{marginBottom: 10}}>
+        <View style={{ marginTop: 20 }}>
+          <AppText bold style={{ marginBottom: 10 }}>
             Description:
           </AppText>
           <AppText size={14}>{description}</AppText>

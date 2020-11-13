@@ -8,7 +8,7 @@ import { RoundIcon } from './RoundIcon';
 
 const BookDetailsCard = (props) => {
   const { colors } = useTheme();
-  const { author_name, image, price, title, quantity } = props;
+  const { author_name, image, price, title, quantity, genre } = props;
   return (
     <View style={styles.container}>
       <View style={styles.imgContainer}>
