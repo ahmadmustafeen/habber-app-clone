@@ -21,7 +21,7 @@ const BookDetailsCard = (props) => {
 
       <View
         style={{
-          flex: 3,
+          flex: 1,
           justifyContent: 'space-between',
           paddingStart: 10,
         }}>
@@ -33,7 +33,7 @@ const BookDetailsCard = (props) => {
           <AppText bold size={15}>
             Price: {price} KD
           </AppText>
-          <AppText size={15} style={{ color: 'red' }}>
+          <AppText size={15} color='red' >
             {quantity ? null : "OUT OF STOCK"}
           </AppText>
         </View>
@@ -51,14 +51,16 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     marginBottom: 20,
+
   },
   imgContainer: {
-    flex: 2,
+    aspectRatio: 0.6 / 1,
     height: 180,
   },
   image: {
     width: '100%',
     height: '100%',
+
   },
   txt: {
     marginLeft: 10,

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, StyleSheet, Image, ScrollView } from 'react-native';
+import { View, StyleSheet, Image, ScrollView, ImageBackground } from 'react-native';
 import { AppText, Button, Screen } from '../../components/common';
 import { useDispatch, useSelector, shallowEqual } from 'react-redux'
 import {
@@ -73,10 +73,13 @@ const BookDetails = (props) => {
   return (
     < Screen noPadding contentPadding >
       <View key="header">
-        <Header {...props} title={title} />
+        <ImageBackground style={{ flex: 1, paddingHorizontal: 10 }} source={require('_assets/images/book-detail.png')}>
+          <Header  {...props} noTitle color={colors.secondary} />
+          <BookDetailsCard {...params} />
+        </ImageBackground>
       </View>
       <View key="content">
-        <BookDetailsCard {...params} />
+
         <HorizontalRow />
         <View>
           <AppText bold size={15} primary>

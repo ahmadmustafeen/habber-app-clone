@@ -25,6 +25,7 @@ import {
 } from '../../constants/Screens';
 import UserProfileReducer from 'redux/reducers/UserProfileReducer';
 import { colors } from 'react-native-elements';
+import { Color } from 'constants/Colors';
 
 
 const DrawerIcon = (props) => {
@@ -201,10 +202,10 @@ const styles = StyleSheet.create({
   },
   Horizontalrow: {
     width: '80%',
-    borderColor: 'brown',
+    borderColor: Color.primary,
     borderWidth: 0,
-    padding: 1,
-    borderBottomWidth: 0.75,
+    height: 1,
+    borderBottomWidth: 0.5,
   },
 });
 export default DrawerMenu;

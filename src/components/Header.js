@@ -16,6 +16,7 @@ const Header = (props) => {
     route: { name },
     headerLeft,
     headerRight,
+    noTitle
   } = props;
   const headerColor =
     color || (secondary && colors.secondary) || colors.primary;
@@ -35,7 +36,7 @@ const Header = (props) => {
       </View>
 
       <View style={{ flex: 4, paddingLeft: 10 }}>
-        <AppText color={headerColor}>{title || name}</AppText>
+        {!noTitle && <AppText color={headerColor}>{title || name}</AppText>}
       </View>
       <View style={{ flex: 1, justifyContent: 'flex-end' }}>
         {headerRight ? (

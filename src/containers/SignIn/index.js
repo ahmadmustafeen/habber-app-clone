@@ -9,6 +9,13 @@ import { InputWithLabel, RoundIcon, AuthHeader } from '_components';
 import { AppText, BackgroundImage, Button } from '_components/common';
 import { FORGOT_PASSWORD_SCREEN, SIGNUP_SCREEN } from '_constants/Screens';
 import { validateEmail, validatePassword } from '../../helpers/Validators';
+
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
+
+
 const SignIn = (props) => {
   const dispatch = useDispatch();
   const { navigate } = props.navigation;
@@ -82,7 +89,7 @@ const SignIn = (props) => {
         <View style={{ alignItems: 'center' }}>
           <Button
             loading={loading}
-            width="70%"
+            width={wp(60)}
             color={colors.secondary}
             round
             onPress={onSignIn}>
@@ -152,12 +159,12 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   hellotxt: {
-    marginTop: 30,
+    marginTop: wp(5),
   },
   forgotPassword: {
     textAlign: 'right',
     color: '#c27e12',
-    marginBottom: 20,
+    marginBottom: wp(4),
   },
 });
 export default SignIn;
