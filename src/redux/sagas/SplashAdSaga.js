@@ -12,7 +12,7 @@ export function* splashAdSaga() {
     const backUser = yield getItem('@backUser');
     let userProfile = yield getItem('@userProfile');
     userProfile = JSON.parse(userProfile);
-    if (userProfile.token) {
+    if (userProfile && userProfile.token) {
       RestClient.setHeader('Authorization', `Bearer ${userProfile.token}`);
       yield all([
         put({
