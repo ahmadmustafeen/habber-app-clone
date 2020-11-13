@@ -1,5 +1,5 @@
 import React from 'react';
-import { createStackNavigator } from '@react-navigation/stack';
+import {createStackNavigator} from '@react-navigation/stack';
 
 import {
   BOOKLIST_SCREEN,
@@ -39,7 +39,7 @@ import Settings from '../containers/Settings';
 import Favorites from '../containers/Favorites';
 import ContactUs from '../containers/ContactUs';
 import MyOrders from '../containers/MyOrders';
-import AddToCart from '../containers/AddToCart';
+import Cart from '../containers/Cart';
 import Checkout from '../containers/Checkout';
 import Search from '../containers/Search';
 import ReturnPolicy from '../containers/ReturnPolicy'
@@ -68,7 +68,7 @@ export const DashboardNav = () => {
       <Stack.Screen name={CONTACT_US} component={ContactUs} />
       <Stack.Screen name={ABOUT_US} component={About} />
       <Stack.Screen name={MY_ORDERS} component={MyOrders} />
-      <Stack.Screen name={CART_SCREEN} component={AddToCart} />
+      <Stack.Screen name={CART_SCREEN} component={Cart} />
       <Stack.Screen name={CHECKOUT} component={Checkout} />
       <Stack.Screen name={SEARCH} component={Search} />
       <Stack.Screen name={RETURN_POLICY} component={ReturnPolicy} />

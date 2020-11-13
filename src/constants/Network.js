@@ -19,5 +19,5 @@ export const API_ENDPOINTS = {
   booksSearch: '/books/search',
   cart: '/cart',
   addresses: '/addresses',
-  fetch_addresses: '/user/addresses'
+  fetch_addresses: '/user/addresses',
 };

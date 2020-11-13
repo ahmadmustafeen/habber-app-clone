@@ -1,9 +1,9 @@
-import { BookListContainer, FilterModal } from 'components';
-import React, { useState } from 'react';
-import { ScrollView, StyleSheet, View } from 'react-native';
+import {BookListContainer, FilterModal} from 'components';
+import React, {useState} from 'react';
+import {ScrollView, StyleSheet, View} from 'react-native';
 import useFilter from 'utils/customHooks/useFilter';
-import { TitleBarWithIcon, Header } from '_components';
-import { setFilterHandler } from '../../helpers/Filter';
+import {TitleBarWithIcon, Header} from '_components';
+import {setFilterHandler} from '../../helpers/Filter';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -11,11 +11,11 @@ import {
 const BooksList = (props) => {
   const {
     route: {
-      params: { label, data },
+      params: {label, data, type},
     },
-    navigation: { navigate },
+    navigation: {navigate},
   } = props;
-  const { visible, toggleFilter } = useFilter();
+  const {visible, toggleFilter} = useFilter();
   const [bookData, setBookData] = useState(data);
   const onApplyFilter = (item) => {
     console.log(item);
@@ -27,18 +27,16 @@ const BooksList = (props) => {
   return (
     <ScrollView>
       <Header {...props} />
-      <View style={styles.container}>
-        <TitleBarWithIcon label={label} onIconPress={toggleFilter} />
-        <BookListContainer data={bookData} {...props} />
-        <FilterModal {...props} visible={visible} onApply={onApplyFilter} />
-      </View>
+      <TitleBarWithIcon label={label} onIconPress={toggleFilter} />
+      <BookListContainer data={bookData} {...props} type={type} />
+      <FilterModal {...props} visible={visible} onApply={onApplyFilter} />
     </ScrollView>
   );
 };
 const styles = StyleSheet.create({
   container: {
     width: wp(90),
-    marginLeft: wp(5)
-  }
-})
+    marginLeft: wp(5),
+  },
+});
 export default BooksList;
