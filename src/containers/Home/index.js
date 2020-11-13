@@ -1,7 +1,7 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 
-import {View, StyleSheet} from 'react-native';
-import {useTranslation} from 'react-i18next';
+import { View, StyleSheet } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import {
   Counter,
   DashboardComponent,
@@ -17,13 +17,13 @@ import {
   BOOK_CLUBS,
   BOOKMARKS,
 } from '_constants/Screens';
-import {sliderImages} from './dummydata';
-import {ThumbnailBook} from '_components/ThumbnailBook';
-import {AppText, Button, Screen} from '_components/common';
-import {FlatListSlider} from '_components';
-import {booksData, booksClub, bookmarkdata} from '_assets/data/dummydata';
-import {shallowEqual, useDispatch, useSelector} from 'react-redux';
-import {withDataActions} from '../../redux/actions/GenericActions';
+import { sliderImages } from './dummydata';
+import { ThumbnailBook } from '_components/ThumbnailBook';
+import { AppText, Button, Screen } from '_components/common';
+import { FlatListSlider } from '_components';
+import { booksData, booksClub, bookmarkdata } from '_assets/data/dummydata';
+import { shallowEqual, useDispatch, useSelector } from 'react-redux';
+import { withDataActions } from '../../redux/actions/GenericActions';
 import {
   FETCH_ARABIC_BOOKS,
   FETCH_BOOK_LISTS,
@@ -31,20 +31,20 @@ import {
   FETCH_ENGLISH_BOOKS,
   FETCH_RELATED_BOOKS,
 } from '../../redux/actionTypes';
-import {AD_SCREEN} from '../../constants/Screens';
+import { AD_SCREEN } from '../../constants/Screens';
 import BookClubReducer from 'redux/reducers/BookClubReducer';
-import {useTheme} from '@react-navigation/native';
+import { useTheme } from '@react-navigation/native';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 const Home = (props) => {
-  const {navigate} = props.navigation;
+  const { navigate } = props.navigation;
   const [images] = useState(sliderImages);
   const [data] = useState(booksData);
   const [data_book_club] = useState(booksClub);
   const [bookmark_data] = useState(bookmarkdata);
-  const {t} = useTranslation();
+  const { t } = useTranslation();
   const {
     EnglishBooksReducer,
     ArabicBooksReducer,
@@ -60,7 +60,7 @@ const Home = (props) => {
   }, shallowEqual);
 
   const dispatch = useDispatch();
-  const {colors} = useTheme();
+  const { colors } = useTheme();
 
   return (
     <Screen noPadding>
@@ -90,7 +90,7 @@ const Home = (props) => {
       </View>
 
       <View key="content" style={styles.container}>
-        <View style={{width: '100%', height: 200}}>
+        <View style={{ width: '100%', height: 200 }}>
           <FlatListSlider />
         </View>
         <DashboardComponent
@@ -144,7 +144,7 @@ const Home = (props) => {
         />
         <TitleBarWithIcon label="REQUEST BOOKS" />
         <View style={styles.requestBooksBtns}>
-          <View style={{width: wp(28)}}>
+          <View style={{ width: wp(28) }}>
             <Button
               bold
               color={colors.white}
@@ -152,19 +152,19 @@ const Home = (props) => {
               secondary
               fontSize={13}
               onPress={() =>
-                navigate(REQUESTBOOKS_SCREEN, {book_type: 'random'})
+                navigate(REQUESTBOOKS_SCREEN, { book_type: 'random' })
               }>
               Request Book
             </Button>
           </View>
-          <View style={{width: wp(58)}}>
+          <View style={{ width: wp(58) }}>
             <Button
               // bold
               borderRadius={2}
               primary
               fontSize={13}
               onPress={() =>
-                navigate(REQUESTBOOKS_SCREEN, {book_type: 'educational'})
+                navigate(REQUESTBOOKS_SCREEN, { book_type: 'educational' })
               }>
               Request Educational Book
             </Button>

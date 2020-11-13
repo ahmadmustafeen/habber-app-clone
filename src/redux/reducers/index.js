@@ -1,4 +1,4 @@
-import {combineReducers} from 'redux';
+import { combineReducers } from 'redux';
 import LoadingReducer from './LoadingReducer';
 import ModalReducer from './ModalReducer';
 import UserProfileReducer from './UserProfileReducer';
@@ -9,6 +9,7 @@ import BookClubReducer from './BookClubReducer';
 import CartReducer from './CartReducer';
 import SearchBooksReducer from './SearchBooksReducer';
 import SplashReducer from './SplashReducer';
+import FetchRelatedBookList from './FetchRelatedBookList'
 
 export default combineReducers({
   ModalReducer,
@@ -21,4 +22,5 @@ export default combineReducers({
   CartReducer,
   SearchBooksReducer,
   SplashReducer,
+  FetchRelatedBookList,
 });

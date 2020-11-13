@@ -10,14 +10,14 @@ import {
 
 export function* RelatedBooksSaga({ type, payload }) {
   try {
-    console.log('Related Books Saga . . . .  .1', payload);
+    // console.log('Related Books Saga . . . .  .1', payload);
     const response = yield call(() =>
       RestClient.get(`${API_ENDPOINTS.relatedBooks}/${payload.product_id}`),
     );
     const { status, data, message } = response;
-    console.log('Related Books Saga Response . . . .  .', response);
+    // console.log('Related Books Saga Response . . . .  .', data.data);
     if (status === 200) {
-      yield put({ type: FETCH_RELATED_BOOKS_SUCCESS, payload: null });
+      yield put({ type: FETCH_RELATED_BOOKS_SUCCESS, payload: data });
     }
 
     yield put({ type: FETCH_RELATED_BOOKS_SUCCESS, payload: null });

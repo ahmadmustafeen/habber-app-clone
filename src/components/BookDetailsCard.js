@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, I18nManager } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 
 import { AppText } from './common/AppText';
@@ -22,10 +22,12 @@ const BookDetailsCard = (props) => {
       <View
         style={{
           flex: 1,
+          transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }],
           justifyContent: 'space-between',
-          paddingStart: 10,
+          paddingHorizontal: 10,
+          paddingStart: !I18nManager.isRTL ? 10 : 0,
         }}>
-        <View>
+        <View style={{ transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }] }}>
           <AppText bold>{title}</AppText>
           <AppText bold size={15}>
             by {author_name}
@@ -37,13 +39,13 @@ const BookDetailsCard = (props) => {
             {quantity ? null : "OUT OF STOCK"}
           </AppText>
         </View>
-        <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+        <View style={{ flexDirection: 'row', justifyContent: 'space-between', transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }] }}>
           <RoundIcon name="heart" type="font-awesome" color="#fff" small />
           <RoundIcon name="share-alt" type="font-awesome" color="#fff" small />
           <RoundIcon name="glide-g" type="font-awesome" color="#fff" small />
         </View>
       </View>
-    </View>
+    </View >
   );
 };
 
@@ -51,6 +53,8 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     marginBottom: 20,
+    transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }]
+
 
   },
   imgContainer: {
@@ -63,7 +67,7 @@ const styles = StyleSheet.create({
 
   },
   txt: {
-    marginLeft: 10,
+    marginStart: 10,
     marginTop: 10,
   },
 });

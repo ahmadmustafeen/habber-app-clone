@@ -1,38 +1,38 @@
-import React, {useState} from 'react';
-import {View, StyleSheet, Switch, Picker, I18nManager} from 'react-native';
-import {useTranslation} from 'react-i18next';
+import React, { useState } from 'react';
+import { View, StyleSheet, Switch, Picker, I18nManager } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import RNRestart from 'react-native-restart';
 
-import {Screen, Button} from '_components/common';
-import {SettingsComponent, Header} from '_components';
-import {useTheme} from '@react-navigation/native';
-import {JOINUS, PRIVACY_POLICY, RETURN_POLICY} from '../../constants/Screens';
+import { Screen, Button } from '_components/common';
+import { SettingsComponent, Header } from '_components';
+import { useTheme } from '@react-navigation/native';
+import { JOINUS, PRIVACY_POLICY, RETURN_POLICY } from '../../constants/Screens';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-import {withoutDataActions} from '_redux/actions';
-import {SIGN_OUT} from '_redux/actionTypes';
-import {shallowEqual, useDispatch, useSelector} from 'react-redux';
+import { withoutDataActions } from '_redux/actions';
+import { SIGN_OUT } from '_redux/actionTypes';
+import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 
 const Settings = (props) => {
-  const {colors} = useTheme();
+  const { colors } = useTheme();
   const [isEnabled, setIsEnabled] = useState(false);
 
-  const {i18n} = useTranslation();
+  const { i18n } = useTranslation();
 
   const toggleSwitch = () => {
     setIsEnabled(!isEnabled);
   };
   const dispatch = useDispatch();
   const UserProfileReducer = useSelector(
-    ({UserProfileReducer}) => UserProfileReducer,
+    ({ UserProfileReducer }) => UserProfileReducer,
     shallowEqual,
   );
   const onLogout = () => {
     dispatch(withoutDataActions(SIGN_OUT));
   };
-  const {navigation} = props;
+  const { navigation } = props;
   return (
     <Screen>
       <View key="header">
@@ -57,11 +57,29 @@ const Settings = (props) => {
             </Picker>
           }
         /> */}
+        {__DEV__ && <View><Button bold onPress={() => {
+
+          i18n.changeLanguage('en').then(() => {
+            I18nManager.forceRTL(false);
+            RNRestart.Restart();
+          })
+        }}>
+          English
+          </Button>
+          <Button bold onPress={() => {
+
+            i18n.changeLanguage('ar').then(() => {
+              I18nManager.forceRTL(true);
+              RNRestart.Restart();
+            })
+          }}>
+            Arabic
+</Button></View>}
         <SettingsComponent
           label="Notifications"
           rightComponent={
             <Switch
-              trackColor={{false: colors.primary, true: colors.textBlack}}
+              trackColor={{ false: colors.primary, true: colors.textBlack }}
               thumbColor={!isEnabled ? colors.secondary : colors.appColor}
               ios_backgroundColor="#3e3e3e"
               onValueChange={toggleSwitch}

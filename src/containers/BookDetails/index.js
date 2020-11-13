@@ -5,6 +5,7 @@ import {
   Image,
   ScrollView,
   ImageBackground,
+  I18nManager
 } from 'react-native';
 import { AppText, Button, Screen } from '../../components/common';
 import { useDispatch, useSelector, shallowEqual } from 'react-redux';
@@ -13,9 +14,11 @@ import {
   BookDetailsCard,
   HorizontalRow,
   Header,
+  DashboardComponent,
+  ThumbnailClub,
 } from '../../components';
 import { CART_SCREEN } from '../../constants/Screens';
-import { ADD_TO_CART } from '_redux/actionTypes';
+import { ADD_TO_CART, FETCH_RELATED_BOOKS } from '_redux/actionTypes';
 import {
   withDataActions,
   withoutDataActions,
@@ -30,11 +33,18 @@ const BookDetails = (props) => {
   } = props;
   const { colors } = useTheme();
   const dispatch = useDispatch();
-  // const {CartReducer} = useSelector((state) => {
-  //   return {
-  //     CartReducer: state.CartReducer,
-  //   };
-  // }, shallowEqual);
+  const { CartReducer } = useSelector((state) => {
+    return {
+      CartReducer: state.CartReducer,
+
+    };
+  }, shallowEqual);
+  const { FetchRelatedBookList } = useSelector((state) => {
+    return {
+      FetchRelatedBookList: state.FetchRelatedBookList,
+
+    };
+  }, shallowEqual);
 
   const [value, setValue] = useState(0);
 
@@ -83,12 +93,25 @@ const BookDetails = (props) => {
       ),
     );
   };
-  console.log('BookDetails', params);
+  useEffect(() => {
+    dispatch(
+      withDataActions(
+        {
+          product_id: id
+        },
+        FETCH_RELATED_BOOKS,
+      ),
+    );
+  }, [])
+  FetchRelatedBookList && console.log(FetchRelatedBookList)
   return (
     <Screen noPadding contentPadding>
       <View key="header">
         <ImageBackground
-          style={{ flex: 1, paddingHorizontal: 10 }}
+          style={{
+            flex: 1, paddingHorizontal: 10,
+            transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }]
+          }}
           source={require('_assets/images/book-detail.png')}>
           <Header {...props} noTitle color={colors.secondary} />
           <BookDetailsCard {...params} />
@@ -117,6 +140,11 @@ const BookDetails = (props) => {
           </AppText>
           <AppText size={14}>{description}</AppText>
         </View>
+        <DashboardComponent
+          data={FetchRelatedBookList}
+          label="You may like"
+          renderComponent={(item) => <ThumbnailClub url={item.image} />}
+        />
       </View>
       <View key="footer">
         <View style={styles.counter}>

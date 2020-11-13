@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, TextInput, Text } from 'react-native';
+import { View, StyleSheet, TextInput, I18nManager } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 
 import { Color } from '../constants/Colors';
@@ -15,8 +15,8 @@ const InputWithLabel = (props) => {
   const { viewStyle, label, inputRef, required, maxLength, primary } = props;
 
   return (
-    <View style={[styles.inputContainerStyle, viewStyle]}>
-      {label && (
+    <View style={[styles.inputContainerStyle, viewStyle,]}>
+      { label && (
         <AppText white secondary={!primary} primary={primary}>
           {`${label} ` || `Label Name`}
           {required ? <AppText>*</AppText> : null}
@@ -29,9 +29,9 @@ const InputWithLabel = (props) => {
         }}
         placeholderTextColor={Color.placeholder}
         maxLength={maxLength}
-        style={[styles.inputFieldStyle, { borderColor: colors.primary }, { color: (props.color || "white") }]}
+        style={[styles.inputFieldStyle, { borderColor: colors.primary }, { color: (props.color || "white"), textAlign: I18nManager.isRTL ? 'right' : 'left' }]}
       />
-    </View>
+    </View >
   );
 };
 

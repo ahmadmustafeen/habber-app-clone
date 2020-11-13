@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, Text } from 'react-native';
+import { View, StyleSheet, Text, I18nManager } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 import { AppText } from './common';
 
@@ -27,7 +27,8 @@ const Counter = (props) => {
 
 const styles = StyleSheet.create({
   counter: {
-    flexDirection: 'row',
+
+    flexDirection: I18nManager ? "row-reverse" : "row",
     justifyContent: 'center',
     // backgroundColor: '',
     alignItems: 'center',

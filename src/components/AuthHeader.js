@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, StyleSheet, Image } from 'react-native'
+import { View, Text, StyleSheet, Image, I18nManager } from 'react-native'
 import { Icon } from 'react-native-elements'; import {
     widthPercentageToDP as wp,
     heightPercentageToDP as hp,
@@ -15,7 +15,7 @@ const AuthHeader = (props) => {
                 {!props.noIcon && <Icon
                     onPress={() => props.navigation.goBack()}
                     color={colors.primary}
-                    name="leftcircleo"
+                    name={I18nManager ? "rightcircleo" : "leftcircleo"}
                     type="antdesign"
                 />}
             </View>
