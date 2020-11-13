@@ -3,17 +3,29 @@ import {Alert} from 'react-native';
 import * as NavigationService from '../../../NavigationService';
 import {SIGNIN_SCREEN, LANGUAGE_SCREEN, HOME} from '_constants/Screens';
 import {getItem} from 'helpers/Localstorage';
+import {FETCH_ADDRESS, FETCH_USER_PROFILE_SUCCESS} from '_redux/actionTypes';
+import {all, put} from 'redux-saga/effects';
+import {RestClient} from 'network/RestClient';
 
 export function* splashAdSaga() {
   try {
     const backUser = yield getItem('@backUser');
-    const userProfile = yield getItem('@userProfile');
-    // if (userProfile) {
-    //   return NavigationService.navigate('Drawer', {
-    //     screen: HOME,
-    //   });
-    // } else
-    if (backUser) {
+    let userProfile = yield getItem('@userProfile');
+    userProfile = JSON.parse(userProfile);
+    if (userProfile.token) {
+      RestClient.setHeader('Authorization', `Bearer ${userProfile.token}`);
+      yield all([
+        put({
+          type: FETCH_USER_PROFILE_SUCCESS,
+          payload: userProfile,
+        }),
+        put({type: FETCH_ADDRESS}),
+      ]);
+
+      return NavigationService.navigate('Drawer', {
+        screen: HOME,
+      });
+    } else if (backUser) {
       return NavigationService.navigate('Auth', {
         screen: SIGNIN_SCREEN,
       });
@@ -23,6 +35,7 @@ export function* splashAdSaga() {
       });
     }
   } catch (error) {
-    Alert.alert('Error');
+    console.log('ERROR SPLASH AD SAGA', error);
+    Alert.alert('Error', error);
   }
 }

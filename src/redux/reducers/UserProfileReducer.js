@@ -1,5 +1,8 @@
-import i18n from 'utils/i18n';
-import {SWITCH_LANG_SUCCESS, SIGN_IN_SUCCESS} from '_redux/actionTypes';
+import {
+  FETCH_USER_PROFILE_SUCCESS,
+  SIGN_IN_SUCCESS,
+  SIGN_OUT_SUCCESS,
+} from '_redux/actionTypes';
 
 const initialState = {};
 export default (state = initialState, action) => {
@@ -8,6 +11,12 @@ export default (state = initialState, action) => {
     //   return {...state, language: action.payload};
     // }
     case SIGN_IN_SUCCESS: {
+      return {...action.payload};
+    }
+    case FETCH_USER_PROFILE_SUCCESS: {
+      return {...action.payload};
+    }
+    case SIGN_OUT_SUCCESS: {
       return {...action.payload};
     }
     default:

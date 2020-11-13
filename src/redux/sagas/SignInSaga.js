@@ -12,8 +12,8 @@ export function* signinSaga({payload}) {
     const {email, password} = payload;
     const response = yield call(() =>
       RestClient.post(API_ENDPOINTS.signin, {
-        email: 'a@b.com',
-        password: '321321321',
+        email,
+        password,
       }),
     );
     const {

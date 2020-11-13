@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import {
   View,
   StyleSheet,
@@ -10,9 +10,9 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-import { shallowEqual, useSelector } from 'react-redux'
-import { AppText, BackgroundImage, Screen } from '../../components/common';
-import { HorizontalRow, RoundIcon, TitleBarWithIcon } from '../../components';
+import {shallowEqual, useSelector} from 'react-redux';
+import {AppText, BackgroundImage, Screen} from '../../components/common';
+import {HorizontalRow, RoundIcon, TitleBarWithIcon} from '../../components';
 import {
   HOME,
   SETTINGS_SCREEN,
@@ -24,13 +24,11 @@ import {
   SIGNIN_SCREEN,
 } from '../../constants/Screens';
 import UserProfileReducer from 'redux/reducers/UserProfileReducer';
-import { colors } from 'react-native-elements';
-import { Color } from 'constants/Colors';
-
+import {colors} from 'react-native-elements';
+import {Color} from 'constants/Colors';
 
 const DrawerIcon = (props) => {
-
-  const { name, onPress } = props;
+  const {name, onPress} = props;
   return (
     <>
       <RoundIcon
@@ -44,12 +42,10 @@ const DrawerIcon = (props) => {
 };
 console.log(Dimensions);
 const DrawerMenu = (props) => {
-  const { UserProfileReducer } = useSelector((state) => {
-
-    return {
-      UserProfileReducer: state.UserProfileReducer,
-    };
-  }, shallowEqual);
+  const UserProfileReducer = useSelector(
+    ({UserProfileReducer}) => UserProfileReducer,
+    shallowEqual,
+  );
   return (
     <ImageBackground
       {...props}
@@ -73,7 +69,11 @@ const DrawerMenu = (props) => {
             </View>
 
             <AppText white bold size={16} style={styles.txt}>
-              {UserProfileReducer.first_name ? (UserProfileReducer.first_name + " " + UserProfileReducer.last_name) : 'GUEST USER'}
+              {UserProfileReducer.first_name
+                ? UserProfileReducer.first_name +
+                  ' ' +
+                  UserProfileReducer.last_name
+                : 'GUEST USER'}
             </AppText>
           </View>
         </View>
@@ -85,7 +85,7 @@ const DrawerMenu = (props) => {
             noIcon
           />
           <View style={styles.Horizontalrow} />
-          {UserProfileReducer.token ?
+          {UserProfileReducer.token ? (
             <>
               <TitleBarWithIcon
                 label="Profile"
@@ -94,7 +94,8 @@ const DrawerMenu = (props) => {
                 noIcon
               />
               <View style={styles.Horizontalrow} />
-            </> :
+            </>
+          ) : (
             <>
               <TitleBarWithIcon
                 label="Sign In"
@@ -104,7 +105,7 @@ const DrawerMenu = (props) => {
               />
               <View style={styles.Horizontalrow} />
             </>
-          }
+          )}
 
           <TitleBarWithIcon
             label="Favorites"
