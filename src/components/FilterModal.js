@@ -65,10 +65,10 @@ const FilterModal = (props) => {
           right
           onPress={() => reset()}
           color={colors.primary}
-          style={{ paddingRight: 20, paddingVertical: hp(1) }}
+          style={{ paddingVertical: hp(1) }}
         >Reset</AppText>
         <HorizontalRow style={styles.line} />
-        <AppText bold color={colors.placeholder} style={{ paddingLeft: 20, paddingVertical: 16 }}>FILTER BY GENRE</AppText>
+        <AppText bold color={colors.placeholder} style={{ paddingVertical: 16 }}>FILTER BY GENRE</AppText>
         {items.map((item) => {
           console.log("asdads", item.label)
           return (
@@ -80,7 +80,7 @@ const FilterModal = (props) => {
 
 
 
-        <Button color="white" style={{ position: "absolute", bottom: hp(5) }} onPress={() => onApply([...state])}>
+        <Button color="white" style={{ position: 'absolute', bottom: 30, left: 20 }} onPress={() => onApply([...state])}>
           Apply
         </Button>
       </View>
@@ -90,6 +90,7 @@ const FilterModal = (props) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    padding: 20,
   },
   line: {
     borderWidth: wp(0.1),

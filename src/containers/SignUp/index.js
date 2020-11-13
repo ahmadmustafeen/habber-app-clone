@@ -49,7 +49,7 @@ const SignUp = (props) => {
     <BackgroundImage>
       <View key="header">
 
-        <AuthHeader {...props} noIcon />
+        <AuthHeader {...props} />
       </View>
       <View key="content" style={styles.content}>
         <InputWithLabel

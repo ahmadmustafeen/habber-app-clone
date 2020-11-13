@@ -29,7 +29,7 @@ const InputWithLabel = (props) => {
         }}
         placeholderTextColor={Color.placeholder}
         maxLength={maxLength}
-        style={[styles.inputFieldStyle, { borderColor: colors.primary }]}
+        style={[styles.inputFieldStyle, { borderColor: colors.primary }, { color: (props.color || "white") }]}
       />
     </View>
   );
@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     borderWidth: 0.5,
     fontSize: 20,
-    color: '#000000',
+
     backgroundColor: 'transparent',
   },
 });

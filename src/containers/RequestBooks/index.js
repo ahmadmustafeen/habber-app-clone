@@ -1,16 +1,16 @@
-import React, {useState} from 'react';
-import {View, Text, StyleSheet, Alert} from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, Alert } from 'react-native';
 import ImagePicker from 'react-native-image-picker';
 
-import {useDispatch} from 'react-redux';
-import {withDataActions} from '_redux/actions';
-import {REQUEST_BOOK} from '_redux/actionTypes';
-import {InputWithLabel, Header} from '_components';
-import {Button, AppText, Screen} from '_components/common';
-import {validateIsTrue} from '_helpers/Validators';
+import { useDispatch } from 'react-redux';
+import { withDataActions } from '_redux/actions';
+import { REQUEST_BOOK } from '_redux/actionTypes';
+import { InputWithLabel, Header } from '_components';
+import { Button, AppText, Screen } from '_components/common';
+import { validateIsTrue } from '_helpers/Validators';
 const options = {
   title: 'Select Avatar',
-  customButtons: [{name: 'fb', title: 'Choose Photo from Facebook'}],
+  customButtons: [{ name: 'fb', title: 'Choose Photo from Facebook' }],
   storageOptions: {
     skipBackup: true,
     path: 'images',
@@ -18,9 +18,9 @@ const options = {
 };
 const RequestBooks = (props) => {
   const {
-    navigation: {navigate},
+    navigation: { navigate },
     route: {
-      params: {book_type},
+      params: { book_type },
     },
   } = props;
 
@@ -30,12 +30,12 @@ const RequestBooks = (props) => {
     author_name: '',
     image: '',
   });
-  const {title, author_name} = state;
+  const { title, author_name } = state;
 
   const dispatch = useDispatch();
 
   const handleChange = (key, value) => {
-    setState((state) => ({...state, [key]: value}));
+    setState((state) => ({ ...state, [key]: value }));
   };
 
   const validate = () => {
@@ -77,12 +77,14 @@ const RequestBooks = (props) => {
         <InputWithLabel
           placeholder="Book Title*"
           required
+          color="black"
           value={title}
           onChangeText={(value) => handleChange('title', value)}
         />
         <InputWithLabel
           placeholder="Author Name*"
           required
+          color="black"
           value={author_name}
           onChangeText={(value) => handleChange('author_name', value)}
         />

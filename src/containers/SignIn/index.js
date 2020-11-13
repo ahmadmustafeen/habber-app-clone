@@ -67,6 +67,7 @@ const SignIn = (props) => {
       </View>
       <View key="content" style={styles.content}>
         <InputWithLabel
+          primary={true}
           placeholder="ahmadalajmi@gmail.com"
           label="Email"
           value={email}
