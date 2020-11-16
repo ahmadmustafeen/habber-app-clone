@@ -1,7 +1,23 @@
 {
   "translation": {
     "hello": "Hello",
-    "bye": "bye"
+    "bye": "bye",
+    "arabic":"ARABIC BOOKS",
+    "english":"ENGLISH BOOKS",
+    "bookclub":"BOOKCLUBS",
+    "bookmark":"BOOKMARKS",
+    "requestBook":"REQUEST BOOK"
+  },
+
+  "drawer":{
+    "home" : "Home",
+    "profile":"Profile",
+    "signIn":"Sign In",
+    "aboutUs":"About Us",
+    "favorite":"Favourite",
+    "myOrder":"My Order",
+    "setting":"Settings"
+
   },
   "forgotPassword": {
     "forgot_password": "Forgot Password?",

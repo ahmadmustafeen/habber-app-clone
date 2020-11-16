@@ -12,6 +12,8 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
+
+import { useTranslation } from 'react-i18next';
 import { shallowEqual, useSelector } from 'react-redux';
 import { AppText, BackgroundImage, Screen } from '../../components/common';
 import { HorizontalRow, RoundIcon, TitleBarWithIcon } from '../../components';
@@ -30,6 +32,7 @@ import { colors } from 'react-native-elements';
 import { Color } from 'constants/Colors';
 
 const DrawerIcon = (props) => {
+
   const { name, onPress } = props;
   return (
     <>
@@ -46,6 +49,7 @@ const DrawerIcon = (props) => {
 };
 console.log(Dimensions);
 const DrawerMenu = (props) => {
+  const { t } = useTranslation(['drawer']);
   const UserProfileReducer = useSelector(
     ({ UserProfileReducer }) => UserProfileReducer,
     shallowEqual,
@@ -84,7 +88,7 @@ const DrawerMenu = (props) => {
           </View>
           <View>
             <TitleBarWithIcon
-              label="Home"
+              label={t('home')}
               color={colors.white}
               onPress={() => props.navigation.navigate(HOME)}
               noIcon
@@ -93,7 +97,7 @@ const DrawerMenu = (props) => {
             {UserProfileReducer.token ? (
               <>
                 <TitleBarWithIcon
-                  label="Profile"
+                  label={t('profile')}
                   color={colors.white}
                   onPress={() => props.navigation.navigate(MY_PROFILE)}
                   noIcon
@@ -103,7 +107,7 @@ const DrawerMenu = (props) => {
             ) : (
                 <>
                   <TitleBarWithIcon
-                    label="Sign In"
+                    label={t('signIn')}
                     color={colors.white}
                     onPress={() => props.navigation.navigate(SIGNIN_SCREEN)}
                     noIcon
@@ -113,28 +117,29 @@ const DrawerMenu = (props) => {
               )}
 
             <TitleBarWithIcon
-              label="Favorites"
+              label={t('favorite')}
               color={colors.white}
               onPress={() => props.navigation.navigate(FAVORITES)}
               noIcon
             />
             <View style={styles.Horizontalrow} />
             <TitleBarWithIcon
-              label="My orders"
+
+              label={t('myOrder')}
               color={colors.white}
               onPress={() => props.navigation.navigate(MY_ORDERS)}
               noIcon
             />
             <View style={styles.Horizontalrow} />
             <TitleBarWithIcon
-              label="About us"
+              label={t('aboutUs')}
               color={colors.white}
               onPress={() => props.navigation.navigate(ABOUT_US)}
               noIcon
             />
             <View style={styles.Horizontalrow} />
             <TitleBarWithIcon
-              label="Settings"
+              label={t('setting')}
               color={colors.white}
               onPress={() => props.navigation.navigate(SETTINGS_SCREEN)}
               noIcon

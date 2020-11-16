@@ -1,7 +1,23 @@
 {
   "translation": {
     "hello": "مرحبا",
-    "bye": "وداعا"
+    "bye": "وداعا",
+    "arabic":"مرحبا",
+    "english":"مرحبا",
+    "bookclub":"مرحبا",
+    "bookmark":"مرحبا",
+    "requestBook":"مرحبا"
+    
+  },
+  "drawer":{
+    "home" : "مرحبا",
+    "profile":"مرحبا",
+    "signIn":"مرحبا",
+    "aboutUs":"مرحبا",
+    "favorite":"مرحبا",
+    "myOrder":"مرحبا",
+    "setting":"مرحبا"
+
   },
   "forgotPassword": {
     "forgot_password": "مرحبا",

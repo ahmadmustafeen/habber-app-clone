@@ -3,9 +3,7 @@ import React, { useState } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import {
-  Counter,
   DashboardComponent,
-  ImageSlider,
   ThumbnailBookmarks,
   ThumbnailClub,
   TitleBarWithIcon,
@@ -14,25 +12,13 @@ import {
 import {
   REQUESTBOOKS_SCREEN,
   BOOKLIST_SCREEN,
-  BOOK_CLUBS,
-  BOOKMARKS,
 } from '_constants/Screens';
 import { sliderImages } from './dummydata';
 import { ThumbnailBook } from '_components/ThumbnailBook';
-import { AppText, Button, Screen } from '_components/common';
+import { Button, Screen } from '_components/common';
 import { FlatListSlider } from '_components';
 import { booksData, booksClub, bookmarkdata } from '_assets/data/dummydata';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
-import { withDataActions } from '../../redux/actions/GenericActions';
-import {
-  FETCH_ARABIC_BOOKS,
-  FETCH_BOOK_LISTS,
-  FETCH_BOOKCLUBS,
-  FETCH_ENGLISH_BOOKS,
-  FETCH_RELATED_BOOKS,
-} from '../../redux/actionTypes';
-import { AD_SCREEN } from '../../constants/Screens';
-import BookClubReducer from 'redux/reducers/BookClubReducer';
 import { useTheme } from '@react-navigation/native';
 import {
   widthPercentageToDP as wp,
@@ -95,11 +81,11 @@ const Home = (props) => {
         </View>
         <DashboardComponent
           data={ArabicBooksReducer}
-          label="ARABIC BOOK"
+          label={t('arabic')}
           renderComponent={(item) => <ThumbnailBook url={item.item.image} />}
           onIconPress={() =>
             navigate(BOOKLIST_SCREEN, {
-              label: 'ARABIC BOOK',
+              label: t('arabic'),
               data: ArabicBooksReducer,
               type: 'book',
             })
@@ -107,11 +93,11 @@ const Home = (props) => {
         />
         <DashboardComponent
           data={EnglishBooksReducer}
-          label="ENGLISH BOOK"
+          label={t('english')}
           renderComponent={(item) => <ThumbnailBook url={item.item.image} />}
           onIconPress={() =>
             navigate(BOOKLIST_SCREEN, {
-              label: 'ENGLISH BOOK',
+              label: t('english'),
               data: EnglishBooksReducer,
               type: 'book',
             })
@@ -119,11 +105,11 @@ const Home = (props) => {
         />
         <DashboardComponent
           data={BookClubReducer}
-          label="BOOK CLUBS"
+          label={t('bookclub')}
           renderComponent={(item) => <ThumbnailClub url={item.item.image} />}
           onIconPress={() =>
             navigate(BOOKLIST_SCREEN, {
-              label: 'BOOKS CLUB',
+              label: t('bookclub'),
               data: BookClubReducer,
             })
           }
@@ -133,16 +119,16 @@ const Home = (props) => {
           renderComponent={(item) => (
             <ThumbnailBookmarks url={item.item.image} />
           )}
-          label="BOOKMARKS"
+          label={t('bookmark')}
           onIconPress={() =>
             navigate(BOOKLIST_SCREEN, {
-              label: 'BOOKMARKS',
+              label: t('bookmark'),
               data: BookmarksReducer,
               type: 'bookmarks',
             })
           }
         />
-        <TitleBarWithIcon label="REQUEST BOOKS" />
+        <TitleBarWithIcon label={t('requestBook')} />
         <View style={styles.requestBooksBtns}>
           <View style={{ width: wp(28) }}>
             <Button
