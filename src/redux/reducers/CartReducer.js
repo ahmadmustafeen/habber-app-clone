@@ -5,7 +5,8 @@ import {
 } from '_redux/actionTypes';
 const initialState = {
   total_price: 0,
-  product: [],
+  book: [],
+  bookmark: [],
 };
 
 export default (state = initialState, { type, payload }) => {
@@ -37,15 +38,17 @@ export default (state = initialState, { type, payload }) => {
         alreadyAvailable = -1;
       } else {
         alreadyAvailable = state[payload.product_type].findIndex(
-          (obj) => obj.isbn === payload.isbn,
+          (obj) => obj.product_id === payload.product_id,
         );
       }
       var item_price = payload.quantity * payload.price;
       if (alreadyAvailable === -1) {
         return {
           ...state,
-          [payload.product_type]: [payload],
-          total_price: item_price
+
+          total_price: item_price,
+          [payload.product_type]: [...state[payload.product_type], payload],
+
         };
       }
       const updatedState = { ...state };

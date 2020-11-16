@@ -21,5 +21,6 @@ export const API_ENDPOINTS = {
   addresses: '/addresses',
   fetch_addresses: '/user/addresses',
   site_setting: '/site-setting',
-  users: '/users/'
+  users: '/users/',
+  favourites: '/favourites',
 };

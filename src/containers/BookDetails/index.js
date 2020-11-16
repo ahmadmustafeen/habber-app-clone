@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   View,
   StyleSheet,
   Image,
   ScrollView,
   ImageBackground,
-  I18nManager
+  I18nManager,
 } from 'react-native';
-import { AppText, Button, Screen } from '../../components/common';
-import { useDispatch, useSelector, shallowEqual } from 'react-redux';
+import {AppText, Button, Screen} from '../../components/common';
+import {useDispatch, useSelector, shallowEqual} from 'react-redux';
 import {
   Counter,
   BookDetailsCard,
@@ -17,40 +17,41 @@ import {
   DashboardComponent,
   ThumbnailClub,
 } from '../../components';
-import { CART_SCREEN } from '../../constants/Screens';
-import { ADD_TO_CART, FETCH_RELATED_BOOKS } from '_redux/actionTypes';
+import {CART_SCREEN} from '../../constants/Screens';
+import {
+  ADD_TO_CART,
+  FETCH_RELATED_BOOKS,
+  UPDATE_FAVOURITE,
+  ADD_TO_FAVOURITE,
+  REMOVE_FAVOURITE,
+} from '_redux/actionTypes';
 import {
   withDataActions,
   withoutDataActions,
 } from '_redux/actions/GenericActions';
 
-import { useTheme } from '@react-navigation/native';
+import {useFocusEffect, useTheme} from '@react-navigation/native';
 
 const BookDetails = (props) => {
   const {
-    route: { params },
-    navigation: { navigate },
+    route: {params},
+    navigation: {navigate},
   } = props;
-  const { colors } = useTheme();
+  const {colors} = useTheme();
   const dispatch = useDispatch();
-  const { CartReducer } = useSelector((state) => {
-    return {
-      CartReducer: state.CartReducer,
 
-    };
-  }, shallowEqual);
-  const { FetchRelatedBookList } = useSelector((state) => {
+  const {FetchRelatedBookList, FavouriteReducer} = useSelector((state) => {
     return {
       FetchRelatedBookList: state.FetchRelatedBookList,
-
+      FavouriteReducer: state.FavouriteReducer,
     };
-  }, shallowEqual);
+  });
 
   const [value, setValue] = useState(0);
 
   const {
     title,
-    id,
+    id: product_id,
     total_pages,
     description,
     cover_type,
@@ -80,7 +81,7 @@ const BookDetails = (props) => {
     dispatch(
       withDataActions(
         {
-          product_id: id,
+          product_id,
           quantity: value,
           price,
           description,
@@ -93,28 +94,45 @@ const BookDetails = (props) => {
       ),
     );
   };
+  const isFavourite = FavouriteReducer[type].some(
+    (el) => el.product_id === product_id,
+  );
+
   useEffect(() => {
-    dispatch(
-      withDataActions(
-        {
-          product_id: id
-        },
-        FETCH_RELATED_BOOKS,
-      ),
-    );
-  }, [])
-  FetchRelatedBookList && console.log(FetchRelatedBookList)
+    dispatch(withDataActions({product_id}, FETCH_RELATED_BOOKS));
+  }, []);
+
+  useEffect(() => {
+    return function onUnmount() {
+      dispatch(
+        withDataActions(
+          {product_id, type},
+          isFavourite ? ADD_TO_FAVOURITE : REMOVE_FAVOURITE,
+        ),
+      );
+    };
+  }, [isFavourite]);
+
+  const handleFavouriteClick = () => {
+    dispatch(withDataActions({product_id, type}, UPDATE_FAVOURITE));
+  };
+
   return (
     <Screen noPadding contentPadding>
       <View key="header">
         <ImageBackground
           style={{
-            flex: 1, paddingHorizontal: 10,
-            transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }]
+            flex: 1,
+            paddingHorizontal: 10,
+            transform: [{scaleX: I18nManager.isRTL ? -1 : 1}],
           }}
           source={require('_assets/images/book-detail.png')}>
           <Header {...props} noTitle color={colors.secondary} />
-          <BookDetailsCard {...params} />
+          <BookDetailsCard
+            onClickFavourite={handleFavouriteClick}
+            favourite={isFavourite}
+            {...params}
+          />
         </ImageBackground>
       </View>
       <View key="content">
@@ -134,8 +152,8 @@ const BookDetails = (props) => {
           </AppText>
         </View>
         <HorizontalRow />
-        <View style={{ marginTop: 20 }}>
-          <AppText bold style={{ marginBottom: 10 }}>
+        <View style={{marginTop: 20}}>
+          <AppText bold style={{marginBottom: 10}}>
             Description:
           </AppText>
           <AppText size={14}>{description}</AppText>
