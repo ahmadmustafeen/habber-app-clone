@@ -37,7 +37,7 @@ const ForgotPassword = (props) => {
       </View>
 
       <View key="content">
-        <InputWithLabel placeholder="ahmadalajmi@gmail.com" label="Email" value={email} onChangeText={(val) => setEmail(val)} />
+        <InputWithLabel placeholder="ahmadalajmi@gmail.com" label={t("email")} value={email} onChangeText={(val) => setEmail(val)} />
       </View>
       <View key="footer">
         <Button onPress={onSubmit}>{t('resetPassword')}</Button>

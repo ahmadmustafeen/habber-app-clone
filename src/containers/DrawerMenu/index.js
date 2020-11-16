@@ -88,7 +88,7 @@ const DrawerMenu = (props) => {
           </View>
           <View>
             <TitleBarWithIcon
-              label={t('home')}
+              label={t('password')}
               color={colors.white}
               onPress={() => props.navigation.navigate(HOME)}
               noIcon

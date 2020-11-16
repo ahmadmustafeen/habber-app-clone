@@ -17,7 +17,6 @@
     "favorite":"Favourite",
     "myOrder":"My Order",
     "setting":"Settings"
-
   },
   "forgotPassword": {
     "forgot_password": "Forgot Password?",
@@ -26,5 +25,15 @@
     "modal_heading": "Please check your Registered Email",
     "modal_description": "Your Password Reset Link Has Been Sent To Your Email",
     "modal_button_label": "Continue"
-  }
+  },
+  "login":{
+    "email":"Email",
+    "password":"Password",
+    "signInLabel":" Sign in to your account",
+    "signInHeader":"Hellow",
+    "forgetPassword":"Forget Password",
+    "signIn":"Sign In",
+    "createAccount":"Create Account",
+    "skip":"skip"
+  }  
 }

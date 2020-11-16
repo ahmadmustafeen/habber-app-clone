@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, StyleSheet, Alert } from 'react-native';
 import { useDispatch } from 'react-redux';
-
+import { useTranslation } from 'react-i18next';
 import { InputWithLabel, RoundIcon, ModalScreen, AuthHeader } from '_components';
 import { BackgroundImage, Button, AppText } from '_components/common';
 import { signUp } from '_assets/data/StaticData';
@@ -18,6 +18,7 @@ const SignUp = (props) => {
   const { navigate } = props.navigation;
   const { visible } = useModal();
 
+  const { t } = useTranslation(["signUp"]);
   const [state, setState] = useState({
     first_name: '',
     last_name: '',
