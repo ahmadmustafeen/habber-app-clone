@@ -93,7 +93,7 @@ const DrawerMenu = (props) => {
           </View>
           <View>
             <TitleBarWithIcon
-              label={t('password')}
+              label={t('home')}
               color={colors.white}
               onPress={() => props.navigation.navigate(HOME)}
               noIcon
@@ -140,6 +140,13 @@ const DrawerMenu = (props) => {
               label={t('aboutUs')}
               color={colors.white}
               onPress={() => props.navigation.navigate(ABOUT_US)}
+              noIcon
+            />
+            <View style={styles.Horizontalrow} />
+            <TitleBarWithIcon
+              label={t('contactUs')}
+              color={colors.white}
+              onPress={() => props.navigation.navigate(CONTACT_US)}
               noIcon
             />
             <View style={styles.Horizontalrow} />

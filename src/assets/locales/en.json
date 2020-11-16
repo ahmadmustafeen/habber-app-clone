@@ -16,7 +16,9 @@
     "aboutUs":"About Us",
     "favorite":"Favourite",
     "myOrder":"My Order",
-    "setting":"Settings"
+    "setting":"Settings",
+    "contactUs":"Contact Us"
+
   },
   "forgotPassword": {
     "forgot_password": "Forgot Password?",

@@ -15,7 +15,7 @@ const AuthHeader = (props) => {
                 {!props.noIcon && <Icon
                     onPress={() => props.navigation.goBack()}
                     color={colors.primary}
-                    name={I18nManager ? "rightcircleo" : "leftcircleo"}
+                    name={I18nManager.isRTL ? "rightcircleo" : "leftcircleo"}
                     type="antdesign"
                 />}
             </View>
