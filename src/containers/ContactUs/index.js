@@ -1,11 +1,11 @@
-import {validatePhone, validateEmail} from '_helpers/Validators';
-import React, {useState} from 'react';
-import {View, TextInput, StyleSheet, Alert} from 'react-native';
-import {useDispatch} from 'react-redux';
-import {withDataActions} from '_redux/actions';
-import {SUBMIT_CONTACT_US} from '_redux/actionTypes';
-import {InputWithLabel, Header} from '../../components';
-import {Button, Screen} from '../../components/common';
+import { validatePhone, validateEmail } from '_helpers/Validators';
+import React, { useState } from 'react';
+import { View, TextInput, StyleSheet, Alert } from 'react-native';
+import { useDispatch } from 'react-redux';
+import { withDataActions } from '_redux/actions';
+import { SUBMIT_CONTACT_US } from '_redux/actionTypes';
+import { InputWithLabel, Header } from '../../components';
+import { Button, Screen } from '../../components/common';
 
 const ContactUs = (props) => {
   const dispatch = useDispatch();
@@ -17,7 +17,7 @@ const ContactUs = (props) => {
   });
 
   const setStateHandler = (key, val) => {
-    setState({...state, [key]: val});
+    setState({ ...state, [key]: val });
   };
   const validate = () => {
     if (!state.name) {
@@ -46,6 +46,7 @@ const ContactUs = (props) => {
         <View key="content" style={styles.content}>
           <InputWithLabel
             style={styles.inputfield}
+            color={"black"}
             placeholder="Name*"
             required
             value={state.name}
@@ -54,11 +55,13 @@ const ContactUs = (props) => {
           <InputWithLabel
             placeholder="Email*"
             required
+            color={"black"}
             value={state.email}
             onChangeText={(val) => setStateHandler('email', val)}
           />
           <InputWithLabel
             placeholder="Mobile Number (optional)"
+            color={"black"}
             required
             value={state.phone}
             onChangeText={(val) => setStateHandler('phone', val)}

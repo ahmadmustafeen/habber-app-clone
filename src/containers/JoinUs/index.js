@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { validatePhone, validateEmail,validateIsTrue } from '_helpers/Validators';
+import { validatePhone, validateEmail, validateIsTrue } from '_helpers/Validators';
 import { useDispatch } from 'react-redux';
 import { View, TextInput, StyleSheet, Alert } from 'react-native';
-import { InputWithLabel, RadioButton, ModalScreen, Header} from '../../components';
+import { InputWithLabel, RadioButton, ModalScreen, Header } from '../../components';
 import { withDataActions } from '_redux/actions';
 import { Button, AppText } from '_components/common';
 import { JOIN_US } from '_assets/data/StaticData';
@@ -40,10 +40,11 @@ const JoinUs = (props) => {
       Alert.alert('Invalid Phone Number');
       return false;
     }
-    validateIsTrue(state.details,"Details");
-    validateIsTrue(state.business_type,"Business Type");
-    validateIsTrue(state.product_type,"Product Type");
-    validateIsTrue(state.details,"Details");
+    validateIsTrue(state.details, "Details");
+    validateIsTrue(state.business_type, "Business Type");
+    validateIsTrue(state.product_type, "Product Type");
+    validateIsTrue(state.details, "Details");
+    return true
   };
   const businessTypeFunc = (id) => {
     setStateHandler('business_type', id)
@@ -56,16 +57,18 @@ const JoinUs = (props) => {
     props.navigation.goBack()
   }
   const onSubmit = () => {
-    console.log("SADAS")
-    validate() && dispatch(withDataActions(state, SUBMIT_JOIN_US));
+    console.log(validate())
+    dispatch(withDataActions(state, SUBMIT_JOIN_US));
   };
   const { navigate } = props.navigation;
   return (
     <ScrollView style={{ paddingHorizontal: 25, marginTop: 20 }}>
-      
+
       <Header {...props} title={'Contact Us'} />
       <View key="content" style={styles.content}>
         <InputWithLabel
+          color={"black"}
+
           style={styles.inputfield}
           placeholder="Name*"
           required
@@ -73,10 +76,12 @@ const JoinUs = (props) => {
           onChangeText={(val) => setStateHandler('name', val)}
         />
         <InputWithLabel placeholder="Email*" required
+          color={"black"}
           value={state.email}
           onChangeText={(val) => setStateHandler('email', val)}
         />
         <InputWithLabel placeholder="Mobile Number*" required
+          color={"black"}
           value={state.phone}
           onChangeText={(val) => setStateHandler('phone', val)} />
         <AppText style={styles.businesstype}>Select Business Type*</AppText>
