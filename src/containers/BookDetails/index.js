@@ -24,14 +24,13 @@ import {
   UPDATE_FAVOURITE,
   ADD_TO_FAVOURITE,
   REMOVE_FAVOURITE,
-  UPDATE_CART_ITEM,
 } from '_redux/actionTypes';
 import {
   withDataActions,
   withoutDataActions,
 } from '_redux/actions/GenericActions';
 
-import {useTheme} from '@react-navigation/native';
+import {useFocusEffect, useTheme} from '@react-navigation/native';
 
 const BookDetails = (props) => {
   const {
@@ -41,15 +40,12 @@ const BookDetails = (props) => {
   const {colors} = useTheme();
   const dispatch = useDispatch();
 
-  const {FetchRelatedBookList, FavouriteReducer, CartReducer} = useSelector(
-    (state) => {
-      return {
-        FetchRelatedBookList: state.FetchRelatedBookList,
-        FavouriteReducer: state.FavouriteReducer,
-        CartReducer: state.CartReducer,
-      };
-    },
-  );
+  const {FetchRelatedBookList, FavouriteReducer} = useSelector((state) => {
+    return {
+      FetchRelatedBookList: state.FetchRelatedBookList,
+      FavouriteReducer: state.FavouriteReducer,
+    };
+  });
 
   const [value, setValue] = useState(0);
 
@@ -68,21 +64,11 @@ const BookDetails = (props) => {
   } = params;
 
   const add = (prevValue) => {
-    dispatch(
-      withDataActions(
-        {
-          product_id,
-          price,
-          description,
-          title,
-          image,
-          author_name,
-          product_type: type,
-          quantity: params.quantity + 1,
-        },
-        UPDATE_CART_ITEM,
-      ),
-    );
+    if (prevValue === quantity) {
+      return false;
+    } else {
+      setValue(prevValue + 1);
+    }
   };
   const subtract = (prevValue) => {
     if (prevValue === 0) {
@@ -111,10 +97,7 @@ const BookDetails = (props) => {
   const isFavourite = FavouriteReducer[type].some(
     (el) => el.product_id === product_id,
   );
-  const inCart = CartReducer[type].findIndex(
-    (el) => el.product_id === product_id,
-  );
-  console.log('INCART', inCart, CartReducer[type][inCart]);
+
   useEffect(() => {
     dispatch(withDataActions({product_id}, FETCH_RELATED_BOOKS));
   }, []);
@@ -187,8 +170,7 @@ const BookDetails = (props) => {
             <Counter
               onIncrement={() => add(value)}
               onDecrement={() => subtract(value)}
-              // value={value}
-              value={inCart !== -1 ? CartReducer[type][inCart].quantity : 0}
+              value={value}
             />
           )}
         </View>
