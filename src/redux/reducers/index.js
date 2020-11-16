@@ -10,6 +10,7 @@ import CartReducer from './CartReducer';
 import SearchBooksReducer from './SearchBooksReducer';
 import SplashReducer from './SplashReducer';
 import FetchRelatedBookList from './FetchRelatedBookList'
+import FetchSiteReducer from './FetchSiteReducer'
 
 export default combineReducers({
   ModalReducer,
@@ -23,4 +24,5 @@ export default combineReducers({
   SearchBooksReducer,
   SplashReducer,
   FetchRelatedBookList,
+  FetchSiteReducer
 });

@@ -6,7 +6,7 @@ import {
   Image,
   Dimensions,
   I18nManager,
-  ScrollView
+  ScrollView, Linking
 } from 'react-native';
 import {
   widthPercentageToDP as wp,
@@ -54,6 +54,11 @@ const DrawerMenu = (props) => {
     ({ UserProfileReducer }) => UserProfileReducer,
     shallowEqual,
   );
+  const FetchSiteReducer = useSelector(
+    ({ FetchSiteReducer }) => FetchSiteReducer,
+    shallowEqual,
+  );
+  console.log("DRAWER,", FetchSiteReducer.email)
   return (
     <ImageBackground
       {...props}
@@ -155,9 +160,9 @@ const DrawerMenu = (props) => {
               justifyContent: 'space-around',
               width: wp(70),
             }}>
-            <DrawerIcon name="snapchat" onPress={() => console.log('hello')} />
-            <DrawerIcon name="instagram" onPress={() => console.log('hello')} />
-            <DrawerIcon name="twitter" onPress={() => console.log('hello')} />
+            <DrawerIcon name="snapchat" onPress={() => Linking.openURL(FetchSiteReducer.snapchat_url)} />
+            <DrawerIcon name="instagram" onPress={() => Linking.openURL(FetchSiteReducer.instagram_url)} />
+            <DrawerIcon name="twitter" onPress={() => Linking.openURL(FetchSiteReducer.twitter_url)} />
           </View>
         </View>
       </ScrollView>
