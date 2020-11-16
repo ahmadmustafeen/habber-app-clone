@@ -22,7 +22,7 @@ export function* ArabicBookListSaga({ type, payload }) {
       yield put({ type: FETCH_ARABIC_BOOKS_FAILURE, payload: null });
     }
     else {
-      yield put({ type: FETCH_ARABIC_BOOKS_SUCCESS, payload: data.data });
+      yield put({ type: FETCH_ARABIC_BOOKS_SUCCESS, payload: data });
     }
   } catch (error) {
     yield put({ type: FETCH_ARABIC_BOOKS_FAILURE, error });
