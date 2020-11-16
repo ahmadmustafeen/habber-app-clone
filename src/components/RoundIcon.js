@@ -1,37 +1,47 @@
-import React, {useRef} from 'react';
-import {StyleSheet, TouchableOpacity} from 'react-native';
+import React, { useRef } from 'react';
+import { StyleSheet, TouchableOpacity } from 'react-native';
 
-import {Icon} from 'react-native-elements';
-import {useTheme} from '@react-navigation/native';
-
+import { Icon } from 'react-native-elements';
+import { useTheme } from '@react-navigation/native';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
 const RoundIcon = (props) => {
-  const {background, large, small} = props;
-  const {colors} = useTheme();
+  const { background, large, small } = props;
+  const { colors } = useTheme();
   return (
     <Icon
-      containerStyle={{
+      containerStyle={[{
         justifyContent: 'center',
-        width: large ? 90 : small ? 40 : 60,
+        width: wp(15),
         aspectRatio: 1,
-        borderRadius: large ? 45 : 30,
+        borderRadius: wp(25),
         backgroundColor: background || colors.primary,
-      }}
+      },
+      large && {
+        borderRadius: 45,
+        width: 90
+      },
+      small && {
+        width: 40,
+      }]}
       {...props}
-      // color
-      // disabled
-      // disabledStyle
-      // iconStyle
-      // iconProps
-      // name
-      // onPress
-      // onLongPress
-      // raised
-      // reverse
-      // reverseColor
-      // size
-      // solid
-      // type
-      // underlayColor
+    // color
+    // disabled
+    // disabledStyle
+    // iconStyle
+    // iconProps
+    // name
+    // onPress
+    // onLongPress
+    // raised
+    // reverse
+    // reverseColor
+    // size
+    // solid
+    // type
+    // underlayColor
     />
   );
 };
@@ -43,4 +53,4 @@ const styles = StyleSheet.create({
     fontSize: 25,
   },
 });
-export {RoundIcon};
+export { RoundIcon };

@@ -5,7 +5,8 @@ import {
   ImageBackground,
   Image,
   Dimensions,
-  I18nManager
+  I18nManager,
+  ScrollView
 } from 'react-native';
 import {
   widthPercentageToDP as wp,
@@ -33,6 +34,8 @@ const DrawerIcon = (props) => {
   return (
     <>
       <RoundIcon
+        medium
+
         name={name}
         type="font-awesome"
         color="#fff"
@@ -53,104 +56,106 @@ const DrawerMenu = (props) => {
       style={styles.bgImage}
       resizeMode={'stretch'}
       source={require('_assets/images/drawer_menu.png')}>
-      <View style={styles.container}>
-        <View style={styles.profiletop}>
-          <View style={styles.imgContainer}>
-            <Image
-              style={styles.image}
-              source={require('../../assets/images/logo.png')}
-            />
-          </View>
-          <View style={styles.row}>
-            <View style={styles.imageProfile}>
+      <ScrollView>
+        <View style={styles.container}>
+          <View style={styles.profiletop}>
+            <View style={styles.imgContainer}>
               <Image
-                style={styles.imageAvatar}
-                source={require('../../assets/images/Screenshot_Logo.jpg')}
+                style={styles.image}
+                source={require('../../assets/images/logo.png')}
               />
             </View>
+            <View style={styles.row}>
+              <View style={styles.imageProfile}>
+                <Image
+                  style={styles.imageAvatar}
+                  source={require('../../assets/images/Screenshot_Logo.jpg')}
+                />
+              </View>
 
-            <AppText white bold size={16} style={styles.txt}>
-              {UserProfileReducer.first_name
-                ? UserProfileReducer.first_name +
-                ' ' +
-                UserProfileReducer.last_name
-                : 'GUEST USER'}
-            </AppText>
+              <AppText white bold size={16} style={styles.txt}>
+                {UserProfileReducer.first_name
+                  ? UserProfileReducer.first_name +
+                  ' ' +
+                  UserProfileReducer.last_name
+                  : 'GUEST USER'}
+              </AppText>
+            </View>
           </View>
-        </View>
-        <View>
-          <TitleBarWithIcon
-            label="Home"
-            color={colors.white}
-            onPress={() => props.navigation.navigate(HOME)}
-            noIcon
-          />
-          <View style={styles.Horizontalrow} />
-          {UserProfileReducer.token ? (
-            <>
-              <TitleBarWithIcon
-                label="Profile"
-                color={colors.white}
-                onPress={() => props.navigation.navigate(MY_PROFILE)}
-                noIcon
-              />
-              <View style={styles.Horizontalrow} />
-            </>
-          ) : (
+          <View>
+            <TitleBarWithIcon
+              label="Home"
+              color={colors.white}
+              onPress={() => props.navigation.navigate(HOME)}
+              noIcon
+            />
+            <View style={styles.Horizontalrow} />
+            {UserProfileReducer.token ? (
               <>
                 <TitleBarWithIcon
-                  label="Sign In"
+                  label="Profile"
                   color={colors.white}
-                  onPress={() => props.navigation.navigate(SIGNIN_SCREEN)}
+                  onPress={() => props.navigation.navigate(MY_PROFILE)}
                   noIcon
                 />
                 <View style={styles.Horizontalrow} />
               </>
-            )}
+            ) : (
+                <>
+                  <TitleBarWithIcon
+                    label="Sign In"
+                    color={colors.white}
+                    onPress={() => props.navigation.navigate(SIGNIN_SCREEN)}
+                    noIcon
+                  />
+                  <View style={styles.Horizontalrow} />
+                </>
+              )}
 
-          <TitleBarWithIcon
-            label="Favorites"
-            color={colors.white}
-            onPress={() => props.navigation.navigate(FAVORITES)}
-            noIcon
-          />
-          <View style={styles.Horizontalrow} />
-          <TitleBarWithIcon
-            label="My orders"
-            color={colors.white}
-            onPress={() => props.navigation.navigate(MY_ORDERS)}
-            noIcon
-          />
-          <View style={styles.Horizontalrow} />
-          <TitleBarWithIcon
-            label="About us"
-            color={colors.white}
-            onPress={() => props.navigation.navigate(ABOUT_US)}
-            noIcon
-          />
-          <View style={styles.Horizontalrow} />
-          <TitleBarWithIcon
-            label="Settings"
-            color={colors.white}
-            onPress={() => props.navigation.navigate(SETTINGS_SCREEN)}
-            noIcon
-          />
-          <View style={styles.Horizontalrow} />
-          <AppText secondary size={18} white style={styles.poweredbyline}>
-            Powered By Line
+            <TitleBarWithIcon
+              label="Favorites"
+              color={colors.white}
+              onPress={() => props.navigation.navigate(FAVORITES)}
+              noIcon
+            />
+            <View style={styles.Horizontalrow} />
+            <TitleBarWithIcon
+              label="My orders"
+              color={colors.white}
+              onPress={() => props.navigation.navigate(MY_ORDERS)}
+              noIcon
+            />
+            <View style={styles.Horizontalrow} />
+            <TitleBarWithIcon
+              label="About us"
+              color={colors.white}
+              onPress={() => props.navigation.navigate(ABOUT_US)}
+              noIcon
+            />
+            <View style={styles.Horizontalrow} />
+            <TitleBarWithIcon
+              label="Settings"
+              color={colors.white}
+              onPress={() => props.navigation.navigate(SETTINGS_SCREEN)}
+              noIcon
+            />
+            <View style={styles.Horizontalrow} />
+            <AppText secondary size={18} white style={styles.poweredbyline}>
+              Powered By Line
           </AppText>
+          </View>
+          <View
+            style={{
+              flexDirection: 'row',
+              justifyContent: 'space-around',
+              width: wp(70),
+            }}>
+            <DrawerIcon name="snapchat" onPress={() => console.log('hello')} />
+            <DrawerIcon name="instagram" onPress={() => console.log('hello')} />
+            <DrawerIcon name="twitter" onPress={() => console.log('hello')} />
+          </View>
         </View>
-        <View
-          style={{
-            flexDirection: 'row',
-            justifyContent: 'space-around',
-            width: '70%',
-          }}>
-          <DrawerIcon name="snapchat" onPress={() => console.log('hello')} />
-          <DrawerIcon name="instagram" onPress={() => console.log('hello')} />
-          <DrawerIcon name="twitter" onPress={() => console.log('hello')} />
-        </View>
-      </View>
+      </ScrollView>
     </ImageBackground>
   );
 };
@@ -176,7 +181,7 @@ const styles = StyleSheet.create({
     height: '100%',
   },
   profiletop: {
-    width: '70%',
+    width: wp(70),
     alignItems: 'center',
   },
   poweredbyline: {
