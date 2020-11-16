@@ -24,8 +24,8 @@ const SignIn = (props) => {
   const { colors } = useTheme();
 
   const [state, setState] = useState({
-    email: '',
-    password: '',
+    email: 'a@b.com',
+    password: '321321321',
   });
 
   const { email, password } = state;
