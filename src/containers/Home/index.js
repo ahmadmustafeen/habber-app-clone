@@ -44,11 +44,6 @@ const Home = (props) => {
       BookClubReducer: state.BookClubReducer,
     };
   }, shallowEqual);
-  const EnglishBooksFiltered = EnglishBooksReducer.filter((book) => book.featured !== 0);
-  const ArabicBooksFiltered = ArabicBooksReducer.filter((book) => book.featured !== 0);
-  const BookmarksFiltered = BookmarksReducer.filter((book) => book.featured !== 0);
-  const BookClubFiltered = BookClubReducer.filter((book) => book.featured !== 0);
-
   const dispatch = useDispatch();
   const { colors } = useTheme();
 
@@ -84,7 +79,7 @@ const Home = (props) => {
           <FlatListSlider />
         </View>
         <DashboardComponent
-          data={ArabicBooksFiltered}
+          data={ArabicBooksReducer.filter((book) => book.featured)}
           label={t('arabic')}
           renderComponent={(item) => <ThumbnailBook url={item.item.image} />}
           onIconPress={() =>
@@ -96,7 +91,7 @@ const Home = (props) => {
           }
         />
         <DashboardComponent
-          data={EnglishBooksFiltered}
+          data={EnglishBooksReducer.filter((book) => book.featured)}
           label={t('english')}
           renderComponent={(item) => <ThumbnailBook url={item.item.image} />}
           onIconPress={() =>
@@ -108,7 +103,7 @@ const Home = (props) => {
           }
         />
         <DashboardComponent
-          data={BookClubFiltered}
+          data={BookClubReducer.filter((book) => book.featured)}
           label={t('bookclub')}
           renderComponent={(item) => <ThumbnailClub url={item.item.image} />}
           onIconPress={() =>
@@ -119,7 +114,7 @@ const Home = (props) => {
           }
         />
         <DashboardComponent
-          data={BookmarksFiltered}
+          data={BookmarksReducer.filter((book) => book.featured)}
           renderComponent={(item) => (
             <ThumbnailBookmarks url={item.item.image} />
           )}

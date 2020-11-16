@@ -19,3 +19,4 @@ export * from './BookListContainer';
 export * from './FilterModal';
 export * from './AuthHeader';
 export * from './FlatListSlider';
+export * from './BookmarkCard'
