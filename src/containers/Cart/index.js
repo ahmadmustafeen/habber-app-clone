@@ -45,7 +45,7 @@ const AddToCart = (props) => {
     }
   };
 
-  console.log(CartReducer);
+  console.log('cartpage', CartReducer);
   return (
     <ScrollView>
       <Header {...props} title={'Cart'} />

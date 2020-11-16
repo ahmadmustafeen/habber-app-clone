@@ -8,17 +8,29 @@ const initialState = {
   product: [],
 };
 
-export default (state = initialState, {type, payload}) => {
+export default (state = initialState, { type, payload }) => {
   switch (type) {
+
+
+
+
     case UPDATE_CART_ITEM: {
       console.log('10', payload);
       let position = state[payload.product_type].findIndex(
         (obj) => obj.isbn === payload.isbn,
       );
-      const updatedState = {...state};
+      const updatedState = { ...state };
+      var previousValue = updatedState[payload.product_type][position].quantity * updatedState[payload.product_type][position].price;
+      console.log("PREVAL", updatedState)
+      updatedState.total_price = updatedState.total_price - previousValue
       updatedState[payload.product_type][position].quantity = payload.quantity;
-      return {...updatedState};
+      return { ...updatedState };
     }
+
+
+
+
+
     case ADD_TO_CART: {
       let alreadyAvailable;
       if (!state[payload.product_type]) {
@@ -28,14 +40,15 @@ export default (state = initialState, {type, payload}) => {
           (obj) => obj.isbn === payload.isbn,
         );
       }
-      console.log('42', alreadyAvailable);
+      var item_price = payload.quantity * payload.price;
       if (alreadyAvailable === -1) {
         return {
           ...state,
           [payload.product_type]: [payload],
+          total_price: item_price
         };
       }
-      const updatedState = {...state};
+      const updatedState = { ...state };
       if (payload.quantity === 0) {
         updatedState[payload.product_type].splice(alreadyAvailable, 1);
       } else {
@@ -48,6 +61,13 @@ export default (state = initialState, {type, payload}) => {
         ...updatedState,
       };
     }
+
+
+
+
+
+
+
     case FETCH_USER_CART_SUCCESS: {
       console.log('38', payload);
     }
