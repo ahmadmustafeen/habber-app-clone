@@ -22,6 +22,8 @@ import {
   FETCH_USER_CART,
   ADD_TO_CART,
   SIGN_OUT,
+  ADD_TO_FAVOURITE,
+  REMOVE_FAVOURITE,
 } from '../actionTypes';
 import {signupSaga} from './SignupSaga';
 import {signinSaga} from './SignInSaga';
@@ -45,6 +47,7 @@ import {FetchUserCartSaga} from './FetchUserCartSaga';
 import {addressSaga} from './AddressSaga';
 import {fetchAddressSaga} from './FetchAddressSaga';
 import {signoutSaga} from './SignOutSaga';
+import {PostToFavouriteSaga} from './PostToFavouriteSaga';
 function* actionWatcher() {
   yield takeLatest(SPLASH_ACTION, splashSaga);
   yield takeLatest(SKIP_AD, splashAdSaga);
@@ -69,6 +72,8 @@ function* actionWatcher() {
   yield takeLatest(ADD_TO_CART, AddToCartSaga);
   yield takeLatest(FETCH_USER_CART, FetchUserCartSaga);
   yield takeLatest(SIGN_OUT, signoutSaga);
+  yield takeLatest(ADD_TO_FAVOURITE, PostToFavouriteSaga);
+  yield takeLatest(REMOVE_FAVOURITE, PostToFavouriteSaga);
 }
 
 export default function* rootSaga() {

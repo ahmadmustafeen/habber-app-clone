@@ -20,4 +20,5 @@ export const API_ENDPOINTS = {
   cart: '/cart',
   addresses: '/addresses',
   fetch_addresses: '/user/addresses',
+  favourites: '/favourites',
 };
