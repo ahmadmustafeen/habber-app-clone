@@ -6,6 +6,10 @@ import {AppText} from './common/AppText';
 import {FastImage} from './FastImage';
 import {RoundIcon} from './RoundIcon';
 
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
 const BookDetailsCard = (props) => {
   const {colors} = useTheme();
   const {
@@ -37,15 +41,19 @@ const BookDetailsCard = (props) => {
           paddingStart: !I18nManager.isRTL ? 10 : 0,
         }}>
         <View style={{transform: [{scaleX: I18nManager.isRTL ? -1 : 1}]}}>
-          <AppText bold>{title}</AppText>
-          <AppText bold size={15}>
+          <AppText bold size={17}>
+            {title}
+          </AppText>
+          <AppText
+            size={15}
+            style={{paddingBottom: wp(10), fontStyle: 'italic'}}>
             by {author_name}
           </AppText>
-          <AppText bold size={15}>
+          <AppText bold size={17}>
             Price: {price} KD
           </AppText>
-          <AppText size={15} color="red">
-            {quantity ? null : 'OUT OF STOCK'}
+          <AppText bold size={15} color="red">
+            {!quantity ? null : 'Out of Stock'}
           </AppText>
         </View>
         <View

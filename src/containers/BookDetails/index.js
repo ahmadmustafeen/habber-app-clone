@@ -6,6 +6,7 @@ import {
   ScrollView,
   ImageBackground,
   I18nManager,
+  FlatList,
 } from 'react-native';
 import {AppText, Button, Screen} from '../../components/common';
 import {useDispatch, useSelector, shallowEqual} from 'react-redux';
@@ -17,6 +18,11 @@ import {
   DashboardComponent,
   ThumbnailClub,
 } from '../../components';
+import {Icon} from 'react-native-elements';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
 import {CART_SCREEN} from '../../constants/Screens';
 import {
   ADD_TO_CART,
@@ -31,6 +37,7 @@ import {
 } from '_redux/actions/GenericActions';
 
 import {useFocusEffect, useTheme} from '@react-navigation/native';
+import {widthPercentageToDP} from 'react-native-responsive-screen';
 
 const BookDetails = (props) => {
   const {
@@ -46,7 +53,6 @@ const BookDetails = (props) => {
       FavouriteReducer: state.FavouriteReducer,
     };
   });
-
   const [value, setValue] = useState(0);
 
   const {
@@ -158,11 +164,6 @@ const BookDetails = (props) => {
           </AppText>
           <AppText size={14}>{description}</AppText>
         </View>
-        <DashboardComponent
-          data={FetchRelatedBookList}
-          label="You may like"
-          renderComponent={(item) => <ThumbnailClub url={item.image} />}
-        />
       </View>
       <View key="footer">
         <View style={styles.counter}>
@@ -179,9 +180,25 @@ const BookDetails = (props) => {
           bold
           color={colors.white}
           secondary
+          style={{width: wp(70), alignSelf: 'center'}}
           onPress={() => value && addtocart()}>
           {quantity ? 'Add to Cart' : 'Out of Stock'}
         </Button>
+        <View style={{width: wp(90), alignSelf: 'center'}}>
+          <AppText>More BookClubs</AppText>
+          <FlatList
+            style={styles.flatlist}
+            showsHorizontalScrollIndicator={false}
+            horizontal
+            data={FetchRelatedBookList}
+            keyExtractor={(item, index) => index.toString() + item}
+            ListEmptyComponent={() => (
+              <View>
+                <AppText>No Book Available</AppText>
+              </View>
+            )}
+          />
+        </View>
       </View>
     </Screen>
   );
