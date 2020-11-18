@@ -1,14 +1,14 @@
 import React from 'react';
-import { View, StyleSheet, Text, I18nManager } from 'react-native';
-import { useTheme } from '@react-navigation/native';
-import { AppText } from './common';
+import {View, StyleSheet, Text, I18nManager} from 'react-native';
+import {useTheme} from '@react-navigation/native';
+import {AppText} from './common';
 
 const Counter = (props) => {
-  const { colors } = useTheme();
-  const { onDecrement, onIncrement, value } = props
+  const {colors} = useTheme();
+  const {onDecrement, onIncrement, value} = props;
   return (
-    <View style={[styles.counter, { backgroundColor: colors.borderColor }]}>
-      <View style={[styles.operatorBtns, { backgroundColor: colors.secondary }]}>
+    <View style={[styles.counter, {backgroundColor: colors.borderColor}]}>
+      <View style={[styles.operatorBtns, {backgroundColor: colors.secondary}]}>
         <AppText bold white center onPress={onDecrement}>
           -
         </AppText>
@@ -16,7 +16,7 @@ const Counter = (props) => {
       <AppText center bold style={styles.counterValue}>
         {value}
       </AppText>
-      <View style={[styles.operatorBtns, { backgroundColor: colors.primary }]}>
+      <View style={[styles.operatorBtns, {backgroundColor: colors.primary}]}>
         <AppText center bold white onPress={onIncrement}>
           +
         </AppText>
@@ -27,8 +27,7 @@ const Counter = (props) => {
 
 const styles = StyleSheet.create({
   counter: {
-
-    flexDirection: I18nManager ? "row-reverse" : "row",
+    flexDirection: I18nManager.isRTL ? 'row-reverse' : 'row',
     justifyContent: 'center',
     // backgroundColor: '',
     alignItems: 'center',
@@ -47,4 +46,4 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
 });
-export { Counter };
+export {Counter};

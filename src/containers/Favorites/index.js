@@ -2,8 +2,13 @@ import React from 'react';
 import {View, StyleSheet, Image} from 'react-native';
 import {AppText, Button, Screen} from '_components/common';
 import {HorizontalRow} from '_components';
-import {Icon} from 'react-native-elements';
 import {CART_SCREEN} from '_constants/Screens';
+import {Icon} from 'react-native-elements';
+
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
 
 const Favorites = (props) => {
   return (
@@ -19,13 +24,13 @@ const Favorites = (props) => {
           </View>
 
           <View style={styles.viewtxt}>
-            <AppText bold size={20} style={styles.txt}>
+            <AppText bold size={17} style={styles.txt}>
               A Brief History of time
             </AppText>
-            <AppText bold size={15} style={styles.txt}>
+            <AppText bold size={13} style={[styles.txt, styles.author]}>
               by brom
             </AppText>
-            <AppText bold size={20} style={styles.pricetxt}>
+            <AppText bold size={17} style={styles.pricetxt}>
               Price: 30 KW
             </AppText>
             <Button
@@ -38,84 +43,39 @@ const Favorites = (props) => {
               round>
               Add To Cart
             </Button>
-            <HorizontalRow />
-            <AppText bold size={17} primary style={styles.txt}>
-              Remove
-            </AppText>
-          </View>
-        </View>
-        <HorizontalRow />
-
-        <View style={styles.profiletop}>
-          <View style={styles.imgContainer}>
-            <Image
-              style={styles.image}
-              source={require('../../assets/images/Screenshot_Logo.jpg')}
+            <HorizontalRow
+              style={{
+                borderColor: 'rgb(200,200,200)',
+                borderWidth: 1,
+                marginVertical: hp(2),
+              }}
             />
-          </View>
-
-          <View style={styles.viewtxt}>
-            <AppText bold size={20} style={styles.txt}>
-              Lolita
-            </AppText>
-            <AppText bold size={15} style={styles.txt}>
-              by Neil Gaiman
-            </AppText>
-            <AppText bold size={20} style={styles.pricetxt}>
-              Price: 30 KW
-            </AppText>
-            <Button
-              bold
-              fontSize={15}
-              primary
-              color="black"
-              style={styles.pricetxt}
-              onPress={() => props.navigation.navigate(CART_SCREEN)}
-              round>
-              Add To Cart
-            </Button>
-            <HorizontalRow />
-            <AppText bold size={17} primary style={styles.txt}>
-              Remove
-            </AppText>
+            <View
+              style={{
+                justifyContent: 'flex-start',
+                alignItems: 'center',
+                flexDirection: 'row',
+              }}>
+              <Icon
+                containerStyle={{paddingRight: wp(5)}}
+                size={15}
+                color={'black'}
+                name={'trash-o'}
+                type={'fontawesome'}
+              />
+              <AppText bold size={17} primary style={styles.txt}>
+                Remove
+              </AppText>
+            </View>
           </View>
         </View>
-        <HorizontalRow />
-
-        <View style={styles.profiletop}>
-          <View style={styles.imgContainer}>
-            <Image
-              style={styles.image}
-              source={require('../../assets/images/background.jpg')}
-            />
-          </View>
-
-          <View style={styles.viewtxt}>
-            <AppText bold size={20}>
-              A Brief History of time
-            </AppText>
-            <AppText bold size={15}>
-              by brom
-            </AppText>
-            <AppText bold size={20} style={styles.pricetxt}>
-              Price: 30 KW
-            </AppText>
-            <Button
-              bold
-              fontSize={15}
-              primary
-              color="black"
-              style={styles.pricetxt}
-              onPress={() => props.navigation.navigate(CART_SCREEN)}
-              round>
-              Add To Cart
-            </Button>
-            <HorizontalRow />
-            <AppText bold size={17} primary style={styles.txt}>
-              Remove
-            </AppText>
-          </View>
-        </View>
+        <HorizontalRow
+          style={{
+            borderColor: 'rgb(200,200,200)',
+            borderWidth: 1,
+            marginVertical: hp(2),
+          }}
+        />
       </View>
     </Screen>
   );
@@ -123,8 +83,8 @@ const Favorites = (props) => {
 
 const styles = StyleSheet.create({
   imgContainer: {
-    height: 220,
-    aspectRatio: 0.7,
+    height: hp(35),
+    aspectRatio: 0.6,
     overflow: 'hidden',
   },
   image: {
@@ -135,17 +95,20 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     marginLeft: 15,
     marginTop: 10,
-    maxWidth: '100%',
+    maxWidth: wp(50),
   },
   pricetxt: {
     marginTop: 20,
-    width: 200,
+    width: wp(45),
   },
   profiletop: {
     flexDirection: 'row',
     justifyContent: 'flex-start',
     marginBottom: 20,
     marginTop: 20,
+  },
+  author: {
+    fontStyle: 'italic',
   },
 });
 

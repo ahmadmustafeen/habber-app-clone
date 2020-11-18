@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import {
   View,
   StyleSheet,
@@ -6,17 +6,18 @@ import {
   Image,
   Dimensions,
   I18nManager,
-  ScrollView, Linking
+  ScrollView,
+  Linking,
 } from 'react-native';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 
-import { useTranslation } from 'react-i18next';
-import { shallowEqual, useSelector } from 'react-redux';
-import { AppText, BackgroundImage, Screen } from '../../components/common';
-import { HorizontalRow, RoundIcon, TitleBarWithIcon } from '../../components';
+import {useTranslation} from 'react-i18next';
+import {shallowEqual, useSelector} from 'react-redux';
+import {AppText, BackgroundImage, Screen} from '../../components/common';
+import {HorizontalRow, RoundIcon, TitleBarWithIcon} from '../../components';
 import {
   HOME,
   SETTINGS_SCREEN,
@@ -28,17 +29,15 @@ import {
   SIGNIN_SCREEN,
 } from '../../constants/Screens';
 import UserProfileReducer from 'redux/reducers/UserProfileReducer';
-import { colors } from 'react-native-elements';
-import { Color } from 'constants/Colors';
+import {colors} from 'react-native-elements';
+import {Color} from 'constants/Colors';
 
 const DrawerIcon = (props) => {
-
-  const { name, onPress } = props;
+  const {name, onPress} = props;
   return (
     <>
       <RoundIcon
         medium
-
         name={name}
         type="font-awesome"
         color="#fff"
@@ -49,16 +48,15 @@ const DrawerIcon = (props) => {
 };
 console.log(Dimensions);
 const DrawerMenu = (props) => {
-  const { t } = useTranslation(['drawer']);
+  const {t} = useTranslation(['drawer']);
   const UserProfileReducer = useSelector(
-    ({ UserProfileReducer }) => UserProfileReducer,
+    ({UserProfileReducer}) => UserProfileReducer,
     shallowEqual,
   );
   const FetchSiteReducer = useSelector(
-    ({ FetchSiteReducer }) => FetchSiteReducer,
+    ({FetchSiteReducer}) => FetchSiteReducer,
     shallowEqual,
   );
-  console.log("DRAWER,", FetchSiteReducer.email)
   return (
     <ImageBackground
       {...props}
@@ -85,8 +83,8 @@ const DrawerMenu = (props) => {
               <AppText white bold size={16} style={styles.txt}>
                 {UserProfileReducer.first_name
                   ? UserProfileReducer.first_name +
-                  ' ' +
-                  UserProfileReducer.last_name
+                    ' ' +
+                    UserProfileReducer.last_name
                   : 'GUEST USER'}
               </AppText>
             </View>
@@ -110,16 +108,16 @@ const DrawerMenu = (props) => {
                 <View style={styles.Horizontalrow} />
               </>
             ) : (
-                <>
-                  <TitleBarWithIcon
-                    label={t('signIn')}
-                    color={colors.white}
-                    onPress={() => props.navigation.navigate(SIGNIN_SCREEN)}
-                    noIcon
-                  />
-                  <View style={styles.Horizontalrow} />
-                </>
-              )}
+              <>
+                <TitleBarWithIcon
+                  label={t('signIn')}
+                  color={colors.white}
+                  onPress={() => props.navigation.navigate(SIGNIN_SCREEN)}
+                  noIcon
+                />
+                <View style={styles.Horizontalrow} />
+              </>
+            )}
 
             <TitleBarWithIcon
               label={t('favorite')}
@@ -129,7 +127,6 @@ const DrawerMenu = (props) => {
             />
             <View style={styles.Horizontalrow} />
             <TitleBarWithIcon
-
               label={t('myOrder')}
               color={colors.white}
               onPress={() => props.navigation.navigate(MY_ORDERS)}
@@ -159,7 +156,7 @@ const DrawerMenu = (props) => {
             <View style={styles.Horizontalrow} />
             <AppText secondary size={18} white style={styles.poweredbyline}>
               Powered By Line
-          </AppText>
+            </AppText>
           </View>
           <View
             style={{
@@ -167,9 +164,18 @@ const DrawerMenu = (props) => {
               justifyContent: 'space-around',
               width: wp(70),
             }}>
-            <DrawerIcon name="snapchat" onPress={() => Linking.openURL(FetchSiteReducer.snapchat_url)} />
-            <DrawerIcon name="instagram" onPress={() => Linking.openURL(FetchSiteReducer.instagram_url)} />
-            <DrawerIcon name="twitter" onPress={() => Linking.openURL(FetchSiteReducer.twitter_url)} />
+            <DrawerIcon
+              name="snapchat"
+              onPress={() => Linking.openURL(FetchSiteReducer.snapchat_url)}
+            />
+            <DrawerIcon
+              name="instagram"
+              onPress={() => Linking.openURL(FetchSiteReducer.instagram_url)}
+            />
+            <DrawerIcon
+              name="twitter"
+              onPress={() => Linking.openURL(FetchSiteReducer.twitter_url)}
+            />
           </View>
         </View>
       </ScrollView>
@@ -180,13 +186,13 @@ const DrawerMenu = (props) => {
 const styles = StyleSheet.create({
   bgImage: {
     flex: 1,
-    transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }]
+    transform: [{scaleX: I18nManager.isRTL ? -1 : 1}],
   },
   container: {
     paddingVertical: hp(4),
     paddingLeft: wp(2.8),
 
-    transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }]
+    transform: [{scaleX: I18nManager.isRTL ? -1 : 1}],
   },
 
   imgContainer: {
