@@ -27,7 +27,7 @@ const BooksList = (props) => {
   return (
     <ScrollView>
       <Header {...props} title={type === 'bookmarks' ? 'Bookmark' : 'Book'} />
-      <View style={{width: wp(90), alignSelf: 'center'}}>
+      <View>
         <TitleBarWithIcon label={label} onIconPress={toggleFilter} />
         <BookListContainer data={bookData} {...props} type={type} />
         <FilterModal {...props} visible={visible} onApply={onApplyFilter} />
@@ -37,7 +37,7 @@ const BooksList = (props) => {
 };
 const styles = StyleSheet.create({
   container: {
-    width: wp(90),
+    width: wp(100),
     marginLeft: wp(5),
   },
 });

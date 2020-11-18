@@ -1,32 +1,30 @@
-import React, { useState } from 'react';
-import { View, ScrollView, StyleSheet, Image, Alert } from 'react-native';
-import { withDataActions } from '_redux/actions';
-import { Button, Screen } from '_components/common';
-import { InputWithLabel } from '_components';
-import { HorizontalRow } from '_components/HorizontalRow';
-import { MY_PROFILE } from '_constants/Screens';
-import { Header } from '_components/Header';
-import { useDispatch, useSelector, shallowEqual } from 'react-redux';
-import { validatePhone } from 'helpers/Validators';
+import React, {useState} from 'react';
+import {View, ScrollView, StyleSheet, Image, Alert} from 'react-native';
+import {withDataActions} from '_redux/actions';
+import {Button, Screen} from '_components/common';
+import {InputWithLabel} from '_components';
+import {HorizontalRow} from '_components/HorizontalRow';
+import {MY_PROFILE} from '_constants/Screens';
+import {Header} from '_components/Header';
+import {useDispatch, useSelector, shallowEqual} from 'react-redux';
+import {validatePhone} from 'helpers/Validators';
 
 const EditProfile = (props) => {
-
-  const {
-    UserProfileReducer,
-  } = useSelector((state) => {
+  const {UserProfileReducer} = useSelector((state) => {
     return {
-      UserProfileReducer: state.UserProfileReducer
+      UserProfileReducer: state.UserProfileReducer,
     };
   }, shallowEqual);
 
-
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const [state, setState] = useState({
-    first_name: "bye",
-    last_name: "hi",
-    phone: "11111111",
-    profile_pic: "testing/css.png",
-  })
+    first_name: 'bye',
+    last_name: 'hi',
+    phone: '1111111134233',
+    profile_pic: '',
+    language_id: 1,
+    currency_id: 2,
+  });
   const validate = () => {
     if (!state.first_name) {
       Alert.alert('Please Enter First Name');
@@ -40,17 +38,18 @@ const EditProfile = (props) => {
       Alert.alert('Invalid Phone');
       return false;
     }
-    return true
+    return true;
   };
-  const { navigate } = props.navigation;
+  const {navigate} = props.navigation;
   const setStateHandler = (key, val) => {
-    setState({ ...state, [key]: val });
+    setState({...state, [key]: val});
   };
   const save = () => {
-    validate() &&
-      dispatch(withDataActions([state, UserProfileReducer.id], "UPDATE_PROFILE"))
+    // validate() &&
+    console.log('PRESSED');
+    dispatch(withDataActions([state, UserProfileReducer.id], 'UPDATE_PROFILE'));
     // navigate(MY_PROFILE)
-  }
+  };
   return (
     <ScrollView>
       <Header {...props} title={'Edit Profile'} />
@@ -66,16 +65,34 @@ const EditProfile = (props) => {
             </View>
           </View>
           <HorizontalRow />
-          <View style={{ marginTop: 20 }}>
-            <InputWithLabel color={"black"} value={state.firstName} placeholder="Khaled" label="First Name:" onChangeText={(val) => setStateHandler('first_name', val)} />
-            <InputWithLabel color={"black"} value={state.lastName} placeholder="Ammer" label="Last Name:" onChangeText={(val) => setStateHandler('last_name', val)} />
-            <InputWithLabel color={"black"} value={state.phone} placeholder="Khaled.ammar@gmail.com" label="Phone:" onChangeText={(val) => setStateHandler('phone', val)} />
+          <View style={{marginTop: 20}}>
+            <InputWithLabel
+              color={'black'}
+              value={state.firstName}
+              placeholder="Khaled"
+              label="First Name:"
+              onChangeText={(val) => setStateHandler('first_name', val)}
+            />
+            <InputWithLabel
+              color={'black'}
+              value={state.lastName}
+              placeholder="Ammer"
+              label="Last Name:"
+              onChangeText={(val) => setStateHandler('last_name', val)}
+            />
+            <InputWithLabel
+              color={'black'}
+              value={state.phone}
+              placeholder="Khaled.ammar@gmail.com"
+              label="Phone:"
+              onChangeText={(val) => setStateHandler('phone', val)}
+            />
           </View>
         </View>
         <View key="footer">
           <Button appColor primary onPress={() => save()}>
             Save
-        </Button>
+          </Button>
         </View>
       </Screen>
     </ScrollView>

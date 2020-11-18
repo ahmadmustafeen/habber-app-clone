@@ -17,7 +17,7 @@ const BookListContainer = (props) => {
       data={data}
       showsVerticalScrollIndicator={false}
       keyExtractor={(item, index) => index.toString() + item}
-      columnWrapperStyle={{justifyContent: 'space-between'}}
+      columnWrapperStyle={{justifyContent: 'space-evenly'}}
       numColumns={type === 'bookmarks' ? 3 : 2}
       renderItem={(book) => {
         if (type === 'bookmarks') {
