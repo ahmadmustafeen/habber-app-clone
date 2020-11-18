@@ -63,7 +63,7 @@ const DrawerMenu = (props) => {
       style={styles.bgImage}
       resizeMode={'stretch'}
       source={require('_assets/images/drawer_menu.png')}>
-      <ScrollView>
+      <View>
         <View style={styles.container}>
           <View style={styles.profiletop}>
             <View style={styles.imgContainer}>
@@ -178,7 +178,7 @@ const DrawerMenu = (props) => {
             />
           </View>
         </View>
-      </ScrollView>
+      </View>
     </ImageBackground>
   );
 };
@@ -196,7 +196,7 @@ const styles = StyleSheet.create({
   },
 
   imgContainer: {
-    height: 100,
+    height: hp(11),
     aspectRatio: 1,
   },
   image: {
@@ -208,8 +208,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   poweredbyline: {
-    marginTop: 30,
-    marginBottom: 20,
+    marginTop: hp(3),
+    marginBottom: hp(2),
   },
   row: {
     marginVertical: 5,
