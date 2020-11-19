@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, ScrollView, StyleSheet } from 'react-native';
+import { View, ScrollView, StyleSheet, I18nManager, ImageBackground } from 'react-native';
 import { AppText, Screen } from '../../components/common';
 import { Color } from '_constants/Colors';
 import { Header } from '../../components';
@@ -13,7 +13,22 @@ const About = (props) => {
 
   return (
     <ScrollView>
-      <Header {...props} title={'About Us'} />
+      <ImageBackground
+        style={{
+          height: hp(21),
+          paddingHorizontal: wp(3),
+          paddingBottom: hp(8),
+          marginBottom: hp(1),
+          justifyContent: 'flex-end',
+          transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }],
+        }}
+        resizeMode='stretch'
+        source={require('_assets/images/header.png')}>
+
+        <Header title={"About Us"} {...props} />
+
+
+      </ImageBackground>
       <Screen backgroundColor={colors.white}>
         <View key="header"></View>
         <View key="content">

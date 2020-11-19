@@ -1,9 +1,9 @@
 import React from 'react';
-import {View, ScrollView, StyleSheet, Image} from 'react-native';
-import {AppText, Button, Screen} from '_components/common';
-import {ADD_NEW_ADDRESS, EDIT_PROFILE} from '_constants/Screens';
-import {HorizontalRow} from '_components/HorizontalRow';
-import {Header} from '_components/Header';
+import { View, ScrollView, StyleSheet, Image, ImageBackground, I18nManager } from 'react-native';
+import { AppText, Button, Screen } from '_components/common';
+import { ADD_NEW_ADDRESS, EDIT_PROFILE } from '_constants/Screens';
+import { HorizontalRow } from '_components/HorizontalRow';
+import { Header } from '_components/Header';
 
 import {
   widthPercentageToDP as wp,
@@ -11,15 +11,30 @@ import {
 } from 'react-native-responsive-screen';
 
 const Checkout = (props) => {
-  const {navigate} = props.navigation;
+  const { navigate } = props.navigation;
   return (
     <ScrollView>
-      <Header {...props} title={'Checkout'} />
+      <ImageBackground
+        style={{
+          height: hp(21),
+          paddingHorizontal: wp(3),
+          paddingBottom: hp(8),
+          marginBottom: hp(1),
+          justifyContent: 'flex-end',
+          transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }],
+        }}
+        resizeMode='stretch'
+        source={require('_assets/images/header.png')}>
+
+        <Header {...props} title={'Checkout'} />
+
+
+      </ImageBackground>
       <Screen>
         <View key="header"></View>
         <View key="content">
           <View style={styles.addressbookview}>
-            <AppText bold style={{paddingStart: 10, paddingVertical: 10}}>
+            <AppText bold style={{ paddingStart: 10, paddingVertical: 10 }}>
               Select Payment Option
             </AppText>
             <View style={styles.addressbook}>
@@ -42,7 +57,7 @@ const Checkout = (props) => {
           </View>
           <HorizontalRow />
           <View style={styles.addressbookview}>
-            <AppText bold style={{paddingStart: 10, paddingVertical: 10}}>
+            <AppText bold style={{ paddingStart: 10, paddingVertical: 10 }}>
               Deliver To:
             </AppText>
             <View style={styles.addressbook}>

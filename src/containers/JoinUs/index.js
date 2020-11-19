@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { validatePhone, validateEmail, validateIsTrue } from '_helpers/Validators';
 import { useDispatch } from 'react-redux';
-import { View, TextInput, StyleSheet, Alert } from 'react-native';
+import { View, TextInput, StyleSheet, Alert, I18nManager, ImageBackground } from 'react-native';
 import { InputWithLabel, RadioButton, ModalScreen, Header } from '../../components';
 import { withDataActions } from '_redux/actions';
 import { Button, AppText } from '_components/common';
@@ -10,7 +10,10 @@ import { JOINUS, REQUESTBOOKS } from '_constants/Screens';
 import { SUBMIT_JOIN_US } from 'redux/actionTypes';
 import useModal from '_utils/customHooks/useModal';
 import { ScrollView } from 'react-native-gesture-handler';
-
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
 const JoinUs = (props) => {
   const { visible, toggleModal } = useModal();
   const dispatch = useDispatch();
@@ -62,9 +65,24 @@ const JoinUs = (props) => {
   };
   const { navigate } = props.navigation;
   return (
-    <ScrollView style={{ paddingHorizontal: 25, marginTop: 20 }}>
+    <ScrollView >
 
-      <Header {...props} title={'Contact Us'} />
+      <ImageBackground
+        style={{
+          height: hp(21),
+          paddingHorizontal: wp(3),
+          paddingBottom: hp(8),
+          marginBottom: hp(1),
+          justifyContent: 'flex-end',
+          transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }],
+        }}
+        resizeMode='stretch'
+        source={require('_assets/images/header.png')}>
+
+        <Header {...props} title={'Join Us'} />
+
+
+      </ImageBackground>
       <View key="content" style={styles.content}>
         <InputWithLabel
           color={"black"}
@@ -124,6 +142,8 @@ const JoinUs = (props) => {
 const styles = StyleSheet.create({
   content: {
     marginTop: 50,
+    paddingHorizontal: 25,
+    marginTop: 20
   },
   businesstype: {
     color: 'black',

@@ -1,15 +1,36 @@
 import React from 'react';
-import {View, StyleSheet, Image, ScrollView} from 'react-native';
-import {AppText, Screen} from '../../components/common';
-import {Header} from '../../components';
-
+import { View, StyleSheet, Image, ScrollView, ImageBackground, I18nManager } from 'react-native';
+import { AppText, Screen } from '../../components/common';
+import { Header } from '../../components';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
 const MyOrders = (props) => {
   return (
     <ScrollView>
-      <Header {...props} title={'My Orders'} />
-      <Screen>
-        <View key="header"></View>
-        <View key="content">
+
+      <Screen noPadding>
+        <View key="header">
+          <ImageBackground
+            style={{
+              height: hp(21),
+              paddingHorizontal: wp(3),
+              paddingBottom: hp(8),
+              marginBottom: hp(1),
+              justifyContent: 'flex-end',
+              transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }],
+            }}
+            resizeMode='stretch'
+            source={require('_assets/images/header.png')}>
+
+            <Header title={"My Orders"} {...props} />
+
+
+          </ImageBackground>
+        </View>
+
+        <View key="content" style={{ width: wp(90), alignSelf: 'center' }}>
           <View style={styles.profiletop}>
             <View style={styles.orderContainer}>
               <AppText size={17} style={styles.apptextpadding}><AppText bold size={17}>Order ID: </AppText> 263493511</AppText>
@@ -44,7 +65,7 @@ const MyOrders = (props) => {
 
 const styles = StyleSheet.create({
   orderContainer: {
-    flex:2,
+    flex: 2,
     flexDirection: 'column',
     justifyContent: 'flex-start',
     paddingStart: 20,
@@ -54,7 +75,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'flex-start',
     paddingVertical: 20,
-    paddingEnd:20
+    paddingEnd: 20
   },
   profiletop: {
     flexDirection: 'row',
@@ -63,10 +84,10 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgb(221, 221, 221)',
     borderRadius: 10,
   },
-  apptextpadding:{
+  apptextpadding: {
     paddingVertical: 3
   },
-  statuspadding:{
+  statuspadding: {
     paddingVertical: 15
   }
 });

@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, ScrollView, StyleSheet, Image } from 'react-native';
+import { View, ScrollView, StyleSheet, Image, ImageBackground, I18nManager, TouchableOpacity } from 'react-native';
 import { AppText, Button, Screen } from '_components/common';
 import { HorizontalRow } from '_components/HorizontalRow';
 import { Header } from '_components/Header';
@@ -8,13 +8,32 @@ import {
   EDIT_PROFILE,
   MY_ADDRESS_BOOK,
 } from '_constants/Screens';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
 import { useTheme } from '@react-navigation/native';
 const MyProfile = (props) => {
   const { colors } = useTheme()
   const { navigate } = props.navigation;
   return (
     <ScrollView>
-      <Header {...props} title={'My Profile'} />
+      <ImageBackground
+        style={{
+          height: hp(21),
+          paddingHorizontal: wp(3),
+          paddingBottom: hp(8),
+          marginBottom: hp(1),
+          justifyContent: 'flex-end',
+          transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }],
+        }}
+        resizeMode='stretch'
+        source={require('_assets/images/header.png')}>
+
+        <Header {...props} title={'My Profile'} />
+
+
+      </ImageBackground>
       <Screen>
         <View key="header"></View>
         <View key="content">
@@ -34,16 +53,22 @@ const MyProfile = (props) => {
               </AppText>
             </View>
 
-            <AppText
+            {/* <AppText
               icon
               size={17}
               appColor
               iconType="entypo"
               iconName="pencil"
-              onPress={() => navigate(EDIT_PROFILE)}
+             
               style={[styles.editbtn, { backgroundColor: colors.primary }]}>
               Edit
-          </AppText>
+          </AppText> */}
+            <TouchableOpacity onPress={() => navigate(EDIT_PROFILE)}>
+              <Image
+
+                source={require("../../assets/images/editbtn.png")}
+              />
+            </TouchableOpacity>
 
 
           </View>

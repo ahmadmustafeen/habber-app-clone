@@ -1,10 +1,9 @@
 import React from 'react';
-import {View, StyleSheet, Image} from 'react-native';
-import {AppText, Button, Screen} from '_components/common';
-import {HorizontalRow} from '_components';
-import {CART_SCREEN} from '_constants/Screens';
-import {Icon} from 'react-native-elements';
-
+import { View, StyleSheet, Image, ImageBackground, I18nManager } from 'react-native';
+import { AppText, Button, Screen } from '_components/common';
+import { HorizontalRow, Header } from '_components';
+import { CART_SCREEN } from '_constants/Screens';
+import { Icon } from 'react-native-elements';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -12,9 +11,26 @@ import {
 
 const Favorites = (props) => {
   return (
-    <Screen>
-      <View key="header"></View>
-      <View key="content">
+    <Screen noPadding>
+      <View key="header">
+        <ImageBackground
+          style={{
+            height: hp(21),
+            paddingHorizontal: wp(3),
+            paddingBottom: hp(8),
+            marginBottom: hp(1),
+            justifyContent: 'flex-end',
+            transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }],
+          }}
+          resizeMode='stretch'
+          source={require('_assets/images/header.png')}>
+
+          <Header title={"Favourites"} {...props} />
+
+
+        </ImageBackground>
+      </View>
+      <View key="content" style={{ width: wp(90), alignSelf: 'center' }}>
         <View style={styles.profiletop}>
           <View style={styles.imgContainer}>
             <Image
@@ -57,7 +73,7 @@ const Favorites = (props) => {
                 flexDirection: 'row',
               }}>
               <Icon
-                containerStyle={{paddingRight: wp(5)}}
+                containerStyle={{ paddingRight: wp(5) }}
                 size={15}
                 color={'black'}
                 name={'trash-o'}

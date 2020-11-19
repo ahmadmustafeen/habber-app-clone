@@ -1,12 +1,15 @@
 import { validatePhone, validateEmail } from '_helpers/Validators';
 import React, { useState } from 'react';
-import { View, TextInput, StyleSheet, Alert } from 'react-native';
+import { View, TextInput, StyleSheet, Alert, ImageBackground, I18nManager } from 'react-native';
 import { useDispatch } from 'react-redux';
 import { withDataActions } from '_redux/actions';
 import { SUBMIT_CONTACT_US } from '_redux/actionTypes';
 import { InputWithLabel, Header } from '../../components';
 import { Button, Screen } from '../../components/common';
-
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
 const ContactUs = (props) => {
   const dispatch = useDispatch();
   const [state, setState] = useState({
@@ -41,7 +44,24 @@ const ContactUs = (props) => {
   };
   return (
     <View>
-      <Header {...props} title={'Contact Us'} />
+      <ImageBackground
+        style={{
+          height: hp(21),
+          paddingHorizontal: wp(3),
+          paddingBottom: hp(8),
+          marginBottom: hp(1),
+          justifyContent: 'flex-end',
+          transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }],
+        }}
+        resizeMode='stretch'
+        source={require('_assets/images/header.png')}>
+
+
+        <Header {...props} title={'Contact Us'} />
+
+      </ImageBackground>
+
+
       <Screen>
         <View key="content" style={styles.content}>
           <InputWithLabel

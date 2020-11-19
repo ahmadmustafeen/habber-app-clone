@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, ScrollView } from 'react-native';
+import { View, ScrollView, ImageBackground, I18nManager } from 'react-native';
 import { InputWithLabel } from '_components';
 import { Button, Screen } from '_components/common';
 // import { MY_PROFILE } from '_constants/Screens';
@@ -8,7 +8,10 @@ import { useTheme } from '@react-navigation/native';
 import { useDispatch } from 'react-redux';
 import { withDataActions } from '_redux/actions';
 import { UPDATE_PASSWORD } from 'redux/actionTypes';
-
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
 const ChangePassword = (props) => {
   const { navigate } = props.navigation;
   const { colors } = useTheme()
@@ -28,7 +31,22 @@ const ChangePassword = (props) => {
   }
   return (
     <ScrollView>
-      <Header {...props} title={'Change Password'} />
+      <ImageBackground
+        style={{
+          height: hp(21),
+          paddingHorizontal: wp(3),
+          paddingBottom: hp(8),
+          marginBottom: hp(1),
+          justifyContent: 'flex-end',
+          transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }],
+        }}
+        resizeMode='stretch'
+        source={require('_assets/images/header.png')}>
+
+        <Header {...props} title={'Change Password'} />
+
+
+      </ImageBackground>
       <Screen>
         <View key="header"></View>
         <View key="content">

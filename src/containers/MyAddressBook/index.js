@@ -1,17 +1,36 @@
 import React from 'react';
-import {View,ScrollView, StyleSheet, Image} from 'react-native';
-import {AppText, Button, Screen} from '_components/common';
-import {ADD_NEW_ADDRESS, EDIT_PROFILE} from '_constants/Screens';
-import {HorizontalRow} from '_components/HorizontalRow';
-import {Header} from '_components/Header';
-
+import { View, ScrollView, StyleSheet, Image, ImageBackground, I18nManager } from 'react-native';
+import { AppText, Button, Screen } from '_components/common';
+import { ADD_NEW_ADDRESS, EDIT_PROFILE } from '_constants/Screens';
+import { HorizontalRow } from '_components/HorizontalRow';
+import { Header } from '_components/Header';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
 const MyAddressBook = (props) => {
-  const {navigate} = props.navigation;
+  const { navigate } = props.navigation;
   return (
-    <ScrollView>
-    <Header {...props} title={'My Profile'} />
-    <Screen>
-      <View key="header"></View>
+    <Screen noPadding>
+
+      <View key="header">
+        <ImageBackground
+          style={{
+            height: hp(21),
+            paddingHorizontal: wp(3),
+            paddingBottom: hp(8),
+            marginBottom: hp(1),
+            justifyContent: 'flex-end',
+            transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }],
+          }}
+          resizeMode='stretch'
+          source={require('_assets/images/header.png')}>
+
+          <Header {...props} title={'My Address Book'} />
+
+
+        </ImageBackground>
+      </View>
       <View key="content">
         <View style={styles.profiletop}>
           <View style={styles.imgContainer}>
@@ -76,7 +95,7 @@ Khaled.Ammar@gmail.com`}
         </View>
       </View>
     </Screen>
-    </ScrollView>
+
   );
 };
 
