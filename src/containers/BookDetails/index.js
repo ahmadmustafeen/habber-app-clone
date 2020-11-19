@@ -68,7 +68,6 @@ const BookDetails = (props) => {
           quantity: 1,
           product_id,
           action,
-          product_price: price,
         },
         UPDATE_CART_ITEM,
       ),
@@ -78,7 +77,7 @@ const BookDetails = (props) => {
   const onAddToCart = () => {
     if (
       inCartPosition === -1 ||
-      CartReducer[product_type][inCartPosition].quantity === 0
+      CartReducer[product_type][inCartPosition].cart_quantity === 0
     ) {
       Alert.alert('Please add quantity');
       return;
@@ -109,6 +108,7 @@ const BookDetails = (props) => {
       withDataActions({product_id, type: product_type}, UPDATE_FAVOURITE),
     );
   };
+  console.log('quantity', quantity);
 
   return (
     <Screen noPadding contentPadding>
@@ -152,7 +152,7 @@ const BookDetails = (props) => {
           <AppText size={14}>{book.description}</AppText>
         </View>
       </View>
-      <View key="footer">
+      <View key="footer" style={{paddingHorizontal: 20, paddingBottom: 20}}>
         <View style={styles.counter}>
           {quantity && (
             <Counter
@@ -160,7 +160,7 @@ const BookDetails = (props) => {
               onDecrement={() => handleCounter('sub')}
               value={
                 inCartPosition !== -1
-                  ? CartReducer[product_type][inCartPosition].quantity
+                  ? CartReducer[product_type][inCartPosition].cart_quantity
                   : '0'
               }
             />
@@ -170,7 +170,7 @@ const BookDetails = (props) => {
         <Button bold color={colors.white} secondary onPress={onAddToCart}>
           {quantity ? 'Add to Cart' : 'Out of Stock'}
         </Button>
-        <View style={{width: wp(90), alignSelf: 'center'}}>
+        {/* <View style={{width: wp(90), alignSelf: 'center'}}>
           <AppText>More BookClubs</AppText>
           <FlatList
             style={styles.flatlist}
@@ -184,7 +184,7 @@ const BookDetails = (props) => {
               </View>
             )}
           />
-        </View>
+        </View> */}
       </View>
     </Screen>
   );

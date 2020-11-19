@@ -9,7 +9,7 @@ const initialState = {
   total_price: 0,
 };
 
-export default (state = initialState, { type, payload }) => {
+export default (state = initialState, {type, payload}) => {
   switch (type) {
     case UPDATE_CART_ITEM: {
       console.log('Cart Payload', payload);
@@ -21,6 +21,8 @@ export default (state = initialState, { type, payload }) => {
         if (payload.action === 'sub') {
           return state;
         }
+        payload.cart_price = payload.price;
+        payload.cart_quantity = payload.quantity;
 
         return {
           ...state,
@@ -31,23 +33,26 @@ export default (state = initialState, { type, payload }) => {
         };
       }
 
-      const updatedState = { ...state };
+      const updatedState = {...state};
       let product = updatedState[payload.product_type][alreadyAvailable];
-
+      console.log('PRODUCT', product);
       if (payload.action === 'add') {
-        product.quantity += 1;
+        product.cart_quantity += 1;
       } else if (payload.action === 'sub') {
-        product.quantity > 0 ? (product.quantity -= 1) : null;
+        product.cart_quantity > 0 ? (product.cart_quantity -= 1) : null;
       } else if (payload.action === 'remove') {
         updatedState[payload.product_type].splice(alreadyAvailable, 1);
       }
 
-      product.price = payload.product_price * product.quantity;
+      product.cart_price = payload.price * product.cart_quantity;
 
       updatedState.total_price =
-        updatedState.book.reduce((total, book) => total + book.price, 0) +
-        updatedState.bookmark.reduce((total, book) => total + book.price, 0);
-      return { ...updatedState };
+        updatedState.book.reduce((total, book) => total + book.cart_price, 0) +
+        updatedState.bookmark.reduce(
+          (total, book) => total + book.cart_price,
+          0,
+        );
+      return {...updatedState};
     }
 
     // case ADD_TO_CART: {
@@ -84,7 +89,7 @@ export default (state = initialState, { type, payload }) => {
 
     case FETCH_USER_CART_SUCCESS: {
       console.log('FETCH_USER_CART_SUCCESS', payload);
-      return { ...state, ...payload };
+      return {...state, ...payload};
     }
     default:
       return state;

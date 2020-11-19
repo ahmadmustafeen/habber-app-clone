@@ -53,7 +53,7 @@ const BookDetailsCard = (props) => {
             Price: {price} KD
           </AppText>
           <AppText bold size={15} color="red">
-            {!quantity ? null : 'Out of Stock'}
+            {!quantity && 'Out of Stock'}
           </AppText>
         </View>
         <View
