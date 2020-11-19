@@ -1,4 +1,4 @@
-import {BookListContainer, FilterModal} from 'components';
+import {BookListContainer} from 'components';
 import React, {useState} from 'react';
 import {ScrollView, StyleSheet, View} from 'react-native';
 import useFilter from 'utils/customHooks/useFilter';
@@ -8,37 +8,38 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
+import {FilterModal} from '_containers/Filter';
 const BooksList = (props) => {
-  const {
-    route: {
-      params: {label, data, type},
-    },
-    navigation: {navigate},
-  } = props;
+  const {label, data, product_type} = props.route.params;
   const {visible, toggleFilter} = useFilter();
   const [bookData, setBookData] = useState(data);
   const onApplyFilter = (item) => {
-    //   console.log(item);
-    //   console.log('data', data);
+    // filter keys in UI should be displayed from ITEM array - Ahmad
     toggleFilter();
-    // let filtered = setFilterHandler(bookData, ['Delectus nostrum mo']);
-    // console.log('filtered', filtered);
+    if (!item.length) {
+      setBookData(data);
+      return;
+    }
+    let filtered = setFilterHandler(bookData, item);
+    setBookData(filtered);
   };
   return (
     <ScrollView>
-      <Header {...props} title={type === 'bookmarks' ? 'Bookmark' : 'Book'} />
+      <Header
+        {...props}
+        title={product_type === 'bookmark' ? 'Bookmark' : 'Book'}
+      />
       <View>
         <TitleBarWithIcon label={label} onIconPress={toggleFilter} />
-        <BookListContainer data={bookData} {...props} type={type} />
+        <BookListContainer
+          data={bookData}
+          {...props}
+          product_type={product_type}
+        />
         <FilterModal {...props} visible={visible} onApply={onApplyFilter} />
       </View>
     </ScrollView>
   );
 };
-const styles = StyleSheet.create({
-  container: {
-    width: wp(100),
-    marginLeft: wp(5),
-  },
-});
+const styles = StyleSheet.create({});
 export default BooksList;

@@ -45,36 +45,46 @@ const DrawerNav = () => {
     </Drawer.Navigator>
   );
 };
+const navigatorComponent = (splashScreen, ad, backUser) => {
+  if (splashScreen) {
+    return (
+      <RootStack.Navigator screenOptions={{headerShown: false}}>
+        <RootStack.Screen name="Splash" component={Splash} />
+      </RootStack.Navigator>
+    );
+  }
+  if (ad) {
+    return (
+      <RootStack.Navigator
+        screenOptions={{
+          headerShown: false,
+        }}>
+        <RootStack.Screen name={AD_SCREEN} component={AdScreen} />
+      </RootStack.Navigator>
+    );
+  }
 
+  return (
+    <RootStack.Navigator
+      screenOptions={{
+        headerShown: false,
+      }}>
+      <RootStack.Screen name="Auth" component={AuthNav} />
+      <RootStack.Screen name="Drawer" component={DrawerNav} />
+    </RootStack.Navigator>
+  );
+};
 const Navigator = (props, ref) => {
-  const {splashScreen, ad} = useSelector(({SplashReducer}) => {
+  const {splashScreen, ad, backUser} = useSelector(({SplashReducer}) => {
     return {
       splashScreen: SplashReducer.splashScreen,
       ad: SplashReducer.ad,
+      backUser: SplashReducer.backUser,
     };
   }, shallowEqual);
   return (
     <NavigationContainer ref={ref} theme={MyTheme}>
-      {splashScreen ? (
-        <RootStack.Navigator screenOptions={{headerShown: false}}>
-          <RootStack.Screen name="Splash" component={Splash} />
-        </RootStack.Navigator>
-      ) : ad ? (
-        <RootStack.Navigator
-          screenOptions={{
-            headerShown: false,
-          }}>
-          <RootStack.Screen name={AD_SCREEN} component={AdScreen} />
-        </RootStack.Navigator>
-      ) : (
-        <RootStack.Navigator
-          screenOptions={{
-            headerShown: false,
-          }}>
-          <RootStack.Screen name="Auth" component={AuthNav} />
-          <RootStack.Screen name="Drawer" component={DrawerNav} />
-        </RootStack.Navigator>
-      )}
+      {navigatorComponent(splashScreen, ad, backUser)}
     </NavigationContainer>
   );
 };

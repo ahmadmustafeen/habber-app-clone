@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 
-import { View, StyleSheet } from 'react-native';
-import { useTranslation } from 'react-i18next';
+import {View, StyleSheet} from 'react-native';
+import {useTranslation} from 'react-i18next';
 import {
   DashboardComponent,
   ThumbnailBookmarks,
@@ -9,28 +9,25 @@ import {
   TitleBarWithIcon,
   Header,
 } from '_components';
-import {
-  REQUESTBOOKS_SCREEN,
-  BOOKLIST_SCREEN,
-} from '_constants/Screens';
-import { sliderImages } from './dummydata';
-import { ThumbnailBook } from '_components/ThumbnailBook';
-import { Button, Screen } from '_components/common';
-import { FlatListSlider } from '_components';
-import { booksData, booksClub, bookmarkdata } from '_assets/data/dummydata';
-import { shallowEqual, useDispatch, useSelector } from 'react-redux';
-import { useTheme } from '@react-navigation/native';
+import {REQUESTBOOKS_SCREEN, BOOKLIST_SCREEN} from '_constants/Screens';
+import {sliderImages} from './dummydata';
+import {ThumbnailBook} from '_components/ThumbnailBook';
+import {Button, Screen} from '_components/common';
+import {FlatListSlider} from '_components';
+import {booksData, booksClub, bookmarkdata} from '_assets/data/dummydata';
+import {shallowEqual, useDispatch, useSelector} from 'react-redux';
+import {useTheme} from '@react-navigation/native';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 const Home = (props) => {
-  const { navigate } = props.navigation;
+  const {navigate} = props.navigation;
   const [images] = useState(sliderImages);
   const [data] = useState(booksData);
   const [data_book_club] = useState(booksClub);
   const [bookmark_data] = useState(bookmarkdata);
-  const { t } = useTranslation();
+  const {t} = useTranslation();
   const {
     EnglishBooksReducer,
     ArabicBooksReducer,
@@ -45,7 +42,7 @@ const Home = (props) => {
     };
   }, shallowEqual);
   const dispatch = useDispatch();
-  const { colors } = useTheme();
+  const {colors} = useTheme();
 
   return (
     <Screen noPadding>
@@ -75,7 +72,7 @@ const Home = (props) => {
       </View>
 
       <View key="content" style={styles.container}>
-        <View style={{ width: '100%', height: 200 }}>
+        <View style={{width: '100%', height: 200}}>
           <FlatListSlider />
         </View>
         <DashboardComponent
@@ -86,7 +83,7 @@ const Home = (props) => {
             navigate(BOOKLIST_SCREEN, {
               label: t('arabic'),
               data: ArabicBooksReducer,
-              type: 'book',
+              product_type: 'book',
             })
           }
         />
@@ -98,7 +95,7 @@ const Home = (props) => {
             navigate(BOOKLIST_SCREEN, {
               label: t('english'),
               data: EnglishBooksReducer,
-              type: 'book',
+              product_type: 'book',
             })
           }
         />
@@ -123,13 +120,13 @@ const Home = (props) => {
             navigate(BOOKLIST_SCREEN, {
               label: t('bookmark'),
               data: BookmarksReducer,
-              type: 'bookmarks',
+              product_type: 'bookmark',
             })
           }
         />
         <TitleBarWithIcon label={t('requestBook')} />
         <View style={styles.requestBooksBtns}>
-          <View style={{ width: wp(28) }}>
+          <View style={{width: wp(28)}}>
             <Button
               bold
               color={colors.white}
@@ -137,19 +134,19 @@ const Home = (props) => {
               secondary
               fontSize={13}
               onPress={() =>
-                navigate(REQUESTBOOKS_SCREEN, { book_type: 'random' })
+                navigate(REQUESTBOOKS_SCREEN, {book_type: 'random'})
               }>
               Request Book
             </Button>
           </View>
-          <View style={{ width: wp(58) }}>
+          <View style={{width: wp(58)}}>
             <Button
               // bold
               borderRadius={2}
               primary
               fontSize={13}
               onPress={() =>
-                navigate(REQUESTBOOKS_SCREEN, { book_type: 'educational' })
+                navigate(REQUESTBOOKS_SCREEN, {book_type: 'educational'})
               }>
               Request Educational Book
             </Button>

@@ -9,8 +9,8 @@ import {BookCard} from './BookCard';
 // import { colors } from 'react-native-elements';
 
 const BookListContainer = (props) => {
-  const {data, navigation, type, numColumns} = props;
-  console.log(type);
+  const {data, navigation, product_type, numColumns} = props;
+  console.log(product_type);
   const {colors} = useTheme();
   return (
     <FlatList
@@ -18,15 +18,18 @@ const BookListContainer = (props) => {
       showsVerticalScrollIndicator={false}
       keyExtractor={(item, index) => index.toString() + item}
       columnWrapperStyle={{justifyContent: 'space-evenly'}}
-      numColumns={type === 'bookmarks' ? 3 : 2}
+      numColumns={product_type === 'bookmark' ? 3 : 2}
       renderItem={(book) => {
-        if (type === 'bookmarks') {
+        if (product_type === 'bookmark') {
           return (
             <BookmarkCard
               {...book.item}
               {...props}
               onPress={() =>
-                navigation.navigate(BOOK_DETAILS_SCREEN, {...book.item, type})
+                navigation.navigate(BOOK_DETAILS_SCREEN, {
+                  ...book.item,
+                  product_type,
+                })
               }
             />
           );
@@ -36,7 +39,10 @@ const BookListContainer = (props) => {
             {...book.item}
             {...props}
             onPress={() =>
-              navigation.navigate(BOOK_DETAILS_SCREEN, {...book.item, type})
+              navigation.navigate(BOOK_DETAILS_SCREEN, {
+                ...book.item,
+                product_type,
+              })
             }
           />
         );

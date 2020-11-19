@@ -1,5 +1,5 @@
 export const setFilterHandler = (data, filter) => {
   return data.filter((item) => {
-    filter.includes(item.genre[0].title);
+    return item.genre.some((genre) => filter.includes(genre.title));
   });
 };

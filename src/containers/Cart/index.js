@@ -1,91 +1,88 @@
-import React, { useEffect } from 'react';
-import { View, ScrollView, StyleSheet, Image } from 'react-native';
-import { AppText, Button, Screen } from '_components/common';
-import { HorizontalRow, Counter } from '_components';
-import { CHECKOUT } from '_constants/Screens';
-import { Header } from '_components/Header';
-import { withDataActions } from '_redux/actions/GenericActions';
-import { useSelector, shallowEqual, useDispatch } from 'react-redux';
-import { ADD_TO_CART_SAGA } from '_redux/actionTypes';
-import { UPDATE_CART_ITEM } from '_redux/actionTypes';
-import { useTheme } from '@react-navigation/native';
+import React, {useEffect} from 'react';
+import {View, ScrollView, StyleSheet, Image} from 'react-native';
+import {AppText, Button, Screen} from '_components/common';
+import {HorizontalRow, Counter} from '_components';
+import {CHECKOUT} from '_constants/Screens';
+import {Header} from '_components/Header';
+import {withDataActions} from '_redux/actions/GenericActions';
+import {useSelector, shallowEqual, useDispatch} from 'react-redux';
+import {ADD_TO_CART_SAGA} from '_redux/actionTypes';
+import {UPDATE_CART_ITEM} from '_redux/actionTypes';
+import {useTheme} from '@react-navigation/native';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 const AddToCart = (props) => {
-  const { colors } = useTheme()
+  const {colors} = useTheme();
   const dispatch = useDispatch();
   const CartReducer = useSelector((state) => state.CartReducer);
 
-  const book = CartReducer;
-  // dispatch(withDataActions(book.product, ADD_TO_CART_SAGA))
-
-  const updateItemQuantity = (book, type) => {
-    if (type === 'add') {
-      dispatch(
-        withDataActions(
-          {
-            ...book,
-            quantity: book.quantity + 1,
-          },
-          UPDATE_CART_ITEM,
-        ),
-      );
-    } else {
-      dispatch(
-        withDataActions(
-          {
-            ...book,
-            quantity: book.quantity > 1 ? book.quantity - 1 : book.quantity,
-          },
-          UPDATE_CART_ITEM,
-        ),
-      );
-    }
+  const updateCartItem = (book, action) => {
+    console.log('BOOK', book);
+    dispatch(
+      withDataActions(
+        {
+          ...book,
+          action,
+        },
+        UPDATE_CART_ITEM,
+      ),
+    );
   };
-
-  console.log('cartpage', CartReducer);
   return (
     <ScrollView>
       <Header {...props} title={'Cart'} />
       <Screen>
         <View key="header"></View>
         <View key="content">
-          {CartReducer.book &&
-            CartReducer.book.map((book) => {
-              const { image, title, price, author_name, quantity } = book;
-              console.log('QUANTITY', quantity);
-              return (
-                <View style={styles.profiletop}>
-                  <View style={styles.imgContainer}>
-                    <Image style={styles.image} source={{ uri: image }} />
-                  </View>
-                  <View style={styles.viewtxt}>
-                    <AppText bold size={18} style={styles.txt}>
-                      {title}
-                    </AppText>
-                    <AppText size={15} style={[styles.txt, styles.author]}>
-                      by {author_name}
-                    </AppText>
-                    <AppText bold size={17} style={styles.pricetxt}>
-                      Price: {price} KW
-                    </AppText>
-                    <View style={{ width: 300, marginVertical: 10 }}>
-                      <Counter
-                        value={quantity}
-                        onIncrement={() => updateItemQuantity(book, 'add')}
-                        onDecrement={() => updateItemQuantity(book, 'sub')}
-                      />
+          {Object.values(CartReducer)
+            .filter((key) => Array.isArray(key))
+            .map((product_type) =>
+              product_type.map((product) => {
+                const {image, title, author_name, price, quantity} = product;
+                return (
+                  <View style={styles.profiletop}>
+                    <View style={styles.imgContainer}>
+                      <Image style={styles.image} source={{uri: image}} />
                     </View>
-                    <HorizontalRow style={{ color: 'rgb(200, 200, 200)', borderWidth: hp(0.1), width: wp(45) }} />
-                    <AppText bold size={17} primary style={styles.txt}>
-                      Remove
-                    </AppText>
+                    <View style={styles.viewtxt}>
+                      <AppText bold size={18} style={styles.txt}>
+                        {title}
+                      </AppText>
+                      <AppText size={15} style={[styles.txt, styles.author]}>
+                        by {author_name}
+                      </AppText>
+                      <AppText bold size={17} style={styles.pricetxt}>
+                        Price: {price} KW
+                      </AppText>
+                      <View style={{width: 300, marginVertical: 10}}>
+                        <Counter
+                          value={quantity}
+                          onIncrement={() => updateCartItem(product, 'add')}
+                          onDecrement={() => updateCartItem(product, 'sub')}
+                        />
+                      </View>
+                      <HorizontalRow
+                        style={{
+                          color: 'rgb(200, 200, 200)',
+                          borderWidth: hp(0.1),
+                          width: wp(45),
+                        }}
+                      />
+                      <AppText
+                        bold
+                        size={17}
+                        primary
+                        style={styles.txt}
+                        onPress={() => updateCartItem(product, 'remove')}>
+                        Remove
+                      </AppText>
+                    </View>
                   </View>
-                </View>
-              );
-            })}
+                );
+              }),
+            )}
 
           <View style={styles.totalcontainer}>
             <View
@@ -100,8 +97,8 @@ const AddToCart = (props) => {
                 Total
               </AppText>
             </View>
-            <View style={{ flexDirection: 'column', justifyContent: 'flex-end' }}>
-              <AppText bold>$90</AppText>
+            <View style={{flexDirection: 'column', justifyContent: 'flex-end'}}>
+              <AppText bold>{CartReducer.total_price}</AppText>
               <AppText bold>$10</AppText>
               <AppText primary bold>
                 $100
@@ -157,8 +154,8 @@ const styles = StyleSheet.create({
   },
   author: {
     marginTop: 10,
-    fontStyle: 'italic'
-  }
+    fontStyle: 'italic',
+  },
 });
 
 export default AddToCart;

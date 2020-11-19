@@ -23,8 +23,8 @@ export const AuthNav = () => {
       screenOptions={{
         headerShown: false,
       }}>
-      <AuthScreen.Screen name={LANGUAGE_SCREEN} component={Language} />
       <AuthScreen.Screen name={SIGNIN_SCREEN} component={SignIn} />
+      <AuthScreen.Screen name={LANGUAGE_SCREEN} component={Language} />
       <AuthScreen.Screen name={SIGNUP_SCREEN} component={SignUp} />
       <AuthScreen.Screen
         name={FORGOT_PASSWORD_SCREEN}

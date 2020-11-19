@@ -2,11 +2,10 @@ import React, {useEffect, useState} from 'react';
 import {
   View,
   StyleSheet,
-  Image,
-  ScrollView,
   ImageBackground,
   I18nManager,
   FlatList,
+  Alert,
 } from 'react-native';
 import {AppText, Button, Screen} from '../../components/common';
 import {useDispatch, useSelector, shallowEqual} from 'react-redux';
@@ -31,88 +30,74 @@ import {
   ADD_TO_FAVOURITE,
   REMOVE_FAVOURITE,
 } from '_redux/actionTypes';
-import {
-  withDataActions,
-  withoutDataActions,
-} from '_redux/actions/GenericActions';
+import {withDataActions} from '_redux/actions/GenericActions';
 
-import {useFocusEffect, useTheme} from '@react-navigation/native';
-import {widthPercentageToDP} from 'react-native-responsive-screen';
+import {useTheme} from '@react-navigation/native';
+import {UPDATE_CART_ITEM} from 'redux/actionTypes';
 
 const BookDetails = (props) => {
-  const {
-    route: {params},
-    navigation: {navigate},
-  } = props;
+  const {params: book} = props.route;
   const {colors} = useTheme();
   const dispatch = useDispatch();
 
-  const {FetchRelatedBookList, FavouriteReducer} = useSelector((state) => {
-    return {
-      FetchRelatedBookList: state.FetchRelatedBookList,
-      FavouriteReducer: state.FavouriteReducer,
-    };
-  });
-  const [value, setValue] = useState(0);
+  const {CartReducer, FetchRelatedBookList, FavouriteReducer} = useSelector(
+    ({CartReducer, FetchRelatedBookList, FavouriteReducer}) => {
+      return {
+        CartReducer,
+        FetchRelatedBookList,
+        FavouriteReducer,
+      };
+    },
+  );
 
-  const {
-    title,
-    id: product_id,
-    total_pages,
-    description,
-    cover_type,
-    quantity,
-    price,
-    image,
-    type,
-    isbn,
-    author_name,
-  } = params;
+  const {id: product_id, quantity, product_type, price} = book;
 
-  const add = (prevValue) => {
-    if (prevValue === quantity) {
-      return false;
-    } else {
-      setValue(prevValue + 1);
-    }
-  };
-  const subtract = (prevValue) => {
-    if (prevValue === 0) {
-      return false;
-    } else {
-      setValue(prevValue - 1);
-    }
-  };
-  const addtocart = () => {
+  let inCartPosition = CartReducer[product_type].findIndex(
+    (el) => el.product_id === product_id,
+  );
+  let isFavourite = FavouriteReducer[product_type].some(
+    (el) => el.product_id === product_id,
+  );
+  const handleCounter = (action) => {
+    //TODO : For restrict counter for maximum quantity and out of stock..
+
     dispatch(
       withDataActions(
         {
+          ...book,
+          quantity: 1,
           product_id,
-          quantity: value,
-          price,
-          description,
-          title,
-          image,
-          author_name,
-          product_type: type,
+          action,
+          product_price: price,
         },
-        ADD_TO_CART,
+        UPDATE_CART_ITEM,
       ),
     );
   };
-  const isFavourite = FavouriteReducer[type].some(
-    (el) => el.product_id === product_id,
-  );
+
+  const onAddToCart = () => {
+    if (
+      inCartPosition === -1 ||
+      CartReducer[product_type][inCartPosition].quantity === 0
+    ) {
+      Alert.alert('Please add quantity');
+      return;
+    }
+
+    dispatch(
+      withDataActions(CartReducer[product_type][inCartPosition], ADD_TO_CART),
+    );
+  };
 
   useEffect(() => {
     dispatch(withDataActions({product_id}, FETCH_RELATED_BOOKS));
   }, []);
 
   useEffect(() => {
-    return function onUnmount() {
+    return () => {
       dispatch(
         withDataActions(
-          {product_id, type},
+          {product_id, type: product_type},
           isFavourite ? ADD_TO_FAVOURITE : REMOVE_FAVOURITE,
         ),
       );
@@ -120,7 +105,9 @@ const BookDetails = (props) => {
   }, [isFavourite]);
 
   const handleFavouriteClick = () => {
-    dispatch(withDataActions({product_id, type}, UPDATE_FAVOURITE));
+    dispatch(
+      withDataActions({product_id, type: product_type}, UPDATE_FAVOURITE),
+    );
   };
 
   return (
@@ -137,7 +124,7 @@ const BookDetails = (props) => {
           <BookDetailsCard
             onClickFavourite={handleFavouriteClick}
             favourite={isFavourite}
-            {...params}
+            {...book}
           />
         </ImageBackground>
       </View>
@@ -145,13 +132,13 @@ const BookDetails = (props) => {
         <HorizontalRow />
         <View>
           <AppText bold size={15} primary>
-            ISBN: {isbn}
+            ISBN: {book.isbn}
           </AppText>
           <AppText bold size={15}>
-            Pages: {total_pages}
+            Pages: {book.total_pages}
           </AppText>
           <AppText bold size={15}>
-            Type of Cover: {cover_type}
+            Type of Cover: {book.cover_type}
           </AppText>
           <AppText bold size={15}>
             Genre: Romance|Thriller|Mystery
@@ -162,26 +149,25 @@ const BookDetails = (props) => {
           <AppText bold style={{marginBottom: 10}}>
             Description:
           </AppText>
-          <AppText size={14}>{description}</AppText>
+          <AppText size={14}>{book.description}</AppText>
         </View>
       </View>
       <View key="footer">
         <View style={styles.counter}>
           {quantity && (
             <Counter
-              onIncrement={() => add(value)}
-              onDecrement={() => subtract(value)}
-              value={value}
+              onIncrement={() => handleCounter('add')}
+              onDecrement={() => handleCounter('sub')}
+              value={
+                inCartPosition !== -1
+                  ? CartReducer[product_type][inCartPosition].quantity
+                  : '0'
+              }
             />
           )}
         </View>
 
-        <Button
-          bold
-          color={colors.white}
-          secondary
-          style={{width: wp(70), alignSelf: 'center'}}
-          onPress={() => value && addtocart()}>
+        <Button bold color={colors.white} secondary onPress={onAddToCart}>
           {quantity ? 'Add to Cart' : 'Out of Stock'}
         </Button>
         <View style={{width: wp(90), alignSelf: 'center'}}>
