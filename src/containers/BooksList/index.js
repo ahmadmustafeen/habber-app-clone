@@ -1,20 +1,25 @@
-import {BookListContainer} from 'components';
-import React, {useState} from 'react';
-import {ScrollView, StyleSheet, View} from 'react-native';
+import { BookListContainer } from 'components';
+import React, { useState } from 'react';
+import { ScrollView, StyleSheet, View, Text, Image, ImageBackground, I18nManager } from 'react-native';
 import useFilter from 'utils/customHooks/useFilter';
-import {TitleBarWithIcon, Header} from '_components';
-import {setFilterHandler} from '../../helpers/Filter';
+import { TitleBarWithIcon, Header } from '_components';
+import { setFilterHandler } from '../../helpers/Filter';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-import {FilterModal} from '_containers/Filter';
+import { FilterModal } from '_containers/Filter';
+import { useTheme } from '@react-navigation/native';
+import { AppText } from 'components/common';
+// import { Icon } from 'react-native-vector-icons/Icon';
 const BooksList = (props) => {
-  const {label, data, product_type} = props.route.params;
-  const {visible, toggleFilter} = useFilter();
+  const [filter, setFilter] = useState([])
+  const { label, data, product_type } = props.route.params;
+  const { visible, toggleFilter } = useFilter();
   const [bookData, setBookData] = useState(data);
   const onApplyFilter = (item) => {
     // filter keys in UI should be displayed from ITEM array - Ahmad
+    setFilter([...item])
     toggleFilter();
     if (!item.length) {
       setBookData(data);
@@ -23,14 +28,46 @@ const BooksList = (props) => {
     let filtered = setFilterHandler(bookData, item);
     setBookData(filtered);
   };
+  const { colors } = useTheme()
   return (
     <ScrollView>
-      <Header
-        {...props}
-        title={product_type === 'bookmark' ? 'Bookmark' : 'Book'}
-      />
+      <ImageBackground
+        style={{
+          height: hp(21),
+          paddingHorizontal: wp(3),
+          paddingBottom: hp(8),
+          marginBottom: hp(1),
+          justifyContent: 'flex-end',
+          transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }],
+        }}
+        resizeMode='stretch'
+        source={require('_assets/images/header.png')}>
+
+        <Header {...props} title={product_type === 'book' ? 'Books' : product_type === 'bookmark' ? 'Bookmark' : 'BookClubs'} />
+
+
+      </ImageBackground>
+
       <View>
-        <TitleBarWithIcon label={label} onIconPress={toggleFilter} />
+        {
+          product_type === 'book'
+          &&
+          <View style={{ width: wp(90), alignSelf: 'center' }}>
+            <TitleBarWithIcon label={`${bookData.length} Books Found`} noIcon filter onIconPress={toggleFilter} />
+          </View>
+        }
+
+        <View style={styles.filterApply}>
+
+          {filter.map((item) =>
+            <View key={item} style={[styles.filterView, { backgroundColor: colors.borderColor }]}>
+              <AppText size={13} style={{ marginRight: 16 }}>
+                {item}
+              </AppText>
+              <Image style={styles.filterCross} source={require('../../assets/images/remove.png')} onPress={() => onApplyFilter()} />
+            </View>
+          )}
+        </View>
         <BookListContainer
           data={bookData}
           {...props}
@@ -41,5 +78,29 @@ const BooksList = (props) => {
     </ScrollView>
   );
 };
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  filterApply: {
+    flexDirection: 'row',
+    alignSelf: "center",
+    flexWrap: "wrap",
+    width: wp(90),
+    justifyContent: 'center'
+  },
+  filterView: {
+    flexDirection: 'row',
+    width: wp(35),
+    marginHorizontal: wp(3),
+    marginVertical: hp(1),
+    paddingVertical: 10,
+    borderRadius: wp(10),
+    justifyContent: "center",
+    alignItems: 'center'
+  }
+  ,
+  filterCross: {
+    position: "absolute",
+    right: 10
+  }
+
+});
 export default BooksList;

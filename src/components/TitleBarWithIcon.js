@@ -5,6 +5,7 @@ import {
   I18nManager,
   TouchableOpacity,
   Dimensions,
+  Image,
 } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 import {
@@ -26,6 +27,7 @@ const TitleBarWithIcon = (props) => {
     iconName,
     noIcon,
     small,
+    filter
   } = props;
 
   return (
@@ -54,6 +56,10 @@ const TitleBarWithIcon = (props) => {
           // style={{transform: [{scaleX: I18nManager.isRTL ? -1 : 1}]}}
           />
         )}
+        {
+          filter &&
+          <Image source={require("../assets/images/filter.png")} />
+        }
       </View>
     </TouchableOpacity>
   );
@@ -63,7 +69,7 @@ const styles = StyleSheet.create({
   containerStyle: {
     flexDirection: 'row',
     borderLeftWidth: 6,
-    width: wp(90),
+    // width: wp(90),
     justifyContent: 'space-between',
   },
 });

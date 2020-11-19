@@ -1,7 +1,7 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 
-import {View, StyleSheet, ImageBackground, I18nManager} from 'react-native';
-import {useTranslation} from 'react-i18next';
+import { View, StyleSheet, ImageBackground, I18nManager } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import {
   DashboardComponent,
   ThumbnailBookmarks,
@@ -9,25 +9,25 @@ import {
   TitleBarWithIcon,
   Header,
 } from '_components';
-import {REQUESTBOOKS_SCREEN, BOOKLIST_SCREEN} from '_constants/Screens';
-import {sliderImages} from './dummydata';
-import {ThumbnailBook} from '_components/ThumbnailBook';
-import {Button, Screen} from '_components/common';
-import {FlatListSlider} from '_components';
-import {booksData, booksClub, bookmarkdata} from '_assets/data/dummydata';
-import {shallowEqual, useDispatch, useSelector} from 'react-redux';
-import {useTheme} from '@react-navigation/native';
+import { REQUESTBOOKS_SCREEN, BOOKLIST_SCREEN } from '_constants/Screens';
+import { sliderImages } from './dummydata';
+import { ThumbnailBook } from '_components/ThumbnailBook';
+import { Button, Screen } from '_components/common';
+import { FlatListSlider } from '_components';
+import { booksData, booksClub, bookmarkdata } from '_assets/data/dummydata';
+import { shallowEqual, useDispatch, useSelector } from 'react-redux';
+import { useTheme } from '@react-navigation/native';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 const Home = (props) => {
-  const {navigate} = props.navigation;
+  const { navigate } = props.navigation;
   const [images] = useState(sliderImages);
   const [data] = useState(booksData);
   const [data_book_club] = useState(booksClub);
   const [bookmark_data] = useState(bookmarkdata);
-  const {t} = useTranslation();
+  const { t } = useTranslation();
   const {
     EnglishBooksReducer,
     ArabicBooksReducer,
@@ -42,20 +42,26 @@ const Home = (props) => {
     };
   }, shallowEqual);
   const dispatch = useDispatch();
-  const {colors} = useTheme();
+  const { colors } = useTheme();
 
   return (
     <Screen noPadding>
-      <View key="header">
+      <View key="header"  >
         <ImageBackground
           style={{
-            height: 160,
-            paddingBottom: 20,
-            justifyContent: 'center',
-            transform: [{scaleX: I18nManager.isRTL ? -1 : 1}],
+            height: hp(21),
+            paddingHorizontal: wp(3),
+            paddingBottom: hp(8),
+            marginBottom: hp(1),
+            justifyContent: 'flex-end',
+            transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }],
           }}
+          resizeMode='stretch'
           source={require('_assets/images/header.png')}>
+
           <Header {...props} />
+
+
         </ImageBackground>
         {/* <AppText>{t('hello')}</AppText>
         <AppText>{t('bye')}</AppText> */}
@@ -81,7 +87,7 @@ const Home = (props) => {
       </View>
 
       <View key="content" style={styles.container}>
-        <View style={{width: '100%', height: 200}}>
+        <View style={{ width: '100%', height: 200 }}>
           <FlatListSlider />
         </View>
         <DashboardComponent
@@ -135,7 +141,7 @@ const Home = (props) => {
         />
         <TitleBarWithIcon label={t('requestBook')} />
         <View style={styles.requestBooksBtns}>
-          <View style={{width: wp(28)}}>
+          <View style={{ width: wp(28) }}>
             <Button
               bold
               color={colors.white}
@@ -143,26 +149,26 @@ const Home = (props) => {
               secondary
               fontSize={13}
               onPress={() =>
-                navigate(REQUESTBOOKS_SCREEN, {book_type: 'random'})
+                navigate(REQUESTBOOKS_SCREEN, { book_type: 'random' })
               }>
               Request Book
             </Button>
           </View>
-          <View style={{width: wp(58)}}>
+          <View style={{ width: wp(58) }}>
             <Button
               // bold
               borderRadius={2}
               primary
               fontSize={13}
               onPress={() =>
-                navigate(REQUESTBOOKS_SCREEN, {book_type: 'educational'})
+                navigate(REQUESTBOOKS_SCREEN, { book_type: 'educational' })
               }>
               Request Educational Book
             </Button>
           </View>
         </View>
       </View>
-    </Screen>
+    </Screen >
   );
 };
 const styles = StyleSheet.create({

@@ -1,26 +1,26 @@
-import {useTheme} from '@react-navigation/native';
-import React, {useEffect, useState} from 'react';
-import {Modal, View, StyleSheet, TouchableOpacity} from 'react-native';
-import {AppText, Button, Screen} from '_components/common';
-import {Header} from '_components/Header';
-import {HorizontalRow} from '_components/HorizontalRow';
+import { useTheme } from '@react-navigation/native';
+import React, { useEffect, useState } from 'react';
+import { Modal, View, StyleSheet, TouchableOpacity, ImageBackground, I18nManager } from 'react-native';
+import { AppText, Button, Screen } from '_components/common';
+import { Header } from '_components/Header';
+import { HorizontalRow } from '_components/HorizontalRow';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-import {Icon} from 'react-native-elements';
+import { Icon } from 'react-native-elements';
 const items = [
-  {label: 'Romance', value: 'romance'},
-  {label: 'Horror', value: 'horror'},
-  {label: 'Thriller', value: 'thriller'},
-  {label: 'Suspense', value: 'suspense'},
-  {label: 'Biography', value: 'biography'},
-  {label: 'Mystery', value: 'mystery'},
-  {label: 'Action', value: 'action'},
+  { label: 'Romance', value: 'romance' },
+  { label: 'Horror', value: 'horror' },
+  { label: 'Thriller', value: 'thriller' },
+  { label: 'Suspense', value: 'suspense' },
+  { label: 'Biography', value: 'biography' },
+  { label: 'Mystery', value: 'mystery' },
+  { label: 'Action', value: 'action' },
 ];
 const FilterModal = (props) => {
-  const {colors} = useTheme();
-  const {buttonLabel, visible, onApply} = props;
+  const { colors } = useTheme();
+  const { buttonLabel, visible, onApply } = props;
   const [state, setState] = useState(new Set());
 
   const onselect = (val) => {
@@ -57,22 +57,42 @@ const FilterModal = (props) => {
   return (
     <Modal animationType="fade" visible={visible}>
       <View style={styles.container}>
-        <Header title="Filter" {...props} />
+
+        <ImageBackground
+          style={{
+            height: hp(21),
+            paddingHorizontal: wp(3),
+            paddingBottom: hp(8),
+            marginBottom: hp(1),
+            justifyContent: 'flex-end',
+            transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }],
+          }}
+          resizeMode='stretch'
+          source={require('_assets/images/header.png')}>
+
+          <Header {...props} title="Filter" />
+
+
+        </ImageBackground>
+
+
+
         <AppText
           size={18}
           right
           onPress={() => reset()}
           color={colors.primary}
-          style={{paddingVertical: hp(1)}}>
+          style={{ paddingVertical: hp(1), paddingHorizontal: wp(1) }}>
           Reset
         </AppText>
         <HorizontalRow style={styles.line} />
-        <AppText bold color={colors.placeholder} style={{paddingVertical: 16}}>
+        <AppText bold color={colors.placeholder} style={{ paddingVertical: 16, paddingHorizontal: wp(2) }}>
           FILTER BY GENRE
         </AppText>
         {items.map((item) => {
           return (
             <FilterText
+              style={{ paddingHorizontal: wp(2) }}
               key={item.label}
               title={item.label}
               selected={state.has(item.value)}
@@ -83,7 +103,7 @@ const FilterModal = (props) => {
 
         <Button
           color="white"
-          style={{position: 'absolute', bottom: 30, left: 20}}
+          style={{ position: 'absolute', width: wp(90), alignSelf: 'center', bottom: 30, }}
           onPress={() => onApply([...state])}>
           Apply
         </Button>
@@ -94,7 +114,7 @@ const FilterModal = (props) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
+    // padding: 20,
   },
   line: {
     borderWidth: wp(0.1),
@@ -112,4 +132,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export {FilterModal};
+export { FilterModal };
