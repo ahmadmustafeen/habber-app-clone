@@ -9,7 +9,7 @@ const initialState = {
   total_price: 0,
 };
 
-export default (state = initialState, {type, payload}) => {
+export default (state = initialState, { type, payload }) => {
   switch (type) {
     case UPDATE_CART_ITEM: {
       console.log('Cart Payload', payload);
@@ -31,7 +31,7 @@ export default (state = initialState, {type, payload}) => {
         };
       }
 
-      const updatedState = {...state};
+      const updatedState = { ...state };
       let product = updatedState[payload.product_type][alreadyAvailable];
 
       if (payload.action === 'add') {
@@ -47,7 +47,7 @@ export default (state = initialState, {type, payload}) => {
       updatedState.total_price =
         updatedState.book.reduce((total, book) => total + book.price, 0) +
         updatedState.bookmark.reduce((total, book) => total + book.price, 0);
-      return {...updatedState};
+      return { ...updatedState };
     }
 
     // case ADD_TO_CART: {
@@ -82,10 +82,10 @@ export default (state = initialState, {type, payload}) => {
     //   };
     // }
 
-    // case FETCH_USER_CART_SUCCESS: {
-    //   console.log('FETCH_USER_CART_SUCCESS', payload);
-    //   return {...state, ...payload};
-    // }
+    case FETCH_USER_CART_SUCCESS: {
+      console.log('FETCH_USER_CART_SUCCESS', payload);
+      return { ...state, ...payload };
+    }
     default:
       return state;
   }

@@ -53,7 +53,7 @@ const BooksList = (props) => {
           product_type === 'book'
           &&
           <View style={{ width: wp(90), alignSelf: 'center' }}>
-            <TitleBarWithIcon label={`${bookData.length} Books Found`} noIcon filter onIconPress={toggleFilter} />
+            <TitleBarWithIcon label={label} noIcon filter onIconPress={toggleFilter} />
           </View>
         }
 

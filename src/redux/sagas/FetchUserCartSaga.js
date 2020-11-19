@@ -1,7 +1,7 @@
-import {put, call} from 'redux-saga/effects';
+import { put, call } from 'redux-saga/effects';
 
-import {API_ENDPOINTS} from '_constants/Network';
-import {RestClient} from '_network/RestClient';
+import { API_ENDPOINTS } from '_constants/Network';
+import { RestClient } from '_network/RestClient';
 
 import {
   FETCH_USER_CART_FAILURE,
@@ -10,14 +10,14 @@ import {
 export function* FetchUserCartSaga() {
   try {
     const response = yield call(() => RestClient.get(API_ENDPOINTS.cart));
-    const {status, data: res, message} = response;
+    const { status, data: res, message } = response;
     console.log('FetchUserCartSaga Saga Response . . . .  .', response);
     if (!res.success) {
-      yield put({type: FETCH_USER_CART_FAILURE});
+      yield put({ type: FETCH_USER_CART_FAILURE });
     } else {
-      yield put({type: FETCH_USER_CART_SUCCESS, payload: res.data});
+      yield put({ type: FETCH_USER_CART_SUCCESS, payload: res.data });
     }
   } catch (error) {
-    yield put({type: FETCH_USER_CART_FAILURE, error});
+    yield put({ type: FETCH_USER_CART_FAILURE, error });
   }
 }
