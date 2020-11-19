@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 
-import {View, StyleSheet} from 'react-native';
+import {View, StyleSheet, ImageBackground, I18nManager} from 'react-native';
 import {useTranslation} from 'react-i18next';
 import {
   DashboardComponent,
@@ -47,7 +47,16 @@ const Home = (props) => {
   return (
     <Screen noPadding>
       <View key="header">
-        <Header {...props} />
+        <ImageBackground
+          style={{
+            height: 160,
+            paddingBottom: 20,
+            justifyContent: 'center',
+            transform: [{scaleX: I18nManager.isRTL ? -1 : 1}],
+          }}
+          source={require('_assets/images/header.png')}>
+          <Header {...props} />
+        </ImageBackground>
         {/* <AppText>{t('hello')}</AppText>
         <AppText>{t('bye')}</AppText> */}
         {/* <Button onPress={() => navigate('Auth', { screen: AD_SCREEN })}>

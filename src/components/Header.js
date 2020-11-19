@@ -1,17 +1,6 @@
 /* eslint-disable prettier/prettier */
 import React, {useState} from 'react';
-import {
-  View,
-  StyleSheet,
-  Image,
-  Platform,
-  ImageBackground,
-  I18nManager,
-} from 'react-native';
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from 'react-native-responsive-screen';
+import {View, StyleSheet, Image, Platform} from 'react-native';
 import {Icon} from 'react-native-elements';
 import {AppText, BackgroundImage} from './common';
 import {useTheme} from '@react-navigation/native';
@@ -27,79 +16,73 @@ const Header = (props) => {
     route: {name},
     headerLeft,
     headerRight,
-    noTitle,
   } = props;
   const headerColor =
     color || (secondary && colors.secondary) || colors.primary;
   return (
-    <ImageBackground
-      {...props}
-      style={styles.bgImage}
-      resizeMode={'stretch'}
-      source={require('_assets/images/header.png')}>
-      <View style={styles.container}>
-        <View>
-          {headerLeft ? (
-            headerLeft
-          ) : (
-            <Icon
-              onPress={() => navigation.openDrawer()}
-              color={headerColor}
-              name="menu"
-              type="feather"
-            />
-          )}
-        </View>
+    <View style={styles.container}>
+      <View>
+        {headerLeft ? (
+          headerLeft
+        ) : (
+          <Icon
+            onPress={() => navigation.openDrawer()}
+            color={headerColor}
+            name="menu"
+            type="feather"
+          />
+        )}
+      </View>
 
-        <View style={{flex: 4, paddingLeft: 10}}>
-          {!noTitle && <AppText color={headerColor}>{title || name}</AppText>}
-        </View>
-        <View style={{flex: 1, justifyContent: 'flex-end'}}>
-          {headerRight ? (
-            headerRight
-          ) : (
-            <View style={styles.right}>
+      <View style={{flex: 4, paddingLeft: 10}}>
+        <AppText color={headerColor}>{title || name}</AppText>
+      </View>
+      <View
+        style={{
+          flex: 1,
+          alignItems: 'flex-end',
+        }}>
+        {headerRight ? (
+          headerRight
+        ) : (
+          <View style={styles.right}>
+            <Icon
+              onPress={() =>
+                navigation.navigate(CART_SCREEN, {
+                  label: 'CART_SCREEN',
+                  CART_SCREEN,
+                })
+              }
+              color={headerColor}
+              name="shopping-bag"
+              type="font-awesome-5"
+              containerStyle={{paddingEnd: 10}}
+            />
+            {name !== 'Search' && (
               <Icon
+                props={props}
                 onPress={() =>
-                  navigation.navigate(CART_SCREEN, {
-                    label: 'CART_SCREEN',
-                    CART_SCREEN,
-                  })
+                  navigation.navigate(SEARCH, {label: 'SEARCH', SEARCH})
                 }
                 color={headerColor}
-                name="shopping-bag"
-                type="font-awesome-5"
+                name="search1"
+                type="antdesign"
               />
-              {name !== 'Search' && (
-                <Icon
-                  props={props}
-                  onPress={() =>
-                    navigation.navigate(SEARCH, {label: 'SEARCH', SEARCH})
-                  }
-                  color={headerColor}
-                  name="search1"
-                  type="antdesign"
-                />
-              )}
-            </View>
-          )}
-        </View>
+            )}
+          </View>
+        )}
       </View>
-    </ImageBackground>
+    </View>
   );
 };
 const styles = StyleSheet.create({
-  bgImage: {
-    flex: 1,
-    transform: [{scaleX: I18nManager.isRTL ? -1 : 1}],
-  },
   container: {
-    height: Platform.OS == 'ios' ? hp(31) : hp(22),
+    height: Platform.OS == 'ios' ? 75 : 60,
     flexDirection: 'row',
-    alignItems: 'center',
+    alignItems: 'flex-end',
     justifyContent: 'space-between',
-    // paddingBottom: 5,
-    // marginBottom: 5,
+    paddingBottom: 5,
+    marginBottom: 5,
   },
   right: {
     flexDirection: 'row',
