@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import {
   View,
   ScrollView,
@@ -7,26 +7,37 @@ import {
   ImageBackground,
   I18nManager,
 } from 'react-native';
-import {AppText, Button, Screen} from '_components/common';
-import {HorizontalRow, Counter} from '_components';
-import {CHECKOUT} from '_constants/Screens';
-import {Header} from '_components/Header';
-import {withDataActions} from '_redux/actions/GenericActions';
-import {useSelector, shallowEqual, useDispatch} from 'react-redux';
-import {ADD_TO_CART_SAGA} from '_redux/actionTypes';
-import {UPDATE_CART_ITEM} from '_redux/actionTypes';
-import {useTheme} from '@react-navigation/native';
+import { AppText, Button, Screen } from '_components/common';
+import { HorizontalRow, Counter } from '_components';
+import { CHECKOUT } from '_constants/Screens';
+import { Header } from '_components/Header';
+import { withDataActions } from '_redux/actions/GenericActions';
+import { useSelector, shallowEqual, useDispatch } from 'react-redux';
+import { ADD_TO_CART_SAGA } from '_redux/actionTypes';
+import { UPDATE_CART_ITEM } from '_redux/actionTypes';
+import { useTheme } from '@react-navigation/native';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
+
+import Loader from 'components/Loader';
+import { checkIfLoading } from 'redux/selectors';
+import { FETCH_USER_CART } from 'redux/actionTypes';
 const delivery_charges = 10;
 const AddToCart = (props) => {
-  const {colors} = useTheme();
+  const { colors } = useTheme();
   const dispatch = useDispatch();
-  const CartReducer = useSelector((state) => state.CartReducer);
+  const { CartReducer, isLoading } = useSelector((state) => ({
+    CartReducer: state.CartReducer,
+    isLoading: checkIfLoading(
+      state,
+      FETCH_USER_CART
+    )
+  }))
   console.log('CartReducer', CartReducer);
 
+  console.log(isLoading)
   const updateCartItem = (book, action) => {
     dispatch(
       withDataActions(
@@ -47,7 +58,7 @@ const AddToCart = (props) => {
           paddingBottom: hp(8),
           marginBottom: hp(1),
           justifyContent: 'flex-end',
-          transform: [{scaleX: I18nManager.isRTL ? -1 : 1}],
+          transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }],
         }}
         resizeMode="stretch"
         source={require('_assets/images/header.png')}>
@@ -57,6 +68,7 @@ const AddToCart = (props) => {
       <Screen>
         <View key="header"></View>
         <View key="content">
+          <Loader loading={isLoading} />
           {Object.values(CartReducer)
             .filter((key) => Array.isArray(key))
             .map((product_type) =>
@@ -71,7 +83,7 @@ const AddToCart = (props) => {
                 return (
                   <View style={styles.profiletop}>
                     <View style={styles.imgContainer}>
-                      <Image style={styles.image} source={{uri: image}} />
+                      <Image style={styles.image} source={{ uri: image }} />
                     </View>
                     <View style={styles.viewtxt}>
                       <AppText bold size={18} style={styles.txt}>
@@ -83,7 +95,7 @@ const AddToCart = (props) => {
                       <AppText bold size={17} style={styles.pricetxt}>
                         Price: {cart_price} KW
                       </AppText>
-                      <View style={{width: 300, marginVertical: 10}}>
+                      <View style={{ width: 300, marginVertical: 10 }}>
                         <Counter
                           value={cart_quantity}
                           onIncrement={() => updateCartItem(product, 'add')}

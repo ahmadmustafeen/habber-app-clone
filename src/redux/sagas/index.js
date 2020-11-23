@@ -23,7 +23,8 @@ import {
   ADD_TO_CART,
   SIGN_OUT,
   ADD_TO_FAVOURITE,
-  REMOVE_FAVOURITE, UPDATE_PROFILE, FETCH_SITE_DETAILS
+  REMOVE_FAVOURITE, UPDATE_PROFILE, FETCH_SITE_DETAILS,
+  FETCH_USER_FAVOURITE,
 } from '../actionTypes';
 import { signupSaga } from './SignupSaga';
 import { signinSaga } from './SignInSaga';
@@ -49,7 +50,8 @@ import { fetchAddressSaga } from './FetchAddressSaga';
 import { signoutSaga } from './SignOutSaga';
 import { PostToFavouriteSaga } from './PostToFavouriteSaga';
 import { FetchSiteDetails } from './FetchSite';
-import { UpdateProfileSaga } from './UpdateProfile'
+import { UpdateProfileSaga } from './UpdateProfile';
+import { FetchFavouriteSaga } from './FetchUserFavouriteSaga';
 function* actionWatcher() {
   yield takeLatest(SPLASH_ACTION, splashSaga);
   yield takeLatest(SKIP_AD, splashAdSaga);
@@ -78,6 +80,7 @@ function* actionWatcher() {
   yield takeLatest(REMOVE_FAVOURITE, PostToFavouriteSaga);
   yield takeLatest(FETCH_SITE_DETAILS, FetchSiteDetails);
   yield takeLatest(UPDATE_PROFILE, UpdateProfileSaga);
+  yield takeLatest(FETCH_USER_FAVOURITE, FetchFavouriteSaga);
 }
 
 export default function* rootSaga() {

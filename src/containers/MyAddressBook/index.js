@@ -8,8 +8,12 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
+
+import Loader from 'components/Loader';
+import { checkIfLoading } from 'redux/selectors';
 import { useSelector, shallowEqual, useDispatch } from 'react-redux';
-import { AddressCard } from '_components'
+import { AddressCard, } from '_components'
+import { FETCH_ADDRESS } from 'redux/actionTypes';
 const MyAddressBook = (props) => {
   const { navigate } = props.navigation;
 
@@ -18,11 +22,15 @@ const MyAddressBook = (props) => {
 
 
   const {
-    AddressReducer
+    AddressReducer, isLoading
   } = useSelector((state) => {
     return {
       AddressReducer: state.AddressReducer,
-    };
+      isLoading: checkIfLoading(
+        state,
+        FETCH_ADDRESS
+      )
+    }
   }, shallowEqual);
   console.log(AddressReducer)
   // AddressReducer.entries((item) => item)
@@ -64,6 +72,7 @@ const MyAddressBook = (props) => {
         </ImageBackground>
       </View>
       <View key="content">
+        <Loader loading={isLoading} />
         <View style={styles.profiletop}>
           <View style={styles.imgContainer}>
             <Image
