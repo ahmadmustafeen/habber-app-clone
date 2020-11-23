@@ -1,5 +1,5 @@
-import React from 'react';
-import { View, ScrollView, StyleSheet, Image, ImageBackground, I18nManager } from 'react-native';
+import React, { useEffect } from 'react';
+import { View, ScrollView, StyleSheet, Image, ImageBackground, I18nManager, FlatList } from 'react-native';
 import { AppText, Button, Screen } from '_components/common';
 import { ADD_NEW_ADDRESS, EDIT_PROFILE } from '_constants/Screens';
 import { HorizontalRow } from '_components/HorizontalRow';
@@ -8,8 +8,40 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
+import { useSelector, shallowEqual, useDispatch } from 'react-redux';
+import { AddressCard } from '_components'
 const MyAddressBook = (props) => {
   const { navigate } = props.navigation;
+
+
+
+
+
+  const {
+    AddressReducer
+  } = useSelector((state) => {
+    return {
+      AddressReducer: state.AddressReducer,
+    };
+  }, shallowEqual);
+  console.log(AddressReducer)
+  // AddressReducer.entries((item) => item)
+
+
+
+  const AddressComponent = (props) => {
+    console.log(props.item)
+    return (
+      <>
+        <AppText size={15} primary style={styles.spacebtwaddresses}>
+          {props.item.address_name}
+        </AppText>
+        <AppText size={15} style={styles.spacebtwaddresses}>
+          {`${props.item.address_line1}${props.item.address_line2}`}
+        </AppText>
+      </>
+    )
+  }
   return (
     <Screen noPadding>
 
@@ -49,7 +81,7 @@ Khaled.Ammar@gmail.com`}
             appColor
             onPress={() => navigate(EDIT_PROFILE)}
             style={styles.editbtn}>
-            Edit
+
           </AppText>
         </View>
         <HorizontalRow />
@@ -59,32 +91,21 @@ Khaled.Ammar@gmail.com`}
               MY ADDRESS BOOK
             </AppText>
             <HorizontalRow />
-            <View>
-              <AppText size={15} primary style={styles.spacebtwaddresses}>
-                Bae's Home
-              </AppText>
-              <AppText size={15} style={styles.spacebtwaddresses}>
-                D/11 Cross Street, New York, USA, 39001
-              </AppText>
-              <AppText size={15} primary style={styles.spacebtwaddresses}>
-                Work
-              </AppText>
-              <AppText size={15} style={styles.spacebtwaddresses}>
-                D/11 Cross Street, New York, USA, 39001
-              </AppText>
-              <AppText size={15} primary style={styles.spacebtwaddresses}>
-                Bae's Home
-              </AppText>
-              <AppText size={15} style={styles.spacebtwaddresses}>
-                D/11 Cross Street, New York, USA, 39001
-              </AppText>
-              <AppText size={15} primary style={styles.spacebtwaddresses}>
-                Other
-              </AppText>
-              <AppText size={15} style={styles.spacebtwaddresses}>
-                D/11 Cross Street, New York, USA, 39001
-              </AppText>
-            </View>
+
+
+            <FlatList
+              showsHorizontalScrollIndicator={false}
+              vertical
+              data={AddressReducer}
+              keyExtractor={(item, index) => index.toString() + item}
+              renderItem={(item) => (<AddressCard item={item.item} />)}
+              ListEmptyComponent={() => (
+                <View>
+                  <AppText>No Address Available</AppText>
+                </View>
+              )}
+              ListFooterComponent={() => <View style={{ paddingBottom: 50 }} />}
+            />
           </View>
           <Button
             fontSize={17}
@@ -93,8 +114,8 @@ Khaled.Ammar@gmail.com`}
             ADD NEW ADDRESS
           </Button>
         </View>
-      </View>
-    </Screen>
+      </View >
+    </Screen >
 
   );
 };

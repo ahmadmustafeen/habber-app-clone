@@ -1,9 +1,11 @@
-import React from 'react';
-import { View, ScrollView, StyleSheet, Image, ImageBackground, I18nManager } from 'react-native';
+import React, { useState } from 'react';
+import { View, ScrollView, StyleSheet, Image, ImageBackground, I18nManager, FlatList } from 'react-native';
 import { AppText, Button, Screen } from '_components/common';
 import { ADD_NEW_ADDRESS, EDIT_PROFILE } from '_constants/Screens';
 import { HorizontalRow } from '_components/HorizontalRow';
 import { Header } from '_components/Header';
+import { RadioButton, AddressCard } from '_components'
+import { useSelector, shallowEqual } from 'react-redux'
 
 import {
   widthPercentageToDP as wp,
@@ -11,6 +13,24 @@ import {
 } from 'react-native-responsive-screen';
 
 const Checkout = (props) => {
+
+
+  const {
+    AddressReducer
+  } = useSelector((state) => {
+    return {
+      AddressReducer: state.AddressReducer,
+    };
+  }, shallowEqual);
+
+  const [state, setState] = useState({
+    paymentMethod: "",
+    address: ""
+  })
+  const setStateHandler = (key, val) => {
+    // console.log(key, val)
+    setState({ ...state, [key]: val });
+  };
   const { navigate } = props.navigation;
   return (
     <ScrollView>
@@ -44,6 +64,7 @@ const Checkout = (props) => {
                   source={require('_assets/images/onlinepayment.png')}></Image>
               </View>
               <AppText size={16}>Online Payment</AppText>
+              <RadioButton title="online" hideTitle business={state.paymentMethod} onPress={() => setStateHandler("paymentMethod", "online")} style={styles.radioButton} />
             </View>
             <View style={styles.addressbook}>
               <View style={styles.addressbookimg}>
@@ -53,6 +74,7 @@ const Checkout = (props) => {
               </View>
 
               <AppText size={16}>Cash On Delivery</AppText>
+              <RadioButton title="cod" hideTitle business={state.paymentMethod} onPress={() => setStateHandler("paymentMethod", "cod")} style={styles.radioButton} />
             </View>
           </View>
           <HorizontalRow />
@@ -62,30 +84,27 @@ const Checkout = (props) => {
             </AppText>
             <View style={styles.addressbook}>
               <View>
-                <AppText size={15} primary style={styles.spacebtwaddresses}>
-                  Bae's Home
-                </AppText>
-                <AppText size={15} style={styles.spacebtwaddresses}>
-                  D/11 Cross Street, New York, USA, 39001
-                </AppText>
-                <AppText size={15} primary style={styles.spacebtwaddresses}>
-                  Work
-                </AppText>
-                <AppText size={15} style={styles.spacebtwaddresses}>
-                  D/11 Cross Street, New York, USA, 39001
-                </AppText>
-                <AppText size={15} primary style={styles.spacebtwaddresses}>
-                  Bae's Home
-                </AppText>
-                <AppText size={15} style={styles.spacebtwaddresses}>
-                  D/11 Cross Street, New York, USA, 39001
-                </AppText>
-                <AppText size={15} primary style={styles.spacebtwaddresses}>
-                  Other
-                </AppText>
-                <AppText size={15} style={styles.spacebtwaddresses}>
-                  D/11 Cross Street, New York, USA, 39001
-                </AppText>
+                <FlatList
+                  showsHorizontalScrollIndicator={false}
+                  vertical
+                  data={AddressReducer}
+                  keyExtractor={(item, index) => index.toString() + item}
+                  renderItem={(item) => {
+                    return <AddressCard item={item.item}
+                      showSelect
+                      showRadio
+                      currentValue={state.address}
+                      // elementValue={state.address}
+                      onPress={() => setStateHandler("address", item.item.id)}
+                    />
+                  }}
+                  ListEmptyComponent={() => (
+                    <View>
+                      <AppText>No Address Available</AppText>
+                    </View>
+                  )}
+                  ListFooterComponent={() => <View style={{ paddingBottom: 50 }} />}
+                />
               </View>
             </View>
             <Button
@@ -113,11 +132,15 @@ const Checkout = (props) => {
 const styles = StyleSheet.create({
   imgContainer: {
     height: 100,
-
     aspectRatio: 1,
     borderRadius: 50,
     borderWidth: 2,
     overflow: 'hidden',
+  },
+  radioButton: {
+    position: 'absolute',
+    right: 30,
+    top: 30
   },
   image: {
     width: '100%',

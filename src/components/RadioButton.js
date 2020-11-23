@@ -2,13 +2,14 @@ import React, { useState } from 'react'
 import { View, TouchableOpacity, StyleSheet, Text } from 'react-native'
 
 const RadioButton = (props) => {
-    const { key, title, business, onPress } = props;
+    const { key, title, business, onPress, style, hideTitle, showSelect, currentValue, elementValue } = props;
 
     return (
 
-        <View key={key} style={styles.buttonContainer}  >
+        <View key={key} style={style || styles.buttonContainer}  >
             <TouchableOpacity style={business == title ? styles.checkedCircle : styles.circle} onPress={onPress} />
-            <Text style={(business == title ? { color: '#c27e12', marginLeft: 10, marginRight: 10 } : { color: 'black', marginLeft: 10, marginRight: 10 })} >{title}</Text>
+            <Text style={(business == title ? { color: '#c27e12', marginLeft: 10, marginRight: 10 } : { color: 'black', marginLeft: 10, marginRight: 10 })} >{hideTitle || title}</Text>
+
         </View >
     )
 }
@@ -38,6 +39,12 @@ const styles = StyleSheet.create({
         width: 20,
         borderRadius: 10,
         backgroundColor: '#c27e12',
+    },
+
+    radioButton: {
+        position: 'absolute',
+        right: 10,
+        top: 10
     },
 })
 export { RadioButton }

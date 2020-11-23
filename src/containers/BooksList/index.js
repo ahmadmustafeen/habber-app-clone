@@ -48,7 +48,7 @@ const BooksList = (props) => {
 
       </ImageBackground>
 
-      <View>
+      <View >
         {
           product_type === 'book'
           &&
@@ -68,11 +68,14 @@ const BooksList = (props) => {
             </View>
           )}
         </View>
+        {/* <View style={{ alignSelf: 'flex-end', width: wp(93) }}> */}
         <BookListContainer
           data={bookData}
           {...props}
           product_type={product_type}
         />
+        {/* </View> */}
+
         <FilterModal {...props} visible={visible} onApply={onApplyFilter} />
       </View>
     </ScrollView>

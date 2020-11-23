@@ -122,6 +122,7 @@ const Home = (props) => {
             navigate(BOOKLIST_SCREEN, {
               label: t('bookclub'),
               data: BookClubReducer,
+              product_type: 'bookclub',
             })
           }
         />

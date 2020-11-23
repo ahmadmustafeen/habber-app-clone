@@ -7,13 +7,14 @@ import { MY_PROFILE } from '_constants/Screens';
 import { ADD_ADDRESS_FAILURE, ADD_ADDRESS_SUCCESS } from 'redux/actionTypes';
 import * as NavigationService from '../../../NavigationService';
 export function* addressSaga({ type, payload }) {
+    console.log('Add Address Saga . . . .  .1', payload);
     try {
         console.log('Add Address Saga . . . .  .1', payload);
         const response = yield call(() =>
             RestClient.post(API_ENDPOINTS.addresses, payload),
         );
         const { status, data, message } = response;
-        console.log('Related Books Saga Response . . . .  .', response);
+        console.log('Addres ADD Books Saga Response . . . .  .', response);
         if (data.success) {
             yield put({ type: ADD_ADDRESS_SUCCESS, payload: payload });
             Alert.alert('Successfully Added new Address', message, [{

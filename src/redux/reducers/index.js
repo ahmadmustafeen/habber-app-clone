@@ -12,6 +12,7 @@ import SplashReducer from './SplashReducer';
 import FetchRelatedBookList from './FetchRelatedBookList'
 import FetchSiteReducer from './FetchSiteReducer'
 import FavouriteReducer from './FavouriteReducer';
+import AddressReducer from './AddressReducer';
 export default combineReducers({
   ModalReducer,
   LoadingReducer,
@@ -26,4 +27,5 @@ export default combineReducers({
   FetchRelatedBookList,
   FetchSiteReducer,
   FavouriteReducer,
+  AddressReducer
 });
