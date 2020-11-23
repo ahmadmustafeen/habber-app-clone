@@ -21,3 +21,4 @@ export * from './FlatListSlider';
 export * from './BookmarkCard';
 export * from './BookClub';
 export * from './AddressCard';
+export * from './Loader';
