@@ -84,6 +84,7 @@ const BookDetails = (props) => {
         {
           ...book,
           quantity: 1,
+          product_quantity: quantity,
           product_id,
           action,
         },

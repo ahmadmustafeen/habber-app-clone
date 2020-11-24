@@ -9,7 +9,7 @@ const initialState = {
   total_price: 0,
 };
 
-export default (state = initialState, {type, payload}) => {
+export default (state = initialState, { type, payload }) => {
   switch (type) {
     case UPDATE_CART_ITEM: {
       console.log('Cart Payload', payload);
@@ -33,11 +33,11 @@ export default (state = initialState, {type, payload}) => {
         };
       }
 
-      const updatedState = {...state};
+      const updatedState = { ...state };
       let product = updatedState[payload.product_type][alreadyAvailable];
-      console.log('PRODUCT', product);
+      console.log('payload', payload);
       if (payload.action === 'add') {
-        product.cart_quantity += 1;
+        (product.cart_quantity < product.product_quantity) && (product.cart_quantity += 1)
       } else if (payload.action === 'sub') {
         product.cart_quantity > 0 ? (product.cart_quantity -= 1) : null;
       } else if (payload.action === 'remove') {
@@ -52,7 +52,7 @@ export default (state = initialState, {type, payload}) => {
           (total, book) => total + book.cart_price,
           0,
         );
-      return {...updatedState};
+      return { ...updatedState };
     }
 
     // case ADD_TO_CART: {
@@ -89,7 +89,7 @@ export default (state = initialState, {type, payload}) => {
 
     case FETCH_USER_CART_SUCCESS: {
       console.log('FETCH_USER_CART_SUCCESS', payload);
-      return {...state, ...payload};
+      return { ...state, ...payload };
     }
     default:
       return state;
