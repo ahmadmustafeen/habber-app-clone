@@ -1,7 +1,7 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 
-import {View, StyleSheet, ImageBackground, I18nManager} from 'react-native';
-import {useTranslation} from 'react-i18next';
+import { View, StyleSheet, ImageBackground, I18nManager } from 'react-native';
+import { useTranslation } from 'react-i18next';
 import {
   DashboardComponent,
   ThumbnailBookmarks,
@@ -9,18 +9,18 @@ import {
   TitleBarWithIcon,
   Header,
 } from '_components';
-import {REQUESTBOOKS_SCREEN, BOOKLIST_SCREEN} from '_constants/Screens';
-import {sliderImages} from './dummydata';
-import {ThumbnailBook} from '_components/ThumbnailBook';
-import {Button, Screen} from '_components/common';
-import {FlatListSlider} from '_components';
-import {shallowEqual, useDispatch, useSelector} from 'react-redux';
-import {useTheme} from '@react-navigation/native';
+import { REQUESTBOOKS_SCREEN, BOOKLIST_SCREEN } from '_constants/Screens';
+import { sliderImages } from './dummydata';
+import { ThumbnailBook } from '_components/ThumbnailBook';
+import { Button, Screen } from '_components/common';
+import { FlatListSlider } from '_components';
+import { shallowEqual, useDispatch, useSelector } from 'react-redux';
+import { useTheme } from '@react-navigation/native';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-import {checkIfLoading} from 'redux/selectors';
+import { checkIfLoading } from 'redux/selectors';
 import {
   FETCH_ARABIC_BOOKS,
   FETCH_BOOKCLUBS,
@@ -29,10 +29,10 @@ import {
 } from 'redux/actionTypes';
 import Loader from 'components/Loader';
 const Home = (props) => {
-  const {navigate} = props.navigation;
+  const { navigate } = props.navigation;
   const [images] = useState(sliderImages);
 
-  const {t} = useTranslation();
+  const { t } = useTranslation();
   const {
     EnglishBooksReducer,
     ArabicBooksReducer,
@@ -55,8 +55,7 @@ const Home = (props) => {
     };
   }, shallowEqual);
   const dispatch = useDispatch();
-  const {colors} = useTheme();
-  console.log('IS LOADING  . . . ', isLoading);
+  const { colors } = useTheme();
   return (
     <Screen noPadding>
       <View key="header">
@@ -67,7 +66,7 @@ const Home = (props) => {
             paddingBottom: hp(8),
             marginBottom: hp(1),
             justifyContent: 'flex-end',
-            transform: [{scaleX: I18nManager.isRTL ? -1 : 1}],
+            transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }],
           }}
           resizeMode="stretch"
           source={require('_assets/images/header.png')}>
@@ -98,7 +97,7 @@ const Home = (props) => {
 
       <View key="content" style={styles.container}>
         <Loader loading={isLoading} />
-        <View style={{width: '100%', height: 200}}>
+        <View style={{ width: '100%', height: 200 }}>
           <FlatListSlider />
         </View>
         <DashboardComponent
@@ -153,7 +152,7 @@ const Home = (props) => {
         />
         <TitleBarWithIcon label={t('requestBook')} />
         <View style={styles.requestBooksBtns}>
-          <View style={{width: wp(28)}}>
+          <View style={{ width: wp(28) }}>
             <Button
               bold
               color={colors.white}
@@ -161,19 +160,19 @@ const Home = (props) => {
               secondary
               fontSize={13}
               onPress={() =>
-                navigate(REQUESTBOOKS_SCREEN, {book_type: 'random'})
+                navigate(REQUESTBOOKS_SCREEN, { book_type: 'random' })
               }>
               Request Book
             </Button>
           </View>
-          <View style={{width: wp(58)}}>
+          <View style={{ width: wp(58) }}>
             <Button
               // bold
               borderRadius={2}
               primary
               fontSize={13}
               onPress={() =>
-                navigate(REQUESTBOOKS_SCREEN, {book_type: 'educational'})
+                navigate(REQUESTBOOKS_SCREEN, { book_type: 'educational' })
               }>
               Request Educational Book
             </Button>
