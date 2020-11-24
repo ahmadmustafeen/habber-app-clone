@@ -77,7 +77,7 @@ const BooksList = (props) => {
         />
         {/* </View> */}
 
-        <FilterModal {...props} visible={visible} onApply={onApplyFilter} />
+        <FilterModal {...props} visible={visible} onToggle={toggleFilter} onApply={onApplyFilter} />
       </View>
     </ScrollView>
   );

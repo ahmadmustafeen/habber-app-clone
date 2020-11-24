@@ -20,7 +20,7 @@ const items = [
 ];
 const FilterModal = (props) => {
   const { colors } = useTheme();
-  const { buttonLabel, visible, onApply } = props;
+  const { buttonLabel, visible, onApply, onToggle } = props;
   const [state, setState] = useState(new Set());
 
   const onselect = (val) => {
@@ -70,7 +70,14 @@ const FilterModal = (props) => {
           resizeMode='stretch'
           source={require('_assets/images/header.png')}>
 
-          <Header {...props} title="Filter" />
+          <Header {...props} title="Filter"
+            headerLeft={
+              <Icon
+                color={colors.primary}
+                onPress={onToggle}
+                name="leftcircleo"
+                type="antdesign" />
+            } />
 
 
         </ImageBackground>
