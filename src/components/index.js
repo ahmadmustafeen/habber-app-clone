@@ -22,3 +22,4 @@ export * from './BookmarkCard';
 export * from './BookClub';
 export * from './AddressCard';
 export * from './Loader';
+export * from './FilterChip';

@@ -1,4 +1,4 @@
-import { BookListContainer } from 'components';
+import { BookListContainer, FilterChip } from '_components';
 import React, { useState } from 'react';
 import { ScrollView, StyleSheet, View, Text, Image, ImageBackground, I18nManager } from 'react-native';
 import useFilter from 'utils/customHooks/useFilter';
@@ -57,7 +57,8 @@ const BooksList = (props) => {
           </View>
         }
 
-        <View style={styles.filterApply}>
+        <FilterChip filter={filter} onIconPress={() => onApplyFilter()} />
+        {/* <View style={styles.filterApply}>
 
           {filter.map((item) =>
             <View key={item} style={[styles.filterView, { backgroundColor: colors.borderColor }]}>
@@ -67,7 +68,7 @@ const BooksList = (props) => {
               <Image style={styles.filterCross} source={require('../../assets/images/remove.png')} onPress={() => onApplyFilter()} />
             </View>
           )}
-        </View>
+        </View> */}
         {/* <View style={{ alignSelf: 'flex-end', width: wp(93) }}> */}
         <BookListContainer
           data={bookData}
