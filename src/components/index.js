@@ -23,3 +23,7 @@ export * from './BookClub';
 export * from './AddressCard';
 export * from './Loader';
 export * from './FilterChip';
+
+export * from './RelatedThumbnailBook';
+export * from './RelatedThumbnailClub';
+export * from './RelatedThumbnailBookmarks';

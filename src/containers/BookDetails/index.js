@@ -17,9 +17,9 @@ import {
   HorizontalRow,
   Header,
   DashboardComponent,
-  ThumbnailClub,
-  ThumbnailBook,
-  ThumbnailBookmarks,
+  RelatedThumbnailClub,
+  RelatedThumbnailBook,
+  RelatedThumbnailBookmarks,
 } from '../../components';
 import { Icon } from 'react-native-elements';
 import {
@@ -211,19 +211,19 @@ const BookDetails = (props) => {
         </Button>
         <View
           style={{ width: wp(90), alignSelf: 'center', paddingVertical: hp(2) }}>
-          <AppText>More BookClubs</AppText>
+          <AppText>More {type || product_type}s</AppText>
           <View style={{ paddingVertical: hp(2) }}>
             <DashboardComponent
               noTitle
               data={EnglishBooksReducer.filter((book) => book.featured)}
               renderComponent={(item) => {
                 if (type === 'bookclub') {
-                  return <ThumbnailClub url={item.item.image} />;
+                  return <RelatedThumbnailClub url={item.item.image} />;
                 }
                 if (product_type === 'book') {
-                  return <ThumbnailBook url={item.item.image} />;
+                  return <RelatedThumbnailBook url={item.item.image} />;
                 }
-                return <ThumbnailBookmarks url={item.item.image} />;
+                return <RelatedThumbnailBookmarks url={item.item.image} />;
               }}
               onIconPress={() =>
                 navigate(BOOKLIST_SCREEN, {
