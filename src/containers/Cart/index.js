@@ -24,6 +24,7 @@ import {
 import Loader from 'components/Loader';
 import { checkIfLoading } from 'redux/selectors';
 import { FETCH_USER_CART } from 'redux/actionTypes';
+import { Icon } from 'react-native-elements';
 const delivery_charges = 10;
 const AddToCart = (props) => {
   const { colors } = useTheme();
@@ -62,11 +63,23 @@ const AddToCart = (props) => {
         }}
         resizeMode="stretch"
         source={require('_assets/images/header.png')}>
-        <Header {...props} title={'Cart'} />
+        <Header headerLeft={
+          <Icon
+            onPress={() => props.navigation.goBack()}
+            color={colors.primary}
+            name="leftcircleo"
+            type="ant-design"
+          />}
+          {...props} title={'Cart'} />
       </ImageBackground>
 
       <Screen>
-        <View key="header"></View>
+        <View key="header">
+
+
+
+        </View>
+
         <View key="content">
           <Loader loading={isLoading} />
           {Object.values(CartReducer)
@@ -95,7 +108,7 @@ const AddToCart = (props) => {
                       <AppText bold size={17} style={styles.pricetxt}>
                         Price: {cart_price} KW
                       </AppText>
-                      <View style={{ width: 300, marginVertical: 10 }}>
+                      <View style={{ width: wp(70), marginLeft: wp(8), marginVertical: 10, }}>
                         <Counter
                           value={cart_quantity}
                           onIncrement={() => updateCartItem(product, 'add')}
@@ -123,6 +136,7 @@ const AddToCart = (props) => {
               }),
             )}
 
+          <View style={[styles.horizontalRow, { borderBottomColor: colors.borderColor }]} />
           <View style={styles.totalcontainer}>
             <View
               style={{
@@ -130,21 +144,22 @@ const AddToCart = (props) => {
                 flexDirection: 'column',
                 justifyContent: 'flex-start',
               }}>
-              <AppText bold>Sub Total</AppText>
-              <AppText bold>Shipping Charges</AppText>
-              <AppText primary bold>
+              <AppText style={{ paddingVertical: hp(0.5) }} small bold>Sub Total</AppText>
+              <AppText style={{ paddingVertical: hp(0.5) }} small bold>Shipping Charges</AppText>
+
+              <View style={[styles.horizontalRow, { borderBottomColor: colors.borderColor }]} />
+              <AppText small primary bold>
                 Total
               </AppText>
             </View>
-            <View
-              style={{
-                flexDirection: 'column',
-                justifyContent: 'flex-end',
-                alignItems: 'flex-end',
-              }}>
-              <AppText bold>{CartReducer.total_price} KW</AppText>
-              <AppText bold>{delivery_charges} KW</AppText>
-              <AppText primary bold>
+            <View style={{
+              flexDirection: 'column',
+              justifyContent: 'flex-end',
+              alignItems: 'flex-end',
+            }}>
+              <AppText style={{ paddingVertical: hp(0.5) }} small bold>{CartReducer.total_price} KW</AppText>
+              <AppText style={{ paddingVertical: hp(0.5) }} small bold>{delivery_charges} KW</AppText>
+              <AppText small primary bold>
                 {CartReducer.total_price + delivery_charges} KW
               </AppText>
             </View>
@@ -192,6 +207,7 @@ const styles = StyleSheet.create({
   },
   totalcontainer: {
     flexDirection: 'row',
+    flex: 2
   },
   footerbtn: {
     marginTop: 40,
@@ -200,6 +216,12 @@ const styles = StyleSheet.create({
     marginTop: 10,
     fontStyle: 'italic',
   },
+  horizontalRow: {
+    marginVertical: hp(0.5),
+    marginHorizontal: wp(5),
+    width: wp(80),
+    borderBottomWidth: hp(0.1),
+  }
 });
 
 export default AddToCart;

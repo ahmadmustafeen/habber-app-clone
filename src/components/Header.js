@@ -4,7 +4,7 @@ import { View, StyleSheet, Image, Platform, I18nManager } from 'react-native';
 import { Icon } from 'react-native-elements';
 import { AppText, BackgroundImage } from './common';
 import { useTheme } from '@react-navigation/native';
-import { CART_SCREEN, SEARCH } from 'constants/Screens';
+import { CART_SCREEN, CARTNEW, SEARCH } from 'constants/Screens';
 
 const Header = (props) => {
   const { colors } = useTheme();
@@ -49,9 +49,10 @@ const Header = (props) => {
             <View style={styles.right}>
               <Icon
                 onPress={() =>
-                  navigation.navigate(CART_SCREEN, {
+                  navigation.navigate(CARTNEW, {
                     label: 'CART_SCREEN',
-                    CART_SCREEN,
+                    // CART_SCREEN,
+                    CARTNEW
                   })
                 }
                 color={headerColor}
