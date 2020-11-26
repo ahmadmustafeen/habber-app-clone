@@ -25,3 +25,4 @@ export const CHECKOUT = 'Checkout';
 export const SEARCH = 'Search';
 export const RETURN_POLICY = 'ReturnPolicy';
 export const PRIVACY_POLICY = 'PrivacyPolicy';
+export const INVOICE = "Invoice";

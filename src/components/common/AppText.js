@@ -28,7 +28,8 @@ const AppText = (props) => {
     iconType,
     iconsize,
     iconColor,
-    iconStyle
+    iconStyle,
+    subheading
   } = props;
 
   return (
@@ -58,6 +59,7 @@ const AppText = (props) => {
           center && { textAlign: 'center' },
           right && { textAlign: 'right' },
           small && { fontSize: 17 },
+          subheading && { fontSize: 20 }
 
         ]}>
         {children}

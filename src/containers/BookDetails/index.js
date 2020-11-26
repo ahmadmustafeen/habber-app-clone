@@ -22,6 +22,7 @@ import {
   RelatedThumbnailBookmarks,
 } from '../../components';
 import { Icon } from 'react-native-elements';
+
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -75,6 +76,7 @@ const BookDetails = (props) => {
   let checkIsFavourite = FavouriteReducer[product_type].some(
     (el) => el.product_id === product_id,
   );
+  console.log(book)
 
   const handleCounter = (action) => {
     //TODO : For restrict counter for maximum quantity and out of stock..
@@ -128,7 +130,7 @@ const BookDetails = (props) => {
       ),
     );
   };
-  console.log('quantity', quantity);
+  console.log('quantity', book);
 
   return (
     <Screen noPadding contentPadding>
@@ -140,7 +142,15 @@ const BookDetails = (props) => {
             transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }],
           }}
           source={require('_assets/images/book-detail.png')}>
-          <Header {...props} noTitle color={colors.secondary} />
+          <Header {...props}
+            headerLeft={(
+              <Icon
+                onPress={() => props.navigation.goBack()}
+                color={colors.black}
+                name="leftcircleo"
+                type="ant-design"
+              />)}
+            title color={colors.secondary} />
           {type !== 'bookclub' ? (
             <BookDetailsCard
               onClickFavourite={handleFavouriteClick}
@@ -170,18 +180,35 @@ const BookDetails = (props) => {
         )}
         <HorizontalRow style={styles.row} />
         <View>
-          <AppText bold size={15} primary>
-            ISBN: {book.isbn}
-          </AppText>
-          <AppText bold size={15}>
-            Pages: {book.total_pages}
-          </AppText>
-          <AppText bold size={15}>
-            Type of Cover: {book.cover_type}
-          </AppText>
-          <AppText bold size={15}>
-            Genre: Romance|Thriller|Mystery
-          </AppText>
+          {product_type !== 'bookmark' ? <>
+            <AppText style={styles.infoProduct} bold size={15} primary>
+              ISBN: {book.isbn}
+            </AppText>
+            <AppText style={styles.infoProduct} bold size={15}>
+              Pages: {book.total_pages}
+            </AppText>
+            <AppText style={styles.infoProduct} bold size={15}>
+              Type of Cover: {book.cover_type}
+            </AppText>
+            <AppText style={styles.infoProduct} bold size={15}>
+              Genre: Romance|Thriller|Mystery
+        </AppText>
+          </> :
+            <>
+              <AppText style={styles.infoProduct} bold primary size={15}>
+                Product Id: {book.bookmark_id}
+              </AppText>
+              <AppText style={styles.infoProduct} bold size={15} >
+                Size in (inch): {book.size}
+              </AppText>
+              <AppText style={styles.infoProduct} bold size={15}>
+                Type of Bookmark: {book.cover_type}
+              </AppText>
+
+            </>
+
+          }
+
         </View>
         <HorizontalRow style={styles.row} />
         <View style={{ marginTop: 20 }}>
@@ -251,6 +278,9 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     marginVertical: hp(2),
   },
+  infoProduct: {
+    paddingVertical: hp(0.1)
+  }
 });
 
 export default BookDetails;

@@ -43,7 +43,7 @@ const TitleBarWithIcon = (props) => {
             marginVertical: small ? 7 : hp('0.8%'),
           },
         ]}>
-        <AppText primary={!color} bold {...props}>
+        <AppText subheading primary={!color} bold {...props}>
           {label || 'Title'}
         </AppText>
         {!noIcon && (

@@ -31,7 +31,7 @@ const BookmarkCard = (props) => {
                         justifyContent: 'space-between',
                         paddingHorizontal: 10,
                     }}>
-                    <AppText bold size={12}>{title}</AppText>
+                    <AppText bold size={13}>{title}</AppText>
                     <AppText primary bold size={13}>
                         {price} KW
                     </AppText>
@@ -45,7 +45,7 @@ const BookmarkCard = (props) => {
 const styles = StyleSheet.create({
     containerStyle: {
         width: wp(20.6),
-        aspectRatio: 0.25,
+        aspectRatio: 0.26,
         // borderWidth: 0.5,
         margin: 3
     },

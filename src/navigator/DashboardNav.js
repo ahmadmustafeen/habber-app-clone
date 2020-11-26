@@ -21,7 +21,8 @@ import {
   SEARCH,
   HOME,
   RETURN_POLICY,
-  PRIVACY_POLICY
+  PRIVACY_POLICY,
+  INVOICE
 } from '../constants/Screens';
 
 import Home from '../containers/Home';
@@ -44,6 +45,7 @@ import Checkout from '../containers/Checkout';
 import Search from '../containers/Search';
 import ReturnPolicy from '../containers/ReturnPolicy'
 import PrivacyPolicy from '../containers/PrivacyPolicy'
+import Invoice from "../containers/Invoice"
 
 const Stack = createStackNavigator();
 
@@ -73,6 +75,7 @@ export const DashboardNav = () => {
       <Stack.Screen name={SEARCH} component={Search} />
       <Stack.Screen name={RETURN_POLICY} component={ReturnPolicy} />
       <Stack.Screen name={PRIVACY_POLICY} component={PrivacyPolicy} />
+      <Stack.Screen name={INVOICE} component={Invoice} />
     </Stack.Navigator>
   );
 };

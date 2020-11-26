@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, ScrollView, StyleSheet, Image, ImageBackground, I18nManager, FlatList } from 'react-native';
 import { AppText, Button, Screen } from '_components/common';
-import { ADD_NEW_ADDRESS, EDIT_PROFILE } from '_constants/Screens';
+import { ADD_NEW_ADDRESS, EDIT_PROFILE, INVOICE } from '_constants/Screens';
 import { HorizontalRow } from '_components/HorizontalRow';
 import { Header } from '_components/Header';
 import { RadioButton, AddressCard } from '_components'
@@ -119,7 +119,7 @@ const Checkout = (props) => {
               secondary
               color={'white'}
               bold
-              onPress={() => navigate(ADD_NEW_ADDRESS)}>
+              onPress={() => navigate(INVOICE)}>
               PAY NOW
             </Button>
           </View>

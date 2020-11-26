@@ -11,7 +11,8 @@ import {
 import { FilterModal } from '_containers/Filter';
 import { useTheme } from '@react-navigation/native';
 import { AppText } from 'components/common';
-// import { Icon } from 'react-native-vector-icons/Icon';
+import { Icon } from 'react-native-elements';
+
 const BooksList = (props) => {
   const [filter, setFilter] = useState([])
   const { label, data, product_type } = props.route.params;
@@ -29,6 +30,7 @@ const BooksList = (props) => {
     setBookData(filtered);
   };
   const { colors } = useTheme()
+  console.log(props.route.params);
   return (
     <ScrollView>
       <ImageBackground
@@ -43,7 +45,18 @@ const BooksList = (props) => {
         resizeMode='stretch'
         source={require('_assets/images/header.png')}>
 
-        <Header {...props} title={product_type === 'book' ? 'Books' : product_type === 'bookmark' ? 'Bookmark' : 'BookClubs'} />
+        <Header {...props}
+          subheading
+          headerLeft={(
+            <Icon
+              onPress={() => props.navigation.goBack()}
+              color={colors.primary}
+              name="leftcircleo"
+              type="ant-design"
+            />)}
+          title={
+            `${label[0].toUpperCase()}${label.slice(1).toLowerCase()}`
+          } />
 
 
       </ImageBackground>
