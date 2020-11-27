@@ -7,6 +7,8 @@ import {
   UPDATE_PASSWORD_FAILURE,
   UPDATE_PASSWORD_SUCCESS,
 } from '_redux/actionTypes';
+
+import { NETWORK_ERROR, SHOW_NETWORK_MODAL } from 'redux/actionTypes';
 import { MY_PROFILE } from '_constants/Screens';
 import * as NavigationService from '../../../NavigationService';
 export function* UpdatePasswordSaga({ type, payload }) {
@@ -16,6 +18,10 @@ export function* UpdatePasswordSaga({ type, payload }) {
       RestClient.post(API_ENDPOINTS.updatepassword, payload),
     );
     const { status, data, message } = response;
+
+    if (response.problem === NETWORK_ERROR) {
+      return yield put({ type: SHOW_NETWORK_MODAL });
+    }
     console.log(response)
     if (status === 200) {
       yield put({ type: UPDATE_PASSWORD_SUCCESS, payload: data });

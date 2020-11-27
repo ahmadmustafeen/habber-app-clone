@@ -1,7 +1,12 @@
 import React from 'react';
-import {Modal, View, StyleSheet} from 'react-native';
-import {AppText, Button, Screen} from './common';
-import {RoundIcon} from './RoundIcon';
+import { Modal, View, StyleSheet, Image } from 'react-native';
+import { colors } from 'react-native-elements';
+import { AppText, Button, Screen } from './common';
+import { RoundIcon } from './RoundIcon';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
 const ModalScreen = ({
   heading,
   description,
@@ -11,7 +16,10 @@ const ModalScreen = ({
   buttonLabel,
   visible,
   onContinue,
-}) => {
+  colors, forgetPassword
+},
+) => {
+  console.log("CC", colors)
   return (
     <Modal animationType="fade" visible={visible}>
       <View style={styles.container}>
@@ -19,18 +27,25 @@ const ModalScreen = ({
           <View key="header"></View>
           <View
             key="content"
-            style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-            <RoundIcon
-              large
-              name={iconName || 'check'}
-              type={iconType || 'feather'}
-              color="#fff"
-              size={iconSize || 50}
-            />
+            style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+
+            {forgetPassword ? <Image
+              source={require("../assets/images/forgetPassword.png")}
+              style={{ marginRight: wp(3) }}
+
+            /> :
+              <RoundIcon
+                large
+                name={iconName || 'check'}
+                type={iconType || 'feather'}
+                color="#fff"
+                size={iconSize || 50}
+              />}
             <AppText
               bold
-              primary
+              primary={!colors}
               style={{
+                color: colors && colors.primary,
                 paddingHorizontal: 20,
                 textAlign: 'center',
                 fontSize: 25,
@@ -49,7 +64,7 @@ const ModalScreen = ({
             </AppText>
           </View>
           <View key="footer">
-            <Button color="white" onPress={onContinue}>
+            <Button background={colors && colors.primary} color="white" onPress={onContinue}>
               {buttonLabel}
             </Button>
           </View>
@@ -64,4 +79,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export {ModalScreen};
+export { ModalScreen };

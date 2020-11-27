@@ -6,6 +6,7 @@ import {
   FETCH_USER_FAVOURITE_SUCCESS,
   FETCH_USER_FAVOURITE_FAILURE,
 } from '_redux/actionTypes';
+import { NETWORK_ERROR, SHOW_NETWORK_MODAL } from 'redux/actionTypes';
 import { startAction, stopAction } from '_redux/actions';
 
 export function* FetchFavouriteSaga({ type }) {
@@ -15,6 +16,9 @@ export function* FetchFavouriteSaga({ type }) {
       RestClient.get(API_ENDPOINTS.favourites),
     );
     const { status, data, message } = response;
+    if (response.problem === NETWORK_ERROR) {
+      return yield put({ type: SHOW_NETWORK_MODAL });
+    }
     console.log('Fetch Favourite Saga Response . . . .  .', response);
     if (status !== 200) {
       yield put({ type: FETCH_USER_FAVOURITE_FAILURE });

@@ -27,9 +27,20 @@ const TitleBarWithIcon = (props) => {
     iconName,
     noIcon,
     small,
-    filter
+    filter,
+    selectedFilter
   } = props;
+  const renderFilterIcon = () => {
+    if (filter) {
 
+      return filter.length > 0 ?
+        <Image source={require("../assets/images/filter.png")} /> :
+        <Image source={require("../assets/images/nofilter.png")} />
+
+
+    }
+  }
+  console.log("selected", filter)
   return (
     <TouchableOpacity onPress={onIconPress}>
       <View
@@ -56,10 +67,9 @@ const TitleBarWithIcon = (props) => {
           // style={{transform: [{scaleX: I18nManager.isRTL ? -1 : 1}]}}
           />
         )}
-        {
-          filter &&
-          <Image source={require("../assets/images/filter.png")} />
-        }
+
+
+        {renderFilterIcon()}
       </View>
     </TouchableOpacity>
   );

@@ -77,11 +77,11 @@ const BooksList = (props) => {
           product_type === 'book'
           &&
           <View style={{ width: wp(90), alignSelf: 'center' }}>
-            <TitleBarWithIcon label={label} noIcon filter onIconPress={toggleFilter} />
+            <TitleBarWithIcon label={label} noIcon filter={filter} onIconPress={toggleFilter} />
           </View>
         }
 
-        <FilterChip filter={filter} onIconPress={() => onApplyFilter()} />
+        <FilterChip filter={filter} selectedFilter={filter} onIconPress={() => onApplyFilter()} />
         {/* <View style={styles.filterApply}>
 
           {filter.map((item) =>

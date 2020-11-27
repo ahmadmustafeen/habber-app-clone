@@ -1,12 +1,20 @@
 /* eslint-disable prettier/prettier */
 import React, { useState } from 'react';
-import { View, StyleSheet, Image, Platform, I18nManager } from 'react-native';
+import { View, StyleSheet, Image, Platform, I18nManager, TouchableOpacity } from 'react-native';
 import { Icon } from 'react-native-elements';
 import { AppText, BackgroundImage } from './common';
 import { useTheme } from '@react-navigation/native';
 import { CART_SCREEN, CARTNEW, SEARCH } from 'constants/Screens';
-
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
+import { shallowEqual, useSelector } from 'react-redux';
 const Header = (props) => {
+  const { CartReducer } = useSelector((state) => ({
+    CartReducer: state.CartReducer,
+  }), shallowEqual);
+  console.log("header cart", CartReducer)
   const { colors } = useTheme();
   const {
     navigation,
@@ -47,19 +55,33 @@ const Header = (props) => {
           headerRight
         ) : (
             <View style={styles.right}>
-              <Icon
+              <TouchableOpacity onPress={() => {
+                navigation.navigate(CART_SCREEN, {
+                  label: 'CART_SCREEN',
+                  CART_SCREEN,
+                  // CARTNEW
+                })
+              }}>
+                <Image
+                  source={(CartReducer) ? require("../assets/images/nocart.png") : require("../assets/images/nocart.png")}
+                  style={{ marginRight: wp(3) }}
+
+                />
+              </TouchableOpacity>
+
+              {/* <Icon
                 onPress={() =>
-                  navigation.navigate(CARTNEW, {
+                  navigation.navigate(CART_SCREEN, {
                     label: 'CART_SCREEN',
-                    // CART_SCREEN,
-                    CARTNEW
+                    CART_SCREEN,
+                    // CARTNEW
                   })
                 }
                 color={headerColor}
                 name="shopping-bag"
                 type="font-awesome-5"
                 containerStyle={{ paddingEnd: 10 }}
-              />
+              /> */}
               {name !== 'Search' && (
                 <Icon
                   props={props}

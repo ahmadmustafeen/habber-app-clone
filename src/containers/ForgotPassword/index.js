@@ -1,19 +1,19 @@
-import React, {useState, useRef} from 'react';
-import {View, StyleSheet, Image} from 'react-native';
+import React, { useState, useRef } from 'react';
+import { View, StyleSheet, Image } from 'react-native';
 // import {forgotPassword} from '_assets/data/StaticData';
-import {InputWithLabel, ModalScreen, AuthHeader} from '_components';
-import {AppText, BackgroundImage, Button} from '_components/common';
-import {useTranslation} from 'react-i18next';
-import {useDispatch} from 'react-redux';
-import {FORGOT_PASSWORD} from '_redux/actionTypes';
-import {withDataActions} from '_redux/actions';
+import { InputWithLabel, ModalScreen, AuthHeader } from '_components';
+import { AppText, BackgroundImage, Button } from '_components/common';
+import { useTranslation } from 'react-i18next';
+import { useDispatch } from 'react-redux';
+import { FORGOT_PASSWORD } from '_redux/actionTypes';
+import { withDataActions } from '_redux/actions';
 import useModal from '_utils/customHooks/useModal';
 const ForgotPassword = (props) => {
   const dispatch = useDispatch();
-  const {visible, toggleModal} = useModal();
+  const { visible, toggleModal } = useModal();
 
-  const {t} = useTranslation(['forgotPassword']);
-  const {navigate} = props.navigation;
+  const { t } = useTranslation(['forgotPassword']);
+  const { navigate } = props.navigation;
   const [email, setEmail] = useState('');
 
   const onSubmit = () => {
@@ -27,10 +27,10 @@ const ForgotPassword = (props) => {
         <AppText
           bold
           heading
-          style={{marginTop: 40, marginBottom: 10, color: '#c27e12'}}>
+          style={{ marginTop: 40, marginBottom: 10, color: '#c27e12' }}>
           {t('forgot_password')}
         </AppText>
-        <AppText secondary white style={{marginBottom: 20}}>
+        <AppText secondary white style={{ marginBottom: 20 }}>
           {t('enter_email')}
         </AppText>
       </View>
@@ -46,6 +46,7 @@ const ForgotPassword = (props) => {
       <View key="footer">
         <Button onPress={onSubmit}>{t('resetPassword')}</Button>
         <ModalScreen
+          forgetPassword
           visible={visible}
           onContinue={toggleModal}
           heading={t('modal_heading')}

@@ -75,7 +75,7 @@ const Search = (props) => {
       </View>
       <View key="content">
         <View style={{ width: wp(90), alignSelf: 'center' }}>
-          <TitleBarWithIcon label={`${SearchBooksReducer.length} Book(s) Found`} filter noIcon onIconPress={toggleFilter} />
+          {(SearchBooksReducer.length > 0) && <TitleBarWithIcon label={`${SearchBooksReducer.length} Book(s) Found`} filter={filter} noIcon onIconPress={toggleFilter} />}
         </View>
         <View style={styles.filterApply}>
           {filter.map((item) =>
@@ -87,7 +87,8 @@ const Search = (props) => {
             </View>
           )}
         </View>
-        <BookListContainer data={SearchBooksReducer} />
+        {(SearchBooksReducer.length > 0) && <BookListContainer data={SearchBooksReducer} />}
+
         <FilterModal {...props} visible={visible} onApply={onApplyFilter} />
       </View>
 

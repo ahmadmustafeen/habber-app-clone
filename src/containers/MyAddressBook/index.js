@@ -18,13 +18,13 @@ import { useTheme } from '@react-navigation/native';
 const MyAddressBook = (props) => {
   const { navigate } = props.navigation;
 
-  const { } = useSelector((state) => {
+  const { AddressReducer, isLoading } = useSelector((state) => {
     return {
       AddressReducer: state.AddressReducer,
       isLoading: checkIfLoading(state, FETCH_ADDRESS),
     };
   }, shallowEqual);
-  console.log(AddressReducer)
+  console.log("AddressReducer", AddressReducer)
 
 
   const { first_name, last_name, email } = useSelector(
@@ -33,7 +33,7 @@ const MyAddressBook = (props) => {
   );
   // AddressReducer.entries((item) => item)
 
-  const AddressComponent = (props) => {
+  const MyAddressBook = (props) => {
     console.log(props.item);
     return (
       <>

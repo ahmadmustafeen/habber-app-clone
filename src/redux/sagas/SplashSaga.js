@@ -1,11 +1,12 @@
-import {Alert} from 'react-native';
-import {put, call} from 'redux-saga/effects';
+import { Alert } from 'react-native';
+import { put, call } from 'redux-saga/effects';
 import * as NavigationService from '../../../NavigationService';
 
-import {RestClient} from '_network/RestClient';
-import {API_ENDPOINTS} from 'constants/Network';
-import {FETCH_AD_SUCCESS, FETCH_AD_FAILURE} from '_redux/actionTypes';
-import {AD_SCREEN} from '_constants/Screens';
+import { NETWORK_ERROR, SHOW_NETWORK_MODAL } from 'redux/actionTypes';
+import { RestClient } from '_network/RestClient';
+import { API_ENDPOINTS } from 'constants/Network';
+import { FETCH_AD_SUCCESS, FETCH_AD_FAILURE } from '_redux/actionTypes';
+import { AD_SCREEN } from '_constants/Screens';
 import {
   FETCH_ARABIC_BOOKS,
   FETCH_BOOKCLUBS,
@@ -15,38 +16,40 @@ import {
   SKIP_AD,
   FETCH_SITE_DETAILS,
 } from '_redux/actionTypes';
-import {HOME} from 'constants/Screens';
-import {SHOW_NETWORK_MODAL} from 'redux/actionTypes';
-import {NETWORK_ERROR} from 'apisauce';
+import { HOME } from 'constants/Screens';
+
 
 export function* splashSaga() {
   try {
     const response = yield call(() => RestClient.get(API_ENDPOINTS.ads));
-    yield put({type: FETCH_ENGLISH_BOOKS});
-    yield put({type: FETCH_ARABIC_BOOKS});
-    yield put({type: FETCH_BOOKCLUBS});
-    yield put({type: FETCH_BOOKMARKS});
-    yield put({type: FETCH_SITE_DETAILS});
+    yield put({ type: FETCH_ENGLISH_BOOKS });
+    yield put({ type: FETCH_ARABIC_BOOKS });
+    yield put({ type: FETCH_BOOKCLUBS });
+    yield put({ type: FETCH_BOOKMARKS });
+    yield put({ type: FETCH_SITE_DETAILS });
 
     if (response.problem === NETWORK_ERROR) {
-      yield put({type: SKIP_AD});
-      yield put({type: FETCH_AD_FAILURE});
-      yield put({type: SHOW_NETWORK_MODAL});
+      yield put({ type: SKIP_AD });
+      yield put({ type: FETCH_AD_FAILURE });
+      yield put({ type: SHOW_NETWORK_MODAL });
       return;
     }
     const {
       status,
-      data: {data: res, message},
+      data: { data: res, message },
     } = response;
+    if (response.problem === NETWORK_ERROR) {
+      return yield put({ type: SHOW_NETWORK_MODAL });
+    }
 
     if (!res.length) {
-      yield put({type: SKIP_AD});
-      yield put({type: FETCH_AD_FAILURE});
+      yield put({ type: SKIP_AD });
+      yield put({ type: FETCH_AD_FAILURE });
     } else {
-      yield put({type: FETCH_AD_SUCCESS});
+      yield put({ type: FETCH_AD_SUCCESS });
       NavigationService.navigate('Auth', {
         screen: AD_SCREEN,
-        params: {res},
+        params: { res },
       });
     }
   } catch (error) {
