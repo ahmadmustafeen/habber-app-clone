@@ -13,7 +13,13 @@ import {
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 import { useTheme } from '@react-navigation/native';
+import { useSelector, shallowEqual } from 'react-redux';
 const MyProfile = (props) => {
+
+  const { first_name, last_name, email } = useSelector(
+    ({ UserProfileReducer }) => UserProfileReducer,
+    shallowEqual,
+  );
   const { colors } = useTheme()
   const { navigate } = props.navigation;
   return (
@@ -45,40 +51,28 @@ const MyProfile = (props) => {
               />
             </View>
             <View style={{ flexDirection: 'column', justifyContent: 'center' }}>
-              <AppText bold size={13} style={styles.txt}>
-                {`Khaled Ammar`}
+              <AppText bold small style={styles.txt}>
+                {`${first_name} ${last_name}`}
               </AppText>
-              <AppText size={13} style={styles.txt}>
-                {`Khaled.Ammar@gmail.com`}
+              <AppText small style={styles.txt}>
+                {email}
               </AppText>
             </View>
-
-            {/* <AppText
-              icon
-              size={17}
-              appColor
-              iconType="entypo"
-              iconName="pencil"
-             
-              style={[styles.editbtn, { backgroundColor: colors.primary }]}>
-              Edit
-          </AppText> */}
-            <TouchableOpacity onPress={() => navigate(EDIT_PROFILE)}>
+            <TouchableOpacity style={{ position: 'absolute', right: wp(5), top: hp(-1.5) }} onPress={() => navigate(EDIT_PROFILE)}>
               <Image
-
                 source={require("../../assets/images/editbtn.png")}
               />
             </TouchableOpacity>
 
 
           </View>
-          <HorizontalRow style={[styles.row, { backgroundColor: colors.borderColor }]} />
+          <HorizontalRow style={[styles.row, { borderBottomColor: colors.borderColor }]} />
           <View style={styles.btnview}>
             <Button
               icon
               fontSize={13}
               appColor
-              style={{ marginBottom: 15 }}
+              style={{ marginBottom: 15, }}
               onPress={() => navigate(MY_ADDRESS_BOOK)}>
               MY ADDRESS BOOK
           </Button>
@@ -132,7 +126,8 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   row: {
-    width: '100%',
+    // width: wp(0),
+    borderBottomWidth: hp(0.1)
   }
 
 });

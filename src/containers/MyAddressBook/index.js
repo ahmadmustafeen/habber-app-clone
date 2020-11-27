@@ -1,37 +1,36 @@
-import React, {useEffect} from 'react';
-import {
-  View,
-  ScrollView,
-  StyleSheet,
-  Image,
-  ImageBackground,
-  I18nManager,
-  FlatList,
-} from 'react-native';
-import {AppText, Button, Screen} from '_components/common';
-import {ADD_NEW_ADDRESS, EDIT_PROFILE} from '_constants/Screens';
-import {HorizontalRow} from '_components/HorizontalRow';
-import {Header} from '_components/Header';
+import React, { useEffect } from 'react';
+import { View, ScrollView, StyleSheet, Image, ImageBackground, I18nManager, FlatList, TouchableOpacity } from 'react-native';
+import { AppText, Button, Screen } from '_components/common';
+import { ADD_NEW_ADDRESS, EDIT_PROFILE } from '_constants/Screens';
+import { HorizontalRow } from '_components/HorizontalRow';
+import { Header } from '_components/Header';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 
 import Loader from 'components/Loader';
-import {checkIfLoading} from 'redux/selectors';
-import {useSelector, shallowEqual, useDispatch} from 'react-redux';
-import {AddressCard} from '_components';
-import {FETCH_ADDRESS} from 'redux/actionTypes';
+import { checkIfLoading } from 'redux/selectors';
+import { useSelector, shallowEqual, useDispatch } from 'react-redux';
+import { AddressCard, } from '_components'
+import { FETCH_ADDRESS } from 'redux/actionTypes';
+import { useTheme } from '@react-navigation/native';
 const MyAddressBook = (props) => {
-  const {navigate} = props.navigation;
+  const { navigate } = props.navigation;
 
-  const {} = useSelector((state) => {
+  const { } = useSelector((state) => {
     return {
       AddressReducer: state.AddressReducer,
       isLoading: checkIfLoading(state, FETCH_ADDRESS),
     };
   }, shallowEqual);
-  console.log(AddressReducer);
+  console.log(AddressReducer)
+
+
+  const { first_name, last_name, email } = useSelector(
+    ({ UserProfileReducer }) => UserProfileReducer,
+    shallowEqual,
+  );
   // AddressReducer.entries((item) => item)
 
   const AddressComponent = (props) => {
@@ -45,8 +44,9 @@ const MyAddressBook = (props) => {
           {`${props.item.address_line1}${props.item.address_line2}`}
         </AppText>
       </>
-    );
-  };
+    )
+  }
+  const { colors } = useTheme()
   return (
     <Screen noPadding>
       <View key="header">
@@ -57,34 +57,42 @@ const MyAddressBook = (props) => {
             paddingBottom: hp(8),
             marginBottom: hp(1),
             justifyContent: 'flex-end',
-            transform: [{scaleX: I18nManager.isRTL ? -1 : 1}],
+            transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }],
           }}
           resizeMode="stretch"
           source={require('_assets/images/header.png')}>
-          <Header {...props} title={'My Address Book'} />
+
+          <Header {...props} title={'My Profile '} />
+
+
         </ImageBackground>
       </View>
       <View key="content">
         <Loader loading={isLoading} />
         <View style={styles.profiletop}>
-          <View style={styles.imgContainer}>
+          <View style={[styles.imgContainer, { borderColor: colors.borderColor }]}>
             <Image
               style={styles.image}
-              source={require('_assets/images/Screenshot_Logo.jpg')}
+              source={require('_assets/images/logo.png')}
             />
           </View>
-          <AppText bold size={15} style={styles.txt}>
-            {`Khaled Ammar
-Khaled.Ammar@gmail.com`}
-          </AppText>
-          <AppText
-            size={17}
-            center
-            appColor
-            onPress={() => navigate(EDIT_PROFILE)}
-            style={styles.editbtn}></AppText>
+          <View style={{ flexDirection: 'column', justifyContent: 'center' }}>
+            <AppText bold small style={styles.txt}>
+              {`${first_name} ${last_name}`}
+            </AppText>
+            <AppText small style={styles.txt}>
+              {email}
+            </AppText>
+          </View>
+          <TouchableOpacity style={{ position: 'absolute', right: wp(5), top: hp(-1.5) }} onPress={() => navigate(EDIT_PROFILE)}>
+            <Image
+              source={require("../../assets/images/editbtn.png")}
+            />
+          </TouchableOpacity>
+
+
         </View>
-        <HorizontalRow />
+        <HorizontalRow style={{ borderBottomWidth: hp(0.1), borderBottomColor: colors.borderColor }} />
         <View style={styles.addressbookview}>
           <View style={styles.addressbook}>
             <AppText size={17} style={styles.addressbookheading}>
@@ -103,7 +111,7 @@ Khaled.Ammar@gmail.com`}
                   <AppText>No Address Available</AppText>
                 </View>
               )}
-              ListFooterComponent={() => <View style={{paddingBottom: 50}} />}
+              ListFooterComponent={() => <View style={{ paddingBottom: 50 }} />}
             />
           </View>
           <Button
@@ -120,10 +128,11 @@ Khaled.Ammar@gmail.com`}
 
 const styles = StyleSheet.create({
   imgContainer: {
-    height: 100,
+    height: 80,
     aspectRatio: 1,
     borderRadius: 50,
     borderWidth: 2,
+    marginLeft: 10,
     overflow: 'hidden',
   },
   image: {
@@ -131,8 +140,9 @@ const styles = StyleSheet.create({
     height: '100%',
   },
   profiletop: {
+    alignSelf: 'center',
+    width: wp(85),
     flexDirection: 'row',
-    justifyContent: 'center',
     marginBottom: 20,
     marginTop: 20,
   },

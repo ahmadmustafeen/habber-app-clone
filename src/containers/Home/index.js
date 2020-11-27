@@ -213,7 +213,7 @@ const Home = (props) => {
             })
           }
         />
-        <TitleBarWithIcon label={t('requestBook')} />
+        <TitleBarWithIcon label={t('requestBook')} noIcon />
         <View style={styles.requestBooksBtns}>
           <View style={{width: wp(28)}}>
             <Button

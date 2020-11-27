@@ -1,40 +1,42 @@
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
-import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
+import { StyleSheet, View } from 'react-native';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 
 const Screen = (props) => {
-  const {noPadding, contentPadding} = props;
+  const { noPadding, contentPadding } = props;
 
   const getComponent = (key) => {
-    const {children} = props;
+    const { children } = props;
     return children.filter((view) => view.key === key);
   };
 
   return (
     <KeyboardAwareScrollView
       //resetScrollToCoords={{ x: 0, y: 0 }}
-      contentContainerStyle={{flexGrow: 1}}
+      contentContainerStyle={{ flexGrow: 1 }}
       automaticallyAdjustContentInsets={true}
       keyboardDismissMode="on-drag"
       scrollsToTop={false}
+      showsHorizontalScrollIndicator={false}
+      showsVerticalScrollIndicator={false}
       keyboardShouldPersistTaps="never"
       enableResetScrollToCoords={false}>
       <View
         style={[
           styles.formContainer,
-          {backgroundColor: props.backgroundColor},
-          noPadding && {paddingHorizontal: 0, paddingBottom: 0},
+          { backgroundColor: props.backgroundColor },
+          noPadding && { paddingHorizontal: 0, paddingBottom: 0 },
         ]}>
         {getComponent('header').length ? (
           <View style={styles.header}>{getComponent('header')}</View>
         ) : null}
         {getComponent('content').length ? (
           <View
-            style={[styles.content, contentPadding && {paddingHorizontal: 20}]}>
+            style={[styles.content, contentPadding && { paddingHorizontal: 20 }]}>
             {getComponent('content')}
           </View>
         ) : null}
@@ -69,4 +71,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export {Screen};
+export { Screen };

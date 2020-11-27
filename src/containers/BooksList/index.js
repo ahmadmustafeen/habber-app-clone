@@ -1,5 +1,5 @@
-import {BookListContainer, FilterChip} from '_components';
-import React, {useState} from 'react';
+import { BookListContainer, FilterChip } from '_components';
+import React, { useState } from 'react';
 import {
   ScrollView,
   StyleSheet,
@@ -10,21 +10,21 @@ import {
   I18nManager,
 } from 'react-native';
 import useFilter from 'utils/customHooks/useFilter';
-import {TitleBarWithIcon, Header} from '_components';
-import {setFilterHandler} from '../../helpers/Filter';
+import { TitleBarWithIcon, Header } from '_components';
+import { setFilterHandler } from '../../helpers/Filter';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-import {FilterModal} from '_containers/Filter';
-import {useTheme} from '@react-navigation/native';
-import {AppText} from 'components/common';
-import {Icon} from 'react-native-elements';
+import { FilterModal } from '_containers/Filter';
+import { useTheme } from '@react-navigation/native';
+import { AppText, Screen } from 'components/common';
+import { Icon } from 'react-native-elements';
 
 const BooksList = (props) => {
   const [filter, setFilter] = useState([]);
-  const {label, data, product_type} = props.route.params;
-  const {visible, toggleFilter} = useFilter();
+  const { label, data, product_type } = props.route.params;
+  const { visible, toggleFilter } = useFilter();
   const [bookData, setBookData] = useState(data);
   const onApplyFilter = (item) => {
     // filter keys in UI should be displayed from ITEM array - Ahmad
@@ -37,47 +37,49 @@ const BooksList = (props) => {
     let filtered = setFilterHandler(bookData, item);
     setBookData(filtered);
   };
-  const {colors} = useTheme();
+  const { colors } = useTheme();
   console.log(props.route.params);
   return (
-    <ScrollView>
-      <ImageBackground
-        style={{
-          height: hp(21),
-          paddingHorizontal: wp(3),
-          paddingBottom: hp(8),
-          marginBottom: hp(1),
-          justifyContent: 'flex-end',
-          transform: [{scaleX: I18nManager.isRTL ? -1 : 1}],
-        }}
-        resizeMode="stretch"
-        source={require('_assets/images/header.png')}>
-        <Header
-          {...props}
-          subheading
-          headerLeft={
-            <Icon
-              onPress={() => props.navigation.goBack()}
-              color={colors.primary}
-              name="leftcircleo"
-              type="ant-design"
-            />
-          }
-          title={`${label[0].toUpperCase()}${label.slice(1).toLowerCase()}`}
-        />
-      </ImageBackground>
+    <Screen noPadding>
+      <View key='header'>
+        <ImageBackground
+          style={{
+            height: hp(21),
+            paddingHorizontal: wp(3),
+            paddingBottom: hp(8),
+            marginBottom: hp(1),
+            justifyContent: 'flex-end',
+            transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }],
+          }}
+          resizeMode='stretch'
+          source={require('_assets/images/header.png')}>
 
-      <View>
-        {product_type === 'book' && (
-          <View style={{width: wp(90), alignSelf: 'center'}}>
-            <TitleBarWithIcon
-              label={label}
-              noIcon
-              filter
-              onIconPress={toggleFilter}
-            />
+          <Header {...props}
+            subheading
+            headerLeft={(
+              <Icon
+                onPress={() => props.navigation.goBack()}
+                color={colors.primary}
+                name="leftcircleo"
+                type="ant-design"
+              />)}
+            title={
+              `${label[0].toUpperCase()}${label.slice(1).toLowerCase()}`
+            } />
+
+
+        </ImageBackground>
+
+      </View>
+
+      <View key="content">
+        {
+          product_type === 'book'
+          &&
+          <View style={{ width: wp(90), alignSelf: 'center' }}>
+            <TitleBarWithIcon label={label} noIcon filter onIconPress={toggleFilter} />
           </View>
-        )}
+        }
 
         <FilterChip filter={filter} onIconPress={() => onApplyFilter()} />
         {/* <View style={styles.filterApply}>
@@ -106,7 +108,7 @@ const BooksList = (props) => {
           onApply={onApplyFilter}
         />
       </View>
-    </ScrollView>
+    </Screen>
   );
 };
 const styles = StyleSheet.create({
