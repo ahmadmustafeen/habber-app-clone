@@ -1,19 +1,27 @@
-import React, { useState } from 'react';
-import { View, ScrollView, StyleSheet, Image, Alert, ImageBackground, I18nManager } from 'react-native';
-import { withDataActions } from '_redux/actions';
-import { Button, Screen } from '_components/common';
-import { InputWithLabel } from '_components';
-import { HorizontalRow } from '_components/HorizontalRow';
-import { MY_PROFILE } from '_constants/Screens';
-import { Header } from '_components/Header';
-import { useDispatch, useSelector, shallowEqual } from 'react-redux';
-import { validatePhone } from 'helpers/Validators';
+import React, {useState} from 'react';
+import {
+  View,
+  ScrollView,
+  StyleSheet,
+  Image,
+  Alert,
+  ImageBackground,
+  I18nManager,
+} from 'react-native';
+import {withDataActions} from '_redux/actions';
+import {Button, Screen} from '_components/common';
+import {InputWithLabel} from '_components';
+import {HorizontalRow} from '_components/HorizontalRow';
+import {MY_PROFILE} from '_constants/Screens';
+import {Header} from '_components/Header';
+import {useDispatch, useSelector, shallowEqual} from 'react-redux';
+import {validatePhone} from '_helpers/Validators';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 const EditProfile = (props) => {
-  const { UserProfileReducer } = useSelector((state) => {
+  const {UserProfileReducer} = useSelector((state) => {
     return {
       UserProfileReducer: state.UserProfileReducer,
     };
@@ -43,9 +51,9 @@ const EditProfile = (props) => {
     }
     return true;
   };
-  const { navigate } = props.navigation;
+  const {navigate} = props.navigation;
   const setStateHandler = (key, val) => {
-    setState({ ...state, [key]: val });
+    setState({...state, [key]: val});
   };
   const save = () => {
     // validate() &&
@@ -62,14 +70,11 @@ const EditProfile = (props) => {
           paddingBottom: hp(8),
           marginBottom: hp(1),
           justifyContent: 'flex-end',
-          transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }],
+          transform: [{scaleX: I18nManager.isRTL ? -1 : 1}],
         }}
-        resizeMode='stretch'
+        resizeMode="stretch"
         source={require('_assets/images/header.png')}>
-
         <Header {...props} title={'Edit Profile'} />
-
-
       </ImageBackground>
       <Screen>
         <View key="header"></View>
@@ -83,7 +88,7 @@ const EditProfile = (props) => {
             </View>
           </View>
           <HorizontalRow />
-          <View style={{ marginTop: 20 }}>
+          <View style={{marginTop: 20}}>
             <InputWithLabel
               color={'black'}
               value={state.firstName}

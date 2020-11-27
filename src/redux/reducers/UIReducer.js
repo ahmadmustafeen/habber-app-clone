@@ -3,7 +3,7 @@ import {
   START_ACTION,
   STOP_ACTION,
   REFRESH_ACTION_STOP,
-} from 'redux/actionTypes';
+} from '_redux/actionTypes';
 
 const initialState = {
   loader: {

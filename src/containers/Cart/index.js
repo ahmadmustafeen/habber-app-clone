@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, {useEffect} from 'react';
 import {
   View,
   ScrollView,
@@ -7,38 +7,35 @@ import {
   ImageBackground,
   I18nManager,
 } from 'react-native';
-import { AppText, Button, Screen } from '_components/common';
-import { HorizontalRow, Counter } from '_components';
-import { CHECKOUT } from '_constants/Screens';
-import { Header } from '_components/Header';
-import { withDataActions } from '_redux/actions/GenericActions';
-import { useSelector, shallowEqual, useDispatch } from 'react-redux';
-import { ADD_TO_CART_SAGA } from '_redux/actionTypes';
-import { UPDATE_CART_ITEM } from '_redux/actionTypes';
-import { useTheme } from '@react-navigation/native';
+import {AppText, Button, Screen} from '_components/common';
+import {HorizontalRow, Counter} from '_components';
+import {CHECKOUT} from '_constants/Screens';
+import {Header} from '_components/Header';
+import {withDataActions} from '_redux/actions/GenericActions';
+import {useSelector, shallowEqual, useDispatch} from 'react-redux';
+import {ADD_TO_CART_SAGA} from '_redux/actionTypes';
+import {UPDATE_CART_ITEM} from '_redux/actionTypes';
+import {useTheme} from '@react-navigation/native';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 
 import Loader from 'components/Loader';
-import { checkIfLoading } from 'redux/selectors';
-import { FETCH_USER_CART } from 'redux/actionTypes';
-import { Icon } from 'react-native-elements';
+import {checkIfLoading} from 'redux/selectors';
+import {FETCH_USER_CART} from 'redux/actionTypes';
+import {Icon} from 'react-native-elements';
 const delivery_charges = 10;
 const AddToCart = (props) => {
-  const { colors } = useTheme();
+  const {colors} = useTheme();
   const dispatch = useDispatch();
-  const { CartReducer, isLoading } = useSelector((state) => ({
+  const {CartReducer, isLoading} = useSelector((state) => ({
     CartReducer: state.CartReducer,
-    isLoading: checkIfLoading(
-      state,
-      FETCH_USER_CART
-    )
-  }))
+    isLoading: checkIfLoading(state, FETCH_USER_CART),
+  }));
   console.log('CartReducer', CartReducer);
 
-  console.log(isLoading)
+  console.log(isLoading);
   const updateCartItem = (book, action) => {
     dispatch(
       withDataActions(
@@ -59,26 +56,26 @@ const AddToCart = (props) => {
           paddingBottom: hp(8),
           marginBottom: hp(1),
           justifyContent: 'flex-end',
-          transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }],
+          transform: [{scaleX: I18nManager.isRTL ? -1 : 1}],
         }}
         resizeMode="stretch"
         source={require('_assets/images/header.png')}>
-        <Header headerLeft={
-          <Icon
-            onPress={() => props.navigation.goBack()}
-            color={colors.primary}
-            name="leftcircleo"
-            type="ant-design"
-          />}
-          {...props} title={'Cart'} />
+        <Header
+          headerLeft={
+            <Icon
+              onPress={() => props.navigation.goBack()}
+              color={colors.primary}
+              name="leftcircleo"
+              type="ant-design"
+            />
+          }
+          {...props}
+          title={'Cart'}
+        />
       </ImageBackground>
 
       <Screen>
-        <View key="header">
-
-
-
-        </View>
+        <View key="header"></View>
 
         <View key="content">
           <Loader loading={isLoading} />
@@ -96,7 +93,7 @@ const AddToCart = (props) => {
                 return (
                   <View style={styles.profiletop}>
                     <View style={styles.imgContainer}>
-                      <Image style={styles.image} source={{ uri: image }} />
+                      <Image style={styles.image} source={{uri: image}} />
                     </View>
                     <View style={styles.viewtxt}>
                       <AppText bold size={18} style={styles.txt}>
@@ -108,7 +105,12 @@ const AddToCart = (props) => {
                       <AppText bold size={17} style={styles.pricetxt}>
                         Price: {cart_price} KW
                       </AppText>
-                      <View style={{ width: wp(70), marginLeft: wp(8), marginVertical: 10, }}>
+                      <View
+                        style={{
+                          width: wp(70),
+                          marginLeft: wp(8),
+                          marginVertical: 10,
+                        }}>
                         <Counter
                           value={cart_quantity}
                           onIncrement={() => updateCartItem(product, 'add')}
@@ -136,7 +138,12 @@ const AddToCart = (props) => {
               }),
             )}
 
-          <View style={[styles.horizontalRow, { borderBottomColor: colors.borderColor }]} />
+          <View
+            style={[
+              styles.horizontalRow,
+              {borderBottomColor: colors.borderColor},
+            ]}
+          />
           <View style={styles.totalcontainer}>
             <View
               style={{
@@ -144,21 +151,35 @@ const AddToCart = (props) => {
                 flexDirection: 'column',
                 justifyContent: 'flex-start',
               }}>
-              <AppText style={{ paddingVertical: hp(0.5) }} small bold>Sub Total</AppText>
-              <AppText style={{ paddingVertical: hp(0.5) }} small bold>Shipping Charges</AppText>
+              <AppText style={{paddingVertical: hp(0.5)}} small bold>
+                Sub Total
+              </AppText>
+              <AppText style={{paddingVertical: hp(0.5)}} small bold>
+                Shipping Charges
+              </AppText>
 
-              <View style={[styles.horizontalRow, { borderBottomColor: colors.borderColor }]} />
+              <View
+                style={[
+                  styles.horizontalRow,
+                  {borderBottomColor: colors.borderColor},
+                ]}
+              />
               <AppText small primary bold>
                 Total
               </AppText>
             </View>
-            <View style={{
-              flexDirection: 'column',
-              justifyContent: 'flex-end',
-              alignItems: 'flex-end',
-            }}>
-              <AppText style={{ paddingVertical: hp(0.5) }} small bold>{CartReducer.total_price} KW</AppText>
-              <AppText style={{ paddingVertical: hp(0.5) }} small bold>{delivery_charges} KW</AppText>
+            <View
+              style={{
+                flexDirection: 'column',
+                justifyContent: 'flex-end',
+                alignItems: 'flex-end',
+              }}>
+              <AppText style={{paddingVertical: hp(0.5)}} small bold>
+                {CartReducer.total_price} KW
+              </AppText>
+              <AppText style={{paddingVertical: hp(0.5)}} small bold>
+                {delivery_charges} KW
+              </AppText>
               <AppText small primary bold>
                 {CartReducer.total_price + delivery_charges} KW
               </AppText>
@@ -207,7 +228,7 @@ const styles = StyleSheet.create({
   },
   totalcontainer: {
     flexDirection: 'row',
-    flex: 2
+    flex: 2,
   },
   footerbtn: {
     marginTop: 40,
@@ -221,7 +242,7 @@ const styles = StyleSheet.create({
     marginHorizontal: wp(5),
     width: wp(80),
     borderBottomWidth: hp(0.1),
-  }
+  },
 });
 
 export default AddToCart;

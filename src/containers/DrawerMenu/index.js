@@ -28,7 +28,6 @@ import {
   MY_PROFILE,
   SIGNIN_SCREEN,
 } from '../../constants/Screens';
-import UserProfileReducer from 'redux/reducers/UserProfileReducer';
 import {colors} from 'react-native-elements';
 import {Color} from 'constants/Colors';
 

@@ -3,7 +3,7 @@ import {
   REFRESH_ACTION_STOP,
   START_ACTION,
   STOP_ACTION,
-} from 'redux/actionTypes';
+} from '_redux/actionTypes';
 
 export const startAction = (name, params) => ({
   type: START_ACTION,

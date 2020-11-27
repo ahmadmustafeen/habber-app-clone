@@ -1,7 +1,16 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 
-import { View, StyleSheet, ImageBackground, I18nManager } from 'react-native';
-import { useTranslation } from 'react-i18next';
+import {
+  View,
+  StyleSheet,
+  ImageBackground,
+  I18nManager,
+  Dimensions,
+  Image,
+} from 'react-native';
+import {useTranslation} from 'react-i18next';
+import Carousel, {Pagination} from 'react-native-x-carousel';
+
 import {
   DashboardComponent,
   ThumbnailBookmarks,
@@ -9,30 +18,33 @@ import {
   TitleBarWithIcon,
   Header,
 } from '_components';
-import { REQUESTBOOKS_SCREEN, BOOKLIST_SCREEN } from '_constants/Screens';
-import { sliderImages } from './dummydata';
-import { ThumbnailBook } from '_components/ThumbnailBook';
-import { Button, Screen } from '_components/common';
-import { FlatListSlider } from '_components';
-import { shallowEqual, useDispatch, useSelector } from 'react-redux';
-import { useTheme } from '@react-navigation/native';
+import {REQUESTBOOKS_SCREEN, BOOKLIST_SCREEN} from '_constants/Screens';
+import {sliderImages} from './dummydata';
+import {ThumbnailBook} from '_components/ThumbnailBook';
+import {Button, Screen} from '_components/common';
+import {FlatListSlider} from '_components';
+import {shallowEqual, useDispatch, useSelector} from 'react-redux';
+import {useTheme} from '@react-navigation/native';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-import { checkIfLoading } from 'redux/selectors';
+import {checkIfLoading} from '_redux/selectors';
 import {
   FETCH_ARABIC_BOOKS,
   FETCH_BOOKCLUBS,
   FETCH_BOOKMARKS,
   FETCH_ENGLISH_BOOKS,
-} from 'redux/actionTypes';
-import Loader from 'components/Loader';
+} from '_redux/actionTypes';
+import Loader from '_components/Loader';
+import {withoutDataActions} from 'redux/actions';
+import {AppText} from 'components/common';
+const {width} = Dimensions.get('window');
 const Home = (props) => {
-  const { navigate } = props.navigation;
+  const {navigate} = props.navigation;
   const [images] = useState(sliderImages);
 
-  const { t } = useTranslation();
+  const {t} = useTranslation();
   const {
     EnglishBooksReducer,
     ArabicBooksReducer,
@@ -55,7 +67,52 @@ const Home = (props) => {
     };
   }, shallowEqual);
   const dispatch = useDispatch();
-  const { colors } = useTheme();
+  const {colors} = useTheme();
+  console.log('IS LOADING  . . . ', isLoading);
+
+  const DATA = [
+    {
+      coverImageUri:
+        'https://user-images.githubusercontent.com/6414178/73920321-2357b680-4900-11ea-89d5-2e8cbecec9f6.jpg',
+      cornerLabelColor: '#FFD300',
+      cornerLabelText: 'GOTY',
+    },
+    {
+      coverImageUri:
+        'https://user-images.githubusercontent.com/6414178/73920358-336f9600-4900-11ea-8eec-cc919b991e90.jpg',
+      cornerLabelColor: '#0080ff',
+      cornerLabelText: 'NEW',
+    },
+    {
+      coverImageUri:
+        'https://user-images.githubusercontent.com/6414178/73927874-25744200-490d-11ea-940f-db3e5dbd8b2b.jpg',
+      cornerLabelColor: '#2ECC40',
+      cornerLabelText: '-75%',
+    },
+    {
+      coverImageUri:
+        'https://user-images.githubusercontent.com/6414178/73920399-45e9cf80-4900-11ea-9d5b-743fe5e8b9a4.jpg',
+      cornerLabelColor: '#2ECC40',
+      cornerLabelText: '-20%',
+    },
+  ];
+  const renderItem = (data) => (
+    <View key={data.coverImageUri} style={styles.cardContainer}>
+      <View style={styles.cardWrapper}>
+        <Image style={styles.card} source={{uri: data.coverImageUri}} />
+        <View
+          style={[
+            styles.cornerLabel,
+            {backgroundColor: data.cornerLabelColor},
+          ]}>
+          <AppText style={styles.cornerLabelText}>
+            {data.cornerLabelText}
+          </AppText>
+        </View>
+      </View>
+    </View>
+  );
+
   return (
     <Screen noPadding>
       <View key="header">
@@ -66,12 +123,13 @@ const Home = (props) => {
             paddingBottom: hp(8),
             marginBottom: hp(1),
             justifyContent: 'flex-end',
-            transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }],
+            transform: [{scaleX: I18nManager.isRTL ? -1 : 1}],
           }}
           resizeMode="stretch"
           source={require('_assets/images/header.png')}>
           <Header {...props} />
         </ImageBackground>
+
         {/* <AppText>{t('hello')}</AppText>
         <AppText>{t('bye')}</AppText> */}
         {/* <Button onPress={() => navigate('Auth', { screen: AD_SCREEN })}>
@@ -97,8 +155,13 @@ const Home = (props) => {
 
       <View key="content" style={styles.container}>
         <Loader loading={isLoading} />
-        <View style={{ width: '100%', height: 200 }}>
-          <FlatListSlider />
+
+        <View style={styles.cContainer}>
+          <Carousel
+            pagination={Pagination}
+            renderItem={renderItem}
+            data={DATA}
+          />
         </View>
         <DashboardComponent
           data={ArabicBooksReducer.filter((book) => book.featured)}
@@ -152,7 +215,7 @@ const Home = (props) => {
         />
         <TitleBarWithIcon label={t('requestBook')} />
         <View style={styles.requestBooksBtns}>
-          <View style={{ width: wp(28) }}>
+          <View style={{width: wp(28)}}>
             <Button
               bold
               color={colors.white}
@@ -160,19 +223,19 @@ const Home = (props) => {
               secondary
               fontSize={13}
               onPress={() =>
-                navigate(REQUESTBOOKS_SCREEN, { book_type: 'random' })
+                navigate(REQUESTBOOKS_SCREEN, {book_type: 'random'})
               }>
               Request Book
             </Button>
           </View>
-          <View style={{ width: wp(58) }}>
+          <View style={{width: wp(58)}}>
             <Button
               // bold
               borderRadius={2}
               primary
               fontSize={13}
               onPress={() =>
-                navigate(REQUESTBOOKS_SCREEN, { book_type: 'educational' })
+                navigate(REQUESTBOOKS_SCREEN, {book_type: 'educational'})
               }>
               Request Educational Book
             </Button>
@@ -194,6 +257,41 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     paddingEnd: 10,
     paddingBottom: 20,
+  },
+  cContainer: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  cardContainer: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    width,
+    marginBottom: 30,
+  },
+  cardWrapper: {
+    borderRadius: 5,
+    overflow: 'hidden',
+  },
+  card: {
+    width: width * 0.9,
+    height: width * 0.5,
+  },
+  cornerLabel: {
+    position: 'absolute',
+    bottom: 0,
+    right: 0,
+    borderTopLeftRadius: 8,
+  },
+  cornerLabelText: {
+    fontSize: 12,
+    color: '#fff',
+    fontWeight: '600',
+    paddingLeft: 5,
+    paddingRight: 5,
+    paddingTop: 2,
+    paddingBottom: 2,
   },
 });
 export default Home;

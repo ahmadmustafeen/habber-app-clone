@@ -9,6 +9,7 @@ export const withoutDataActions = (type) => {
 };
 
 export const errorAction = (payload, type) => {
+  console.log('ERROR AT', type, payload);
   Alert.alert('Error', 'Something went wrong, contact admin');
   return {type, payload};
 };

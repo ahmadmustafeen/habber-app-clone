@@ -1,26 +1,34 @@
-import { BookListContainer, FilterChip } from '_components';
-import React, { useState } from 'react';
-import { ScrollView, StyleSheet, View, Text, Image, ImageBackground, I18nManager } from 'react-native';
+import {BookListContainer, FilterChip} from '_components';
+import React, {useState} from 'react';
+import {
+  ScrollView,
+  StyleSheet,
+  View,
+  Text,
+  Image,
+  ImageBackground,
+  I18nManager,
+} from 'react-native';
 import useFilter from 'utils/customHooks/useFilter';
-import { TitleBarWithIcon, Header } from '_components';
-import { setFilterHandler } from '../../helpers/Filter';
+import {TitleBarWithIcon, Header} from '_components';
+import {setFilterHandler} from '../../helpers/Filter';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-import { FilterModal } from '_containers/Filter';
-import { useTheme } from '@react-navigation/native';
-import { AppText } from 'components/common';
-import { Icon } from 'react-native-elements';
+import {FilterModal} from '_containers/Filter';
+import {useTheme} from '@react-navigation/native';
+import {AppText} from 'components/common';
+import {Icon} from 'react-native-elements';
 
 const BooksList = (props) => {
-  const [filter, setFilter] = useState([])
-  const { label, data, product_type } = props.route.params;
-  const { visible, toggleFilter } = useFilter();
+  const [filter, setFilter] = useState([]);
+  const {label, data, product_type} = props.route.params;
+  const {visible, toggleFilter} = useFilter();
   const [bookData, setBookData] = useState(data);
   const onApplyFilter = (item) => {
     // filter keys in UI should be displayed from ITEM array - Ahmad
-    setFilter([...item])
+    setFilter([...item]);
     toggleFilter();
     if (!item.length) {
       setBookData(data);
@@ -29,7 +37,7 @@ const BooksList = (props) => {
     let filtered = setFilterHandler(bookData, item);
     setBookData(filtered);
   };
-  const { colors } = useTheme()
+  const {colors} = useTheme();
   console.log(props.route.params);
   return (
     <ScrollView>
@@ -40,35 +48,36 @@ const BooksList = (props) => {
           paddingBottom: hp(8),
           marginBottom: hp(1),
           justifyContent: 'flex-end',
-          transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }],
+          transform: [{scaleX: I18nManager.isRTL ? -1 : 1}],
         }}
-        resizeMode='stretch'
+        resizeMode="stretch"
         source={require('_assets/images/header.png')}>
-
-        <Header {...props}
+        <Header
+          {...props}
           subheading
-          headerLeft={(
+          headerLeft={
             <Icon
               onPress={() => props.navigation.goBack()}
               color={colors.primary}
               name="leftcircleo"
               type="ant-design"
-            />)}
-          title={
-            `${label[0].toUpperCase()}${label.slice(1).toLowerCase()}`
-          } />
-
-
+            />
+          }
+          title={`${label[0].toUpperCase()}${label.slice(1).toLowerCase()}`}
+        />
       </ImageBackground>
 
-      <View >
-        {
-          product_type === 'book'
-          &&
-          <View style={{ width: wp(90), alignSelf: 'center' }}>
-            <TitleBarWithIcon label={label} noIcon filter onIconPress={toggleFilter} />
+      <View>
+        {product_type === 'book' && (
+          <View style={{width: wp(90), alignSelf: 'center'}}>
+            <TitleBarWithIcon
+              label={label}
+              noIcon
+              filter
+              onIconPress={toggleFilter}
+            />
           </View>
-        }
+        )}
 
         <FilterChip filter={filter} onIconPress={() => onApplyFilter()} />
         {/* <View style={styles.filterApply}>
@@ -90,7 +99,12 @@ const BooksList = (props) => {
         />
         {/* </View> */}
 
-        <FilterModal {...props} visible={visible} onToggle={toggleFilter} onApply={onApplyFilter} />
+        <FilterModal
+          {...props}
+          visible={visible}
+          onToggle={toggleFilter}
+          onApply={onApplyFilter}
+        />
       </View>
     </ScrollView>
   );
@@ -98,10 +112,10 @@ const BooksList = (props) => {
 const styles = StyleSheet.create({
   filterApply: {
     flexDirection: 'row',
-    alignSelf: "center",
-    flexWrap: "wrap",
+    alignSelf: 'center',
+    flexWrap: 'wrap',
     width: wp(90),
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   filterView: {
     flexDirection: 'row',
@@ -110,14 +124,12 @@ const styles = StyleSheet.create({
     marginVertical: hp(1),
     paddingVertical: 10,
     borderRadius: wp(10),
-    justifyContent: "center",
-    alignItems: 'center'
-  }
-  ,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   filterCross: {
-    position: "absolute",
-    right: 10
-  }
-
+    position: 'absolute',
+    right: 10,
+  },
 });
 export default BooksList;

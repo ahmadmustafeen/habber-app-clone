@@ -1,21 +1,37 @@
-import React, { useState } from 'react';
-import { validatePhone, validateEmail, validateIsTrue } from '_helpers/Validators';
-import { useDispatch } from 'react-redux';
-import { View, TextInput, StyleSheet, Alert, I18nManager, ImageBackground } from 'react-native';
-import { InputWithLabel, RadioButton, ModalScreen, Header } from '../../components';
-import { withDataActions } from '_redux/actions';
-import { Button, AppText } from '_components/common';
-import { JOIN_US } from '_assets/data/StaticData';
-import { JOINUS, REQUESTBOOKS } from '_constants/Screens';
-import { SUBMIT_JOIN_US } from 'redux/actionTypes';
+import React, {useState} from 'react';
+import {
+  validatePhone,
+  validateEmail,
+  validateIsTrue,
+} from '_helpers/Validators';
+import {useDispatch} from 'react-redux';
+import {
+  View,
+  TextInput,
+  StyleSheet,
+  Alert,
+  I18nManager,
+  ImageBackground,
+} from 'react-native';
+import {
+  InputWithLabel,
+  RadioButton,
+  ModalScreen,
+  Header,
+} from '../../components';
+import {withDataActions} from '_redux/actions';
+import {Button, AppText} from '_components/common';
+import {JOIN_US} from '_assets/data/StaticData';
+import {JOINUS, REQUESTBOOKS} from '_constants/Screens';
+import {SUBMIT_JOIN_US} from '_redux/actionTypes';
 import useModal from '_utils/customHooks/useModal';
-import { ScrollView } from 'react-native-gesture-handler';
+import {ScrollView} from 'react-native-gesture-handler';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 const JoinUs = (props) => {
-  const { visible, toggleModal } = useModal();
+  const {visible, toggleModal} = useModal();
   const dispatch = useDispatch();
   const [state, setState] = useState({
     name: '',
@@ -27,7 +43,7 @@ const JoinUs = (props) => {
     product_type: '',
   });
   const setStateHandler = (key, val) => {
-    setState({ ...state, [key]: val });
+    setState({...state, [key]: val});
   };
   const validate = () => {
     if (!state.name) {
@@ -43,30 +59,29 @@ const JoinUs = (props) => {
       Alert.alert('Invalid Phone Number');
       return false;
     }
-    validateIsTrue(state.details, "Details");
-    validateIsTrue(state.business_type, "Business Type");
-    validateIsTrue(state.product_type, "Product Type");
-    validateIsTrue(state.details, "Details");
-    return true
+    validateIsTrue(state.details, 'Details');
+    validateIsTrue(state.business_type, 'Business Type');
+    validateIsTrue(state.product_type, 'Product Type');
+    validateIsTrue(state.details, 'Details');
+    return true;
   };
   const businessTypeFunc = (id) => {
-    setStateHandler('business_type', id)
-  }
+    setStateHandler('business_type', id);
+  };
   const productTypeFunc = (id) => {
-    setStateHandler('product_type', id)
-  }
+    setStateHandler('product_type', id);
+  };
   const onContinue = () => {
-    toggleModal()
-    props.navigation.goBack()
-  }
+    toggleModal();
+    props.navigation.goBack();
+  };
   const onSubmit = () => {
-    console.log(validate())
+    console.log(validate());
     dispatch(withDataActions(state, SUBMIT_JOIN_US));
   };
-  const { navigate } = props.navigation;
+  const {navigate} = props.navigation;
   return (
-    <ScrollView >
-
+    <ScrollView>
       <ImageBackground
         style={{
           height: hp(21),
@@ -74,39 +89,52 @@ const JoinUs = (props) => {
           paddingBottom: hp(8),
           marginBottom: hp(1),
           justifyContent: 'flex-end',
-          transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }],
+          transform: [{scaleX: I18nManager.isRTL ? -1 : 1}],
         }}
-        resizeMode='stretch'
+        resizeMode="stretch"
         source={require('_assets/images/header.png')}>
-
         <Header {...props} title={'Join Us'} />
-
-
       </ImageBackground>
       <View key="content" style={styles.content}>
         <InputWithLabel
-          color={"black"}
-
+          color={'black'}
           style={styles.inputfield}
           placeholder="Name*"
           required
           value={state.name}
           onChangeText={(val) => setStateHandler('name', val)}
         />
-        <InputWithLabel placeholder="Email*" required
-          color={"black"}
+        <InputWithLabel
+          placeholder="Email*"
+          required
+          color={'black'}
           value={state.email}
           onChangeText={(val) => setStateHandler('email', val)}
         />
-        <InputWithLabel placeholder="Mobile Number*" required
-          color={"black"}
+        <InputWithLabel
+          placeholder="Mobile Number*"
+          required
+          color={'black'}
           value={state.phone}
-          onChangeText={(val) => setStateHandler('phone', val)} />
+          onChangeText={(val) => setStateHandler('phone', val)}
+        />
         <AppText style={styles.businesstype}>Select Business Type*</AppText>
         <View style={styles.row}>
-          <RadioButton title="Individual" business={state.business_type} onPress={() => businessTypeFunc("Individual")} />
-          <RadioButton title="Corporation" business={state.business_type} onPress={() => businessTypeFunc("Corporation")} />
-          <RadioButton title="Publishers" business={state.business_type} onPress={() => businessTypeFunc("Publishers")} />
+          <RadioButton
+            title="Individual"
+            business={state.business_type}
+            onPress={() => businessTypeFunc('Individual')}
+          />
+          <RadioButton
+            title="Corporation"
+            business={state.business_type}
+            onPress={() => businessTypeFunc('Corporation')}
+          />
+          <RadioButton
+            title="Publishers"
+            business={state.business_type}
+            onPress={() => businessTypeFunc('Publishers')}
+          />
         </View>
 
         <TextInput
@@ -121,8 +149,16 @@ const JoinUs = (props) => {
         />
         <AppText style={styles.businesstype}>Select Products Type*</AppText>
         <View style={styles.row}>
-          <RadioButton title="Books" business={state.product_type} onPress={() => productTypeFunc("Books")} />
-          <RadioButton title="Bookmarks" business={state.product_type} onPress={() => productTypeFunc("Bookmarks")} />
+          <RadioButton
+            title="Books"
+            business={state.product_type}
+            onPress={() => productTypeFunc('Books')}
+          />
+          <RadioButton
+            title="Bookmarks"
+            business={state.product_type}
+            onPress={() => productTypeFunc('Bookmarks')}
+          />
         </View>
       </View>
       <View key="footer">
@@ -135,7 +171,7 @@ const JoinUs = (props) => {
         onContinue={onContinue}
         {...JOIN_US.modalData}
       />
-    </ScrollView >
+    </ScrollView>
   );
 };
 
@@ -143,7 +179,7 @@ const styles = StyleSheet.create({
   content: {
     marginTop: 50,
     paddingHorizontal: 25,
-    marginTop: 20
+    marginTop: 20,
   },
   businesstype: {
     color: 'black',
@@ -162,8 +198,8 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    justifyContent: 'space-between'
-  }
+    justifyContent: 'space-between',
+  },
 });
 
 export default JoinUs;

@@ -1,44 +1,41 @@
-import React, { useEffect } from 'react';
-import { View, ScrollView, StyleSheet, Image, ImageBackground, I18nManager, FlatList } from 'react-native';
-import { AppText, Button, Screen } from '_components/common';
-import { ADD_NEW_ADDRESS, EDIT_PROFILE } from '_constants/Screens';
-import { HorizontalRow } from '_components/HorizontalRow';
-import { Header } from '_components/Header';
+import React, {useEffect} from 'react';
+import {
+  View,
+  ScrollView,
+  StyleSheet,
+  Image,
+  ImageBackground,
+  I18nManager,
+  FlatList,
+} from 'react-native';
+import {AppText, Button, Screen} from '_components/common';
+import {ADD_NEW_ADDRESS, EDIT_PROFILE} from '_constants/Screens';
+import {HorizontalRow} from '_components/HorizontalRow';
+import {Header} from '_components/Header';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 
 import Loader from 'components/Loader';
-import { checkIfLoading } from 'redux/selectors';
-import { useSelector, shallowEqual, useDispatch } from 'react-redux';
-import { AddressCard, } from '_components'
-import { FETCH_ADDRESS } from 'redux/actionTypes';
+import {checkIfLoading} from 'redux/selectors';
+import {useSelector, shallowEqual, useDispatch} from 'react-redux';
+import {AddressCard} from '_components';
+import {FETCH_ADDRESS} from 'redux/actionTypes';
 const MyAddressBook = (props) => {
-  const { navigate } = props.navigation;
+  const {navigate} = props.navigation;
 
-
-
-
-
-  const {
-    AddressReducer, isLoading
-  } = useSelector((state) => {
+  const {} = useSelector((state) => {
     return {
       AddressReducer: state.AddressReducer,
-      isLoading: checkIfLoading(
-        state,
-        FETCH_ADDRESS
-      )
-    }
+      isLoading: checkIfLoading(state, FETCH_ADDRESS),
+    };
   }, shallowEqual);
-  console.log(AddressReducer)
+  console.log(AddressReducer);
   // AddressReducer.entries((item) => item)
 
-
-
   const AddressComponent = (props) => {
-    console.log(props.item)
+    console.log(props.item);
     return (
       <>
         <AppText size={15} primary style={styles.spacebtwaddresses}>
@@ -48,11 +45,10 @@ const MyAddressBook = (props) => {
           {`${props.item.address_line1}${props.item.address_line2}`}
         </AppText>
       </>
-    )
-  }
+    );
+  };
   return (
     <Screen noPadding>
-
       <View key="header">
         <ImageBackground
           style={{
@@ -61,14 +57,11 @@ const MyAddressBook = (props) => {
             paddingBottom: hp(8),
             marginBottom: hp(1),
             justifyContent: 'flex-end',
-            transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }],
+            transform: [{scaleX: I18nManager.isRTL ? -1 : 1}],
           }}
-          resizeMode='stretch'
+          resizeMode="stretch"
           source={require('_assets/images/header.png')}>
-
           <Header {...props} title={'My Address Book'} />
-
-
         </ImageBackground>
       </View>
       <View key="content">
@@ -89,9 +82,7 @@ Khaled.Ammar@gmail.com`}
             center
             appColor
             onPress={() => navigate(EDIT_PROFILE)}
-            style={styles.editbtn}>
-
-          </AppText>
+            style={styles.editbtn}></AppText>
         </View>
         <HorizontalRow />
         <View style={styles.addressbookview}>
@@ -101,19 +92,18 @@ Khaled.Ammar@gmail.com`}
             </AppText>
             <HorizontalRow />
 
-
             <FlatList
               showsHorizontalScrollIndicator={false}
               vertical
               data={AddressReducer}
               keyExtractor={(item, index) => index.toString() + item}
-              renderItem={(item) => (<AddressCard item={item.item} />)}
+              renderItem={(item) => <AddressCard item={item.item} />}
               ListEmptyComponent={() => (
                 <View>
                   <AppText>No Address Available</AppText>
                 </View>
               )}
-              ListFooterComponent={() => <View style={{ paddingBottom: 50 }} />}
+              ListFooterComponent={() => <View style={{paddingBottom: 50}} />}
             />
           </View>
           <Button
@@ -123,9 +113,8 @@ Khaled.Ammar@gmail.com`}
             ADD NEW ADDRESS
           </Button>
         </View>
-      </View >
-    </Screen >
-
+      </View>
+    </Screen>
   );
 };
 

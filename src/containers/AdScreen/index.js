@@ -2,8 +2,8 @@ import {useTheme} from '@react-navigation/native';
 import React, {useState} from 'react';
 import {View, TouchableOpacity} from 'react-native';
 import {useDispatch} from 'react-redux';
-import {withoutDataActions} from 'redux/actions';
-import {SKIP_AD} from 'redux/actionTypes';
+import {withoutDataActions} from '_redux/actions';
+import {SKIP_AD} from '_redux/actionTypes';
 import {AppText, BackgroundImage} from '_components/common';
 
 const AdScreen = (props) => {
