@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 
 import {
   View,
@@ -7,9 +7,11 @@ import {
   I18nManager,
   Dimensions,
   Image,
+  TouchableOpacity,
 } from 'react-native';
-import {useTranslation} from 'react-i18next';
-import Carousel, {Pagination} from 'react-native-x-carousel';
+import { useTranslation } from 'react-i18next';
+import Carousel, { Pagination } from 'react-native-x-carousel';
+import { CustomPagination } from '_components/CustomPagination';
 
 import {
   DashboardComponent,
@@ -18,18 +20,18 @@ import {
   TitleBarWithIcon,
   Header,
 } from '_components';
-import {REQUESTBOOKS_SCREEN, BOOKLIST_SCREEN} from '_constants/Screens';
-import {sliderImages} from './dummydata';
-import {ThumbnailBook} from '_components/ThumbnailBook';
-import {Button, Screen} from '_components/common';
-import {FlatListSlider} from '_components';
-import {shallowEqual, useDispatch, useSelector} from 'react-redux';
-import {useTheme} from '@react-navigation/native';
+import { REQUESTBOOKS_SCREEN, BOOKLIST_SCREEN } from '_constants/Screens';
+import { sliderImages } from './dummydata';
+import { ThumbnailBook } from '_components/ThumbnailBook';
+import { Button, Screen } from '_components/common';
+import { FlatListSlider } from '_components';
+import { shallowEqual, useDispatch, useSelector } from 'react-redux';
+import { useTheme } from '@react-navigation/native';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-import {checkIfLoading} from '_redux/selectors';
+import { checkIfLoading } from '_redux/selectors';
 import {
   FETCH_ARABIC_BOOKS,
   FETCH_BOOKCLUBS,
@@ -37,14 +39,15 @@ import {
   FETCH_ENGLISH_BOOKS,
 } from '_redux/actionTypes';
 import Loader from '_components/Loader';
-import {withoutDataActions} from 'redux/actions';
-import {AppText} from 'components/common';
-const {width} = Dimensions.get('window');
+import { withoutDataActions } from 'redux/actions';
+import { AppText } from 'components/common';
+import { Icon } from 'react-native-elements';
+const { width } = Dimensions.get('window');
 const Home = (props) => {
-  const {navigate} = props.navigation;
+  const { navigate } = props.navigation;
   const [images] = useState(sliderImages);
 
-  const {t} = useTranslation();
+  const { t } = useTranslation();
   const {
     EnglishBooksReducer,
     ArabicBooksReducer,
@@ -67,7 +70,7 @@ const Home = (props) => {
     };
   }, shallowEqual);
   const dispatch = useDispatch();
-  const {colors} = useTheme();
+  const { colors } = useTheme();
   console.log('IS LOADING  . . . ', isLoading);
 
   const DATA = [
@@ -98,12 +101,26 @@ const Home = (props) => {
   ];
   const renderItem = (data) => (
     <View key={data.coverImageUri} style={styles.cardContainer}>
+      <View style={{ zIndex: 5, width: wp(80), alignSelf: 'center', justifyContent: 'space-between', flexDirection: 'row', position: 'absolute', top: hp(2.5), }}>
+        <Icon
+          color={"white"}
+          size={17}
+          name="left"
+          type="ant-design"
+        />
+        <Icon
+          color={"white"}
+          size={17}
+          name="right"
+          type="ant-design"
+        />
+      </View>
       <View style={styles.cardWrapper}>
-        <Image style={styles.card} source={{uri: data.coverImageUri}} />
+        <Image style={styles.card} source={{ uri: data.coverImageUri }} />
         <View
           style={[
             styles.cornerLabel,
-            {backgroundColor: data.cornerLabelColor},
+            { backgroundColor: data.cornerLabelColor },
           ]}>
           <AppText style={styles.cornerLabelText}>
             {data.cornerLabelText}
@@ -113,7 +130,10 @@ const Home = (props) => {
     </View>
   );
 
+
   return (
+
+
     <Screen noPadding>
       <View key="header">
         <ImageBackground
@@ -123,7 +143,7 @@ const Home = (props) => {
             paddingBottom: hp(8),
             marginBottom: hp(1),
             justifyContent: 'flex-end',
-            transform: [{scaleX: I18nManager.isRTL ? -1 : 1}],
+            transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }],
           }}
           resizeMode="stretch"
           source={require('_assets/images/header.png')}>
@@ -154,11 +174,13 @@ const Home = (props) => {
       </View>
 
       <View key="content" style={styles.container}>
+
+
         <Loader loading={isLoading} />
 
         <View style={styles.cContainer}>
           <Carousel
-            pagination={Pagination}
+            pagination={CustomPagination}
             renderItem={renderItem}
             data={DATA}
           />
@@ -215,7 +237,7 @@ const Home = (props) => {
         />
         <TitleBarWithIcon label={t('requestBook')} noIcon />
         <View style={styles.requestBooksBtns}>
-          <View style={{width: wp(28)}}>
+          <View style={{ width: wp(28) }}>
             <Button
               bold
               color={colors.white}
@@ -223,19 +245,19 @@ const Home = (props) => {
               secondary
               fontSize={13}
               onPress={() =>
-                navigate(REQUESTBOOKS_SCREEN, {book_type: 'random'})
+                navigate(REQUESTBOOKS_SCREEN, { book_type: 'random' })
               }>
               Request Book
             </Button>
           </View>
-          <View style={{width: wp(58)}}>
+          <View style={{ width: wp(58) }}>
             <Button
               // bold
               borderRadius={2}
               primary
               fontSize={13}
               onPress={() =>
-                navigate(REQUESTBOOKS_SCREEN, {book_type: 'educational'})
+                navigate(REQUESTBOOKS_SCREEN, { book_type: 'educational' })
               }>
               Request Educational Book
             </Button>
@@ -243,6 +265,7 @@ const Home = (props) => {
         </View>
       </View>
     </Screen>
+
   );
 };
 const styles = StyleSheet.create({
