@@ -11,12 +11,14 @@ export function* SearchBooksSaga({ type, payload }) {
     const response = yield call(() =>
       RestClient.post(API_ENDPOINTS.booksSearch, payload),
     );
-    const {
-      data, res, message, status
-    } = response;
     if (response.problem === NETWORK_ERROR) {
       return yield put({ type: SHOW_NETWORK_MODAL });
     }
+    const {
+      data: { data: res, message },
+      status,
+    } = response;
+
     console.log('SearchBooksSaga  Response . . . .  .', res);
     if (status !== 200) {
       yield put({ type: SEARCH_BOOKS_FAILURE, error });

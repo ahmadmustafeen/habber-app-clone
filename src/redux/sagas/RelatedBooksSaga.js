@@ -15,10 +15,11 @@ export function* RelatedBooksSaga({ type, payload }) {
     const response = yield call(() =>
       RestClient.get(`${API_ENDPOINTS.relatedBooks}/${payload.product_id}`),
     );
-    const { status, data, message } = response;
     if (response.problem === NETWORK_ERROR) {
       return yield put({ type: SHOW_NETWORK_MODAL });
     }
+    const { status, data, message } = response;
+
     console.log('Related Books Saga Response . . . .  .', data.data);
     if (status === 200) {
       yield put({ type: FETCH_RELATED_BOOKS_SUCCESS, payload: data.data });

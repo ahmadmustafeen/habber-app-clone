@@ -16,7 +16,8 @@ const ModalScreen = ({
   buttonLabel,
   visible,
   onContinue,
-  colors, forgetPassword
+  colors, forgetPassword,
+  loading
 },
 ) => {
   console.log("CC", colors)
@@ -64,7 +65,7 @@ const ModalScreen = ({
             </AppText>
           </View>
           <View key="footer">
-            <Button background={colors && colors.primary} color="white" onPress={onContinue}>
+            <Button background={colors && colors.primary} color="white" onPress={onContinue} loading={loading}>
               {buttonLabel}
             </Button>
           </View>

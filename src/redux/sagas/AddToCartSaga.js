@@ -28,12 +28,13 @@ export function* AddToCartSaga({ type, payload }) {
       total_price: CartReducer.total_price,
     };
     const response = yield call(() => RestClient.post(API_ENDPOINTS.cart, obj));
-    const {
-      data, status
-    } = response;
     if (response.problem === NETWORK_ERROR) {
       return yield put({ type: SHOW_NETWORK_MODAL });
     }
+    const {
+      data: { data: res, message, status },
+    } = response;
+
     console.log('CartSAGA  Response . . . .  .', response);
     if (status) {
       yield all([

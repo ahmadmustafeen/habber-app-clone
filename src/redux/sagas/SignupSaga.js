@@ -18,10 +18,11 @@ export function* signupSaga({ payload }) {
         language_id: userProfile.language.id,
       }),
     );
-    const { status, data } = response;
     if (response.problem === NETWORK_ERROR) {
       return yield put({ type: SHOW_NETWORK_MODAL });
     }
+    const { status, data } = response;
+
     if (status === 200) {
       yield put({ type: SIGN_UP_SUCCESS });
       yield put({ type: SHOW_MODAL });

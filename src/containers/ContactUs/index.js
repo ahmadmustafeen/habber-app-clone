@@ -2,15 +2,27 @@ import { validatePhone, validateEmail } from '_helpers/Validators';
 import React, { useState } from 'react';
 import { View, TextInput, StyleSheet, Alert, ImageBackground, I18nManager } from 'react-native';
 import { useDispatch } from 'react-redux';
+import { JOIN_US } from '_assets/data/StaticData';
 import { withDataActions } from '_redux/actions';
 import { SUBMIT_CONTACT_US } from '_redux/actionTypes';
-import { InputWithLabel, Header } from '../../components';
+import useModal from '_utils/customHooks/useModal';
+
+import {
+  ModalScreen,
+  InputWithLabel,
+  Header
+} from '../../components';
 import { Button, Screen } from '../../components/common';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 const ContactUs = (props) => {
+  const { visible, toggleModal } = useModal();
+  const onContinue = () => {
+    toggleModal();
+    props.navigation.goBack();
+  };
   const dispatch = useDispatch();
   const [state, setState] = useState({
     name: '',
@@ -96,12 +108,18 @@ const ContactUs = (props) => {
             value={state.message}
             onChangeText={(val) => setStateHandler('message', val)}
           />
+          <ModalScreen
+            visible={visible}
+            onContinue={onContinue}
+            {...JOIN_US.modalData}
+          />
         </View>
         <View key="footer">
           <Button color="white" onPress={onSubmit}>
             Submit
           </Button>
         </View>
+
       </Screen>
     </View>
   );

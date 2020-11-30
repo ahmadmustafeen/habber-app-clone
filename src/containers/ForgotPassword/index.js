@@ -1,12 +1,17 @@
 import React, { useState, useRef } from 'react';
-import { View, StyleSheet, Image } from 'react-native';
+import { View, StyleSheet, Image, Alert } from 'react-native';
 // import {forgotPassword} from '_assets/data/StaticData';
 import { InputWithLabel, ModalScreen, AuthHeader } from '_components';
 import { AppText, BackgroundImage, Button } from '_components/common';
 import { useTranslation } from 'react-i18next';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector, shallowEqual } from 'react-redux';
 import { FORGOT_PASSWORD } from '_redux/actionTypes';
 import { withDataActions } from '_redux/actions';
+import { checkIfLoading } from '_redux/selectors';
+
+import {
+  validateEmail,
+} from '_helpers/Validators';
 import useModal from '_utils/customHooks/useModal';
 const ForgotPassword = (props) => {
   const dispatch = useDispatch();
@@ -17,9 +22,26 @@ const ForgotPassword = (props) => {
   const [email, setEmail] = useState('');
 
   const onSubmit = () => {
-    dispatch(withDataActions(email, FORGOT_PASSWORD));
+    (!validateEmail(email)) ? Alert.alert("Invalid Email") :
+      dispatch(withDataActions(email, FORGOT_PASSWORD));
   };
+  const onContinue = () => {
+    toggleModal()
 
+    props.navigation.goBack();
+  }
+
+
+  const {
+    isLoading,
+  } = useSelector((state) => {
+    return {
+      isLoading: checkIfLoading(
+        state,
+        FORGOT_PASSWORD,
+      ),
+    };
+  }, shallowEqual);
   return (
     <BackgroundImage>
       <View key="header">
@@ -44,14 +66,15 @@ const ForgotPassword = (props) => {
         />
       </View>
       <View key="footer">
-        <Button onPress={onSubmit}>{t('resetPassword')}</Button>
+        <Button onPress={onSubmit} loading={isLoading}>{t('resetPassword')}</Button>
         <ModalScreen
           forgetPassword
           visible={visible}
-          onContinue={toggleModal}
+          onContinue={onContinue}
           heading={t('modal_heading')}
           description={t('modal_description')}
           buttonLabel={t('modal_button_label')}
+
         />
       </View>
     </BackgroundImage>

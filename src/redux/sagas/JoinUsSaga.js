@@ -15,13 +15,12 @@ export function* JoinUsSaga({ type, payload }) {
     const response = yield call(() =>
       RestClient.post(API_ENDPOINTS.joinus, payload),
     );
-    const {
-      data, res, message, status,
-    } = response;
-    console.log("response", response)
     if (response.problem === NETWORK_ERROR) {
       return yield put({ type: SHOW_NETWORK_MODAL });
     }
+    const {
+      data, res, message, status,
+    } = response;
     console.log('JoinUsSaga  Response . . . .  .', response);
     if (status !== 200) {
       yield put({ type: SUBMIT_JOIN_US_FAILURE, error });

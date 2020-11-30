@@ -16,12 +16,14 @@ import {
   SKIP_AD,
   FETCH_SITE_DETAILS,
 } from '_redux/actionTypes';
-import { HOME } from 'constants/Screens';
 
 
 export function* splashSaga() {
   try {
     const response = yield call(() => RestClient.get(API_ENDPOINTS.ads));
+    if (response.status === 521) {
+      return Alert.alert("SErver os dowm")
+    }
     yield put({ type: FETCH_ENGLISH_BOOKS });
     yield put({ type: FETCH_ARABIC_BOOKS });
     yield put({ type: FETCH_BOOKCLUBS });
@@ -34,6 +36,8 @@ export function* splashSaga() {
       yield put({ type: SHOW_NETWORK_MODAL });
       return;
     }
+    console.log("splasghasgaerps", response);
+
     const {
       status,
       data: { data: res, message },

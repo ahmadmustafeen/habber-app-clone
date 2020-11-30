@@ -6,6 +6,8 @@ import { RestClient } from '_network/RestClient';
 import {
   SUBMIT_CONTACT_US_FAILURE,
   SUBMIT_CONTACT_US_SUCCESS,
+  SHOW_MODAL
+
 } from '_redux/actionTypes';
 
 import { NETWORK_ERROR, SHOW_NETWORK_MODAL } from 'redux/actionTypes';
@@ -15,16 +17,23 @@ export function* contactUsSaga({ type, payload }) {
     const response = yield call(() =>
       RestClient.post(API_ENDPOINTS.contactus, payload),
     );
-    const {
-      data, res, message, status
-    } = response;
+
+
     if (response.problem === NETWORK_ERROR) {
       return yield put({ type: SHOW_NETWORK_MODAL });
     }
-    console.log('contactUsSaga  Response . . . .  .', response);
-    if (status === 200) {
+
+    const {
+      data: { data: res, message, status },
+    } = response;
+
+
+
+    if (status) {
       Alert.alert('Success', message);
       yield put({ type: SUBMIT_CONTACT_US_SUCCESS, payload: null });
+
+      yield put({ type: SHOW_MODAL, payload: null });
     }
   } catch (error) {
     yield put({ type: SUBMIT_CONTACT_US_FAILURE, error });

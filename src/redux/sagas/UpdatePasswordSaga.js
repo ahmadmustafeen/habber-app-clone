@@ -17,11 +17,13 @@ export function* UpdatePasswordSaga({ type, payload }) {
     const response = yield call(() =>
       RestClient.post(API_ENDPOINTS.updatepassword, payload),
     );
-    const { status, data, message } = response;
+
 
     if (response.problem === NETWORK_ERROR) {
       return yield put({ type: SHOW_NETWORK_MODAL });
     }
+    const { status, data, message } = response;
+
     console.log(response)
     if (status === 200) {
       yield put({ type: UPDATE_PASSWORD_SUCCESS, payload: data });

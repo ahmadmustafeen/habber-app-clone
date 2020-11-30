@@ -26,12 +26,12 @@ export function* PostToFavouriteSaga({ type, payload }) {
         ? RestClient.post(API_ENDPOINTS.favourites, payload)
         : RestClient.delete(API_ENDPOINTS.favourites, payload),
     );
-    const {
-      data: { data: res, message, status },
-    } = response;
     if (response.problem === NETWORK_ERROR) {
       return yield put({ type: SHOW_NETWORK_MODAL });
     }
+    const {
+      data: { data: res, message, status },
+    } = response;
     console.log('AddToFavouriteSaga  Response . . . .  .', response);
     if (status) {
       yield all([

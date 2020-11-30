@@ -15,10 +15,10 @@ export function* FetchFavouriteSaga({ type }) {
     const response = yield call(() =>
       RestClient.get(API_ENDPOINTS.favourites),
     );
-    const { status, data, message } = response;
     if (response.problem === NETWORK_ERROR) {
       return yield put({ type: SHOW_NETWORK_MODAL });
     }
+    const { status, data, message } = response;
     console.log('Fetch Favourite Saga Response . . . .  .', response);
     if (status !== 200) {
       yield put({ type: FETCH_USER_FAVOURITE_FAILURE });

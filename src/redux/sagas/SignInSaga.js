@@ -18,13 +18,14 @@ export function* signinSaga({ payload }) {
         password,
       }),
     );
+    if (response.problem === NETWORK_ERROR) {
+      return yield put({ type: SHOW_NETWORK_MODAL });
+    }
     const {
       status,
       data: { data: res, message, success },
     } = response;
-    if (response.problem === NETWORK_ERROR) {
-      return yield put({ type: SHOW_NETWORK_MODAL });
-    }
+
     if (success) {
       yield setItem('@userProfile', JSON.stringify(res));
       RestClient.setHeader('Authorization', `Bearer ${res.token}`);
