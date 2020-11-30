@@ -10,8 +10,8 @@ import {AuthNav} from './AuthNav';
 import DrawerMenu from '../containers/DrawerMenu';
 import {DashboardNav} from './DashboardNav';
 import {shallowEqual, useSelector} from 'react-redux';
-import {AD_SCREEN} from '_constants/Screens';
-import AdScreen from '_containers/AdScreen';
+import {AD_SCREEN} from '../constants/Screens';
+import AdScreen from '../containers/AdScreen';
 
 const Drawer = createDrawerNavigator();
 const RootStack = createStackNavigator();
