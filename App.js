@@ -19,9 +19,9 @@ const App = () => {
         colors={Color}
         visible={network}
         onContinue={toggleModal}
-        heading='Network Error'
-        description='Kindly check your network and try again'
-        buttonLabel='Check your Network'
+        heading='No Internet'
+        description='Oops! Internet Failed, Please Retry'
+        buttonLabel='Retry'
       />
       {/* <OfflineNotice /> */}
     </View>
