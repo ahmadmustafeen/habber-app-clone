@@ -15,6 +15,7 @@ const App = () => {
       <StatusBar barStyle="light-content" />
       <Navigator ref={navigationRef} />
       <ModalScreen
+        image={require("./src/assets/images/nointernet.png")}
         colors={Color}
         visible={network}
         onContinue={toggleModal}

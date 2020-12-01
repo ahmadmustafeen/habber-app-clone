@@ -11,7 +11,7 @@ import { BookClub } from './BookClub';
 
 const BookListContainer = (props) => {
   const { data, navigation, product_type, numColumns } = props;
-  console.log(product_type);
+  // console.log(product_type);
   const { colors } = useTheme();
   return (
     <FlatList

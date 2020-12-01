@@ -17,7 +17,8 @@ const ModalScreen = ({
   visible,
   onContinue,
   colors, forgetPassword,
-  loading
+  loading,
+  image
 },
 ) => {
   console.log("CC", colors)
@@ -30,8 +31,9 @@ const ModalScreen = ({
             key="content"
             style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
 
-            {forgetPassword ? <Image
-              source={require("../assets/images/forgetPassword.png")}
+            {image ? <Image
+              // source={require("../assets/images/forgetPassword.png")}
+              source={image}
               style={{ marginRight: wp(3) }}
 
             /> :

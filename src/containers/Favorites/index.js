@@ -8,8 +8,88 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
+import { useSelector, shallowEqual } from 'react-redux';
+
+
+const Book = (props) => {
+  console.log(props)
+
+  return (
+    <>
+      <View style={styles.profiletop}>
+        <View style={styles.imgContainer}>
+          <Image
+            style={styles.image}
+            source={{ uri: props.item.image }}
+          />
+        </View>
+
+        <View style={styles.viewtxt}>
+          <AppText bold size={17} style={styles.txt}>
+            {props.item.title}
+          </AppText>
+          <AppText bold size={13} style={[styles.txt, styles.author]}>
+            {props.item.author_name}
+          </AppText>
+          <AppText bold size={17} style={styles.pricetxt}>
+            Price:  {props.item.price} KW
+      </AppText>
+          <Button
+            bold
+            fontSize={15}
+            primary
+            color="black"
+            style={styles.pricetxt}
+            onPress={() => props.navigation.navigate(CART_SCREEN)}
+            round>
+            Add To Cart
+      </Button>
+          <HorizontalRow
+            style={{
+              borderColor: 'rgb(200,200,200)',
+              borderWidth: 1,
+              marginVertical: hp(2),
+            }}
+          />
+          <View
+            style={{
+              justifyContent: 'flex-start',
+              alignItems: 'center',
+              flexDirection: 'row',
+            }}>
+            <Icon
+              containerStyle={{ paddingRight: wp(5) }}
+              size={22}
+              color='black'
+              name='trash-o'
+              type='font-awesome'
+            />
+            <AppText bold size={17} primary style={styles.txt}>
+              Remove
+        </AppText>
+          </View>
+        </View>
+      </View>
+      <HorizontalRow style={{ borderColor: 'rgb(200,200,200)', borderWidth: 1, marginVertical: hp(2), }} />
+    </>
+  )
+}
+
+
+
 
 const Favorites = (props) => {
+  const {
+    FavouriteReducer, ArabicBooksReducer, EnglishBooksReducer
+  } = useSelector((state) => {
+    return {
+      FavouriteReducer: state.FavouriteReducer,
+      ArabicBooksReducer: state.ArabicBooksReducer,
+      EnglishBooksReducer: state.EnglishBooksReducer,
+    }
+  }, shallowEqual
+  )
+  console.log("FR", ArabicBooksReducer);
   return (
     <Screen noPadding>
       <View key="header">
@@ -31,69 +111,33 @@ const Favorites = (props) => {
         </ImageBackground>
       </View>
       <View key="content" style={{ width: wp(90), alignSelf: 'center' }}>
-        <View style={styles.profiletop}>
-          <View style={styles.imgContainer}>
-            <Image
-              style={styles.image}
-              source={require('../../assets/images/background.jpg')}
-            />
-          </View>
 
-          <View style={styles.viewtxt}>
-            <AppText bold size={17} style={styles.txt}>
-              A Brief History of time
-            </AppText>
-            <AppText bold size={13} style={[styles.txt, styles.author]}>
-              by brom
-            </AppText>
-            <AppText bold size={17} style={styles.pricetxt}>
-              Price: 30 KW
-            </AppText>
-            <Button
-              bold
-              fontSize={15}
-              primary
-              color="black"
-              style={styles.pricetxt}
-              onPress={() => props.navigation.navigate(CART_SCREEN)}
-              round>
-              Add To Cart
-            </Button>
-            <HorizontalRow
-              style={{
-                borderColor: 'rgb(200,200,200)',
-                borderWidth: 1,
-                marginVertical: hp(2),
-              }}
-            />
-            <View
-              style={{
-                justifyContent: 'flex-start',
-                alignItems: 'center',
-                flexDirection: 'row',
-              }}>
-              <Icon
-                containerStyle={{ paddingRight: wp(5) }}
-                size={15}
-                color={'black'}
-                name={'trash-o'}
-                type={'fontawesome'}
-              />
-              <AppText bold size={17} primary style={styles.txt}>
-                Remove
-              </AppText>
-            </View>
-          </View>
-        </View>
-        <HorizontalRow
-          style={{
-            borderColor: 'rgb(200,200,200)',
-            borderWidth: 1,
-            marginVertical: hp(2),
-          }}
-        />
+        {/* {Object.values(FavouriteReducer)
+          .filter((key) => Array.isArray(key))
+          .map((product_type) =>
+            product_type.map((product) => {
+              console.log(product)
+            }))
+        } */}
+
+        {FavouriteReducer.book.map((item) => {
+          console.log(item)
+          var bookdetail = ("adsasd", EnglishBooksReducer.filter(e => e.id === item.product_id));
+          console.log(bookdetail);
+          return (
+            <Book item={{ picture: bookdetail.image, title: bookdetail.title, author: bookdetail, price: "ASDa" }} />
+          )
+
+          // console.logfilter((item) => ArabicBookListRe00))
+
+
+        }
+        )
+        }
+
+        {/* <Book item={{ picture: "../../assets/images/background.jpg", title: "#$@", author: "ADSAS", price: "ASDa" }} /> */}
       </View>
-    </Screen>
+    </Screen >
   );
 };
 

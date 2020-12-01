@@ -1,10 +1,10 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import {
   validatePhone,
   validateEmail,
   validateIsTrue,
 } from '_helpers/Validators';
-import {useDispatch} from 'react-redux';
+import { useDispatch } from 'react-redux';
 import {
   View,
   TextInput,
@@ -19,19 +19,19 @@ import {
   ModalScreen,
   Header,
 } from '../../components';
-import {withDataActions} from '_redux/actions';
-import {Button, AppText} from '_components/common';
-import {JOIN_US} from '_assets/data/StaticData';
-import {JOINUS, REQUESTBOOKS} from '_constants/Screens';
-import {SUBMIT_JOIN_US} from '_redux/actionTypes';
+import { withDataActions } from '_redux/actions';
+import { Button, AppText } from '_components/common';
+import { JOIN_US } from '_assets/data/StaticData';
+import { JOINUS, REQUESTBOOKS } from '_constants/Screens';
+import { SUBMIT_JOIN_US } from '_redux/actionTypes';
 import useModal from '_utils/customHooks/useModal';
-import {ScrollView} from 'react-native-gesture-handler';
+import { ScrollView } from 'react-native-gesture-handler';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 const JoinUs = (props) => {
-  const {visible, toggleModal} = useModal();
+  const { visible, toggleModal } = useModal();
   const dispatch = useDispatch();
   const [state, setState] = useState({
     name: '',
@@ -43,7 +43,7 @@ const JoinUs = (props) => {
     product_type: '',
   });
   const setStateHandler = (key, val) => {
-    setState({...state, [key]: val});
+    setState({ ...state, [key]: val });
   };
   const validate = () => {
     if (!state.name) {
@@ -62,7 +62,7 @@ const JoinUs = (props) => {
     validateIsTrue(state.details, 'Details');
     validateIsTrue(state.business_type, 'Business Type');
     validateIsTrue(state.product_type, 'Product Type');
-    validateIsTrue(state.details, 'Details');
+
     return true;
   };
   const businessTypeFunc = (id) => {
@@ -79,7 +79,7 @@ const JoinUs = (props) => {
     console.log(validate());
     dispatch(withDataActions(state, SUBMIT_JOIN_US));
   };
-  const {navigate} = props.navigation;
+  const { navigate } = props.navigation;
   return (
     <ScrollView>
       <ImageBackground
@@ -89,7 +89,7 @@ const JoinUs = (props) => {
           paddingBottom: hp(8),
           marginBottom: hp(1),
           justifyContent: 'flex-end',
-          transform: [{scaleX: I18nManager.isRTL ? -1 : 1}],
+          transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }],
         }}
         resizeMode="stretch"
         source={require('_assets/images/header.png')}>
@@ -118,23 +118,26 @@ const JoinUs = (props) => {
           value={state.phone}
           onChangeText={(val) => setStateHandler('phone', val)}
         />
-        <AppText style={styles.businesstype}>Select Business Type*</AppText>
-        <View style={styles.row}>
-          <RadioButton
-            title="Individual"
-            business={state.business_type}
-            onPress={() => businessTypeFunc('Individual')}
-          />
-          <RadioButton
-            title="Corporation"
-            business={state.business_type}
-            onPress={() => businessTypeFunc('Corporation')}
-          />
-          <RadioButton
-            title="Publishers"
-            business={state.business_type}
-            onPress={() => businessTypeFunc('Publishers')}
-          />
+        <View style={{ padding: wp(4) }}>
+          <AppText style={styles.businesstype}>Select Business Type*</AppText>
+          <View style={styles.row}>
+            <RadioButton
+              title="Individual"
+              selected={state.business_type === 'Individual'}
+              onPress={() => businessTypeFunc('Individual')}
+            />
+            <RadioButton
+              title="Corporation"
+              selected={state.business_type === 'Corporation'}
+              onPress={() => businessTypeFunc('Corporation')}
+            />
+            <RadioButton
+              title="Publishers"
+              selected={state.business_type === 'Publishers'}
+              onPress={() => businessTypeFunc('Publishers')}
+            />
+          </View>
+
         </View>
 
         <TextInput
@@ -147,24 +150,32 @@ const JoinUs = (props) => {
           value={state.details}
           onChangeText={(val) => setStateHandler('details', val)}
         />
-        <AppText style={styles.businesstype}>Select Products Type*</AppText>
-        <View style={styles.row}>
-          <RadioButton
-            title="Books"
-            business={state.product_type}
-            onPress={() => productTypeFunc('Books')}
-          />
-          <RadioButton
-            title="Bookmarks"
-            business={state.product_type}
-            onPress={() => productTypeFunc('Bookmarks')}
-          />
+        <View style={{ padding: wp(4) }}>
+          <AppText style={styles.businesstype}>Select Products Type*</AppText>
+          <View style={styles.row}>
+            <RadioButton
+              title="Books"
+              selected={state.product_type === 'Books'}
+              onPress={() => productTypeFunc('Books')}
+            />
+            <RadioButton
+              title="Bookmarks"
+
+              selected={state.product_type === 'Bookmarks'}
+              onPress={() => productTypeFunc('Bookmarks')}
+            />
+          </View>
         </View>
       </View>
       <View key="footer">
-        <Button color="white" onPress={() => onSubmit()}>
-          Submit
+        <View>
+          <View style={{ width: wp(80), alignSelf: 'center' }}>
+            <Button bold color="white" onPress={() => onSubmit()}>
+              Submit
         </Button>
+          </View>
+
+        </View>
       </View>
       <ModalScreen
         visible={visible}
@@ -184,7 +195,7 @@ const styles = StyleSheet.create({
   businesstype: {
     color: 'black',
     fontSize: 18,
-    marginLeft: 10,
+    marginLeft: wp(1),
   },
   textArea: {
     height: 150,
@@ -193,9 +204,10 @@ const styles = StyleSheet.create({
     borderWidth: 3,
     marginVertical: 20,
     textAlignVertical: 'top',
-    padding: 10,
+    // padding: 10,
   },
   row: {
+    // width: wp(),
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-between',

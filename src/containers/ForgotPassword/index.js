@@ -69,6 +69,7 @@ const ForgotPassword = (props) => {
         <Button onPress={onSubmit} loading={isLoading}>{t('resetPassword')}</Button>
         <ModalScreen
           forgetPassword
+          image={require("../../assets/images/forgetPassword.png")}
           visible={visible}
           onContinue={onContinue}
           heading={t('modal_heading')}

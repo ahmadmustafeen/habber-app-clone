@@ -40,7 +40,7 @@ const TitleBarWithIcon = (props) => {
 
     }
   }
-  console.log("selected", filter)
+  // console.log("selected", filter)
   return (
     <TouchableOpacity onPress={onIconPress}>
       <View

@@ -16,6 +16,7 @@ import AddressReducer from './AddressReducer';
 import UIReducer from './UIReducer';
 import OrderReducer from './OrderReducer';
 import FetchCurrencyReducer from "./FetchCurrencyReducer";
+// import FetchFavouriteReducer from "./FetchFavouriteReducer";
 export default combineReducers({
   ModalReducer,
   LoadingReducer,
@@ -33,5 +34,6 @@ export default combineReducers({
   AddressReducer,
   UIReducer,
   OrderReducer,
-  FetchCurrencyReducer
+  FetchCurrencyReducer,
+  // FetchFavouriteReducer,
 });

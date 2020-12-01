@@ -14,7 +14,7 @@ const Header = (props) => {
   const { CartReducer } = useSelector((state) => ({
     CartReducer: state.CartReducer,
   }), shallowEqual);
-  console.log("header cart", CartReducer)
+  // console.log("header cart", CartReducer)
   const { colors } = useTheme();
   const {
     navigation,

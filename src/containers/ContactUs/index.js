@@ -1,11 +1,12 @@
 import { validatePhone, validateEmail } from '_helpers/Validators';
 import React, { useState } from 'react';
 import { View, TextInput, StyleSheet, Alert, ImageBackground, I18nManager } from 'react-native';
-import { useDispatch } from 'react-redux';
-import { JOIN_US } from '_assets/data/StaticData';
+import { useDispatch, useSelector, shallowEqual } from 'react-redux';
+import { CONTACT_US } from '_assets/data/StaticData';
 import { withDataActions } from '_redux/actions';
 import { SUBMIT_CONTACT_US } from '_redux/actionTypes';
 import useModal from '_utils/customHooks/useModal';
+import { checkIfLoading } from '_redux/selectors';
 
 import {
   ModalScreen,
@@ -30,6 +31,16 @@ const ContactUs = (props) => {
     message: '',
     phone: '',
   });
+  const {
+    isLoading,
+  } = useSelector((state) => {
+    return {
+      isLoading: checkIfLoading(
+        state,
+        SUBMIT_CONTACT_US,
+      ),
+    };
+  }, shallowEqual);
 
   const setStateHandler = (key, val) => {
     setState({ ...state, [key]: val });
@@ -109,13 +120,14 @@ const ContactUs = (props) => {
             onChangeText={(val) => setStateHandler('message', val)}
           />
           <ModalScreen
+            // image={require("")}
             visible={visible}
             onContinue={onContinue}
-            {...JOIN_US.modalData}
+            {...CONTACT_US.modalData}
           />
         </View>
         <View key="footer">
-          <Button color="white" onPress={onSubmit}>
+          <Button color="white" onPress={onSubmit} loading={isLoading}>
             Submit
           </Button>
         </View>
