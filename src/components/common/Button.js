@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, ActivityIndicator, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, ActivityIndicator, TouchableOpacity, Image } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 import { Icon } from 'react-native-elements';
 
@@ -23,7 +23,8 @@ const Button = (props) => {
     bold,
     borderRadius,
     loading,
-    icon
+    icon,
+    outOfStock
   } = props;
   const { colors } = useTheme();
   return (
@@ -53,11 +54,15 @@ const Button = (props) => {
         }}>
         {children || 'Button'}
       </AppText>
-
+      {outOfStock &&
+        <View style={{ position: "absolute", left: wp(18), width: 30, height: 35, zIndex: 1 }}>
+          <Image style={{ width: "100%", height: "100%" }} source={require("../../assets/images/emptycart.png")} />
+        </View>
+      }
       {props.icon && <Icon
         size={15}
         containerStyle={styles.iconStyle}
-        color="black"
+        color="button"
         name="rightcircleo"
         type="antdesign"
       />

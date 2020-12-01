@@ -19,7 +19,7 @@ import useFilter from '_utils/customHooks/useFilter';
 import { FilterModal } from '_containers/Filter';
 
 const Search = (props) => {
-  // const { navigate } = props.navigation;
+  const { navigate } = props.navigation;
   const { colors } = useTheme();
   const [keyword, setKeyword] = useState('');
   const { visible, toggleFilter } = useFilter();
@@ -52,7 +52,7 @@ const Search = (props) => {
     // let filtered = setFilterHandler(bookData, item);
     // setBookData(filtered);
   };
-  // console.log('SearchBooksReducer', SearchBooksReducer);
+  console.log('SearchBooksReducer', SearchBooksReducer);
   return (
     <Screen noPadding>
       <View
@@ -87,7 +87,7 @@ const Search = (props) => {
             </View>
           )}
         </View>
-        {(SearchBooksReducer.length > 0) && <BookListContainer data={SearchBooksReducer} />}
+        {(SearchBooksReducer.length > 0) && <BookListContainer data={SearchBooksReducer} product_type="book" {...props} />}
 
         <FilterModal {...props} visible={visible} onApply={onApplyFilter} />
       </View>

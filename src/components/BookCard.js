@@ -1,14 +1,17 @@
-import React, {useRef} from 'react';
-import {View, StyleSheet, TouchableWithoutFeedback} from 'react-native';
-import {useTheme} from '@react-navigation/native';
+import React, { useRef } from 'react';
+import { View, StyleSheet, TouchableWithoutFeedback, Image } from 'react-native';
+import { useTheme } from '@react-navigation/native';
 
-import {AppText} from './common/AppText';
-import {FastImage} from './FastImage';
-import {ModalImage} from './ModalImage';
-import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
+import { AppText } from './common/AppText';
+import { FastImage } from './FastImage';
+import { ModalImage } from './ModalImage';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
 const BookCard = (props) => {
-  const {image, author_name, title, price, onPress} = props;
-  const {colors} = useTheme();
+  const { image, author_name, title, price, onPress, quantity } = props;
+  const { colors } = useTheme();
 
   const modalRef = useRef(null);
 
@@ -18,26 +21,37 @@ const BookCard = (props) => {
 
   return (
     <TouchableWithoutFeedback onPress={onPress}>
-      <View style={[styles.containerStyle, {borderColor: colors.borderColor}]}>
-        <AppText bold style={{backgroundColor: colors.primary, padding: 10}}>
+      <View style={[styles.containerStyle, { borderColor: colors.borderColor }]}>
+        <AppText bold style={{ backgroundColor: colors.primary, padding: 10 }}>
           Price : {price}
         </AppText>
         <View style={styles.imageContainer}>
-          <FastImage source={{uri: image}} onPress={toggleModal} />
+          <FastImage source={{ uri: image }} onPress={toggleModal} />
         </View>
-        <View
-          style={{
-            flex: 1,
-            paddingVertical: 10,
-            justifyContent: 'space-between',
-            paddingHorizontal: 10,
-          }}>
-          <AppText>{title}</AppText>
-          <AppText primary bold>
-            {author_name}
-          </AppText>
+        <View style={{ flex: 1, paddingVertical: 10, justifyContent: 'space-between', paddingHorizontal: 10, }}>
+
+          <View style={{ width: wp(30) }}>
+            <AppText small>{title}</AppText>
+            <AppText small primary bold>
+              {author_name}
+            </AppText>
+          </View>
+
         </View>
-        <ModalImage ref={modalRef} source={{uri: image}} />
+        {
+          !quantity
+          &&
+          <>
+            <View style={{ position: 'absolute', bottom: hp(6), right: 20, width: 20, height: 30 }}>
+              <Image style={{ width: "100%", height: "100%" }} source={require("../assets/images/forgetPassword.png")} />
+            </View>
+
+            <View style={{ backgroundColor: colors.primary, alignItems: 'center' }}>
+              <AppText large>Out of Stock</AppText>
+            </View>
+          </>
+        }
+        <ModalImage ref={modalRef} source={{ uri: image }} />
       </View>
     </TouchableWithoutFeedback>
   );
@@ -54,4 +68,4 @@ const styles = StyleSheet.create({
     aspectRatio: 0.9,
   },
 });
-export {BookCard};
+export { BookCard };

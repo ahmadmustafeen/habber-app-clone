@@ -79,7 +79,6 @@ const BookDetails = (props) => {
   let checkIsFavourite = FavouriteReducer[product_type].some(
     (el) => el.product_id === product_id,
   );
-
   const handleCounter = (action) => {
     //TODO : For restrict counter for maximum quantity and out of stock..
 
@@ -219,20 +218,20 @@ const BookDetails = (props) => {
       </View>
       <View key="footer" style={{ paddingHorizontal: 20, paddingBottom: 20 }}>
         <View style={styles.counter}>
-          {quantity && (
+          {quantity ?
             <Counter
               onIncrement={() => handleCounter('add')}
               onDecrement={() => handleCounter('sub')}
               value={
-                inCartPosition !== -1
+                (inCartPosition !== -1)
                   ? CartReducer[product_type][inCartPosition].cart_quantity
                   : '0'
               }
             />
-          )}
+            : null}
         </View>
 
-        <Button bold color={colors.white} secondary onPress={onAddToCart}>
+        <Button bold color={colors.white} outOfStock={!quantity} secondary onPress={() => { (quantity) && onAddToCart() }}>
           {quantity ? 'Add to Cart' : 'Out of Stock'}
         </Button>
         <View
