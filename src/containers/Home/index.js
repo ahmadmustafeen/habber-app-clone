@@ -54,6 +54,7 @@ const Home = (props) => {
     BookmarksReducer,
     BookClubReducer,
     isLoading,
+
   } = useSelector((state) => {
     return {
       EnglishBooksReducer: state.EnglishBooksReducer,

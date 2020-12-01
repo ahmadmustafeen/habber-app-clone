@@ -4,7 +4,6 @@ import {
   SIGN_IN,
   SIGN_UP,
   REQUEST_BOOK,
-  FETCH_BOOK_LISTS,
   FETCH_RELATED_BOOKS,
   SWITCH_LANG,
   SPLASH_ACTION,
@@ -25,12 +24,13 @@ import {
   ADD_TO_FAVOURITE,
   REMOVE_FAVOURITE, UPDATE_PROFILE, FETCH_SITE_DETAILS,
   FETCH_USER_FAVOURITE,
+  FETCH_CURRENCIES,
+
 } from '../actionTypes';
 import { signupSaga } from './SignupSaga';
 import { signinSaga } from './SignInSaga';
 import { ForgotPasswordSaga } from './ForgotPasswordSaga';
 import { BookRequestSaga } from './BookRequestSaga';
-import { BookListSaga } from './BookListSaga';
 import { RelatedBooksSaga } from './RelatedBooksSaga';
 import { switchLangSaga } from './SwitchLanguageSaga';
 import { splashSaga } from './SplashSaga';
@@ -52,6 +52,8 @@ import { PostToFavouriteSaga } from './PostToFavouriteSaga';
 import { FetchSiteDetails } from './FetchSite';
 import { UpdateProfileSaga } from './UpdateProfile';
 import { FetchFavouriteSaga } from './FetchUserFavouriteSaga';
+import { FetchCurrencySaga } from "./FetchCurrencySaga"
+
 function* actionWatcher() {
   yield takeLatest(SPLASH_ACTION, splashSaga);
   yield takeLatest(SKIP_AD, splashAdSaga);
@@ -59,7 +61,6 @@ function* actionWatcher() {
   yield takeLatest(SIGN_IN, signinSaga);
   yield takeLatest(FORGOT_PASSWORD, ForgotPasswordSaga);
   yield takeLatest(REQUEST_BOOK, BookRequestSaga);
-  yield takeLatest(FETCH_BOOK_LISTS, BookListSaga);
   yield takeLatest(FETCH_ENGLISH_BOOKS, EnglishBookListSaga);
   yield takeLatest(FETCH_ARABIC_BOOKS, ArabicBookListSaga);
   yield takeLatest(FETCH_RELATED_BOOKS, RelatedBooksSaga);
@@ -81,6 +82,7 @@ function* actionWatcher() {
   yield takeLatest(FETCH_SITE_DETAILS, FetchSiteDetails);
   yield takeLatest(UPDATE_PROFILE, UpdateProfileSaga);
   yield takeLatest(FETCH_USER_FAVOURITE, FetchFavouriteSaga);
+  yield takeLatest(FETCH_CURRENCIES, FetchCurrencySaga);
 }
 
 export default function* rootSaga() {

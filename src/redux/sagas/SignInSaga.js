@@ -5,10 +5,11 @@ import { put, call, all } from 'redux-saga/effects';
 import { MY_PROFILE } from '_constants/Screens';
 import { API_ENDPOINTS } from '_constants/Network';
 import { RestClient } from '_network/RestClient';
-import { SIGN_IN_FAILURE, SIGN_IN_SUCCESS, HIDE_MODAL } from '_redux/actionTypes';
+import { SIGN_IN_FAILURE, SIGN_IN_SUCCESS, HIDE_MODAL, FETCH_USER_CART, FETCH_ORDER_SUCCESS, FETCH_CURRENCIES } from '_redux/actionTypes';
 import * as NavigationService from '../../../NavigationService';
 
 import { NETWORK_ERROR, SHOW_NETWORK_MODAL } from 'redux/actionTypes';
+import { CURRENCIES_SUCCESS, FETCH_ADDRESS, FETCH_USER_FAVOURITE } from '../actionTypes';
 export function* signinSaga({ payload }) {
   try {
     const { email, password } = payload;
@@ -32,7 +33,17 @@ export function* signinSaga({ payload }) {
       yield all([
         put({ type: SIGN_IN_SUCCESS, payload: res }),
         put({ type: HIDE_MODAL }),
+        put({ type: FETCH_ADDRESS }),
+        put({ type: FETCH_USER_CART }),
+        put({ type: FETCH_USER_FAVOURITE }),
+        put({ type: FETCH_ORDER_SUCCESS }),
+        put({ type: FETCH_CURRENCIES }),
+
       ]);
+
+
+
+
       NavigationService.navigate('Drawer', {
         screen: HOME,
       });

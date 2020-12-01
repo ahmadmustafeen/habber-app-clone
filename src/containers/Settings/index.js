@@ -25,33 +25,48 @@ import { SIGN_OUT, SHOW_MODAL } from '_redux/actionTypes';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import { Icon } from 'react-native-elements';
 import { AppText } from 'components/common';
+import { color } from 'react-native-reanimated';
 
 const Settings = (props) => {
   const { colors } = useTheme();
   const [isEnabled, setIsEnabled] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
   const { i18n } = useTranslation();
+  const [iso, setIso] = useState("");
+
+
+
 
   const toggleSwitch = () => {
     setIsEnabled(!isEnabled);
   };
   const dispatch = useDispatch();
-  const UserProfileReducer = useSelector(
-    ({ UserProfileReducer }) => UserProfileReducer,
-    shallowEqual,
-  );
+
+
+  const {
+    UserProfileReducer,
+    FetchCurrencyReducer,
+
+  } = useSelector((state) => {
+    return {
+      UserProfileReducer: state.UserProfileReducer,
+      FetchCurrencyReducer: state.FetchCurrencyReducer,
+    };
+  }, shallowEqual);
+  console.log("SETTINGCURRENCY", FetchCurrencyReducer);
   const onLogout = () => {
     dispatch(withoutDataActions(SIGN_OUT));
   };
   const [showDropdown, setShowDropdown] = useState(false);
   const { navigation } = props;
+  console.log(iso);
   const SettingsDropdown = (props) => {
     return (
       <>
         <TouchableOpacity
           style={{
             marginVertical: hp(0.5),
-            width: wp(87),
+            width: wp(80),
             borderLeftColor: colors.borderColor,
             borderLeftWidth: 4,
             height: hp(3),
@@ -60,22 +75,30 @@ const Settings = (props) => {
             flexDirection: 'row',
           }}
           onPress={() => props.onPress(props.value)}>
-          <AppText color={colors.borderColor} style={{ paddingLeft: wp(2) }}>
+          <AppText primary={props.selected} small color={colors.borderColor} style={{ paddingLeft: wp(2) }}>
             {props.currencyName}
           </AppText>
-          <Icon
-            size={15}
-            containerStyle={{ position: 'absolute', right: wp(10) }}
-            color={colors.borderColor}
-            name={props.iconName}
-            type={props.iconType}
-          />
+          {props.iconName ?
+            <Icon
+              size={15}
+              containerStyle={{ position: 'absolute', right: wp(10) }}
+              color={colors.borderColor}
+              name={props.iconName}
+              type={props.iconType}
+            /> :
+            <AppText primary={props.selected} small color={colors.borderColor}>
+              {props.symbol}
+            </AppText>
+          }
+
+
+
         </TouchableOpacity>
         <View
           style={{
             borderBottomWidth: 1,
             borderColor: colors.borderColor,
-            width: wp(100),
+            width: wp(80),
           }}
         />
       </>
@@ -147,26 +170,18 @@ const Settings = (props) => {
               alignSelf: 'flex-end',
               marginVertical: hp(1),
             }}>
-            <SettingsDropdown
-              currencyName="Dollar"
-              iconName="dollar"
-              iconType="font-awesome"
-            />
-            <SettingsDropdown
-              currencyName="Dollar"
-              iconName="dollar"
-              iconType="font-awesome"
-            />
-            <SettingsDropdown
-              currencyName="Dollar"
-              iconName="dollar"
-              iconType="font-awesome"
-            />
-            <SettingsDropdown
-              currencyName="Dollar"
-              iconName="dollar"
-              iconType="font-awesome"
-            />
+
+            {FetchCurrencyReducer.map((item) => {
+              return (
+                <SettingsDropdown
+                  // key={iso}
+                  selected={item.iso === iso}
+                  currencyName={item.name}
+                  symbol={item.symbol}
+                  onPress={() => setIso(item.iso)}
+                />
+              )
+            })}
           </View>
         )}
         <SettingsComponent label="Terms & Conditions" />

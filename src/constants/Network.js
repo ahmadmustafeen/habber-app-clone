@@ -23,4 +23,5 @@ export const API_ENDPOINTS = {
   site_setting: '/site-setting',
   users: '/users/',
   favourites: '/favourites',
+  currencies: '/currencies',
 };
