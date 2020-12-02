@@ -34,47 +34,45 @@ const MyOrders = (props) => {
     )
   }
   return (
-    <ScrollView>
 
-      <Screen noPadding>
-        <View key="header">
-          <ImageBackground
-            style={{
-              height: hp(21),
-              paddingHorizontal: wp(3),
-              paddingBottom: hp(8),
-              marginBottom: hp(1),
-              justifyContent: 'flex-end',
-              transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }],
-            }}
-            resizeMode='stretch'
-            source={require('_assets/images/header.png')}>
+    <Screen noPadding>
+      <View key="header">
+        <ImageBackground
+          style={{
+            height: hp(21),
+            paddingHorizontal: wp(3),
+            paddingBottom: hp(8),
+            marginBottom: hp(1),
+            justifyContent: 'flex-end',
+            transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }],
+          }}
+          resizeMode='stretch'
+          source={require('_assets/images/header.png')}>
 
-            <Header title={"My Orders"} {...props} />
+          <Header title={"My Orders"} {...props} />
 
 
-          </ImageBackground>
-        </View>
+        </ImageBackground>
+      </View>
 
-        <View key="content" style={{ width: wp(90), alignSelf: 'center' }}>
-          <FlatList
-            style={styles.flatlist}
-            showsHorizontalScrollIndicator={false}
-            // horizontal
-            data={OrderReducer}
-            keyExtractor={(item, index) => index.toString() + item}
-            renderItem={(item) => OrderItem(item.item)}
-            ListEmptyComponent={() => (
-              <View>
-                <AppText>No Book Available</AppText>
-              </View>
-            )}
-            ListFooterComponent={() => <View style={{ paddingBottom: 50 }} />}
-          />
+      <View key="content" style={{ width: wp(90), alignSelf: 'center' }}>
+        <FlatList
+          style={styles.flatlist}
+          showsHorizontalScrollIndicator={false}
+          // horizontal
+          data={OrderReducer}
+          keyExtractor={(item, index) => index.toString() + item}
+          renderItem={(item) => OrderItem(item.item)}
+          ListEmptyComponent={() => (
+            <View>
+              <AppText>No Book Available</AppText>
+            </View>
+          )}
+          ListFooterComponent={() => <View style={{ paddingBottom: 50 }} />}
+        />
 
-        </View>
-      </Screen>
-    </ScrollView>
+      </View>
+    </Screen>
   );
 };
 
