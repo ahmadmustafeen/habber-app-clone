@@ -1,5 +1,5 @@
 import React from 'react';
-import { createStackNavigator } from '@react-navigation/stack';
+import {createStackNavigator} from '@react-navigation/stack';
 
 import {
   BOOKLIST_SCREEN,
@@ -23,7 +23,8 @@ import {
   RETURN_POLICY,
   PRIVACY_POLICY,
   INVOICE,
-  CARTNEW
+  CARTNEW,
+  PAYMENT_SCREEN,
 } from '../constants/Screens';
 
 import Home from '../containers/Home';
@@ -44,10 +45,11 @@ import MyOrders from '../containers/MyOrders';
 import Cart from '../containers/Cart';
 import Checkout from '../containers/Checkout';
 import Search from '../containers/Search';
-import ReturnPolicy from '../containers/ReturnPolicy'
-import PrivacyPolicy from '../containers/PrivacyPolicy'
-import Invoice from "../containers/Invoice"
-import CartNew from "../containers/CartNew"
+import ReturnPolicy from '../containers/ReturnPolicy';
+import PrivacyPolicy from '../containers/PrivacyPolicy';
+import Invoice from '../containers/Invoice';
+import CartNew from '../containers/CartNew';
+import {Payment} from '../containers/Payment';
 
 const Stack = createStackNavigator();
 
@@ -79,6 +81,7 @@ export const DashboardNav = () => {
       <Stack.Screen name={PRIVACY_POLICY} component={PrivacyPolicy} />
       <Stack.Screen name={INVOICE} component={Invoice} />
       <Stack.Screen name={CARTNEW} component={CartNew} />
+      <Stack.Screen name={PAYMENT_SCREEN} component={Payment} />
     </Stack.Navigator>
   );
 };

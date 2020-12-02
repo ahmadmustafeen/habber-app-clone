@@ -42,6 +42,7 @@ import Loader from '_components/Loader';
 import {withoutDataActions} from 'redux/actions';
 import {AppText} from 'components/common';
 import {Icon} from 'react-native-elements';
+import {DO_PAYMENT} from '../../redux/actionTypes';
 const {width} = Dimensions.get('window');
 const Home = (props) => {
   const {navigate} = props.navigation;
