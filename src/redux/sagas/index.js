@@ -1,4 +1,4 @@
-import { takeLatest, all } from 'redux-saga/effects';
+import {takeLatest, all} from 'redux-saga/effects';
 import {
   FORGOT_PASSWORD,
   SIGN_IN,
@@ -22,37 +22,41 @@ import {
   ADD_TO_CART,
   SIGN_OUT,
   ADD_TO_FAVOURITE,
-  REMOVE_FAVOURITE, UPDATE_PROFILE, FETCH_SITE_DETAILS,
+  REMOVE_FAVOURITE,
+  UPDATE_PROFILE,
+  FETCH_SITE_DETAILS,
   FETCH_USER_FAVOURITE,
   FETCH_CURRENCIES,
-
+  DO_PAYMENT,
 } from '../actionTypes';
-import { signupSaga } from './SignupSaga';
-import { signinSaga } from './SignInSaga';
-import { ForgotPasswordSaga } from './ForgotPasswordSaga';
-import { BookRequestSaga } from './BookRequestSaga';
-import { RelatedBooksSaga } from './RelatedBooksSaga';
-import { switchLangSaga } from './SwitchLanguageSaga';
-import { splashSaga } from './SplashSaga';
-import { splashAdSaga } from './SplashAdSaga';
-import { EnglishBookListSaga } from './EnglishBooksListSaga';
-import { ArabicBookListSaga } from './ArabicBooksListSaga';
-import { BookmarksSaga } from './BookmarksSaga';
-import { BookClubsSaga } from './BookClubsSaga';
-import { contactUsSaga } from './ContactUsSaga';
-import { JoinUsSaga } from './JoinUsSaga';
-import { UpdatePasswordSaga } from './UpdatePasswordSaga';
-import { SearchBooksSaga } from './SearchBooksSaga';
-import { AddToCartSaga } from './AddToCartSaga';
-import { FetchUserCartSaga } from './FetchUserCartSaga';
-import { addressSaga } from './AddressSaga';
-import { fetchAddressSaga } from './FetchAddressSaga';
-import { signoutSaga } from './SignOutSaga';
-import { PostToFavouriteSaga } from './PostToFavouriteSaga';
-import { FetchSiteDetails } from './FetchSite';
-import { UpdateProfileSaga } from './UpdateProfile';
-import { FetchFavouriteSaga } from './FetchUserFavouriteSaga';
-import { FetchCurrencySaga } from "./FetchCurrencySaga"
+
+import {signupSaga} from './SignupSaga';
+import {signinSaga} from './SignInSaga';
+import {ForgotPasswordSaga} from './ForgotPasswordSaga';
+import {RelatedBooksSaga} from './RelatedBooksSaga';
+import {switchLangSaga} from './SwitchLanguageSaga';
+import {splashSaga} from './SplashSaga';
+import {splashAdSaga} from './SplashAdSaga';
+import {EnglishBookListSaga} from './EnglishBooksListSaga';
+import {ArabicBookListSaga} from './ArabicBooksListSaga';
+import {BookmarksSaga} from './BookmarksSaga';
+import {BookClubsSaga} from './BookClubsSaga';
+import {contactUsSaga} from './ContactUsSaga';
+import {JoinUsSaga} from './JoinUsSaga';
+import {UpdatePasswordSaga} from './UpdatePasswordSaga';
+import {SearchBooksSaga} from './SearchBooksSaga';
+import {AddToCartSaga} from './AddToCartSaga';
+import {FetchUserCartSaga} from './FetchUserCartSaga';
+import {addressSaga} from './AddressSaga';
+import {fetchAddressSaga} from './FetchAddressSaga';
+import {signoutSaga} from './SignOutSaga';
+import {PostToFavouriteSaga} from './PostToFavouriteSaga';
+import {FetchSiteDetails} from './FetchSite';
+import {UpdateProfileSaga} from './UpdateProfile';
+import {PaymentSaga} from './PaymentSaga';
+import {FetchFavouriteSaga} from './FetchUserFavouriteSaga';
+import {FetchCurrencySaga} from './FetchCurrencySaga';
+import {BookRequestSaga} from './BookRequestSaga';
 
 function* actionWatcher() {
   yield takeLatest(SPLASH_ACTION, splashSaga);
@@ -71,7 +75,6 @@ function* actionWatcher() {
   yield takeLatest(SUBMIT_JOIN_US, JoinUsSaga);
   yield takeLatest(UPDATE_PASSWORD, UpdatePasswordSaga);
   yield takeLatest(SEARCH_BOOKS, SearchBooksSaga);
-
   yield takeLatest(ADD_ADDRESS_SAGA, addressSaga);
   yield takeLatest(FETCH_ADDRESS, fetchAddressSaga);
   yield takeLatest(ADD_TO_CART, AddToCartSaga);
@@ -83,6 +86,7 @@ function* actionWatcher() {
   yield takeLatest(UPDATE_PROFILE, UpdateProfileSaga);
   yield takeLatest(FETCH_USER_FAVOURITE, FetchFavouriteSaga);
   yield takeLatest(FETCH_CURRENCIES, FetchCurrencySaga);
+  yield takeLatest(DO_PAYMENT, PaymentSaga);
 }
 
 export default function* rootSaga() {
