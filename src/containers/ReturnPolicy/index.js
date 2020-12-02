@@ -8,6 +8,7 @@ import {
     heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 import { useTheme } from '@react-navigation/native';
+import { Icon } from 'react-native-elements';
 const ReturnPolicy = (props) => {
     const { colors } = useTheme()
 
@@ -25,7 +26,17 @@ const ReturnPolicy = (props) => {
                 resizeMode='stretch'
                 source={require('_assets/images/header.png')}>
 
-                <Header {...props} title={'Return Policy'} />
+                <Header {...props}
+                    headerLeft={
+                        <Icon
+                            onPress={() => props.navigation.goBack()}
+                            color={colors.primary}
+                            name="leftcircleo"
+                            type="ant-design"
+                        />
+                    }
+
+                    title={'Return Policy'} />
 
 
             </ImageBackground>

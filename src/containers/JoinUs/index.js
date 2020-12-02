@@ -30,6 +30,8 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
+import { Icon } from 'react-native-elements';
+import { useTheme } from '@react-navigation/native';
 const JoinUs = (props) => {
   const { visible, toggleModal } = useModal();
   const dispatch = useDispatch();
@@ -80,6 +82,7 @@ const JoinUs = (props) => {
     dispatch(withDataActions(state, SUBMIT_JOIN_US));
   };
   const { navigate } = props.navigation;
+  const { colors } = useTheme()
   return (
     <ScrollView>
       <ImageBackground
@@ -93,7 +96,18 @@ const JoinUs = (props) => {
         }}
         resizeMode="stretch"
         source={require('_assets/images/header.png')}>
-        <Header {...props} title={'Join Us'} />
+        <Header {...props}
+
+          headerLeft={
+            <Icon
+              onPress={() => props.navigation.goBack()}
+              color={colors.primary}
+              name="leftcircleo"
+              type="ant-design"
+            />
+          }
+
+          title={'Join Us'} />
       </ImageBackground>
       <View key="content" style={styles.content}>
         <InputWithLabel

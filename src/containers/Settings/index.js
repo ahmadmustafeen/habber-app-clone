@@ -13,9 +13,9 @@ import { useTranslation } from 'react-i18next';
 import RNRestart from 'react-native-restart';
 import useModal from '_utils/customHooks/useModal';
 import { Screen, Button } from '_components/common';
-import { SettingsComponent, Header, ModalScreen } from '_components';
+import { SettingsComponent, Header, ModalScreen, } from '_components';
 import { useTheme } from '@react-navigation/native';
-import { JOINUS, PRIVACY_POLICY, RETURN_POLICY } from '../../constants/Screens';
+import { JOINUS, PRIVACY_POLICY, RETURN_POLICY, TERMS_AND_CONDITIONS_SCREEN } from '../../constants/Screens';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -197,7 +197,9 @@ const Settings = (props) => {
             })}
           </View>
         )}
-        <SettingsComponent label="Terms & Conditions" />
+        <SettingsComponent
+          onIconPress={() => navigation.navigate(TERMS_AND_CONDITIONS_SCREEN)}
+          label="Terms & Conditions" />
         <SettingsComponent
           onIconPress={() => navigation.navigate(PRIVACY_POLICY)}
           label="Privacy Policy"

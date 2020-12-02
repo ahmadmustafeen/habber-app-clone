@@ -8,6 +8,7 @@ import {
     heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 import { useTheme } from '@react-navigation/native';
+import { Icon } from 'react-native-elements';
 const PrivacyPolicy = (props) => {
     const { colors } = useTheme()
 
@@ -25,7 +26,18 @@ const PrivacyPolicy = (props) => {
                 resizeMode='stretch'
                 source={require('_assets/images/header.png')}>
 
-                <Header {...props} title={'Privacy Policy'} />
+                <Header {...props}
+
+                    headerLeft={
+                        <Icon
+                            onPress={() => props.navigation.goBack()}
+                            color={colors.primary}
+                            name="leftcircleo"
+                            type="ant-design"
+                        />
+                    }
+
+                    title={'Privacy Policy'} />
 
 
             </ImageBackground>
