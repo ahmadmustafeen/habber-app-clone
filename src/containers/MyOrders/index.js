@@ -8,6 +8,7 @@ import {
 } from 'react-native-responsive-screen';
 import { useSelector } from 'react-redux';
 import { useTheme } from '@react-navigation/native';
+import { Icon } from 'react-native-elements';
 const MyOrders = (props) => {
   const { colors } = useTheme();
   const { OrderReducer } = useSelector((state) => {
@@ -49,7 +50,17 @@ const MyOrders = (props) => {
           resizeMode='stretch'
           source={require('_assets/images/header.png')}>
 
-          <Header title={"My Orders"} {...props} />
+          <Header title={"My Orders"} {...props}
+            headerLeft={
+              <Icon
+                onPress={() => props.navigation.goBack()}
+                color={colors.primary}
+                name="leftcircleo"
+                type="ant-design"
+              />
+            }
+
+          />
 
 
         </ImageBackground>

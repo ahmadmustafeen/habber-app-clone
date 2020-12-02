@@ -18,6 +18,8 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
+import { Icon } from 'react-native-elements';
+import { useTheme } from '@react-navigation/native';
 const ContactUs = (props) => {
   const { visible, toggleModal } = useModal();
   const onContinue = () => {
@@ -65,6 +67,7 @@ const ContactUs = (props) => {
   const onSubmit = () => {
     validate() && dispatch(withDataActions(state, SUBMIT_CONTACT_US));
   };
+  const { colors } = useTheme()
   return (
     <View>
       <ImageBackground
@@ -80,7 +83,16 @@ const ContactUs = (props) => {
         source={require('_assets/images/header.png')}>
 
 
-        <Header {...props} title={'Contact Us'} />
+        <Header
+          headerLeft={
+            <Icon
+              onPress={() => props.navigation.goBack()}
+              color={colors.primary}
+              name="leftcircleo"
+              type="ant-design"
+            />
+          }
+          {...props} title={'Contact Us'} />
 
       </ImageBackground>
 

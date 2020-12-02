@@ -5,7 +5,10 @@ import { useTheme } from '@react-navigation/native';
 import { AppText } from './common/AppText';
 import { Icon } from 'react-native-elements';
 import { HorizontalRow } from './HorizontalRow';
-
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
 const SettingsComponent = (props) => {
   const { colors } = useTheme();
   const {
@@ -15,7 +18,7 @@ const SettingsComponent = (props) => {
     iconType,
     iconName,
     rightComponent,
-
+    Currency
   } = props;
 
   return (
@@ -27,6 +30,7 @@ const SettingsComponent = (props) => {
           { borderLeftColor: colors.primary },
         ]}>
         <AppText bold>{label || 'Title'}</AppText>
+        {Currency ? <AppText primary style={{ marginLeft: wp(-30), alignSelf: 'center' }}>{Currency}</AppText> : null}
         {rightComponent ? (
           rightComponent
         ) : (
@@ -39,7 +43,7 @@ const SettingsComponent = (props) => {
           )}
       </View>
       <HorizontalRow />
-    </View>
+    </View >
   );
 };
 

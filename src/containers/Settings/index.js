@@ -114,28 +114,26 @@ const Settings = (props) => {
   return (
     <Screen>
       <View key="header">
-        <Header {...props} title={'Settings'} />
-      </View>
-      <View key="content" style={styles.content}>
-        <SettingsComponent
-          label="Notifications"
-          rightComponent={
-            <Switch
-              trackColor={{ false: colors.primary, true: colors.textBlack }}
-              thumbColor={!isEnabled ? colors.secondary : colors.appColor}
-              ios_backgroundColor="#3e3e3e"
-              onValueChange={toggleSwitch}
-              value={isEnabled}
+        <Header {...props}
+          headerLeft={
+            <Icon
+              onPress={() => props.navigation.goBack()}
+              color={colors.primary}
+              name="leftcircleo"
+              type="ant-design"
             />
           }
-        />
+          title={'Settings'} />
+      </View>
+      <View key="content" style={styles.content}>
+
         <SettingsComponent
           label="Language"
+          iconName={!modalVisible ? "downcircleo" : "upcircleo"}
           onIconPress={() => {
             setModalVisible(!modalVisible);
           }}
-        />
-        {modalVisible && (
+        />{modalVisible && (
           <View
             style={{
               width: wp(80),
@@ -158,9 +156,24 @@ const Settings = (props) => {
             />
           </View>
         )}
+        <SettingsComponent
+          label="Notifications"
+          rightComponent={
+            <Switch
+              trackColor={{ false: colors.primary, true: colors.textBlack }}
+              thumbColor={!isEnabled ? colors.secondary : colors.appColor}
+              ios_backgroundColor="#3e3e3e"
+              onValueChange={toggleSwitch}
+              value={isEnabled}
+            />
+          }
+        />
+
 
         <SettingsComponent
           label="Currency"
+          Currency={iso}
+          iconName={!showDropdown ? "downcircleo" : "upcircleo"}
           onIconPress={() => setShowDropdown(!showDropdown)}
         />
         {showDropdown && (
