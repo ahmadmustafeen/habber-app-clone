@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">HEBBER Online Solution</string>
+     <string name="notification_channel">default_notification_channel_id</string>
 </resources>
