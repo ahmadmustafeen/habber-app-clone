@@ -9,7 +9,7 @@ import {
 export const RelatedThumbnailBookmarks = (props) => {
     return (
         <View style={styles.containerStyle}>
-            <FastImage source={{ uri: props.url }} />
+            <FastImage source={{ uri: props.url }} onPress={props.onPress} />
         </View>
     );
 };

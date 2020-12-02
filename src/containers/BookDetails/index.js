@@ -30,7 +30,7 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-import { CART_SCREEN, BOOKLIST_SCREEN } from '../../constants/Screens';
+import { CART_SCREEN, BOOK_DETAILS_SCREEN } from '../../constants/Screens';
 import {
   ADD_TO_CART,
   FETCH_RELATED_BOOKS,
@@ -44,12 +44,12 @@ import { withDataActions } from '_redux/actions/GenericActions';
 import { useTheme } from '@react-navigation/native';
 
 const BookDetails = (props) => {
+  console.log("props", props)
   const { EnglishBooksReducer } = useSelector((state) => {
     return {
       EnglishBooksReducer: state.EnglishBooksReducer,
     };
   }, shallowEqual);
-
   const { params: book } = props.route;
   const { colors } = useTheme();
   const dispatch = useDispatch();
@@ -71,7 +71,7 @@ const BookDetails = (props) => {
       (price = book.book.price),
       (type = 'bookclub'),
       (product_type = 'book'));
-  console.log(type);
+  console.log([book])
 
   let inCartPosition = CartReducer[product_type].findIndex(
     (el) => el.product_id === product_id,
@@ -243,20 +243,34 @@ const BookDetails = (props) => {
               data={EnglishBooksReducer.filter((book) => book.featured)}
               renderComponent={(item) => {
                 if (type === 'bookclub') {
-                  return <RelatedThumbnailClub url={item.item.image} />;
+                  return <RelatedThumbnailClub onPress={() => {
+                    props.navigation.push(BOOK_DETAILS_SCREEN, {
+                      ...item.item, product_type: type
+                    })
+                  }
+                  }
+                    url={item.item.image} />;
                 }
                 if (product_type === 'book') {
-                  return <RelatedThumbnailBook url={item.item.image} />;
+                  console.log(item.item);
+                  return <RelatedThumbnailBook onPress={() => {
+                    props.navigation.push(BOOK_DETAILS_SCREEN, {
+                      ...item.item, product_type
+                    })
+                  }
+                  }
+                    url={item.item.image} />;
                 }
-                return <RelatedThumbnailBookmarks url={item.item.image} />;
+                return <RelatedThumbnailBookmarks
+                  onPress={() => {
+                    props.navigation.push(BOOK_DETAILS_SCREEN, {
+                      ...item.item, product_type
+                    })
+                  }
+                  }
+                  url={item.item.image} />;
               }}
-              onIconPress={() =>
-                navigate(BOOKLIST_SCREEN, {
-                  label: t('english'),
-                  data: EnglishBooksReducer,
-                  product_type: 'book',
-                })
-              }
+
             />
           </View>
         </View>

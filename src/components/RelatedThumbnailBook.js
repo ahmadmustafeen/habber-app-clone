@@ -9,7 +9,7 @@ import { FastImage } from './FastImage';
 export const RelatedThumbnailBook = (props) => {
     return (
         <View style={styles.containerStyle}>
-            <FastImage source={{ uri: props.url }} />
+            <FastImage source={{ uri: props.url }} onPress={props.onPress} />
 
         </View>
     );
