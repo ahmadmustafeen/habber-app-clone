@@ -14,6 +14,7 @@ import {
 } from 'react-native-responsive-screen';
 import { useTheme } from '@react-navigation/native';
 import { useSelector, shallowEqual } from 'react-redux';
+import { Icon } from 'react-native-elements';
 const MyProfile = (props) => {
 
   const { first_name, last_name, email } = useSelector(
@@ -36,7 +37,15 @@ const MyProfile = (props) => {
         resizeMode='stretch'
         source={require('_assets/images/header.png')}>
 
-        <Header {...props} title={'My Profile'} />
+        <Header {...props}
+          headerLeft={(
+            <Icon
+              onPress={() => props.navigation.goBack()}
+              color={colors.primary}
+              name="leftcircleo"
+              type="ant-design"
+            />)}
+          title={'My Profile'} />
 
 
       </ImageBackground>
