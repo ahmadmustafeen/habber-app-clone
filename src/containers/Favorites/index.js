@@ -9,10 +9,11 @@ import {
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 import { useSelector, shallowEqual } from 'react-redux';
+import { retrieveFavourites } from '../../redux/selectors';
 
 
 const Book = (props) => {
-  console.log(props)
+
 
   return (
     <>
@@ -80,16 +81,17 @@ const Book = (props) => {
 
 const Favorites = (props) => {
   const {
-    FavouriteReducer, ArabicBooksReducer, EnglishBooksReducer
+    FavouriteReducer, ArabicBooksReducer, EnglishBooksReducer, Favourites
   } = useSelector((state) => {
     return {
       FavouriteReducer: state.FavouriteReducer,
       ArabicBooksReducer: state.ArabicBooksReducer,
       EnglishBooksReducer: state.EnglishBooksReducer,
+      Favourites: retrieveFavourites(state)
     }
   }, shallowEqual
   )
-  console.log("FR", ArabicBooksReducer);
+  console.log("Favourites", Favourites);
   return (
     <Screen noPadding>
       <View key="header">
@@ -121,9 +123,9 @@ const Favorites = (props) => {
         } */}
 
         {FavouriteReducer.book.map((item) => {
-          console.log(item)
+
           var bookdetail = ("adsasd", EnglishBooksReducer.filter(e => e.id === item.product_id));
-          console.log(bookdetail);
+
           return (
             <Book item={{ picture: bookdetail.image, title: bookdetail.title, author: bookdetail, price: "ASDa" }} />
           )
