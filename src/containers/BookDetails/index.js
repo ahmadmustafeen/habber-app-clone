@@ -256,7 +256,7 @@ const BookDetails = (props) => {
         <Button bold color={colors.white} outOfStock={!quantity} secondary onPress={() => { (quantity) && onAddToCart() }}>
           {quantity ? 'Add to Cart' : 'Out of Stock'}
         </Button>
-        <View
+        {type !== 'bookclub' ? <View
           style={{ width: wp(90), alignSelf: 'center', paddingVertical: hp(2) }}>
           <AppText>More {type || product_type}s</AppText>
           <View style={{ paddingVertical: hp(2) }}>
@@ -264,15 +264,15 @@ const BookDetails = (props) => {
               noTitle
               data={EnglishBooksReducer.filter((book) => book.featured)}
               renderComponent={(item) => {
-                if (type === 'bookclub') {
-                  return <RelatedThumbnailClub onPress={() => {
-                    props.navigation.push(BOOK_DETAILS_SCREEN, {
-                      ...item.item, product_type: type
-                    })
-                  }
-                  }
-                    url={item.item.image} />;
-                }
+                // if (type === 'bookclub') {
+                //   return <RelatedThumbnailClub onPress={() => {
+                //     props.navigation.push(BOOK_DETAILS_SCREEN, {
+                //       ...item.item, product_type: type
+                //     })
+                //   }
+                //   }
+                //     url={item.item.image} />;
+                // }
                 if (product_type === 'book') {
                   console.log(item.item);
                   return <RelatedThumbnailBook onPress={() => {
@@ -295,7 +295,7 @@ const BookDetails = (props) => {
 
             />
           </View>
-        </View>
+        </View> : null}
       </View>
     </Screen>
   );

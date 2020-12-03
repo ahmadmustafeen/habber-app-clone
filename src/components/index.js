@@ -27,3 +27,4 @@ export * from './RelatedThumbnailBook';
 export * from './RelatedThumbnailClub';
 export * from './RelatedThumbnailBookmarks';
 export * from './OfflineNotice';
+export * from './FavouriteCard';
