@@ -1,4 +1,3 @@
-
 export const HOME = 'Home';
 export const LANGUAGE_SCREEN = 'Language';
 export const SIGNUP_SCREEN = 'SignUp';
@@ -28,3 +27,4 @@ export const PRIVACY_POLICY = 'PrivacyPolicy';
 export const INVOICE = "Invoice";
 export const CARTNEW = "CartNew";
 export const TERMS_AND_CONDITIONS_SCREEN = "TermsAndConditionsScreen";
+export const PAYMENT_SCREEN = 'PaymentView';

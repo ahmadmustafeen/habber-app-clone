@@ -24,8 +24,8 @@ import {
   PRIVACY_POLICY,
   INVOICE,
   CARTNEW,
-  TERMS_AND_CONDITIONS_SCREEN
-
+  TERMS_AND_CONDITIONS_SCREEN,
+  PAYMENT_SCREEN,
 } from '../constants/Screens';
 
 import Home from '../containers/Home';
@@ -51,6 +51,7 @@ import PrivacyPolicy from '../containers/PrivacyPolicy'
 import Invoice from "../containers/Invoice"
 import CartNew from "../containers/CartNew"
 import TermsAndConditions from "../containers/TermsAndConditions"
+import { Payment } from '../containers/Payment';
 
 const Stack = createStackNavigator();
 
@@ -83,6 +84,7 @@ export const DashboardNav = () => {
       <Stack.Screen name={INVOICE} component={Invoice} />
       <Stack.Screen name={CARTNEW} component={CartNew} />
       <Stack.Screen name={TERMS_AND_CONDITIONS_SCREEN} component={TermsAndConditions} />
+      <Stack.Screen name={PAYMENT_SCREEN} component={Payment} />
     </Stack.Navigator>
   );
 };

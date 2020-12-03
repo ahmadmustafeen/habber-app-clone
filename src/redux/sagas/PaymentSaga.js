@@ -13,6 +13,8 @@ import {
 } from 'constants/HesabeConfig';
 import {create} from 'apisauce';
 import {Linking} from 'react-native';
+import * as NavigationService from '../../../NavigationService';
+import {PAYMENT_SCREEN} from '../../constants/Screens';
 
 export function* PaymentSaga() {
   try {
@@ -52,7 +54,10 @@ export function* PaymentSaga() {
     );
     const paymentData = result.response.data;
     const paymentUrl = `https://sandbox.hesabe.com/payment?data=${paymentData}`;
-    yield Linking.openURL(paymentUrl);
+    // yield Linking.openURL(paymentUrl);
+    NavigationService.navigate(PAYMENT_SCREEN, {
+      paymentUrl,
+    });
   } catch (error) {
     console.log(error);
   }
