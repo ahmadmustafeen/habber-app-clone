@@ -15,9 +15,7 @@ export function* UpdateProfileSaga({ type, payload }) {
   try {
     console.log('UpdateProfile Saga . . . .  .1', payload);
     const response = yield call(
-      () => RestClient.put(API_ENDPOINTS.users + payload[1], payload[0]),
-      console.log('datainAPI', payload[0]),
-    );
+      () => RestClient.put(API_ENDPOINTS.user, payload));
     const { status, data, message } = response;
     console.log(response);
     if (response.problem === NETWORK_ERROR) {

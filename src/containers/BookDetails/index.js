@@ -6,7 +6,7 @@ import {
   I18nManager,
   FlatList,
   Alert,
-  Image,
+  Image, Share
 } from 'react-native';
 // import { ThumbnailClub } from '_components/ThumbnailClub';
 import { AppText, Button, Screen } from '../../components/common';
@@ -42,7 +42,7 @@ import {
 import { withDataActions } from '_redux/actions/GenericActions';
 
 import { useTheme } from '@react-navigation/native';
-
+import { BDScreenText } from './components'
 const BookDetails = (props) => {
   console.log("props", props)
   const { EnglishBooksReducer } = useSelector((state) => {
@@ -65,13 +65,22 @@ const BookDetails = (props) => {
   );
 
   var { id: product_id, quantity, product_type, price, bookClub, type } = book;
-  product_type === 'bookclub' &&
-    ((product_id = book.book.id),
-      (quantity = book.book.quantity),
-      (price = book.book.price),
-      (type = 'bookclub'),
-      (product_type = 'book'));
-  console.log([book])
+
+  console.log("BOOK", book)
+  if (product_type === 'bookclub') {
+    product_id = book.book.id;
+    quantity = book.book.quantity;
+    price = book.book.price;
+    type = 'bookclub';
+    product_type = 'book'
+  }
+  // product_type === 'bookclub' &&
+  //   ((product_id = book.book.id),
+  //     (quantity = book.book.quantity),
+  //     (),
+  //     (type = 'bookclub'),
+  //     (product_type = 'book'));
+  // console.log([book])
 
   let inCartPosition = CartReducer[product_type].findIndex(
     (el) => el.product_id === product_id,
@@ -90,6 +99,7 @@ const BookDetails = (props) => {
           product_quantity: quantity,
           product_id,
           action,
+          product_type
         },
         UPDATE_CART_ITEM,
       ),
@@ -126,7 +136,25 @@ const BookDetails = (props) => {
     );
   };
   console.log('quantity', book);
-
+  const onShare = async () => {
+    try {
+      const result = await Share.share({
+        message:
+          'React Native | A framework for building native apps using React',
+      });
+      if (result.action === Share.sharedAction) {
+        if (result.activityType) {
+          // shared with activity type of result.activityType
+        } else {
+          // shared
+        }
+      } else if (result.action === Share.dismissedAction) {
+        // dismissed
+      }
+    } catch (error) {
+      alert(error.message);
+    }
+  };
   return (
     <Screen noPadding contentPadding>
       <View key="header">
@@ -155,6 +183,7 @@ const BookDetails = (props) => {
               onClickFavourite={handleFavouriteClick}
               favourite={checkIsFavourite}
               {...book}
+              onClickShare={onShare}
             />
           ) : (
               <View
@@ -173,6 +202,7 @@ const BookDetails = (props) => {
             <BookDetailsCard
               onClickFavourite={handleFavouriteClick}
               favourite={checkIsFavourite}
+              onClickShare={onShare}
               {...book.book}
             />
           </View>
@@ -181,18 +211,10 @@ const BookDetails = (props) => {
         <View>
           {product_type !== 'bookmark' ? (
             <>
-              <AppText style={styles.infoProduct} bold size={15} primary>
-                ISBN: {book.isbn}
-              </AppText>
-              <AppText style={styles.infoProduct} bold size={15}>
-                Pages: {book.total_pages}
-              </AppText>
-              <AppText style={styles.infoProduct} bold size={15}>
-                Type of Cover: {book.cover_type}
-              </AppText>
-              <AppText style={styles.infoProduct} bold size={15}>
-                Genre: Romance|Thriller|Mystery
-              </AppText>
+              <BDScreenText title='ISBN' value={book.isbn} />
+              <BDScreenText title='Pages' value={book.total_pages} />
+              <BDScreenText title='Type of Cover' value={book.cover_type} />
+              <BDScreenText title='Genre' value={'Romance|Thriller|Mystery'} />
             </>
           ) : (
               <>

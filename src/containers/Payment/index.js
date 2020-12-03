@@ -1,13 +1,17 @@
-import React, {Component, useRef} from 'react';
-import {ActivityIndicator, View} from 'react-native';
-import {WebView} from 'react-native-webview';
-import {Header} from '../../components';
-import {Screen} from '../../components/common';
-import {HOME} from '../../constants/Screens';
+import React, { Component, useRef, useState } from 'react';
+import { ActivityIndicator, View } from 'react-native';
+import { WebView } from 'react-native-webview';
+import { Header, ModalScreen } from '../../components';
+import { Button, Screen } from '../../components/common';
+import { HOME } from '../../constants/Screens';
 
 export const Payment = (props) => {
   console.log('PAYMENT', props);
+  const [modalVisible, setModalVisible] = useState(false);
   const WEBVIEW_REF = useRef(null);
+  const toggleModal = () => {
+    setModalVisible(!modalVisible)
+  }
   const handleWebViewNavigationStateChange = (newNavState) => {
     // newNavState looks something like this:
     // {
@@ -18,13 +22,14 @@ export const Payment = (props) => {
     //   canGoForward?: boolean;
     // }
     console.log('NEWNAVSTATE', newNavState);
-    const {url} = newNavState;
+    const { url } = newNavState;
     if (!url) return;
     // if (newNavState.title == 'Secure payment') {
     //   props.navigation.navigate(HOME);
     // }
     // one way to handle a successful form submit is via query strings
-    if (url.includes('?message=success')) {
+    if (url.includes('?success=true')) {
+      toggleModal();
       WEBVIEW_REF.stopLoading();
       // maybe close this view?
     }
@@ -46,20 +51,22 @@ export const Payment = (props) => {
       <View key="header">
         <Header {...props} />
       </View>
-      <View key="content" style={{flex: 1, backgroundColor: 'silver'}}>
+      <View key="content" style={{ flex: 1, backgroundColor: 'silver' }}>
         <WebView
           ref={WEBVIEW_REF}
-          source={{uri: props.route.params.paymentUrl}}
+          source={{ uri: props.route.params.paymentUrl }}
           renderLoading={() => {
             return (
               <ActivityIndicator
-                style={{width: 100, height: 100}}
+                style={{ width: 100, height: 100 }}
                 size="large"
               />
             );
           }}
           onNavigationStateChange={handleWebViewNavigationStateChange}
         />
+        <Button onPress={toggleModal} />
+        <ModalScreen visible={modalVisible} onContinue={toggleModal} />
       </View>
     </Screen>
   );

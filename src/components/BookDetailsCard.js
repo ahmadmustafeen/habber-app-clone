@@ -1,17 +1,17 @@
-import React, {useRef} from 'react';
-import {View, StyleSheet, I18nManager} from 'react-native';
-import {useTheme} from '@react-navigation/native';
+import React, { useRef } from 'react';
+import { View, StyleSheet, I18nManager } from 'react-native';
+import { useTheme } from '@react-navigation/native';
 
-import {AppText} from './common/AppText';
-import {FastImage} from './FastImage';
-import {RoundIcon} from './RoundIcon';
+import { AppText } from './common/AppText';
+import { FastImage } from './FastImage';
+import { RoundIcon } from './RoundIcon';
 
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 const BookDetailsCard = (props) => {
-  const {colors} = useTheme();
+  const { colors } = useTheme();
   const {
     author_name,
     image,
@@ -20,14 +20,14 @@ const BookDetailsCard = (props) => {
     quantity,
     genre,
     onClickFavourite,
-    favourite,
+    favourite, onClickShare
   } = props;
   return (
     <View style={styles.container}>
       <View style={styles.imgContainer}>
         <FastImage
           style={styles.image}
-          source={{uri: image}}
+          source={{ uri: image }}
           resizeMode="contain"
         />
       </View>
@@ -35,18 +35,18 @@ const BookDetailsCard = (props) => {
       <View
         style={{
           flex: 1,
-          transform: [{scaleX: I18nManager.isRTL ? -1 : 1}],
+          transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }],
           justifyContent: 'space-between',
           paddingHorizontal: 10,
           paddingStart: !I18nManager.isRTL ? 10 : 0,
         }}>
-        <View style={{transform: [{scaleX: I18nManager.isRTL ? -1 : 1}]}}>
+        <View style={{ transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }] }}>
           <AppText bold size={17}>
             {title}
           </AppText>
           <AppText
             size={15}
-            style={{paddingBottom: wp(10), fontStyle: 'italic'}}>
+            style={{ paddingBottom: wp(10), fontStyle: 'italic' }}>
             by {author_name}
           </AppText>
           <AppText bold size={17}>
@@ -60,7 +60,7 @@ const BookDetailsCard = (props) => {
           style={{
             flexDirection: 'row',
             justifyContent: 'space-between',
-            transform: [{scaleX: I18nManager.isRTL ? -1 : 1}],
+            transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }],
           }}>
           <RoundIcon
             name="heart"
@@ -70,7 +70,7 @@ const BookDetailsCard = (props) => {
             fav
             onPress={onClickFavourite}
           />
-          <RoundIcon name="share-alt" type="font-awesome" color="#fff" small />
+          <RoundIcon name="share-alt" type="font-awesome" color="#fff" small onPress={onClickShare} />
           <RoundIcon name="glide-g" type="font-awesome" color="#fff" small />
         </View>
       </View>
@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     marginBottom: 20,
-    transform: [{scaleX: I18nManager.isRTL ? -1 : 1}],
+    transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }],
   },
   imgContainer: {
     aspectRatio: 0.6 / 1,
@@ -97,4 +97,4 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
 });
-export {BookDetailsCard};
+export { BookDetailsCard };
