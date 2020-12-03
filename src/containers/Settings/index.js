@@ -15,7 +15,7 @@ import useModal from '_utils/customHooks/useModal';
 import { Screen, Button } from '_components/common';
 import { SettingsComponent, Header, ModalScreen, } from '_components';
 import { useTheme } from '@react-navigation/native';
-import { JOINUS, PRIVACY_POLICY, RETURN_POLICY, TERMS_AND_CONDITIONS_SCREEN } from '../../constants/Screens';
+import { INVOICE, JOINUS, PRIVACY_POLICY, RETURN_POLICY, TERMS_AND_CONDITIONS_SCREEN } from '../../constants/Screens';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -170,6 +170,7 @@ const Settings = (props) => {
         />
 
 
+
         <SettingsComponent
           label="Currency"
           Currency={iso}
@@ -212,7 +213,12 @@ const Settings = (props) => {
           onIconPress={() => navigation.navigate(JOINUS)}
           label="Join Us"
         />
+        <SettingsComponent
+          onIconPress={() => navigation.navigate(INVOICE)}
+          label="INVOICE"
+        />
       </View>
+
       <View key="footer">
         {UserProfileReducer.token && (
           <Button bold onPress={onLogout}>

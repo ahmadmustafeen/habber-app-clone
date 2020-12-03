@@ -24,6 +24,7 @@ const Header = (props) => {
     route: { name },
     headerLeft,
     headerRight,
+    rightIcon
   } = props;
   const headerColor =
     color || (secondary && colors.secondary) || colors.primary;
@@ -40,6 +41,17 @@ const Header = (props) => {
               type="feather"
             />
           )}
+      </View>
+      <View>
+        {rightIcon ?
+          <Icon
+            onPress={() => props.navigation.goBack()}
+            color={colors.primary}
+            name="leftcircleo"
+            type="ant-design"
+          /> :
+          null
+        }
       </View>
 
 
