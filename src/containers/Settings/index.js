@@ -26,6 +26,7 @@ import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import { Icon } from 'react-native-elements';
 import { AppText } from 'components/common';
 import { color } from 'react-native-reanimated';
+import Language from '../Language';
 
 const Settings = (props) => {
   const { colors } = useTheme();
@@ -129,7 +130,8 @@ const Settings = (props) => {
 
         <SettingsComponent
           label="Language"
-          iconName={!modalVisible ? "downcircleo" : "upcircleo"}
+
+          rightComponent={<TouchableOpacity onPress={() => setModalVisible(!modalVisible)}><AppText primary>{!I18nManager.isRTL ? "English" : "Arabic"}</AppText></TouchableOpacity>}
           onIconPress={() => {
             setModalVisible(!modalVisible);
           }}

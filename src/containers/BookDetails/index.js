@@ -179,12 +179,15 @@ const BookDetails = (props) => {
             color={colors.secondary}
           />
           {type !== 'bookclub' ? (
-            <BookDetailsCard
-              onClickFavourite={handleFavouriteClick}
-              favourite={checkIsFavourite}
-              {...book}
-              onClickShare={onShare}
-            />
+            <View style={{ width: wp(90), paddingTop: hp(2), alignSelf: 'center' }}>
+              <BookDetailsCard
+                onClickFavourite={handleFavouriteClick}
+                favourite={checkIsFavourite}
+                {...book}
+                onClickShare={onShare}
+              />
+            </View>
+
           ) : (
               <View
                 style={{ width: wp(90), alignSelf: 'center', paddingBottom: 20 }}>
@@ -211,7 +214,7 @@ const BookDetails = (props) => {
         <View>
           {product_type !== 'bookmark' ? (
             <>
-              <BDScreenText title='ISBN' value={book.isbn} />
+              <BDScreenText primary title='ISBN' value={book.isbn} />
               <BDScreenText title='Pages' value={book.total_pages} />
               <BDScreenText title='Type of Cover' value={book.cover_type} />
               <BDScreenText title='Genre' value={'Romance|Thriller|Mystery'} />
@@ -253,12 +256,15 @@ const BookDetails = (props) => {
             : null}
         </View>
 
-        <Button bold color={colors.white} outOfStock={!quantity} secondary onPress={() => { (quantity) && onAddToCart() }}>
-          {quantity ? 'Add to Cart' : 'Out of Stock'}
-        </Button>
+        <View style={{ width: wp(75), alignSelf: "center" }}>
+          <Button bold color={colors.white} outOfStock={quantity} secondary onPress={() => { (quantity) && onAddToCart() }}>
+            {quantity ? 'Add to Cart' : 'Out of Stock'}
+          </Button>
+        </View>
+
         {type !== 'bookclub' ? <View
           style={{ width: wp(90), alignSelf: 'center', paddingVertical: hp(2) }}>
-          <AppText>More {type || product_type}s</AppText>
+          <AppText> You may also like:</AppText>
           <View style={{ paddingVertical: hp(2) }}>
             <DashboardComponent
               noTitle

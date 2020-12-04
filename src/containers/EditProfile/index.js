@@ -84,11 +84,12 @@ const EditProfile = (props) => {
       } else {
         // You can also display the image using data:
         // const source = { uri: 'data:image/jpeg;base64,' + response.data };
-        setStateHandler('profile_pic', response);
+        setStateHandler('profile_pic', response.uri);
+
+        console.log("PROFILE", response.uri)
       }
     });
   };
-  console.log("STATE", state)
   return (
     <ScrollView>
       <ImageBackground

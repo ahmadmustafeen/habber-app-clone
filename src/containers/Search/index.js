@@ -58,7 +58,7 @@ const Search = (props) => {
       <View
         key="header"
         style={{ backgroundColor: colors.secondary, padding: 10 }}>
-        <Header {...props} />
+        <Header rightIcon headerLeft {...props} />
         <View>
           <TextInput
             style={styles.textInput}

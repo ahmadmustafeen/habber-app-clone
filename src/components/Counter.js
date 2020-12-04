@@ -7,7 +7,7 @@ const Counter = (props) => {
   const { colors } = useTheme();
   const { onDecrement, onIncrement, value } = props;
   return (
-    <View style={[styles.counter, { backgroundColor: colors.borderColor }]}>
+    <View style={[styles.counter]}>
       <View style={[styles.operatorBtns, { backgroundColor: colors.secondary }]}>
         <AppText bold white center onPress={onDecrement}>
           -

@@ -40,7 +40,7 @@ const BookDetailsCard = (props) => {
           paddingHorizontal: 10,
           paddingStart: !I18nManager.isRTL ? 10 : 0,
         }}>
-        <View style={{ transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }] }}>
+        <View style={{ transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }], marginTop: wp(3) }}>
           <AppText bold size={17}>
             {title}
           </AppText>
@@ -58,6 +58,7 @@ const BookDetailsCard = (props) => {
         </View>
         <View
           style={{
+            width: wp(60),
             flexDirection: 'row',
             justifyContent: 'space-between',
             transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }],
