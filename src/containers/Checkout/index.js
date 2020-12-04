@@ -11,10 +11,11 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
+import { useTheme } from '@react-navigation/native';
 
 const Checkout = (props) => {
 
-
+  const { colors } = useTheme()
   const {
     AddressReducer
   } = useSelector((state) => {
@@ -46,7 +47,10 @@ const Checkout = (props) => {
         resizeMode='stretch'
         source={require('_assets/images/header.png')}>
 
-        <Header {...props} title={'Checkout'} />
+        <Header
+          headerLeft
+          backIcon
+          {...props} title={'Checkout'} />
 
 
       </ImageBackground>
@@ -54,7 +58,7 @@ const Checkout = (props) => {
         <View key="header"></View>
         <View key="content">
           <View style={styles.addressbookview}>
-            <AppText bold style={{ paddingStart: 10, paddingVertical: 10 }}>
+            <AppText bold style={{ paddingStart: wp(10), paddingVertical: 10 }}>
               Select Payment Option
             </AppText>
             <View style={styles.addressbook}>
@@ -64,7 +68,7 @@ const Checkout = (props) => {
                   source={require('_assets/images/onlinepayment.png')}></Image>
               </View>
               <AppText size={16}>Online Payment</AppText>
-              <RadioButton title="online" hideTitle business={state.paymentMethod} onPress={() => setStateHandler("paymentMethod", "online")} style={styles.radioButton} />
+              <RadioButton hideTitle selected={state.paymentMethod === "online"} onPress={() => setStateHandler("paymentMethod", "online")} style={styles.radioButton} />
             </View>
             <View style={styles.addressbook}>
               <View style={styles.addressbookimg}>
@@ -74,12 +78,12 @@ const Checkout = (props) => {
               </View>
 
               <AppText size={16}>Cash On Delivery</AppText>
-              <RadioButton title="cod" hideTitle business={state.paymentMethod} onPress={() => setStateHandler("paymentMethod", "cod")} style={styles.radioButton} />
+              <RadioButton hideTitle selected={state.paymentMethod === "cod"} onPress={() => setStateHandler("paymentMethod", "cod")} style={styles.radioButton} />
             </View>
           </View>
-          <HorizontalRow />
+          <HorizontalRow style={{ borderBottomColor: colors.borderColor, borderBottomWidth: hp(0.2), marginVertical: hp(3) }} />
           <View style={styles.addressbookview}>
-            <AppText bold style={{ paddingStart: 10, paddingVertical: 10 }}>
+            <AppText bold style={{ paddingStart: wp(10), paddingVertical: 10 }}>
               Deliver To:
             </AppText>
             <View style={styles.addressbook}>
@@ -140,7 +144,7 @@ const styles = StyleSheet.create({
   radioButton: {
     position: 'absolute',
     right: 30,
-    top: 30
+    top: 10
   },
   image: {
     width: '100%',
@@ -175,9 +179,11 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     flexDirection: 'row',
     borderColor: 'rgb(221, 221, 221)',
+    backgroundColor: 'rgba(0,0,0,0.04)',
     alignItems: 'center',
+    // justifyContent: 'space-between',
     borderWidth: 2.5,
-    paddingVertical: 20,
+    paddingVertical: hp(1),
     paddingHorizontal: 10,
     marginBottom: 20,
   },
@@ -185,14 +191,13 @@ const styles = StyleSheet.create({
     width: wp(90),
     // paddingHorizontal: 30,
     alignSelf: 'center',
-    marginTop: 30,
   },
   spacebtwaddresses: {
     marginLeft: 15,
     marginTop: 10,
   },
   addressbookimg: {
-    width: wp(10),
+    width: wp(7),
     aspectRatio: 1,
     marginRight: wp(10),
   },

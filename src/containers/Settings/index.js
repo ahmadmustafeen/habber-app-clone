@@ -30,17 +30,20 @@ import Language from '../Language';
 
 const Settings = (props) => {
   const { colors } = useTheme();
-  const [isEnabled, setIsEnabled] = useState(false);
-  const [modalVisible, setModalVisible] = useState(false);
-  const { i18n } = useTranslation();
+  const [item, setItemVisible] = useState({
+    currency: false,
+    language: false,
+    notifications: false
+  })
   const [iso, setIso] = useState("");
+  const { i18n } = useTranslation();
 
 
 
 
-  const toggleSwitch = () => {
-    setIsEnabled(!isEnabled);
-  };
+  const toggleDropdown = (key) => {
+    setItemVisible({ ...item, [key]: !item[key] })
+  }
   const dispatch = useDispatch();
 
 
@@ -58,7 +61,7 @@ const Settings = (props) => {
   const onLogout = () => {
     dispatch(withoutDataActions(SIGN_OUT));
   };
-  const [showDropdown, setShowDropdown] = useState(false);
+
   const { navigation } = props;
   console.log(iso);
   const SettingsDropdown = (props) => {
@@ -79,18 +82,11 @@ const Settings = (props) => {
           <AppText primary={props.selected} small color={colors.borderColor} style={{ paddingLeft: wp(2) }}>
             {props.currencyName}
           </AppText>
-          {props.iconName ?
-            <Icon
-              size={15}
-              containerStyle={{ position: 'absolute', right: wp(10) }}
-              color={colors.borderColor}
-              name={props.iconName}
-              type={props.iconType}
-            /> :
-            <AppText primary={props.selected} small color={colors.borderColor}>
-              {props.symbol}
-            </AppText>
-          }
+
+          <AppText primary={props.selected} small color={colors.borderColor}>
+            {props.symbol}
+          </AppText>
+
 
 
 
@@ -105,6 +101,7 @@ const Settings = (props) => {
       </>
     );
   };
+
 
   const onLanguageChange = (val) => {
     i18n.changeLanguage(val).then(() => {
@@ -130,12 +127,9 @@ const Settings = (props) => {
 
         <SettingsComponent
           label="Language"
-
-          rightComponent={<TouchableOpacity onPress={() => setModalVisible(!modalVisible)}><AppText primary>{!I18nManager.isRTL ? "English" : "Arabic"}</AppText></TouchableOpacity>}
-          onIconPress={() => {
-            setModalVisible(!modalVisible);
-          }}
-        />{modalVisible && (
+          rightComponent={<AppText onPress={() => toggleDropdown('language')} primary>{!I18nManager.isRTL ? "English" : "Arabic"}</AppText >}
+          onIconPress={() => toggleDropdown('language')}
+        />{item.language && (
           <View
             style={{
               width: wp(80),
@@ -144,6 +138,8 @@ const Settings = (props) => {
             }}>
             <SettingsDropdown
               currencyName="English"
+              selected={!I18nManager.isRTL}
+
               iconName="dollar"
               iconType="font-awesome"
               value="en"
@@ -151,6 +147,7 @@ const Settings = (props) => {
             />
             <SettingsDropdown
               currencyName="Arabic"
+              selected={I18nManager.isRTL}
               iconName="dollar"
               iconType="font-awesome"
               value="ar"
@@ -162,11 +159,11 @@ const Settings = (props) => {
           label="Notifications"
           rightComponent={
             <Switch
-              trackColor={{ false: colors.primary, true: colors.textBlack }}
-              thumbColor={!isEnabled ? colors.secondary : colors.appColor}
-              ios_backgroundColor="#3e3e3e"
-              onValueChange={toggleSwitch}
-              value={isEnabled}
+              trackColor={{ false: colors.secondary, true: colors.primary }}
+              thumbColor={colors.white}
+              // ios_backgroundColor={colors.primary}
+              onValueChange={() => toggleDropdown('notifications')}
+              value={item.notifications}
             />
           }
         />
@@ -176,10 +173,10 @@ const Settings = (props) => {
         <SettingsComponent
           label="Currency"
           Currency={iso}
-          iconName={!showDropdown ? "downcircleo" : "upcircleo"}
-          onIconPress={() => setShowDropdown(!showDropdown)}
+          iconName={!item.currency ? "downcircleo" : "upcircleo"}
+          onIconPress={() => toggleDropdown('currency')}
         />
-        {showDropdown && (
+        {item.currency && (
           <View
             style={{
               width: wp(80),
@@ -215,10 +212,7 @@ const Settings = (props) => {
           onIconPress={() => navigation.navigate(JOINUS)}
           label="Join Us"
         />
-        <SettingsComponent
-          onIconPress={() => navigation.navigate(INVOICE)}
-          label="INVOICE"
-        />
+
       </View>
 
       <View key="footer">

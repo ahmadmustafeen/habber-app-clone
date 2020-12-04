@@ -74,7 +74,7 @@ const Invoice = (props) => {
                 }}
                 resizeMode='stretch'
                 source={require('_assets/images/header.png')}>
-                <Header rightIcon {...props} headerLeft title={"Invoice"} />
+                <Header backIcon {...props} headerLeft title={"Invoice"} />
             </ImageBackground>
             <View key="content">
                 <InvoiceItem headerLeft="Order ID" headerRight="Order Date" textLeft="23423423423" textRight="05/09/2020" />

@@ -24,7 +24,7 @@ const Header = (props) => {
     route: { name },
     headerLeft,
     headerRight,
-    rightIcon
+    backIcon
   } = props;
   const headerColor =
     color || (secondary && colors.secondary) || colors.primary;
@@ -43,7 +43,7 @@ const Header = (props) => {
           )}
       </View>
       <View>
-        {rightIcon ?
+        {backIcon ?
           <Icon
             onPress={() => props.navigation.goBack()}
             color={colors.primary}

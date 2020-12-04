@@ -56,6 +56,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     paddingLeft: 30,
     padding: 5,
+    alignItems: 'center'
   },
 });
 export { SettingsComponent };
