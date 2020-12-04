@@ -245,7 +245,7 @@ const Home = (props) => {
               onPress={() =>
                 navigate(REQUESTBOOKS_SCREEN, { book_type: 'random' })
               }>
-              Request Books
+              Request Book
             </Button>
           </View>
           <View style={{ width: wp(58) }}>

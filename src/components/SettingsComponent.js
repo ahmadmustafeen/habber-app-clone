@@ -31,6 +31,8 @@ const SettingsComponent = (props) => {
         ]}>
         <AppText bold>{label || 'Title'}</AppText>
         {Currency ? <AppText primary style={{ marginLeft: wp(-30), alignSelf: 'center' }}>{Currency}</AppText> : null}
+
+
         {rightComponent ? (
           rightComponent
         ) : (

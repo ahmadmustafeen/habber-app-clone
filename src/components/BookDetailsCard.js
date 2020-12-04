@@ -20,6 +20,7 @@ const BookDetailsCard = (props) => {
     quantity,
     genre,
     onClickFavourite,
+    product_type,
     favourite, onClickShare
   } = props;
   return (
@@ -72,7 +73,10 @@ const BookDetailsCard = (props) => {
             onPress={onClickFavourite}
           />
           <RoundIcon name="share-alt" type="font-awesome" color="#fff" small onPress={onClickShare} />
-          <RoundIcon name="glide-g" type="font-awesome" color="#fff" small />
+
+          <RoundIcon name={product_type === "book" ? "glide-g" : null} type="font-awesome" color="#fff" small background={product_type === "book" ? null : "rgba(0,0,0,0)"} />
+
+
         </View>
       </View>
     </View>
