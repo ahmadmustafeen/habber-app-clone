@@ -22,6 +22,8 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
+import { useTheme } from '@react-navigation/native';
+import { AppText } from '../../components/common';
 
 const imageOptions = {
   title: 'Select Avatar',
@@ -90,64 +92,62 @@ const EditProfile = (props) => {
       }
     });
   };
+  const { colors } = useTheme();
   return (
-    <ScrollView>
-      <ImageBackground
-        style={{
-          height: hp(21),
-          paddingHorizontal: wp(3),
-          paddingBottom: hp(8),
-          marginBottom: hp(1),
-          justifyContent: 'flex-end',
-          transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }],
-        }}
-        resizeMode="stretch"
-        source={require('_assets/images/header.png')}>
-        <Header {...props} title={'Edit Profile'} />
-      </ImageBackground>
-      <Screen>
-        <View key="header"></View>
-        <View key="content" style={styles.content}>
-          <View style={styles.profiletop}>
-            <TouchableOpacity style={styles.imgContainer} onPress={setImage}>
-              <Image
-                style={styles.image}
-                source={require('../../assets/images/Screenshot_Logo.jpg')}
-              />
-            </TouchableOpacity>
-          </View>
-          <HorizontalRow />
-          <View style={{ marginTop: 20 }}>
-            <InputWithLabel
-              color={'black'}
-              value={state.first_name}
-              placeholder="Khaled"
-              label="First Name:"
-              onChangeText={(val) => setStateHandler('first_name', val)}
+
+    <Screen noPadding>
+      <View key="header">
+        <ImageBackground
+          style={styles.imageBackground}
+          resizeMode="stretch"
+          source={require('_assets/images/header.png')}>
+          <Header {...props} title={'Edit Profile'} />
+        </ImageBackground>
+      </View>
+      <View key="content" style={styles.content}>
+        <View style={styles.profiletop}>
+          <TouchableOpacity style={styles.imgContainer} onPress={setImage}>
+            <Image
+              style={styles.image}
+              source={require('../../assets/images/Screenshot_Logo.jpg')}
             />
-            <InputWithLabel
-              color={'black'}
-              value={state.last_name}
-              placeholder="Ammer"
-              label="Last Name:"
-              onChangeText={(val) => setStateHandler('last_name', val)}
-            />
-            <InputWithLabel
-              color={'black'}
-              value={state.email}
-              placeholder="Khaled.ammar@gmail.com"
-              label="Phone:"
-              onChangeText={(val) => setStateHandler('email', val)}
-            />
-          </View>
+          </TouchableOpacity>
         </View>
-        <View key="footer">
-          <Button appColor primary onPress={() => save()}>
-            Save
+        <HorizontalRow style={{ borderBottomWidth: hp(0.1), borderBottomColor: colors.borderColor }} />
+        <View style={{ marginTop: 20 }}>
+          <AppText style={{ margin: hp(0), padding: hp(0), backgroundColor: 'red' }}>
+            First Name
+          </AppText>
+          <InputWithLabel
+            style={{ margin: hp(0), padding: hp(0), backgroundColor: 'red' }}
+            color={'black'}
+            value={state.first_name}
+            placeholder="Khaled"
+            label="First Name:"
+            onChangeText={(val) => setStateHandler('first_name', val)}
+          />
+          <InputWithLabel
+            color={'black'}
+            value={state.last_name}
+            placeholder="Ammer"
+            label="Last Name:"
+            onChangeText={(val) => setStateHandler('last_name', val)}
+          />
+          <InputWithLabel
+            color={'black'}
+            value={state.email}
+            placeholder="Khaled.ammar@gmail.com"
+            label="Phone:"
+            onChangeText={(val) => setStateHandler('email', val)}
+          />
+        </View>
+      </View>
+      <View key="footer" style={styles.content}>
+        <Button style={styles.button} appColor primary onPress={() => save()}>
+          Save
           </Button>
-        </View>
-      </Screen>
-    </ScrollView>
+      </View>
+    </Screen>
   );
 };
 
@@ -169,6 +169,21 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     marginTop: 20,
   },
+  imageBackground: {
+    height: hp(21),
+    paddingHorizontal: wp(3),
+    paddingBottom: hp(8),
+    marginBottom: hp(1),
+    justifyContent: 'flex-end',
+    transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }],
+  },
+  content: {
+    width: wp(90),
+    alignSelf: 'center'
+  },
+  button: {
+    marginTop: hp(-10)
+  }
 });
 
 export default EditProfile;

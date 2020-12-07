@@ -10,23 +10,19 @@ import {
   TouchableOpacity, ImageBackground,
 } from 'react-native';
 import { useTranslation } from 'react-i18next';
-import RNRestart from 'react-native-restart';
-import useModal from '_utils/customHooks/useModal';
+import RNRestart from 'react-native-restart'
 import { Screen, Button } from '_components/common';
-import { SettingsComponent, Header, ModalScreen, Footer } from '_components';
+import { SettingsComponent, Header, } from '_components';
 import { useTheme } from '@react-navigation/native';
-import { INVOICE, JOINUS, PRIVACY_POLICY, RETURN_POLICY, TERMS_AND_CONDITIONS_SCREEN } from '../../constants/Screens';
+import { JOINUS, PRIVACY_POLICY, RETURN_POLICY, TERMS_AND_CONDITIONS_SCREEN } from '../../constants/Screens';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 import { withoutDataActions } from '_redux/actions';
-import { SIGN_OUT, SHOW_MODAL } from '_redux/actionTypes';
+import { SIGN_OUT } from '_redux/actionTypes';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
-import { Icon } from 'react-native-elements';
 import { AppText } from 'components/common';
-import { color } from 'react-native-reanimated';
-import Language from '../Language';
 
 const Settings = (props) => {
   const { colors } = useTheme();
@@ -35,7 +31,7 @@ const Settings = (props) => {
     language: false,
     notifications: false
   })
-  const [iso, setIso] = useState("USD");
+  const [iso, setIso] = useState("KWD");
   const { i18n } = useTranslation();
 
 

@@ -42,7 +42,7 @@ const JoinUs = (props) => {
     message: '',
     phone: '',
     business_type: '',
-    product_type: '',
+    product_type: new Set(),
   });
   const setStateHandler = (key, val) => {
     setState({ ...state, [key]: val });
@@ -70,8 +70,10 @@ const JoinUs = (props) => {
   const businessTypeFunc = (id) => {
     setStateHandler('business_type', id);
   };
-  const productTypeFunc = (id) => {
-    setStateHandler('product_type', id);
+  const productTypeFunc = (val) => {
+    state.product_type.has(val) ? state.product_type.delete(val) : state.product_type.add(val);
+    setState({ ...state, product_type: new Set(state.product_type) });
+    // setStateHandler('product_type', id);
   };
   const onContinue = () => {
     toggleModal();
@@ -169,13 +171,13 @@ const JoinUs = (props) => {
           <View style={styles.row}>
             <RadioButton
               title="Books"
-              selected={state.product_type === 'Books'}
+              selected={state.product_type.has("Books")}
               onPress={() => productTypeFunc('Books')}
             />
             <RadioButton
               title="Bookmarks"
-
-              selected={state.product_type === 'Bookmarks'}
+              selected={state.product_type.has("Bookmarks")}
+              // selected={state.product_type === 'Bookmarks'}
               onPress={() => productTypeFunc('Bookmarks')}
             />
           </View>

@@ -24,7 +24,8 @@ const FilterModal = (props) => {
   const [state, setState] = useState(new Set());
 
   const onselect = (val) => {
-    state.has(val) ? state.delete(val) : state.add(val);
+
+    state.has(val) ? state.delete(val) : ((state.size < 3) && state.add(val));
     setState(new Set(state));
   };
   useEffect(useState()[1]);
