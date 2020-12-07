@@ -1,44 +1,45 @@
 import {put, call} from 'redux-saga/effects';
 import hesabeCrypt from 'hesabe-crypt';
 import aesjs from 'aes-js';
-import {
-  FAILURE_URL,
-  HSB_ACCESS_CODE,
-  HSB_API_VERSION,
-  HSB_BASE_URL,
-  HSB_MERCHANT_ID,
-  IV_CODE,
-  RESPONSE_URL,
-  SECRET_KEY,
-} from 'constants/HesabeConfig';
 import {create} from 'apisauce';
-import {Linking} from 'react-native';
+import {Alert} from 'react-native';
+
 import * as NavigationService from '../../../NavigationService';
 import {PAYMENT_SCREEN} from '../../constants/Screens';
+import {NETWORK_ERROR} from '../actionTypes';
+import {
+  HSB_BASE_URL,
+  HSB_ACCESS_CODE,
+  HSB_API_VERSION,
+  HSB_MERCHANT_ID,
+  IV_CODE,
+  SECRET_KEY,
+} from '../../constants/HesabeConfig';
+import {errorAction} from '../actions';
 
-export function* PaymentSaga() {
+export function* PaymentSaga({payload, type}) {
   try {
     const key = aesjs.utils.utf8.toBytes(SECRET_KEY);
     const iv = aesjs.utils.utf8.toBytes(IV_CODE);
     const payment = new hesabeCrypt(key, iv);
-
-    let payload = {
+    let payload_obj = {
       paymentType: 0,
       encrypted: '',
       decrypted: '',
-      amount: 10,
-      orderReferenceNumber: Math.floor(Date.now() / 1000),
       variable1: '',
       variable2: '',
       variable3: '',
       variable4: '',
       variable5: '',
       merchantCode: HSB_MERCHANT_ID,
-      responseUrl: RESPONSE_URL,
-      failureUrl: FAILURE_URL,
       version: HSB_API_VERSION,
+      currency: payload.currency_iso,
+      amount: payload.total_price,
+      orderReferenceNumber: payload.id,
+      responseUrl: payload.payment_failure_url,
+      failureUrl: payload.payment_success_url,
     };
-    const encrypted = payment.encryptAes(JSON.stringify(payload));
+    const encrypted = payment.encryptAes(JSON.stringify(payload_obj));
     const api = create({
       baseURL: HSB_BASE_URL,
       headers: {
@@ -46,19 +47,28 @@ export function* PaymentSaga() {
         'Content-Type': 'application/json',
       },
     });
+
     const result = yield call(() =>
       api
         .post('/checkout', {data: encrypted})
-        .then((res) => payment.decryptAes(res.data))
-        .then((data) => JSON.parse(data)),
+        .then((res) => {
+          if (res.problem === NETWORK_ERROR) {
+            Alert.alert('ERROR', res.problem);
+            return;
+          }
+          payment.decryptAes(res.data);
+        })
+        .then((data) => JSON.parse(data))
+        .catch((err) => console.log('HESABE ERROR', err)),
     );
+    console.log('RESULT', result);
     const paymentData = result.response.data;
-    const paymentUrl = `https://sandbox.hesabe.com/payment?data=${paymentData}`;
-    // yield Linking.openURL(paymentUrl);
+    const paymentUrl = `${HSB_BASE_URL}/payment?data=${paymentData}`;
     NavigationService.navigate(PAYMENT_SCREEN, {
       paymentUrl,
     });
   } catch (error) {
-    console.log(error);
+    console.log('ERROR AT PAYMENT', error);
+    // yield put(errorAction(error, type));
   }
 }

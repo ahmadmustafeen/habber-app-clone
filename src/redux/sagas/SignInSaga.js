@@ -1,58 +1,64 @@
-import { HOME } from 'constants/Screens';
-import { getItem, setItem } from 'helpers/Localstorage';
-import { Alert } from 'react-native';
-import { put, call, all } from 'redux-saga/effects';
-import { MY_PROFILE } from '_constants/Screens';
-import { API_ENDPOINTS } from '_constants/Network';
-import { RestClient } from '_network/RestClient';
-import { SIGN_IN_FAILURE, SIGN_IN_SUCCESS, HIDE_MODAL, FETCH_USER_CART, FETCH_ORDER_SUCCESS, FETCH_CURRENCIES } from '_redux/actionTypes';
+import {HOME} from 'constants/Screens';
+import {getItem, setItem} from 'helpers/Localstorage';
+import {Alert} from 'react-native';
+import {put, call, all, select} from 'redux-saga/effects';
+import {API_ENDPOINTS} from '_constants/Network';
+import {RestClient} from '_network/RestClient';
+import {
+  SIGN_IN_FAILURE,
+  SIGN_IN_SUCCESS,
+  HIDE_MODAL,
+  FETCH_USER_CART,
+  FETCH_ORDER_SUCCESS,
+  FETCH_CURRENCIES,
+  NETWORK_ERROR,
+  SHOW_NETWORK_MODAL,
+  FETCH_ADDRESS,
+  FETCH_USER_FAVOURITE,
+} from '_redux/actionTypes';
 import * as NavigationService from '../../../NavigationService';
 
-import { NETWORK_ERROR, SHOW_NETWORK_MODAL } from 'redux/actionTypes';
-import { CURRENCIES_SUCCESS, FETCH_ADDRESS, FETCH_USER_FAVOURITE } from '../actionTypes';
-export function* signinSaga({ payload }) {
+export function* signinSaga({payload}) {
   try {
-    const { email, password } = payload;
+    const {email, password} = payload;
+    const FCMReducer = yield select(({FCMReducer}) => FCMReducer);
+    console.log('FCM', FCMReducer);
     const response = yield call(() =>
       RestClient.post(API_ENDPOINTS.signin, {
         email,
         password,
-        firebase_token: "abcdefg12344",
+        firebase_token: FCMReducer.token,
       }),
     );
     if (response.problem === NETWORK_ERROR) {
-      return yield put({ type: SHOW_NETWORK_MODAL });
+      return yield put({type: SHOW_NETWORK_MODAL});
     }
     const {
       status,
-      data: { data: res, message, success },
+      data: {data: res, message, success},
     } = response;
-    console.log("user", response)
+    console.log('user', response);
     if (success) {
       yield setItem('@userProfile', JSON.stringify(res));
       RestClient.setHeader('Authorization', `Bearer ${res.token}`);
       yield all([
-        put({ type: SIGN_IN_SUCCESS, payload: res }),
-        put({ type: HIDE_MODAL }),
-        put({ type: FETCH_ADDRESS }),
-        put({ type: FETCH_USER_CART }),
-        put({ type: FETCH_USER_FAVOURITE }),
-        put({ type: FETCH_ORDER_SUCCESS }),
-        put({ type: FETCH_CURRENCIES }),
-
+        put({type: SIGN_IN_SUCCESS, payload: res}),
+        put({type: HIDE_MODAL}),
+        put({type: FETCH_ADDRESS}),
+        put({type: FETCH_USER_CART}),
+        put({type: FETCH_USER_FAVOURITE}),
+        put({type: FETCH_ORDER_SUCCESS}),
+        put({type: FETCH_CURRENCIES}),
       ]);
-
-
-
 
       NavigationService.navigate('Drawer', {
         screen: HOME,
       });
     } else {
       Alert.alert('Login Failed', message);
-      yield put({ type: SIGN_IN_FAILURE, payload: null });
+      yield put({type: SIGN_IN_FAILURE, payload: null});
     }
   } catch (error) {
-    yield put({ type: SIGN_IN_FAILURE, error });
+    yield put({type: SIGN_IN_FAILURE, error});
   }
 }

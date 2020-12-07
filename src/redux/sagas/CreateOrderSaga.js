@@ -1,27 +1,20 @@
 import {Alert} from 'react-native';
-import {put, call, select, all} from 'redux-saga/effects';
-import {
-  ADD_TO_CART_FAILURE,
-  ADD_TO_CART_SUCCESS,
-  FETCH_USER_CART,
-} from '_redux/actionTypes';
-import * as NavigationService from '../../../NavigationService';
+import {put, call, select} from 'redux-saga/effects';
+
 import {API_ENDPOINTS} from '_constants/Network';
 import {RestClient} from '_network/RestClient';
-import {CART_SCREEN} from '_constants/Screens';
 import {NETWORK_ERROR, SHOW_NETWORK_MODAL} from 'redux/actionTypes';
+import {
+  CREATE_ORDER_FAILURE,
+  CREATE_ORDER_SUCCESS,
+  DO_PAYMENT,
+} from '../actionTypes';
+import {errorAction, startAction, stopAction} from '../actions';
 
 export function* CreateOrderSaga({type}) {
   try {
+    yield put(startAction(type));
     const payload = {
-      product: [
-        {
-          product_id: 1,
-          product_type: 'book',
-          price: 3000,
-          quantity: 3,
-        },
-      ],
       address: {
         address_line1: 'asdas',
         address_line2: 'asdas',
@@ -56,34 +49,41 @@ export function* CreateOrderSaga({type}) {
         price: cart_price, // or product.price, depends on API
       }));
 
-    console.log('PRODUCTS', product);
+    // console.log('PRODUCTS', product);
     const obj = {
       product,
       total_price: CartReducer.total_price,
-      total_quantity: 5,
+      total_quantity: product.reduce(
+        (total, currentValue) => total + currentValue.quantity,
+        0,
+      ),
       address_id: payload.address.id,
       currency_id: 1,
       payment_type: 'online',
     };
 
-    console.log('CART', obj);
     const response = yield call(() =>
       RestClient.post(API_ENDPOINTS.order, obj),
     );
-    console.log('RESPONSE', response);
+    // console.log('CREATE ORDER RESPONSE', response);
     if (response.problem === NETWORK_ERROR) {
       return yield put({type: SHOW_NETWORK_MODAL});
     }
     const {
-      data: {data: res, message, status: success},
+      data: {data: res, success},
     } = response;
-    if (success) {
-      console.log('STATUS', success);
-    } else {
+    if (!success) {
       console.error('Error', response);
-      yield put({type: ADD_TO_CART_FAILURE});
+      yield put({type: CREATE_ORDER_FAILURE});
+      return;
+    }
+    yield put({type: CREATE_ORDER_SUCCESS});
+    if (res.navigation) {
+      yield put({type: DO_PAYMENT, payload: res});
     }
   } catch (error) {
-    yield put({type: ADD_TO_CART_FAILURE, error});
+    yield put(errorAction(error, CREATE_ORDER_FAILURE));
+  } finally {
+    yield put(stopAction(type));
   }
 }

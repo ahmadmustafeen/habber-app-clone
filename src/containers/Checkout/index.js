@@ -22,12 +22,14 @@ import {
 import {useTheme} from '@react-navigation/native';
 import {withDataActions} from '../../redux/actions';
 import {CREATE_ORDER} from '../../redux/actionTypes';
+import {checkIfLoading} from '../../redux/selectors';
 
 const Checkout = (props) => {
   const {colors} = useTheme();
-  const {AddressReducer} = useSelector((state) => {
+  const {AddressReducer, isLoading} = useSelector((state) => {
     return {
       AddressReducer: state.AddressReducer,
+      isLoading: checkIfLoading(state, CREATE_ORDER),
     };
   }, shallowEqual);
 
@@ -146,6 +148,7 @@ const Checkout = (props) => {
               secondary
               color={'white'}
               bold
+              loading={isLoading}
               onPress={() => dispatch(withDataActions({}, CREATE_ORDER))}>
               PAY NOW
             </Button>
