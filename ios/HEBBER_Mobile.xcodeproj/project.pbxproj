@@ -101,6 +101,7 @@
 		94A3227C2535FB73002B8D62 /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = MaterialCommunityIcons.ttf; path = "../../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
 		94A3227D2535FB73002B8D62 /* EvilIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = EvilIcons.ttf; path = "../../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
 		94A3227E2535FB73002B8D62 /* AntDesign.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = AntDesign.ttf; path = "../../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf"; sourceTree = "<group>"; };
+		94C5A282257A5181003568F3 /* HEBBER_MobileRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = HEBBER_MobileRelease.entitlements; path = HEBBER_Mobile/HEBBER_MobileRelease.entitlements; sourceTree = "<group>"; };
 		96C0A682A22FEF861217418F /* Pods-HEBBER_Mobile-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HEBBER_Mobile-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-HEBBER_Mobile-tvOS/Pods-HEBBER_Mobile-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
 		A3DDA60A81E646B18DA09AE0 /* Almarai-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Almarai-Bold.ttf"; path = "../src/assets/font/Almarai-Bold.ttf"; sourceTree = "<group>"; };
 		A6EB10E4BC4D4101B011A209 /* Roboto-LightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-LightItalic.ttf"; path = "../src/assets/font/Roboto-LightItalic.ttf"; sourceTree = "<group>"; };
@@ -166,6 +167,7 @@
 		13B07FAE1A68108700A75B9A /* HEBBER_Mobile */ = {
 			isa = PBXGroup;
 			children = (
+				94C5A282257A5181003568F3 /* HEBBER_MobileRelease.entitlements */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -842,6 +844,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = HEBBER_Mobile/HEBBER_MobileRelease.entitlements;
 				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = GZHG762PM3;
 				INFOPLIST_FILE = HEBBER_Mobile/Info.plist;
