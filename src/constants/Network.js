@@ -24,4 +24,5 @@ export const API_ENDPOINTS = {
   user: '/user',
   favourites: '/favourites',
   currencies: '/currencies',
+  order: '/order',
 };

@@ -28,6 +28,7 @@ import {
   FETCH_USER_FAVOURITE,
   FETCH_CURRENCIES,
   DO_PAYMENT,
+  CREATE_ORDER,
 } from '../actionTypes';
 
 import {signupSaga} from './SignupSaga';
@@ -57,6 +58,7 @@ import {PaymentSaga} from './PaymentSaga';
 import {FetchFavouriteSaga} from './FetchUserFavouriteSaga';
 import {FetchCurrencySaga} from './FetchCurrencySaga';
 import {BookRequestSaga} from './BookRequestSaga';
+import {CreateOrderSaga} from './CreateOrderSaga';
 
 function* actionWatcher() {
   yield takeLatest(SPLASH_ACTION, splashSaga);
@@ -87,6 +89,7 @@ function* actionWatcher() {
   yield takeLatest(FETCH_USER_FAVOURITE, FetchFavouriteSaga);
   yield takeLatest(FETCH_CURRENCIES, FetchCurrencySaga);
   yield takeLatest(DO_PAYMENT, PaymentSaga);
+  yield takeLatest(CREATE_ORDER, CreateOrderSaga);
 }
 
 export default function* rootSaga() {
