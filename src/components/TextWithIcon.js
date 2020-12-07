@@ -20,13 +20,15 @@ const TextWithIcon = (props) => {
         title,
         value,
         size,
-        small, large
-        , color
+        small,
+        large,
+        color,
+        onPress
     } = props;
     const { colors } = useTheme()
 
     return (
-        <TouchableOpacity style={styles.container}>
+        <TouchableOpacity style={styles.container} onPress={onPress}>
 
             <Icon
                 color={colors.primary}

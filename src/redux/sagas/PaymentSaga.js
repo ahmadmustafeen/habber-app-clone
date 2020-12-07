@@ -1,12 +1,12 @@
-import {put, call} from 'redux-saga/effects';
+import { put, call } from 'redux-saga/effects';
 import hesabeCrypt from 'hesabe-crypt';
 import aesjs from 'aes-js';
-import {create} from 'apisauce';
-import {Alert} from 'react-native';
+import { create } from 'apisauce';
+import { Alert } from 'react-native';
 
 import * as NavigationService from '../../../NavigationService';
-import {PAYMENT_SCREEN} from '../../constants/Screens';
-import {NETWORK_ERROR} from '../actionTypes';
+import { PAYMENT_SCREEN } from '../../constants/Screens';
+import { NETWORK_ERROR } from '../actionTypes';
 import {
   HSB_BASE_URL,
   HSB_ACCESS_CODE,
@@ -15,17 +15,15 @@ import {
   IV_CODE,
   SECRET_KEY,
 } from '../../constants/HesabeConfig';
-import {errorAction} from '../actions';
+import { errorAction } from '../actions';
 
-export function* PaymentSaga({payload, type}) {
+export function* PaymentSaga({ payload, type }) {
   try {
     const key = aesjs.utils.utf8.toBytes(SECRET_KEY);
     const iv = aesjs.utils.utf8.toBytes(IV_CODE);
     const payment = new hesabeCrypt(key, iv);
     let payload_obj = {
       paymentType: 0,
-      encrypted: '',
-      decrypted: '',
       variable1: '',
       variable2: '',
       variable3: '',
@@ -39,6 +37,7 @@ export function* PaymentSaga({payload, type}) {
       responseUrl: payload.payment_failure_url,
       failureUrl: payload.payment_success_url,
     };
+    console.log("PY", payload_obj)
     const encrypted = payment.encryptAes(JSON.stringify(payload_obj));
     const api = create({
       baseURL: HSB_BASE_URL,
@@ -50,13 +49,14 @@ export function* PaymentSaga({payload, type}) {
 
     const result = yield call(() =>
       api
-        .post('/checkout', {data: encrypted})
+        .post('/checkout', { data: encrypted })
         .then((res) => {
+          console.log("PATYM<ENT RESPOBSE", res)
           if (res.problem === NETWORK_ERROR) {
             Alert.alert('ERROR', res.problem);
             return;
           }
-          payment.decryptAes(res.data);
+          return payment.decryptAes(res.data);
         })
         .then((data) => JSON.parse(data))
         .catch((err) => console.log('HESABE ERROR', err)),

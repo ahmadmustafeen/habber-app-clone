@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { Icon } from 'react-native-elements';
 import { useTheme } from '@react-navigation/native';
-import { View, TextInput, StyleSheet, Alert, ImageBackground, I18nManager } from 'react-native';
+import { View, TextInput, StyleSheet, Alert, ImageBackground, I18nManager, Linking } from 'react-native';
 import { useDispatch, useSelector, shallowEqual } from 'react-redux';
 import {
   widthPercentageToDP as wp,
@@ -38,8 +38,10 @@ const ContactUs = (props) => {
   });
   const {
     isLoading,
+    FetchSiteReducer
   } = useSelector((state) => {
     return {
+      FetchSiteReducer: state.FetchSiteReducer,
       isLoading: checkIfLoading(
         state,
         SUBMIT_CONTACT_US,
@@ -158,8 +160,25 @@ const ContactUs = (props) => {
           resizeMode='stretch'
           source={require('_assets/images/footer.png')}>
           <View style={styles.textwithIconContainer}>
-            <TextWithIcon small iconName="whatsapp" iconType="font-awesome" iconSize={23} title="Support Chat" value="1234 43222" />
-            <TextWithIcon small iconName="phone-call" iconType="feather" iconSize={23} title="Phone Number" value="1234 43222" />
+            <TextWithIcon
+              small
+              iconName="whatsapp"
+              iconType="font-awesome"
+              iconSize={23}
+              title="Support Chat"
+              value="1234 43222"
+              onPress={() => Linking.openURL(`telprompt:1234567890`)}
+            />
+            <TextWithIcon
+              small
+              iconName="phone-call"
+              iconType="feather"
+              iconSize={23}
+              title="Phone Number"
+              value="1234 43222"
+              onPress={() => Linking.openURL(`telprompt:${FetchSiteReducer.whatsaap_number}`)}
+
+            />
             <TextWithIcon small iconName="mail" iconType="octicons" iconSize={23} title="Email:" value="asd@gmail.com" />
 
           </View>

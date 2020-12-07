@@ -48,14 +48,16 @@ const DrawerIcon = (props) => {
 // console.log(Dimensions);
 const DrawerMenu = (props) => {
   const { t } = useTranslation(['drawer']);
-  const UserProfileReducer = useSelector(
-    ({ UserProfileReducer }) => UserProfileReducer,
-    shallowEqual,
-  );
-  const FetchSiteReducer = useSelector(
-    ({ FetchSiteReducer }) => FetchSiteReducer,
-    shallowEqual,
-  );
+
+  const {
+    UserProfileReducer,
+    FetchSiteReducer
+  } = useSelector((state) => {
+    return {
+      UserProfileReducer: state.UserProfileReducer,
+      FetchSiteReducer: state.FetchSiteReducer
+    };
+  }, shallowEqual);
   return (
     <ImageBackground
       {...props}
