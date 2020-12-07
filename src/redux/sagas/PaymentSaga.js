@@ -24,8 +24,6 @@ export function* PaymentSaga({payload, type}) {
     const payment = new hesabeCrypt(key, iv);
     let payload_obj = {
       paymentType: 0,
-      encrypted: '',
-      decrypted: '',
       variable1: '',
       variable2: '',
       variable3: '',
@@ -56,7 +54,7 @@ export function* PaymentSaga({payload, type}) {
             Alert.alert('ERROR', res.problem);
             return;
           }
-          payment.decryptAes(res.data);
+          return payment.decryptAes(res.data);
         })
         .then((data) => JSON.parse(data))
         .catch((err) => console.log('HESABE ERROR', err)),
