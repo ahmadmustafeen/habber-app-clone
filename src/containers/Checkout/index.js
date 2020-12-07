@@ -20,6 +20,8 @@ import {
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 import {useTheme} from '@react-navigation/native';
+import {withDataActions} from '../../redux/actions';
+import {CREATE_ORDER} from '../../redux/actionTypes';
 
 const Checkout = (props) => {
   const {colors} = useTheme();

@@ -13,7 +13,7 @@ export default (state = initialState, {type, payload}) => {
   switch (type) {
     case UPDATE_CART_ITEM: {
       console.log('Cart Payload', payload);
-
+      console.log('Cart Reducer', state);
       const alreadyAvailable = state[payload.product_type].findIndex(
         (obj) => obj.product_id === payload.product_id,
       );
@@ -23,13 +23,23 @@ export default (state = initialState, {type, payload}) => {
         }
         payload.cart_price = payload.price;
         payload.cart_quantity = payload.quantity;
-
+        console.log('BOOK PRICE', state.book);
         return {
           ...state,
           [payload.product_type]: [...state[payload.product_type], payload],
           total_price:
-            state.book.reduce((total, book) => total + book.price, 0) +
-            state.bookmark.reduce((total, book) => total + book.price, 0),
+            state.book.reduce(
+              (total, book) =>
+                parseFloat(total.toString().replace(',', '')) +
+                parseFloat(book.price.toString().replace(',', '')),
+              0,
+            ) +
+            state.bookmark.reduce(
+              (total, book) =>
+                parseFloat(total.toString().replace(',', '')) +
+                parseFloat(book.price.toString().replace(',', '')),
+              0,
+            ),
         };
       }
 
@@ -46,11 +56,19 @@ export default (state = initialState, {type, payload}) => {
       }
 
       product.cart_price = payload.price * product.cart_quantity;
-
+      console.log('BOOK PRICE', updatedState.book);
       updatedState.total_price =
-        updatedState.book.reduce((total, book) => total + book.cart_price, 0) +
+        updatedState.book.reduce(
+          (total, book) =>
+            parseFloat(total.toString().replace(',', '')) +
+            parseFloat(book.cart_price.toString().replace(',', '')),
+          0,
+        ) +
         updatedState.bookmark.reduce(
-          (total, book) => total + book.cart_price,
+          (total, book) =>
+            parseFloat(total.toString().replace(',', '')) +
+            parseFloat(book.cart_price.toString().replace(',', '')),
+
           0,
         );
       return {...updatedState};
