@@ -7,13 +7,13 @@ import {
   I18nManager,
   Text,
   Modal,
-  TouchableOpacity,
+  TouchableOpacity, ImageBackground,
 } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import RNRestart from 'react-native-restart';
 import useModal from '_utils/customHooks/useModal';
 import { Screen, Button } from '_components/common';
-import { SettingsComponent, Header, ModalScreen, } from '_components';
+import { SettingsComponent, Header, ModalScreen, Footer } from '_components';
 import { useTheme } from '@react-navigation/native';
 import { INVOICE, JOINUS, PRIVACY_POLICY, RETURN_POLICY, TERMS_AND_CONDITIONS_SCREEN } from '../../constants/Screens';
 import {
@@ -35,7 +35,7 @@ const Settings = (props) => {
     language: false,
     notifications: false
   })
-  const [iso, setIso] = useState("");
+  const [iso, setIso] = useState("USD");
   const { i18n } = useTranslation();
 
 
@@ -110,18 +110,21 @@ const Settings = (props) => {
     });
   };
   return (
-    <Screen>
+    <Screen noPadding>
       <View key="header">
-        <Header {...props}
-          headerLeft={
-            <Icon
-              onPress={() => props.navigation.goBack()}
-              color={colors.primary}
-              name="leftcircleo"
-              type="ant-design"
-            />
-          }
-          title={'Settings'} />
+        <ImageBackground
+          style={{
+            height: hp(21),
+            paddingHorizontal: wp(3),
+            paddingBottom: hp(8),
+            marginBottom: hp(1),
+            justifyContent: 'flex-end',
+            transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }],
+          }}
+          resizeMode="stretch"
+          source={require('_assets/images/header.png')}>
+          <Header {...props} />
+        </ImageBackground>
       </View>
       <View key="content" style={styles.content}>
 
@@ -262,5 +265,9 @@ const styles = StyleSheet.create({
     marginBottom: 15,
     textAlign: 'center',
   },
+  content: {
+    width: wp(90),
+    alignSelf: 'center'
+  }
 });
 export default Settings;

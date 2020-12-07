@@ -1,15 +1,15 @@
-import React, {useState} from 'react';
-import {View, StyleSheet, Alert} from 'react-native';
-import {useTheme} from '@react-navigation/native';
-import {shallowEqual, useDispatch, useSelector} from 'react-redux';
+import React, { useState } from 'react';
+import { View, StyleSheet, Alert } from 'react-native';
+import { useTheme } from '@react-navigation/native';
+import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 
-import {useTranslation} from 'react-i18next';
-import {withDataActions} from '_redux/actions/GenericActions';
-import {SIGN_IN} from '_redux/actionTypes';
-import {InputWithLabel, RoundIcon, AuthHeader} from '_components';
-import {AppText, BackgroundImage, Button} from '_components/common';
-import {FORGOT_PASSWORD_SCREEN, SIGNUP_SCREEN} from '_constants/Screens';
-import {validateEmail, validatePassword} from '../../helpers/Validators';
+import { useTranslation } from 'react-i18next';
+import { withDataActions } from '_redux/actions/GenericActions';
+import { SIGN_IN } from '_redux/actionTypes';
+import { InputWithLabel, RoundIcon, AuthHeader } from '_components';
+import { AppText, BackgroundImage, Button } from '_components/common';
+import { FORGOT_PASSWORD_SCREEN, SIGNUP_SCREEN } from '_constants/Screens';
+import { validateEmail, validatePassword } from '../../helpers/Validators';
 
 import {
   widthPercentageToDP as wp,
@@ -17,23 +17,23 @@ import {
 } from 'react-native-responsive-screen';
 
 const SignIn = (props) => {
-  const {t} = useTranslation(['login']);
+  const { t } = useTranslation(['login']);
   const dispatch = useDispatch();
-  const {navigate} = props.navigation;
-  const {colors} = useTheme();
+  const { navigate } = props.navigation;
+  const { colors } = useTheme();
 
   const [state, setState] = useState({
     email: '',
     password: '',
   });
 
-  const {email, password} = state;
+  const { email, password } = state;
 
   const handleChange = (key, value) => {
-    setState((state) => ({...state, [key]: value}));
+    setState((state) => ({ ...state, [key]: value }));
   };
 
-  const {loading} = useSelector(({LoadingReducer}) => {
+  const { loading } = useSelector(({ LoadingReducer }) => {
     return {
       loading: LoadingReducer.loading,
     };
@@ -56,12 +56,12 @@ const SignIn = (props) => {
   return (
     <BackgroundImage>
       <View key="header">
-        <AuthHeader {...props} noIcon />
+        <AuthHeader {...props} />
 
         <AppText bold color={colors.primary} heading style={styles.hellotxt}>
           {t('signInHeader')}
         </AppText>
-        <AppText white secondary style={{marginBottom: 10}}>
+        <AppText white secondary style={{ marginBottom: 10 }}>
           {t('signInLabel')}
         </AppText>
       </View>
@@ -87,7 +87,7 @@ const SignIn = (props) => {
           onPress={() => navigate(FORGOT_PASSWORD_SCREEN)}>
           {t('forgetPassword')}
         </AppText>
-        <View style={{alignItems: 'center'}}>
+        <View style={{ alignItems: 'center' }}>
           <Button
             loading={loading}
             width={wp(60)}
@@ -143,7 +143,7 @@ Login with Social media account`}
           underline
           primary
           size={30}
-          onPress={() => navigate('Drawer', {screen: 'Home'})}>
+          onPress={() => navigate('Drawer', { screen: 'Home' })}>
           {t('skip')}
         </AppText>
       </View>

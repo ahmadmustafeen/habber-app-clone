@@ -28,3 +28,4 @@ export * from './RelatedThumbnailClub';
 export * from './RelatedThumbnailBookmarks';
 export * from './OfflineNotice';
 export * from './FavouriteCard';
+export * from './Footer';

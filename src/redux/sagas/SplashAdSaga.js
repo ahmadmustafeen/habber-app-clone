@@ -14,6 +14,7 @@ export function* splashAdSaga() {
     userProfile = JSON.parse(userProfile);
     if (userProfile && userProfile.token) {
       RestClient.setHeader('Authorization', `Bearer ${userProfile.token}`);
+
       yield all([
         put({
           type: FETCH_USER_PROFILE_SUCCESS,
@@ -23,9 +24,9 @@ export function* splashAdSaga() {
         put({ type: FETCH_USER_CART }),
         put({ type: FETCH_USER_FAVOURITE }),
         put({ type: FETCH_ORDER_SUCCESS }),
-        put({ type: FETCH_CURRENCIES }),
 
-      ]);
+      ]
+      );
 
       return NavigationService.navigate('Drawer', {
         screen: HOME,

@@ -19,7 +19,7 @@ const InputWithLabel = (props) => {
       { label && (
         <AppText white secondary={!primary} primary={primary}>
           {`${label} ` || `Label Name`}
-          {required ? <AppText>*</AppText> : null}
+          {required ? <AppText white>*</AppText> : null}
         </AppText>
       )}
       <TextInput

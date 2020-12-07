@@ -35,7 +35,7 @@
     "signInHeader":"Hello",
     "forgetPassword":"Forget Password",
     "signIn":"Sign In",
-    "createAccount":"Create Account",
+    "createAccount":"Create new account",
     "skip":"skip"
   }  
 }

@@ -17,6 +17,7 @@ export function* signinSaga({ payload }) {
       RestClient.post(API_ENDPOINTS.signin, {
         email,
         password,
+        firebase_token: "abcdefg12344",
       }),
     );
     if (response.problem === NETWORK_ERROR) {
@@ -26,7 +27,7 @@ export function* signinSaga({ payload }) {
       status,
       data: { data: res, message, success },
     } = response;
-
+    console.log("user", response)
     if (success) {
       yield setItem('@userProfile', JSON.stringify(res));
       RestClient.setHeader('Authorization', `Bearer ${res.token}`);

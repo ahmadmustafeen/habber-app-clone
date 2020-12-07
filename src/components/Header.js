@@ -56,7 +56,7 @@ const Header = (props) => {
 
 
       <View style={{ flex: 4, paddingLeft: 10, transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }], }}>
-        <AppText color={headerColor}>{title || name}</AppText>
+        <AppText bold small color={headerColor}>{title || name.toUpperCase()}</AppText>
       </View>
       <View
         style={{
