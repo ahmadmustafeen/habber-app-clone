@@ -40,10 +40,11 @@ const EditProfile = (props) => {
   const [state, setState] = useState({
     first_name: UserProfileReducer.first_name,
     last_name: UserProfileReducer.last_name,
-    phone: UserProfileReducer.phone,
+    email: UserProfileReducer.email,
     profile_pic: UserProfileReducer.profile_pic,
     language_id: UserProfileReducer.language.id,
     currency_id: 2,
+    token: UserProfileReducer.token
   });
   const validate = () => {
     //todo - use validation method from src > helpers
@@ -67,7 +68,6 @@ const EditProfile = (props) => {
   };
   const save = () => {
     // validate() &&
-    console.log('PRESSED');
     dispatch(withDataActions(state, 'UPDATE_PROFILE'));
     // navigate(MY_PROFILE)
   };
@@ -84,9 +84,9 @@ const EditProfile = (props) => {
       } else {
         // You can also display the image using data:
         // const source = { uri: 'data:image/jpeg;base64,' + response.data };
-        setStateHandler('profile_pic', response.uri);
+        setStateHandler('profile_pic', { uri: response.uri, type: 'image/jpeg', name: "Aasd" });
 
-        console.log("PROFILE", response.uri)
+        console.log("PROFILE", response)
       }
     });
   };
@@ -134,10 +134,10 @@ const EditProfile = (props) => {
             />
             <InputWithLabel
               color={'black'}
-              value={state.phone}
+              value={state.email}
               placeholder="Khaled.ammar@gmail.com"
               label="Phone:"
-              onChangeText={(val) => setStateHandler('phone', val)}
+              onChangeText={(val) => setStateHandler('email', val)}
             />
           </View>
         </View>

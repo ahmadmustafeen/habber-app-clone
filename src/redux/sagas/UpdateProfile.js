@@ -14,26 +14,35 @@ import * as NavigationService from '../../../NavigationService';
 export function* UpdateProfileSaga({ type, payload }) {
   try {
     console.log('UpdateProfile Saga . . . .  .1', payload);
-    const response = yield call(
-      () => RestClient.put(API_ENDPOINTS.user, payload));
-    const { status, data, message } = response;
-    console.log(response);
-    if (response.problem === NETWORK_ERROR) {
-      return yield put({ type: SHOW_NETWORK_MODAL });
-    }
-    if (status === 200) {
-      yield put({ type: UPDATE_PASSWORD_SUCCESS, payload: data });
-      Alert.alert('Successfully Updated', message, [
-        {
-          onPress: () =>
-            NavigationService.navigate('MyProfile', { screen: MY_PROFILE }),
-        },
-      ]);
-      console.log('UpdateProfileSagaSaga Saga Response . . . .  .', response);
+    const form_data = new FormData();
 
-      // yield put({type: SHOW_MODAL, payload: null});
-      // yield put({type: UPDATE_PASSWORD_SUCCESS, payload: null});
-    }
+    form_data.append("first_name", "bye");
+    form_data.append("last_name", "hi");
+    form_data.append("phone", "11111111");
+    form_data.append("profile_pic", payload.profile_pic);
+    form_data.append("language_id", 1);
+    form_data.append("currency_id", 2);
+
+    yield fetch('http://habber.attribes.com/api/v1/user', {
+      method: 'put',
+      headers: {
+        'Content-Type': 'application/form-data',
+        'Authorization': `Bearer ${payload.token}`,
+        'Accept': 'application/json',
+
+      },
+      body: form_data
+    })
+      .then((res) => console.log("RES", res))
+      .catch(err => console.log("ERROR", err));
+
+    // const response = yield call(() =>
+    //   data_form.post(API_ENDPOINTS.updatepassword, formdata),
+    // );
+
+
+
+
   } catch (error) {
     yield put({ type: UPDATE_PASSWORD_FAILURE, error });
   }

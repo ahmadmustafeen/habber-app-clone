@@ -218,12 +218,14 @@ const Settings = (props) => {
 
       </View>
 
-      <View key="footer">
+      <View key="footer" style={[styles.content, { marginTop: hp(-10) }]}>
         {UserProfileReducer.token && (
           <Button bold onPress={onLogout}>
             LOGOUT
           </Button>
         )}
+
+
       </View>
     </Screen>
   );
