@@ -1,30 +1,38 @@
-
-import React, { useState } from 'react';
-import { Icon } from 'react-native-elements';
-import { useTheme } from '@react-navigation/native';
-import { View, TextInput, StyleSheet, Alert, ImageBackground, I18nManager, Linking } from 'react-native';
-import { useDispatch, useSelector, shallowEqual } from 'react-redux';
+import React, {useState} from 'react';
+import {Icon} from 'react-native-elements';
+import {useTheme} from '@react-navigation/native';
+import {
+  View,
+  TextInput,
+  StyleSheet,
+  Alert,
+  ImageBackground,
+  I18nManager,
+  Linking,
+  Platform,
+} from 'react-native';
+import {useDispatch, useSelector, shallowEqual} from 'react-redux';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 
-import { CONTACT_US } from '_assets/data/StaticData';
-import { withDataActions } from '_redux/actions';
-import { SUBMIT_CONTACT_US } from '_redux/actionTypes';
+import {CONTACT_US} from '_assets/data/StaticData';
+import {withDataActions} from '_redux/actions';
+import {SUBMIT_CONTACT_US} from '_redux/actionTypes';
 import useModal from '_utils/customHooks/useModal';
-import { checkIfLoading } from '_redux/selectors';
-import { validatePhone, validateEmail } from '_helpers/Validators';
+import {checkIfLoading} from '_redux/selectors';
+import {validatePhone, validateEmail} from '_helpers/Validators';
 import {
   ModalScreen,
   InputWithLabel,
   Header,
-  TextWithIcon
+  TextWithIcon,
 } from '../../components';
-import { AppText, Button, Screen } from '../../components/common';
+import {AppText, Button, Screen} from '../../components/common';
 
 const ContactUs = (props) => {
-  const { visible, toggleModal } = useModal();
+  const {visible, toggleModal} = useModal();
   const onContinue = () => {
     toggleModal();
     props.navigation.goBack();
@@ -36,21 +44,15 @@ const ContactUs = (props) => {
     message: '',
     phone: '',
   });
-  const {
-    isLoading,
-    FetchSiteReducer
-  } = useSelector((state) => {
+  const {isLoading, FetchSiteReducer} = useSelector((state) => {
     return {
       FetchSiteReducer: state.FetchSiteReducer,
-      isLoading: checkIfLoading(
-        state,
-        SUBMIT_CONTACT_US,
-      ),
+      isLoading: checkIfLoading(state, SUBMIT_CONTACT_US),
     };
   }, shallowEqual);
 
   const setStateHandler = (key, val) => {
-    setState({ ...state, [key]: val });
+    setState({...state, [key]: val});
   };
   const validate = () => {
     if (!state.name) {
@@ -72,10 +74,9 @@ const ContactUs = (props) => {
   const onSubmit = () => {
     validate() && dispatch(withDataActions(state, SUBMIT_CONTACT_US));
   };
-  const { colors } = useTheme()
+  const {colors} = useTheme();
   return (
     <Screen noPadding>
-
       <View key="header">
         <ImageBackground
           style={{
@@ -84,12 +85,10 @@ const ContactUs = (props) => {
             paddingBottom: hp(8),
             marginBottom: hp(1),
             justifyContent: 'flex-end',
-            transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }],
+            transform: [{scaleX: I18nManager.isRTL ? -1 : 1}],
           }}
-          resizeMode='stretch'
+          resizeMode="stretch"
           source={require('_assets/images/header.png')}>
-
-
           <Header
             headerLeft={
               <Icon
@@ -99,14 +98,15 @@ const ContactUs = (props) => {
                 type="ant-design"
               />
             }
-            {...props} title={'Contact Us'} />
-
+            {...props}
+            title={'Contact Us'}
+          />
         </ImageBackground>
       </View>
       <View key="content" style={styles.content}>
         <InputWithLabel
           style={styles.inputfield}
-          color={"black"}
+          color={'black'}
           placeholder="Name*"
           required
           value={state.name}
@@ -115,13 +115,13 @@ const ContactUs = (props) => {
         <InputWithLabel
           placeholder="Email*"
           required
-          color={"black"}
+          color={'black'}
           value={state.email}
           onChangeText={(val) => setStateHandler('email', val)}
         />
         <InputWithLabel
           placeholder="Mobile Number (optional)"
-          color={"black"}
+          color={'black'}
           required
           value={state.phone}
           onChangeText={(val) => setStateHandler('phone', val)}
@@ -142,22 +142,25 @@ const ContactUs = (props) => {
           onContinue={onContinue}
           {...CONTACT_US.modalData}
         />
-        <Button color="white" onPress={onSubmit} loading={isLoading} style={{ width: wp(90), alignSelf: 'center' }}>
+        <Button
+          color="white"
+          onPress={onSubmit}
+          loading={isLoading}
+          style={{width: wp(90), alignSelf: 'center'}}>
           Submit
-          </Button>
+        </Button>
       </View>
-      <View key="footer"  >
+      <View key="footer">
         <ImageBackground
           style={{
-
             marginTop: hp(5),
             height: hp(30),
             paddingHorizontal: wp(3),
             paddingBottom: hp(2),
             justifyContent: 'flex-end',
-            transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }],
+            transform: [{scaleX: I18nManager.isRTL ? -1 : 1}],
           }}
-          resizeMode='stretch'
+          resizeMode="stretch"
           source={require('_assets/images/footer.png')}>
           <View style={styles.textwithIconContainer}>
             <TextWithIcon
@@ -167,7 +170,11 @@ const ContactUs = (props) => {
               iconSize={23}
               title="Support Chat"
               value="1234 43222"
-              onPress={() => Linking.openURL(`telprompt:1234567890`)}
+              onPress={() =>
+                Linking.openURL(
+                  `whatsapp://send?text="Hello"&phone=${FetchSiteReducer.whatsaap_number}`,
+                ).catch((err) => console.log('Err', err))
+              }
             />
             <TextWithIcon
               small
@@ -176,16 +183,26 @@ const ContactUs = (props) => {
               iconSize={23}
               title="Phone Number"
               value="1234 43222"
-              onPress={() => Linking.openURL(`telprompt:${FetchSiteReducer.whatsaap_number}`)}
-
+              onPress={() =>
+                Platform.OS === 'ios'
+                  ? Linking.openURL(`telprompt:${FetchSiteReducer.phone_no}`)
+                  : Linking.openURL(`tel:${FetchSiteReducer.phone_no}`)
+              }
             />
-            <TextWithIcon small iconName="mail" iconType="octicons" iconSize={23} title="Email:" value="asd@gmail.com" />
-
+            <TextWithIcon
+              small
+              iconName="mail"
+              iconType="octicons"
+              iconSize={23}
+              onPress={() =>
+                Linking.openURL(`mailto:${FetchSiteReducer.email}`)
+              }
+              title="Email:"
+              value="asd@gmail.com"
+            />
           </View>
         </ImageBackground>
-
       </View>
-
     </Screen>
   );
 };
@@ -194,7 +211,7 @@ const styles = StyleSheet.create({
   content: {
     marginTop: 50,
     width: wp(90),
-    alignSelf: 'center'
+    alignSelf: 'center',
   },
   businesstype: {
     color: 'black',
@@ -212,8 +229,8 @@ const styles = StyleSheet.create({
   },
   textwithIconContainer: {
     width: wp(70),
-    alignSelf: 'center'
-  }
+    alignSelf: 'center',
+  },
 });
 
 export default ContactUs;

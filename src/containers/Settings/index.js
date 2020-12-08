@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import {
   View,
   StyleSheet,
@@ -7,58 +7,57 @@ import {
   I18nManager,
   Text,
   Modal,
-  TouchableOpacity, ImageBackground,
+  TouchableOpacity,
+  ImageBackground,
 } from 'react-native';
-import { useTranslation } from 'react-i18next';
-import RNRestart from 'react-native-restart'
-import { Screen, Button } from '_components/common';
-import { SettingsComponent, Header, } from '_components';
-import { useTheme } from '@react-navigation/native';
-import { JOINUS, PRIVACY_POLICY, RETURN_POLICY, TERMS_AND_CONDITIONS_SCREEN } from '../../constants/Screens';
+import {useTranslation} from 'react-i18next';
+import RNRestart from 'react-native-restart';
+import {Screen, Button} from '_components/common';
+import {SettingsComponent, Header} from '_components';
+import {useTheme} from '@react-navigation/native';
+import {
+  JOINUS,
+  PRIVACY_POLICY,
+  RETURN_POLICY,
+  TERMS_AND_CONDITIONS_SCREEN,
+} from '../../constants/Screens';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-import { withoutDataActions } from '_redux/actions';
-import { SIGN_OUT } from '_redux/actionTypes';
-import { shallowEqual, useDispatch, useSelector } from 'react-redux';
-import { AppText } from 'components/common';
+import {withoutDataActions} from '_redux/actions';
+import {SIGN_OUT} from '_redux/actionTypes';
+import {shallowEqual, useDispatch, useSelector} from 'react-redux';
+import {AppText} from 'components/common';
+import PushNotification from 'react-native-push-notification';
 
 const Settings = (props) => {
-  const { colors } = useTheme();
+  const {colors} = useTheme();
   const [item, setItemVisible] = useState({
     currency: false,
     language: false,
-    notifications: false
-  })
-  const [iso, setIso] = useState("KWD");
-  const { i18n } = useTranslation();
-
-
-
+    notifications: false,
+  });
+  const [iso, setIso] = useState('KWD');
+  const {i18n} = useTranslation();
 
   const toggleDropdown = (key) => {
-    setItemVisible({ ...item, [key]: !item[key] })
-  }
+    setItemVisible({...item, [key]: !item[key]});
+  };
   const dispatch = useDispatch();
 
-
-  const {
-    UserProfileReducer,
-    FetchCurrencyReducer,
-
-  } = useSelector((state) => {
+  const {UserProfileReducer, FetchCurrencyReducer} = useSelector((state) => {
     return {
       UserProfileReducer: state.UserProfileReducer,
       FetchCurrencyReducer: state.FetchCurrencyReducer,
     };
   }, shallowEqual);
-  console.log("SETTINGCURRENCY", FetchCurrencyReducer);
+  console.log('SETTINGCURRENCY', FetchCurrencyReducer);
   const onLogout = () => {
     dispatch(withoutDataActions(SIGN_OUT));
   };
 
-  const { navigation } = props;
+  const {navigation} = props;
   console.log(iso);
   const SettingsDropdown = (props) => {
     return (
@@ -75,17 +74,17 @@ const Settings = (props) => {
             flexDirection: 'row',
           }}
           onPress={() => props.onPress(props.value)}>
-          <AppText primary={props.selected} small color={colors.borderColor} style={{ paddingLeft: wp(2) }}>
+          <AppText
+            primary={props.selected}
+            small
+            color={colors.borderColor}
+            style={{paddingLeft: wp(2)}}>
             {props.currencyName}
           </AppText>
 
           <AppText primary={props.selected} small color={colors.borderColor}>
             {props.symbol}
           </AppText>
-
-
-
-
         </TouchableOpacity>
         <View
           style={{
@@ -98,12 +97,17 @@ const Settings = (props) => {
     );
   };
 
-
   const onLanguageChange = (val) => {
     i18n.changeLanguage(val).then(() => {
       I18nManager.forceRTL(val === 'ar');
       RNRestart.Restart();
     });
+  };
+  const onToggleNotifications = async (val) => {
+    item.notifications
+      ? PushNotification.abandonPermissions()
+      : await PushNotification.requestPermissions();
+    toggleDropdown('notifications');
   };
   return (
     <Screen noPadding>
@@ -115,7 +119,7 @@ const Settings = (props) => {
             paddingBottom: hp(8),
             marginBottom: hp(1),
             justifyContent: 'flex-end',
-            transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }],
+            transform: [{scaleX: I18nManager.isRTL ? -1 : 1}],
           }}
           resizeMode="stretch"
           source={require('_assets/images/header.png')}>
@@ -123,12 +127,16 @@ const Settings = (props) => {
         </ImageBackground>
       </View>
       <View key="content" style={styles.content}>
-
         <SettingsComponent
           label="Language"
-          rightComponent={<AppText onPress={() => toggleDropdown('language')} primary>{!I18nManager.isRTL ? "English" : "Arabic"}</AppText >}
+          rightComponent={
+            <AppText onPress={() => toggleDropdown('language')} primary>
+              {!I18nManager.isRTL ? 'English' : 'Arabic'}
+            </AppText>
+          }
           onIconPress={() => toggleDropdown('language')}
-        />{item.language && (
+        />
+        {item.language && (
           <View
             style={{
               width: wp(80),
@@ -138,7 +146,6 @@ const Settings = (props) => {
             <SettingsDropdown
               currencyName="English"
               selected={!I18nManager.isRTL}
-
               iconName="dollar"
               iconType="font-awesome"
               value="en"
@@ -158,21 +165,19 @@ const Settings = (props) => {
           label="Notifications"
           rightComponent={
             <Switch
-              trackColor={{ false: colors.secondary, true: colors.primary }}
+              trackColor={{false: colors.secondary, true: colors.primary}}
               thumbColor={colors.white}
               // ios_backgroundColor={colors.primary}
-              onValueChange={() => toggleDropdown('notifications')}
+              onValueChange={onToggleNotifications}
               value={item.notifications}
             />
           }
         />
 
-
-
         <SettingsComponent
           label="Currency"
           Currency={iso}
-          iconName={!item.currency ? "downcircleo" : "upcircleo"}
+          iconName={!item.currency ? 'downcircleo' : 'upcircleo'}
           onIconPress={() => toggleDropdown('currency')}
         />
         {item.currency && (
@@ -182,7 +187,6 @@ const Settings = (props) => {
               alignSelf: 'flex-end',
               marginVertical: hp(1),
             }}>
-
             {FetchCurrencyReducer.map((item) => {
               return (
                 <SettingsDropdown
@@ -192,13 +196,14 @@ const Settings = (props) => {
                   symbol={item.symbol}
                   onPress={() => setIso(item.iso)}
                 />
-              )
+              );
             })}
           </View>
         )}
         <SettingsComponent
           onIconPress={() => navigation.navigate(TERMS_AND_CONDITIONS_SCREEN)}
-          label="Terms & Conditions" />
+          label="Terms & Conditions"
+        />
         <SettingsComponent
           onIconPress={() => navigation.navigate(PRIVACY_POLICY)}
           label="Privacy Policy"
@@ -211,17 +216,14 @@ const Settings = (props) => {
           onIconPress={() => navigation.navigate(JOINUS)}
           label="Join Us"
         />
-
       </View>
 
-      <View key="footer" style={[styles.content, { marginTop: hp(-10) }]}>
+      <View key="footer" style={[styles.content, {marginTop: hp(-10)}]}>
         {UserProfileReducer.token && (
           <Button bold onPress={onLogout}>
             LOGOUT
           </Button>
         )}
-
-
       </View>
     </Screen>
   );
@@ -265,7 +267,7 @@ const styles = StyleSheet.create({
   },
   content: {
     width: wp(90),
-    alignSelf: 'center'
-  }
+    alignSelf: 'center',
+  },
 });
 export default Settings;
