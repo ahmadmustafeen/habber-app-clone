@@ -51,7 +51,7 @@ const BookDetailsCard = (props) => {
             by {author_name}
           </AppText>
           <AppText bold size={17}>
-            Price: {price} KD
+            Price:  {parseFloat(price).toFixed(2)} KD
           </AppText>
           <AppText bold size={15} color="red">
             {!quantity && 'Out of Stock'}

@@ -257,7 +257,7 @@ const BookDetails = (props) => {
         </View>
 
         <View style={{ width: wp(75), alignSelf: "center" }}>
-          <Button bold color={colors.white} outOfStock={quantity} secondary onPress={() => { (quantity) && onAddToCart() }}>
+          <Button bold color={colors.white} outOfStock={!!quantity} secondary onPress={() => { (quantity) && onAddToCart() }}>
             {quantity ? 'Add to Cart' : 'Out of Stock'}
           </Button>
         </View>
