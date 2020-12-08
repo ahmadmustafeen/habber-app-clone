@@ -61,26 +61,32 @@ const Settings = (props) => {
   const { navigation } = props;
   console.log(iso);
   const SettingsDropdown = (props) => {
+    const {
+      value,
+      selected,
+      currencyName,
+      symbol,
+      onPress
+    } = props
     return (
       <>
         <TouchableOpacity
-          style={{
+          style={[{
             marginVertical: hp(0.5),
             width: wp(80),
-            borderLeftColor: colors.borderColor,
             borderLeftWidth: 4,
             height: hp(3),
             alignItems: 'center',
             justifyContent: 'space-between',
             flexDirection: 'row',
-          }}
-          onPress={() => props.onPress(props.value)}>
-          <AppText primary={props.selected} small color={colors.borderColor} style={{ paddingLeft: wp(2) }}>
-            {props.currencyName}
+          }, selected ? { borderLeftColor: colors.primary } : { borderLeftColor: colors.borderColor }]}
+          onPress={() => onPress(value)}>
+          <AppText primary={selected} small color={colors.borderColor} style={{ paddingLeft: wp(2) }}>
+            {currencyName}
           </AppText>
 
-          <AppText primary={props.selected} small color={colors.borderColor}>
-            {props.symbol}
+          <AppText primary={selected} small color={colors.borderColor}>
+            {symbol}
           </AppText>
 
 

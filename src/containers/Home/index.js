@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 
 import {
   View,
@@ -9,29 +9,30 @@ import {
   Image,
   TouchableOpacity,
 } from 'react-native';
-import {useTranslation} from 'react-i18next';
-import Carousel, {Pagination} from 'react-native-x-carousel';
-import {CustomPagination} from '_components/CustomPagination';
-
+import { useTranslation } from 'react-i18next';
+import Carousel, { Pagination } from 'react-native-x-carousel';
+import { CustomPagination } from '_components/CustomPagination';
+import { FloatingAction } from "react-native-floating-action";
 import {
   DashboardComponent,
   ThumbnailBookmarks,
   ThumbnailClub,
   TitleBarWithIcon,
   Header,
+  FloatingActionButton
 } from '_components';
-import {REQUESTBOOKS_SCREEN, BOOKLIST_SCREEN} from '_constants/Screens';
-import {sliderImages} from './dummydata';
-import {ThumbnailBook} from '_components/ThumbnailBook';
-import {Button, Screen} from '_components/common';
-import {FlatListSlider} from '_components';
-import {shallowEqual, useDispatch, useSelector} from 'react-redux';
-import {useTheme} from '@react-navigation/native';
+import { REQUESTBOOKS_SCREEN, BOOKLIST_SCREEN } from '_constants/Screens';
+import { sliderImages } from './dummydata';
+import { ThumbnailBook } from '_components/ThumbnailBook';
+import { Button, Screen } from '_components/common';
+import { FlatListSlider } from '_components';
+import { shallowEqual, useDispatch, useSelector } from 'react-redux';
+import { useTheme } from '@react-navigation/native';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-import {checkIfLoading} from '_redux/selectors';
+import { checkIfLoading } from '_redux/selectors';
 import {
   FETCH_ARABIC_BOOKS,
   FETCH_BOOKCLUBS,
@@ -39,16 +40,16 @@ import {
   FETCH_ENGLISH_BOOKS,
 } from '_redux/actionTypes';
 import Loader from '_components/Loader';
-import {withoutDataActions} from 'redux/actions';
-import {AppText} from 'components/common';
-import {Icon} from 'react-native-elements';
-import {DO_PAYMENT} from '../../redux/actionTypes';
-const {width} = Dimensions.get('window');
+import { withoutDataActions } from 'redux/actions';
+import { AppText } from 'components/common';
+import { Icon } from 'react-native-elements';
+import { DO_PAYMENT } from '../../redux/actionTypes';
+const { width } = Dimensions.get('window');
 const Home = (props) => {
-  const {navigate} = props.navigation;
+  const { navigate } = props.navigation;
   const [images] = useState(sliderImages);
 
-  const {t} = useTranslation();
+  const { t } = useTranslation();
   const {
     EnglishBooksReducer,
     ArabicBooksReducer,
@@ -71,7 +72,7 @@ const Home = (props) => {
     };
   }, shallowEqual);
   const dispatch = useDispatch();
-  const {colors} = useTheme();
+  const { colors } = useTheme();
   console.log('IS LOADING  . . . ', isLoading);
 
   const DATA = [
@@ -100,6 +101,28 @@ const Home = (props) => {
       cornerLabelText: '-20%',
     },
   ];
+  const actions = [
+    {
+      text: "Accessibility",
+      name: "bt_accessibility",
+      position: 2
+    },
+    {
+      text: "Language",
+      name: "bt_language",
+      position: 1
+    },
+    {
+      text: "Location",
+      name: "bt_room",
+      position: 3
+    },
+    {
+      text: "Video",
+      name: "bt_videocam",
+      position: 4
+    }
+  ];
   const renderItem = (data) => (
     <View key={data.coverImageUri} style={styles.cardContainer}>
       <View
@@ -116,11 +139,11 @@ const Home = (props) => {
         <Icon color={'white'} size={17} name="right" type="ant-design" />
       </View>
       <View style={styles.cardWrapper}>
-        <Image style={styles.card} source={{uri: data.coverImageUri}} />
+        <Image style={styles.card} source={{ uri: data.coverImageUri }} />
         <View
           style={[
             styles.cornerLabel,
-            {backgroundColor: data.cornerLabelColor},
+            { backgroundColor: data.cornerLabelColor },
           ]}>
           <AppText style={styles.cornerLabelText}>
             {data.cornerLabelText}
@@ -131,25 +154,26 @@ const Home = (props) => {
   );
 
   return (
-    <Screen noPadding>
-      <View key="header">
-        <ImageBackground
-          style={{
-            height: hp(21),
-            paddingHorizontal: wp(3),
-            paddingBottom: hp(8),
-            marginBottom: hp(1),
-            justifyContent: 'flex-end',
-            transform: [{scaleX: I18nManager.isRTL ? -1 : 1}],
-          }}
-          resizeMode="stretch"
-          source={require('_assets/images/header.png')}>
-          <Header {...props} />
-        </ImageBackground>
+    <>
+      <Screen noPadding>
+        <View key="header">
+          <ImageBackground
+            style={{
+              height: hp(21),
+              paddingHorizontal: wp(3),
+              paddingBottom: hp(8),
+              marginBottom: hp(1),
+              justifyContent: 'flex-end',
+              transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }],
+            }}
+            resizeMode="stretch"
+            source={require('_assets/images/header.png')}>
+            <Header {...props} />
+          </ImageBackground>
 
-        {/* <AppText>{t('hello')}</AppText>
+          {/* <AppText>{t('hello')}</AppText>
         <AppText>{t('bye')}</AppText> */}
-        {/* <Button onPress={() => navigate('Auth', { screen: AD_SCREEN })}>
+          {/* <Button onPress={() => navigate('Auth', { screen: AD_SCREEN })}>
           Auth Navigation
         </Button>
         <Button
@@ -168,101 +192,112 @@ const Home = (props) => {
           onPress={() => dispatch(withDataActions('', FETCH_RELATED_BOOKS))}>
           Fetch Related Books
         </Button> */}
-      </View>
+        </View>
 
-      <View key="content" style={styles.container}>
-        {/* <Button onPress={() => dispatch(withoutDataActions(DO_PAYMENT))}>
+        <View key="content" style={styles.container}>
+          {/* <FloatingAction
+          buttonSize={88}
+          margin={20}
+          actions={actions}
+          onPressItem={name => {
+            console.log(`selected button: ${name}`);
+          }}
+        /> */}
+
+          {/* <Button onPress={() => dispatch(withoutDataActions(DO_PAYMENT))}>
           DO Payment
         </Button> */}
-        <Loader loading={isLoading} />
+          <Loader loading={isLoading} />
 
-        <View style={styles.cContainer}>
-          <Carousel
-            pagination={CustomPagination}
-            renderItem={renderItem}
-            data={DATA}
+          <View style={styles.cContainer}>
+            <Carousel
+              pagination={CustomPagination}
+              renderItem={renderItem}
+              data={DATA}
+            />
+          </View>
+          <DashboardComponent
+            data={ArabicBooksReducer.filter((book) => book.featured)}
+            label={t('arabic')}
+            renderComponent={(item) => <ThumbnailBook url={item.item.image} />}
+            onIconPress={() =>
+              navigate(BOOKLIST_SCREEN, {
+                label: t('arabic'),
+                data: ArabicBooksReducer,
+                product_type: 'book',
+              })
+            }
           />
-        </View>
-        <DashboardComponent
-          data={ArabicBooksReducer.filter((book) => book.featured)}
-          label={t('arabic')}
-          renderComponent={(item) => <ThumbnailBook url={item.item.image} />}
-          onIconPress={() =>
-            navigate(BOOKLIST_SCREEN, {
-              label: t('arabic'),
-              data: ArabicBooksReducer,
-              product_type: 'book',
-            })
-          }
-        />
-        <DashboardComponent
-          data={EnglishBooksReducer.filter((book) => book.featured)}
-          label={t('english')}
-          renderComponent={(item) => <ThumbnailBook url={item.item.image} />}
-          onIconPress={() =>
-            navigate(BOOKLIST_SCREEN, {
-              label: t('english'),
-              data: EnglishBooksReducer,
-              product_type: 'book',
-            })
-          }
-        />
-        <DashboardComponent
-          data={BookClubReducer.filter((book) => book.featured)}
-          label={t('bookclub')}
-          renderComponent={(item) => <ThumbnailClub url={item.item.image} />}
-          onIconPress={() =>
-            navigate(BOOKLIST_SCREEN, {
-              label: t('bookclub'),
-              data: BookClubReducer,
-              product_type: 'bookclub',
-            })
-          }
-        />
-        <DashboardComponent
-          data={BookmarksReducer.filter((book) => book.featured)}
-          renderComponent={(item) => (
-            <ThumbnailBookmarks url={item.item.image} />
-          )}
-          label={t('bookmark')}
-          onIconPress={() =>
-            navigate(BOOKLIST_SCREEN, {
-              label: t('bookmark'),
-              data: BookmarksReducer,
-              product_type: 'bookmark',
-            })
-          }
-        />
-        <TitleBarWithIcon label={t('requestBook')} noIcon />
-        <View style={styles.requestBooksBtns}>
-          <View style={{width: wp(28)}}>
-            <Button
-              bold
-              color={colors.white}
-              borderRadius={2}
-              secondary
-              fontSize={13}
-              onPress={() =>
-                navigate(REQUESTBOOKS_SCREEN, {book_type: 'random'})
-              }>
-              Request Book
+          <DashboardComponent
+            data={EnglishBooksReducer.filter((book) => book.featured)}
+            label={t('english')}
+            renderComponent={(item) => <ThumbnailBook url={item.item.image} />}
+            onIconPress={() =>
+              navigate(BOOKLIST_SCREEN, {
+                label: t('english'),
+                data: EnglishBooksReducer,
+                product_type: 'book',
+              })
+            }
+          />
+          <DashboardComponent
+            data={BookClubReducer.filter((book) => book.featured)}
+            label={t('bookclub')}
+            renderComponent={(item) => <ThumbnailClub url={item.item.image} />}
+            onIconPress={() =>
+              navigate(BOOKLIST_SCREEN, {
+                label: t('bookclub'),
+                data: BookClubReducer,
+                product_type: 'bookclub',
+              })
+            }
+          />
+          <DashboardComponent
+            data={BookmarksReducer.filter((book) => book.featured)}
+            renderComponent={(item) => (
+              <ThumbnailBookmarks url={item.item.image} />
+            )}
+            label={t('bookmark')}
+            onIconPress={() =>
+              navigate(BOOKLIST_SCREEN, {
+                label: t('bookmark'),
+                data: BookmarksReducer,
+                product_type: 'bookmark',
+              })
+            }
+          />
+          <TitleBarWithIcon label={t('requestBook')} noIcon />
+          <View style={styles.requestBooksBtns}>
+            <View style={{ width: wp(28) }}>
+              <Button
+                bold
+                color={colors.white}
+                borderRadius={2}
+                secondary
+                fontSize={13}
+                onPress={() =>
+                  navigate(REQUESTBOOKS_SCREEN, { book_type: 'random' })
+                }>
+                Request Book
             </Button>
-          </View>
-          <View style={{width: wp(58)}}>
-            <Button
-              // bold
-              borderRadius={2}
-              primary
-              fontSize={13}
-              onPress={() =>
-                navigate(REQUESTBOOKS_SCREEN, {book_type: 'educational'})
-              }>
-              Request Educational Book
+            </View>
+            <View style={{ width: wp(58) }}>
+              <Button
+                // bold
+                borderRadius={2}
+                primary
+                fontSize={13}
+                onPress={() =>
+                  navigate(REQUESTBOOKS_SCREEN, { book_type: 'educational' })
+                }>
+                Request Educational Book
             </Button>
+            </View>
           </View>
         </View>
-      </View>
-    </Screen>
+      </Screen>
+      <FloatingActionButton image={require("_assets/images/fab.png")} onPress={() => console.log("presses")} />
+    </>
   );
 };
 const styles = StyleSheet.create({
@@ -271,6 +306,7 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     width: '95%',
   },
+
   requestBooksBtns: {
     flex: 1,
     flexDirection: 'row',

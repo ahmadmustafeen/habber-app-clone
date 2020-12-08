@@ -29,3 +29,4 @@ export * from './RelatedThumbnailBookmarks';
 export * from './OfflineNotice';
 export * from './FavouriteCard';
 export * from './TextWithIcon';
+export * from './FloatingActionButton';
