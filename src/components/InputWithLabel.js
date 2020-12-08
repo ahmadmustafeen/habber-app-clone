@@ -12,7 +12,7 @@ import {
 const InputWithLabel = (props) => {
   const { colors } = useTheme();
 
-  const { viewStyle, label, inputRef, required, maxLength, primary } = props;
+  const { viewStyle, label, inputRef, required, maxLength, primary, borderColor } = props;
 
   return (
     <View style={[styles.inputContainerStyle, viewStyle,]}>
@@ -29,7 +29,7 @@ const InputWithLabel = (props) => {
         }}
         placeholderTextColor={Color.placeholder}
         maxLength={maxLength}
-        style={[styles.inputFieldStyle, { borderColor: colors.primary }, { color: (props.color || "white"), textAlign: I18nManager.isRTL ? 'right' : 'left' }]}
+        style={[styles.inputFieldStyle, { borderColor: (borderColor || colors.primary) }, { color: (props.color || "white"), textAlign: I18nManager.isRTL ? 'right' : 'left' }]}
       />
     </View >
   );

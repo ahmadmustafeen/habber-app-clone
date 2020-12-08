@@ -19,7 +19,8 @@ import {
   ModalScreen,
   InputWithLabel,
   Header,
-  TextWithIcon
+  TextWithIcon,
+  FloatingActionButton
 } from '../../components';
 import { AppText, Button, Screen } from '../../components/common';
 
@@ -74,125 +75,133 @@ const ContactUs = (props) => {
   };
   const { colors } = useTheme()
   return (
-    <Screen noPadding>
+    <>
+      <Screen noPadding>
 
-      <View key="header">
-        <ImageBackground
-          style={{
-            height: hp(21),
-            paddingHorizontal: wp(3),
-            paddingBottom: hp(8),
-            marginBottom: hp(1),
-            justifyContent: 'flex-end',
-            transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }],
-          }}
-          resizeMode='stretch'
-          source={require('_assets/images/header.png')}>
+        <View key="header">
+          <ImageBackground
+            style={{
+              height: hp(21),
+              paddingHorizontal: wp(3),
+              paddingBottom: hp(8),
+              marginBottom: hp(1),
+              justifyContent: 'flex-end',
+              transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }],
+            }}
+            resizeMode='stretch'
+            source={require('_assets/images/header.png')}>
 
 
-          <Header
-            headerLeft={
-              <Icon
-                onPress={() => props.navigation.goBack()}
-                color={colors.primary}
-                name="leftcircleo"
-                type="ant-design"
-              />
-            }
-            {...props} title={'Contact Us'} />
+            <Header
+              headerLeft={
+                <Icon
+                  onPress={() => props.navigation.goBack()}
+                  color={colors.primary}
+                  name="leftcircleo"
+                  type="ant-design"
+                />
+              }
+              {...props} title={'Contact Us'} />
 
-        </ImageBackground>
-      </View>
-      <View key="content" style={styles.content}>
-        <InputWithLabel
-          style={styles.inputfield}
-          color={"black"}
-          placeholder="Name*"
-          required
-          value={state.name}
-          onChangeText={(val) => setStateHandler('name', val)}
-        />
-        <InputWithLabel
-          placeholder="Email*"
-          required
-          color={"black"}
-          value={state.email}
-          onChangeText={(val) => setStateHandler('email', val)}
-        />
-        <InputWithLabel
-          placeholder="Mobile Number (optional)"
-          color={"black"}
-          required
-          value={state.phone}
-          onChangeText={(val) => setStateHandler('phone', val)}
-        />
-        <TextInput
-          style={styles.textArea}
-          underlineColorAndroid="transparent"
-          placeholder="Message*"
-          placeholderTextColor="grey"
-          numberOfLines={10}
-          multiline
-          value={state.message}
-          onChangeText={(val) => setStateHandler('message', val)}
-        />
-        <ModalScreen
-          // image={require("")}
-          visible={visible}
-          onContinue={onContinue}
-          {...CONTACT_US.modalData}
-        />
-        <Button color="white" onPress={onSubmit} loading={isLoading} style={{ width: wp(90), alignSelf: 'center' }}>
-          Submit
+          </ImageBackground>
+        </View>
+        <View key="content" style={styles.content}>
+          <InputWithLabel
+            viewStyle={styles.inputWithLabel}
+            borderColor={colors.borderColor}
+            color={"black"}
+            placeholder="Name*"
+            required
+            value={state.name}
+            onChangeText={(val) => setStateHandler('name', val)}
+          />
+          <InputWithLabel
+            borderColor={colors.borderColor}
+            viewStyle={styles.inputWithLabel}
+            placeholder="Email*"
+            required
+            color={"black"}
+            value={state.email}
+            onChangeText={(val) => setStateHandler('email', val)}
+          />
+          <InputWithLabel
+            borderColor={colors.borderColor}
+            viewStyle={styles.inputWithLabel}
+            placeholder="Mobile Number (optional)"
+            color={"black"}
+            required
+            value={state.phone}
+            onChangeText={(val) => setStateHandler('phone', val)}
+          />
+          <TextInput
+
+            style={styles.textArea}
+            underlineColorAndroid="transparent"
+            placeholder="Message*"
+            placeholderTextColor="grey"
+            numberOfLines={10}
+            multiline
+            value={state.message}
+            onChangeText={(val) => setStateHandler('message', val)}
+          />
+          <ModalScreen
+            // image={require("")}
+            visible={visible}
+            onContinue={onContinue}
+            {...CONTACT_US.modalData}
+          />
+          <Button color="white" onPress={onSubmit} loading={isLoading} style={{ width: wp(90), alignSelf: 'center', marginTop: hp(3) }}>
+            Submit
           </Button>
-      </View>
-      <View key="footer"  >
-        <ImageBackground
-          style={{
+        </View>
+        <View key="footer"  >
+          <ImageBackground
+            style={{
+              marginTop: hp(4),
+              height: hp(28),
+              paddingHorizontal: wp(3),
+              paddingBottom: hp(2),
+              justifyContent: 'flex-end',
+              transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }],
+            }}
+            resizeMode='stretch'
+            source={require('_assets/images/footer.png')}>
+            <View style={styles.textwithIconContainer}>
+              <TextWithIcon
+                small
+                iconName="whatsapp"
+                iconType="font-awesome"
+                iconSize={23}
+                title="Support Chat"
+                value="1234 43222"
+                onPress={() => Linking.openURL(`telprompt:1234567890`)}
+              />
+              <TextWithIcon
+                small
+                iconName="phone-call"
+                iconType="feather"
+                iconSize={23}
+                title="Phone Number"
+                value="1234 43222"
+                onPress={() => Linking.openURL(`telprompt:${FetchSiteReducer.whatsaap_number}`)}
 
-            marginTop: hp(5),
-            height: hp(30),
-            paddingHorizontal: wp(3),
-            paddingBottom: hp(2),
-            justifyContent: 'flex-end',
-            transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }],
-          }}
-          resizeMode='stretch'
-          source={require('_assets/images/footer.png')}>
-          <View style={styles.textwithIconContainer}>
-            <TextWithIcon
-              small
-              iconName="whatsapp"
-              iconType="font-awesome"
-              iconSize={23}
-              title="Support Chat"
-              value="1234 43222"
-              onPress={() => Linking.openURL(`telprompt:1234567890`)}
-            />
-            <TextWithIcon
-              small
-              iconName="phone-call"
-              iconType="feather"
-              iconSize={23}
-              title="Phone Number"
-              value="1234 43222"
-              onPress={() => Linking.openURL(`telprompt:${FetchSiteReducer.whatsaap_number}`)}
+              />
+              <TextWithIcon small iconName="mail" iconType="octicons" iconSize={23} title="Email:" value="asd@gmail.com" />
 
-            />
-            <TextWithIcon small iconName="mail" iconType="octicons" iconSize={23} title="Email:" value="asd@gmail.com" />
+            </View>
+          </ImageBackground>
 
-          </View>
-        </ImageBackground>
+        </View>
 
-      </View>
-
-    </Screen>
+      </Screen>
+      <FloatingActionButton image={require("_assets/images/fab.png")} onPress={() => console.log("presses")} />
+    </>
   );
 };
 
 const styles = StyleSheet.create({
   content: {
-    marginTop: 50,
+    marginTop: hp(2),
     width: wp(90),
     alignSelf: 'center'
   },
@@ -202,17 +211,21 @@ const styles = StyleSheet.create({
     marginLeft: 10,
   },
   textArea: {
-    height: 150,
+    height: hp(20),
     justifyContent: 'flex-start',
     borderColor: 'rgb(221, 221, 221)',
     borderWidth: 3,
-    marginVertical: 20,
+    marginVertical: hp(0.5),
     textAlignVertical: 'top',
     padding: 10,
   },
   textwithIconContainer: {
     width: wp(70),
     alignSelf: 'center'
+  },
+  inputWithLabel: {
+    marginVertical: hp(0.5),
+    height: hp(7)
   }
 });
 
