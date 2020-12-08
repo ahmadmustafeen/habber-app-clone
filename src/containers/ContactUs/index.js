@@ -1,8 +1,16 @@
-
 import React, { useState } from 'react';
 import { Icon } from 'react-native-elements';
 import { useTheme } from '@react-navigation/native';
-import { View, TextInput, StyleSheet, Alert, ImageBackground, I18nManager, Linking } from 'react-native';
+import {
+  View,
+  TextInput,
+  StyleSheet,
+  Alert,
+  ImageBackground,
+  I18nManager,
+  Linking,
+  Platform,
+} from 'react-native';
 import { useDispatch, useSelector, shallowEqual } from 'react-redux';
 import {
   widthPercentageToDP as wp,
@@ -37,16 +45,10 @@ const ContactUs = (props) => {
     message: '',
     phone: '',
   });
-  const {
-    isLoading,
-    FetchSiteReducer
-  } = useSelector((state) => {
+  const { isLoading, FetchSiteReducer } = useSelector((state) => {
     return {
       FetchSiteReducer: state.FetchSiteReducer,
-      isLoading: checkIfLoading(
-        state,
-        SUBMIT_CONTACT_US,
-      ),
+      isLoading: checkIfLoading(state, SUBMIT_CONTACT_US),
     };
   }, shallowEqual);
 
@@ -73,7 +75,7 @@ const ContactUs = (props) => {
   const onSubmit = () => {
     validate() && dispatch(withDataActions(state, SUBMIT_CONTACT_US));
   };
-  const { colors } = useTheme()
+  const { colors } = useTheme();
   return (
     <>
       <Screen noPadding>
@@ -174,7 +176,11 @@ const ContactUs = (props) => {
                 iconSize={23}
                 title="Support Chat"
                 value="1234 43222"
-                onPress={() => Linking.openURL(`telprompt:1234567890`)}
+                onPress={() =>
+                  Linking.openURL(
+                    `whatsapp://send?text="Hello"&phone=${FetchSiteReducer.whatsaap_number}`,
+                  ).catch((err) => console.log('Err', err))
+                }
               />
               <TextWithIcon
                 small
@@ -183,11 +189,23 @@ const ContactUs = (props) => {
                 iconSize={23}
                 title="Phone Number"
                 value="1234 43222"
-                onPress={() => Linking.openURL(`telprompt:${FetchSiteReducer.whatsaap_number}`)}
-
+                onPress={() =>
+                  Platform.OS === 'ios'
+                    ? Linking.openURL(`telprompt:${FetchSiteReducer.phone_no}`)
+                    : Linking.openURL(`tel:${FetchSiteReducer.phone_no}`)
+                }
               />
-              <TextWithIcon small iconName="mail" iconType="octicons" iconSize={23} title="Email:" value="asd@gmail.com" />
-
+              <TextWithIcon
+                small
+                iconName="mail"
+                iconType="octicons"
+                iconSize={23}
+                onPress={() =>
+                  Linking.openURL(`mailto:${FetchSiteReducer.email}`)
+                }
+                title="Email:"
+                value="asd@gmail.com"
+              />
             </View>
           </ImageBackground>
 
@@ -203,7 +221,7 @@ const styles = StyleSheet.create({
   content: {
     marginTop: hp(2),
     width: wp(90),
-    alignSelf: 'center'
+    alignSelf: 'center',
   },
   businesstype: {
     color: 'black',
