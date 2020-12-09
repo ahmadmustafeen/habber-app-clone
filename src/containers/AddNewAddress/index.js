@@ -34,7 +34,7 @@ const AddNewAddress = (props) => {
   }, shallowEqual);
   console.log(FetchCountriesReducer);
 
-  const data = FetchCountriesReducer.map((data) => ({ key: data.iso, label: data.nicename }))
+  const countries_list = FetchCountriesReducer.map((data) => ({ key: data.iso, label: data.nicename }))
   const setStateHandler = (key, val) => {
     setState({ ...state, [key]: val });
   };
@@ -69,20 +69,21 @@ const AddNewAddress = (props) => {
           />
           {/* <InputWithLabel color={"black"} placeholder="Country*" required /> */}
           <ModalSelectorCustom
-            data={data}
+            data={countries_list}
             initValue="Country*"
-            onChangeText={(value) => setState({ ...state, country_id: value.key })}
+            onChangeText={(value) => setStateHandler('country_id', value.key)}
           />
           <ModalSelectorCustom
-            data={data}
+            data={countries_list}
             initValue="State*"
           />
-          <ModalSelectorCustom
-            data={data}
-            initValue="City*"
-            onChangeText={(value) => setState({ ...state, country_id: value.key })}
-          />
 
+          <InputWithLabel color={"black"}
+            value={state.city}
+            placeholder="City*"
+            required
+            onChangeText={(val) => setStateHandler('city', val)}
+          />
           <InputWithLabel color={"black"}
             value={state.address_line1}
             placeholder="Address Line 1*"
