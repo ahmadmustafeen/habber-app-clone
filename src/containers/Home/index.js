@@ -6,7 +6,7 @@ import {
   ImageBackground,
   I18nManager,
   Dimensions,
-  Image,
+  Image, Linking,
   TouchableOpacity,
 } from 'react-native';
 import { useTranslation } from 'react-i18next';
@@ -44,6 +44,7 @@ import { withoutDataActions } from 'redux/actions';
 import { AppText } from 'components/common';
 import { Icon } from 'react-native-elements';
 import { DO_PAYMENT } from '../../redux/actionTypes';
+
 const { width } = Dimensions.get('window');
 const Home = (props) => {
   const { navigate } = props.navigation;
@@ -55,9 +56,11 @@ const Home = (props) => {
     ArabicBooksReducer,
     BookmarksReducer,
     BookClubReducer,
+    FetchSiteReducer,
     isLoading,
   } = useSelector((state) => {
     return {
+      FetchSiteReducer: state.FetchSiteReducer,
       EnglishBooksReducer: state.EnglishBooksReducer,
       ArabicBooksReducer: state.ArabicBooksReducer,
       BookmarksReducer: state.BookmarksReducer,
@@ -313,7 +316,9 @@ const Home = (props) => {
           </View>
         </View>
       </Screen>
-      <FloatingActionButton image={require("_assets/images/fab.png")} onPress={() => console.log("presses")} />
+      <FloatingActionButton image={require("_assets/images/fab.png")} onPress={() => Linking.openURL(
+        `whatsapp://send?text=""&phone=${FetchSiteReducer.whatsaap_number}`,
+      ).catch((err) => console.log('Err', err))} />
     </>
   );
 };

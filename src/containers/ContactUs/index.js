@@ -79,7 +79,6 @@ const ContactUs = (props) => {
   return (
     <>
       <Screen noPadding>
-
         <View key="header">
           <ImageBackground
             style={{
@@ -152,7 +151,14 @@ const ContactUs = (props) => {
             onContinue={onContinue}
             {...CONTACT_US.modalData}
           />
-          <Button color="white" onPress={onSubmit} loading={isLoading} style={{ width: wp(90), alignSelf: 'center', marginTop: hp(3) }}>
+          <Button color="white"
+            onPress={onSubmit}
+            loading={isLoading}
+            style={{
+              width: wp(90),
+              alignSelf: 'center',
+              marginTop: hp(3)
+            }}>
             Submit
           </Button>
         </View>
@@ -178,7 +184,7 @@ const ContactUs = (props) => {
                 value="1234 43222"
                 onPress={() =>
                   Linking.openURL(
-                    `whatsapp://send?text="Hello"&phone=${FetchSiteReducer.whatsaap_number}`,
+                    `whatsapp://send?text=""&phone=${FetchSiteReducer.whatsaap_number}`,
                   ).catch((err) => console.log('Err', err))
                 }
               />
