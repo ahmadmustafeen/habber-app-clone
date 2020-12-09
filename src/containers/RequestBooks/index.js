@@ -35,7 +35,6 @@ const RequestBooks = (props) => {
     image: '',
   });
   const { title, author_name } = state;
-
   const dispatch = useDispatch();
 
   const handleChange = (key, value) => {
@@ -83,7 +82,9 @@ const RequestBooks = (props) => {
           }}
           resizeMode="stretch"
           source={require('_assets/images/header.png')}>
-          <Header {...props} />
+          <Header {...props}
+            title={`Request ${(book_type === 'educational') ? "Educational" : ""} Book`}
+          />
         </ImageBackground>
       </View>
       <View key="content" style={styles.content}>
@@ -101,7 +102,7 @@ const RequestBooks = (props) => {
           value={author_name}
           onChangeText={(value) => handleChange('author_name', value)}
         />
-        <Button primary onPress={setImage} >
+        <Button primary onPress={setImage} add >
           Upload Image
         </Button>
         <AppText size={15} color="grey" style={styles.txt}>

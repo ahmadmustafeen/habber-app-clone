@@ -24,7 +24,8 @@ const Button = (props) => {
     borderRadius,
     loading,
     icon,
-    outOfStock
+    outOfStock,
+    add
   } = props;
   const { colors } = useTheme();
   return (
@@ -54,9 +55,15 @@ const Button = (props) => {
         }}>
         {children || 'Button'}
       </AppText>
+      {/* please make single component for it */}
       {outOfStock &&
         <View style={{ position: "absolute", left: wp(16), width: 23, height: 28, zIndex: 1 }}>
           <Image style={{ width: "100%", height: "100%" }} source={require("../../assets/images/emptycart.png")} />
+        </View>
+      }
+      {add &&
+        <View style={{ position: "absolute", left: wp(16), width: wp(5), height: wp(5), zIndex: 1 }}>
+          <Image style={{ width: "100%", height: "100%" }} source={require("../../assets/images/adddark.png")} />
         </View>
       }
       {props.icon && <Icon
