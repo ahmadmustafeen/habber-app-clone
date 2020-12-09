@@ -105,7 +105,12 @@ const MyAddressBook = (props) => {
               vertical
               data={AddressReducer}
               keyExtractor={(item, index) => index.toString() + item}
-              renderItem={(item) => <AddressCard item={item.item} />}
+              renderItem={(item) => <AddressCard
+                onEditPress={() => console.log("asdas")}
+                actionButton
+                item={item.item}
+              />
+              }
               ListEmptyComponent={() => (
                 <View>
                   <AppText>No Address Available</AppText>

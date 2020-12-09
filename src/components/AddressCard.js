@@ -1,6 +1,10 @@
 import React from 'react';
-import { View, StyleSheet, Text, I18nManager } from 'react-native';
+import { View, StyleSheet, Text, I18nManager, Image, TouchableOpacity } from 'react-native';
 // import { useTheme } from '@react-navigation/native';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
 import { AppText } from './common';
 import { RadioButton } from './RadioButton';
 import { FETCH_ADDRESS } from '_redux/actionTypes';
@@ -9,6 +13,14 @@ import { checkIfLoading } from '_redux/selectors';
 import { useSelector, shallowEqual } from 'react-redux';
 
 const AddressCard = (props) => {
+  const {
+    actionButton,
+    item,
+    currentValue,
+    onPress,
+    showRadio,
+    onEditPress, onTrashPress
+  } = props;
   const { isLoading } = useSelector((state) => {
     return {
       isLoading: checkIfLoading(state, FETCH_ADDRESS),
@@ -24,18 +36,33 @@ const AddressCard = (props) => {
       <Loader loading={isLoading} />
       <View style={{ flex: 5 }}>
         <AppText size={15} primary style={styles.spacebtwaddresses}>
-          {props.item.address_name}
+          {item.address_name}
         </AppText>
         <AppText size={15} style={styles.spacebtwaddresses}>
-          {`${props.item.address_line1}${props.item.address_line2}`}
+          {`${item.address_line1}${item.address_line2}`}
         </AppText>
       </View>
+      {actionButton &&
+        <View style={styles.imageContainer}>
+          <View style={[styles.image]} >
+            <TouchableOpacity onPress={onEditPress}>
+              <Image style={{ width: "100%", height: "100%" }} source={require("_assets/images/edit.png")} />
+            </TouchableOpacity>
+          </View>
+
+
+          <TouchableOpacity style={styles.image} onPress={onTrashPress}>
+            <Image style={{ width: "100%", height: "100%" }} source={require("_assets/images/delete.png")} />
+          </TouchableOpacity>
+
+        </View>
+      }
       <View style={{ flex: 1, alignItems: 'center' }}>
-        {props.showRadio && (
+        {showRadio && (
           <RadioButton
-            selected={props.item.id === props.currentValue}
+            selected={item.id === currentValue}
             hideTitle
-            onPress={props.onPress}
+            onPress={onPress}
           />
         )}
       </View>
@@ -54,5 +81,16 @@ const styles = StyleSheet.create({
     right: 10,
     top: 10,
   },
+  image: {
+    marginHorizontal: wp(1),
+    width: wp(3.7),
+    height: wp(4.5)
+  },
+  imageContainer: {
+    position: 'absolute',
+    right: wp(2),
+    top: hp(1),
+    flexDirection: 'row'
+  }
 });
 export { AddressCard };
