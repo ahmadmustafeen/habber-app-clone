@@ -1,21 +1,23 @@
 import React, { useState } from 'react';
 import { View, ScrollView, I18nManager, ImageBackground } from 'react-native';
-import { InputWithLabel } from '_components';
-import { Button, Screen } from '_components/common';
-import { MY_PROFILE } from '_constants/Screens';
-import { Header } from '_components/Header';
-import { useDispatch } from 'react-redux';
-import { withDataActions } from '_redux/actions';
-import { ADD_ADDRESS_SAGA } from '_redux/actionTypes';
+
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-import { colors } from 'react-native-elements';
+import { useDispatch, useSelector, shallowEqual } from 'react-redux';
+
+import { withDataActions } from '_redux/actions';
+import { InputWithLabel, ModalSelectorCustom } from '_components';
+import { Button, Screen } from '_components/common';
+import { MY_PROFILE } from '_constants/Screens';
+import { Header } from '_components/Header';
+import { ADD_ADDRESS_SAGA } from '_redux/actionTypes';
+
 const AddNewAddress = (props) => {
   const [state, setState] = useState({
     address_name: '',
-    country_id: '3',
+    country_id: '',
     state: '',
     city: '',
     address_line1: '',
@@ -23,6 +25,16 @@ const AddNewAddress = (props) => {
     phone: '',
     post_code: '',
   });
+  console.log(state);
+  var index = 0;
+  const { FetchCountriesReducer } = useSelector((state) => {
+    return {
+      FetchCountriesReducer: state.FetchCountriesReducer,
+    };
+  }, shallowEqual);
+  console.log(FetchCountriesReducer);
+
+  const data = FetchCountriesReducer.map((data) => ({ key: data.iso, label: data.nicename }))
   const setStateHandler = (key, val) => {
     setState({ ...state, [key]: val });
   };
@@ -55,19 +67,22 @@ const AddNewAddress = (props) => {
             required
             onChangeText={(val) => setStateHandler('address_name', val)}
           />
-          <InputWithLabel color={"black"} placeholder="Country*" required />
-          <InputWithLabel color={"black"}
-            value={state.state}
-            placeholder="State/Governate*"
-            required
-            onChangeText={(val) => setStateHandler('state', val)}
+          {/* <InputWithLabel color={"black"} placeholder="Country*" required /> */}
+          <ModalSelectorCustom
+            data={data}
+            initValue="Country*"
+            onChangeText={(value) => setState({ ...state, country_id: value.key })}
           />
-          <InputWithLabel color={"black"}
-            value={state.city}
-            placeholder="City*"
-            required
-            onChangeText={(val) => setStateHandler('city', val)}
+          <ModalSelectorCustom
+            data={data}
+            initValue="State*"
           />
+          <ModalSelectorCustom
+            data={data}
+            initValue="City*"
+            onChangeText={(value) => setState({ ...state, country_id: value.key })}
+          />
+
           <InputWithLabel color={"black"}
             value={state.address_line1}
             placeholder="Address Line 1*"

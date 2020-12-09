@@ -30,3 +30,4 @@ export * from './OfflineNotice';
 export * from './FavouriteCard';
 export * from './TextWithIcon';
 export * from './FloatingActionButton';
+export * from './ModalSelectorCustom'

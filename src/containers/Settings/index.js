@@ -46,9 +46,10 @@ const Settings = (props) => {
   };
   const dispatch = useDispatch();
 
-  const { UserProfileReducer, FetchCurrencyReducer } = useSelector((state) => {
+  const { UserProfileReducer, FetchCurrencyReducer, FetchCountriesReducer } = useSelector((state) => {
     return {
       UserProfileReducer: state.UserProfileReducer,
+      FetchCountriesReducer: state.FetchCountriesReducer,
       FetchCurrencyReducer: state.FetchCurrencyReducer,
     };
   }, shallowEqual);

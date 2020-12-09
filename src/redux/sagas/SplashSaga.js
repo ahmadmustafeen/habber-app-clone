@@ -15,7 +15,8 @@ import {
   FETCH_ADDRESS,
   SKIP_AD,
   FETCH_SITE_DETAILS,
-  FETCH_CURRENCIES
+  FETCH_CURRENCIES,
+  FETCH_COUNTRIES
 } from '_redux/actionTypes';
 
 
@@ -30,6 +31,7 @@ export function* splashSaga() {
     yield put({ type: FETCH_BOOKCLUBS });
     yield put({ type: FETCH_BOOKMARKS });
     yield put({ type: FETCH_CURRENCIES });
+    yield put({ type: FETCH_COUNTRIES });
     yield put({ type: FETCH_SITE_DETAILS });
 
     if (response.problem === NETWORK_ERROR) {

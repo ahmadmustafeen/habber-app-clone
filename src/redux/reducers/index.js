@@ -1,4 +1,4 @@
-import {combineReducers} from 'redux';
+import { combineReducers } from 'redux';
 import LoadingReducer from './LoadingReducer';
 import ModalReducer from './ModalReducer';
 import UserProfileReducer from './UserProfileReducer';
@@ -17,6 +17,7 @@ import UIReducer from './UIReducer';
 import OrderReducer from './OrderReducer';
 import FetchCurrencyReducer from './FetchCurrencyReducer';
 import FCMReducer from './FCMReducer';
+import FetchCountriesReducer from "./FetchCountriesReducer"
 // import FetchFavouriteReducer from "./FetchFavouriteReducer";
 export default combineReducers({
   ModalReducer,
@@ -38,4 +39,5 @@ export default combineReducers({
   FetchCurrencyReducer,
   FCMReducer,
   // FetchFavouriteReducer,
+  FetchCountriesReducer
 });
