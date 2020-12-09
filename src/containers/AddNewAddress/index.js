@@ -56,7 +56,7 @@ const AddNewAddress = (props) => {
         }}
         resizeMode="stretch"
         source={require('_assets/images/header.png')}>
-        <Header {...props} title={'Add New Address'} />
+        <Header {...props} backIcon headerLeft title={'Add New Address'} />
       </ImageBackground>
       <Screen>
         <View key="header"></View>

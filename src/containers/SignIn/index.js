@@ -67,13 +67,14 @@ const SignIn = (props) => {
       </View>
       <View key="content" style={styles.content}>
         <InputWithLabel
-          primary={true}
+          white
           placeholder="ahmadalajmi@gmail.com"
           label={t('email')}
           value={email}
           onChangeText={(value) => handleChange('email', value)}
         />
         <InputWithLabel
+          white
           secureTextEntry
           placeholder="*********"
           label={t('password')}

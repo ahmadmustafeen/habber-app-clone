@@ -111,30 +111,38 @@ const EditProfile = (props) => {
               style={styles.image}
               source={require('../../assets/images/Screenshot_Logo.jpg')}
             />
+
           </TouchableOpacity>
+          <View style={styles.addIcon}>
+            <Image style={{ width: '100%', height: '100%' }} source={require("_assets/images/addsign.png")} />
+          </View>
         </View>
         <HorizontalRow style={{ borderBottomWidth: hp(0.1), borderBottomColor: colors.borderColor }} />
         <View style={{ marginTop: 20 }}>
-          <AppText style={{ margin: hp(0), padding: hp(0), backgroundColor: 'red' }}>
-            First Name
-          </AppText>
+
           <InputWithLabel
+
+            viewStyle={{ margin: 0, padding: hp(0) }}
             style={{ margin: hp(0), padding: hp(0), backgroundColor: 'red' }}
-            color={'black'}
+
+            color={colors.borderColor}
             value={state.first_name}
             placeholder="Khaled"
             label="First Name:"
             onChangeText={(val) => setStateHandler('first_name', val)}
           />
           <InputWithLabel
-            color={'black'}
+
+            viewStyle={{ margin: 0, padding: hp(0) }}
             value={state.last_name}
             placeholder="Ammer"
             label="Last Name:"
+            color={colors.borderColor}
             onChangeText={(val) => setStateHandler('last_name', val)}
           />
           <InputWithLabel
-            color={'black'}
+            viewStyle={{ margin: 0, padding: hp(0) }}
+            color={colors.borderColor}
             value={state.email}
             placeholder="Khaled.ammar@gmail.com"
             label="Phone:"
@@ -147,7 +155,7 @@ const EditProfile = (props) => {
           Save
           </Button>
       </View>
-    </Screen>
+    </Screen >
   );
 };
 
@@ -183,6 +191,14 @@ const styles = StyleSheet.create({
   },
   button: {
     marginTop: hp(-10)
+  },
+  addIcon: {
+    position: 'absolute',
+    width: wp(7),
+    zIndex: 999,
+    height: wp(7),
+    bottom: hp(-1),
+    right: wp(41.5)
   }
 });
 

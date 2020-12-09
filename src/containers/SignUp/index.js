@@ -54,6 +54,7 @@ const SignUp = (props) => {
       </View>
       <View key="content" style={styles.content}>
         <InputWithLabel
+          white
           placeholder="Khaled"
           label="First Name"
           required
@@ -61,6 +62,7 @@ const SignUp = (props) => {
           onChangeText={(value) => handleChange('first_name', value)}
         />
         <InputWithLabel
+          white
           placeholder="Ammar"
           label="Last Name"
           required
@@ -68,6 +70,7 @@ const SignUp = (props) => {
           onChangeText={(value) => handleChange('last_name', value)}
         />
         <InputWithLabel
+          white
           placeholder="ahmadalajmi@gmail.com"
           label="Email"
           required
@@ -75,6 +78,7 @@ const SignUp = (props) => {
           onChangeText={(value) => handleChange('email', value)}
         />
         <InputWithLabel
+          white
           secureTextEntry
           placeholder="*********"
           label="Password"
@@ -83,6 +87,7 @@ const SignUp = (props) => {
           onChangeText={(value) => handleChange('password', value)}
         />
         <InputWithLabel
+          white
           secureTextEntry
           placeholder="*********"
           label="Confirm Password"

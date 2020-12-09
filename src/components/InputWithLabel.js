@@ -9,15 +9,16 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
+import { color } from 'react-native-reanimated';
 const InputWithLabel = (props) => {
   const { colors } = useTheme();
 
-  const { viewStyle, label, inputRef, required, maxLength, primary, borderColor } = props;
+  const { viewStyle, white, label, inputRef, required, maxLength, primary, borderColor, } = props;
 
   return (
     <View style={[styles.inputContainerStyle, viewStyle,]}>
       { label && (
-        <AppText white secondary={!primary} primary={primary}>
+        <AppText white={white} secondary={!primary} primary={primary} >
           {`${label} ` || `Label Name`}
           {required ? <AppText white>*</AppText> : null}
         </AppText>
