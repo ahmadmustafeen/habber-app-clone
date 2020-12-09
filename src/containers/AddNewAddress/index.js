@@ -17,7 +17,7 @@ import { ADD_ADDRESS_SAGA } from '_redux/actionTypes';
 const AddNewAddress = (props) => {
   const [state, setState] = useState({
     address_name: '',
-    country_id: '',
+    country: {},
     state: '',
     city: '',
     address_line1: '',
@@ -25,7 +25,7 @@ const AddNewAddress = (props) => {
     phone: '',
     post_code: '',
   });
-  console.log(state);
+
   var index = 0;
   const { FetchCountriesReducer } = useSelector((state) => {
     return {
@@ -70,11 +70,13 @@ const AddNewAddress = (props) => {
           {/* <InputWithLabel color={"black"} placeholder="Country*" required /> */}
           <ModalSelectorCustom
             data={countries_list}
-            initValue="Country*"
-            onChangeText={(value) => setStateHandler('country_id', value.key)}
+            value={state.country_id}
+            initValue={state.country.label || "Country*"}
+            onChangeText={(value) => setState({ ...state, country: value })}
           />
           <ModalSelectorCustom
             data={countries_list}
+            //  onChangeText={(value) => setState({ ...state, country_id: value.key })}
             initValue="State*"
           />
 

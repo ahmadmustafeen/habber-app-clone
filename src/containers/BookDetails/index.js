@@ -155,6 +155,7 @@ const BookDetails = (props) => {
       alert(error.message);
     }
   };
+  console.log("GENRE", book.genre)
   return (
     <Screen noPadding contentPadding>
       <View key="header">
@@ -217,7 +218,7 @@ const BookDetails = (props) => {
               <BDScreenText primary title='ISBN' value={book.isbn} />
               <BDScreenText title='Pages' value={book.total_pages} />
               <BDScreenText title='Type of Cover' value={book.cover_type} />
-              <BDScreenText title='Genre' value={'Romance|Thriller|Mystery'} />
+              <BDScreenText title='Genre' value={book.genre.map((item) => item.title).join(" | ")} />
             </>
           ) : (
               <>

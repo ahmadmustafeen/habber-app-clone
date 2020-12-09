@@ -106,16 +106,15 @@ const EditProfile = (props) => {
       </View>
       <View key="content" style={styles.content}>
         <View style={styles.profiletop}>
-          <TouchableOpacity style={styles.imgContainer} onPress={setImage}>
+          <View style={styles.imgContainer} >
             <Image
               style={styles.image}
               source={require('../../assets/images/Screenshot_Logo.jpg')}
             />
-
-          </TouchableOpacity>
-          <View style={styles.addIcon}>
-            <Image style={{ width: '100%', height: '100%' }} source={require("_assets/images/addsign.png")} />
           </View>
+          <TouchableOpacity style={styles.addIcon} onPress={setImage}>
+            <Image style={{ width: '100%', height: '100%' }} source={require("_assets/images/addsign.png")} />
+          </TouchableOpacity>
         </View>
         <HorizontalRow style={{ borderBottomWidth: hp(0.1), borderBottomColor: colors.borderColor }} />
         <View style={{ marginTop: 20 }}>
