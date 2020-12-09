@@ -5,7 +5,7 @@ const initialState = [
 export default (state = initialState, action) => {
     switch (action.type) {
         case FETCH_ORDER_SUCCESS: {
-            console.log("reducer order", action.payload)
+            // console.log("reducer order", action.payload)
             return [...action.payload];
         }
 

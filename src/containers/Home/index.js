@@ -21,7 +21,7 @@ import {
   Header,
   FloatingActionButton
 } from '_components';
-import { REQUESTBOOKS_SCREEN, BOOKLIST_SCREEN } from '_constants/Screens';
+import { REQUESTBOOKS_SCREEN, BOOKLIST_SCREEN, BOOK_DETAILS_SCREEN } from '_constants/Screens';
 import { sliderImages } from './dummydata';
 import { ThumbnailBook } from '_components/ThumbnailBook';
 import { Button, Screen } from '_components/common';
@@ -219,7 +219,11 @@ const Home = (props) => {
           <DashboardComponent
             data={ArabicBooksReducer.filter((book) => book.featured)}
             label={t('arabic')}
-            renderComponent={(item) => <ThumbnailBook url={item.item.image} />}
+            renderComponent={(item) => <ThumbnailBook url={item.item.image} onPress={() => navigate(BOOK_DETAILS_SCREEN, {
+              ...item.item,
+              product_type: item.item.product_type,
+            })}
+            />}
             onIconPress={() =>
               navigate(BOOKLIST_SCREEN, {
                 label: t('arabic'),
@@ -231,7 +235,12 @@ const Home = (props) => {
           <DashboardComponent
             data={EnglishBooksReducer.filter((book) => book.featured)}
             label={t('english')}
-            renderComponent={(item) => <ThumbnailBook url={item.item.image} />}
+            renderComponent={(item) => <ThumbnailBook url={item.item.image}
+              onPress={() => navigate(BOOK_DETAILS_SCREEN, {
+                ...item.item,
+                product_type: item.item.product_type,
+              })}
+            />}
             onIconPress={() =>
               navigate(BOOKLIST_SCREEN, {
                 label: t('english'),
@@ -243,7 +252,11 @@ const Home = (props) => {
           <DashboardComponent
             data={BookClubReducer.filter((book) => book.featured)}
             label={t('bookclub')}
-            renderComponent={(item) => <ThumbnailClub url={item.item.image} />}
+            renderComponent={(item) => <ThumbnailClub url={item.item.image}
+              onPress={() => navigate(BOOK_DETAILS_SCREEN, {
+                ...item.item,
+                product_type: item.item.product_type,
+              })} />}
             onIconPress={() =>
               navigate(BOOKLIST_SCREEN, {
                 label: t('bookclub'),
@@ -255,7 +268,11 @@ const Home = (props) => {
           <DashboardComponent
             data={BookmarksReducer.filter((book) => book.featured)}
             renderComponent={(item) => (
-              <ThumbnailBookmarks url={item.item.image} />
+              <ThumbnailBookmarks url={item.item.image}
+                onPress={() => navigate(BOOK_DETAILS_SCREEN, {
+                  ...item.item,
+                  product_type: item.item.product_type,
+                })} />
             )}
             label={t('bookmark')}
             onIconPress={() =>

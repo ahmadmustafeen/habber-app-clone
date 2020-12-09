@@ -38,7 +38,7 @@ const BooksList = (props) => {
     setBookData(filtered);
   };
   const { colors } = useTheme();
-  // console.log(props.route.params);
+  console.log(props);
   return (
     <Screen noPadding>
       <View key='header'>

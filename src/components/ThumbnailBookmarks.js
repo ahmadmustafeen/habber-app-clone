@@ -8,9 +8,8 @@ import {
 } from 'react-native-responsive-screen';
 export const ThumbnailBookmarks = (props) => {
   return (
-    <View style={styles.containerStyle}>
-      <FastImage source={{ uri: props.url }} />
-    </View>
+
+    <FastImage {...props} style={styles.containerStyle} source={{ uri: props.url }} />
   );
 };
 const styles = StyleSheet.create({

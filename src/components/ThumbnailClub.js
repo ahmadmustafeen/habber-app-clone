@@ -1,13 +1,11 @@
 import React from 'react';
-import {View, StyleSheet} from 'react-native';
+import { View, StyleSheet } from 'react-native';
 
-import {FastImage} from './FastImage';
+import { FastImage } from './FastImage';
 
 export const ThumbnailClub = (props) => {
   return (
-    <View style={styles.containerStyle}>
-      <FastImage source={{uri: props.url}} />
-    </View>
+    <FastImage {...props} style={styles.containerStyle} source={{ uri: props.url }} />
   );
 };
 const styles = StyleSheet.create({
