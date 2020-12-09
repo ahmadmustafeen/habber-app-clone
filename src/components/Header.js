@@ -24,7 +24,8 @@ const Header = (props) => {
     route: { name },
     headerLeft,
     headerRight,
-    backIcon
+    backIcon,
+    cartNumber
   } = props;
   const headerColor =
     color || (secondary && colors.secondary) || colors.primary;
@@ -75,10 +76,14 @@ const Header = (props) => {
                 })
               }}>
                 <Image
-                  source={(CartReducer) ? require("../assets/images/nocart.png") : require("../assets/images/nocart.png")}
+                  source={(cartNumber) ? require("../assets/images/filledcart.png") : require("../assets/images/nocart.png")}
                   style={{ marginRight: wp(3) }}
 
                 />
+                {cartNumber ? <View style={styles.circle}>
+                  <AppText size={13} bold white>{cartNumber}</AppText>
+                </View> : null}
+
               </TouchableOpacity>
 
               {/* <Icon
@@ -126,5 +131,12 @@ const styles = StyleSheet.create({
     flexDirection: I18nManager.isRTL ? 'row-reverse' : 'row',
     justifyContent: 'space-around',
   },
+  circle: {
+    position: 'absolute',
+    right: wp(3.3),
+    top: hp(0),
+    width: wp(3),
+    height: wp(3)
+  }
 });
 export { Header };

@@ -81,7 +81,6 @@ const BookDetails = (props) => {
   //     (type = 'bookclub'),
   //     (product_type = 'book'));
   // console.log([book])
-
   let inCartPosition = CartReducer[product_type].findIndex(
     (el) => el.product_id === product_id,
   );
@@ -119,7 +118,7 @@ const BookDetails = (props) => {
       withDataActions(CartReducer[product_type][inCartPosition], ADD_TO_CART),
     );
   };
-
+  console.log("CR", CartReducer);
   useEffect(() => {
     dispatch(withDataActions({ product_id }, FETCH_RELATED_BOOKS));
   }, []);
@@ -166,7 +165,7 @@ const BookDetails = (props) => {
             transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }],
           }}
           source={require('_assets/images/book-detail.png')}>
-          <Header
+          <Header cartNumber={CartReducer.book.length + CartReducer.bookmark.length}
             {...props}
             headerLeft={
               <Icon
