@@ -24,6 +24,7 @@ import {
   ADD_TO_FAVOURITE,
   REMOVE_FAVOURITE,
   UPDATE_PROFILE,
+  FETCH_ORDER,
   FETCH_SITE_DETAILS,
   FETCH_USER_FAVOURITE,
   FETCH_CURRENCIES,
@@ -60,7 +61,8 @@ import { FetchFavouriteSaga } from './FetchUserFavouriteSaga';
 import { FetchCurrencySaga } from './FetchCurrencySaga';
 import { BookRequestSaga } from './BookRequestSaga';
 import { CreateOrderSaga } from './CreateOrderSaga';
-import { FetchCountriesSaga } from "./FetchCountriesSaga"
+import { FetchCountriesSaga } from "./FetchCountriesSaga";
+import { FetchOrderSaga } from './FetchOrderSaga';
 function* actionWatcher() {
   yield takeLatest(SPLASH_ACTION, splashSaga);
   yield takeLatest(SKIP_AD, splashAdSaga);
@@ -92,6 +94,7 @@ function* actionWatcher() {
   yield takeLatest(DO_PAYMENT, PaymentSaga);
   yield takeLatest(CREATE_ORDER, CreateOrderSaga);
   yield takeLatest(FETCH_COUNTRIES, FetchCountriesSaga);
+  yield takeLatest(FETCH_ORDER, FetchOrderSaga)
 }
 
 export default function* rootSaga() {

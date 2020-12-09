@@ -25,5 +25,6 @@ export const API_ENDPOINTS = {
   favourites: '/favourites',
   currencies: '/currencies',
   order: '/order',
-  countries: '/countries'
+  countries: '/countries',
+  order: '/order'
 };

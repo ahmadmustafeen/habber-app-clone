@@ -16,20 +16,27 @@ const MyOrders = (props) => {
       OrderReducer: state.OrderReducer
     }
   })
+
+  console.log("order ka page", OrderReducer);
   const OrderItem = (item) => {
+    console.log(item.bookmarks)
+    console.log(item)
     return (
       <View style={styles.profiletop}>
         <View style={styles.orderContainer}>
           <AppText size={16} style={styles.apptextpadding}><AppText bold size={17}>Order ID: </AppText> {item.order_id}</AppText>
-          {item.order_title.map((title) =>
+          {item.books.map((title) =>
+            <AppText size={14} style={styles.apptextpadding}>{title.title}</AppText>
+          )}
+          {item.bookmarks.map((title) =>
             <AppText size={14} style={styles.apptextpadding}>{title.title}</AppText>
           )}
 
-          <AppText size={16} style={styles.statuspadding}><AppText bold size={17}>Status: </AppText>{item.order_status}</AppText>
+          <AppText size={16} style={styles.statuspadding}><AppText bold size={17}>Status: </AppText>{item.status}</AppText>
         </View>
         <View style={styles.totalContainer}>
-          <AppText size={16} style={styles.apptextpadding}><AppText size={17} bold>Total: </AppText>${item.order_total}</AppText>
-          <AppText size={16} style={styles.apptextpadding}>{item.order_date}</AppText>
+          <AppText size={16} style={styles.apptextpadding}><AppText size={17} bold>Total: </AppText>${item.total_price}</AppText>
+          <AppText size={16} style={styles.apptextpadding}>{item.date}</AppText>
         </View>
       </View>
     )
