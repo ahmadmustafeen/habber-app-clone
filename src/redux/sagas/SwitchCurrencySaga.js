@@ -8,7 +8,6 @@ import { setItem, getItem } from '_helpers/Localstorage';
 
 export function* SwitchCurrencySaga(payload) {
     try {
-        let userProfile = yield getItem('@userProfile');
         yield setItem('@userProfile', JSON.stringify(payload));
         yield put({
             type: SWITCH_LANG_SUCCESS,
