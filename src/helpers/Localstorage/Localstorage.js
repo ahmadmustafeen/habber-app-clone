@@ -3,6 +3,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 export const setItem = async (key, value) => {
   try {
     await AsyncStorage.setItem(key, value);
+    console.log(value, "loacle")
   } catch (e) {
     // eslint-disable-next-line no-console
     console.error('error saving value', e);

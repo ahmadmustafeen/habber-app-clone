@@ -46,8 +46,12 @@
     "confirmPassword":"Confirm Password",
     "signIn":"Sign In",
     "bycreating":"By creating an account you agree to our",
+<<<<<<< Updated upstream
     "termAndService":"Terms of Services and Privacy Policy",
     "signUp":"Sign Up"
+=======
+    "termAndService":"Terms of Services and Privacy Policy"
+>>>>>>> Stashed changes
   }
   
 

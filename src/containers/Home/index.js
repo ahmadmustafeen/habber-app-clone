@@ -10,6 +10,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import { useTranslation } from 'react-i18next';
+import { GoogleSignin } from '@react-native-community/google-signin';
 import Carousel, { Pagination } from 'react-native-x-carousel';
 import { CustomPagination } from '_components/CustomPagination';
 import { FloatingAction } from "react-native-floating-action";
@@ -45,11 +46,21 @@ import { AppText } from 'components/common';
 import { Icon } from 'react-native-elements';
 import { DO_PAYMENT } from '../../redux/actionTypes';
 
+import { getItem } from '_helpers/Localstorage';
 const { width } = Dimensions.get('window');
 const Home = (props) => {
   const { navigate } = props.navigation;
   const [images] = useState(sliderImages);
-
+  GoogleSignin.configure({
+    scopes: ['https://www.googleapis.com/auth/drive.readonly'], // what API you want to access on behalf of the user, default is email and profile
+    webClientId: '<FROM DEVELOPER CONSOLE>', // client ID of type WEB for your server (needed to verify user ID and offline access)
+    offlineAccess: true, // if you want to access Google API on behalf of the user FROM YOUR SERVER
+    hostedDomain: '', // specifies a hosted domain restriction
+    loginHint: '', // [iOS] The user's ID, or email address, to be prefilled in the authentication UI if possible. [See docs here](https://developers.google.com/identity/sign-in/ios/api/interface_g_i_d_sign_in.html#a0a68c7504c31ab0b728432565f6e33fd)
+    forceCodeForRefreshToken: true, // [Android] related to `serverAuthCode`, read the docs link below *.
+    accountName: '', // [Android] specifies an account name on the device that should be used
+    iosClientId: '<FROM DEVELOPER CONSOLE>', // [iOS] optional, if you want to specify the client ID of type iOS (otherwise, it is taken from GoogleService-Info.plist)
+  });
   const { t } = useTranslation();
   const {
     EnglishBooksReducer,
@@ -184,9 +195,11 @@ const Home = (props) => {
             console.log(`selected button: ${name}`);
           }}
         /> */}
-
+          <Button onPress={() => dispatch(withoutDataActions(DO_PAYMENT))}>
+            Google Signin
+        </Button>
           {/* <Button onPress={() => dispatch(withoutDataActions(DO_PAYMENT))}>
-          DO Payment
+            DO Payment
         </Button> */}
           <Loader loading={isLoading} />
 

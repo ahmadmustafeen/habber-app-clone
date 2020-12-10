@@ -10,6 +10,7 @@ import {
   TouchableOpacity,
   ImageBackground,
 } from 'react-native';
+import { SWITCH_CURRENCY } from '_redux/actionTypes';
 import { useTranslation } from 'react-i18next';
 import RNRestart from 'react-native-restart';
 import { Screen, Button } from '_components/common';
@@ -25,7 +26,7 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-import { withoutDataActions } from '_redux/actions';
+import { withoutDataActions, withDataActions } from '_redux/actions';
 import { SIGN_OUT } from '_redux/actionTypes';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import { AppText } from 'components/common';
@@ -53,7 +54,7 @@ const Settings = (props) => {
       FetchCurrencyReducer: state.FetchCurrencyReducer,
     };
   }, shallowEqual);
-  console.log('SETTINGCURRENCY', FetchCurrencyReducer);
+  console.log('USERPROFILE CURRENCY', UserProfileReducer);
   const onLogout = () => {
     dispatch(withoutDataActions(SIGN_OUT));
   };
@@ -68,6 +69,7 @@ const Settings = (props) => {
       symbol,
       onPress
     } = props
+
     return (
       <>
         <TouchableOpacity
@@ -112,6 +114,7 @@ const Settings = (props) => {
       : await PushNotification.requestPermissions();
     toggleDropdown('notifications');
   };
+
   return (
     <Screen noPadding>
       <View key="header">
@@ -197,7 +200,10 @@ const Settings = (props) => {
                   selected={item.iso === iso}
                   currencyName={item.name}
                   symbol={item.symbol}
-                  onPress={() => setIso(item.iso)}
+                  onPress={() => {
+                    setIso(item.iso)
+                    dispatch(withDataActions({ ...UserProfileReducer, currency: iso }, SWITCH_CURRENCY))
+                  }}
                 />
               );
             })}

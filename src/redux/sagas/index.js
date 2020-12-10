@@ -30,7 +30,8 @@ import {
   FETCH_CURRENCIES,
   DO_PAYMENT,
   CREATE_ORDER,
-  FETCH_COUNTRIES
+  FETCH_COUNTRIES,
+  SWITCH_CURRENCY
 } from '../actionTypes';
 
 import { signupSaga } from './SignupSaga';
@@ -63,6 +64,7 @@ import { BookRequestSaga } from './BookRequestSaga';
 import { CreateOrderSaga } from './CreateOrderSaga';
 import { FetchCountriesSaga } from "./FetchCountriesSaga";
 import { FetchOrderSaga } from './FetchOrderSaga';
+import { SwitchCurrencySaga } from './SwitchCurrencySaga';
 function* actionWatcher() {
   yield takeLatest(SPLASH_ACTION, splashSaga);
   yield takeLatest(SKIP_AD, splashAdSaga);
@@ -95,6 +97,7 @@ function* actionWatcher() {
   yield takeLatest(CREATE_ORDER, CreateOrderSaga);
   yield takeLatest(FETCH_COUNTRIES, FetchCountriesSaga);
   yield takeLatest(FETCH_ORDER, FetchOrderSaga)
+  yield takeLatest(SWITCH_CURRENCY, SwitchCurrencySaga)
 }
 
 export default function* rootSaga() {
