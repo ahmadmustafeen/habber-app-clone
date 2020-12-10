@@ -18,7 +18,7 @@ const SignUp = (props) => {
   const { navigate } = props.navigation;
   const { visible } = useModal();
 
-  const { t } = useTranslation(["signUp"]);
+  const { t } = useTranslation(["createAccount"]);
   const [state, setState] = useState({
     first_name: '',
     last_name: '',
@@ -56,7 +56,7 @@ const SignUp = (props) => {
         <InputWithLabel
           white
           placeholder="Khaled"
-          label="First Name"
+          label={t('firstName')}
           required
           value={first_name}
           onChangeText={(value) => handleChange('first_name', value)}
@@ -64,7 +64,7 @@ const SignUp = (props) => {
         <InputWithLabel
           white
           placeholder="Ammar"
-          label="Last Name"
+          label={t('lastName')}
           required
           value={last_name}
           onChangeText={(value) => handleChange('last_name', value)}
@@ -72,7 +72,7 @@ const SignUp = (props) => {
         <InputWithLabel
           white
           placeholder="ahmadalajmi@gmail.com"
-          label="Email"
+          label={t('email')}
           required
           value={email}
           onChangeText={(value) => handleChange('email', value)}
@@ -81,7 +81,7 @@ const SignUp = (props) => {
           white
           secureTextEntry
           placeholder="*********"
-          label="Password"
+          label={t('password')}
           required
           value={password}
           onChangeText={(value) => handleChange('password', value)}
@@ -90,20 +90,20 @@ const SignUp = (props) => {
           white
           secureTextEntry
           placeholder="*********"
-          label="Confirm Password"
+          label={t('confirmPassword')}
           required
           value={password_confirmation}
           onChangeText={(value) => handleChange('password_confirmation', value)}
         />
         <View style={{ alignItems: 'center' }}>
           <AppText white secondary size={17}>
-            {signUp.agreement}
+            {t('bycreating')}
           </AppText>
           <AppText underline style={styles.termsandservices} size={17}>
-            {signUp.TermsAndPolicies}
+            {t('termAndService')}
           </AppText>
           <Button round width="60%" onPress={onSignUp}>
-            {signUp.sign_up}
+            {t('termAndService')}
           </Button>
         </View>
         {/* <AppText white secondary style={{marginTop: 10, marginBottom: 10}}>
