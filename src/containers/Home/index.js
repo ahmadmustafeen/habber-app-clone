@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 
 import {
   View,
@@ -6,34 +6,39 @@ import {
   ImageBackground,
   I18nManager,
   Dimensions,
-  Image, Linking,
+  Image,
+  Linking,
   TouchableOpacity,
 } from 'react-native';
-import { useTranslation } from 'react-i18next';
-import { GoogleSignin } from '@react-native-community/google-signin';
-import Carousel, { Pagination } from 'react-native-x-carousel';
-import { CustomPagination } from '_components/CustomPagination';
-import { FloatingAction } from "react-native-floating-action";
+import {useTranslation} from 'react-i18next';
+import {GoogleSignin} from '@react-native-community/google-signin';
+import Carousel, {Pagination} from 'react-native-x-carousel';
+import {CustomPagination} from '_components/CustomPagination';
+import {FloatingAction} from 'react-native-floating-action';
 import {
   DashboardComponent,
   ThumbnailBookmarks,
   ThumbnailClub,
   TitleBarWithIcon,
   Header,
-  FloatingActionButton
+  FloatingActionButton,
 } from '_components';
-import { REQUESTBOOKS_SCREEN, BOOKLIST_SCREEN, BOOK_DETAILS_SCREEN } from '_constants/Screens';
-import { sliderImages } from './dummydata';
-import { ThumbnailBook } from '_components/ThumbnailBook';
-import { Button, Screen } from '_components/common';
-import { FlatListSlider } from '_components';
-import { shallowEqual, useDispatch, useSelector } from 'react-redux';
-import { useTheme } from '@react-navigation/native';
+import {
+  REQUESTBOOKS_SCREEN,
+  BOOKLIST_SCREEN,
+  BOOK_DETAILS_SCREEN,
+} from '_constants/Screens';
+import {sliderImages} from './dummydata';
+import {ThumbnailBook} from '_components/ThumbnailBook';
+import {Button, Screen} from '_components/common';
+import {FlatListSlider} from '_components';
+import {shallowEqual, useDispatch, useSelector} from 'react-redux';
+import {useTheme} from '@react-navigation/native';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-import { checkIfLoading } from '_redux/selectors';
+import {checkIfLoading} from '_redux/selectors';
 import {
   FETCH_ARABIC_BOOKS,
   FETCH_BOOKCLUBS,
@@ -41,15 +46,15 @@ import {
   FETCH_ENGLISH_BOOKS,
 } from '_redux/actionTypes';
 import Loader from '_components/Loader';
-import { withoutDataActions } from 'redux/actions';
-import { AppText } from 'components/common';
-import { Icon } from 'react-native-elements';
-import { DO_PAYMENT } from '../../redux/actionTypes';
+import {withoutDataActions} from 'redux/actions';
+import {AppText} from 'components/common';
+import {Icon} from 'react-native-elements';
+import {DO_PAYMENT} from '../../redux/actionTypes';
 
-import { getItem } from '_helpers/Localstorage';
-const { width } = Dimensions.get('window');
+import {getItem} from '_helpers/Localstorage';
+const {width} = Dimensions.get('window');
 const Home = (props) => {
-  const { navigate } = props.navigation;
+  const {navigate} = props.navigation;
   const [images] = useState(sliderImages);
   GoogleSignin.configure({
     scopes: ['https://www.googleapis.com/auth/drive.readonly'], // what API you want to access on behalf of the user, default is email and profile
@@ -61,7 +66,7 @@ const Home = (props) => {
     accountName: '', // [Android] specifies an account name on the device that should be used
     iosClientId: '<FROM DEVELOPER CONSOLE>', // [iOS] optional, if you want to specify the client ID of type iOS (otherwise, it is taken from GoogleService-Info.plist)
   });
-  const { t } = useTranslation();
+  const {t} = useTranslation();
   const {
     EnglishBooksReducer,
     ArabicBooksReducer,
@@ -86,7 +91,7 @@ const Home = (props) => {
     };
   }, shallowEqual);
   const dispatch = useDispatch();
-  const { colors } = useTheme();
+  const {colors} = useTheme();
   console.log('IS LOADING  . . . ', isLoading);
 
   const DATA = [
@@ -131,11 +136,11 @@ const Home = (props) => {
         <Icon color={'white'} size={17} name="right" type="ant-design" />
       </View>
       <View style={styles.cardWrapper}>
-        <Image style={styles.card} source={{ uri: data.coverImageUri }} />
+        <Image style={styles.card} source={{uri: data.coverImageUri}} />
         <View
           style={[
             styles.cornerLabel,
-            { backgroundColor: data.cornerLabelColor },
+            {backgroundColor: data.cornerLabelColor},
           ]}>
           <AppText style={styles.cornerLabelText}>
             {data.cornerLabelText}
@@ -156,7 +161,7 @@ const Home = (props) => {
               paddingBottom: hp(8),
               marginBottom: hp(1),
               justifyContent: 'flex-end',
-              transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }],
+              transform: [{scaleX: I18nManager.isRTL ? -1 : 1}],
             }}
             resizeMode="stretch"
             source={require('_assets/images/header.png')}>
@@ -195,9 +200,6 @@ const Home = (props) => {
             console.log(`selected button: ${name}`);
           }}
         /> */}
-          <Button onPress={() => dispatch(withoutDataActions(DO_PAYMENT))}>
-            Google Signin
-        </Button>
           {/* <Button onPress={() => dispatch(withoutDataActions(DO_PAYMENT))}>
             DO Payment
         </Button> */}
@@ -213,11 +215,17 @@ const Home = (props) => {
           <DashboardComponent
             data={ArabicBooksReducer.filter((book) => book.featured)}
             label={t('arabicBook')}
-            renderComponent={(item) => <ThumbnailBook url={item.item.image} onPress={() => navigate(BOOK_DETAILS_SCREEN, {
-              ...item.item,
-              product_type: item.item.product_type,
-            })}
-            />}
+            renderComponent={(item) => (
+              <ThumbnailBook
+                url={item.item.image}
+                onPress={() =>
+                  navigate(BOOK_DETAILS_SCREEN, {
+                    ...item.item,
+                    product_type: item.item.product_type,
+                  })
+                }
+              />
+            )}
             onIconPress={() =>
               navigate(BOOKLIST_SCREEN, {
                 label: t('arabicBook'),
@@ -229,12 +237,17 @@ const Home = (props) => {
           <DashboardComponent
             data={EnglishBooksReducer.filter((book) => book.featured)}
             label={t('englishBook')}
-            renderComponent={(item) => <ThumbnailBook url={item.item.image}
-              onPress={() => navigate(BOOK_DETAILS_SCREEN, {
-                ...item.item,
-                product_type: item.item.product_type,
-              })}
-            />}
+            renderComponent={(item) => (
+              <ThumbnailBook
+                url={item.item.image}
+                onPress={() =>
+                  navigate(BOOK_DETAILS_SCREEN, {
+                    ...item.item,
+                    product_type: item.item.product_type,
+                  })
+                }
+              />
+            )}
             onIconPress={() =>
               navigate(BOOKLIST_SCREEN, {
                 label: t('englishBook'),
@@ -246,11 +259,17 @@ const Home = (props) => {
           <DashboardComponent
             data={BookClubReducer.filter((book) => book.featured)}
             label={t('bookclub')}
-            renderComponent={(item) => <ThumbnailClub url={item.item.image}
-              onPress={() => navigate(BOOK_DETAILS_SCREEN, {
-                ...item.item,
-                product_type: item.item.product_type,
-              })} />}
+            renderComponent={(item) => (
+              <ThumbnailClub
+                url={item.item.image}
+                onPress={() =>
+                  navigate(BOOK_DETAILS_SCREEN, {
+                    ...item.item,
+                    product_type: item.item.product_type,
+                  })
+                }
+              />
+            )}
             onIconPress={() =>
               navigate(BOOKLIST_SCREEN, {
                 label: t('bookclub'),
@@ -262,11 +281,15 @@ const Home = (props) => {
           <DashboardComponent
             data={BookmarksReducer.filter((book) => book.featured)}
             renderComponent={(item) => (
-              <ThumbnailBookmarks url={item.item.image}
-                onPress={() => navigate(BOOK_DETAILS_SCREEN, {
-                  ...item.item,
-                  product_type: item.item.product_type,
-                })} />
+              <ThumbnailBookmarks
+                url={item.item.image}
+                onPress={() =>
+                  navigate(BOOK_DETAILS_SCREEN, {
+                    ...item.item,
+                    product_type: item.item.product_type,
+                  })
+                }
+              />
             )}
             label={t('bookmark')}
             onIconPress={() =>
@@ -279,7 +302,7 @@ const Home = (props) => {
           />
           <TitleBarWithIcon label={t('requestBook')} noIcon />
           <View style={styles.requestBooksBtns}>
-            <View style={{ width: wp(28) }}>
+            <View style={{width: wp(28)}}>
               <Button
                 bold
                 color={colors.white}
@@ -287,19 +310,19 @@ const Home = (props) => {
                 secondary
                 fontSize={13}
                 onPress={() =>
-                  navigate(REQUESTBOOKS_SCREEN, { book_type: 'random' })
+                  navigate(REQUESTBOOKS_SCREEN, {book_type: 'random'})
                 }>
                 {t('requestBook')}
               </Button>
             </View>
-            <View style={{ width: wp(58) }}>
+            <View style={{width: wp(58)}}>
               <Button
                 // bold
                 borderRadius={2}
                 primary
                 fontSize={13}
                 onPress={() =>
-                  navigate(REQUESTBOOKS_SCREEN, { book_type: 'educational' })
+                  navigate(REQUESTBOOKS_SCREEN, {book_type: 'educational'})
                 }>
                 {t('requestEducationalBook')}
               </Button>
@@ -307,9 +330,14 @@ const Home = (props) => {
           </View>
         </View>
       </Screen>
-      <FloatingActionButton image={require("_assets/images/fab.png")} onPress={() => Linking.openURL(
-        `whatsapp://send?text=""&phone=${FetchSiteReducer.whatsaap_number}`,
-      ).catch((err) => console.log('Err', err))} />
+      <FloatingActionButton
+        image={require('_assets/images/fab.png')}
+        onPress={() =>
+          Linking.openURL(
+            `whatsapp://send?text=""&phone=${FetchSiteReducer.whatsaap_number}`,
+          ).catch((err) => console.log('Err', err))
+        }
+      />
     </>
   );
 };

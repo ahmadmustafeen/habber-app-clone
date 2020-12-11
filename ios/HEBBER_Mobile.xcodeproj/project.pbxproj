@@ -28,6 +28,7 @@
 		7B7A2515E8A942A8BD801360 /* Roboto-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 61958EE185104DEB9F9462D1 /* Roboto-BoldItalic.ttf */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		81DBA72FD53E05D118F17D5D /* libPods-HEBBER_Mobile-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 36F5635F73D68F624273DE58 /* libPods-HEBBER_Mobile-tvOS.a */; };
+		943488522584067D00A9A544 /* assets in Resources */ = {isa = PBXBuildFile; fileRef = 943488482584061600A9A544 /* assets */; };
 		A843883049E64A9E98671423 /* Roboto-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A6EB10E4BC4D4101B011A209 /* Roboto-LightItalic.ttf */; };
 		C4F9F5924B144D65953611F8 /* Almarai-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3BFB72CDEC844A1493750743 /* Almarai-Light.ttf */; };
 		E27966032551B0330058E6DB /* main.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = 008F07F21AC5B25A0029DE68 /* main.jsbundle */; };
@@ -85,6 +86,7 @@
 		9122CC5CD96330CFF3AA3F9B /* Pods-HEBBER_Mobile-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HEBBER_Mobile-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-HEBBER_Mobile-tvOSTests/Pods-HEBBER_Mobile-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		9142D195FF534324995BCE41 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Regular.ttf"; path = "../src/assets/font/Roboto-Regular.ttf"; sourceTree = "<group>"; };
 		924C048B6C7D46038BB60AF1 /* libPods-HEBBER_Mobile-HEBBER_MobileTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HEBBER_Mobile-HEBBER_MobileTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		943488482584061600A9A544 /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = assets; sourceTree = "<group>"; };
 		94A3226F2535FB72002B8D62 /* Fontisto.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Fontisto.ttf; path = "../../node_modules/react-native-vector-icons/Fonts/Fontisto.ttf"; sourceTree = "<group>"; };
 		94A322702535FB72002B8D62 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = SimpleLineIcons.ttf; path = "../../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
 		94A322712535FB72002B8D62 /* FontAwesome5_Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = FontAwesome5_Regular.ttf; path = "../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf"; sourceTree = "<group>"; };
@@ -202,6 +204,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				943488482584061600A9A544 /* assets */,
 				94A3226E2535FABB002B8D62 /* Fonts */,
 				13B07FAE1A68108700A75B9A /* HEBBER_Mobile */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
@@ -427,6 +430,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				943488522584067D00A9A544 /* assets in Resources */,
 				E27966032551B0330058E6DB /* main.jsbundle in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
@@ -823,7 +827,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 12;
 				DEVELOPMENT_TEAM = GZHG762PM3;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = HEBBER_Mobile/Info.plist;
@@ -849,7 +853,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = HEBBER_Mobile/HEBBER_MobileRelease.entitlements;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 12;
 				DEVELOPMENT_TEAM = GZHG762PM3;
 				INFOPLIST_FILE = HEBBER_Mobile/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
