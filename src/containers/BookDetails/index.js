@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   View,
   StyleSheet,
@@ -8,15 +8,15 @@ import {
   Image,
   Share,
 } from 'react-native';
-import {Icon} from 'react-native-elements';
-import {useDispatch, useSelector, shallowEqual} from 'react-redux';
+import { Icon } from 'react-native-elements';
+import { useDispatch, useSelector, shallowEqual } from 'react-redux';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-import {useTheme} from '@react-navigation/native';
+import { useTheme } from '@react-navigation/native';
 
-import {AppText, Button, Screen} from '../../components/common';
+import { AppText, Button, Screen } from '../../components/common';
 import {
   Counter,
   BookDetailsCard,
@@ -26,26 +26,28 @@ import {
   RelatedThumbnailBook,
   RelatedThumbnailBookmarks,
 } from '../../components';
-import {BDScreenText} from './components';
-import {BOOK_DETAILS_SCREEN} from '../../constants/Screens';
+import { BDScreenText } from './components';
+import { BOOK_DETAILS_SCREEN } from '../../constants/Screens';
 import {
   ADD_TO_CART,
   FETCH_RELATED_BOOKS,
   UPDATE_FAVOURITE,
   UPDATE_CART_ITEM,
 } from '_redux/actionTypes';
-import {withDataActions} from '../../redux/actions/GenericActions';
-import {checkIsFavourite} from '../../redux/selectors';
+import { withDataActions } from '../../redux/actions/GenericActions';
+import { checkIsFavourite } from '../../redux/selectors';
+import { useTranslation } from 'react-i18next';
 
 const BookDetails = (props) => {
-  const {colors} = useTheme();
+  const { t } = useTranslation(["BookDetails"]);
+  const { colors } = useTheme();
   const dispatch = useDispatch();
-  const {params: book} = props.route;
+  const { params: book } = props.route;
 
-  const {id: product_id, quantity, product_type, price, bookClub, type} = book;
+  const { id: product_id, quantity, product_type, price, bookClub, type } = book;
 
   useEffect(() => {
-    dispatch(withDataActions({product_id}, FETCH_RELATED_BOOKS));
+    dispatch(withDataActions({ product_id }, FETCH_RELATED_BOOKS));
   }, []);
 
   const {
@@ -118,7 +120,7 @@ const BookDetails = (props) => {
   };
 
   const handleFavouriteClick = () => {
-    dispatch(withDataActions({product_id, product_type}, UPDATE_FAVOURITE));
+    dispatch(withDataActions({ product_id, product_type }, UPDATE_FAVOURITE));
   };
 
   const onShare = async () => {
@@ -147,7 +149,7 @@ const BookDetails = (props) => {
           style={{
             flex: 1,
             paddingHorizontal: 10,
-            transform: [{scaleX: I18nManager.isRTL ? -1 : 1}],
+            transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }],
           }}
           source={require('_assets/images/book-detail.png')}>
           <Header
@@ -166,7 +168,7 @@ const BookDetails = (props) => {
           />
           {type !== 'bookclub' ? (
             <View
-              style={{width: wp(90), paddingTop: hp(2), alignSelf: 'center'}}>
+              style={{ width: wp(90), paddingTop: hp(2), alignSelf: 'center' }}>
               <BookDetailsCard
                 onClickFavourite={handleFavouriteClick}
                 favourite={isFavourite}
@@ -175,19 +177,19 @@ const BookDetails = (props) => {
               />
             </View>
           ) : (
-            <View
-              style={{width: wp(90), alignSelf: 'center', paddingBottom: 20}}>
-              <Image
-                style={{width: wp(90), height: hp(18)}}
-                source={require('_assets/images/splash.png')}
-              />
-            </View>
-          )}
+              <View
+                style={{ width: wp(90), alignSelf: 'center', paddingBottom: 20 }}>
+                <Image
+                  style={{ width: wp(90), height: hp(18) }}
+                  source={require('_assets/images/splash.png')}
+                />
+              </View>
+            )}
         </ImageBackground>
       </View>
       <View key="content">
         {type === 'bookclub' && (
-          <View style={{paddingTop: hp(3)}}>
+          <View style={{ paddingTop: hp(3) }}>
             <BookDetailsCard
               onClickFavourite={handleFavouriteClick}
               favourite={isFavourite}
@@ -200,37 +202,37 @@ const BookDetails = (props) => {
         <View>
           {product_type !== 'bookmark' ? (
             <>
-              <BDScreenText primary title="ISBN" value={book.isbn} />
-              <BDScreenText title="Pages" value={book.total_pages} />
-              <BDScreenText title="Type of Cover" value={book.cover_type} />
+              <BDScreenText primary title={t('isbn')} value={book.isbn} />
+              <BDScreenText title={t('totalPages')} value={book.total_pages} />
+              <BDScreenText title={t('coverType')} value={book.cover_type} />
               <BDScreenText
-                title="Genre"
+                title={t("genre")}
                 value={book.genre.map((item) => item.title).join(' | ')}
               />
             </>
           ) : (
-            <>
-              <AppText style={styles.infoProduct} bold primary size={15}>
-                Product Id: {book.bookmark_id}
-              </AppText>
-              <AppText style={styles.infoProduct} bold size={15}>
-                Size in (inch): {book.size}
-              </AppText>
-              <AppText style={styles.infoProduct} bold size={15}>
-                Type of Bookmark: {book.cover_type}
-              </AppText>
-            </>
-          )}
+              <>
+                <AppText style={styles.infoProduct} bold primary size={15}>
+                  Product Id: {book.bookmark_id}
+                </AppText>
+                <AppText style={styles.infoProduct} bold size={15}>
+                  Size in (inch): {book.size}
+                </AppText>
+                <AppText style={styles.infoProduct} bold size={15}>
+                  Type of Bookmark: {book.cover_type}
+                </AppText>
+              </>
+            )}
         </View>
         <HorizontalRow style={styles.row} />
-        <View style={{marginTop: 20, minHeight: hp(20)}}>
-          <AppText bold style={{marginBottom: 10}}>
-            Description:
+        <View style={{ marginTop: 20, minHeight: hp(20) }}>
+          <AppText bold style={{ marginBottom: 10 }}>
+            {t('description')}
           </AppText>
           <AppText size={14}>{book.description}</AppText>
         </View>
       </View>
-      <View key="footer" style={{paddingHorizontal: 20, paddingBottom: 20}}>
+      <View key="footer" style={{ paddingHorizontal: 20, paddingBottom: 20 }}>
         <View style={styles.counter}>
           {quantity ? (
             <Counter
@@ -245,7 +247,7 @@ const BookDetails = (props) => {
           ) : null}
         </View>
 
-        <View style={{width: wp(75), alignSelf: 'center'}}>
+        <View style={{ width: wp(75), alignSelf: 'center' }}>
           <Button
             bold
             color={colors.white}
@@ -254,7 +256,7 @@ const BookDetails = (props) => {
             onPress={() => {
               quantity && onAddToCart();
             }}>
-            {quantity ? 'Add to Cart' : 'Out of Stock'}
+            {quantity ? t('addToCart') : t('outOfStock')}
           </Button>
         </View>
 
@@ -265,8 +267,8 @@ const BookDetails = (props) => {
               alignSelf: 'center',
               paddingVertical: hp(2),
             }}>
-            <AppText> You may also like:</AppText>
-            <View style={{paddingVertical: hp(2)}}>
+            <AppText> {t("youMayAlsoLike")}</AppText>
+            <View style={{ paddingVertical: hp(2) }}>
               <DashboardComponent
                 noTitle
                 data={EnglishBooksReducer.filter((book) => book.featured)}

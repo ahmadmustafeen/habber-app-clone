@@ -9,6 +9,7 @@ import {
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 import { Icon } from 'react-native-elements';
+import { useTranslation } from 'react-i18next';
 const items = [
   { label: 'Romance', value: 'romance' },
   { label: 'Horror', value: 'horror' },
@@ -19,6 +20,8 @@ const items = [
   { label: 'Action', value: 'action' },
 ];
 const FilterModal = (props) => {
+
+  const { t } = useTranslation(["Filter"])
   const { colors } = useTheme();
   const { buttonLabel, visible, onApply, onToggle } = props;
   const [state, setState] = useState(new Set());
@@ -71,7 +74,7 @@ const FilterModal = (props) => {
           resizeMode='stretch'
           source={require('_assets/images/header.png')}>
 
-          <Header {...props} title="Filter"
+          <Header {...props} title={t("filter")}
             headerLeft={
               <Icon
                 color={colors.primary}
@@ -91,18 +94,18 @@ const FilterModal = (props) => {
           onPress={() => reset()}
           color={colors.primary}
           style={{ paddingVertical: hp(1), paddingHorizontal: wp(1) }}>
-          Reset
+          {t('reset')}
         </AppText>
         <HorizontalRow style={styles.line} />
         <AppText bold color={colors.placeholder} style={{ paddingVertical: 16, paddingHorizontal: wp(2) }}>
-          FILTER BY GENRE
+          {t('filterByGenre')}
         </AppText>
         {items.map((item) => {
           return (
             <FilterText
               style={{ paddingHorizontal: wp(2) }}
               key={item.label}
-              title={item.label}
+              title={t(item.label)}
               selected={state.has(item.value)}
               onPress={() => onselect(item.value)}
             />
@@ -113,7 +116,7 @@ const FilterModal = (props) => {
           color="white"
           style={{ position: 'absolute', width: wp(90), alignSelf: 'center', bottom: 30, }}
           onPress={() => onApply([...state])}>
-          Apply
+          {t("apply")}
         </Button>
       </View>
     </Modal>

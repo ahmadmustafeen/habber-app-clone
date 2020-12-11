@@ -12,6 +12,7 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
+import { useTranslation } from 'react-i18next';
 const options = {
   title: 'Select Avatar',
   customButtons: [{ name: 'fb', title: 'Choose Photo from Facebook' }],
@@ -21,6 +22,7 @@ const options = {
   },
 };
 const RequestBooks = (props) => {
+  const { t } = useTranslation(['RequestBook'])
   const {
     navigation: { navigate },
     route: {
@@ -83,35 +85,35 @@ const RequestBooks = (props) => {
           resizeMode="stretch"
           source={require('_assets/images/header.png')}>
           <Header {...props}
-            title={`Request ${(book_type === 'educational') ? "Educational" : ""} Book`}
+            title={(book_type === 'educational') ? t("requestEducationalBook") : t("requestBook")}
           />
         </ImageBackground>
       </View>
       <View key="content" style={styles.content}>
         <InputWithLabel
-          placeholder="Book Title*"
+          placeholder={t('bookTitle')}
           required
           color="black"
           value={title}
           onChangeText={(value) => handleChange('title', value)}
         />
         <InputWithLabel
-          placeholder="Author Name*"
+          placeholder={t('authorName')}
           required
           color="black"
           value={author_name}
           onChangeText={(value) => handleChange('author_name', value)}
         />
         <Button primary onPress={setImage} add >
-          Upload Image
+          {t('uploadImage')}
         </Button>
         <AppText size={15} color="grey" style={styles.txt}>
-          * 1 Image allowed (PNG,JPEG,JPG) formats ONLY maximum size 5 MB
+          {t('restrictionText')}
         </AppText>
       </View>
       <View key="footer" style={styles.content}>
         <Button color="white" bold primary onPress={onSubmit} style={{ marginTop: hp(-10) }}>
-          Send Request
+          {t('sendRequest')}
         </Button>
       </View>
     </Screen>

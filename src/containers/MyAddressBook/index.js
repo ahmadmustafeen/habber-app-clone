@@ -15,7 +15,10 @@ import { useSelector, shallowEqual, useDispatch } from 'react-redux';
 import { AddressCard, } from '_components'
 import { FETCH_ADDRESS } from 'redux/actionTypes';
 import { useTheme } from '@react-navigation/native';
+import AddNewAddress from '../AddNewAddress';
+import { useTranslation } from 'react-i18next';
 const MyAddressBook = (props) => {
+  const { t } = useTranslation(['MyAddressBook'])
   const { navigate } = props.navigation;
 
   const { AddressReducer, isLoading } = useSelector((state) => {
@@ -62,7 +65,7 @@ const MyAddressBook = (props) => {
           resizeMode="stretch"
           source={require('_assets/images/header.png')}>
 
-          <Header {...props} title={'My Profile '} />
+          <Header {...props} title={t('myProfile')} />
 
 
         </ImageBackground>
@@ -96,7 +99,7 @@ const MyAddressBook = (props) => {
         <View style={styles.addressbookview}>
           <View style={styles.addressbook}>
             <AppText size={17} style={styles.addressbookheading}>
-              MY ADDRESS BOOK
+              {t('myAddressBook')}MY ADDRESS BOOK
             </AppText>
             <HorizontalRow />
 
@@ -113,7 +116,7 @@ const MyAddressBook = (props) => {
               }
               ListEmptyComponent={() => (
                 <View>
-                  <AppText>No Address Available</AppText>
+                  <AppText> {t('noAddressAvailable')}</AppText>
                 </View>
               )}
               ListFooterComponent={() => <View style={{ paddingBottom: 50 }} />}
@@ -123,7 +126,7 @@ const MyAddressBook = (props) => {
             fontSize={17}
             primary
             onPress={() => navigate(ADD_NEW_ADDRESS)}>
-            ADD NEW ADDRESS
+            {t('addNewAddress')}
           </Button>
         </View>
       </View>

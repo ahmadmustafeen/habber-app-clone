@@ -24,6 +24,7 @@ import {
 } from 'react-native-responsive-screen';
 import { useTheme } from '@react-navigation/native';
 import { AppText } from '../../components/common';
+import { useTranslation } from 'react-i18next';
 
 const imageOptions = {
   title: 'Select Avatar',
@@ -35,7 +36,7 @@ const imageOptions = {
 };
 
 const EditProfile = (props) => {
-
+  const { t } = useTranslation("EditProfile");
   const UserProfileReducer = useSelector((state) => state.UserProfileReducer, shallowEqual);
   const dispatch = useDispatch();
 
@@ -101,7 +102,7 @@ const EditProfile = (props) => {
           style={styles.imageBackground}
           resizeMode="stretch"
           source={require('_assets/images/header.png')}>
-          <Header {...props} title={'Edit Profile'} />
+          <Header {...props} />
         </ImageBackground>
       </View>
       <View key="content" style={styles.content}>
@@ -127,7 +128,7 @@ const EditProfile = (props) => {
             color={colors.borderColor}
             value={state.first_name}
             placeholder="Khaled"
-            label="First Name:"
+            label={t("firstName")}
             onChangeText={(val) => setStateHandler('first_name', val)}
           />
           <InputWithLabel
@@ -135,7 +136,7 @@ const EditProfile = (props) => {
             viewStyle={{ margin: 0, padding: hp(0) }}
             value={state.last_name}
             placeholder="Ammer"
-            label="Last Name:"
+            label={t("lastName")}
             color={colors.borderColor}
             onChangeText={(val) => setStateHandler('last_name', val)}
           />
@@ -144,15 +145,15 @@ const EditProfile = (props) => {
             color={colors.borderColor}
             value={state.email}
             placeholder="Khaled.ammar@gmail.com"
-            label="Phone:"
+            label={t("phone")}
             onChangeText={(val) => setStateHandler('email', val)}
           />
         </View>
       </View>
       <View key="footer" style={styles.content}>
         <Button style={styles.button} appColor primary onPress={() => save()}>
-          Save
-          </Button>
+          {t('save')}
+        </Button>
       </View>
     </Screen >
   );

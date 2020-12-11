@@ -62,10 +62,15 @@
     "AddtoCart":"Cart",
     "MyOrders":"My Orders",
     "Favorites":"Favourties",
-    "MyProfile":"My Profile"
+    "MyProfile":"My Profile",
+    "AddNewAddress":"Add New Address",
+    "EditProfile":"Edit Profile",
+    "ChangePassword":"Change Password",
+    "Search":"Search",
+    "Filter":"Filter"
   },
 
-  "bookDetails":{
+  "BookDetails" :{
     "isbn":"ISBN",
     "totalPages":"Total Pages",
     "coverType":"Cover Type",
@@ -73,7 +78,12 @@
     "productId":"Product Id",
     "sizeInInches":"Size in (inch)",
     "typeOfBookmark":"Type of Bookmark",
-    "description":"Description"
+    "description":"Description",
+    "addToCart":"Add To Cart",
+    "outOfStock":"Out Of Stock",
+    "youMayAlsoLike":"You May Also Like",
+    "by":"by",
+    "price":"price"
   },
   "Settings":{
     "language":"Language",
@@ -121,5 +131,61 @@
   "MyProfile":{
     "myAddressBook":"MY ADDRESS BOOK",
     "changePassword":"CHANGE PASSWORD"
+  },
+  "AddNewAddress":{
+    "addressName":"Address Name",
+    "country":"Country",
+    "state":"State",
+    "city":"City",
+    "addressLine1":"Address Line 1",
+    "addressline2":"Address Line 2",
+    "postalCode":"Postal Code",
+    "mobileNumber":"Mobile Number",
+    "addAddress":"Add Address"
+
+
+  },
+  "EditProfile":{
+    "firstName":"First Name",
+    "lastName":"Last Name",
+    "phone":"Phone",
+    "save":"Save"
+  },
+  "ChangePassword":{
+    "password":"Password",
+    "newPassword":"New Password",
+    "confirmNewPassword":"Confirm New Password",
+    "save":"Save"
+  },
+  "Search":{
+    "bookFound":"Book(s) Found"
+  },
+  "Filter":{
+    "filter":"Filter",
+    "filterByGenre":"Filter By Genre",
+    "reset":"Reset",
+    "Romance":"Romance",
+    "Horror":"Horror",
+    "Thriller":"Thriller",
+    "Suspence":"Suspence",
+    "Biography":"Biography",
+    "Mystery":"Mystery",
+    "Action":"Action",
+    "apply":"Apply"
+  },
+  "RequestBook":{
+    "bookTitle":"Book Title",
+    "authorName":"Author Name",
+    "uploadImage":"Upload Image",
+    "restrictionText":"1 Image allowed (PNG,JPEG,JPG) formats ONLY maximum size 5 MB",
+    "sendRequest": "Send Request",
+    "requestEducationalBook":"Request Educational Book",
+    "requestBook":"Request Book"
+  },
+  "MyAddressBook":{
+    "myAddressBook":"MY ADDRESS BOOK",
+    "noAddressAvailable":"No Address Available",
+    "addNewAddress":"Add New Address",
+    "myProfile":"My Profile"
   }
 }

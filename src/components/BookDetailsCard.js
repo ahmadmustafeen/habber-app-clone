@@ -10,7 +10,9 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
+import { useTranslation } from 'react-i18next';
 const BookDetailsCard = (props) => {
+  const { t } = useTranslation(['BookDetails'])
   const { colors } = useTheme();
   const {
     author_name,
@@ -48,13 +50,13 @@ const BookDetailsCard = (props) => {
           <AppText
             size={15}
             style={{ paddingBottom: wp(10), fontStyle: 'italic' }}>
-            by {author_name}
+            {t('by')}{author_name}
           </AppText>
           <AppText bold size={17}>
-            Price:  {parseFloat(price).toFixed(2)} KD
+            {t('price')}  {parseFloat(price).toFixed(2)} KD
           </AppText>
           <AppText bold size={15} color="red">
-            {!quantity && 'Out of Stock'}
+            {!quantity && t('outOfStock')}
           </AppText>
         </View>
         <View

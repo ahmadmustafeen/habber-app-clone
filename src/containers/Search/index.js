@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Icon } from 'react-native-elements';
-import { View, StyleSheet, Text, TextInput, FlatList, Image } from 'react-native';
+import { View, StyleSheet, Text, TextInput, FlatList, Image, I18nManager } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import {
@@ -17,8 +17,10 @@ import {
 } from '_components';
 import useFilter from '_utils/customHooks/useFilter';
 import { FilterModal } from '_containers/Filter';
+import { useTranslation } from 'react-i18next';
 
 const Search = (props) => {
+  const { t } = useTranslation(['Search']);
   const { navigate } = props.navigation;
   const { colors } = useTheme();
   const [keyword, setKeyword] = useState('');
@@ -57,11 +59,11 @@ const Search = (props) => {
     <Screen noPadding>
       <View
         key="header"
-        style={{ backgroundColor: colors.secondary, padding: 10 }}>
+        style={{ backgroundColor: colors.secondary, padding: 10, transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }], }}>
         <Header backIcon headerLeft {...props} />
-        <View>
+        <View style={{ transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }] }}>
           <TextInput
-            style={styles.textInput}
+            style={[styles.textInput, { textAlign: I18nManager.isRTL ? "right" : "left" }]}
             placeholder="Search keyword"
             onChangeText={(val) => setKeyword(val)}
             onSubmitEditing={onSubmit}
@@ -75,7 +77,7 @@ const Search = (props) => {
       </View>
       <View key="content">
         <View style={{ width: wp(90), alignSelf: 'center' }}>
-          {(SearchBooksReducer.length > 0) && <TitleBarWithIcon label={`${SearchBooksReducer.length} Book(s) Found`} filter={filter} noIcon onIconPress={toggleFilter} />}
+          {(SearchBooksReducer.length > 0) && <TitleBarWithIcon label={`${SearchBooksReducer.length} ${t('bookFound')}`} filter={filter} noIcon onIconPress={toggleFilter} />}
         </View>
         <View style={styles.filterApply}>
           {filter.map((item) =>

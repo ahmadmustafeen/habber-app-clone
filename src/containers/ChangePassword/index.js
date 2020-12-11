@@ -1,20 +1,22 @@
-import React, {useState} from 'react';
-import {View, ScrollView, ImageBackground, I18nManager} from 'react-native';
-import {InputWithLabel} from '_components';
-import {Button, Screen} from '_components/common';
+import React, { useState } from 'react';
+import { View, ScrollView, ImageBackground, I18nManager } from 'react-native';
+import { InputWithLabel } from '_components';
+import { Button, Screen } from '_components/common';
 // import { MY_PROFILE } from '_constants/Screens';
-import {Header} from '_components/Header';
-import {useTheme} from '@react-navigation/native';
-import {useDispatch} from 'react-redux';
-import {withDataActions} from '_redux/actions';
-import {UPDATE_PASSWORD} from '_redux/actionTypes';
+import { Header } from '_components/Header';
+import { useTheme } from '@react-navigation/native';
+import { useDispatch } from 'react-redux';
+import { withDataActions } from '_redux/actions';
+import { UPDATE_PASSWORD } from '_redux/actionTypes';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
+import { useTranslation } from 'react-i18next';
 const ChangePassword = (props) => {
-  const {navigate} = props.navigation;
-  const {colors} = useTheme();
+  const { t } = useTranslation(['ChangePassword'])
+  const { navigate } = props.navigation;
+  const { colors } = useTheme();
   const dispatch = useDispatch();
   const [state, setState] = useState({
     old_password: '',
@@ -23,7 +25,7 @@ const ChangePassword = (props) => {
   });
 
   const setStateHandler = (key, val) => {
-    setState({...state, [key]: val});
+    setState({ ...state, [key]: val });
   };
   const passChange = () => {
     dispatch(withDataActions(state, UPDATE_PASSWORD));
@@ -38,11 +40,11 @@ const ChangePassword = (props) => {
           paddingBottom: hp(8),
           marginBottom: hp(1),
           justifyContent: 'flex-end',
-          transform: [{scaleX: I18nManager.isRTL ? -1 : 1}],
+          transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }],
         }}
         resizeMode="stretch"
         source={require('_assets/images/header.png')}>
-        <Header {...props} title={'Change Password'} />
+        <Header {...props} />
       </ImageBackground>
       <Screen>
         <View key="header"></View>
@@ -50,21 +52,22 @@ const ChangePassword = (props) => {
           <InputWithLabel
             name="oldPassword"
             placeholder="*************"
-            label="Password:"
+            label={t('password')}
             value={state.oldPassword}
             onChangeText={(val) => setStateHandler('old_password', val)}
           />
           <InputWithLabel
             name="newPassword"
             placeholder="*************"
-            label="New Password:"
+            label={t('newPassword')}
             value={state.oldPassword}
             onChangeText={(val) => setStateHandler('password', val)}
           />
           <InputWithLabel
             name="password_confirmation"
             placeholder="*************"
-            label="Confirm New Password:"
+            label={t('confirmNewPassword')}
+
             value={state.oldPassword}
             onChangeText={(val) =>
               setStateHandler('password_confirmation', val)
@@ -77,7 +80,7 @@ const ChangePassword = (props) => {
             bold
             color={colors.white}
             onPress={() => passChange()}>
-            Save
+            {t('save')}
           </Button>
         </View>
       </Screen>

@@ -63,7 +63,14 @@
     "AddToCart":"Cartمرحبا",
     "MyOrders":"Order مرحبا",
     "Favorites":"مرحبا",
-    "MyProfile":"مرحبا Profile"
+    "MyProfile":"مرحبا Profile",
+    "AddNewAddress":"Add مرحبا Address",
+    "EditProfile":"مرحبا Profile",
+    "ChangePassword":"مرحبا Password",
+    "Search":"Seaمرحباrch",
+    "Filter":"Filمرحباter"
+
+
 
   },
   "BookDetails":{
@@ -74,7 +81,13 @@
     "productId":"مرحبا Id",
     "sizeInInches":"Size in (مرحبا)",
     "typeOfBookmark":"Type of مرحبا",
-    "description":"Description مرحبا"
+    "description":"Description مرحبا",
+    "addToCart":"Add مرحبا Cart",
+    "outOfStock":"Out مرحبا Stock",
+    "youMayAlsoLike":"You مرحبا Also Like",
+    "by":"مرحبا",
+    "price":"مرحبا"
+
   },
   "Settings":{
     "language":"Language مرحبا",
@@ -121,6 +134,60 @@
   "MyProfile":{
     "myAddressBook":"مرحبا ADDRESS BOOK",
     "changePassword":"مرحبا Password"
+  },
+  "AddNewAddress":{
+    "addressName":"مرحبا Name",
+    "country":"مرحبا",
+    "state":"مرحبا",
+    "city":"مرحبا",
+    "addressLine1":"Address مرحبا 1",
+    "addressline2":"Address مرحبا 2",
+    "postalCode":"Postal مرحبا",
+    "mobileNumber":"مرحبا Number",
+    "addAddress":"مرحبا Address"
+  },
+  "EditProfile":{
+    "firstName":"First مرحبا",
+    "lastName":"Last مرحبا",
+    "phone":"مرحبا",
+    "save":"مرحبا"
+  },
+  "ChangePassword":{
+    "password":"Passمرحباword",
+    "newPassword":"مرحبا",
+    "confirmNewPassword":"مرحبا New Password",
+    "save":"مرحبا"
+  },
+  "Search":{
+    "bookFound":"مرحبا(s) Found"
+  },
+  "Filter":{
+    "filter":"مرحبا",
+    "filterByGenre":"Filtمرحباer By Genre",
+    "reset":"Reمرحباset",
+    "Romance":"Romaمرحباnce",
+    "Horror":"Horrمرحباor",
+    "Thriller":"Thrمرحباiller",
+    "Suspence":"Susمرحباpence",
+    "Biography":"Biمرحباography",
+    "Mystery":"Myمرحباstery",
+    "Action":"Actمرحباion",
+    "apply":"Applمرحباy"
+  },
+  "RequestBook":{
+    "bookTitle":"Book مرحبا",
+    "authorName":"مرحبا Name",
+    "uploadImage":"مرحبا Image",
+    "restrictionText":"1 مرحبا allowed (PNG,JPEG,JPG) formats ONLY maximum size 5 MB",
+    "sendRequest": "Send مرحبا",
+    "requestEducationalBook":"Request Educational مرحبا",
+    "requestBook":"Request مرحبا"
+  },
+  "MyAddressBook":{
+    "myAddressBook":"مرحبا ADDRESS BOOK",
+    "noAddressAvailable":"مرحبا Address Available",
+    "addNewAddress":"Add مرحبا Address",
+    "myProfile":"مرحبا Profile"
   }
   
 
