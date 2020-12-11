@@ -23,12 +23,13 @@ const TextWithIcon = (props) => {
         small,
         large,
         color,
-        onPress
+        onPress,
+        style
     } = props;
     const { colors } = useTheme()
 
     return (
-        <TouchableOpacity style={styles.container} onPress={onPress}>
+        <TouchableOpacity style={[styles.container, style]} onPress={onPress}>
 
             <Icon
                 color={colors.primary}

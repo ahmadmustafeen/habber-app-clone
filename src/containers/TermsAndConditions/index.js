@@ -37,7 +37,7 @@ const TermsAndConditions = (props) => {
             />
           }
 
-          {...props} title={'Terms And Condition'} />
+          {...props} />
 
 
       </ImageBackground>

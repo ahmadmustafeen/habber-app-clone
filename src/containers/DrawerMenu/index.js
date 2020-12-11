@@ -86,7 +86,7 @@ const DrawerMenu = (props) => {
                   ? UserProfileReducer.first_name +
                   ' ' +
                   UserProfileReducer.last_name
-                  : 'GUEST USER'}
+                  : t('guestUser')}
               </AppText>
             </View>
           </View>
@@ -156,7 +156,7 @@ const DrawerMenu = (props) => {
             />
             <View style={styles.Horizontalrow} />
             <AppText secondary size={18} white style={styles.poweredbyline}>
-              Powered By Line
+              {t('poweredBy')}
             </AppText>
           </View>
           <View

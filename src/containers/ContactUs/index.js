@@ -31,8 +31,10 @@ import {
   FloatingActionButton
 } from '../../components';
 import { AppText, Button, Screen } from '../../components/common';
+import { useTranslation } from 'react-i18next';
 
 const ContactUs = (props) => {
+  const { t } = useTranslation(['ContactUs'])
   const { visible, toggleModal } = useModal();
   const onContinue = () => {
     toggleModal();
@@ -102,7 +104,7 @@ const ContactUs = (props) => {
                   type="ant-design"
                 />
               }
-              {...props} title={'Contact Us'} />
+              {...props} />
 
           </ImageBackground>
         </View>
@@ -111,7 +113,7 @@ const ContactUs = (props) => {
             viewStyle={styles.inputWithLabel}
             borderColor={colors.borderColor}
             color={"black"}
-            placeholder="Name*"
+            placeholder={t('name')}
             required
             value={state.name}
             onChangeText={(val) => setStateHandler('name', val)}
@@ -119,7 +121,7 @@ const ContactUs = (props) => {
           <InputWithLabel
             borderColor={colors.borderColor}
             viewStyle={styles.inputWithLabel}
-            placeholder="Email*"
+            placeholder={t('email')}
             required
             color={"black"}
             value={state.email}
@@ -128,7 +130,7 @@ const ContactUs = (props) => {
           <InputWithLabel
             borderColor={colors.borderColor}
             viewStyle={styles.inputWithLabel}
-            placeholder="Mobile Number (optional)"
+            placeholder={t('mobileNumberOptional')}
             color={"black"}
             required
             value={state.phone}
@@ -138,7 +140,7 @@ const ContactUs = (props) => {
 
             style={styles.textArea}
             underlineColorAndroid="transparent"
-            placeholder="Message*"
+            placeholder={t('message')}
             placeholderTextColor="grey"
             numberOfLines={10}
             multiline
@@ -159,7 +161,7 @@ const ContactUs = (props) => {
               alignSelf: 'center',
               marginTop: hp(3)
             }}>
-            Submit
+            {t('Submit')}
           </Button>
         </View>
         <View key="footer"  >
@@ -174,13 +176,13 @@ const ContactUs = (props) => {
             }}
             resizeMode='stretch'
             source={require('_assets/images/footer.png')}>
-            <View style={styles.textwithIconContainer}>
+            <View style={[styles.textwithIconContainer], { transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }], }}>
               <TextWithIcon
                 small
                 iconName="whatsapp"
                 iconType="font-awesome"
                 iconSize={23}
-                title="Support Chat"
+                title={t('supportChat')}
                 value="1234 43222"
                 onPress={() =>
                   Linking.openURL(
@@ -193,7 +195,7 @@ const ContactUs = (props) => {
                 iconName="phone-call"
                 iconType="feather"
                 iconSize={23}
-                title="Phone Number"
+                title={t('phoneNumber')}
                 value="1234 43222"
                 onPress={() =>
                   Platform.OS === 'ios'
@@ -209,7 +211,7 @@ const ContactUs = (props) => {
                 onPress={() =>
                   Linking.openURL(`mailto:${FetchSiteReducer.email}`)
                 }
-                title="Email:"
+                title={t('email')}
                 value="asd@gmail.com"
               />
             </View>

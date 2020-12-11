@@ -32,7 +32,9 @@ import {
 } from 'react-native-responsive-screen';
 import { Icon } from 'react-native-elements';
 import { useTheme } from '@react-navigation/native';
+import { useTranslation } from 'react-i18next';
 const JoinUs = (props) => {
+  const { t } = useTranslation(['JoinUs'])
   const { visible, toggleModal } = useModal();
   const dispatch = useDispatch();
   const [state, setState] = useState({
@@ -109,47 +111,47 @@ const JoinUs = (props) => {
             />
           }
 
-          title={'Join Us'} />
+        />
       </ImageBackground>
       <View key="content" style={styles.content}>
         <InputWithLabel
           color={'black'}
           style={styles.inputfield}
-          placeholder="Name*"
+          placeholder={t('name')}
           required
           value={state.name}
           onChangeText={(val) => setStateHandler('name', val)}
         />
         <InputWithLabel
-          placeholder="Email*"
+          placeholder={t('email')}
           required
           color={'black'}
           value={state.email}
           onChangeText={(val) => setStateHandler('email', val)}
         />
         <InputWithLabel
-          placeholder="Mobile Number*"
+          placeholder={t('mobileNumber')}
           required
           color={'black'}
           value={state.phone}
           onChangeText={(val) => setStateHandler('phone', val)}
         />
         <View style={{ padding: wp(4) }}>
-          <AppText style={styles.businesstype}>Select Business Type*</AppText>
+          <AppText style={styles.businesstype}>{t('selectBusinessType')}</AppText>
           <View style={styles.row}>
             <RadioButton
-              title="Individual"
-              selected={state.business_type === 'Individual'}
-              onPress={() => businessTypeFunc('Individual')}
+              title={t('individual')}
+              selected={state.business_type === 'individual'}
+              onPress={() => businessTypeFunc('individual')}
             />
             <RadioButton
-              title="Corporation"
-              selected={state.business_type === 'Corporation'}
-              onPress={() => businessTypeFunc('Corporation')}
+              title={t('corporations')}
+              selected={state.business_type === 'corporations'}
+              onPress={() => businessTypeFunc('corporations')}
             />
             <RadioButton
-              title="Publishers"
-              selected={state.business_type === 'Publishers'}
+              title={t('publishers')}
+              selected={state.business_type === `Publishers`}
               onPress={() => businessTypeFunc('Publishers')}
             />
           </View>
@@ -167,15 +169,15 @@ const JoinUs = (props) => {
           onChangeText={(val) => setStateHandler('details', val)}
         />
         <View style={{ padding: wp(4) }}>
-          <AppText style={styles.businesstype}>Select Products Type*</AppText>
+          <AppText style={styles.businesstype}>{t("selectProductType")}</AppText>
           <View style={styles.row}>
             <RadioButton
-              title="Books"
+              title={"books"}
               selected={state.product_type.has("Books")}
               onPress={() => productTypeFunc('Books')}
             />
             <RadioButton
-              title="Bookmarks"
+              title={'bookmarks'}
               selected={state.product_type.has("Bookmarks")}
               // selected={state.product_type === 'Bookmarks'}
               onPress={() => productTypeFunc('Bookmarks')}
@@ -187,8 +189,8 @@ const JoinUs = (props) => {
         <View>
           <View style={{ width: wp(80), alignSelf: 'center' }}>
             <Button bold color="white" onPress={() => onSubmit()}>
-              Submit
-        </Button>
+              {t('Submit')}
+            </Button>
           </View>
 
         </View>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, I18nManager } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 
 import { AppText } from './common/AppText';
@@ -38,7 +38,7 @@ const SettingsComponent = (props) => {
         ) : (
             <Icon
               onPress={onIconPress}
-              name={iconName || 'rightcircleo'}
+              name={iconName || ((I18nManager.isRTL) ? 'leftcircleo' : 'rightcircleo')}
               type={iconType || 'antdesign'}
               color={colors.primary}
             />

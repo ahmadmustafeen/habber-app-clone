@@ -1,12 +1,12 @@
 {
   "translation": {
-    "hello": "Hello",
-    "bye": "bye",
-    "arabic":"ARABIC BOOKS",
-    "english":"ENGLISH BOOKS",
+    "arabicBook":"ARABIC BOOKS",
+    "englishBook":"ENGLISH BOOKS",
     "bookclub":"BOOKCLUBS",
     "bookmark":"BOOKMARKS",
-    "requestBook":"REQUEST BOOKS"
+    "requestBook":"REQUEST BOOKS",
+    "requestEducationalBook":"REQUEST EDUCATIONAL BOOKS",
+    "submit":"Submit"
   },
 
   "drawer":{
@@ -17,7 +17,9 @@
     "favorite":"Favourite",
     "myOrder":"My Order",
     "setting":"Settings",
-    "contactUs":"Contact Us"
+    "contactUs":"Contact Us",
+    "guestUser":"Guest User",
+    "poweredBy":"Powered By Line"
 
   },
   "forgotPassword": {
@@ -48,7 +50,71 @@
     "bycreating":"By creating an account you agree to our",
     "termAndService":"Terms of Services and Privacy Policy",
     "signUp":"Sign Up"
-  }
-  
+  },
+  "Header" : {
+    "Home" : "HOME",
+    "Settings":"Settings",
+    "ContactUs":"Contact Us",
+    "ReturnPolicy":"Return Policy",
+    "PrivacyPolicy":"Privacy مرحبا",
+    "TermsAndConditionsScreen":"Terms and Conditions",
+    "JoinUs":"Join Us",
+    "AddtoCart":"Cart",
+    "MyOrders":"My Orders",
+    "Favorites":"Favourties"
+  },
 
+  "bookDetails":{
+    "isbn":"ISBN",
+    "totalPages":"Total Pages",
+    "coverType":"Cover Type",
+    "genre":"Genre",
+    "productId":"Product Id",
+    "sizeInInches":"Size in (inch)",
+    "typeOfBookmark":"Type of Bookmark",
+    "description":"Description"
+  },
+  "Settings":{
+    "language":"Language",
+    "notification":"Notification",
+    "currency":"Currency",
+    "termsAndConditions" :"Terms and Conditions",
+    "privacyPolicy":"Privacy Policy",
+    "returnPolicy":"Return Policy",
+    "joinUs":"Join Us",
+    "Arabic":"مرحبا"
+  },
+  "ContactUs":{
+    "supportChat":"Support Chat",
+    "phoneNumber":"Phone Number",
+    "email":"Email",
+    "name":"Name",
+    "mobileNumberOptional":"Mobile Number Optional",
+    "message":"Message"
+  },
+  "Cart":{
+    "subTotal":"Sub Total",
+    "shippingCharges":"Shipping Charges",
+    "total":"Total",
+    "checkout":"Checkout"
+  },
+  "JoinUs":{
+    "name":"Name",
+    "email":"Email",
+    "mobileNumber":"Mobile Number",
+    "selectBusinessType":"Select Business Type",
+    "publishers":"Publishers",
+    "corporations":"Corporations",
+    "individual":"Individual",
+    "details":"Details",
+    "selectProductType":"Select Products Type",
+    "bookmarks":"Bookmarks",
+    "books":"Books",
+    "Submit":"submit"
+
+  },
+
+  "Order":{
+    "noBookAvailable":"No Book Available"
+  }
 }

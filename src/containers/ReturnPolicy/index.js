@@ -36,7 +36,7 @@ const ReturnPolicy = (props) => {
                         />
                     }
 
-                    title={'Return Policy'} />
+                />
 
 
             </ImageBackground>

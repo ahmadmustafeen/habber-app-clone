@@ -35,9 +35,7 @@ const PrivacyPolicy = (props) => {
                             name="leftcircleo"
                             type="ant-design"
                         />
-                    }
-
-                    title={'Privacy Policy'} />
+                    } />
 
 
             </ImageBackground>

@@ -25,8 +25,10 @@ import Loader from 'components/Loader';
 import { checkIfLoading } from 'redux/selectors';
 import { FETCH_USER_CART } from 'redux/actionTypes';
 import { Icon } from 'react-native-elements';
+import { useTranslation } from 'react-i18next';
 const delivery_charges = 10;
 const AddToCart = (props) => {
+  const { t } = useTranslation(['Cart'])
   const { colors } = useTheme();
   const dispatch = useDispatch();
   const { CartReducer, isLoading } = useSelector((state) => ({
@@ -70,7 +72,7 @@ const AddToCart = (props) => {
             />
           }
           {...props}
-          title={'Cart'}
+
         />
       </ImageBackground>
 
@@ -152,10 +154,10 @@ const AddToCart = (props) => {
                 justifyContent: 'flex-start',
               }}>
               <AppText style={{ paddingVertical: hp(0.5) }} small bold>
-                Sub Total
+                {t('subTotal')}
               </AppText>
               <AppText style={{ paddingVertical: hp(0.5) }} small bold>
-                Shipping Charges
+                {t('shippingCharges')}
               </AppText>
 
               <View
@@ -165,7 +167,7 @@ const AddToCart = (props) => {
                 ]}
               />
               <AppText small primary bold>
-                Total
+                {t('total')}
               </AppText>
             </View>
             <View
@@ -193,7 +195,7 @@ const AddToCart = (props) => {
             primary
             style={styles.footerbtn}
             onPress={() => props.navigation.navigate(CHECKOUT)}>
-            Checkout
+            {t("checkout")}
           </Button>
         </View>
       </Screen>

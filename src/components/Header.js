@@ -10,7 +10,9 @@ import {
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 import { shallowEqual, useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 const Header = (props) => {
+  const { t } = useTranslation(['Header'])
   const { CartReducer } = useSelector((state) => ({
     CartReducer: state.CartReducer,
   }), shallowEqual);
@@ -29,6 +31,7 @@ const Header = (props) => {
   } = props;
   const headerColor =
     color || (secondary && colors.secondary) || colors.primary;
+  console.log("header", name);
   return (
     <View style={styles.container}>
       <View>
@@ -57,7 +60,7 @@ const Header = (props) => {
 
 
       <View style={{ flex: 4, paddingLeft: 10, transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }], }}>
-        <AppText bold small color={headerColor}>{title || name.toUpperCase()}</AppText>
+        <AppText bold small color={headerColor}>{title || t(name)}</AppText>
       </View>
       <View
         style={{

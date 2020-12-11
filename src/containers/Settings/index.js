@@ -114,7 +114,7 @@ const Settings = (props) => {
       : await PushNotification.requestPermissions();
     toggleDropdown('notifications');
   };
-
+  const { t } = useTranslation(['Settings']);
   return (
     <Screen noPadding>
       <View key="header">
@@ -134,10 +134,10 @@ const Settings = (props) => {
       </View>
       <View key="content" style={styles.content}>
         <SettingsComponent
-          label="Language"
+          label={t("language")}
           rightComponent={
             <AppText onPress={() => toggleDropdown('language')} primary>
-              {!I18nManager.isRTL ? 'English' : 'Arabic'}
+              {!I18nManager.isRTL ? 'English' : t('Arabic')}
             </AppText>
           }
           onIconPress={() => toggleDropdown('language')}
@@ -150,7 +150,7 @@ const Settings = (props) => {
               marginVertical: hp(1),
             }}>
             <SettingsDropdown
-              currencyName="English"
+              currencyName={t('English')}
               selected={!I18nManager.isRTL}
               iconName="dollar"
               iconType="font-awesome"
@@ -158,7 +158,7 @@ const Settings = (props) => {
               onPress={onLanguageChange}
             />
             <SettingsDropdown
-              currencyName="Arabic"
+              currencyName={t('Arabic')}
               selected={I18nManager.isRTL}
               iconName="dollar"
               iconType="font-awesome"
@@ -168,7 +168,7 @@ const Settings = (props) => {
           </View>
         )}
         <SettingsComponent
-          label="Notifications"
+          label={t("notification")}
           rightComponent={
             <Switch
               trackColor={{ false: colors.secondary, true: colors.primary }}
@@ -181,7 +181,7 @@ const Settings = (props) => {
         />
 
         <SettingsComponent
-          label="Currency"
+          label={t('currency')}
           Currency={iso}
           iconName={!item.currency ? 'downcircleo' : 'upcircleo'}
           onIconPress={() => toggleDropdown('currency')}
@@ -211,19 +211,19 @@ const Settings = (props) => {
         )}
         <SettingsComponent
           onIconPress={() => navigation.navigate(TERMS_AND_CONDITIONS_SCREEN)}
-          label="Terms & Conditions"
+          label={t('termsAndConditions')}
         />
         <SettingsComponent
           onIconPress={() => navigation.navigate(PRIVACY_POLICY)}
-          label="Privacy Policy"
+          label={t('privacyPolicy')}
         />
         <SettingsComponent
           onIconPress={() => navigation.navigate(RETURN_POLICY)}
-          label="Return Policy"
+          label={t('returnPolicy')}
         />
         <SettingsComponent
           onIconPress={() => navigation.navigate(JOINUS)}
-          label="Join Us"
+          label={t('joinUs')}
         />
       </View>
 

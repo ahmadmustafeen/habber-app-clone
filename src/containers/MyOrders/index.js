@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, StyleSheet, Image, ScrollView, ImageBackground, I18nManager, FlatList } from 'react-native';
 import { AppText, Screen } from '../../components/common';
-import { Header } from '../../components';
+import { Header, } from '../../components';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -9,6 +9,7 @@ import {
 import { useSelector } from 'react-redux';
 import { useTheme } from '@react-navigation/native';
 import { Icon } from 'react-native-elements';
+import { useTranslation } from 'react-i18next';
 const MyOrders = (props) => {
   const { colors } = useTheme();
   const { OrderReducer } = useSelector((state) => {
@@ -16,7 +17,7 @@ const MyOrders = (props) => {
       OrderReducer: state.OrderReducer
     }
   })
-
+  const { t } = useTranslation(['Order'])
   console.log("order ka page", OrderReducer);
   const OrderItem = (item) => {
     console.log(item.bookmarks)
@@ -57,7 +58,7 @@ const MyOrders = (props) => {
           resizeMode='stretch'
           source={require('_assets/images/header.png')}>
 
-          <Header title={"My Orders"} {...props}
+          <Header {...props}
             headerLeft={
               <Icon
                 onPress={() => props.navigation.goBack()}
@@ -83,7 +84,8 @@ const MyOrders = (props) => {
           renderItem={(item) => OrderItem(item.item)}
           ListEmptyComponent={() => (
             <View>
-              <AppText>No Book Available</AppText>
+              <AppText>{t("noBookAvailable")}
+              </AppText>
             </View>
           )}
           ListFooterComponent={() => <View style={{ paddingBottom: 50 }} />}

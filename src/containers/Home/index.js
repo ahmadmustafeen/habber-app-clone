@@ -212,7 +212,7 @@ const Home = (props) => {
           </View>
           <DashboardComponent
             data={ArabicBooksReducer.filter((book) => book.featured)}
-            label={t('arabic')}
+            label={t('arabicBook')}
             renderComponent={(item) => <ThumbnailBook url={item.item.image} onPress={() => navigate(BOOK_DETAILS_SCREEN, {
               ...item.item,
               product_type: item.item.product_type,
@@ -220,7 +220,7 @@ const Home = (props) => {
             />}
             onIconPress={() =>
               navigate(BOOKLIST_SCREEN, {
-                label: t('arabic'),
+                label: t('arabicBook'),
                 data: ArabicBooksReducer,
                 product_type: 'book',
               })
@@ -228,7 +228,7 @@ const Home = (props) => {
           />
           <DashboardComponent
             data={EnglishBooksReducer.filter((book) => book.featured)}
-            label={t('english')}
+            label={t('englishBook')}
             renderComponent={(item) => <ThumbnailBook url={item.item.image}
               onPress={() => navigate(BOOK_DETAILS_SCREEN, {
                 ...item.item,
@@ -237,7 +237,7 @@ const Home = (props) => {
             />}
             onIconPress={() =>
               navigate(BOOKLIST_SCREEN, {
-                label: t('english'),
+                label: t('englishBook'),
                 data: EnglishBooksReducer,
                 product_type: 'book',
               })
@@ -289,8 +289,8 @@ const Home = (props) => {
                 onPress={() =>
                   navigate(REQUESTBOOKS_SCREEN, { book_type: 'random' })
                 }>
-                Request Book
-            </Button>
+                {t('requestBook')}
+              </Button>
             </View>
             <View style={{ width: wp(58) }}>
               <Button
@@ -301,8 +301,8 @@ const Home = (props) => {
                 onPress={() =>
                   navigate(REQUESTBOOKS_SCREEN, { book_type: 'educational' })
                 }>
-                Request Educational Book
-            </Button>
+                {t('requestEducationalBook')}
+              </Button>
             </View>
           </View>
         </View>
