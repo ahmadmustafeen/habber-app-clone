@@ -50,7 +50,9 @@ export default (state = initialState, {type, payload}) => {
         updatedState[payload.product_type].splice(alreadyAvailable, 1);
       }
 
-      product.cart_price = payload.price * product.cart_quantity;
+      product.cart_price =
+        parseFloat(payload.price.toString().replace(',', '')) *
+        product.cart_quantity;
       updatedState.total_price =
         updatedState.book.reduce(
           (total, book) =>
@@ -68,41 +70,31 @@ export default (state = initialState, {type, payload}) => {
       return {...updatedState};
     }
 
-    // case ADD_TO_CART: {
-    //   let alreadyAvailable;
-    //   if (!state[payload.product_type]) {
-    //     alreadyAvailable = -1;
-    //   } else {
-    //     alreadyAvailable = state[payload.product_type].findIndex(
-    //       (obj) => obj.product_id === payload.product_id,
-    //     );
-    //   }
-    //   var item_price = payload.quantity * payload.price;
-    //   if (alreadyAvailable === -1) {
-    //     return {
-    //       ...state,
-
-    //       total_price: item_price,
-    //       [payload.product_type]: [...state[payload.product_type], payload],
-    //     };
-    //   }
-    //   const updatedState = {...state};
-    //   if (payload.quantity === 0) {
-    //     updatedState[payload.product_type].splice(alreadyAvailable, 1);
-    //   } else {
-    //     updatedState[payload.product_type][alreadyAvailable].quantity =
-    //       payload.quantity;
-    //   }
-    //   payload.quantity === 0;
-
-    //   return {
-    //     ...updatedState,
-    //   };
-    // }
-
     case FETCH_USER_CART_SUCCESS: {
-      console.log('FETCH_USER_CART_SUCCESS', payload);
-      return {...state, ...payload};
+      const mergedBook = state.book.concat(payload.book);
+      const distinctBooksIsbns = [
+        ...new Set(mergedBook.map((item) => item.isbn)),
+      ];
+      const distinctBooks = mergedBook.filter((item) =>
+        distinctBooksIsbns.includes(item.isbn),
+      );
+
+      const mergedBookmark = state.bookmark.concat(payload.bookmark);
+      const distinctBooksmarksIsbns = [
+        ...new Set(mergedBookmark.map((item) => item.isbn)),
+      ];
+      const distinctBookmarks = mergedBook.filter((item) =>
+        distinctBooksmarksIsbns.includes(item.isbn),
+      );
+
+      return {
+        book: distinctBooks,
+        bookmark: distinctBookmarks,
+        total_price:
+          state.total_price > 0
+            ? state.total_price + payload.total_price
+            : payload.total_price,
+      };
     }
     default:
       return state;
