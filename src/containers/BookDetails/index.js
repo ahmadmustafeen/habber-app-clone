@@ -1,92 +1,90 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   View,
   StyleSheet,
   ImageBackground,
   I18nManager,
-  FlatList,
   Alert,
-  Image, Share
+  Image,
+  Share,
 } from 'react-native';
-// import { ThumbnailClub } from '_components/ThumbnailClub';
-import { AppText, Button, Screen } from '../../components/common';
-import { useDispatch, useSelector, shallowEqual } from 'react-redux';
+import {Icon} from 'react-native-elements';
+import {useDispatch, useSelector, shallowEqual} from 'react-redux';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
+import {useTheme} from '@react-navigation/native';
+
+import {AppText, Button, Screen} from '../../components/common';
 import {
   Counter,
   BookDetailsCard,
   HorizontalRow,
   Header,
   DashboardComponent,
-  RelatedThumbnailClub,
   RelatedThumbnailBook,
   RelatedThumbnailBookmarks,
-  ThumbnailClub,
-  ThumbnailBook,
-  ThumbnailBookmarks,
 } from '../../components';
-import { Icon } from 'react-native-elements';
-
-import {
-  widthPercentageToDP as wp,
-  heightPercentageToDP as hp,
-} from 'react-native-responsive-screen';
-import { CART_SCREEN, BOOK_DETAILS_SCREEN } from '../../constants/Screens';
+import {BDScreenText} from './components';
+import {BOOK_DETAILS_SCREEN} from '../../constants/Screens';
 import {
   ADD_TO_CART,
   FETCH_RELATED_BOOKS,
   UPDATE_FAVOURITE,
-  ADD_TO_FAVOURITE,
-  REMOVE_FAVOURITE,
   UPDATE_CART_ITEM,
 } from '_redux/actionTypes';
-import { withDataActions } from '_redux/actions/GenericActions';
+import {withDataActions} from '../../redux/actions/GenericActions';
+import {checkIsFavourite} from '../../redux/selectors';
 
-import { useTheme } from '@react-navigation/native';
-import { BDScreenText } from './components'
 const BookDetails = (props) => {
-  console.log("props", props)
-  const { EnglishBooksReducer } = useSelector((state) => {
-    return {
-      EnglishBooksReducer: state.EnglishBooksReducer,
-    };
-  }, shallowEqual);
-  const { params: book } = props.route;
-  const { colors } = useTheme();
+  const {colors} = useTheme();
   const dispatch = useDispatch();
+  const {params: book} = props.route;
 
-  const { CartReducer, FetchRelatedBookList, FavouriteReducer } = useSelector(
-    ({ CartReducer, FetchRelatedBookList, FavouriteReducer }) => {
+  const {id: product_id, quantity, product_type, price, bookClub, type} = book;
+
+  useEffect(() => {
+    dispatch(withDataActions({product_id}, FETCH_RELATED_BOOKS));
+  }, []);
+
+  const {
+    CartReducer,
+    FetchRelatedBookList,
+    FavouriteReducer,
+    EnglishBooksReducer,
+    isFavourite,
+  } = useSelector(
+    ({
+      CartReducer,
+      FetchRelatedBookList,
+      EnglishBooksReducer,
+      FavouriteReducer,
+    }) => {
       return {
         CartReducer,
         FetchRelatedBookList,
         FavouriteReducer,
+        EnglishBooksReducer,
+        isFavourite: checkIsFavourite(FavouriteReducer, {
+          product_id,
+          product_type,
+        }),
       };
     },
   );
-
-  var { id: product_id, quantity, product_type, price, bookClub, type } = book;
-
-  console.log("BOOK", book)
   if (product_type === 'bookclub') {
     product_id = book.book.id;
     quantity = book.book.quantity;
     price = book.book.price;
     type = 'bookclub';
-    product_type = 'book'
+    product_type = 'book';
   }
-  // product_type === 'bookclub' &&
-  //   ((product_id = book.book.id),
-  //     (quantity = book.book.quantity),
-  //     (),
-  //     (type = 'bookclub'),
-  //     (product_type = 'book'));
-  // console.log([book])
+
   let inCartPosition = CartReducer[product_type].findIndex(
     (el) => el.product_id === product_id,
   );
-  let checkIsFavourite = FavouriteReducer[product_type].some(
-    (el) => el.product_id === product_id,
-  );
+
   const handleCounter = (action) => {
     //TODO : For restrict counter for maximum quantity and out of stock..
 
@@ -94,11 +92,11 @@ const BookDetails = (props) => {
       withDataActions(
         {
           ...book,
-          quantity: 1,
-          product_quantity: quantity,
+          cart_quantity: 1,
+          quantity,
           product_id,
           action,
-          product_type
+          product_type,
         },
         UPDATE_CART_ITEM,
       ),
@@ -118,23 +116,11 @@ const BookDetails = (props) => {
       withDataActions(CartReducer[product_type][inCartPosition], ADD_TO_CART),
     );
   };
-  console.log("CR", CartReducer);
-  useEffect(() => {
-    dispatch(withDataActions({ product_id }, FETCH_RELATED_BOOKS));
-  }, []);
 
   const handleFavouriteClick = () => {
-    dispatch(
-      withDataActions({ product_id, type: product_type }, UPDATE_FAVOURITE),
-    );
-    dispatch(
-      withDataActions(
-        { product_id, product_type },
-        !checkIsFavourite ? ADD_TO_FAVOURITE : REMOVE_FAVOURITE,
-      ),
-    );
+    dispatch(withDataActions({product_id, product_type}, UPDATE_FAVOURITE));
   };
-  console.log('quantity', book);
+
   const onShare = async () => {
     try {
       const result = await Share.share({
@@ -154,7 +140,6 @@ const BookDetails = (props) => {
       alert(error.message);
     }
   };
-  console.log("GENRE", book.genre)
   return (
     <Screen noPadding contentPadding>
       <View key="header">
@@ -162,10 +147,11 @@ const BookDetails = (props) => {
           style={{
             flex: 1,
             paddingHorizontal: 10,
-            transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }],
+            transform: [{scaleX: I18nManager.isRTL ? -1 : 1}],
           }}
           source={require('_assets/images/book-detail.png')}>
-          <Header cartNumber={CartReducer.book.length + CartReducer.bookmark.length}
+          <Header
+            cartNumber={CartReducer.book.length + CartReducer.bookmark.length}
             {...props}
             headerLeft={
               <Icon
@@ -179,32 +165,32 @@ const BookDetails = (props) => {
             color={colors.secondary}
           />
           {type !== 'bookclub' ? (
-            <View style={{ width: wp(90), paddingTop: hp(2), alignSelf: 'center' }}>
+            <View
+              style={{width: wp(90), paddingTop: hp(2), alignSelf: 'center'}}>
               <BookDetailsCard
                 onClickFavourite={handleFavouriteClick}
-                favourite={checkIsFavourite}
+                favourite={isFavourite}
                 {...book}
                 onClickShare={onShare}
               />
             </View>
-
           ) : (
-              <View
-                style={{ width: wp(90), alignSelf: 'center', paddingBottom: 20 }}>
-                <Image
-                  style={{ width: wp(90), height: hp(18) }}
-                  source={require('_assets/images/splash.png')}
-                />
-              </View>
-            )}
+            <View
+              style={{width: wp(90), alignSelf: 'center', paddingBottom: 20}}>
+              <Image
+                style={{width: wp(90), height: hp(18)}}
+                source={require('_assets/images/splash.png')}
+              />
+            </View>
+          )}
         </ImageBackground>
       </View>
       <View key="content">
         {type === 'bookclub' && (
-          <View style={{ paddingTop: hp(3) }}>
+          <View style={{paddingTop: hp(3)}}>
             <BookDetailsCard
               onClickFavourite={handleFavouriteClick}
-              favourite={checkIsFavourite}
+              favourite={isFavourite}
               onClickShare={onShare}
               {...book.book}
             />
@@ -214,94 +200,115 @@ const BookDetails = (props) => {
         <View>
           {product_type !== 'bookmark' ? (
             <>
-              <BDScreenText primary title='ISBN' value={book.isbn} />
-              <BDScreenText title='Pages' value={book.total_pages} />
-              <BDScreenText title='Type of Cover' value={book.cover_type} />
-              <BDScreenText title='Genre' value={book.genre.map((item) => item.title).join(" | ")} />
+              <BDScreenText primary title="ISBN" value={book.isbn} />
+              <BDScreenText title="Pages" value={book.total_pages} />
+              <BDScreenText title="Type of Cover" value={book.cover_type} />
+              <BDScreenText
+                title="Genre"
+                value={book.genre.map((item) => item.title).join(' | ')}
+              />
             </>
           ) : (
-              <>
-                <AppText style={styles.infoProduct} bold primary size={15}>
-                  Product Id: {book.bookmark_id}
-                </AppText>
-                <AppText style={styles.infoProduct} bold size={15}>
-                  Size in (inch): {book.size}
-                </AppText>
-                <AppText style={styles.infoProduct} bold size={15}>
-                  Type of Bookmark: {book.cover_type}
-                </AppText>
-              </>
-            )}
+            <>
+              <AppText style={styles.infoProduct} bold primary size={15}>
+                Product Id: {book.bookmark_id}
+              </AppText>
+              <AppText style={styles.infoProduct} bold size={15}>
+                Size in (inch): {book.size}
+              </AppText>
+              <AppText style={styles.infoProduct} bold size={15}>
+                Type of Bookmark: {book.cover_type}
+              </AppText>
+            </>
+          )}
         </View>
         <HorizontalRow style={styles.row} />
-        <View style={{ marginTop: 20, minHeight: hp(20) }}>
-          <AppText bold style={{ marginBottom: 10 }}>
+        <View style={{marginTop: 20, minHeight: hp(20)}}>
+          <AppText bold style={{marginBottom: 10}}>
             Description:
           </AppText>
           <AppText size={14}>{book.description}</AppText>
         </View>
       </View>
-      <View key="footer" style={{ paddingHorizontal: 20, paddingBottom: 20 }}>
+      <View key="footer" style={{paddingHorizontal: 20, paddingBottom: 20}}>
         <View style={styles.counter}>
-          {quantity ?
+          {quantity ? (
             <Counter
               onIncrement={() => handleCounter('add')}
               onDecrement={() => handleCounter('sub')}
               value={
-                (inCartPosition !== -1)
+                inCartPosition !== -1
                   ? CartReducer[product_type][inCartPosition].cart_quantity
                   : '0'
               }
             />
-            : null}
+          ) : null}
         </View>
 
-        <View style={{ width: wp(75), alignSelf: "center" }}>
-          <Button bold color={colors.white} outOfStock={!!quantity} secondary onPress={() => { (quantity) && onAddToCart() }}>
+        <View style={{width: wp(75), alignSelf: 'center'}}>
+          <Button
+            bold
+            color={colors.white}
+            outOfStock={!!quantity}
+            secondary
+            onPress={() => {
+              quantity && onAddToCart();
+            }}>
             {quantity ? 'Add to Cart' : 'Out of Stock'}
           </Button>
         </View>
 
-        {type !== 'bookclub' ? <View
-          style={{ width: wp(90), alignSelf: 'center', paddingVertical: hp(2) }}>
-          <AppText> You may also like:</AppText>
-          <View style={{ paddingVertical: hp(2) }}>
-            <DashboardComponent
-              noTitle
-              data={EnglishBooksReducer.filter((book) => book.featured)}
-              renderComponent={(item) => {
-                // if (type === 'bookclub') {
-                //   return <RelatedThumbnailClub onPress={() => {
-                //     props.navigation.push(BOOK_DETAILS_SCREEN, {
-                //       ...item.item, product_type: type
-                //     })
-                //   }
-                //   }
-                //     url={item.item.image} />;
-                // }
-                if (product_type === 'book') {
-                  console.log(item.item);
-                  return <RelatedThumbnailBook onPress={() => {
-                    props.navigation.push(BOOK_DETAILS_SCREEN, {
-                      ...item.item, product_type
-                    })
+        {type !== 'bookclub' ? (
+          <View
+            style={{
+              width: wp(90),
+              alignSelf: 'center',
+              paddingVertical: hp(2),
+            }}>
+            <AppText> You may also like:</AppText>
+            <View style={{paddingVertical: hp(2)}}>
+              <DashboardComponent
+                noTitle
+                data={EnglishBooksReducer.filter((book) => book.featured)}
+                renderComponent={(item) => {
+                  // if (type === 'bookclub') {
+                  //   return <RelatedThumbnailClub onPress={() => {
+                  //     props.navigation.push(BOOK_DETAILS_SCREEN, {
+                  //       ...item.item, product_type: type
+                  //     })
+                  //   }
+                  //   }
+                  //     url={item.item.image} />;
+                  // }
+                  if (product_type === 'book') {
+                    return (
+                      <RelatedThumbnailBook
+                        onPress={() => {
+                          props.navigation.push(BOOK_DETAILS_SCREEN, {
+                            ...item.item,
+                            product_type,
+                          });
+                        }}
+                        url={item.item.image}
+                      />
+                    );
                   }
-                  }
-                    url={item.item.image} />;
-                }
-                return <RelatedThumbnailBookmarks
-                  onPress={() => {
-                    props.navigation.push(BOOK_DETAILS_SCREEN, {
-                      ...item.item, product_type
-                    })
-                  }
-                  }
-                  url={item.item.image} />;
-              }}
-
-            />
+                  return (
+                    <RelatedThumbnailBookmarks
+                      onPress={() => {
+                        props.navigation.push(BOOK_DETAILS_SCREEN, {
+                          ...item.item,
+                          product_type,
+                        });
+                      }}
+                      url={item.item.image}
+                    />
+                  );
+                }}
+              />
+            </View>
           </View>
-        </View> : null}
+        ) : null}
       </View>
     </Screen>
   );
@@ -324,4 +331,3 @@ const styles = StyleSheet.create({
 });
 
 export default BookDetails;
-
