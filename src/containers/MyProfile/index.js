@@ -15,8 +15,9 @@ import {
 import { useTheme } from '@react-navigation/native';
 import { useSelector, shallowEqual } from 'react-redux';
 import { Icon } from 'react-native-elements';
+import { useTranslation } from 'react-i18next';
 const MyProfile = (props) => {
-
+  const { t } = useTranslation(['MyProfile']);
   const { first_name, last_name, email } = useSelector(
     ({ UserProfileReducer }) => UserProfileReducer,
     shallowEqual,
@@ -45,7 +46,7 @@ const MyProfile = (props) => {
               name="leftcircleo"
               type="ant-design"
             />)}
-          title={'My Profile'} />
+        />
 
 
       </ImageBackground>
@@ -83,15 +84,15 @@ const MyProfile = (props) => {
               appColor
               style={{ marginBottom: 15, }}
               onPress={() => navigate(MY_ADDRESS_BOOK)}>
-              MY ADDRESS BOOK
-          </Button>
+              {t("myAddressBook")}
+            </Button>
             <Button
               fontSize={13}
               appColor
               icon
               onPress={() => navigate(CHANGE_PASSWORD)}>
-              CHANGE PASSWORD
-          </Button>
+              {t("changePassword")}
+            </Button>
           </View>
         </View>
       </Screen>

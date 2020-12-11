@@ -56,12 +56,13 @@
     "Settings":"Settings",
     "ContactUs":"Contact Us",
     "ReturnPolicy":"Return Policy",
-    "PrivacyPolicy":"Privacy مرحبا",
+    "PrivacyPolicy":"Privacy Policy",
     "TermsAndConditionsScreen":"Terms and Conditions",
     "JoinUs":"Join Us",
     "AddtoCart":"Cart",
     "MyOrders":"My Orders",
-    "Favorites":"Favourties"
+    "Favorites":"Favourties",
+    "MyProfile":"My Profile"
   },
 
   "bookDetails":{
@@ -116,5 +117,9 @@
 
   "Order":{
     "noBookAvailable":"No Book Available"
+  },
+  "MyProfile":{
+    "myAddressBook":"MY ADDRESS BOOK",
+    "changePassword":"CHANGE PASSWORD"
   }
 }

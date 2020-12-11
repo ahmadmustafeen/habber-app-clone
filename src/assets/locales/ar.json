@@ -62,7 +62,8 @@
     "JoinUs":"Join Us مرحبا",
     "AddToCart":"Cartمرحبا",
     "MyOrders":"Order مرحبا",
-    "Favorites":"مرحبا"
+    "Favorites":"مرحبا",
+    "MyProfile":"مرحبا Profile"
 
   },
   "BookDetails":{
@@ -116,6 +117,10 @@
   },
   "Order":{
     "noBookAvailable":"No مرحبا Available"
+  },
+  "MyProfile":{
+    "myAddressBook":"مرحبا ADDRESS BOOK",
+    "changePassword":"مرحبا Password"
   }
   
 
