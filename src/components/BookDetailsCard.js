@@ -11,6 +11,7 @@ import {
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 import { useTranslation } from 'react-i18next';
+import { useSelector, shallowEqual } from 'react-redux';
 const BookDetailsCard = (props) => {
   const { t } = useTranslation(['BookDetails'])
   const { colors } = useTheme();
@@ -23,8 +24,21 @@ const BookDetailsCard = (props) => {
     genre,
     onClickFavourite,
     product_type,
+    prices,
     favourite, onClickShare
   } = props;
+
+
+  const {
+    UserProfileReducer,
+  } = useSelector((state) => {
+    return {
+      UserProfileReducer: state.UserProfileReducer,
+    };
+  }, shallowEqual);
+  const price_product = prices.find((item) => item.iso === UserProfileReducer.currency.iso)
+
+
   return (
     <View style={styles.container}>
       <View style={styles.imgContainer}>
@@ -53,7 +67,7 @@ const BookDetailsCard = (props) => {
             {t('by')}{author_name}
           </AppText>
           <AppText bold size={17}>
-            {t('price')}  {parseFloat(price).toFixed(2)} KD
+            {t('price')}  {parseFloat(price_product.price).toFixed(2)} {price_product.iso}
           </AppText>
           <AppText bold size={15} color="red">
             {!quantity && t('outOfStock')}

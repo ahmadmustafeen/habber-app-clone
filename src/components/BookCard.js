@@ -9,9 +9,23 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
+import { useSelector, shallowEqual } from 'react-redux';
 const BookCard = (props) => {
-  const { image, author_name, title, price, onPress, quantity } = props;
+  const { image, author_name, title, price, prices, onPress, quantity } = props;
+
+  const {
+    UserProfileReducer,
+  } = useSelector((state) => {
+    return {
+      UserProfileReducer: state.UserProfileReducer,
+    };
+  }, shallowEqual);
+  const price_product = prices.find((item) => item.iso === UserProfileReducer.currency.iso)
+  // console.log(price_product)
+
+
   const { colors } = useTheme();
+
 
   const modalRef = useRef(null);
 
@@ -23,7 +37,7 @@ const BookCard = (props) => {
     <TouchableWithoutFeedback onPress={onPress}>
       <View style={[styles.containerStyle, { borderColor: colors.borderColor }]}>
         <AppText bold style={{ backgroundColor: colors.primary, padding: 10 }}>
-          Price : {price}
+          Price: {parseFloat(price_product.price).toFixed(2)} {price_product.iso}
         </AppText>
         <View style={styles.imageContainer}>
           <FastImage source={{ uri: image }} onPress={toggleModal} />
