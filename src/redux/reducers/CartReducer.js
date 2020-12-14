@@ -72,21 +72,14 @@ export default (state = initialState, {type, payload}) => {
 
     case FETCH_USER_CART_SUCCESS: {
       const mergedBook = state.book.concat(payload.book);
-      const distinctBooksIsbns = [
-        ...new Set(mergedBook.map((item) => item.isbn)),
-      ];
-      const distinctBooks = mergedBook.filter((item) =>
-        distinctBooksIsbns.includes(item.isbn),
+      const distinctBooks = mergedBook.filter(
+        (item, i, a) => a.findIndex((t) => t.isbn === item.isbn) === i,
       );
-
+      console.log('distinctBooks. . . ', distinctBooks);
       const mergedBookmark = state.bookmark.concat(payload.bookmark);
-      const distinctBooksmarksIsbns = [
-        ...new Set(mergedBookmark.map((item) => item.isbn)),
-      ];
-      const distinctBookmarks = mergedBook.filter((item) =>
-        distinctBooksmarksIsbns.includes(item.isbn),
+      const distinctBookmarks = mergedBookmark.filter(
+        (item, i, a) => a.findIndex((t) => t.id === item.id) === i,
       );
-
       return {
         book: distinctBooks,
         bookmark: distinctBookmarks,
