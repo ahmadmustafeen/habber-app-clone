@@ -28,13 +28,25 @@ const AddNewAddress = (props) => {
     post_code: '',
   });
 
+  //   const data = [
+
+  //     { key: index++, section: true, label: 'Fruits' },
+  //     { key: index++, label: 'Red Apples' },
+  //     { key: index++, label: 'Cherries' },
+  //     { key: index++, label: 'Cranberries', accessibilityLabel: 'Tap here for cranberries' },
+  //     // etc...
+  //     // Can also add additional custom keys which are passed to the onChange callback
+  //     { key: index++, label: 'Vegetable', customKey: 'Not a fruit' }
+  // ];
+
   var index = 0;
   const { FetchCountriesReducer } = useSelector((state) => {
     return {
       FetchCountriesReducer: state.FetchCountriesReducer,
     };
   }, shallowEqual);
-  console.log(FetchCountriesReducer);
+  const state_date = (FetchCountriesReducer.filter((country) => country.iso === state.country.key)).map(item => item.city)
+
 
   const countries_list = FetchCountriesReducer.map((data) => ({ key: data.iso, label: data.nicename }))
   const setStateHandler = (key, val) => {
@@ -77,8 +89,8 @@ const AddNewAddress = (props) => {
             onChangeText={(value) => setState({ ...state, country: value })}
           />
           <ModalSelectorCustom
-            data={countries_list}
-            //  onChangeText={(value) => setState({ ...state, country_id: value.key })}
+            data={state_date}
+            onChangeText={(value) => setState({ ...state, country_id: value.key })}
             initValue={t('state')}
           />
 
