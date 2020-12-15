@@ -103,7 +103,7 @@ const SignUp = (props) => {
             {t('termAndService')}
           </AppText>
           <Button round width="60%" onPress={onSignUp}>
-            {t('termAndService')}
+            {t('signUp')}
           </Button>
         </View>
         {/* <AppText white secondary style={{marginTop: 10, marginBottom: 10}}>

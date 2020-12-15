@@ -20,6 +20,7 @@ const BookCard = (props) => {
       UserProfileReducer: state.UserProfileReducer,
     };
   }, shallowEqual);
+  console.log(UserProfileReducer, "userPRofile");
   const price_product = prices.find((item) => item.iso === UserProfileReducer.currency.iso)
   // console.log(price_product)
 

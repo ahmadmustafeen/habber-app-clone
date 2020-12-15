@@ -31,6 +31,9 @@ import { SIGN_OUT } from '_redux/actionTypes';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import { AppText } from 'components/common';
 import PushNotification from 'react-native-push-notification';
+import { SWITCH_LANG } from '../../redux/actionTypes';
+
+const LANGUAGES = [{ id: 1, iso: 'ar', name: 'Arabic' }, { id: 2, iso: 'en', name: 'English' }];
 
 const Settings = (props) => {
   const { colors } = useTheme();
@@ -39,14 +42,6 @@ const Settings = (props) => {
     language: false,
     notifications: false,
   });
-  const [iso, setIso] = useState('KWD');
-  const { i18n } = useTranslation();
-
-  const toggleDropdown = (key) => {
-    setItemVisible({ ...item, [key]: !item[key] });
-  };
-  const dispatch = useDispatch();
-
   const { UserProfileReducer, FetchCurrencyReducer, FetchCountriesReducer } = useSelector((state) => {
     return {
       UserProfileReducer: state.UserProfileReducer,
@@ -54,13 +49,22 @@ const Settings = (props) => {
       FetchCurrencyReducer: state.FetchCurrencyReducer,
     };
   }, shallowEqual);
+  const [currencyVal, setCurrencyVal] = useState(UserProfileReducer.currency);
+  const { i18n } = useTranslation();
+
+  const toggleDropdown = (key) => {
+    setItemVisible({ ...item, [key]: !item[key] });
+  };
+  const dispatch = useDispatch();
+
+
   console.log('USERPROFILE CURRENCY', UserProfileReducer);
   const onLogout = () => {
     dispatch(withoutDataActions(SIGN_OUT));
   };
 
   const { navigation } = props;
-  console.log(iso);
+  console.log(currencyVal);
   const SettingsDropdown = (props) => {
     const {
       value,
@@ -103,10 +107,13 @@ const Settings = (props) => {
   };
 
   const onLanguageChange = (val) => {
-    i18n.changeLanguage(val).then(() => {
-      I18nManager.forceRTL(val === 'ar');
-      RNRestart.Restart();
-    });
+    // (val.iso === 'ar' && I18nManager.isRTL) ? false :
+
+    dispatch(withDataActions({ ...UserProfileReducer, language: val }, SWITCH_LANG))
+    // i18n.changeLanguage(val).then(() => {
+    //   I18nManager.forceRTL(val === 'ar');
+    //   RNRestart.Restart();
+    // });
   };
   const onToggleNotifications = async (val) => {
     item.notifications
@@ -154,15 +161,16 @@ const Settings = (props) => {
               selected={!I18nManager.isRTL}
               iconName="dollar"
               iconType="font-awesome"
-              value="en"
+              value={{ id: 2, iso: 'en', name: 'English' }}
               onPress={onLanguageChange}
             />
+
             <SettingsDropdown
               currencyName={t('Arabic')}
               selected={I18nManager.isRTL}
               iconName="dollar"
               iconType="font-awesome"
-              value="ar"
+              value={{ id: 1, iso: 'ar', name: 'Arabic' }}
               onPress={onLanguageChange}
             />
           </View>
@@ -182,7 +190,7 @@ const Settings = (props) => {
 
         <SettingsComponent
           label={t('currency')}
-          Currency={iso}
+          Currency={currencyVal.iso}
           iconName={!item.currency ? 'downcircleo' : 'upcircleo'}
           onIconPress={() => toggleDropdown('currency')}
         />
@@ -197,12 +205,12 @@ const Settings = (props) => {
               return (
                 <SettingsDropdown
                   // key={iso}
-                  selected={item.iso === iso}
+                  selected={item.iso === currencyVal.iso}
                   currencyName={item.name}
                   symbol={item.symbol}
                   onPress={() => {
-                    setIso(item.iso)
-                    dispatch(withDataActions({ ...UserProfileReducer, currency: iso }, SWITCH_CURRENCY))
+                    setCurrencyVal(item)
+                    dispatch(withDataActions({ ...UserProfileReducer, currency: item }, SWITCH_CURRENCY))
                   }}
                 />
               );

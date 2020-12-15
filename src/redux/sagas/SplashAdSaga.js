@@ -4,7 +4,7 @@ import * as NavigationService from '../../../NavigationService';
 import { SIGNIN_SCREEN, LANGUAGE_SCREEN, HOME } from '_constants/Screens';
 import { getItem, setItem } from 'helpers/Localstorage';
 import { FETCH_ADDRESS, FETCH_USER_PROFILE_SUCCESS, FETCH_USER_CART, FETCH_USER_FAVOURITE, FETCH_ORDER, FETCH_CURRENCIES } from '_redux/actionTypes';
-import { all, put } from 'redux-saga/effects';
+import { all, put, select } from 'redux-saga/effects';
 import { RestClient } from 'network/RestClient';
 
 export function* splashAdSaga() {
@@ -33,7 +33,20 @@ export function* splashAdSaga() {
         screen: HOME,
       });
     } else if (backUser) {
+      const { UserProfileReducer } = yield select(
+        ({ UserProfileReducer }) => {
+          return { UserProfileReducer };
+        },
+      );
+      if (!!!UserProfileReducer.currency.id) {
+        yield setItem('@userProfile', JSON.stringify({ ...userProfile, currency: { id: 1, iso: "KWD", name: "Kuwaiti dinar", symbol: "KD" } }))
+
+      }
+      // (userProfile.currency.id ? null :
+      // json.stringify(payload = { ...UserProfileReducer, currency: { id: 1, iso: "KWD", name: "Kuwaiti dinar", symbol: "KD" } })))
+      // )
       return NavigationService.navigate('Auth', {
+
         screen: SIGNIN_SCREEN,
       });
     } else {

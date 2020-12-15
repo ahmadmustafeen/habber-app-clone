@@ -6,8 +6,9 @@ import * as NavigationService from '../../../NavigationService';
 import { SIGNIN_SCREEN } from '_constants/Screens';
 import { setItem, getItem } from '_helpers/Localstorage';
 
-export function* SwitchCurrencySaga(payload) {
+export function* SwitchCurrencySaga({ payload }) {
     try {
+        console.log(payload, "SCS");
         yield setItem('@userProfile', JSON.stringify(payload));
         yield put({
             type: SWITCH_LANG_SUCCESS,

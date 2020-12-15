@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react';
+import React, { useRef, useState } from 'react';
 
 import {
   View,
@@ -9,10 +9,10 @@ import {
   Image,
   Linking,
 } from 'react-native';
-import {useTranslation} from 'react-i18next';
-import {GoogleSignin} from '@react-native-community/google-signin';
-import {CustomPagination} from '_components/CustomPagination';
-import {FloatingAction} from 'react-native-floating-action';
+import { useTranslation } from 'react-i18next';
+import { GoogleSignin } from '@react-native-community/google-signin';
+import { CustomPagination } from '_components/CustomPagination';
+import { FloatingAction } from 'react-native-floating-action';
 import Carousel from 'react-native-snap-carousel';
 import {
   DashboardComponent,
@@ -27,16 +27,16 @@ import {
   BOOKLIST_SCREEN,
   BOOK_DETAILS_SCREEN,
 } from '_constants/Screens';
-import {sliderImages} from './dummydata';
-import {ThumbnailBook} from '_components/ThumbnailBook';
-import {Button, Screen} from '_components/common';
-import {shallowEqual, useDispatch, useSelector} from 'react-redux';
-import {useTheme} from '@react-navigation/native';
+import { sliderImages } from './dummydata';
+import { ThumbnailBook } from '_components/ThumbnailBook';
+import { Button, Screen } from '_components/common';
+import { shallowEqual, useDispatch, useSelector } from 'react-redux';
+import { useTheme } from '@react-navigation/native';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-import {checkIfLoading} from '_redux/selectors';
+import { checkIfLoading } from '_redux/selectors';
 import {
   FETCH_ARABIC_BOOKS,
   FETCH_BOOKCLUBS,
@@ -44,16 +44,17 @@ import {
   FETCH_ENGLISH_BOOKS,
 } from '_redux/actionTypes';
 import Loader from '_components/Loader';
-import {AppText} from 'components/common';
-import {Icon} from 'react-native-elements';
-import {getItem} from '_helpers/Localstorage';
+import { AppText } from 'components/common';
+import { Icon } from 'react-native-elements';
 
-const {width} = Dimensions.get('window');
 export const itemWidth = wp(85);
 
+import { getItem } from '_helpers/Localstorage';
+import { INVOICE } from '../../constants/Screens';
+const { width } = Dimensions.get('window');
 const Home = (props) => {
   const CAROUSEL = useRef(null);
-  const {navigate} = props.navigation;
+  const { navigate } = props.navigation;
   const [images] = useState(sliderImages);
   GoogleSignin.configure({
     scopes: ['https://www.googleapis.com/auth/drive.readonly'], // what API you want to access on behalf of the user, default is email and profile
@@ -65,7 +66,7 @@ const Home = (props) => {
     accountName: '', // [Android] specifies an account name on the device that should be used
     iosClientId: '<FROM DEVELOPER CONSOLE>', // [iOS] optional, if you want to specify the client ID of type iOS (otherwise, it is taken from GoogleService-Info.plist)
   });
-  const {t} = useTranslation();
+  const { t } = useTranslation();
   const {
     UserProfileReducer,
     EnglishBooksReducer,
@@ -92,7 +93,7 @@ const Home = (props) => {
     };
   }, shallowEqual);
   const dispatch = useDispatch();
-  const {colors} = useTheme();
+  const { colors } = useTheme();
   console.log('IS LOADING  . . . ', isLoading);
   console.log('user Profile', UserProfileReducer);
   const DATA = [
@@ -121,7 +122,7 @@ const Home = (props) => {
       cornerLabelText: '-20%',
     },
   ];
-  const renderItem = ({item, index}) => (
+  const renderItem = ({ item, index }) => (
     <View key={item.coverImageUri} style={styles.cardContainer}>
       <View
         style={{
@@ -153,11 +154,11 @@ const Home = (props) => {
         />
       </View>
       <View style={styles.cardWrapper}>
-        <Image style={styles.card} source={{uri: item.coverImageUri}} />
+        <Image style={styles.card} source={{ uri: item.coverImageUri }} />
         <View
           style={[
             styles.cornerLabel,
-            {backgroundColor: item.cornerLabelColor},
+            { backgroundColor: item.cornerLabelColor },
           ]}>
           <AppText style={styles.cornerLabelText}>
             {item.cornerLabelText}
@@ -178,7 +179,7 @@ const Home = (props) => {
               paddingBottom: hp(8),
               marginBottom: hp(1),
               justifyContent: 'flex-end',
-              transform: [{scaleX: I18nManager.isRTL ? -1 : 1}],
+              transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }],
             }}
             resizeMode="stretch"
             source={require('_assets/images/header.png')}>
@@ -202,23 +203,7 @@ const Home = (props) => {
         <AppText>{t('bye')}</AppText> */}
           {/* <Button onPress={() => navigate('Auth', { screen: AD_SCREEN })}>
           Auth Navigation
-        </Button>
-        <Button
-          onPress={() => dispatch(withDataActions('', FETCH_ENGLISH_BOOKS))}>
-          Fetch English Books
-        </Button>
-        <Button
-          onPress={() => dispatch(withDataActions('', FETCH_ARABIC_BOOKS))}>
-          Fetch Arabic Books
-        </Button>
-        <Button
-          onPress={() => dispatch(withDataActions('', FETCH_BOOKCLUBS))}>
-          Fetch BookClubs
-        </Button>
-        <Button
-          onPress={() => dispatch(withDataActions('', FETCH_RELATED_BOOKS))}>
-          Fetch Related Books
-        </Button> */}
+      </Button> */}
         </View>
 
         <View key="content" style={styles.container}>
@@ -328,7 +313,7 @@ const Home = (props) => {
           />
           <TitleBarWithIcon label={t('requestBook')} noIcon />
           <View style={styles.requestBooksBtns}>
-            <View style={{width: wp(28)}}>
+            <View style={{ width: wp(28) }}>
               <Button
                 bold
                 color={colors.white}
@@ -336,19 +321,19 @@ const Home = (props) => {
                 secondary
                 fontSize={13}
                 onPress={() =>
-                  navigate(REQUESTBOOKS_SCREEN, {book_type: 'random'})
+                  navigate(REQUESTBOOKS_SCREEN, { book_type: 'random' })
                 }>
                 {t('requestBook')}
               </Button>
             </View>
-            <View style={{width: wp(58)}}>
+            <View style={{ width: wp(58) }}>
               <Button
                 // bold
                 borderRadius={2}
                 primary
                 fontSize={13}
                 onPress={() =>
-                  navigate(REQUESTBOOKS_SCREEN, {book_type: 'educational'})
+                  navigate(REQUESTBOOKS_SCREEN, { book_type: 'educational' })
                 }>
                 {t('requestEducationalBook')}
               </Button>

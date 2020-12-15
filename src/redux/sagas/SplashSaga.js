@@ -24,7 +24,7 @@ export function* splashSaga() {
   try {
     const response = yield call(() => RestClient.get(API_ENDPOINTS.ads));
     if (response.status === 521) {
-      return Alert.alert("SErver os dowm")
+      return Alert.alert("Server is down")
     }
     yield put({ type: FETCH_ENGLISH_BOOKS });
     yield put({ type: FETCH_ARABIC_BOOKS });
@@ -46,9 +46,6 @@ export function* splashSaga() {
       status,
       data: { data: res, message },
     } = response;
-    if (response.problem === NETWORK_ERROR) {
-      return yield put({ type: SHOW_NETWORK_MODAL });
-    }
 
     if (!res.length) {
       yield put({ type: SKIP_AD });
