@@ -18,37 +18,36 @@ import { useTranslation } from 'react-i18next';
 const AddNewAddress = (props) => {
   const { t } = useTranslation(['AddNewAddress'])
   const [state, setState] = useState({
-    address_name: '',
-    country: {},
-    state: '',
-    city: '',
-    address_line1: '',
-    address_line2: '',
-    phone: '',
-    post_code: '',
+    address_name: "",
+    country_id: "",
+    state: "",
+    city_id: "",
+    address_line1: "",
+    address_line2: "",
+    phone: "",
+    post_code: "",
   });
-
-  //   const data = [
-
-  //     { key: index++, section: true, label: 'Fruits' },
-  //     { key: index++, label: 'Red Apples' },
-  //     { key: index++, label: 'Cherries' },
-  //     { key: index++, label: 'Cranberries', accessibilityLabel: 'Tap here for cranberries' },
-  //     // etc...
-  //     // Can also add additional custom keys which are passed to the onChange callback
-  //     { key: index++, label: 'Vegetable', customKey: 'Not a fruit' }
+  console.log("state", state)
+  // const data = [
+  //   { key: index++, section: true, label: 'Fruits' },
+  //   { key: index++, label: 'Red Apples' },
+  //   { key: index++, label: 'Cherries' },
+  //   { key: index++, label: 'Cranberries', accessibilityLabel: 'Tap here for cranberries' },
   // ];
 
-  var index = 0;
   const { FetchCountriesReducer } = useSelector((state) => {
     return {
       FetchCountriesReducer: state.FetchCountriesReducer,
     };
   }, shallowEqual);
-  const state_date = (FetchCountriesReducer.filter((country) => country.iso === state.country.key)).map(item => item.city)
+  console.log(state.country_id);
+  console.log(FetchCountriesReducer, "FETCh")
+  var selectedCountry = (FetchCountriesReducer.find((country) => country.iso === state.country_id));
+  (!selectedCountry) ? (selectedCountry = { city: [] }) : null;
 
-
-  const countries_list = FetchCountriesReducer.map((data) => ({ key: data.iso, label: data.nicename }))
+  console.log("adteer", selectedCountry)
+  const countries_list = FetchCountriesReducer.map((data) => ({ key: data.iso, label: data.name })).map(city => { return { key: city.key, label: city.label } })
+  console.log(countries_list, selectedCountry)
   const setStateHandler = (key, val) => {
     setState({ ...state, [key]: val });
   };
@@ -84,21 +83,21 @@ const AddNewAddress = (props) => {
           {/* <InputWithLabel color={"black"} placeholder="Country*" required /> */}
           <ModalSelectorCustom
             data={countries_list}
-            value={state.country_id}
-            initValue={state.country.label || t('country')}
-            onChangeText={(value) => setState({ ...state, country: value })}
+            // value={null}
+            onChangeText={(value) => setState({ ...state, country_id: value.key })}
+            initValue={selectedCountry.name || t('country')}
           />
           <ModalSelectorCustom
-            data={state_date}
-            onChangeText={(value) => setState({ ...state, country_id: value.key })}
+            data={selectedCountry.city}
+            onChangeText={(value) => setState({ ...state, city_id: value.id })}
             initValue={t('state')}
           />
 
           <InputWithLabel color={"black"}
-            value={state.city}
-            placeholder={t('city')}
+            value={state.state}
+            placeholder={t('state')}
             required
-            onChangeText={(val) => setStateHandler('city', val)}
+            onChangeText={(val) => setStateHandler('state', val)}
           />
           <InputWithLabel color={"black"}
             value={state.address_line1}

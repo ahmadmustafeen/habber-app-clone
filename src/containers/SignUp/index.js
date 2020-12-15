@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, StyleSheet, Alert } from 'react-native';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector, shallowEqual } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { InputWithLabel, RoundIcon, ModalScreen, AuthHeader } from '_components';
 import { BackgroundImage, Button, AppText } from '_components/common';
@@ -33,12 +33,15 @@ const SignUp = (props) => {
     setState((state) => ({ ...state, [key]: value }));
   };
   const validate = () => {
-    // first_name &&
-    // last_name &&
-    // validateEmail(email) &&
-    // validatePassword(password) &&
-    // validatePassword(password_confirmation)
-    return true;
+
+    if (!first_name) Alert.alert("Enter First Name")
+    if (!last_name) Alert.alert("Enter Last Name")
+    if (!validateEmail(email)) Alert.alert("Enter Valid Email")
+    if (!validatePassword(password)) Alert.alert("Password must have 8 letters")
+    if (password !== password_confirmation) Alert.alert("Password does'nt match")
+    if (first_name && last_name && validateEmail(email) && validatePassword(password) && (password === password_confirmation)) {
+      return true
+    }
   };
   const onSignUp = () => {
     validate() && dispatch(withDataActions(state, SIGN_UP));
@@ -46,6 +49,11 @@ const SignUp = (props) => {
   const onContinueModal = () => {
     dispatch(withDataActions(state, SIGN_IN));
   };
+  const { loading } = useSelector(({ LoadingReducer }) => {
+    return {
+      loading: LoadingReducer.loading,
+    };
+  }, shallowEqual);
   return (
     <BackgroundImage>
       <View key="header">
@@ -102,7 +110,7 @@ const SignUp = (props) => {
           <AppText underline style={styles.termsandservices} size={17}>
             {t('termAndService')}
           </AppText>
-          <Button round width="60%" onPress={onSignUp}>
+          <Button round width="60%" onPress={onSignUp} loading={loading}>
             {t('signUp')}
           </Button>
         </View>
