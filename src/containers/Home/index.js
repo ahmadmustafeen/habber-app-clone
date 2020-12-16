@@ -51,6 +51,7 @@ export const itemWidth = wp(85);
 
 import { getItem } from '_helpers/Localstorage';
 import { INVOICE } from '../../constants/Screens';
+import { FETCH_BANNER } from '../../redux/actionTypes';
 const { width } = Dimensions.get('window');
 const Home = (props) => {
   const CAROUSEL = useRef(null);
@@ -75,6 +76,7 @@ const Home = (props) => {
     BookClubReducer,
     FetchSiteReducer,
     isLoading,
+    BannerReducer
   } = useSelector((state) => {
     return {
       UserProfileReducer: state.UserProfileReducer,
@@ -83,12 +85,14 @@ const Home = (props) => {
       ArabicBooksReducer: state.ArabicBooksReducer,
       BookmarksReducer: state.BookmarksReducer,
       BookClubReducer: state.BookClubReducer,
+      BannerReducer: state.BannerReducer,
       isLoading: checkIfLoading(
         state,
         FETCH_ENGLISH_BOOKS,
         FETCH_ARABIC_BOOKS,
         FETCH_BOOKCLUBS,
         FETCH_BOOKMARKS,
+        FETCH_BANNER
       ),
     };
   }, shallowEqual);
@@ -96,32 +100,34 @@ const Home = (props) => {
   const { colors } = useTheme();
   console.log('IS LOADING  . . . ', isLoading);
   console.log('user Profile', UserProfileReducer);
-  const DATA = [
-    {
-      coverImageUri:
-        'https://user-images.githubusercontent.com/6414178/73920321-2357b680-4900-11ea-89d5-2e8cbecec9f6.jpg',
-      cornerLabelColor: '#FFD300',
-      cornerLabelText: 'GOTY',
-    },
-    {
-      coverImageUri:
-        'https://user-images.githubusercontent.com/6414178/73920358-336f9600-4900-11ea-8eec-cc919b991e90.jpg',
-      cornerLabelColor: '#0080ff',
-      cornerLabelText: 'NEW',
-    },
-    {
-      coverImageUri:
-        'https://user-images.githubusercontent.com/6414178/73927874-25744200-490d-11ea-940f-db3e5dbd8b2b.jpg',
-      cornerLabelColor: '#2ECC40',
-      cornerLabelText: '-75%',
-    },
-    {
-      coverImageUri:
-        'https://user-images.githubusercontent.com/6414178/73920399-45e9cf80-4900-11ea-9d5b-743fe5e8b9a4.jpg',
-      cornerLabelColor: '#2ECC40',
-      cornerLabelText: '-20%',
-    },
-  ];
+  console.log('BannerReducer ', BannerReducer);
+  const DATA = BannerReducer.map(banner => { return { coverImageUri: banner.banner_image, cornerLabelColor: '#FFD300', cornerLabelText: 'GOTY' } })
+  // const DATA = [
+  //   {
+  //     coverImageUri:
+  //       'https://user-images.githubusercontent.com/6414178/73920321-2357b680-4900-11ea-89d5-2e8cbecec9f6.jpg',
+  //     cornerLabelColor: '#FFD300',
+  //     cornerLabelText: 'GOTY',
+  //   },
+  //   {
+  //     coverImageUri:
+  //       'https://user-images.githubusercontent.com/6414178/73920358-336f9600-4900-11ea-8eec-cc919b991e90.jpg',
+  //     cornerLabelColor: '#0080ff',
+  //     cornerLabelText: 'NEW',
+  //   },
+  //   {
+  //     coverImageUri:
+  //       'https://user-images.githubusercontent.com/6414178/73927874-25744200-490d-11ea-940f-db3e5dbd8b2b.jpg',
+  //     cornerLabelColor: '#2ECC40',
+  //     cornerLabelText: '-75%',
+  //   },
+  //   {
+  //     coverImageUri:
+  //       'https://user-images.githubusercontent.com/6414178/73920399-45e9cf80-4900-11ea-9d5b-743fe5e8b9a4.jpg',
+  //     cornerLabelColor: '#2ECC40',
+  //     cornerLabelText: '-20%',
+  //   },
+  // ];
   const renderItem = ({ item, index }) => (
     <View key={item.coverImageUri} style={styles.cardContainer}>
       <View

@@ -18,7 +18,7 @@ import OrderReducer from './OrderReducer';
 import FetchCurrencyReducer from './FetchCurrencyReducer';
 import FCMReducer from './FCMReducer';
 import FetchCountriesReducer from "./FetchCountriesReducer"
-// import FetchFavouriteReducer from "./FetchFavouriteReducer";
+import BannerReducer from "./BannerReducer";
 export default combineReducers({
   ModalReducer,
   LoadingReducer,
@@ -39,5 +39,6 @@ export default combineReducers({
   FetchCurrencyReducer,
   FCMReducer,
   // FetchFavouriteReducer,
-  FetchCountriesReducer
+  FetchCountriesReducer,
+  BannerReducer
 });

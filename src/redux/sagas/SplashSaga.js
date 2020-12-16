@@ -16,7 +16,8 @@ import {
   SKIP_AD,
   FETCH_SITE_DETAILS,
   FETCH_CURRENCIES,
-  FETCH_COUNTRIES
+  FETCH_COUNTRIES,
+  FETCH_BANNER
 } from '_redux/actionTypes';
 
 
@@ -33,6 +34,7 @@ export function* splashSaga() {
     yield put({ type: FETCH_CURRENCIES });
     yield put({ type: FETCH_COUNTRIES });
     yield put({ type: FETCH_SITE_DETAILS });
+    yield put({ type: FETCH_BANNER });
 
     if (response.problem === NETWORK_ERROR) {
       yield put({ type: SKIP_AD });

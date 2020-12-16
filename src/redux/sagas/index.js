@@ -34,6 +34,7 @@ import {
   UPDATE_FAVOURITE,
   SWITCH_CURRENCY,
   EDIT_ADDRESS,
+  FETCH_BANNER
 } from '../actionTypes';
 
 import { signupSaga } from './SignupSaga';
@@ -68,6 +69,8 @@ import { FetchCountriesSaga } from './FetchCountriesSaga';
 import { FetchOrderSaga } from './FetchOrderSaga';
 import { SwitchCurrencySaga } from './SwitchCurrencySaga';
 import { EditAddressSaga } from './EditAddressSaga'
+import { Carasoul } from './Carasoul'
+
 function* actionWatcher() {
   yield takeLatest(SPLASH_ACTION, splashSaga);
   yield takeLatest(SKIP_AD, splashAdSaga);
@@ -101,6 +104,7 @@ function* actionWatcher() {
   yield takeLatest(SWITCH_CURRENCY, SwitchCurrencySaga);
   yield takeLatest(FETCH_ORDER, FetchOrderSaga);
   yield takeLatest(EDIT_ADDRESS, EditAddressSaga);
+  yield takeLatest(FETCH_BANNER, Carasoul);
 }
 
 export default function* rootSaga() {
