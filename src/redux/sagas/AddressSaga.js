@@ -18,7 +18,7 @@ export function* addressSaga({ type, payload }) {
       return yield put({ type: SHOW_NETWORK_MODAL });
     }
     const { status, data, message } = response;
-    console.log('Addres ADD Books Saga Response . . . .  .', response);
+    console.log('Addres Saga Response . . . .  .', response);
     if (data.success) {
       yield put({ type: ADD_ADDRESS_SUCCESS, });
       yield put({ type: FETCH_ADDRESS }),

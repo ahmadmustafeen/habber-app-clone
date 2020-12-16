@@ -18,12 +18,14 @@ import { useTranslation } from 'react-i18next';
 const AddNewAddress = (props) => {
   const { t } = useTranslation(['AddNewAddress'])
   const [state, setState] = useState({
+
+
     address_name: "",
-    country_id: "",
-    state: "",
-    city_id: "",
     address_line1: "",
     address_line2: "",
+    country_id: "",
+    state: "",
+    city_id: 4,
     phone: "",
     post_code: "",
   });
@@ -40,13 +42,13 @@ const AddNewAddress = (props) => {
       FetchCountriesReducer: state.FetchCountriesReducer,
     };
   }, shallowEqual);
-  console.log(state.country_id);
-  console.log(FetchCountriesReducer, "FETCh")
-  var selectedCountry = (FetchCountriesReducer.find((country) => country.iso === state.country_id));
+  console.log(state.country_id, "state");
+  // console.log(FetchCountriesReducer, "FETCh")
+  var selectedCountry = (FetchCountriesReducer.find((country) => country.id === state.country_id));
   (!selectedCountry) ? (selectedCountry = { city: [] }) : null;
 
   console.log("adteer", selectedCountry)
-  const countries_list = FetchCountriesReducer.map((data) => ({ key: data.iso, label: data.name })).map(city => { return { key: city.key, label: city.label } })
+  const countries_list = FetchCountriesReducer.map((data) => ({ key: data.id, label: data.name })).map(city => { return { key: city.key, label: city.label } })
   console.log(countries_list, selectedCountry)
   const setStateHandler = (key, val) => {
     setState({ ...state, [key]: val });
