@@ -29,6 +29,7 @@
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		81DBA72FD53E05D118F17D5D /* libPods-HEBBER_Mobile-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 36F5635F73D68F624273DE58 /* libPods-HEBBER_Mobile-tvOS.a */; };
 		940DC533258A197300D111BE /* HEBBER_Mobile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 940DC532258A197300D111BE /* HEBBER_Mobile.swift */; };
+		9413E80C258A582F004CEC9E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9413E80B258A582F004CEC9E /* GoogleService-Info.plist */; };
 		943488522584067D00A9A544 /* assets in Resources */ = {isa = PBXBuildFile; fileRef = 943488482584061600A9A544 /* assets */; };
 		A843883049E64A9E98671423 /* Roboto-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A6EB10E4BC4D4101B011A209 /* Roboto-LightItalic.ttf */; };
 		C4F9F5924B144D65953611F8 /* Almarai-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3BFB72CDEC844A1493750743 /* Almarai-Light.ttf */; };
@@ -89,6 +90,7 @@
 		924C048B6C7D46038BB60AF1 /* libPods-HEBBER_Mobile-HEBBER_MobileTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HEBBER_Mobile-HEBBER_MobileTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		940DC531258A197100D111BE /* HEBBER_Mobile-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HEBBER_Mobile-Bridging-Header.h"; sourceTree = "<group>"; };
 		940DC532258A197300D111BE /* HEBBER_Mobile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HEBBER_Mobile.swift; sourceTree = "<group>"; };
+		9413E80B258A582F004CEC9E /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "HEBBER_Mobile/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		943488482584061600A9A544 /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = assets; sourceTree = "<group>"; };
 		94A3226F2535FB72002B8D62 /* Fontisto.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Fontisto.ttf; path = "../../node_modules/react-native-vector-icons/Fonts/Fontisto.ttf"; sourceTree = "<group>"; };
 		94A322702535FB72002B8D62 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = SimpleLineIcons.ttf; path = "../../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
@@ -207,6 +209,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				9413E80B258A582F004CEC9E /* GoogleService-Info.plist */,
 				940DC532258A197300D111BE /* HEBBER_Mobile.swift */,
 				943488482584061600A9A544 /* assets */,
 				94A3226E2535FABB002B8D62 /* Fonts */,
@@ -435,6 +438,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9413E80C258A582F004CEC9E /* GoogleService-Info.plist in Resources */,
 				943488522584067D00A9A544 /* assets in Resources */,
 				E27966032551B0330058E6DB /* main.jsbundle in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,

@@ -17,6 +17,10 @@ import {
   loginWithFacebook,
   getInfoFromToken,
 } from '../../services/facebookLoginController';
+import {
+  googleSignInHandler,
+  isSignedIn,
+} from '../../services/googleLoginController';
 const SignUp = (props) => {
   const dispatch = useDispatch();
   const {navigate} = props.navigation;
@@ -65,6 +69,26 @@ const SignUp = (props) => {
       loading: LoadingReducer.loading,
     };
   }, shallowEqual);
+
+  const signInGoogle = async () => {
+    let user = await isSignedIn();
+    if (user) {
+      Alert.alert('Ops!', 'Already Signed In');
+      return user;
+    }
+    user = await googleSignInHandler();
+    return user;
+  };
+  const signInFacebook = async () => {
+    try {
+      const data = await loginWithFacebook();
+      const accessToken = data.accessToken.toString();
+      const userInfo = await getInfoFromToken(accessToken);
+      console.log('INFO', userInfo);
+    } catch (error) {
+      Alert.alert('ERROR', 'Something went wrong, contact admin!');
+    }
+  };
   return (
     <BackgroundImage>
       <View key="header">
@@ -132,22 +156,13 @@ const SignUp = (props) => {
             name="sc-facebook"
             type="evilicon"
             color="#fff"
-            onPress={async () => {
-              try {
-                const data = await loginWithFacebook();
-                const accessToken = data.accessToken.toString();
-                const userInfo = await getInfoFromToken(accessToken);
-                console.log('INFO', userInfo);
-              } catch (error) {
-                Alert.alert('ERROR', 'Something went wrong, contact admin!');
-              }
-            }}
+            onPress={signInFacebook}
           />
           <RoundIcon
             name="google"
             type="font-awesome"
             color="#fff"
-            onPress={() => console.log('hello')}
+            onPress={async () => console.log(await signInGoogle())}
           />
           <RoundIcon
             name="sc-twitter"

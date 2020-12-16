@@ -1,20 +1,20 @@
-import React, { useEffect } from 'react';
+import React, {useEffect} from 'react';
 import Navigator from './src/navigator';
-import { navigationRef } from './NavigationService';
-import { StatusBar, View } from 'react-native';
-import { ModalScreen } from 'components';
+import {navigationRef} from './NavigationService';
+import {StatusBar, View} from 'react-native';
+import {ModalScreen} from 'components';
 import useNetworkModal from 'utils/customHooks/useNetworkModal';
 import OfflineNotice from 'components/OfflineNotice';
-import { Color } from '_constants/Colors';
+import {Color} from '_constants/Colors';
 import RemotePushController from './src/services/RemotePushController';
 import PushNotificationIOS from '@react-native-community/push-notification-ios';
-import { LoginButton } from 'react-native-fbsdk';
+import {googleConfigure} from './src/services/googleLoginController';
 
 const App = () => {
-  const { network, toggleModal } = useNetworkModal();
-  // useEffect(() => {
-  //   PushNotificationIOS.addEventListener('notification', onRemoteNotification);
-  // });
+  const {network, toggleModal} = useNetworkModal();
+  useEffect(() => {
+    googleConfigure();
+  });
 
   // const onRemoteNotification = (notification) => {
   //   const isClicked = notification.getData().userInteraction === 1;
@@ -27,7 +27,7 @@ const App = () => {
   // };
 
   return (
-    <View style={{ flex: 1 }}>
+    <View style={{flex: 1}}>
       <StatusBar barStyle="light-content" />
       <Navigator ref={navigationRef} />
       <View>

@@ -2,4 +2,5 @@
     <string name="app_name">HEBBER Online Solution</string>
     <string name="notification_channel">default_notification_channel_id</string>
     <string name="facebook_app_id">405142173762217</string>
+    <string name="server_client_id">402771849171-u43gj5jgh7kavmj2ojavu790e2h1kq1s.apps.googleusercontent.com</string>
 </resources>

@@ -182,6 +182,8 @@ android {
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation "com.android.support:appcompat-v7:23.0.1"
+
     //noinspection GradleDynamicVersion
     implementation "com.facebook.react:react-native:+"  // From node_modules
     compile project(':react-native-vector-icons')
@@ -190,6 +192,7 @@ dependencies {
 
     implementation 'com.google.firebase:firebase-analytics:17.3.0'
     implementation 'com.facebook.android:facebook-android-sdk:[5,6)'
+    
     
     debugImplementation("com.facebook.flipper:flipper:${FLIPPER_VERSION}") {
       exclude group:'com.facebook.fbjni'
