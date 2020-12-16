@@ -40,17 +40,20 @@ export function* splashAdSaga() {
       const {UserProfileReducer} = yield select(({UserProfileReducer}) => {
         return {UserProfileReducer};
       });
-      // if (!!!UserProfileReducer.currency) {
-      //   yield setItem('@userProfile', JSON.stringify({ ...userProfile, currency: { id: 1, iso: "KWD", name: "Kuwaiti dinar", symbol: "KD" } }))
 
-      // }
-      // (userProfile.currency.id ? null :
-      // json.stringify(payload = { ...UserProfileReducer, currency: { id: 1, iso: "KWD", name: "Kuwaiti dinar", symbol: "KD" } })))
-      // )
       return NavigationService.navigate('Auth', {
         screen: SIGNIN_SCREEN,
       });
     } else {
+      // if (!!!UserProfileReducer.currency) {
+      //   yield setItem(
+      //     '@userProfile',
+      //     JSON.stringify({
+      //       ...userProfile,
+      //       currency: {id: 1, iso: 'KWD', name: 'Kuwaiti dinar', symbol: 'KD'},
+      //     }),
+      //   );
+      // }
       return NavigationService.navigate('Auth', {
         screen: LANGUAGE_SCREEN,
       });

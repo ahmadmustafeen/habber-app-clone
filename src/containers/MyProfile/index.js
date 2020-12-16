@@ -1,8 +1,16 @@
 import React from 'react';
-import { View, ScrollView, StyleSheet, Image, ImageBackground, I18nManager, TouchableOpacity } from 'react-native';
-import { AppText, Button, Screen } from '_components/common';
-import { HorizontalRow } from '_components/HorizontalRow';
-import { Header } from '_components/Header';
+import {
+  View,
+  ScrollView,
+  StyleSheet,
+  Image,
+  ImageBackground,
+  I18nManager,
+  TouchableOpacity,
+} from 'react-native';
+import {AppText, Button, Screen} from '../../components/common';
+import {HorizontalRow} from '_components/HorizontalRow';
+import {Header} from '_components/Header';
 import {
   CHANGE_PASSWORD,
   EDIT_PROFILE,
@@ -12,18 +20,18 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-import { useTheme } from '@react-navigation/native';
-import { useSelector, shallowEqual } from 'react-redux';
-import { Icon } from 'react-native-elements';
-import { useTranslation } from 'react-i18next';
+import {useTheme} from '@react-navigation/native';
+import {useSelector, shallowEqual} from 'react-redux';
+import {Icon} from 'react-native-elements';
+import {useTranslation} from 'react-i18next';
 const MyProfile = (props) => {
-  const { t } = useTranslation(['MyProfile']);
-  const { first_name, last_name, email } = useSelector(
-    ({ UserProfileReducer }) => UserProfileReducer,
+  const {t} = useTranslation(['MyProfile']);
+  const {first_name, last_name, email} = useSelector(
+    ({UserProfileReducer}) => UserProfileReducer,
     shallowEqual,
   );
-  const { colors } = useTheme()
-  const { navigate } = props.navigation;
+  const {colors} = useTheme();
+  const {navigate} = props.navigation;
   return (
     <ScrollView>
       <ImageBackground
@@ -33,34 +41,34 @@ const MyProfile = (props) => {
           paddingBottom: hp(8),
           marginBottom: hp(1),
           justifyContent: 'flex-end',
-          transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }],
+          transform: [{scaleX: I18nManager.isRTL ? -1 : 1}],
         }}
-        resizeMode='stretch'
+        resizeMode="stretch"
         source={require('_assets/images/header.png')}>
-
-        <Header {...props}
-          headerLeft={(
+        <Header
+          {...props}
+          headerLeft={
             <Icon
               onPress={() => props.navigation.goBack()}
               color={colors.primary}
               name="leftcircleo"
               type="ant-design"
-            />)}
+            />
+          }
         />
-
-
       </ImageBackground>
       <Screen>
         <View key="header"></View>
         <View key="content">
           <View style={styles.profiletop}>
-            <View style={[styles.imgContainer, { borderColor: colors.borderColor }]}>
+            <View
+              style={[styles.imgContainer, {borderColor: colors.borderColor}]}>
               <Image
                 style={styles.image}
                 source={require('_assets/images/logo.png')}
               />
             </View>
-            <View style={{ flexDirection: 'column', justifyContent: 'center' }}>
+            <View style={{flexDirection: 'column', justifyContent: 'center'}}>
               <AppText bold small style={styles.txt}>
                 {`${first_name} ${last_name}`}
               </AppText>
@@ -68,35 +76,34 @@ const MyProfile = (props) => {
                 {email}
               </AppText>
             </View>
-            <TouchableOpacity style={{ position: 'absolute', right: wp(5), top: hp(-1.5) }} onPress={() => navigate(EDIT_PROFILE)}>
-              <Image
-                source={require("../../assets/images/editbtn.png")}
-              />
+            <TouchableOpacity
+              style={{position: 'absolute', right: wp(5), top: hp(-1.5)}}
+              onPress={() => navigate(EDIT_PROFILE)}>
+              <Image source={require('../../assets/images/editbtn.png')} />
             </TouchableOpacity>
-
-
           </View>
-          <HorizontalRow style={[styles.row, { borderBottomColor: colors.borderColor }]} />
+          <HorizontalRow
+            style={[styles.row, {borderBottomColor: colors.borderColor}]}
+          />
           <View style={styles.btnview}>
             <Button
-              icon
+              // icon
+
               fontSize={13}
-              appColor
-              style={{ marginBottom: 15, }}
+              style={{marginBottom: 15}}
               onPress={() => navigate(MY_ADDRESS_BOOK)}>
-              {t("myAddressBook")}
+              {t('myAddressBook')}
             </Button>
             <Button
               fontSize={13}
-              appColor
-              icon
+              // icon
               onPress={() => navigate(CHANGE_PASSWORD)}>
-              {t("changePassword")}
+              {t('changePassword')}
             </Button>
           </View>
         </View>
       </Screen>
-    </ScrollView >
+    </ScrollView>
   );
 };
 
@@ -137,9 +144,8 @@ const styles = StyleSheet.create({
   },
   row: {
     // width: wp(0),
-    borderBottomWidth: hp(0.1)
-  }
-
+    borderBottomWidth: hp(0.1),
+  },
 });
 
 export default MyProfile;
