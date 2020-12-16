@@ -28,6 +28,7 @@
 		7B7A2515E8A942A8BD801360 /* Roboto-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 61958EE185104DEB9F9462D1 /* Roboto-BoldItalic.ttf */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		81DBA72FD53E05D118F17D5D /* libPods-HEBBER_Mobile-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 36F5635F73D68F624273DE58 /* libPods-HEBBER_Mobile-tvOS.a */; };
+		940DC533258A197300D111BE /* HEBBER_Mobile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 940DC532258A197300D111BE /* HEBBER_Mobile.swift */; };
 		943488522584067D00A9A544 /* assets in Resources */ = {isa = PBXBuildFile; fileRef = 943488482584061600A9A544 /* assets */; };
 		A843883049E64A9E98671423 /* Roboto-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A6EB10E4BC4D4101B011A209 /* Roboto-LightItalic.ttf */; };
 		C4F9F5924B144D65953611F8 /* Almarai-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3BFB72CDEC844A1493750743 /* Almarai-Light.ttf */; };
@@ -86,6 +87,8 @@
 		9122CC5CD96330CFF3AA3F9B /* Pods-HEBBER_Mobile-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HEBBER_Mobile-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-HEBBER_Mobile-tvOSTests/Pods-HEBBER_Mobile-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		9142D195FF534324995BCE41 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Regular.ttf"; path = "../src/assets/font/Roboto-Regular.ttf"; sourceTree = "<group>"; };
 		924C048B6C7D46038BB60AF1 /* libPods-HEBBER_Mobile-HEBBER_MobileTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HEBBER_Mobile-HEBBER_MobileTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		940DC531258A197100D111BE /* HEBBER_Mobile-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HEBBER_Mobile-Bridging-Header.h"; sourceTree = "<group>"; };
+		940DC532258A197300D111BE /* HEBBER_Mobile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HEBBER_Mobile.swift; sourceTree = "<group>"; };
 		943488482584061600A9A544 /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = assets; sourceTree = "<group>"; };
 		94A3226F2535FB72002B8D62 /* Fontisto.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Fontisto.ttf; path = "../../node_modules/react-native-vector-icons/Fonts/Fontisto.ttf"; sourceTree = "<group>"; };
 		94A322702535FB72002B8D62 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = SimpleLineIcons.ttf; path = "../../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
@@ -204,6 +207,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				940DC532258A197300D111BE /* HEBBER_Mobile.swift */,
 				943488482584061600A9A544 /* assets */,
 				94A3226E2535FABB002B8D62 /* Fonts */,
 				13B07FAE1A68108700A75B9A /* HEBBER_Mobile */,
@@ -213,6 +217,7 @@
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				B44B4A05396D49A1A4DD4FF9 /* Resources */,
 				A2A818E03C9109E6F6152646 /* Pods */,
+				940DC531258A197100D111BE /* HEBBER_Mobile-Bridging-Header.h */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -384,7 +389,7 @@
 					};
 					13B07F861A680F5B00A75B9A = {
 						DevelopmentTeam = GZHG762PM3;
-						LastSwiftMigration = 1120;
+						LastSwiftMigration = 1200;
 					};
 					2D02E47A1E0B4A5D006451C7 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -568,6 +573,7 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-HEBBER_Mobile/Pods-HEBBER_Mobile-resources.sh",
+				"${PODS_ROOT}/FBSDKCoreKit/FacebookSDKStrings.bundle",
 				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
 				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf",
 				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Entypo.ttf",
@@ -589,6 +595,7 @@
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FacebookSDKStrings.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleSignIn.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AntDesign.ttf",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Entypo.ttf",
@@ -620,6 +627,7 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-HEBBER_Mobile-HEBBER_MobileTests/Pods-HEBBER_Mobile-HEBBER_MobileTests-resources.sh",
+				"${PODS_ROOT}/FBSDKCoreKit/FacebookSDKStrings.bundle",
 				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
 				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf",
 				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Entypo.ttf",
@@ -641,6 +649,7 @@
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FacebookSDKStrings.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleSignIn.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AntDesign.ttf",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Entypo.ttf",
@@ -740,6 +749,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				940DC533258A197300D111BE /* HEBBER_Mobile.swift in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 			);
@@ -782,6 +792,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 82FF98E5A6AFCC2296DF7969 /* Pods-HEBBER_Mobile-HEBBER_MobileTests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -805,6 +816,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5F072C94045481CE5A6BC1CE /* Pods-HEBBER_Mobile-HEBBER_MobileTests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
 				INFOPLIST_FILE = HEBBER_MobileTests/Info.plist;
@@ -840,6 +852,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.attribes.Habber;
 				PRODUCT_NAME = HEBBER_Mobile;
+				SWIFT_OBJC_BRIDGING_HEADER = "HEBBER_Mobile-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -865,6 +878,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.attribes.Habber;
 				PRODUCT_NAME = HEBBER_Mobile;
+				SWIFT_OBJC_BRIDGING_HEADER = "HEBBER_Mobile-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
