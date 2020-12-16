@@ -102,32 +102,7 @@ const Home = (props) => {
   console.log('user Profile', UserProfileReducer);
   console.log('BannerReducer ', BannerReducer);
   const DATA = BannerReducer.map(banner => { return { coverImageUri: banner.banner_image, cornerLabelColor: '#FFD300', cornerLabelText: 'GOTY' } })
-  // const DATA = [
-  //   {
-  //     coverImageUri:
-  //       'https://user-images.githubusercontent.com/6414178/73920321-2357b680-4900-11ea-89d5-2e8cbecec9f6.jpg',
-  //     cornerLabelColor: '#FFD300',
-  //     cornerLabelText: 'GOTY',
-  //   },
-  //   {
-  //     coverImageUri:
-  //       'https://user-images.githubusercontent.com/6414178/73920358-336f9600-4900-11ea-8eec-cc919b991e90.jpg',
-  //     cornerLabelColor: '#0080ff',
-  //     cornerLabelText: 'NEW',
-  //   },
-  //   {
-  //     coverImageUri:
-  //       'https://user-images.githubusercontent.com/6414178/73927874-25744200-490d-11ea-940f-db3e5dbd8b2b.jpg',
-  //     cornerLabelColor: '#2ECC40',
-  //     cornerLabelText: '-75%',
-  //   },
-  //   {
-  //     coverImageUri:
-  //       'https://user-images.githubusercontent.com/6414178/73920399-45e9cf80-4900-11ea-9d5b-743fe5e8b9a4.jpg',
-  //     cornerLabelColor: '#2ECC40',
-  //     cornerLabelText: '-20%',
-  //   },
-  // ];
+
   const renderItem = ({ item, index }) => (
     <View key={item.coverImageUri} style={styles.cardContainer}>
       <View
@@ -192,6 +167,7 @@ const Home = (props) => {
             <Header {...props} />
           </ImageBackground>
           <Carousel
+
             ref={CAROUSEL}
             renderItem={renderItem}
             data={DATA}
@@ -205,30 +181,13 @@ const Home = (props) => {
             slideStyle={styles.slide}
             loop
           />
-          {/* <AppText>{t('hello')}</AppText>
-        <AppText>{t('bye')}</AppText> */}
-          {/* <Button onPress={() => navigate('Auth', { screen: AD_SCREEN })}>
-          Auth Navigation
-      </Button> */}
+
         </View>
 
         <View key="content" style={styles.container}>
-          {/* <FloatingAction
-          buttonSize={88}
-          margin={20}
-          actions={actions}
-          onPressItem={name => {
-            console.log(`selected button: ${name}`);
-          }}
-        /> */}
-          {/* <Button onPress={() => dispatch(withoutDataActions(DO_PAYMENT))}>
-            DO Payment
-        </Button> */}
+
           <Loader loading={isLoading} />
 
-          {/* <View style={styles.cContainer}> */}
-
-          {/* </View> */}
           <DashboardComponent
             data={ArabicBooksReducer.filter((book) => book.featured)}
             label={t('arabicBook')}

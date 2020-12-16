@@ -17,10 +17,10 @@ import { FETCH_ADDRESS } from 'redux/actionTypes';
 import { useTheme } from '@react-navigation/native';
 import AddNewAddress from '../AddNewAddress';
 import { useTranslation } from 'react-i18next';
-import { dispatch } from 'rxjs/internal/observable/pairs';
 import { withDataActions } from '../../redux/actions';
 import { EDIT_ADDRESS } from '../../redux/actionTypes';
 const MyAddressBook = (props) => {
+  const dispatch = useDispatch();
   const { t } = useTranslation(['MyAddressBook'])
   const { navigate } = props.navigation;
 
@@ -112,7 +112,9 @@ const MyAddressBook = (props) => {
               data={AddressReducer}
               keyExtractor={(item, index) => index.toString() + item}
               renderItem={(item) => <AddressCard
-                onEditPress={() => dispatch(withDataActions(item, EDIT_ADDRESS))}
+                onEditPress={() => navigate('AddNewAddress', { screen: ADD_NEW_ADDRESS, item })}
+                // onEditPress={() => props.navigation.navigate('MyProfile', { screen: ADD_NEW_ADDRESS, params: { item } })}
+                // onEditPress={() => console.log("EDIT")}
                 actionButton
                 item={item.item}
               />

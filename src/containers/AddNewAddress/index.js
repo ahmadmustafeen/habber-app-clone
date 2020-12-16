@@ -14,22 +14,25 @@ import { MY_PROFILE } from '_constants/Screens';
 import { Header } from '_components/Header';
 import { ADD_ADDRESS_SAGA } from '_redux/actionTypes';
 import { useTranslation } from 'react-i18next';
+import { EDIT_ADDRESS } from '../../redux/actionTypes';
 
 const AddNewAddress = (props) => {
+  const { route, navigation } = props;
+  // const data = route.params.params.item.item;
+  // var item = !!route.params.item ? route.params.item : ""
+  // item = route.params.item;
+  const item = (props.route.params ? props.route.params.item.item : "")
   const { t } = useTranslation(['AddNewAddress'])
   const [state, setState] = useState({
-
-
-    address_name: "",
-    address_line1: "",
-    address_line2: "",
-    country_id: "",
-    state: "",
-    city_id: 4,
-    phone: "",
-    post_code: "",
+    address_name: (item ? item.address_name : ""),
+    address_line1: (item ? item.address_line1 : ""),
+    address_line2: (item ? item.address_line2 : ""),
+    country_id: (item ? item.country_id : ""),
+    state: (item ? item.state : ""),
+    city_id: (item ? item.city_id : ""),
+    phone: (item ? item.phone : ""),
+    post_code: (item ? item.post_code : ""),
   });
-  console.log("state", state)
   // const data = [
   //   { key: index++, section: true, label: 'Fruits' },
   //   { key: index++, label: 'Red Apples' },
@@ -55,9 +58,12 @@ const AddNewAddress = (props) => {
   };
   const dispatch = useDispatch();
   const AddAddress = () => {
-    dispatch(withDataActions(state, ADD_ADDRESS_SAGA));
+    item ?
+      dispatch(withDataActions({ ...state, id: item.id }, EDIT_ADDRESS))
+      :
+      dispatch(withDataActions(state, ADD_ADDRESS_SAGA));
   };
-  const { navigate } = props.navigation;
+  const { navigate } = navigation;
   return (
     <ScrollView>
       <ImageBackground

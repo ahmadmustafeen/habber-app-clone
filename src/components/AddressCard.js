@@ -1,10 +1,11 @@
 import React from 'react';
-import { View, StyleSheet, Text, I18nManager, Image, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, Text, I18nManager, Image } from 'react-native';
 // import { useTheme } from '@react-navigation/native';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
+import { TouchableOpacity } from 'react-native-gesture-handler'
 import { AppText } from './common';
 import { RadioButton } from './RadioButton';
 import { FETCH_ADDRESS } from '_redux/actionTypes';
@@ -34,7 +35,7 @@ const AddressCard = (props) => {
         justifyContent: 'space-between',
       }}>
       <Loader loading={isLoading} />
-      <View style={{ flex: 5 }}>
+      <View style={{ flex: 8 }}>
         <AppText size={15} primary style={styles.spacebtwaddresses}>
           {item.address_name}
         </AppText>
@@ -87,9 +88,10 @@ const styles = StyleSheet.create({
     height: wp(4.5)
   },
   imageContainer: {
-    position: 'absolute',
-    right: wp(2),
-    top: hp(1),
+    marginTop: hp(1.2),
+    // position: 'absolute',
+    // right: wp(2),
+    // top: hp(1),
     flexDirection: 'row'
   }
 });
