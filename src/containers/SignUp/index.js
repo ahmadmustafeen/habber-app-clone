@@ -1,24 +1,28 @@
-import React, { useState } from 'react';
-import { View, StyleSheet, Alert } from 'react-native';
-import { useDispatch, useSelector, shallowEqual } from 'react-redux';
-import { useTranslation } from 'react-i18next';
-import { InputWithLabel, RoundIcon, ModalScreen, AuthHeader } from '_components';
-import { BackgroundImage, Button, AppText } from '_components/common';
-import { signUp } from '_assets/data/StaticData';
-import { withDataActions } from '_redux/actions/GenericActions';
-import { SIGN_UP, SIGN_IN } from '_redux/actionTypes';
+import React, {useState} from 'react';
+import {View, StyleSheet, Alert} from 'react-native';
+import {useDispatch, useSelector, shallowEqual} from 'react-redux';
+import {useTranslation} from 'react-i18next';
+import {InputWithLabel, RoundIcon, ModalScreen, AuthHeader} from '_components';
+import {BackgroundImage, Button, AppText} from '_components/common';
+import {signUp} from '_assets/data/StaticData';
+import {withDataActions} from '_redux/actions/GenericActions';
+import {SIGN_UP, SIGN_IN} from '_redux/actionTypes';
 import useModal from '_utils/customHooks/useModal';
-import { validateEmail, validatePassword } from '../../helpers/Validators';
+import {validateEmail, validatePassword} from '../../helpers/Validators';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
+import {
+  loginWithFacebook,
+  getInfoFromToken,
+} from '../../services/facebookLoginController';
 const SignUp = (props) => {
   const dispatch = useDispatch();
-  const { navigate } = props.navigation;
-  const { visible } = useModal();
+  const {navigate} = props.navigation;
+  const {visible} = useModal();
 
-  const { t } = useTranslation(["createAccount"]);
+  const {t} = useTranslation(['createAccount']);
   const [state, setState] = useState({
     first_name: '',
     last_name: '',
@@ -27,20 +31,27 @@ const SignUp = (props) => {
     password_confirmation: '',
   });
 
-  const { first_name, last_name, email, password, password_confirmation } = state;
+  const {first_name, last_name, email, password, password_confirmation} = state;
 
   const handleChange = (key, value) => {
-    setState((state) => ({ ...state, [key]: value }));
+    setState((state) => ({...state, [key]: value}));
   };
   const validate = () => {
-
-    if (!first_name) Alert.alert("Enter First Name")
-    if (!last_name) Alert.alert("Enter Last Name")
-    if (!validateEmail(email)) Alert.alert("Enter Valid Email")
-    if (!validatePassword(password)) Alert.alert("Password must have 8 letters")
-    if (password !== password_confirmation) Alert.alert("Password does'nt match")
-    if (first_name && last_name && validateEmail(email) && validatePassword(password) && (password === password_confirmation)) {
-      return true
+    if (!first_name) Alert.alert('Enter First Name');
+    if (!last_name) Alert.alert('Enter Last Name');
+    if (!validateEmail(email)) Alert.alert('Enter Valid Email');
+    if (!validatePassword(password))
+      Alert.alert('Password must have 8 letters');
+    if (password !== password_confirmation)
+      Alert.alert("Password does'nt match");
+    if (
+      first_name &&
+      last_name &&
+      validateEmail(email) &&
+      validatePassword(password) &&
+      password === password_confirmation
+    ) {
+      return true;
     }
   };
   const onSignUp = () => {
@@ -49,7 +60,7 @@ const SignUp = (props) => {
   const onContinueModal = () => {
     dispatch(withDataActions(state, SIGN_IN));
   };
-  const { loading } = useSelector(({ LoadingReducer }) => {
+  const {loading} = useSelector(({LoadingReducer}) => {
     return {
       loading: LoadingReducer.loading,
     };
@@ -57,7 +68,6 @@ const SignUp = (props) => {
   return (
     <BackgroundImage>
       <View key="header">
-
         <AuthHeader {...props} />
       </View>
       <View key="content" style={styles.content}>
@@ -103,7 +113,7 @@ const SignUp = (props) => {
           value={password_confirmation}
           onChangeText={(value) => handleChange('password_confirmation', value)}
         />
-        <View style={{ alignItems: 'center' }}>
+        <View style={{alignItems: 'center'}}>
           <AppText white secondary size={17}>
             {t('bycreating')}
           </AppText>
@@ -114,15 +124,24 @@ const SignUp = (props) => {
             {t('signUp')}
           </Button>
         </View>
-        {/* <AppText white secondary style={{marginTop: 10, marginBottom: 10}}>
-            OR
-          </AppText> 
+        <AppText white secondary style={{marginTop: 10, marginBottom: 10}}>
+          OR
+        </AppText>
         <View style={{flexDirection: 'row', justifyContent: 'space-around'}}>
           <RoundIcon
             name="sc-facebook"
             type="evilicon"
             color="#fff"
-            onPress={() => console.log('hello')}
+            onPress={async () => {
+              try {
+                const data = await loginWithFacebook();
+                const accessToken = data.accessToken.toString();
+                const userInfo = await getInfoFromToken(accessToken);
+                console.log('INFO', userInfo);
+              } catch (error) {
+                Alert.alert('ERROR', 'Something went wrong, contact admin!');
+              }
+            }}
           />
           <RoundIcon
             name="google"
@@ -136,7 +155,7 @@ const SignUp = (props) => {
             color="#fff"
             onPress={() => console.log('hello')}
           />
-        </View> */}
+        </View>
         <ModalScreen
           visible={visible}
           onContinue={onContinueModal}
