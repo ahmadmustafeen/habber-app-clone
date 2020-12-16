@@ -42,10 +42,11 @@ const BookDetails = (props) => {
   const { t } = useTranslation(["BookDetails"]);
   const { colors } = useTheme();
   const dispatch = useDispatch();
+  console.log("props", props)
   const { params: book } = props.route;
 
   const { id: product_id, quantity, product_type, price, bookClub, type } = book;
-
+  console.log("sad")
   useEffect(() => {
     dispatch(withDataActions({ product_id }, FETCH_RELATED_BOOKS));
   }, []);

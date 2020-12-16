@@ -8,6 +8,7 @@ import {
   Dimensions,
   Image,
   Linking,
+  TouchableOpacity
 } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { GoogleSignin } from '@react-native-community/google-signin';
@@ -101,53 +102,63 @@ const Home = (props) => {
   console.log('IS LOADING  . . . ', isLoading);
   console.log('user Profile', UserProfileReducer);
   console.log('BannerReducer ', BannerReducer);
-  const DATA = BannerReducer.map(banner => { return { coverImageUri: banner.banner_image, cornerLabelColor: '#FFD300', cornerLabelText: 'GOTY' } })
+  const DATA = BannerReducer.map(({ banner_image, product }) => ({ coverImageUri: banner_image, product }))
 
-  const renderItem = ({ item, index }) => (
-    <View key={item.coverImageUri} style={styles.cardContainer}>
-      <View
-        style={{
-          zIndex: 5,
-          width: wp(80),
-          justifyContent: 'space-between',
-          flexDirection: 'row',
-          position: 'absolute',
-          top: hp(2.5),
-          paddingHorizontal: 20,
-        }}>
-        <Icon
-          color={'white'}
-          size={17}
-          name="left"
-          type="ant-design"
-          onPress={() =>
-            CAROUSEL.current ? CAROUSEL.current.snapToPrev() : null
-          }
-        />
-        <Icon
-          color={'white'}
-          size={17}
-          name="right"
-          type="ant-design"
-          onPress={() =>
-            CAROUSEL.current ? CAROUSEL.current.snapToNext() : null
-          }
-        />
-      </View>
-      <View style={styles.cardWrapper}>
-        <Image style={styles.card} source={{ uri: item.coverImageUri }} />
+  const renderItem = ({ item, index }) => {
+    console.log(item.product, "dsfsd")
+    return (
+      <TouchableOpacity key={item.coverImageUri} style={styles.cardContainer}
+        onPress={() => {
+          navigate(BOOK_DETAILS_SCREEN, {
+            ...item.product,
+            product_type: item.product.product_type
+          })
+        }
+        }>
         <View
-          style={[
-            styles.cornerLabel,
-            { backgroundColor: item.cornerLabelColor },
-          ]}>
-          <AppText style={styles.cornerLabelText}>
-            {item.cornerLabelText}
-          </AppText>
+          style={{
+            zIndex: 5,
+            width: wp(80),
+            justifyContent: 'space-between',
+            flexDirection: 'row',
+            position: 'absolute',
+            top: hp(2.5),
+            paddingHorizontal: 20,
+          }}>
+          <Icon
+            color={'white'}
+            size={17}
+            name="left"
+            type="ant-design"
+            onPress={() =>
+              CAROUSEL.current ? CAROUSEL.current.snapToPrev() : null
+            }
+          />
+          <Icon
+            color={'white'}
+            size={17}
+            name="right"
+            type="ant-design"
+            onPress={() =>
+              CAROUSEL.current ? CAROUSEL.current.snapToNext() : null
+            }
+          />
         </View>
-      </View>
-    </View>
-  );
+        <View style={styles.cardWrapper}>
+          <Image style={styles.card} source={{ uri: item.coverImageUri }} />
+          <View
+            style={[
+              styles.cornerLabel,
+              { backgroundColor: item.cornerLabelColor },
+            ]}>
+            <AppText style={styles.cornerLabelText}>
+              {item.cornerLabelText}
+            </AppText>
+          </View>
+        </View>
+      </TouchableOpacity>
+    )
+  };
 
   return (
     <>

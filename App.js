@@ -1,17 +1,17 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import Navigator from './src/navigator';
-import {navigationRef} from './NavigationService';
-import {StatusBar, View} from 'react-native';
-import {ModalScreen} from 'components';
+import { navigationRef } from './NavigationService';
+import { StatusBar, View } from 'react-native';
+import { ModalScreen } from 'components';
 import useNetworkModal from 'utils/customHooks/useNetworkModal';
 import OfflineNotice from 'components/OfflineNotice';
-import {Color} from '_constants/Colors';
+import { Color } from '_constants/Colors';
 import RemotePushController from './src/services/RemotePushController';
 import PushNotificationIOS from '@react-native-community/push-notification-ios';
-import {LoginButton} from 'react-native-fbsdk';
+import { LoginButton } from 'react-native-fbsdk';
 
 const App = () => {
-  const {network, toggleModal} = useNetworkModal();
+  const { network, toggleModal } = useNetworkModal();
   // useEffect(() => {
   //   PushNotificationIOS.addEventListener('notification', onRemoteNotification);
   // });
@@ -27,11 +27,11 @@ const App = () => {
   // };
 
   return (
-    <View style={{flex: 1}}>
+    <View style={{ flex: 1 }}>
       <StatusBar barStyle="light-content" />
       <Navigator ref={navigationRef} />
       <View>
-        <LoginButton
+        {/* <LoginButton
           publishPermissions={['email']}
           onLoginFinished={(error, result) => {
             if (error) {
@@ -46,7 +46,7 @@ const App = () => {
             }
           }}
           onLogoutFinished={() => alert('User logged out')}
-        />
+        /> */}
       </View>
       <ModalScreen
         image={require('./src/assets/images/nointernet.png')}
