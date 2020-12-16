@@ -38,7 +38,7 @@ const BookCard = (props) => {
     <TouchableWithoutFeedback onPress={onPress}>
       <View style={[styles.containerStyle, { borderColor: colors.borderColor }]}>
         <AppText bold style={{ backgroundColor: colors.primary, padding: 10 }}>
-          Price: {parseFloat(price_product.price).toFixed(2)} {price_product.iso}
+          Price: {parseFloat(price).toFixed(2)} {price_product.iso}
         </AppText>
         <View style={styles.imageContainer}>
           <FastImage source={{ uri: image }} onPress={toggleModal} />

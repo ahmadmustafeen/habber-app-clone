@@ -105,7 +105,6 @@ const Home = (props) => {
   const DATA = BannerReducer.map(({ banner_image, product }) => ({ coverImageUri: banner_image, product }))
 
   const renderItem = ({ item, index }) => {
-    console.log(item.product, "dsfsd")
     return (
       <TouchableOpacity key={item.coverImageUri} style={styles.cardContainer}
         onPress={() => {
