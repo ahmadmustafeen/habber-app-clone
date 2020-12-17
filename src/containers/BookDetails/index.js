@@ -286,15 +286,6 @@ const BookDetails = (props) => {
                 noTitle
                 data={EnglishBooksReducer.filter((book) => book.featured)}
                 renderComponent={(item) => {
-                  // if (type === 'bookclub') {
-                  //   return <RelatedThumbnailClub onPress={() => {
-                  //     props.navigation.push(BOOK_DETAILS_SCREEN, {
-                  //       ...item.item, product_type: type
-                  //     })
-                  //   }
-                  //   }
-                  //     url={item.item.image} />;
-                  // }
                   if (product_type === 'book') {
                     return (
                       <RelatedThumbnailBook

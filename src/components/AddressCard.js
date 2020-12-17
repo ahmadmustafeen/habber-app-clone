@@ -28,12 +28,7 @@ const AddressCard = (props) => {
     };
   }, shallowEqual);
   return (
-    <View
-      style={{
-        width: '100%',
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-      }}>
+    <View style={styles.container}>
       <Loader loading={isLoading} />
       <View style={{ flex: 8 }}>
         <AppText size={15} primary style={styles.spacebtwaddresses}>
@@ -47,18 +42,18 @@ const AddressCard = (props) => {
         <View style={styles.imageContainer}>
           <View style={[styles.image]} >
             <TouchableOpacity onPress={onEditPress}>
-              <Image style={{ width: "100%", height: "100%" }} source={require("_assets/images/edit.png")} />
+              <Image style={styles.imagePic} source={require("_assets/images/edit.png")} />
             </TouchableOpacity>
           </View>
 
 
           <TouchableOpacity style={styles.image} onPress={onTrashPress}>
-            <Image style={{ width: "100%", height: "100%" }} source={require("_assets/images/delete.png")} />
+            <Image style={styles.imagePic} source={require("_assets/images/delete.png")} />
           </TouchableOpacity>
 
         </View>
       }
-      <View style={{ flex: 1, alignItems: 'center' }}>
+      <View style={styles.radioButton}>
         {showRadio && (
           <RadioButton
             selected={item.id === currentValue}
@@ -72,6 +67,11 @@ const AddressCard = (props) => {
 };
 
 const styles = StyleSheet.create({
+  container: {
+    width: '100%',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
   spacebtwaddresses: {
     marginLeft: 15,
     marginTop: 10,
@@ -87,12 +87,20 @@ const styles = StyleSheet.create({
     width: wp(3.7),
     height: wp(4.5)
   },
+  headerImage: {
+    width: '100%',
+    height: '100%'
+  },
   imageContainer: {
     marginTop: hp(1.2),
     // position: 'absolute',
     // right: wp(2),
     // top: hp(1),
     flexDirection: 'row'
+  },
+  radioButton: {
+    flex: 1,
+    alignItems: 'center'
   }
 });
 export { AddressCard };

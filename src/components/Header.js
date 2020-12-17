@@ -7,103 +7,215 @@ import {
   Platform,
   I18nManager,
   TouchableOpacity,
+  ImageBackground
 } from 'react-native';
-import {Icon} from 'react-native-elements';
-import {AppText} from './common';
-import {useTheme} from '@react-navigation/native';
-import {CART_SCREEN, SEARCH} from 'constants/Screens';
+import { Icon } from 'react-native-elements';
+import { AppText } from './common';
+import { useTheme } from '@react-navigation/native';
+import { CART_SCREEN, SEARCH } from 'constants/Screens';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-import {useTranslation} from 'react-i18next';
-const Header = (props) => {
-  const {t} = useTranslation(['Header']);
+import { useTranslation } from 'react-i18next';
 
-  const {colors} = useTheme();
+const Header = (props) => {
+  const { t } = useTranslation(['Header']);
+
+  const { colors } = useTheme();
   const {
     navigation,
     title,
     color,
     secondary,
-    route: {name},
+    route: { name },
     headerLeft,
     headerRight,
     backIcon,
+    headerImage,
     cartNumber,
   } = props;
   const headerColor =
     color || (secondary && colors.secondary) || colors.primary;
-  return (
-    <View style={styles.container}>
-      <View>
-        {headerLeft ? (
-          headerLeft
-        ) : (
-          <Icon
-            onPress={() => navigation.openDrawer()}
-            color={headerColor}
-            name="menu"
-            type="feather"
-          />
-        )}
-      </View>
-      <View>
-        {backIcon ? (
-          <Icon
-            onPress={() => props.navigation.goBack()}
-            color={colors.primary}
-            name="leftcircleo"
-            type="ant-design"
-          />
-        ) : null}
-      </View>
-
-      <View
-        style={{
-          flex: 4,
-          paddingLeft: 10,
-          transform: [{scaleX: I18nManager.isRTL ? -1 : 1}],
-        }}>
-        <AppText bold small color={headerColor}>
-          {title || t(name)}
-        </AppText>
-      </View>
-      <View
-        style={{
-          flex: 1,
-          alignItems: 'flex-end',
-        }}>
-        {headerRight ? (
-          headerRight
-        ) : (
-          <View style={styles.right}>
-            <TouchableOpacity
-              onPress={() => {
-                navigation.navigate(CART_SCREEN, {
-                  label: 'CART_SCREEN',
-                  CART_SCREEN,
-                  // CARTNEW
-                });
-              }}>
-              <Image
-                source={
-                  cartNumber
-                    ? require('../assets/images/filledcart.png')
-                    : require('../assets/images/nocart.png')
-                }
-                style={{marginRight: wp(3)}}
+  return (headerImage ?
+    <ImageBackground
+      style={{
+        height: hp(21),
+        paddingHorizontal: wp(3),
+        paddingBottom: hp(8),
+        marginBottom: hp(1),
+        justifyContent: 'flex-end',
+        transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }],
+      }}
+      resizeMode="stretch"
+      source={require('_assets/images/header.png')}>
+      <View style={styles.container}>
+        <View>
+          {headerLeft ? (
+            headerLeft
+          ) : (
+              <Icon
+                onPress={() => navigation.openDrawer()}
+                color={headerColor}
+                name="menu"
+                type="feather"
               />
-              {cartNumber ? (
-                <View style={styles.circle}>
-                  <AppText size={13} bold white>
-                    {cartNumber}
-                  </AppText>
-                </View>
-              ) : null}
-            </TouchableOpacity>
+            )}
+        </View>
+        <View>
+          {backIcon ? (
+            <Icon
+              onPress={() => props.navigation.goBack()}
+              color={colors.primary}
+              name="leftcircleo"
+              type="ant-design"
+            />
+          ) : null}
+        </View>
 
-            {/* <Icon
+        <View
+          style={{
+            flex: 4,
+            paddingLeft: 10,
+            transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }],
+          }}>
+          <AppText bold small color={headerColor}>
+            {title || t(name)}
+          </AppText>
+        </View>
+        <View
+          style={{
+            flex: 1,
+            alignItems: 'flex-end',
+          }}>
+          {headerRight ? (
+            headerRight
+          ) : (
+              <View style={styles.right}>
+                <TouchableOpacity
+                  onPress={() => {
+                    navigation.navigate(CART_SCREEN, {
+                      label: 'CART_SCREEN',
+                      CART_SCREEN,
+                      // CARTNEW
+                    });
+                  }}>
+                  <Image
+                    source={
+                      cartNumber
+                        ? require('../assets/images/filledcart.png')
+                        : require('../assets/images/nocart.png')
+                    }
+                    style={{ marginRight: wp(3) }}
+                  />
+                  {cartNumber ? (
+                    <View style={styles.circle}>
+                      <AppText size={13} bold white>
+                        {cartNumber}
+                      </AppText>
+                    </View>
+                  ) : null}
+                </TouchableOpacity>
+
+                {/* <Icon
+            onPress={() =>
+              navigation.navigate(CART_SCREEN, {
+                label: 'CART_SCREEN',
+                CART_SCREEN,
+                // CARTNEW
+              })
+            }
+            color={headerColor}
+            name="shopping-bag"
+            type="font-awesome-5"
+            containerStyle={{ paddingEnd: 10 }}
+          /> */}
+                {name !== 'Search' && (
+                  <Icon
+                    props={props}
+                    onPress={() =>
+                      navigation.navigate(SEARCH, { label: 'SEARCH', SEARCH })
+                    }
+                    color={headerColor}
+                    name="search1"
+                    type="antdesign"
+                  />
+                )}
+              </View>
+            )}
+        </View>
+      </View>
+    </ImageBackground>
+    : (
+      <View style={styles.container}>
+        <View>
+          {headerLeft ? (
+            headerLeft
+          ) : (
+              <Icon
+                onPress={() => navigation.openDrawer()}
+                color={headerColor}
+                name="menu"
+                type="feather"
+              />
+            )}
+        </View>
+        <View>
+          {backIcon ? (
+            <Icon
+              onPress={() => props.navigation.goBack()}
+              color={colors.primary}
+              name="leftcircleo"
+              type="ant-design"
+            />
+          ) : null}
+        </View>
+
+        <View
+          style={{
+            flex: 4,
+            paddingLeft: 10,
+            transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }],
+          }}>
+          <AppText bold small color={headerColor}>
+            {title || t(name)}
+          </AppText>
+        </View>
+        <View
+          style={{
+            flex: 1,
+            alignItems: 'flex-end',
+          }}>
+          {headerRight ? (
+            headerRight
+          ) : (
+              <View style={styles.right}>
+                <TouchableOpacity
+                  onPress={() => {
+                    navigation.navigate(CART_SCREEN, {
+                      label: 'CART_SCREEN',
+                      CART_SCREEN,
+                      // CARTNEW
+                    });
+                  }}>
+                  <Image
+                    source={
+                      cartNumber
+                        ? require('../assets/images/filledcart.png')
+                        : require('../assets/images/nocart.png')
+                    }
+                    style={{ marginRight: wp(3) }}
+                  />
+                  {cartNumber ? (
+                    <View style={styles.circle}>
+                      <AppText size={13} bold white>
+                        {cartNumber}
+                      </AppText>
+                    </View>
+                  ) : null}
+                </TouchableOpacity>
+
+                {/* <Icon
                 onPress={() =>
                   navigation.navigate(CART_SCREEN, {
                     label: 'CART_SCREEN',
@@ -116,22 +228,24 @@ const Header = (props) => {
                 type="font-awesome-5"
                 containerStyle={{ paddingEnd: 10 }}
               /> */}
-            {name !== 'Search' && (
-              <Icon
-                props={props}
-                onPress={() =>
-                  navigation.navigate(SEARCH, {label: 'SEARCH', SEARCH})
-                }
-                color={headerColor}
-                name="search1"
-                type="antdesign"
-              />
+                {name !== 'Search' && (
+                  <Icon
+                    props={props}
+                    onPress={() =>
+                      navigation.navigate(SEARCH, { label: 'SEARCH', SEARCH })
+                    }
+                    color={headerColor}
+                    name="search1"
+                    type="antdesign"
+                  />
+                )}
+              </View>
             )}
-          </View>
-        )}
+        </View>
       </View>
-    </View>
-  );
+    )
+  )
+
 };
 const styles = StyleSheet.create({
   container: {
@@ -156,4 +270,4 @@ const styles = StyleSheet.create({
     height: wp(3),
   },
 });
-export {Header};
+export { Header };
