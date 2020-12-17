@@ -36,7 +36,8 @@ import {
   EDIT_ADDRESS,
   FETCH_BANNER,
   DELETE_ADDRESS,
-  FETCH_STATIC
+  FETCH_STATIC,
+  PUSH_NOTIFICATION_FUNCTION
 } from '../actionTypes';
 
 import { signupSaga } from './SignupSaga';
@@ -74,6 +75,7 @@ import { EditAddressSaga } from './EditAddressSaga'
 import { Carasoul } from './Carasoul'
 import { DeleteAddressSaga } from './DeleteAddressSaga'
 import { StaticSaga } from './FetchStaticSaga'
+import { notificationSaga } from './NotificationSaga'
 
 function* actionWatcher() {
   yield takeLatest(SPLASH_ACTION, splashSaga);
@@ -111,6 +113,7 @@ function* actionWatcher() {
   yield takeLatest(FETCH_BANNER, Carasoul);
   yield takeLatest(DELETE_ADDRESS, DeleteAddressSaga);
   yield takeLatest(FETCH_STATIC, StaticSaga)
+  yield takeLatest(PUSH_NOTIFICATION_FUNCTION, notificationSaga)
 }
 
 export default function* rootSaga() {

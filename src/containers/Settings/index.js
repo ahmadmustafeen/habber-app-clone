@@ -31,7 +31,7 @@ import { SIGN_OUT } from '_redux/actionTypes';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import { AppText } from 'components/common';
 import PushNotification from 'react-native-push-notification';
-import { SWITCH_LANG } from '../../redux/actionTypes';
+import { PUSH_NOTIFICATION_FUNCTION, SWITCH_LANG } from '../../redux/actionTypes';
 
 const LANGUAGES = [{ id: 1, iso: 'ar', name: 'Arabic' }, { id: 2, iso: 'en', name: 'English' }];
 
@@ -116,6 +116,8 @@ const Settings = (props) => {
     // });
   };
   const onToggleNotifications = async (val) => {
+    dispatch(withDataActions({ notification: val ? 1 : 0, userID: UserProfileReducer.id }, PUSH_NOTIFICATION_FUNCTION))
+    console.log(val)
     item.notifications
       ? PushNotification.abandonPermissions()
       : await PushNotification.requestPermissions();

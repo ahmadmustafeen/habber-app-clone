@@ -28,5 +28,6 @@ export const API_ENDPOINTS = {
   countries: '/countries',
   order: '/order',
   banners: '/banners',
-  static_pages: '/static_page/link'
+  static_pages: '/static_page/link',
+  fcm: '/fcm'
 };
