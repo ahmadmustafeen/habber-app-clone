@@ -49,6 +49,7 @@ const EditProfile = (props) => {
     currency_id: 2,
     token: UserProfileReducer.token
   });
+  console.log(state.token, "eoken")
   const validate = () => {
     //todo - use validation method from src > helpers
     if (!state.first_name) {

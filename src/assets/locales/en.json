@@ -67,7 +67,9 @@
     "EditProfile":"Edit Profile",
     "ChangePassword":"Change Password",
     "Search":"Search",
-    "Filter":"Filter"
+    "Filter":"Filter",
+    "AboutUs":"About Us"
+
   },
 
   "BookDetails" :{

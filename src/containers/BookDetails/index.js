@@ -43,9 +43,21 @@ const BookDetails = (props) => {
   const { colors } = useTheme();
   const dispatch = useDispatch();
   console.log("props", props)
-  const { params: book } = props.route;
+  var { params: book } = props.route;
+  // (book.product_type === 'bookclub') ? book = book.book : null
 
-  const { id: product_id, quantity, product_type, price, bookClub, type } = book;
+  var { id: product_id, quantity, product_type, price, bookClub, type } = book;
+  var old_product;
+  console.log(book, "BOOKADASDASWDASDFDFDRGDFHFJ")
+  if (book.product_type === 'bookclub') {
+    product_id = book.book.id;
+    quantity = book.book.quantity;
+    price = book.book.price;
+    type = 'bookclub';
+    product_type = 'book';
+    old_product = book;
+    book = book.book
+  }
 
   useEffect(() => {
     dispatch(withDataActions({ product_id }, FETCH_RELATED_BOOKS));
@@ -76,13 +88,13 @@ const BookDetails = (props) => {
       };
     },
   );
-  if (product_type === 'bookclub') {
-    product_id = book.book.id;
-    quantity = book.book.quantity;
-    price = book.book.price;
-    type = 'bookclub';
-    product_type = 'book';
-  }
+  // if (product_type === 'bookclub') {
+  //   product_id = book.book.id;
+  //   quantity = book.book.quantity;
+  //   price = book.book.price;
+  //   type = 'bookclub';
+  //   product_type = 'book';
+  // }
 
   let inCartPosition = CartReducer[product_type].findIndex(
     (el) => el.product_id === product_id,
@@ -182,7 +194,7 @@ const BookDetails = (props) => {
                 style={{ width: wp(90), alignSelf: 'center', paddingBottom: 20 }}>
                 <Image
                   style={{ width: wp(90), height: hp(18) }}
-                  source={require('_assets/images/splash.png')}
+                  source={{ url: old_product.image }}
                 />
               </View>
             )}
@@ -195,7 +207,7 @@ const BookDetails = (props) => {
               onClickFavourite={handleFavouriteClick}
               favourite={isFavourite}
               onClickShare={onShare}
-              {...book.book}
+              {...book}
             />
           </View>
         )}

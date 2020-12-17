@@ -17,7 +17,8 @@ import {
   FETCH_SITE_DETAILS,
   FETCH_CURRENCIES,
   FETCH_COUNTRIES,
-  FETCH_BANNER
+  FETCH_BANNER,
+  FETCH_STATIC
 } from '_redux/actionTypes';
 
 
@@ -34,6 +35,7 @@ export function* splashSaga() {
     yield put({ type: FETCH_CURRENCIES });
     yield put({ type: FETCH_COUNTRIES });
     yield put({ type: FETCH_SITE_DETAILS });
+    yield put({ type: FETCH_STATIC });
     yield put({ type: FETCH_BANNER });
 
     if (response.problem === NETWORK_ERROR) {
