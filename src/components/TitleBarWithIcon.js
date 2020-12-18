@@ -19,7 +19,7 @@ import { Icon } from 'react-native-elements';
 const TitleBarWithIcon = (props) => {
   const { colors } = useTheme();
   const {
-    viewStyle,
+    containerStyle,
     label,
     onIconPress,
     iconType,
@@ -46,7 +46,7 @@ const TitleBarWithIcon = (props) => {
       <View
         style={[
           styles.containerStyle,
-          viewStyle,
+          containerStyle,
           {
             borderLeftColor: colors.primary,
             padding: small ? 5 : hp('0.8%'),

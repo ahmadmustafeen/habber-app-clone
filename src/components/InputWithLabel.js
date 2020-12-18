@@ -13,10 +13,10 @@ import { color } from 'react-native-reanimated';
 const InputWithLabel = (props) => {
   const { colors } = useTheme();
 
-  const { viewStyle, white, label, inputRef, required, maxLength, primary, borderColor, } = props;
+  const { containerStyle, white, label, inputRef, required, maxLength, primary, borderColor, } = props;
 
   return (
-    <View style={[styles.inputContainerStyle, viewStyle,]}>
+    <View style={[styles.inputContainerStyle, containerStyle,]}>
       { label && (
         <AppText white={white} secondary={!primary} primary={primary} >
           {`${label} ` || `Label Name`}

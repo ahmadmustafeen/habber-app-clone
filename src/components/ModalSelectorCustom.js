@@ -12,7 +12,7 @@ import {
 const ModalSelectorCustom = (props) => {
     const { colors } = useTheme();
     const {
-        viewStyle,
+        containerStyle,
         style,
         data,
         onChangeText,
@@ -25,7 +25,7 @@ const ModalSelectorCustom = (props) => {
         iconType
     } = props;
     return (
-        <View style={[viewStyle]}>
+        <View style={[containerStyle]}>
             <ModalSelector
                 selectStyle={[style, styles.modalSelector, { borderColor: colors.primary }]}
                 data={data}

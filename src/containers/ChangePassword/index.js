@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, ScrollView, ImageBackground, I18nManager } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import { InputWithLabel } from '_components';
 import { Button, Screen } from '_components/common';
 // import { MY_PROFILE } from '_constants/Screens';
@@ -32,60 +32,62 @@ const ChangePassword = (props) => {
     // navigate(MY_PROFILE)
   };
   return (
-    <ScrollView>
-      <ImageBackground
-        style={{
-          height: hp(21),
-          paddingHorizontal: wp(3),
-          paddingBottom: hp(8),
-          marginBottom: hp(1),
-          justifyContent: 'flex-end',
-          transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }],
-        }}
-        resizeMode="stretch"
-        source={require('_assets/images/header.png')}>
-        <Header {...props} />
-      </ImageBackground>
-      <Screen>
-        <View key="header"></View>
-        <View key="content">
-          <InputWithLabel
-            name="oldPassword"
-            placeholder="*************"
-            label={t('password')}
-            value={state.oldPassword}
-            onChangeText={(val) => setStateHandler('old_password', val)}
-          />
-          <InputWithLabel
-            name="newPassword"
-            placeholder="*************"
-            label={t('newPassword')}
-            value={state.oldPassword}
-            onChangeText={(val) => setStateHandler('password', val)}
-          />
-          <InputWithLabel
-            name="password_confirmation"
-            placeholder="*************"
-            label={t('confirmNewPassword')}
+    <Screen noPadding>
+      <View key="header">
+        <Header {...props} headerImage headerLeft backIcon />
+      </View>
+      <View key="content" style={styles.container}>
+        <InputWithLabel
+          color={colors.borderColor}
+          name="oldPassword"
+          placeholder="*************"
+          label={t('password')}
+          value={state.oldPassword}
+          onChangeText={(val) => setStateHandler('old_password', val)}
+        />
+        <InputWithLabel
+          color={colors.borderColor}
+          name="newPassword"
+          placeholder="*************"
+          label={t('newPassword')}
+          value={state.oldPassword}
+          onChangeText={(val) => setStateHandler('password', val)}
+        />
+        <InputWithLabel
+          color={colors.borderColor}
+          name="password_confirmation"
+          placeholder="*************"
+          label={t('confirmNewPassword')}
 
-            value={state.oldPassword}
-            onChangeText={(val) =>
-              setStateHandler('password_confirmation', val)
-            }
-          />
-        </View>
-        <View key="footer">
-          <Button
-            appColor
-            bold
-            color={colors.white}
-            onPress={() => passChange()}>
-            {t('save')}
-          </Button>
-        </View>
-      </Screen>
-    </ScrollView>
+          value={state.oldPassword}
+          onChangeText={(val) =>
+            setStateHandler('password_confirmation', val)
+          }
+        />
+      </View>
+      <View key="footer" style={styles.footer}>
+        <Button
+          style={styles.button}
+          appColor
+          bold
+          color={colors.white}
+          onPress={() => passChange()}>
+          {t('save')}
+        </Button>
+      </View>
+    </Screen >
   );
 };
+const styles = StyleSheet.create({
+  container: {
+    width: wp(90),
+    alignSelf: 'center'
+  },
+  button: {
+    alignSelf: 'center',
+    width: wp(90),
+    marginTop: hp(-10)
 
+  }
+})
 export default ChangePassword;

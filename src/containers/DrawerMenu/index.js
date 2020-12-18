@@ -77,7 +77,8 @@ const DrawerMenu = (props) => {
               <View style={styles.imageProfile}>
                 <Image
                   style={styles.imageAvatar}
-                  source={require('../../assets/images/Screenshot_Logo.jpg')}
+                  source={UserProfileReducer.profile_pic ? { uri: UserProfileReducer.profile_pic } : require('_assets/images/noUser.png')}
+
                 />
               </View>
 

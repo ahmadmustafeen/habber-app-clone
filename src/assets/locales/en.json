@@ -157,7 +157,7 @@
     "password":"Password",
     "newPassword":"New Password",
     "confirmNewPassword":"Confirm New Password",
-    "save":"Save"
+    "save":"SAVE"
   },
   "Search":{
     "bookFound":"Book(s) Found"

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import {
   View,
   ScrollView,
@@ -10,25 +10,25 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import ImagePicker from 'react-native-image-picker';
-import {withDataActions} from '_redux/actions';
-import {Button, Screen} from '_components/common';
-import {InputWithLabel} from '_components';
-import {HorizontalRow} from '_components/HorizontalRow';
-import {MY_PROFILE} from '_constants/Screens';
-import {Header} from '_components/Header';
-import {useDispatch, useSelector, shallowEqual} from 'react-redux';
-import {validatePhone} from '_helpers/Validators';
+import { withDataActions } from '_redux/actions';
+import { Button, Screen } from '_components/common';
+import { InputWithLabel } from '_components';
+import { HorizontalRow } from '_components/HorizontalRow';
+import { MY_PROFILE } from '_constants/Screens';
+import { Header } from '_components/Header';
+import { useDispatch, useSelector, shallowEqual } from 'react-redux';
+import { validatePhone } from '_helpers/Validators';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-import {useTheme} from '@react-navigation/native';
-import {AppText} from '../../components/common';
-import {useTranslation} from 'react-i18next';
+import { useTheme } from '@react-navigation/native';
+import { AppText } from '../../components/common';
+import { useTranslation } from 'react-i18next';
 
 const imageOptions = {
   title: 'Select Avatar',
-  customButtons: [{name: 'fb', title: 'Choose Photo from Facebook'}],
+  customButtons: [{ name: 'fb', title: 'Choose Photo from Facebook' }],
   storageOptions: {
     skipBackup: true,
     path: 'images',
@@ -36,7 +36,7 @@ const imageOptions = {
 };
 
 const EditProfile = (props) => {
-  const {t} = useTranslation('EditProfile');
+  const { t } = useTranslation('EditProfile');
   const UserProfileReducer = useSelector(
     (state) => state.UserProfileReducer,
     shallowEqual,
@@ -69,9 +69,9 @@ const EditProfile = (props) => {
     }
     return true;
   };
-  const {navigate} = props.navigation;
+  const { navigate } = props.navigation;
   const setStateHandler = (key, val) => {
-    setState({...state, [key]: val});
+    setState({ ...state, [key]: val });
   };
   const save = () => {
     // validate() &&
@@ -89,71 +89,56 @@ const EditProfile = (props) => {
       } else if (response.customButton) {
         console.log('User tapped custom button: ', response.customButton);
       } else {
-        // You can also display the image using data:
-        // const source = { uri: 'data:image/jpeg;base64,' + response.data };
         setStateHandler('profile_pic', {
           uri: response.uri,
           type: response.type,
           name: response.fileName,
         });
 
-        console.log('PROFILE', response);
       }
     });
   };
-  const {colors} = useTheme();
+  const link = state.profile_pic ? state.profile_pic.uri : UserProfileReducer.profile_pic
+  const { colors } = useTheme();
   return (
     <Screen noPadding>
       <View key="header">
-        <ImageBackground
-          style={styles.imageBackground}
-          resizeMode="stretch"
-          source={require('_assets/images/header.png')}>
-          <Header {...props} />
-        </ImageBackground>
+        <Header {...props} headerImage />
       </View>
       <View key="content" style={styles.content}>
         <View style={styles.profiletop}>
           <View style={styles.imgContainer}>
             <Image
               style={styles.image}
-              source={require('../../assets/images/Screenshot_Logo.jpg')}
+              source={link ? { uri: link } : require('_assets/images/noUser.png')}
             />
           </View>
           <TouchableOpacity style={styles.addIcon} onPress={setImage}>
-            <Image
-              style={{width: '100%', height: '100%'}}
-              source={require('_assets/images/addsign.png')}
-            />
+            <Image style={styles.image} source={require("_assets/images/addsign.png")} />
           </TouchableOpacity>
         </View>
-        <HorizontalRow
-          style={{
-            borderBottomWidth: hp(0.1),
-            borderBottomColor: colors.borderColor,
-          }}
-        />
-        <View style={{marginTop: 20}}>
+        <HorizontalRow style={[styles.HorizontalRow, { borderBottomColor: colors.borderColor }]} />
+        <View style={{ marginTop: 20 }}>
+
           <InputWithLabel
-            viewStyle={{margin: 0, padding: hp(0)}}
-            style={{margin: hp(0), padding: hp(0), backgroundColor: 'red'}}
-            color={colors.borderColor}
+
+            style={{ margin: hp(0), padding: hp(0), backgroundColor: 'red' }}
+
+            color="black"
             value={state.first_name}
             placeholder="Khaled"
             label={t('firstName')}
             onChangeText={(val) => setStateHandler('first_name', val)}
           />
           <InputWithLabel
-            viewStyle={{margin: 0, padding: hp(0)}}
+            color="black"
             value={state.last_name}
             placeholder="Ammer"
-            label={t('lastName')}
-            color={colors.borderColor}
+            label={t("lastName")}
             onChangeText={(val) => setStateHandler('last_name', val)}
           />
           <InputWithLabel
-            viewStyle={{margin: 0, padding: hp(0)}}
-            color={colors.borderColor}
+            color="black"
             value={state.email}
             placeholder="Khaled.ammar@gmail.com"
             label={t('phone')}
@@ -166,7 +151,7 @@ const EditProfile = (props) => {
           {t('save')}
         </Button>
       </View>
-    </Screen>
+    </Screen >
   );
 };
 
@@ -177,6 +162,10 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     borderWidth: 2,
     overflow: 'hidden',
+  },
+  HorizontalRow: {
+    borderBottomWidth: hp(0.1),
+
   },
   image: {
     width: '100%',
@@ -194,7 +183,7 @@ const styles = StyleSheet.create({
     paddingBottom: hp(8),
     marginBottom: hp(1),
     justifyContent: 'flex-end',
-    transform: [{scaleX: I18nManager.isRTL ? -1 : 1}],
+    transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }],
   },
   content: {
     width: wp(90),

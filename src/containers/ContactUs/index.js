@@ -110,7 +110,7 @@ const ContactUs = (props) => {
         </View>
         <View key="content" style={styles.content}>
           <InputWithLabel
-            viewStyle={styles.inputWithLabel}
+            containerStyle={styles.inputWithLabel}
             borderColor={colors.borderColor}
             color={"black"}
             placeholder={t('name')}
@@ -120,7 +120,7 @@ const ContactUs = (props) => {
           />
           <InputWithLabel
             borderColor={colors.borderColor}
-            viewStyle={styles.inputWithLabel}
+            containerStyle={styles.inputWithLabel}
             placeholder={t('email')}
             required
             color={"black"}
@@ -129,7 +129,7 @@ const ContactUs = (props) => {
           />
           <InputWithLabel
             borderColor={colors.borderColor}
-            viewStyle={styles.inputWithLabel}
+            containerStyle={styles.inputWithLabel}
             placeholder={t('mobileNumberOptional')}
             color={"black"}
             required

@@ -5,10 +5,10 @@ import { AppText } from './common';
 import { TitleBarWithIcon } from './TitleBarWithIcon';
 
 const DashboardComponent = (props) => {
-  const { viewStyle, data, renderComponent, noTitle } = props;
+  const { containerStyle, data, renderComponent, noTitle } = props;
 
   return (
-    <View style={[styles.containerStyle, viewStyle]}>
+    <View style={[styles.containerStyle, containerStyle]}>
       {noTitle || <TitleBarWithIcon {...props} />}
       <FlatList
         style={styles.flatlist}

@@ -12,7 +12,7 @@ import {
 const SettingsComponent = (props) => {
   const { colors } = useTheme();
   const {
-    viewStyle,
+    containerStyle,
     label,
     onIconPress,
     iconType,
@@ -26,7 +26,7 @@ const SettingsComponent = (props) => {
       <View
         style={[
           styles.containerStyle,
-          viewStyle,
+          containerStyle,
           { borderLeftColor: colors.primary },
         ]}>
         <AppText bold>{label || 'Title'}</AppText>
