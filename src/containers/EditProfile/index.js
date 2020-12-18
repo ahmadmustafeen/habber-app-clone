@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import {
   View,
   ScrollView,
@@ -10,25 +10,25 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import ImagePicker from 'react-native-image-picker';
-import { withDataActions } from '_redux/actions';
-import { Button, Screen } from '_components/common';
-import { InputWithLabel } from '_components';
-import { HorizontalRow } from '_components/HorizontalRow';
-import { MY_PROFILE } from '_constants/Screens';
-import { Header } from '_components/Header';
-import { useDispatch, useSelector, shallowEqual } from 'react-redux';
-import { validatePhone } from '_helpers/Validators';
+import {withDataActions} from '_redux/actions';
+import {Button, Screen} from '_components/common';
+import {InputWithLabel} from '_components';
+import {HorizontalRow} from '_components/HorizontalRow';
+import {MY_PROFILE} from '_constants/Screens';
+import {Header} from '_components/Header';
+import {useDispatch, useSelector, shallowEqual} from 'react-redux';
+import {validatePhone} from '_helpers/Validators';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-import { useTheme } from '@react-navigation/native';
-import { AppText } from '../../components/common';
-import { useTranslation } from 'react-i18next';
+import {useTheme} from '@react-navigation/native';
+import {AppText} from '../../components/common';
+import {useTranslation} from 'react-i18next';
 
 const imageOptions = {
   title: 'Select Avatar',
-  customButtons: [{ name: 'fb', title: 'Choose Photo from Facebook' }],
+  customButtons: [{name: 'fb', title: 'Choose Photo from Facebook'}],
   storageOptions: {
     skipBackup: true,
     path: 'images',
@@ -36,8 +36,11 @@ const imageOptions = {
 };
 
 const EditProfile = (props) => {
-  const { t } = useTranslation("EditProfile");
-  const UserProfileReducer = useSelector((state) => state.UserProfileReducer, shallowEqual);
+  const {t} = useTranslation('EditProfile');
+  const UserProfileReducer = useSelector(
+    (state) => state.UserProfileReducer,
+    shallowEqual,
+  );
   const dispatch = useDispatch();
 
   const [state, setState] = useState({
@@ -47,9 +50,9 @@ const EditProfile = (props) => {
     profile_pic: UserProfileReducer.profile_pic,
     language_id: UserProfileReducer.language.id,
     currency_id: 2,
-    token: UserProfileReducer.token
+    token: UserProfileReducer.token,
   });
-  console.log(state.token, "eoken")
+  console.log(state.token, 'eoken');
   const validate = () => {
     //todo - use validation method from src > helpers
     if (!state.first_name) {
@@ -66,9 +69,9 @@ const EditProfile = (props) => {
     }
     return true;
   };
-  const { navigate } = props.navigation;
+  const {navigate} = props.navigation;
   const setStateHandler = (key, val) => {
-    setState({ ...state, [key]: val });
+    setState({...state, [key]: val});
   };
   const save = () => {
     // validate() &&
@@ -88,15 +91,18 @@ const EditProfile = (props) => {
       } else {
         // You can also display the image using data:
         // const source = { uri: 'data:image/jpeg;base64,' + response.data };
-        setStateHandler('profile_pic', { uri: response.uri, type: 'image/jpeg', name: "Aasd" });
+        setStateHandler('profile_pic', {
+          uri: response.uri,
+          type: response.type,
+          name: response.fileName,
+        });
 
-        console.log("PROFILE", response)
+        console.log('PROFILE', response);
       }
     });
   };
-  const { colors } = useTheme();
+  const {colors} = useTheme();
   return (
-
     <Screen noPadding>
       <View key="header">
         <ImageBackground
@@ -108,45 +114,49 @@ const EditProfile = (props) => {
       </View>
       <View key="content" style={styles.content}>
         <View style={styles.profiletop}>
-          <View style={styles.imgContainer} >
+          <View style={styles.imgContainer}>
             <Image
               style={styles.image}
               source={require('../../assets/images/Screenshot_Logo.jpg')}
             />
           </View>
           <TouchableOpacity style={styles.addIcon} onPress={setImage}>
-            <Image style={{ width: '100%', height: '100%' }} source={require("_assets/images/addsign.png")} />
+            <Image
+              style={{width: '100%', height: '100%'}}
+              source={require('_assets/images/addsign.png')}
+            />
           </TouchableOpacity>
         </View>
-        <HorizontalRow style={{ borderBottomWidth: hp(0.1), borderBottomColor: colors.borderColor }} />
-        <View style={{ marginTop: 20 }}>
-
+        <HorizontalRow
+          style={{
+            borderBottomWidth: hp(0.1),
+            borderBottomColor: colors.borderColor,
+          }}
+        />
+        <View style={{marginTop: 20}}>
           <InputWithLabel
-
-            viewStyle={{ margin: 0, padding: hp(0) }}
-            style={{ margin: hp(0), padding: hp(0), backgroundColor: 'red' }}
-
+            viewStyle={{margin: 0, padding: hp(0)}}
+            style={{margin: hp(0), padding: hp(0), backgroundColor: 'red'}}
             color={colors.borderColor}
             value={state.first_name}
             placeholder="Khaled"
-            label={t("firstName")}
+            label={t('firstName')}
             onChangeText={(val) => setStateHandler('first_name', val)}
           />
           <InputWithLabel
-
-            viewStyle={{ margin: 0, padding: hp(0) }}
+            viewStyle={{margin: 0, padding: hp(0)}}
             value={state.last_name}
             placeholder="Ammer"
-            label={t("lastName")}
+            label={t('lastName')}
             color={colors.borderColor}
             onChangeText={(val) => setStateHandler('last_name', val)}
           />
           <InputWithLabel
-            viewStyle={{ margin: 0, padding: hp(0) }}
+            viewStyle={{margin: 0, padding: hp(0)}}
             color={colors.borderColor}
             value={state.email}
             placeholder="Khaled.ammar@gmail.com"
-            label={t("phone")}
+            label={t('phone')}
             onChangeText={(val) => setStateHandler('email', val)}
           />
         </View>
@@ -156,7 +166,7 @@ const EditProfile = (props) => {
           {t('save')}
         </Button>
       </View>
-    </Screen >
+    </Screen>
   );
 };
 
@@ -184,14 +194,14 @@ const styles = StyleSheet.create({
     paddingBottom: hp(8),
     marginBottom: hp(1),
     justifyContent: 'flex-end',
-    transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }],
+    transform: [{scaleX: I18nManager.isRTL ? -1 : 1}],
   },
   content: {
     width: wp(90),
-    alignSelf: 'center'
+    alignSelf: 'center',
   },
   button: {
-    marginTop: hp(-10)
+    marginTop: hp(-10),
   },
   addIcon: {
     position: 'absolute',
@@ -199,8 +209,8 @@ const styles = StyleSheet.create({
     zIndex: 999,
     height: wp(7),
     bottom: hp(-1),
-    right: wp(41.5)
-  }
+    right: wp(41.5),
+  },
 });
 
 export default EditProfile;
