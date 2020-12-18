@@ -7,18 +7,17 @@ import { BOOK_DETAILS_SCREEN } from '../constants/Screens';
 import { BookmarkCard } from './BookmarkCard';
 import { BookCard } from './BookCard';
 import { BookClub } from './BookClub';
-// import { colors } from 'react-native-elements';
 
 const BookListContainer = (props) => {
-  const { data, navigation, product_type, numColumns } = props;
-  // console.log(product_type);
+  const { data, navigation, product_type } = props;
+
   const { colors } = useTheme();
   return (
     <FlatList
       data={data}
       showsVerticalScrollIndicator={false}
       keyExtractor={(item, index) => index.toString() + item}
-      columnWrapperStyle={{ justifyContent: 'space-evenly' }}
+      columnWrapperStyle={styles.columnWrapperStyle}
       numColumns={product_type === 'bookmark' ? 3 : 2}
       renderItem={(book) => {
         if (product_type === 'bookmark') {
@@ -82,5 +81,9 @@ const BookListContainer = (props) => {
   );
 };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  columnWrapperStyle: {
+    justifyContent: 'space-evenly'
+  }
+});
 export { BookListContainer };

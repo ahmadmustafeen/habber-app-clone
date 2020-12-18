@@ -1,31 +1,26 @@
 import { I18nManager } from 'react-native';
 import { put, call } from 'redux-saga/effects';
-import { SWITCH_LANG_SUCCESS, SWITCH_LANG_FAILURE } from '_redux/actionTypes';
-import i18n from 'utils/i18n';
-import * as NavigationService from '../../../NavigationService';
-import { SIGNIN_SCREEN } from '_constants/Screens';
-import { setItem, getItem } from '_helpers/Localstorage';
 import RNRestart from 'react-native-restart';
+import i18n from 'utils/i18n';
+
+import { SWITCH_LANG_SUCCESS, SWITCH_LANG_FAILURE } from '_redux/actionTypes';
+import { setItem, getItem } from '_helpers/Localstorage';
 
 export function* switchLangSaga({ payload }) {
   try {
-    // console.log('A', i18n.language, I18nManager);
-    console.log(payload);
-    yield i18n.changeLanguage(payload.iso);
-    yield I18nManager.forceRTL(payload.iso == 'ar');
+    console.log("adsdasdasdas", payload);
+    yield i18n.changeLanguage(payload.language.iso);
+    yield I18nManager.forceRTL(payload.language.iso == 'ar');
     yield setItem('@userProfile', JSON.stringify(payload));
     let backUser = yield getItem('@backUser');
     if (!backUser) {
       yield setItem('@backUser', 'true');
-      // RNRestart.Restart();
     }
-    // NavigationService.navigate(SIGNIN_SCREEN);
-
     yield put({
       type: SWITCH_LANG_SUCCESS,
       payload: { language: { iso: i18n.language } },
-    }); RNRestart.Restart();
-
+    });
+    RNRestart.Restart();
 
   } catch (error) {
     yield put({ type: SWITCH_LANG_FAILURE, error });

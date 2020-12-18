@@ -10,7 +10,7 @@ import { InputWithLabel, RoundIcon, AuthHeader } from '_components';
 import { AppText, BackgroundImage, Button } from '_components/common';
 import { FORGOT_PASSWORD_SCREEN, SIGNUP_SCREEN } from '_constants/Screens';
 import { validateEmail, validatePassword } from '../../helpers/Validators';
-
+import { checkIfLoading } from '_redux/selectors';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -33,11 +33,7 @@ const SignIn = (props) => {
     setState((state) => ({ ...state, [key]: value }));
   };
 
-  const { loading } = useSelector(({ LoadingReducer }) => {
-    return {
-      loading: LoadingReducer.loading,
-    };
-  }, shallowEqual);
+
   const validate = () => {
     if (!validateEmail(email)) {
       Alert.alert('Invalid Email');
@@ -53,6 +49,14 @@ const SignIn = (props) => {
   const onSignIn = () => {
     validate() && dispatch(withDataActions(state, SIGN_IN));
   };
+  const { isLoading } = useSelector((state) => {
+    return {
+      isLoading: checkIfLoading(
+        state,
+        SIGN_IN,
+      )
+    };
+  }, shallowEqual);
   return (
     <BackgroundImage>
       <View key="header">
@@ -90,7 +94,7 @@ const SignIn = (props) => {
         </AppText>
         <View style={{ alignItems: 'center' }}>
           <Button
-            loading={loading}
+            loading={isLoading}
             width={wp(60)}
             color={colors.secondary}
             round

@@ -11,26 +11,22 @@ import { AppText } from './common/AppText';
 import { FastImage } from './FastImage';
 import { ModalImage } from './ModalImage';
 const BookmarkCard = (props) => {
-    const { image, author_name, title, price, prices, onPress, quantity } = props;
+
+    const { image, title, price, prices, onPress, quantity } = props;
     const { colors } = useTheme();
-
     const modalRef = useRef(null);
-
     const toggleModal = () => {
         modalRef.current.toggle();
     };
-
-
-
-
     const {
         UserProfileReducer,
-    } = useSelector((state) => {
+    } = useSelector(({ UserProfileReducer }) => {
         return {
-            UserProfileReducer: state.UserProfileReducer,
+            UserProfileReducer,
         };
     }, shallowEqual);
     const price_product = prices.find((item) => item.iso === UserProfileReducer.currency.iso)
+
 
     return (
         <TouchableWithoutFeedback onPress={onPress}>
@@ -40,16 +36,11 @@ const BookmarkCard = (props) => {
                 </View>
 
                 <View
-                    style={{
-                        flex: 1,
-                        paddingVertical: 10,
-                        justifyContent: 'flex-start',
-
-                    }}>
+                    style={styles.detailContainer}>
                     <AppText bold size={13}>{title}</AppText>
                     {quantity ?
                         <AppText primary bold size={13} style={styles.outOfStock} >
-                            {parseFloat(price_product.price).toFixed(2)} {price_product.iso}
+                            {parseFloat(price).toFixed(2)} {price_product.iso}
                         </AppText>
                         :
                         <View style={[styles.outOfStock, { backgroundColor: colors.primary }]}>
@@ -57,11 +48,6 @@ const BookmarkCard = (props) => {
                         </View>
                     }
                 </View>
-
-
-
-
-
                 <ModalImage ref={modalRef} source={{ uri: image }} />
             </View>
 
@@ -75,7 +61,6 @@ const styles = StyleSheet.create({
     containerStyle: {
         width: wp(20.6),
         aspectRatio: 0.26,
-        // borderWidth: 0.5,
         margin: 3
     },
     imageContainer: {
@@ -88,6 +73,12 @@ const styles = StyleSheet.create({
         height: hp(3),
         justifyContent: 'center',
         alignItems: 'center'
+    },
+    detailContainer: {
+        flex: 1,
+        paddingVertical: 10,
+        justifyContent: 'flex-start',
+
     }
 });
 export { BookmarkCard };

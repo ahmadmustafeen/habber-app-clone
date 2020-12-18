@@ -1,14 +1,14 @@
-import React, {useState} from 'react';
-import {View, StyleSheet, Alert} from 'react-native';
-import {useDispatch, useSelector, shallowEqual} from 'react-redux';
-import {useTranslation} from 'react-i18next';
-import {InputWithLabel, RoundIcon, ModalScreen, AuthHeader} from '_components';
-import {BackgroundImage, Button, AppText} from '_components/common';
-import {signUp} from '_assets/data/StaticData';
-import {withDataActions} from '_redux/actions/GenericActions';
-import {SIGN_UP, SIGN_IN} from '_redux/actionTypes';
+import React, { useState } from 'react';
+import { View, StyleSheet, Alert } from 'react-native';
+import { useDispatch, useSelector, shallowEqual } from 'react-redux';
+import { useTranslation } from 'react-i18next';
+import { InputWithLabel, RoundIcon, ModalScreen, AuthHeader } from '_components';
+import { BackgroundImage, Button, AppText } from '_components/common';
+import { signUp } from '_assets/data/StaticData';
+import { withDataActions } from '_redux/actions/GenericActions';
+import { SIGN_UP, SIGN_IN } from '_redux/actionTypes';
 import useModal from '_utils/customHooks/useModal';
-import {validateEmail, validatePassword} from '../../helpers/Validators';
+import { validateEmail, validatePassword, validateIsTrue } from '../../helpers/Validators';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -17,16 +17,19 @@ import {
   loginWithFacebook,
   getInfoFromToken,
 } from '../../services/facebookLoginController';
+
 import {
   googleSignInHandler,
   isSignedIn,
 } from '../../services/googleLoginController';
+import { checkIfLoading } from '_redux/selectors';
+
 const SignUp = (props) => {
   const dispatch = useDispatch();
-  const {navigate} = props.navigation;
-  const {visible} = useModal();
+  const { navigate } = props.navigation;
+  const { visible } = useModal();
 
-  const {t} = useTranslation(['createAccount']);
+  const { t } = useTranslation(['createAccount']);
   const [state, setState] = useState({
     first_name: '',
     last_name: '',
@@ -35,28 +38,20 @@ const SignUp = (props) => {
     password_confirmation: '',
   });
 
-  const {first_name, last_name, email, password, password_confirmation} = state;
+  const { first_name, last_name, email, password, password_confirmation } = state;
 
   const handleChange = (key, value) => {
-    setState((state) => ({...state, [key]: value}));
+    setState((state) => ({ ...state, [key]: value }));
   };
   const validate = () => {
-    if (!first_name) Alert.alert('Enter First Name');
-    if (!last_name) Alert.alert('Enter Last Name');
-    if (!validateEmail(email)) Alert.alert('Enter Valid Email');
-    if (!validatePassword(password))
-      Alert.alert('Password must have 8 letters');
-    if (password !== password_confirmation)
-      Alert.alert("Password does'nt match");
-    if (
-      first_name &&
-      last_name &&
-      validateEmail(email) &&
-      validatePassword(password) &&
-      password === password_confirmation
-    ) {
-      return true;
-    }
+    return (
+      validateIsTrue(first_name, "First Name") &&
+      validateIsTrue(last_name, "Last Name") &&
+      validateIsTrue(validateEmail(email), "valid email") &&
+      validateIsTrue(validatePassword(password), "valid password") &&
+      validateIsTrue((password === password_confirmation), "Password is not Valid", false)
+    )
+
   };
   const onSignUp = () => {
     validate() && dispatch(withDataActions(state, SIGN_UP));
@@ -64,12 +59,14 @@ const SignUp = (props) => {
   const onContinueModal = () => {
     dispatch(withDataActions(state, SIGN_IN));
   };
-  const {loading} = useSelector(({LoadingReducer}) => {
+  const { isLoading } = useSelector((state) => {
     return {
-      loading: LoadingReducer.loading,
+      isLoading: checkIfLoading(
+        state,
+        SIGN_UP,
+      )
     };
   }, shallowEqual);
-
   const signInGoogle = async () => {
     let user = await isSignedIn();
     if (user) {
@@ -137,47 +134,47 @@ const SignUp = (props) => {
           value={password_confirmation}
           onChangeText={(value) => handleChange('password_confirmation', value)}
         />
-        <View style={{alignItems: 'center'}}>
+        <View style={{ alignItems: 'center' }}>
           <AppText white secondary size={17}>
             {t('bycreating')}
           </AppText>
           <AppText underline style={styles.termsandservices} size={17}>
             {t('termAndService')}
           </AppText>
-          <Button round width="60%" onPress={onSignUp} loading={loading}>
+          <Button round width="60%" onPress={onSignUp} loading={isLoading}>
             {t('signUp')}
           </Button>
         </View>
-        <AppText white secondary style={{marginTop: 10, marginBottom: 10}}>
+        {/* <AppText white secondary style={{ marginTop: 10, marginBottom: 10 }}>
           OR
         </AppText>
-        <View style={{flexDirection: 'row', justifyContent: 'space-around'}}>
-          <RoundIcon
-            name="sc-facebook"
-            type="evilicon"
-            color="#fff"
-            onPress={signInFacebook}
-          />
-          <RoundIcon
-            name="google"
-            type="font-awesome"
-            color="#fff"
-            onPress={async () => console.log(await signInGoogle())}
-          />
-          <RoundIcon
-            name="sc-twitter"
-            type="evilicon"
-            color="#fff"
-            onPress={() => console.log('hello')}
-          />
-        </View>
+        <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}> */}
+        {/* <RoundIcon
+          name="sc-facebook"
+          type="evilicon"
+          color="#fff"
+          onPress={signInFacebook}
+        />
+        <RoundIcon
+          name="google"
+          type="font-awesome"
+          color="#fff"
+          onPress={async () => console.log(await signInGoogle())}
+        />
+        <RoundIcon
+          name="sc-twitter"
+          type="evilicon"
+          color="#fff"
+          onPress={() => console.log('hello')}
+        />
+      </View> */}
         <ModalScreen
           visible={visible}
           onContinue={onContinueModal}
           {...signUp.modalData}
         />
       </View>
-    </BackgroundImage>
+    </BackgroundImage >
   );
 };
 

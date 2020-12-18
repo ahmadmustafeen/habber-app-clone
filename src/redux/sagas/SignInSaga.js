@@ -17,10 +17,13 @@ import {
   FETCH_USER_FAVOURITE,
 } from '_redux/actionTypes';
 import * as NavigationService from '../../../NavigationService';
-import { FETCH_ORDER } from '../actionTypes';
+import { startAction, stopAction } from '../actions';
+import { FETCH_ORDER, SIGN_IN } from '../actionTypes';
 
 export function* signinSaga({ payload }) {
+
   try {
+    yield put(startAction(SIGN_IN));
     const { email, password } = payload;
     const FCMReducer = yield select(({ FCMReducer }) => FCMReducer);
     console.log('FCM', FCMReducer);
@@ -61,5 +64,9 @@ export function* signinSaga({ payload }) {
     }
   } catch (error) {
     yield put({ type: SIGN_IN_FAILURE, error });
+  }
+  finally {
+
+    yield put(stopAction(SIGN_IN));
   }
 }

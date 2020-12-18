@@ -43,7 +43,7 @@ const BookCard = (props) => {
         <View style={styles.imageContainer}>
           <FastImage source={{ uri: image }} onPress={toggleModal} />
         </View>
-        <View style={{ flex: 1, paddingVertical: 10, justifyContent: 'space-between', paddingHorizontal: 10, }}>
+        <View style={styles.details}>
 
           <View style={{ width: wp(30) }}>
             <AppText small>{title}</AppText>
@@ -57,11 +57,11 @@ const BookCard = (props) => {
           !quantity
           &&
           <>
-            <View style={{ position: 'absolute', bottom: hp(6), right: 20, width: 20, height: 30 }}>
-              <Image style={{ width: "100%", height: "100%" }} source={require("../assets/images/forgetPassword.png")} />
+            <View style={styles.forgetPassImageContainet}>
+              <Image style={styles.image} source={require("../assets/images/forgetPassword.png")} />
             </View>
 
-            <View style={{ backgroundColor: colors.primary, alignItems: 'center' }}>
+            <View style={[styles.outOfStock, { backgroundColor: colors.primary }]}>
               <AppText large>Out of Stock</AppText>
             </View>
           </>
@@ -78,9 +78,29 @@ const styles = StyleSheet.create({
     borderWidth: 0.5,
     margin: 3,
   },
+  image: {
+    width: '100%',
+    height: '100%'
+  },
   imageContainer: {
     width: wp(40.85),
     aspectRatio: 0.9,
   },
+  forgetPassImageContainet: {
+    position: 'absolute',
+    bottom: hp(6),
+    right: 20,
+    width: 20,
+    height: 30
+  },
+  details: {
+    flex: 1,
+    paddingVertical: 10,
+    justifyContent: 'space-between',
+    paddingHorizontal: 10,
+  },
+  outOfStock: {
+    alignItems: 'center'
+  }
 });
 export { BookCard };

@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, TouchableOpacity, Image } from 'react-native';
+import { StyleSheet, TouchableOpacity, Image, I18nManager } from 'react-native';
 import {
     widthPercentageToDP as wp,
     heightPercentageToDP as hp,
@@ -9,7 +9,7 @@ const FloatingActionButton = (props) => {
     const { onPress, image } = props;
 
     return (
-        <TouchableOpacity onPress={onPress} style={styles.fab}>
+        <TouchableOpacity onPress={onPress} style={[styles.fab, { transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }], }]}>
             <Image style={styles.fabImage} source={image} />
         </TouchableOpacity>
     )

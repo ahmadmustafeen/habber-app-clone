@@ -50,13 +50,7 @@ const BookDetailsCard = (props) => {
       </View>
 
       <View
-        style={{
-          flex: 1,
-          transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }],
-          justifyContent: 'space-between',
-          paddingHorizontal: 10,
-          paddingStart: !I18nManager.isRTL ? 10 : 0,
-        }}>
+        style={styles.bookDetailsContainer}>
         <View style={{ transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }], marginTop: wp(3) }}>
           <AppText bold size={17}>
             {title}
@@ -74,12 +68,7 @@ const BookDetailsCard = (props) => {
           </AppText>
         </View>
         <View
-          style={{
-            width: wp(60),
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }],
-          }}>
+          style={styles.iconContainer}>
           <RoundIcon
             name="heart"
             type="font-awesome"
@@ -88,9 +77,21 @@ const BookDetailsCard = (props) => {
             fav
             onPress={onClickFavourite}
           />
-          <RoundIcon name="share-alt" type="font-awesome" color="#fff" small onPress={onClickShare} />
+          <RoundIcon
+            name="share-alt"
+            type="font-awesome"
+            color="#fff"
+            small
+            onPress={onClickShare}
+          />
 
-          <RoundIcon name={product_type === "book" ? "glide-g" : null} type="font-awesome" color="#fff" small background={product_type === "book" ? null : "rgba(0,0,0,0)"} />
+          <RoundIcon
+            name={product_type === "book" ? "glide-g" : null}
+            type="font-awesome"
+            color="#fff"
+            small
+            background={product_type === "book" ? null : "rgba(0,0,0,0)"}
+          />
 
 
         </View>
@@ -117,5 +118,18 @@ const styles = StyleSheet.create({
     marginStart: 10,
     marginTop: 10,
   },
+  bookDetailsContainer: {
+    flex: 1,
+    transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }],
+    justifyContent: 'space-between',
+    paddingHorizontal: 10,
+    paddingStart: !I18nManager.isRTL ? 10 : 0,
+  },
+  iconContainer: {
+    width: wp(60),
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }],
+  }
 });
 export { BookDetailsCard };
