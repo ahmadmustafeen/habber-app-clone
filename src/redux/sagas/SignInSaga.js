@@ -1,5 +1,5 @@
 import { HOME } from 'constants/Screens';
-import { getItem, setItem } from 'helpers/Localstorage';
+import { setItem } from 'helpers/Localstorage';
 import { Alert } from 'react-native';
 import { put, call, all, select } from 'redux-saga/effects';
 import { API_ENDPOINTS } from '_constants/Network';
@@ -9,7 +9,7 @@ import {
   SIGN_IN_SUCCESS,
   HIDE_MODAL,
   FETCH_USER_CART,
-  FETCH_ORDER_SUCCESS,
+  SIGN_Up,
   FETCH_CURRENCIES,
   NETWORK_ERROR,
   SHOW_NETWORK_MODAL,
@@ -21,11 +21,10 @@ import { startAction, stopAction } from '../actions';
 import { FETCH_ORDER, SIGN_IN } from '../actionTypes';
 
 export function* signinSaga({ payload }) {
-
   try {
     yield put(startAction(SIGN_IN));
     const { email, password } = payload;
-    const FCMReducer = yield select(({ FCMReducer }) => FCMReducer);
+    const FCMReducer = yield select((state) => state.FCMReducer);
     console.log('FCM', FCMReducer);
     const response = yield call(() =>
       RestClient.post(API_ENDPOINTS.signin, {
@@ -38,7 +37,6 @@ export function* signinSaga({ payload }) {
       return yield put({ type: SHOW_NETWORK_MODAL });
     }
     const {
-      status,
       data: { data: res, message, success },
     } = response;
     console.log('user', response);
@@ -52,7 +50,7 @@ export function* signinSaga({ payload }) {
         put({ type: FETCH_USER_CART }),
         put({ type: FETCH_USER_FAVOURITE }),
         put({ type: FETCH_CURRENCIES }),
-        put({ type: FETCH_ORDER })
+        put({ type: FETCH_ORDER }),
       ]);
 
       NavigationService.navigate('Drawer', {
@@ -64,9 +62,7 @@ export function* signinSaga({ payload }) {
     }
   } catch (error) {
     yield put({ type: SIGN_IN_FAILURE, error });
-  }
-  finally {
-
+  } finally {
     yield put(stopAction(SIGN_IN));
   }
 }

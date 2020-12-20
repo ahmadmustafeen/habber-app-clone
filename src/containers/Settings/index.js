@@ -42,7 +42,7 @@ const Settings = (props) => {
     language: false,
     notifications: false,
   });
-  const { UserProfileReducer, FetchCurrencyReducer, FetchCountriesReducer } = useSelector((state) => {
+  const { UserProfileReducer, FetchCurrencyReducer } = useSelector((state) => {
     return {
       UserProfileReducer: state.UserProfileReducer,
       FetchCountriesReducer: state.FetchCountriesReducer,
@@ -50,7 +50,6 @@ const Settings = (props) => {
     };
   }, shallowEqual);
   const [currencyVal, setCurrencyVal] = useState(UserProfileReducer.currency);
-  const { i18n } = useTranslation();
 
   const toggleDropdown = (key) => {
     setItemVisible({ ...item, [key]: !item[key] });

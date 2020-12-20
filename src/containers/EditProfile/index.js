@@ -5,7 +5,6 @@ import {
   StyleSheet,
   Image,
   Alert,
-  ImageBackground,
   I18nManager,
   TouchableOpacity,
 } from 'react-native';
@@ -14,7 +13,6 @@ import { withDataActions } from '_redux/actions';
 import { Button, Screen } from '_components/common';
 import { InputWithLabel } from '_components';
 import { HorizontalRow } from '_components/HorizontalRow';
-import { MY_PROFILE } from '_constants/Screens';
 import { Header } from '_components/Header';
 import { useDispatch, useSelector, shallowEqual } from 'react-redux';
 import { validatePhone } from '_helpers/Validators';
@@ -23,7 +21,6 @@ import {
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 import { useTheme } from '@react-navigation/native';
-import { AppText } from '../../components/common';
 import { useTranslation } from 'react-i18next';
 
 const imageOptions = {
@@ -52,7 +49,6 @@ const EditProfile = (props) => {
     currency_id: 2,
     token: UserProfileReducer.token,
   });
-  console.log(state.token, 'eoken');
   const validate = () => {
     //todo - use validation method from src > helpers
     if (!state.first_name) {
@@ -97,7 +93,17 @@ const EditProfile = (props) => {
 
       }
     });
-  };
+  }; getProfilePic = () => {
+    if (state.profile_pic.uri) {
+      return { uri: state.profile_pic.uri }
+    }
+    if (UserProfileReducer.profile_pic) {
+      return { uri: UserProfileReducer.profile_pic }
+    }
+    return require('_assets/images/noUser.png')
+
+  }
+
   const link = state.profile_pic ? state.profile_pic.uri : UserProfileReducer.profile_pic
   const { colors } = useTheme();
   return (
@@ -110,7 +116,7 @@ const EditProfile = (props) => {
           <View style={styles.imgContainer}>
             <Image
               style={styles.image}
-              source={link ? { uri: link } : require('_assets/images/noUser.png')}
+              source={getProfilePic()}
             />
           </View>
           <TouchableOpacity style={styles.addIcon} onPress={setImage}>

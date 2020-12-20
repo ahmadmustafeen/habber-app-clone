@@ -29,5 +29,6 @@ export const API_ENDPOINTS = {
   order: '/order',
   banners: '/banners',
   static_pages: '/static_page/link',
-  fcm: '/fcm'
+  fcm: '/fcm',
+  profile: '/profile'
 };

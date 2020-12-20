@@ -1,15 +1,15 @@
-import React, {useState} from 'react';
-import {View, StyleSheet, Image} from 'react-native';
-import {useTheme} from '@react-navigation/native';
+import React, { useState } from 'react';
+import { View, StyleSheet, Image } from 'react-native';
+import { useTheme } from '@react-navigation/native';
 
-import {AppText, Button, BackgroundImage} from '_components/common';
-import {useDispatch} from 'react-redux';
-import {withDataActions} from '_redux/actions';
-import {SWITCH_LANG} from '_redux/actionTypes';
+import { AppText, Button, BackgroundImage } from '_components/common';
+import { useDispatch } from 'react-redux';
+import { withDataActions } from '_redux/actions';
+import { SWITCH_LANG } from '_redux/actionTypes';
 
 const Language = (props) => {
-  const {navigate} = props.navigation;
-  const {colors} = useTheme();
+  const { navigate } = props.navigation;
+  const { colors } = useTheme();
   const dispatch = useDispatch();
   return (
     <BackgroundImage>
@@ -19,7 +19,7 @@ const Language = (props) => {
           source={require('_assets/images/Screenshot_Logo.jpg')}
         />
       </View>
-      <View key="content" style={{alignItems: 'center'}}>
+      <View key="content" style={{ alignItems: 'center' }}>
         <AppText style={styles.selecttxt}>Select Your Language</AppText>
         <Button
           style={styles.btn}
@@ -28,7 +28,7 @@ const Language = (props) => {
           background="white"
           color={colors.secondary}
           onPress={() =>
-            dispatch(withDataActions({id: 2, iso: 'en'}, SWITCH_LANG))
+            dispatch(withDataActions({ language: { id: 2, iso: 'en' } }, SWITCH_LANG))
           }>
           English
         </Button>
@@ -38,7 +38,7 @@ const Language = (props) => {
           background="white"
           color={colors.secondary}
           onPress={() =>
-            dispatch(withDataActions({id: 1, iso: 'ar'}, SWITCH_LANG))
+            dispatch(withDataActions({ language: { id: 1, iso: 'ar' } }, SWITCH_LANG))
           }>
           عربى
         </Button>
