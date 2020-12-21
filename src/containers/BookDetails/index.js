@@ -5,7 +5,7 @@ import {
   ImageBackground,
   I18nManager,
   Alert,
-  Image,
+  Image, Linking,
   Share,
 } from 'react-native';
 import { Icon } from 'react-native-elements';
@@ -155,6 +155,10 @@ const BookDetails = (props) => {
       alert(error.message);
     }
   };
+  const onGoodReads = () => {
+
+  }
+
   return (
     <Screen noPadding contentPadding>
       <View key="header">
@@ -187,6 +191,7 @@ const BookDetails = (props) => {
                 favourite={isFavourite}
                 {...book}
                 onClickShare={onShare}
+                onGoodReads={() => Linking.openURL('https://www.goodreads.com/book/isbn/' + book.isbn)}
               />
             </View>
           ) : (
@@ -207,6 +212,7 @@ const BookDetails = (props) => {
               onClickFavourite={handleFavouriteClick}
               favourite={isFavourite}
               onClickShare={onShare}
+              onGoodReads={() => Linking.openURL('https://www.goodreads.com/book/isbn/' + book.isbn)}
               {...book}
             />
           </View>

@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { View, StyleSheet, I18nManager } from 'react-native';
+import { View, StyleSheet, I18nManager, Linking } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 
 import { AppText } from './common/AppText';
@@ -16,6 +16,8 @@ const BookDetailsCard = (props) => {
   const { t } = useTranslation(['BookDetails'])
   const { colors } = useTheme();
   const {
+    isbn,
+
     author_name,
     image,
     price,
@@ -25,7 +27,9 @@ const BookDetailsCard = (props) => {
     onClickFavourite,
     product_type,
     prices,
-    favourite, onClickShare
+    favourite,
+    onClickShare,
+    onGoodReads
   } = props;
 
 
@@ -90,6 +94,7 @@ const BookDetailsCard = (props) => {
             type="font-awesome"
             color="#fff"
             small
+            onPress={onGoodReads}
             background={product_type === "book" ? null : "rgba(0,0,0,0)"}
           />
 
