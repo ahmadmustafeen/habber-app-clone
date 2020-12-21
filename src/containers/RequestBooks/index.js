@@ -66,7 +66,8 @@ const RequestBooks = (props) => {
       } else {
         // You can also display the image using data:
         // const source = { uri: 'data:image/jpeg;base64,' + response.data };
-        handleChange('image', response.uri);
+        // console.log(response)
+        handleChange('image', response);
       }
     });
   };
