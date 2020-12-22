@@ -65,7 +65,7 @@ const Header = (props) => {
         <View>
           {backIcon ? (
             <Icon
-              onPress={() => props.navigation.goBack()}
+              onPress={() => navigation.goBack()}
               color={colors.primary}
               name="leftcircleo"
               type="ant-design"
@@ -79,9 +79,12 @@ const Header = (props) => {
             paddingLeft: 10,
             transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }],
           }}>
-          <AppText bold small color={headerColor}>
-            {title || t(name)}
-          </AppText>
+          <TouchableOpacity onPress={backIcon ? () => navigation.goBack() : () => navigation.openDrawer()}>
+            <AppText bold small color={headerColor}>
+              {title || t(name)}
+            </AppText>
+          </TouchableOpacity>
+
         </View>
         <View
           style={{
