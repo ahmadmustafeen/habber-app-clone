@@ -97,7 +97,7 @@ const FilterModal = (props) => {
           {t('reset')}
         </AppText>
         <HorizontalRow style={styles.line} />
-        <AppText bold color={colors.placeholder} style={{ paddingVertical: 16, paddingHorizontal: wp(2) }}>
+        <AppText bold color={colors.placeholder} style={{ paddingVertical: 16, paddingHorizontal: wp(5) }}>
           {t('filterByGenre')}
         </AppText>
         {items.map((item) => {

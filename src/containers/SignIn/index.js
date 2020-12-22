@@ -62,7 +62,7 @@ const SignIn = (props) => {
       <View key="header">
         <AuthHeader {...props} />
 
-        <AppText bold color={colors.primary} heading style={styles.hellotxt}>
+        <AppText bold color={colors.primary} heading style={[styles.hellotxt, { marginLeft: 5 }]}>
           {t('signInHeader')}
         </AppText>
         <AppText white secondary style={{ marginBottom: 10 }}>

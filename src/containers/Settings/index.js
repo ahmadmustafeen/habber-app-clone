@@ -182,7 +182,7 @@ const Settings = (props) => {
             <Switch
               trackColor={{ false: colors.secondary, true: colors.primary }}
               thumbColor={colors.white}
-              // ios_backgroundColor={colors.primary}
+              ios_backgroundColor={colors.primary}
               onValueChange={onToggleNotifications}
               value={item.notifications}
             />
