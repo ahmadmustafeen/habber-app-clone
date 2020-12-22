@@ -28,15 +28,21 @@ import { Icon } from 'react-native-elements';
 import { useTranslation } from 'react-i18next';
 const delivery_charges = 10;
 const AddToCart = (props) => {
+  console.log(props, "PROPS in add to cart")
   const { t } = useTranslation(['Cart'])
   const { colors } = useTheme();
   const dispatch = useDispatch();
-  const { CartReducer, isLoading } = useSelector((state) => ({
+  const { CartReducer, UserProfileReducer, FetchCurrencyReducer, isLoading } = useSelector((state) => ({
     CartReducer: state.CartReducer,
+    FetchCurrencyReducer: state.FetchCurrencyReducer,
+    UserProfileReducer: state.UserProfileReducer,
     isLoading: checkIfLoading(state, FETCH_USER_CART),
   }));
-  console.log('CartReducer', CartReducer);
+  console.log('CartReducer', FetchCurrencyReducer);
+  var rtlLayout = false;
+  (UserProfileReducer.currency.iso === "USD" || UserProfileReducer.currency.iso === "GBP" || UserProfileReducer.currency.iso === "EUR") && (rtlLayout = true)
 
+  const price_product = FetchCurrencyReducer.find((item) => item.iso === UserProfileReducer.currency.iso)
   console.log(isLoading);
   const updateCartItem = (book, action) => {
     dispatch(
@@ -105,7 +111,7 @@ const AddToCart = (props) => {
                         by {author_name}
                       </AppText>
                       <AppText bold size={17} style={styles.pricetxt}>
-                        Price: {cart_price} KW
+                        Price: {rtlLayout && price_product.symbol} {cart_price} {rtlLayout || price_product.symbol}
                       </AppText>
                       <View
                         style={{
@@ -177,14 +183,11 @@ const AddToCart = (props) => {
                 alignItems: 'flex-end',
               }}>
 
-              <AppText style={{ paddingVertical: hp(0.5) }} small bold>
-                {parseFloat(CartReducer.total_price).toFixed(2)} KW
+              <AppText style={{ paddingVertical: hp(0.5) }} small bold> {rtlLayout && price_product.symbol} {parseFloat(CartReducer.total_price).toFixed(2)} {rtlLayout || price_product.symbol}
               </AppText>
-              <AppText style={{ paddingVertical: hp(0.5) }} small bold>
-                {parseFloat(delivery_charges).toFixed(2)} KW
+              <AppText style={{ paddingVertical: hp(0.5) }} small bold> {rtlLayout && price_product.symbol} {parseFloat(delivery_charges).toFixed(2)} {rtlLayout || price_product.symbol}
               </AppText>
-              <AppText small primary bold>
-                {parseFloat(CartReducer.total_price + delivery_charges).toFixed(2)} KW
+              <AppText small primary bold> {rtlLayout && price_product.symbol} {parseFloat(CartReducer.total_price + delivery_charges).toFixed(2)} {rtlLayout || price_product.symbol}
               </AppText>
             </View>
           </View>
