@@ -170,13 +170,15 @@ const ContactUs = (props) => {
               marginTop: hp(4),
               height: hp(28),
               paddingHorizontal: wp(3),
-              paddingBottom: hp(2),
+              // paddingBottom: hp(2),
               justifyContent: 'flex-end',
               transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }],
             }}
             resizeMode='stretch'
             source={require('_assets/images/footer.png')}>
-            <View style={[styles.textwithIconContainer], { transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }], }}>
+
+            <View style={[styles.textwithIconContainer, { transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }] }]}>
+
               <TextWithIcon
                 small
                 iconName="whatsapp"
@@ -246,7 +248,9 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   textwithIconContainer: {
-    width: wp(70),
+    flex: 1,
+    marginTop: hp(11.5),
+    width: wp(80),
     alignSelf: 'center'
   },
   inputWithLabel: {

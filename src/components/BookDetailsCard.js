@@ -40,9 +40,10 @@ const BookDetailsCard = (props) => {
       UserProfileReducer: state.UserProfileReducer,
     };
   }, shallowEqual);
-  const price_product = prices.find((item) => item.iso === UserProfileReducer.currency.iso)
-
-
+  const price_product = prices.find((item) => item.iso === UserProfileReducer.currency.iso);
+  var rtlLayout = false;
+  (UserProfileReducer.currency.iso === "USD" || UserProfileReducer.currency.iso === "GBP" || UserProfileReducer.currency.iso === "EUR") && (rtlLayout = true)
+  console.log(rtlLayout, "rtlLayout")
   return (
     <View style={styles.container}>
       <View style={styles.imgContainer}>
@@ -65,7 +66,7 @@ const BookDetailsCard = (props) => {
             {t('by')}{author_name}
           </AppText>
           <AppText bold size={17}>
-            {t('price')}  {parseFloat(price_product.price).toFixed(2)} {price_product.iso}
+            {t('price')} {rtlLayout && price_product.symbol} {parseFloat(price).toFixed(2)} {rtlLayout || price_product.symbol}
           </AppText>
           <AppText bold size={15} color="red">
             {!quantity && t('outOfStock')}

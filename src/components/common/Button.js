@@ -57,7 +57,7 @@ const Button = (props) => {
       </AppText>
       {/* please make single component for it */}
       {outOfStock &&
-        <View style={{ position: "absolute", left: wp(16), width: 23, height: 28, zIndex: 1 }}>
+        <View style={{ position: "absolute", left: wp(15), width: 20, height: 25, zIndex: 1, top: hp(1) }}>
           <Image style={{ width: "100%", height: "100%" }} source={require("../../assets/images/emptycart.png")} />
         </View>
       }

@@ -20,6 +20,9 @@ const BookCard = (props) => {
       UserProfileReducer: state.UserProfileReducer,
     };
   }, shallowEqual);
+  var rtlLayout = false;
+  (UserProfileReducer.currency.iso === "USD" || UserProfileReducer.currency.iso === "GBP" || UserProfileReducer.currency.iso === "EUR") && (rtlLayout = true)
+
   console.log(UserProfileReducer, "userPRofile");
   const price_product = prices.find((item) => item.iso === UserProfileReducer.currency.iso)
   // console.log(price_product)
@@ -38,7 +41,7 @@ const BookCard = (props) => {
     <TouchableWithoutFeedback onPress={onPress}>
       <View style={[styles.containerStyle, { borderColor: colors.borderColor }]}>
         <AppText bold style={{ backgroundColor: colors.primary, padding: 10 }}>
-          Price: {parseFloat(price).toFixed(2)} {price_product.iso}
+          Price: {rtlLayout && price_product.symbol} {parseFloat(price).toFixed(2)} {rtlLayout || price_product.symbol}
         </AppText>
         <View style={styles.imageContainer}>
           <FastImage source={{ uri: image }} onPress={toggleModal} />

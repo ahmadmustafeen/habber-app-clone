@@ -100,7 +100,6 @@ const Header = (props) => {
                     navigation.navigate(CART_SCREEN, {
                       label: 'CART_SCREEN',
                       CART_SCREEN,
-                      // CARTNEW
                     });
                   }}>
                   <Image
