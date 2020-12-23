@@ -135,7 +135,7 @@ const Header = (props) => {
             type="font-awesome-5"
             containerStyle={{ paddingEnd: 10 }}
           /> */}
-                {(route && (route.name !== 'Search')) && (
+                {(!!route && (route.name !== 'Search')) && (
                   <Icon
                     props={props}
                     onPress={() =>
@@ -183,7 +183,7 @@ const Header = (props) => {
             transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }],
           }}>
           <AppText bold small color={headerColor}>
-            {title || t(route)}
+            {title || t(route.name)}
           </AppText>
         </View>
         <View
@@ -233,7 +233,7 @@ const Header = (props) => {
                 type="font-awesome-5"
                 containerStyle={{ paddingEnd: 10 }}
               /> */}
-                {route.name !== 'Search' && (
+                {(!!route && route.name) !== 'Search' && (
                   <Icon
                     props={props}
                     onPress={() =>

@@ -232,7 +232,7 @@ const BookDetails = (props) => {
           ) : (
               <>
                 <AppText style={styles.infoProduct} bold primary size={15}>
-                  Product Id: {book.bookmark_id}
+                  Product ID: {book.bookmark_id}
                 </AppText>
                 <AppText style={styles.infoProduct} bold size={15}>
                   Size in (inch): {book.size}
@@ -331,6 +331,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     marginVertical: 10,
+    height: hp(6),
+    width: wp(40),
+    alignSelf: 'center'
   },
   row: {
     borderColor: 'rgb(200,200,200)',

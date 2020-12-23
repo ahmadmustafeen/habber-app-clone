@@ -42,6 +42,7 @@ const ChangePassword = (props) => {
           name="oldPassword"
           placeholder="*************"
           label={t('password')}
+          secureTextEntry
           value={state.oldPassword}
           onChangeText={(val) => setStateHandler('old_password', val)}
         />
@@ -49,6 +50,7 @@ const ChangePassword = (props) => {
           color={colors.borderColor}
           name="newPassword"
           placeholder="*************"
+          secureTextEntry
           label={t('newPassword')}
           value={state.oldPassword}
           onChangeText={(val) => setStateHandler('password', val)}
@@ -56,6 +58,7 @@ const ChangePassword = (props) => {
         <InputWithLabel
           color={colors.borderColor}
           name="password_confirmation"
+          secureTextEntry
           placeholder="*************"
           label={t('confirmNewPassword')}
 

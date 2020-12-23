@@ -132,7 +132,7 @@ const styles = StyleSheet.create({
     paddingStart: !I18nManager.isRTL ? 10 : 0,
   },
   iconContainer: {
-    width: wp(60),
+    width: wp(55),
     flexDirection: 'row',
     justifyContent: 'space-between',
     transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }],

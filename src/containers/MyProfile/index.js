@@ -47,14 +47,7 @@ const MyProfile = (props) => {
         source={require('_assets/images/header.png')}>
         <Header
           {...props}
-          headerLeft={
-            <Icon
-              onPress={() => props.navigation.goBack()}
-              color={colors.primary}
-              name="leftcircleo"
-              type="ant-design"
-            />
-          }
+
         />
       </ImageBackground>
       <Screen>
@@ -89,7 +82,7 @@ const MyProfile = (props) => {
           <View style={styles.btnview}>
             <Button
               // icon
-
+              add
               fontSize={13}
               style={{ marginBottom: 15 }}
               onPress={() => navigate(MY_ADDRESS_BOOK)}>

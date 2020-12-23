@@ -154,6 +154,7 @@ const ContactUs = (props) => {
             {...CONTACT_US.modalData}
           />
           <Button color="white"
+            bold
             onPress={onSubmit}
             loading={isLoading}
             style={{
@@ -213,7 +214,7 @@ const ContactUs = (props) => {
                 onPress={() =>
                   Linking.openURL(`mailto:${FetchSiteReducer.email}`)
                 }
-                title={t('email')}
+                title={t('displayEmail')}
                 value="asd@gmail.com"
               />
             </View>

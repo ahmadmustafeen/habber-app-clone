@@ -183,7 +183,7 @@ const Home = (props) => {
             dotStyle={{
               width: wp(7),
               marginHorizontal: wp(0),
-              height: hp(1),
+              height: hp(0.5),
               borderRadius: 5,
             }}
           />

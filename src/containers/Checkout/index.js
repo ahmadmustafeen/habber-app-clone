@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import {
   View,
   ScrollView,
@@ -8,25 +8,25 @@ import {
   I18nManager,
   FlatList,
 } from 'react-native';
-import {AppText, Button, Screen} from '_components/common';
-import {ADD_NEW_ADDRESS, EDIT_PROFILE, INVOICE} from '_constants/Screens';
-import {HorizontalRow} from '_components/HorizontalRow';
-import {Header} from '_components/Header';
-import {RadioButton, AddressCard} from '_components';
-import {useSelector, shallowEqual, useDispatch} from 'react-redux';
+import { AppText, Button, Screen } from '_components/common';
+import { ADD_NEW_ADDRESS, EDIT_PROFILE, INVOICE } from '_constants/Screens';
+import { HorizontalRow } from '_components/HorizontalRow';
+import { Header } from '_components/Header';
+import { RadioButton, AddressCard } from '_components';
+import { useSelector, shallowEqual, useDispatch } from 'react-redux';
 
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-import {useTheme} from '@react-navigation/native';
-import {withDataActions} from '../../redux/actions';
-import {CREATE_ORDER} from '../../redux/actionTypes';
-import {checkIfLoading} from '../../redux/selectors';
+import { useTheme } from '@react-navigation/native';
+import { withDataActions } from '../../redux/actions';
+import { CREATE_ORDER } from '../../redux/actionTypes';
+import { checkIfLoading } from '../../redux/selectors';
 
 const Checkout = (props) => {
-  const {colors} = useTheme();
-  const {AddressReducer, isLoading} = useSelector((state) => {
+  const { colors } = useTheme();
+  const { AddressReducer, isLoading } = useSelector((state) => {
     return {
       AddressReducer: state.AddressReducer,
       isLoading: checkIfLoading(state, CREATE_ORDER),
@@ -39,9 +39,9 @@ const Checkout = (props) => {
   });
   const setStateHandler = (key, val) => {
     // console.log(key, val)
-    setState({...state, [key]: val});
+    setState({ ...state, [key]: val });
   };
-  const {navigate} = props.navigation;
+  const { navigate } = props.navigation;
   const dispatch = useDispatch();
   return (
     <ScrollView>
@@ -52,7 +52,7 @@ const Checkout = (props) => {
           paddingBottom: hp(8),
           marginBottom: hp(1),
           justifyContent: 'flex-end',
-          transform: [{scaleX: I18nManager.isRTL ? -1 : 1}],
+          transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }],
         }}
         resizeMode="stretch"
         source={require('_assets/images/header.png')}>
@@ -62,7 +62,7 @@ const Checkout = (props) => {
         <View key="header"></View>
         <View key="content">
           <View style={styles.addressbookview}>
-            <AppText bold style={{paddingStart: wp(10), paddingVertical: 10}}>
+            <AppText bold style={{ paddingStart: wp(10), paddingVertical: 10 }}>
               Select Payment Option
             </AppText>
             <View style={styles.addressbook}>
@@ -103,7 +103,7 @@ const Checkout = (props) => {
             }}
           />
           <View style={styles.addressbookview}>
-            <AppText bold style={{paddingStart: wp(10), paddingVertical: 10}}>
+            <AppText bold style={{ paddingStart: wp(10), paddingVertical: 10 }}>
               Deliver To:
             </AppText>
             <View style={styles.addressbook}>
@@ -131,27 +131,31 @@ const Checkout = (props) => {
                     </View>
                   )}
                   ListFooterComponent={() => (
-                    <View style={{paddingBottom: 50}} />
+                    <View style={{ paddingBottom: 50 }} />
                   )}
                 />
               </View>
             </View>
-            <Button
-              fontSize={17}
-              primary
-              bold
-              onPress={() => navigate(ADD_NEW_ADDRESS)}>
-              ADD NEW ADDRESS
+            <View style={{ height: hp(17), justifyContent: 'space-between' }}>
+              <Button
+                add
+                fontSize={17}
+                primary
+                bold
+                onPress={() => navigate(ADD_NEW_ADDRESS)}>
+                ADD NEW ADDRESS
             </Button>
-            <Button
-              fontSize={17}
-              secondary
-              color={'white'}
-              bold
-              loading={isLoading}
-              onPress={() => dispatch(withDataActions({}, CREATE_ORDER))}>
-              PAY NOW
+              <Button
+                fontSize={17}
+                secondary
+                color={'white'}
+                bold
+                loading={isLoading}
+                onPress={() => dispatch(withDataActions({}, CREATE_ORDER))}>
+                PAY NOW
             </Button>
+
+            </View>
           </View>
         </View>
       </Screen>

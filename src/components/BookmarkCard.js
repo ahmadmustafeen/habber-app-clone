@@ -26,6 +26,8 @@ const BookmarkCard = (props) => {
         };
     }, shallowEqual);
     const price_product = prices.find((item) => item.iso === UserProfileReducer.currency.iso)
+    var rtlLayout = false;
+    (UserProfileReducer.currency.iso === "USD" || UserProfileReducer.currency.iso === "GBP" || UserProfileReducer.currency.iso === "EUR") && (rtlLayout = true)
 
 
     return (
@@ -40,7 +42,7 @@ const BookmarkCard = (props) => {
                     <AppText bold size={13}>{title}</AppText>
                     {quantity ?
                         <AppText primary bold size={13} style={styles.outOfStock} >
-                            {parseFloat(price).toFixed(2)} {price_product.iso}
+                            {rtlLayout && price_product.symbol} {parseFloat(price).toFixed(2)} {rtlLayout || price_product.symbol}
                         </AppText>
                         :
                         <View style={[styles.outOfStock, { backgroundColor: colors.primary }]}>

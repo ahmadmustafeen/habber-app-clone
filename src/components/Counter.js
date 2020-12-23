@@ -31,10 +31,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     // backgroundColor: '',
     alignItems: 'center',
-    width: '40%',
+    width: '100%',
     borderRadius: 20,
     overflow: 'hidden',
-    height: 45,
+    height: '100%',
   },
   operatorBtns: {
     flex: 2,

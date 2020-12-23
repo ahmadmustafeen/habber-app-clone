@@ -102,7 +102,7 @@ const MyAddressBook = (props) => {
         <View style={styles.addressbookview}>
           <View style={styles.addressbook}>
             <AppText size={17} style={styles.addressbookheading}>
-              {t('myAddressBook')}MY ADDRESS BOOK
+              {t('myAddressBook')}
             </AppText>
             <HorizontalRow />
 
@@ -129,6 +129,7 @@ const MyAddressBook = (props) => {
             />
           </View>
           <Button
+            add
             fontSize={17}
             primary
             onPress={() => navigate(ADD_NEW_ADDRESS)}>
@@ -172,7 +173,7 @@ const styles = StyleSheet.create({
   },
   txt: {
     marginLeft: 10,
-    marginTop: 20,
+    marginTop: 5,
   },
   addressbookheading: {
     marginBottom: 15,

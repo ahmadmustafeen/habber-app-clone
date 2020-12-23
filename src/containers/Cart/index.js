@@ -6,6 +6,7 @@ import {
   Image,
   ImageBackground,
   I18nManager,
+  TouchableOpacity
 } from 'react-native';
 import { AppText, Button, Screen } from '_components/common';
 import { HorizontalRow, Counter } from '_components';
@@ -115,9 +116,11 @@ const AddToCart = (props) => {
                       </AppText>
                       <View
                         style={{
-                          width: wp(70),
-                          marginLeft: wp(8),
-                          marginVertical: 10,
+                          width: wp(30),
+                          height: hp(6),
+                          marginBottom: hp(3),
+                          marginTop: hp(3),
+                          marginLeft: wp(5)
                         }}>
                         <Counter
                           value={cart_quantity}
@@ -132,14 +135,24 @@ const AddToCart = (props) => {
                           width: wp(45),
                         }}
                       />
-                      <AppText
-                        bold
-                        size={17}
-                        primary
-                        style={styles.txt}
-                        onPress={() => updateCartItem(product, 'remove')}>
-                        Remove
+                      <TouchableOpacity style={styles.removeContainer} onPress={() => updateCartItem(product, 'remove')}>
+                        <Icon
+                          style={{ paddingRight: 10 }}
+                          onPress={() => navigation.openDrawer()}
+                          color={colors.primary}
+                          name="trash-o"
+                          type="font-awesome"
+                        />
+                        <AppText
+                          bold
+                          size={17}
+                          primary
+                          style={styles.txt}
+                        >
+                          Remove
                       </AppText>
+                      </TouchableOpacity>
+
                     </View>
                   </View>
                 );
@@ -249,6 +262,10 @@ const styles = StyleSheet.create({
     width: wp(80),
     borderBottomWidth: hp(0.1),
   },
+  removeContainer: {
+    marginVertical: hp(1),
+    flexDirection: 'row'
+  }
 });
 
 export default AddToCart;

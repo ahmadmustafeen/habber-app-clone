@@ -58,7 +58,7 @@
     "PrivacyPolicy": "Privacy Policy",
     "TermsAndConditionsScreen": "Terms and Conditions",
     "JoinUs": "Join Us",
-    "AddtoCart": "Cart",
+    "AddToCart": "Cart",
     "MyOrders": "My Orders",
     "Favorites": "Favourties",
     "MyProfile": "My Profile",
@@ -97,16 +97,17 @@
   "ContactUs": {
     "supportChat": "Support Chat",
     "phoneNumber": "Phone Number",
-    "email": "Email",
-    "name": "Name",
+    "email": "Email*",
+    "displayEmail": "Email",
+    "name": "Name*",
     "mobileNumberOptional": "Mobile Number Optional",
-    "message": "Message"
+    "message": "Message*"
   },
   "Cart": {
     "subTotal": "Sub Total",
     "shippingCharges": "Shipping Charges",
     "total": "Total",
-    "checkout": "Checkout"
+    "checkout": "CHECKOUT"
   },
   "JoinUs": {
     "name": "Name",
