@@ -158,8 +158,8 @@ Login with Social media account`}
 const styles = StyleSheet.create({
   content: {
     flex: 1,
+    paddingTop: hp(4),
     flexDirection: 'column',
-    justifyContent: 'center',
   },
   bgImage: {
     flex: 1,

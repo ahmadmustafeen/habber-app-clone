@@ -14,7 +14,7 @@ import { useTranslation } from 'react-i18next';
 import { GoogleSignin } from '@react-native-community/google-signin';
 import { CustomPagination } from '_components/CustomPagination';
 import { FloatingAction } from 'react-native-floating-action';
-import Carousel from 'react-native-snap-carousel';
+import Carousel, { Pagination } from 'react-native-snap-carousel';
 import {
   DashboardComponent,
   ThumbnailBookmarks,
@@ -49,16 +49,14 @@ import { AppText } from 'components/common';
 import { Icon } from 'react-native-elements';
 
 export const itemWidth = wp(85);
-
-import { getItem } from '_helpers/Localstorage';
-import { INVOICE } from '../../constants/Screens';
 import { FETCH_BANNER } from '../../redux/actionTypes';
 const { width } = Dimensions.get('window');
 const Home = (props) => {
   const CAROUSEL = useRef(null);
   const { navigate } = props.navigation;
   const [images] = useState(sliderImages);
-
+  const [activeSlide, setActiveSlide] = useState(0)
+  console.log("active slider number", activeSlide)
   const { t } = useTranslation();
   const {
     UserProfileReducer,
@@ -93,7 +91,9 @@ const Home = (props) => {
   console.log('IS LOADING  . . . ', isLoading);
   console.log('user Profile', UserProfileReducer);
   console.log('BannerReducer ', BannerReducer);
-  const DATA = BannerReducer.map(({ banner_image, product }) => ({ coverImageUri: banner_image, product }))
+  const DATA = BannerReducer.map(({ banner_image, product }) => ({ coverImageUri: banner_image, product }));
+
+
 
   const renderItem = ({ item, index }) => {
     return (
@@ -147,6 +147,7 @@ const Home = (props) => {
           </View>
         </View>
       </TouchableOpacity>
+
     )
   };
 
@@ -165,10 +166,26 @@ const Home = (props) => {
             inactiveSlideOpacity={0.5}
             autoplay
             enableSnap
+            onSnapToItem={(index) => setActiveSlide(index)}
+
             snapOnAndroid={true} //to enable snapping on android
             itemWidth={itemWidth}
             slideStyle={styles.slide}
             loop
+          />
+          <Pagination
+            dotsLength={DATA.length}
+            inactiveDotScale={1}
+            inactiveDotColor={colors.borderColor}
+            dotColor={colors.primary}
+            activeDotIndex={activeSlide}
+            containerStyle={{ width: wp(30), alignSelf: 'center' }}
+            dotStyle={{
+              width: wp(7),
+              marginHorizontal: wp(0),
+              height: hp(1),
+              borderRadius: 5,
+            }}
           />
 
         </View>
