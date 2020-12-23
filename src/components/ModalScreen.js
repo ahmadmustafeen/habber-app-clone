@@ -7,26 +7,29 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-const ModalScreen = ({
-  heading,
-  description,
-  iconType,
-  iconName,
-  iconSize,
-  buttonLabel,
-  visible,
-  onContinue,
-  colors, forgetPassword,
-  loading,
-  image
-},
-) => {
+import { Header } from './Header';
+const ModalScreen = props => {
+  const {
+    heading,
+    description,
+    iconType,
+    iconName,
+    iconSize,
+    buttonLabel,
+    visible,
+    onContinue,
+    colors, forgetPassword,
+    loading,
+    image
+  } = props
   console.log("CC", colors)
   return (
     <Modal animationType="fade" visible={visible}>
       <View style={styles.container}>
-        <Screen>
-          <View key="header"></View>
+        <Screen noPadding>
+          <View key="header">
+            <Header headerImage noTitle backIcon headerLeft {...props} onModalPress={onContinue} />
+          </View>
           <View
             key="content"
             style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
@@ -66,7 +69,7 @@ const ModalScreen = ({
               {description}
             </AppText>
           </View>
-          <View key="footer">
+          <View key="footer" style={styles.footer}>
             <Button background={colors && colors.primary} color="white" onPress={onContinue} loading={loading}>
               {buttonLabel}
             </Button>
@@ -80,6 +83,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
+  footer: {
+    marginBottom: hp(3),
+    width: wp(90),
+    alignSelf: 'center'
+  },
+
 });
 
 export { ModalScreen };

@@ -28,12 +28,15 @@ const Header = (props) => {
     title,
     color,
     secondary,
-    route: { name },
+    route,
+    // route: { name = "home" },
+    // // name = "home",
     headerLeft,
     headerRight,
     backIcon,
     headerImage,
-    cartNumber,
+    cartNumber, onModalPress,
+    noTitle
   } = props;
   const headerColor =
     color || (secondary && colors.secondary) || colors.primary;
@@ -65,15 +68,14 @@ const Header = (props) => {
         <View>
           {backIcon ? (
             <Icon
-              onPress={() => navigation.goBack()}
+              onPress={onModalPress ? onModalPress : () => navigation.goBack()}
               color={colors.primary}
               name="leftcircleo"
               type="ant-design"
             />
           ) : null}
         </View>
-
-        <View
+        {noTitle || <View
           style={{
             flex: 4,
             paddingLeft: 10,
@@ -81,11 +83,12 @@ const Header = (props) => {
           }}>
           <TouchableOpacity onPress={backIcon ? () => navigation.goBack() : () => navigation.openDrawer()}>
             <AppText bold small color={headerColor}>
-              {title || t(name)}
+              {title || t(route.name)}
             </AppText>
           </TouchableOpacity>
 
-        </View>
+        </View>}
+
         <View
           style={{
             flex: 1,
@@ -132,7 +135,7 @@ const Header = (props) => {
             type="font-awesome-5"
             containerStyle={{ paddingEnd: 10 }}
           /> */}
-                {name !== 'Search' && (
+                {(route && (route.name !== 'Search')) && (
                   <Icon
                     props={props}
                     onPress={() =>
@@ -180,7 +183,7 @@ const Header = (props) => {
             transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }],
           }}>
           <AppText bold small color={headerColor}>
-            {title || t(name)}
+            {title || t(route)}
           </AppText>
         </View>
         <View
@@ -230,7 +233,7 @@ const Header = (props) => {
                 type="font-awesome-5"
                 containerStyle={{ paddingEnd: 10 }}
               /> */}
-                {name !== 'Search' && (
+                {route.name !== 'Search' && (
                   <Icon
                     props={props}
                     onPress={() =>

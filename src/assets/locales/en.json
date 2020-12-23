@@ -143,8 +143,8 @@
   "EditProfile": {
     "firstName": "First Name",
     "lastName": "Last Name",
-    "phone": "Phone",
-    "save": "Save"
+    "phone": "Email",
+    "save": "SAVE"
   },
   "ChangePassword": {
     "password": "Password",

@@ -6,7 +6,10 @@ import { AppText, Button, BackgroundImage } from '_components/common';
 import { useDispatch } from 'react-redux';
 import { withDataActions } from '_redux/actions';
 import { SWITCH_LANG } from '_redux/actionTypes';
-
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
 const Language = (props) => {
   const { navigate } = props.navigation;
   const { colors } = useTheme();
@@ -19,7 +22,7 @@ const Language = (props) => {
           source={require('_assets/images/Screenshot_Logo.jpg')}
         />
       </View>
-      <View key="content" style={{ alignItems: 'center' }}>
+      <View key="content" style={{ alignItems: 'center', paddingTop: hp(15) }}>
         <AppText style={styles.selecttxt}>Select Your Language</AppText>
         <Button
           style={styles.btn}
