@@ -83,7 +83,7 @@ const Header = (props) => {
             transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }],
           }}>
           <TouchableOpacity onPress={backIcon ? () => navigation.goBack() : () => navigation.openDrawer()} >
-            <AppText bold small color={headerColor} color={"white"}>
+            <AppText bold small color={headerColor} >
               {title || t(route.name)}
             </AppText>
           </TouchableOpacity>
