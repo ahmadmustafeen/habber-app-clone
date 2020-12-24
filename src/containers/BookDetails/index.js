@@ -99,7 +99,7 @@ const BookDetails = (props) => {
   let inCartPosition = CartReducer[product_type].findIndex(
     (el) => el.product_id === product_id,
   );
-
+  console.log("props.route.params.book", props.route.params.book)
   const handleCounter = (action) => {
     //TODO : For restrict counter for maximum quantity and out of stock..
 
@@ -170,6 +170,7 @@ const BookDetails = (props) => {
           }}
           source={require('_assets/images/book-detail.png')}>
           <Header
+
             cartNumber={CartReducer.book.length + CartReducer.bookmark.length}
             {...props}
             headerLeft={
@@ -180,7 +181,7 @@ const BookDetails = (props) => {
                 type="ant-design"
               />
             }
-            title
+            title={(type ? props.route.params.book.title : true)}
             color={colors.secondary}
           />
           {type !== 'bookclub' ? (

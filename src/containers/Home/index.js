@@ -56,7 +56,6 @@ const Home = (props) => {
   const { navigate } = props.navigation;
   const [images] = useState(sliderImages);
   const [activeSlide, setActiveSlide] = useState(0)
-  console.log("active slider number", activeSlide)
   const { t } = useTranslation();
   const {
     UserProfileReducer,
@@ -88,9 +87,6 @@ const Home = (props) => {
   }, shallowEqual);
   const dispatch = useDispatch();
   const { colors } = useTheme();
-  console.log('IS LOADING  . . . ', isLoading);
-  console.log('user Profile', UserProfileReducer);
-  console.log('BannerReducer ', BannerReducer);
   const DATA = BannerReducer.map(({ banner_image, product }) => ({ coverImageUri: banner_image, product }));
 
 

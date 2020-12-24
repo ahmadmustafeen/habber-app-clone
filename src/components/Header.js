@@ -78,11 +78,12 @@ const Header = (props) => {
         {noTitle || <View
           style={{
             flex: 4,
+            width: wp(20),
             paddingLeft: 10,
             transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }],
           }}>
-          <TouchableOpacity onPress={backIcon ? () => navigation.goBack() : () => navigation.openDrawer()}>
-            <AppText bold small color={headerColor}>
+          <TouchableOpacity onPress={backIcon ? () => navigation.goBack() : () => navigation.openDrawer()} >
+            <AppText bold small color={headerColor} color={"white"}>
               {title || t(route.name)}
             </AppText>
           </TouchableOpacity>

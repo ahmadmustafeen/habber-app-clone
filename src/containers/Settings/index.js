@@ -37,11 +37,6 @@ const LANGUAGES = [{ id: 1, iso: 'ar', name: 'Arabic' }, { id: 2, iso: 'en', nam
 
 const Settings = (props) => {
   const { colors } = useTheme();
-  const [item, setItemVisible] = useState({
-    currency: false,
-    language: false,
-    notifications: false,
-  });
   const { UserProfileReducer, FetchCurrencyReducer } = useSelector((state) => {
     return {
       UserProfileReducer: state.UserProfileReducer,
@@ -49,6 +44,12 @@ const Settings = (props) => {
       FetchCurrencyReducer: state.FetchCurrencyReducer,
     };
   }, shallowEqual);
+  const [item, setItemVisible] = useState({
+    currency: false,
+    language: false,
+    notification: UserProfileReducer.notification,
+  });
+
   const [currencyVal, setCurrencyVal] = useState(UserProfileReducer.currency);
 
   const toggleDropdown = (key) => {

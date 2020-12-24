@@ -20,7 +20,7 @@ export function* notificationSaga({ type, payload }) {
             return yield put({ type: SHOW_NETWORK_MODAL });
         }
         const { status, data, message } = response;
-        console.log(response, "PUSHuserID")
+        console.log(data, "PUSHuserID")
         if (status === 200) {
             yield put({ type: PUSH_NOTIFICATION_FUNCTION_SUCCESS, payload: null });
         }
