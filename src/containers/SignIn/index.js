@@ -15,6 +15,7 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
+import { ImageBackground } from 'react-native';
 
 const SignIn = (props) => {
   const { t } = useTranslation(['login']);
@@ -58,7 +59,16 @@ const SignIn = (props) => {
     };
   }, shallowEqual);
   return (
-    <BackgroundImage>
+    <ImageBackground
+      style={{
+        height: hp(100),
+        paddingHorizontal: wp(5),
+        paddingBottom: hp(3),
+        justifyContent: 'flex-end',
+      }}
+      resizeMode="stretch"
+      source={require('_assets/images/background.jpg')}>
+
       <View key="header">
         <AuthHeader {...props} />
 
@@ -152,7 +162,7 @@ Login with Social media account`}
           {t('skip')}
         </AppText>
       </View>
-    </BackgroundImage>
+    </ImageBackground>
   );
 };
 const styles = StyleSheet.create({

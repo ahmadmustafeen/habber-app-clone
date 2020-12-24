@@ -27,6 +27,7 @@ const TitleBarWithIcon = (props) => {
     iconName,
     noIcon,
     small,
+    horizontalLine,
     filter,
     selectedFilter
   } = props;
@@ -56,6 +57,15 @@ const TitleBarWithIcon = (props) => {
         ]}>
         <AppText subheading primary={!color} bold {...props}>
           {label || 'Title'}
+          {horizontalLine ? <View
+            style={{
+              marginLeft: 20,
+              width: wp(25),
+              height: hp(0.1),
+              backgroundColor: colors.borderColor,
+              borderWidth: 1,
+              borderBottomColor: 'rgba(0,0,0,0.5),',
+            }}></View> : null}
         </AppText>
         {!noIcon && (
           <Icon

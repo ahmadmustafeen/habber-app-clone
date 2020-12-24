@@ -26,9 +26,10 @@ export function* signupSaga({ payload, type }) {
     const { status, data } = response;
     console.log(response);
     if (status === 200) {
+      yield put({ type: SHOW_MODAL });
       yield put({ type: SIGN_UP_SUCCESS });
       yield put({ payload: payload, type: SIGN_IN, });
-      yield put({ type: SHOW_MODAL });
+
     } else {
       Alert.alert('Registration Failed', data.message);
       yield put({ type: SIGN_UP_FAILURE });

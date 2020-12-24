@@ -3,6 +3,7 @@ import { Alert } from 'react-native';
 import { API_ENDPOINTS } from '_constants/Network';
 import { RestClient } from '_network/RestClient';
 import { UPDATE_PASSWORD_FAILURE } from '_redux/actionTypes';
+import { FETCH_USER_PROFILE } from '../actionTypes';
 
 export function* UpdateProfileSaga({ type, payload }) {
   try {
@@ -16,7 +17,10 @@ export function* UpdateProfileSaga({ type, payload }) {
 
     const response = yield call(() =>
       RestClient.post(API_ENDPOINTS.user, form_data),
-    );
+    )
+    console.log(response, "update prof respobnse");
+    yield put({ type: FETCH_USER_PROFILE });
+
   } catch (error) {
     yield put({ type: UPDATE_PASSWORD_FAILURE, error });
   }

@@ -122,19 +122,7 @@ const Header = (props) => {
                   ) : null}
                 </TouchableOpacity>
 
-                {/* <Icon
-            onPress={() =>
-              navigation.navigate(CART_SCREEN, {
-                label: 'CART_SCREEN',
-                CART_SCREEN,
-                // CARTNEW
-              })
-            }
-            color={headerColor}
-            name="shopping-bag"
-            type="font-awesome-5"
-            containerStyle={{ paddingEnd: 10 }}
-          /> */}
+
                 {(!!route && (route.name !== 'Search')) && (
                   <Icon
                     props={props}

@@ -10,9 +10,14 @@ import { withDataActions } from '_redux/actions';
 import { checkIfLoading } from '_redux/selectors';
 
 import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
+import {
   validateEmail,
 } from '_helpers/Validators';
 import useModal from '_utils/customHooks/useModal';
+import { ImageBackground } from 'react-native';
 const ForgotPassword = (props) => {
   const dispatch = useDispatch();
   const { visible, toggleModal } = useModal();
@@ -43,7 +48,14 @@ const ForgotPassword = (props) => {
     };
   }, shallowEqual);
   return (
-    <BackgroundImage>
+    <ImageBackground
+      style={{
+        height: hp(100),
+        paddingHorizontal: wp(5),
+        paddingBottom: hp(3),
+      }}
+      resizeMode="stretch"
+      source={require('_assets/images/background.jpg')}>
       <View key="header">
         <AuthHeader {...props} />
         <AppText
@@ -66,7 +78,7 @@ const ForgotPassword = (props) => {
           onChangeText={(val) => setEmail(val)}
         />
       </View>
-      <View key="footer">
+      <View key="footer" style={styles.footer}>
         <Button onPress={onSubmit} loading={isLoading}>{t('resetPassword')}</Button>
         <ModalScreen
           forgetPassword
@@ -79,7 +91,7 @@ const ForgotPassword = (props) => {
 
         />
       </View>
-    </BackgroundImage>
+    </ImageBackground>
   );
 };
 const styles = StyleSheet.create({
@@ -92,5 +104,8 @@ const styles = StyleSheet.create({
   createAccount: {
     textAlign: 'center',
   },
+  footer: {
+    marginTop: hp(30)
+  }
 });
 export default ForgotPassword;

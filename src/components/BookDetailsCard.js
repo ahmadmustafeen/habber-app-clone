@@ -43,10 +43,10 @@ const BookDetailsCard = (props) => {
   const price_product = prices.find((item) => item.iso === UserProfileReducer.currency.iso);
   var rtlLayout = false;
   (UserProfileReducer.currency.iso === "USD" || UserProfileReducer.currency.iso === "GBP" || UserProfileReducer.currency.iso === "EUR") && (rtlLayout = true)
-  console.log(rtlLayout, "rtlLayout")
+
   return (
     <View style={styles.container}>
-      <View style={styles.imgContainer}>
+      <View style={product_type === 'bookmark' ? { aspectRatio: 0.6 / 1, height: hp(35) } : styles.imgContainer}>
         <FastImage
           style={styles.image}
           source={{ uri: image }}
@@ -114,7 +114,7 @@ const styles = StyleSheet.create({
   },
   imgContainer: {
     aspectRatio: 0.6 / 1,
-    height: 180,
+    height: hp(30),
   },
   image: {
     width: '100%',

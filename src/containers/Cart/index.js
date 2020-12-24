@@ -130,7 +130,7 @@ const AddToCart = (props) => {
                       </View>
                       <HorizontalRow
                         style={{
-                          color: 'rgb(200, 200, 200)',
+                          borderColor: 'rgb(200, 200, 200)',
                           borderWidth: hp(0.1),
                           width: wp(45),
                         }}
@@ -159,12 +159,12 @@ const AddToCart = (props) => {
               }),
             )}
 
-          <View
+          {/* <View
             style={[
               styles.horizontalRow,
               { borderBottomColor: colors.borderColor },
             ]}
-          />
+          /> */}
           <View style={styles.totalcontainer}>
             <View
               style={{
@@ -175,7 +175,7 @@ const AddToCart = (props) => {
               <AppText style={{ paddingVertical: hp(0.5) }} small bold>
                 {t('subTotal')}
               </AppText>
-              <AppText style={{ paddingVertical: hp(0.5) }} small bold>
+              <AppText style={{ paddingVertical: hp(0.7) }} small bold>
                 {t('shippingCharges')}
               </AppText>
 
@@ -244,6 +244,10 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     marginBottom: 20,
     marginTop: 20,
+
+    paddingBottom: hp(2),
+    borderBottomWidth: hp(0.1),
+    borderBottomColor: "rgba(0,0,0,0.5)"
   },
   totalcontainer: {
     flexDirection: 'row',

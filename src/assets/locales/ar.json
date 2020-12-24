@@ -1,28 +1,26 @@
 {
   "translation": {
-    "arabicBook":"مرحبا",
-    "englishBook":"مرحبا",
-    "bookclub":"مرحبا",
-    "bookmark":"مرحبا",
-    "requestBook":"REQUEST مرحبا",
-    "requestEducationalBook":"REQUEST EDUCATIONAL مرحبا"
+    "arabicBook": "مرحبا",
+    "englishBook": "مرحبا",
+    "bookclub": "مرحبا",
+    "bookmark": "مرحبا",
+    "requestBook": "REQUEST مرحبا",
+    "requestEducationalBook": "REQUEST EDUCATIONAL مرحبا"
   },
-  "drawer":{
-    "home" : "مرحبا",
-    "profile":"مرحبا",
-    "signIn":"مرحبا",
-    "aboutUs":"مرحبا",
-    "favorite":"مرحبا",
-    "myOrder":"مرحبا",
-    "setting":"مرحبا",
-    "contactUs":"مرحبا",
-    "guestUser":"مرحبا User",
-    "poweredBy":"Powered By مرحبا"
-
-
+  "drawer": {
+    "home": "مرحبا",
+    "profile": "مرحبا",
+    "signIn": "مرحبا",
+    "aboutUs": "مرحبا",
+    "favorite": "مرحبا",
+    "myOrder": "مرحبا",
+    "setting": "مرحبا",
+    "contactUs": "مرحبا",
+    "guestUser": "مرحبا User",
+    "poweredBy": "Powered By مرحبا"
   },
   "forgotPassword": {
-    "email":"مرحبا",
+    "email": "مرحبا",
     "forgot_password": "مرحبا",
     "enter_email": "مرحبا وداعا",
     "resetPassword": "مرحبا",
@@ -30,166 +28,158 @@
     "modal_description": "Your Password Reset Link Has Been Sent To Your Email",
     "modal_button_label": "Continue"
   },
-
-  "login":{
-    "email":"مرحبا",
-    "password":"مرحبا",
-    "signInLabel":"مرحبا مرحبا مرحبا",
-    "signInHeader":"مرحبا",
-    "forgetPassword":"مرحبا",
-    "signIn":"مرحبا",
-    "createAccount":"مرحبا",
-    "skip":"مرحبا"
-
-  } ,
-  "createAccount":{
-    "firstName":"asd Name",
-    "lastName":"Last Name",
-    "email":"Email",
-    "password":"Password",
-    "confirmPassword":"Confirm Password",
-    "signIn":"Sign In",
-    "bycreating":"By creating an account you agree to our",
-    "termAndService":"Terms of Services and Privacy Policy"
+  "login": {
+    "email": "مرحبا",
+    "password": "مرحبا",
+    "signInLabel": "مرحبا مرحبا مرحبا",
+    "signInHeader": "مرحبا",
+    "forgetPassword": "مرحبا",
+    "signIn": "مرحبا",
+    "createAccount": "مرحبا",
+    "skip": "مرحبا"
   },
-  "Header" : {
-    "Home" : "HOME مرحبا",
-    "Settings":"Settinمرحباgs",
-    "ContactUs":"Contact مرحبا",
-    "ReturnPolicy":"Return مرحبا",
-    "PrivacyPolicy":"Privacy مرحبا",
-    "TermsAndConditionsScreen":"Terms مرحبا",
-    "JoinUs":"Join Us مرحبا",
-    "AddToCart":"Cartمرحبا",
-    "MyOrders":"Order مرحبا",
-    "Favorites":"مرحبا",
-    "MyProfile":"مرحبا Profile",
-    "AddNewAddress":"Add مرحبا Address",
-    "EditProfile":"مرحبا Profile",
-    "ChangePassword":"مرحبا Password",
-    "Search":"Seaمرحباrch",
-    "Filter":"Filمرحباter",
-    "AboutUs":"About Us"
-
-
-
+  "createAccount": {
+    "firstName": "asd Name",
+    "lastName": "Last Name",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
+    "signIn": "Sign In",
+    "bycreating": "By creating an account you agree to our",
+    "termAndService": "Terms of Services and Privacy Policy"
   },
-  "BookDetails":{
-    "isbn":"مرحبا",
-    "totalPages":"مرحبا",
-    "coverType":"مرحبا",
-    "genre":"مرحبا",
-    "productId":"مرحبا Id",
-    "sizeInInches":"Size in (مرحبا)",
-    "typeOfBookmark":"Type of مرحبا",
-    "description":"Description مرحبا",
-    "addToCart":"Add مرحبا Cart",
-    "outOfStock":"Out مرحبا Stock",
-    "youMayAlsoLike":"You مرحبا Also Like",
-    "by":"مرحبا",
-    "price":"مرحبا"
-
+  "Header": {
+    "Home": "HOME مرحبا",
+    "Settings": "Settinمرحباgs",
+    "ContactUs": "Contact مرحبا",
+    "ReturnPolicy": "Return مرحبا",
+    "PrivacyPolicy": "Privacy مرحبا",
+    "TermsAndConditionsScreen": "Terms مرحبا",
+    "JoinUs": "Join Us مرحبا",
+    "AddToCart": "Cartمرحبا",
+    "MyOrders": "Order مرحبا",
+    "Favorites": "مرحبا",
+    "MyProfile": "مرحبا Profile",
+    "AddNewAddress": "Add مرحبا Address",
+    "EditProfile": "مرحبا Profile",
+    "ChangePassword": "مرحبا Password",
+    "Search": "Seaمرحباrch",
+    "Filter": "Filمرحباter",
+    "AboutUs": "About Us"
   },
-  "Settings":{
-    "language":"Language مرحبا",
-    "notification":"Notification مرحبا",
-    "currency":" مرحبا",
-    "termsAndConditions" :"Terms and مرحبا",
-    "privacyPolicy":"Privacy مرحبا",
-    "returnPolicy":"Return مرحبا",
-    "joinUs":"Join Us مرحبا",
-    "Arabic":"مرحبا"
+  "BookDetails": {
+    "isbn": "مرحبا",
+    "totalPages": "مرحبا",
+    "coverType": "مرحبا",
+    "genre": "مرحبا",
+    "productId": "مرحبا Id",
+    "sizeInInches": "Size in (مرحبا)",
+    "typeOfBookmark": "Type of مرحبا",
+    "description": "Description مرحبا",
+    "addToCart": "Add مرحبا Cart",
+    "outOfStock": "Out مرحبا Stock",
+    "youMayAlsoLike": "You مرحبا Also Like",
+    "by": "مرحبا",
+    "price": "مرحبا"
   },
-  "ContactUs":{
-    "supportChat":" مرحبا",
-    "phoneNumber":" مرحبا",
-    "email":"مرحبا",
-    "name":"Name مرحبا",
-    "mobileNumberOptional":"Mobile Number مرحبا",
-    "message":"Mesمرحباsage",
-    "Submit":"مرحبا"
+  "Settings": {
+    "language": "Language مرحبا",
+    "notification": "Notification مرحبا",
+    "currency": " مرحبا",
+    "termsAndConditions": "Terms and مرحبا",
+    "privacyPolicy": "Privacy مرحبا",
+    "returnPolicy": "Return مرحبا",
+    "joinUs": "Join Us مرحبا",
+    "Arabic": "مرحبا"
   },
-  "Cart":{
-    "subTotal":"مرحبا",
-    "shippingCharges":"مرحبا",
-    "total":"مرحبا",
-    "checkout":"مرحبا"
+  "ContactUs": {
+    "supportChat": " مرحبا",
+    "phoneNumber": " مرحبا",
+    "email": "مرحبا",
+    "name": "Name مرحبا",
+    "mobileNumberOptional": "Mobile Number مرحبا",
+    "message": "Mesمرحباsage",
+    "Submit": "مرحبا"
   },
-  "JoinUs":{
-    "name":"مرحبا",
-    "email":"مرحبا",
-    "mobileNumber":"مرحبا Number",
-    "selectBusinessType":"مرحبا Business Type",
-    "publishers":"مرحباpubv",
-    "corporations":"مرحباcor",
-    "individual":"مرindu+حبا",
-    "details":"مرحبا",
-    "selectProductType":"مرحبا Products Type",
-    "bookmarks":"مرحبا",
-    "books":"مرحبا",
-    "Submit":"مرحبا"
+  "Cart": {
+    "subTotal": "مرحبا",
+    "shippingCharges": "مرحبا",
+    "total": "مرحبا",
+    "checkout": "مرحبا"
   },
-  "Order":{
-    "noBookAvailable":"No مرحبا Available"
+  "JoinUs": {
+    "name": "مرحبا",
+    "email": "مرحبا",
+    "mobileNumber": "مرحبا Number",
+    "selectBusinessType": "مرحبا Business Type",
+    "publishers": "مرحباpubv",
+    "corporations": "مرحباcor",
+    "individual": "مرindu+حبا",
+    "details": "مرحبا",
+    "selectProductType": "مرحبا Products Type",
+    "bookmarks": "مرحبا",
+    "books": "مرحبا",
+    "Submit": "مرحبا"
   },
-  "MyProfile":{
-    "myAddressBook":"مرحبا ADDRESS BOOK",
-    "changePassword":"مرحبا Password"
+  "Order": {
+    "noBookAvailable": "No مرحبا Available"
   },
-  "AddNewAddress":{
-    "addressName":"مرحبا Name",
-    "country":"مرحبا",
-    "state":"مرحبا",
-    "city":"مرحبا",
-    "addressLine1":"Address مرحبا 1",
-    "addressline2":"Address مرحبا 2",
-    "postalCode":"Postal مرحبا",
-    "mobileNumber":"مرحبا Number",
-    "addAddress":"مرحبا Address"
+  "MyProfile": {
+    "myAddressBook": "مرحبا ADDRESS BOOK",
+    "changePassword": "مرحبا Password"
   },
-  "EditProfile":{
-    "firstName":"First مرحبا",
-    "lastName":"Last مرحبا",
-    "phone":"مرحبا",
-    "save":"مرحبا"
+  "AddNewAddress": {
+    "addressName": "مرحبا Name",
+    "country": "مرحبا",
+    "state": "مرحبا",
+    "city": "مرحبا",
+    "addressLine1": "Address مرحبا 1",
+    "addressline2": "Address مرحبا 2",
+    "postalCode": "Postal مرحبا",
+    "mobileNumber": "مرحبا Number",
+    "addAddress": "مرحبا Address"
   },
-  "ChangePassword":{
-    "password":"Passمرحباword",
-    "newPassword":"مرحبا",
-    "confirmNewPassword":"مرحبا New Password",
-    "save":"مرحبا"
+  "EditProfile": {
+    "firstName": "First مرحبا",
+    "lastName": "Last مرحبا",
+    "phone": "مرحبا",
+    "save": "مرحبا"
   },
-  "Search":{
-    "bookFound":"مرحبا(s) Found"
+  "ChangePassword": {
+    "password": "Passمرحباword",
+    "newPassword": "مرحبا",
+    "confirmNewPassword": "مرحبا New Password",
+    "save": "مرحبا"
   },
-  "Filter":{
-    "filter":"مرحبا",
-    "filterByGenre":"Filtمرحباer By Genre",
-    "reset":"Reمرحباset",
-    "Romance":"Romaمرحباnce",
-    "Horror":"Horrمرحباor",
-    "Thriller":"Thrمرحباiller",
-    "Suspence":"Susمرحباpence",
-    "Biography":"Biمرحباography",
-    "Mystery":"Myمرحباstery",
-    "Action":"Actمرحباion",
-    "apply":"Applمرحباy"
+  "Search": {
+    "bookFound": "مرحبا(s) Found"
   },
-  "RequestBook":{
-    "bookTitle":"Book مرحبا",
-    "authorName":"مرحبا Name",
-    "uploadImage":"مرحبا Image",
-    "restrictionText":"1 مرحبا allowed (PNG,JPEG,JPG) formats ONLY maximum size 5 MB",
+  "Filter": {
+    "filter": "مرحبا",
+    "filterByGenre": "Filtمرحباer By Genre",
+    "reset": "Reمرحباset",
+    "Romance": "Romaمرحباnce",
+    "Horror": "Horrمرحباor",
+    "Thriller": "Thrمرحباiller",
+    "Suspence": "Susمرحباpence",
+    "Biography": "Biمرحباography",
+    "Mystery": "Myمرحباstery",
+    "Action": "Actمرحباion",
+    "apply": "Applمرحباy"
+  },
+  "RequestBook": {
+    "bookTitle": "Book مرحبا",
+    "authorName": "مرحبا Name",
+    "uploadImage": "مرحبا Image",
+    "restrictionText": "1 مرحبا allowed (PNG,JPEG,JPG) formats ONLY maximum size 5 MB",
     "sendRequest": "Send مرحبا",
-    "requestEducationalBook":"Request Educational مرحبا",
-    "requestBook":"Request مرحبا"
+    "requestEducationalBook": "Request Educational مرحبا",
+    "requestBook": "Request مرحبا"
   },
-  "MyAddressBook":{
-    "myAddressBook":"مرحبا ADDRESS BOOK",
-    "noAddressAvailable":"مرحبا Address Available",
-    "addNewAddress":"Add مرحبا Address",
-    "myProfile":"مرحبا Profile"
+  "MyAddressBook": {
+    "myAddressBook": "مرحبا ADDRESS BOOK",
+    "noAddressAvailable": "مرحبا Address Available",
+    "addNewAddress": "Add مرحبا Address",
+    "myProfile": "مرحبا Profile"
   }
-  
-
 }

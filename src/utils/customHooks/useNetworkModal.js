@@ -1,11 +1,11 @@
-import React, {useState} from 'react';
-import {shallowEqual, useDispatch, useSelector} from 'react-redux';
-import {withoutDataActions} from 'redux/actions';
-import {HIDE_NETWORK_MODAL, SHOW_NETWORK_MODAL} from 'redux/actionTypes';
+import React, { useState } from 'react';
+import { shallowEqual, useDispatch, useSelector } from 'react-redux';
+import { withoutDataActions } from 'redux/actions';
+import { HIDE_NETWORK_MODAL, SHOW_NETWORK_MODAL } from '_redux/actionTypes';
 
 export default () => {
   const dispatch = useDispatch();
-  const {network} = useSelector(
+  const { network } = useSelector(
     (state) => ({
       network: state.ModalReducer.network,
     }),
@@ -17,5 +17,5 @@ export default () => {
       : dispatch(withoutDataActions(SHOW_NETWORK_MODAL));
   };
 
-  return {network, toggleModal};
+  return { network, toggleModal };
 };

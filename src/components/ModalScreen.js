@@ -28,7 +28,7 @@ const ModalScreen = props => {
       <View style={styles.container}>
         <Screen noPadding>
           <View key="header">
-            <Header headerImage noTitle backIcon headerLeft {...props} onModalPress={onContinue} />
+            <Header headerImage noTitle backIcon headerRight headerLeft {...props} onModalPress={onContinue} noCart />
           </View>
           <View
             key="content"

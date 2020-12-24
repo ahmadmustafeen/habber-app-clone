@@ -32,7 +32,8 @@ const styles = StyleSheet.create({
     container: {
         marginTop: hp(7.6),
         flexDirection: 'row',
-        height: 50
+        height: hp(12),
+        paddingBottom: hp(2)
     },
     icon: {
         width: '15.33%',
@@ -46,8 +47,9 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     imageAvatar: {
-        height: 120,
-        width: 120,
+        marginTop: hp(4),
+        height: hp(20),
+        aspectRatio: 1,
     }
 })
 export { AuthHeader };

@@ -44,122 +44,113 @@ const Checkout = (props) => {
   const { navigate } = props.navigation;
   const dispatch = useDispatch();
   return (
-    <ScrollView>
-      <ImageBackground
-        style={{
-          height: hp(21),
-          paddingHorizontal: wp(3),
-          paddingBottom: hp(8),
-          marginBottom: hp(1),
-          justifyContent: 'flex-end',
-          transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }],
-        }}
-        resizeMode="stretch"
-        source={require('_assets/images/header.png')}>
-        <Header headerLeft backIcon {...props} title={'Checkout'} />
-      </ImageBackground>
-      <Screen>
-        <View key="header"></View>
-        <View key="content">
-          <View style={styles.addressbookview}>
-            <AppText bold style={{ paddingStart: wp(10), paddingVertical: 10 }}>
-              Select Payment Option
-            </AppText>
-            <View style={styles.addressbook}>
-              <View style={styles.addressbookimg}>
-                <Image
-                  style={styles.img}
-                  source={require('_assets/images/onlinepayment.png')}></Image>
-              </View>
-              <AppText size={16}>Online Payment</AppText>
-              <RadioButton
-                hideTitle
-                selected={state.paymentMethod === 'online'}
-                onPress={() => setStateHandler('paymentMethod', 'online')}
-                style={styles.radioButton}
-              />
-            </View>
-            <View style={styles.addressbook}>
-              <View style={styles.addressbookimg}>
-                <Image
-                  style={styles.img}
-                  source={require('_assets/images/cash.png')}></Image>
-              </View>
 
-              <AppText size={16}>Cash On Delivery</AppText>
-              <RadioButton
-                hideTitle
-                selected={state.paymentMethod === 'cod'}
-                onPress={() => setStateHandler('paymentMethod', 'cod')}
-                style={styles.radioButton}
-              />
+
+    <Screen noPadding>
+
+      <View key="header">
+
+        <Header headerLeft backIcon {...props} headerImage />
+      </View>
+      <View key="content">
+        <View style={styles.addressbookview}>
+          <AppText bold style={{ paddingStart: wp(10), paddingVertical: 10 }}>
+            Select Payment Option
+            </AppText>
+          <View style={styles.addressbook}>
+            <View style={styles.addressbookimg}>
+              <Image
+                style={styles.img}
+                source={require('_assets/images/onlinepayment.png')}></Image>
             </View>
+            <AppText size={16}>Online Payment</AppText>
+            <RadioButton
+              hideTitle
+              selected={state.paymentMethod === 'online'}
+              onPress={() => setStateHandler('paymentMethod', 'online')}
+              style={styles.radioButton}
+            />
           </View>
-          <HorizontalRow
-            style={{
-              borderBottomColor: colors.borderColor,
-              borderBottomWidth: hp(0.2),
-              marginVertical: hp(3),
-            }}
-          />
-          <View style={styles.addressbookview}>
-            <AppText bold style={{ paddingStart: wp(10), paddingVertical: 10 }}>
-              Deliver To:
-            </AppText>
-            <View style={styles.addressbook}>
-              <View>
-                <FlatList
-                  showsHorizontalScrollIndicator={false}
-                  vertical
-                  data={AddressReducer}
-                  keyExtractor={(item, index) => index.toString() + item}
-                  renderItem={(item) => {
-                    return (
-                      <AddressCard
-                        item={item.item}
-                        showSelect
-                        showRadio
-                        currentValue={state.address}
-                        // elementValue={state.address}
-                        onPress={() => setStateHandler('address', item.item.id)}
-                      />
-                    );
-                  }}
-                  ListEmptyComponent={() => (
-                    <View>
-                      <AppText>No Address Available</AppText>
-                    </View>
-                  )}
-                  ListFooterComponent={() => (
-                    <View style={{ paddingBottom: 50 }} />
-                  )}
-                />
-              </View>
+          <View style={styles.addressbook}>
+            <View style={styles.addressbookimg}>
+              <Image
+                style={styles.img}
+                source={require('_assets/images/cash.png')}></Image>
             </View>
-            <View style={{ height: hp(17), justifyContent: 'space-between' }}>
-              <Button
-                add
-                fontSize={17}
-                primary
-                bold
-                onPress={() => navigate(ADD_NEW_ADDRESS)}>
-                ADD NEW ADDRESS
-            </Button>
-              <Button
-                fontSize={17}
-                secondary
-                color={'white'}
-                bold
-                loading={isLoading}
-                onPress={() => dispatch(withDataActions({}, CREATE_ORDER))}>
-                PAY NOW
-            </Button>
 
-            </View>
+            <AppText size={16}>Cash On Delivery</AppText>
+            <RadioButton
+              hideTitle
+              selected={state.paymentMethod === 'cod'}
+              onPress={() => setStateHandler('paymentMethod', 'cod')}
+              style={styles.radioButton}
+            />
           </View>
         </View>
-      </Screen>
-    </ScrollView>
+        <HorizontalRow
+          style={{
+            borderBottomColor: colors.borderColor,
+            borderBottomWidth: hp(0.2),
+            marginVertical: hp(3),
+          }}
+        />
+        <View style={styles.addressbookview}>
+          <AppText bold style={{ paddingStart: wp(10), paddingVertical: 10 }}>
+            Deliver To:
+            </AppText>
+          <View style={styles.addressbook}>
+            <View>
+              <FlatList
+                showsHorizontalScrollIndicator={false}
+                vertical
+                data={AddressReducer}
+                keyExtractor={(item, index) => index.toString() + item}
+                renderItem={(item) => {
+                  return (
+                    <AddressCard
+                      item={item.item}
+                      showSelect
+                      showRadio
+                      currentValue={state.address}
+                      // elementValue={state.address}
+                      onPress={() => setStateHandler('address', item.item.id)}
+                    />
+                  );
+                }}
+                ListEmptyComponent={() => (
+                  <View>
+                    <AppText>No Address Available</AppText>
+                  </View>
+                )}
+                ListFooterComponent={() => (
+                  <View style={{ paddingBottom: 50 }} />
+                )}
+              />
+            </View>
+          </View>
+          <View style={{ height: hp(17), justifyContent: 'space-between' }}>
+            <Button
+              add
+              fontSize={17}
+              primary
+              bold
+              onPress={() => navigate(ADD_NEW_ADDRESS)}>
+              ADD NEW ADDRESS
+            </Button>
+            <Button
+              fontSize={17}
+              secondary
+              color={'white'}
+              bold
+              loading={isLoading}
+              onPress={() => dispatch(withDataActions({}, CREATE_ORDER))}>
+              PAY NOW
+            </Button>
+
+          </View>
+        </View>
+      </View>
+    </Screen>
   );
 };
 

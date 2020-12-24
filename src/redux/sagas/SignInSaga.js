@@ -45,12 +45,13 @@ export function* signinSaga({ payload }) {
       RestClient.setHeader('Authorization', `Bearer ${res.token}`);
       yield all([
         put({ type: SIGN_IN_SUCCESS, payload: res }),
-        put({ type: HIDE_MODAL }),
+
         put({ type: FETCH_ADDRESS }),
         put({ type: FETCH_USER_CART }),
         put({ type: FETCH_USER_FAVOURITE }),
         put({ type: FETCH_CURRENCIES }),
         put({ type: FETCH_ORDER }),
+        put({ type: HIDE_MODAL }),
       ]);
 
       NavigationService.navigate('Drawer', {
