@@ -103,7 +103,7 @@ const MyProfile = (props) => {
 
 const styles = StyleSheet.create({
   imgContainer: {
-    height: 80,
+    height: wp(30),
     aspectRatio: 1,
     borderRadius: 50,
     borderWidth: 2,

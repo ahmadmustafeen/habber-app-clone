@@ -20,7 +20,7 @@ const ModalScreen = props => {
     onContinue,
     colors, forgetPassword,
     loading,
-    image
+    image, descriptionNextLine
   } = props
   console.log("CC", colors)
   return (
@@ -67,6 +67,14 @@ const ModalScreen = props => {
                 textAlign: 'center',
               }}>
               {description}
+            </AppText>
+            <AppText
+              style={{
+                paddingHorizontal: 20,
+                fontSize: 18,
+                textAlign: 'center',
+              }}>
+              {descriptionNextLine}
             </AppText>
           </View>
           <View key="footer" style={styles.footer}>

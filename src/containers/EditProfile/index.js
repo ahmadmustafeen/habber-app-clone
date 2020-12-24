@@ -22,6 +22,7 @@ import {
 } from 'react-native-responsive-screen';
 import { useTheme } from '@react-navigation/native';
 import { useTranslation } from 'react-i18next';
+import { AppText } from '../../components/common';
 
 const imageOptions = {
   title: 'Select Avatar',
@@ -123,6 +124,11 @@ const EditProfile = (props) => {
             <Image style={styles.image} source={require("_assets/images/addsign.png")} />
           </TouchableOpacity>
         </View>
+        <View style={{ position: 'absolute', right: wp(0), top: hp(8) }}>
+          <AppText primary onPress={() => setState({ ...state, profile_pic: '' })}>
+            Reset Image
+          </AppText>
+        </View>
         <HorizontalRow style={[styles.HorizontalRow, { borderBottomColor: colors.borderColor }]} />
         <View style={{ marginTop: 20 }}>
 
@@ -163,7 +169,7 @@ const EditProfile = (props) => {
 
 const styles = StyleSheet.create({
   imgContainer: {
-    height: 100,
+    height: hp(15),
     aspectRatio: 1,
     borderRadius: 50,
     borderWidth: 2,
@@ -203,7 +209,7 @@ const styles = StyleSheet.create({
     width: wp(7),
     zIndex: 999,
     height: wp(7),
-    bottom: hp(-1),
+    bottom: hp(-1.75),
     right: wp(41.5),
   },
 });

@@ -1,17 +1,17 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import Navigator from './src/navigator';
-import {navigationRef} from './NavigationService';
-import {StatusBar, View} from 'react-native';
-import {ModalScreen} from './src/components';
+import { navigationRef } from './NavigationService';
+import { StatusBar, View } from 'react-native';
+import { ModalScreen } from './src/components';
 import useNetworkModal from './src/utils/customHooks/useNetworkModal';
 import OfflineNotice from './src/components/OfflineNotice';
-import {Color} from './src/constants/Colors';
+import { Color } from './src/constants/Colors';
 import RemotePushController from './src/services/RemotePushController';
 import PushNotificationIOS from '@react-native-community/push-notification-ios';
-import {googleConfigure} from './src/services/googleLoginController';
+import { googleConfigure } from './src/services/googleLoginController';
 
 const App = () => {
-  const {network, toggleModal} = useNetworkModal();
+  const { network, toggleModal } = useNetworkModal();
   useEffect(() => {
     googleConfigure();
   });
@@ -27,7 +27,7 @@ const App = () => {
   // };
 
   return (
-    <View style={{flex: 1}}>
+    <View style={{ flex: 1 }}>
       <StatusBar barStyle="light-content" />
       <Navigator ref={navigationRef} />
       <View>
@@ -54,7 +54,8 @@ const App = () => {
         visible={network}
         onContinue={toggleModal}
         heading="No Internet"
-        description="Oops! Internet Failed, Please Retry"
+        description="Oops! Internet Failed,"
+        descriptionNextLine="Please Retry"
         buttonLabel="Retry"
       />
       <RemotePushController />
