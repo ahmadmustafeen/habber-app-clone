@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
-import { withoutDataActions } from 'redux/actions';
+import { withoutDataActions } from '_redux/actions';
 import { HIDE_NETWORK_MODAL, SHOW_NETWORK_MODAL } from '_redux/actionTypes';
 
 export default () => {

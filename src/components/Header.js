@@ -69,7 +69,7 @@ const Header = (props) => {
           {backIcon ? (
             <Icon
               onPress={onModalPress ? onModalPress : () => navigation.goBack()}
-              color={colors.primary}
+              color="#c27e12"
               name="leftcircleo"
               type="ant-design"
             />
