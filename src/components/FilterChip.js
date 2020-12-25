@@ -31,7 +31,8 @@ const styles = StyleSheet.create({
         alignSelf: "center",
         flexWrap: "wrap",
         width: wp(90),
-        justifyContent: 'center'
+        justifyContent: 'center',
+
     },
     filterView: {
         flexDirection: 'row',

@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   Dimensions,
   Image,
+  Text
 } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 import {
@@ -29,7 +30,8 @@ const TitleBarWithIcon = (props) => {
     small,
     horizontalLine,
     filter,
-    selectedFilter
+    selectedFilter,
+    centerLine
   } = props;
   const renderFilterIcon = () => {
     if (filter) {
@@ -53,6 +55,8 @@ const TitleBarWithIcon = (props) => {
             padding: small ? 5 : hp('0.8%'),
             paddingLeft: 10,
             marginVertical: small ? 7 : hp('0.8%'),
+
+
           },
         ]}>
         <AppText subheading primary={!color} bold {...props}>
@@ -65,10 +69,26 @@ const TitleBarWithIcon = (props) => {
               backgroundColor: colors.borderColor,
               borderWidth: 1,
               borderBottomColor: 'rgba(0,0,0,0.5),',
+
             }}></View> : null}
         </AppText>
+        {centerLine && (
+          <Text style={{
+            borderBottomColor: 'gray', borderBottomWidth: 1, width: '36%',
+
+
+            position: 'absolute',
+            right: 45
+
+          }}> </Text>
+
+        )}
+
+
+
         {!noIcon && (
           <Icon
+
             name={
               iconName || I18nManager.isRTL ? 'leftcircleo' : 'rightcircleo'
             }

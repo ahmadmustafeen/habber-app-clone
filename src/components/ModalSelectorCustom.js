@@ -1,5 +1,6 @@
 import { useTheme } from '@react-navigation/native';
 import React from 'react'
+import { Text } from 'react-native';
 import { View, StyleSheet } from 'react-native';
 import { Icon } from 'react-native-elements';
 import ModalSelector from 'react-native-modal-selector';
@@ -26,11 +27,13 @@ const ModalSelectorCustom = (props) => {
     } = props;
     return (
         <View style={[containerStyle]}>
+
             <ModalSelector
                 selectStyle={[style, styles.modalSelector, { borderColor: colors.primary }]}
                 data={data}
 
-                selectTextStyle={{ textAlign: 'left', fontSize: 20, color: "rgba(0,0,0,0.45)" }}
+                selectTextStyle={{ textAlign: 'left', fontSize: 20, color: "gray" }}
+                overlayStyle={{ justifyContent: 'flex-end' }}
                 initValue={initValue || "Select"}
                 onChange={onChangeText}
             />

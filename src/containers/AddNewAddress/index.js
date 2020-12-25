@@ -90,6 +90,7 @@ const AddNewAddress = (props) => {
           />
           {/* <InputWithLabel color={"black"} placeholder="Country*" required /> */}
           <ModalSelectorCustom
+
             data={countries_list}
             // value={null}
             onChangeText={(value) => setState({ ...state, country_id: value.key })}
@@ -99,6 +100,7 @@ const AddNewAddress = (props) => {
             data={selectedCountry.city}
             onChangeText={(value) => setState({ ...state, city_id: value.id })}
             initValue={t('state')}
+
           />
 
           <InputWithLabel color={"black"}
