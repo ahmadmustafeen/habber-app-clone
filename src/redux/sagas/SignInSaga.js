@@ -44,7 +44,7 @@ export function* signinSaga({ payload }) {
       yield setItem('@userProfile', JSON.stringify(res));
       RestClient.setHeader('Authorization', `Bearer ${res.token}`);
       yield all([
-        put({ type: SIGN_IN_SUCCESS, payload: { ...res, firebase_token: FCMReducer.token } }),
+        put({ type: SIGN_IN_SUCCESS, payload: res }),
 
         put({ type: FETCH_ADDRESS }),
         put({ type: FETCH_USER_CART }),

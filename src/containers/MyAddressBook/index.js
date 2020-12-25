@@ -19,6 +19,7 @@ import AddNewAddress from '../AddNewAddress';
 import { useTranslation } from 'react-i18next';
 import { withDataActions } from '../../redux/actions';
 import { DELETE_ADDRESS, EDIT_ADDRESS } from '../../redux/actionTypes';
+import UserProfileReducer from '../../redux/reducers/UserProfileReducer';
 const MyAddressBook = (props) => {
   const dispatch = useDispatch();
   const { t } = useTranslation(['MyAddressBook'])
@@ -33,12 +34,11 @@ const MyAddressBook = (props) => {
   console.log("AddressReducer", AddressReducer)
 
 
-  const { first_name, last_name, email } = useSelector(
+  const { first_name, last_name, email, profile_pic } = useSelector(
     ({ UserProfileReducer }) => UserProfileReducer,
     shallowEqual,
   );
   // AddressReducer.entries((item) => item)
-
   const MyAddressBook = (props) => {
     console.log(props.item);
     return (
@@ -52,26 +52,14 @@ const MyAddressBook = (props) => {
       </>
     )
   }
+  console.log(UserProfileReducer, "adasdas")
   const { colors } = useTheme()
   return (
     <Screen noPadding>
       <View key="header">
-        <ImageBackground
-          style={{
-            height: hp(21),
-            paddingHorizontal: wp(3),
-            paddingBottom: hp(8),
-            marginBottom: hp(1),
-            justifyContent: 'flex-end',
-            transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }],
-          }}
-          resizeMode="stretch"
-          source={require('_assets/images/header.png')}>
 
-          <Header {...props} title={t('myProfile')} />
+        <Header {...props} title={t('myProfile')} headerImage />
 
-
-        </ImageBackground>
       </View>
       <View key="content">
         <Loader loading={isLoading} />
@@ -79,7 +67,7 @@ const MyAddressBook = (props) => {
           <View style={[styles.imgContainer, { borderColor: colors.borderColor }]}>
             <Image
               style={styles.image}
-              source={require('_assets/images/logo.png')}
+              source={(!!profile_pic) ? { uri: profile_pic } : require('_assets/images/noUser.png')}
             />
           </View>
           <View style={{ flexDirection: 'column', justifyContent: 'center' }}>

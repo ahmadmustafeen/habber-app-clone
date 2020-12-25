@@ -81,8 +81,7 @@ const MyProfile = (props) => {
           />
           <View style={styles.btnview}>
             <Button
-              // icon
-              add
+              icon
               fontSize={13}
               style={{ marginBottom: 15 }}
               onPress={() => navigate(MY_ADDRESS_BOOK)}>
@@ -90,7 +89,7 @@ const MyProfile = (props) => {
             </Button>
             <Button
               fontSize={13}
-              // icon
+              icon
               onPress={() => navigate(CHANGE_PASSWORD)}>
               {t('changePassword')}
             </Button>
@@ -103,7 +102,7 @@ const MyProfile = (props) => {
 
 const styles = StyleSheet.create({
   imgContainer: {
-    height: wp(30),
+    height: wp(25),
     aspectRatio: 1,
     borderRadius: 50,
     borderWidth: 2,
@@ -115,8 +114,8 @@ const styles = StyleSheet.create({
     height: '100%',
   },
   txt: {
-    marginLeft: 10,
-    marginBottom: 10,
+    marginLeft: hp(1.6),
+    marginBottom: hp(0.6),
   },
   btnview: {
     marginTop: 30,

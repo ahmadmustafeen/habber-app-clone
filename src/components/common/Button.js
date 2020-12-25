@@ -69,7 +69,7 @@ const Button = (props) => {
       {props.icon && <Icon
         size={15}
         containerStyle={styles.iconStyle}
-        color="button"
+        color="black"
         name="rightcircleo"
         type="antdesign"
       />
