@@ -63,7 +63,7 @@ const SignIn = (props) => {
       style={{
         height: hp(100),
         paddingHorizontal: wp(5),
-        paddingBottom: hp(3),
+        paddingBottom: hp(5),
         justifyContent: 'flex-end',
       }}
       resizeMode="stretch"
@@ -97,7 +97,7 @@ const SignIn = (props) => {
         />
         <AppText
           underline
-          style={styles.forgotPassword}
+          style={[styles.forgotPassword, { color: colors.primary }]}
           size={18}
           onPress={() => navigate(FORGOT_PASSWORD_SCREEN)}>
           {t('forgetPassword')}
@@ -179,7 +179,6 @@ const styles = StyleSheet.create({
   },
   forgotPassword: {
     textAlign: 'right',
-    color: '#c27e12',
     marginBottom: wp(4),
   },
 });

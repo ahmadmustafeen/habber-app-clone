@@ -191,7 +191,7 @@ const styles = StyleSheet.create({
     transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }],
   },
   container: {
-    paddingVertical: hp(4),
+    paddingVertical: hp(3),
     paddingLeft: wp(2.8),
 
     transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }],
@@ -214,16 +214,16 @@ const styles = StyleSheet.create({
     marginBottom: hp(2),
   },
   row: {
-    marginVertical: 5,
+    marginVertical: hp(0.5),
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
   },
   imageProfile: {
-    height: 20,
+    height: hp(10),
     justifyContent: 'center',
     alignItems: 'center',
-    width: 70,
+    // aspectRatio:1,
     aspectRatio: 1,
     borderRadius: 75,
     borderWidth: 2,

@@ -105,7 +105,8 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   footer: {
-    marginTop: hp(30)
+    paddingTop: hp(24),
+    // marginTop: hp
   }
 });
 export default ForgotPassword;
