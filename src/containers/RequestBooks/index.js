@@ -92,14 +92,14 @@ const RequestBooks = (props) => {
       </View>
       <View key="content" style={styles.content}>
         <InputWithLabel
-          placeholder={t('bookTitle')}
+          placeholder={t('book Title*')}
           required
           color="black"
           value={title}
           onChangeText={(value) => handleChange('title', value)}
         />
         <InputWithLabel
-          placeholder={t('authorName')}
+          placeholder={t('Author Name*')}
           required
           color="black"
           value={author_name}
@@ -123,7 +123,7 @@ const RequestBooks = (props) => {
 
 const styles = StyleSheet.create({
   txt: {
-    marginVertical: 10,
+    marginVertical: 20,
   },
   content: {
     width: wp(90),
