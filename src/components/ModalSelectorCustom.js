@@ -1,7 +1,7 @@
 import { useTheme } from '@react-navigation/native';
 import React from 'react'
 import { Text } from 'react-native';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, I18nManager } from 'react-native';
 import { Icon } from 'react-native-elements';
 import ModalSelector from 'react-native-modal-selector';
 import {
@@ -23,25 +23,41 @@ const ModalSelectorCustom = (props) => {
         iconsize,
         iconColor,
         iconStyle,
-        iconType
+        iconType,
+        fontSize,
+        borderColor
     } = props;
     return (
-        <View style={[containerStyle]}>
+        <View style={[containerStyle], {
+            marginVertical: hp(1.0),
+            height: hp(5.8),
+            paddingVertical: 3,
+            paddingLeft: 5,
+            borderRadius: 5,
+            borderWidth: 0.5,
+            borderColor: colors.primary
+        }}>
+
 
             <ModalSelector
-                selectStyle={[style, styles.modalSelector, { borderColor: colors.primary }]}
+                selectStyle={[style, styles.modalSelector,
+                    { borderColor: 'transparent' },
+                    { fontSize: (fontSize || 25) },
+                ]}
+
                 data={data}
 
-                selectTextStyle={{ textAlign: 'left', fontSize: 20, color: "gray" }}
-                overlayStyle={{ justifyContent: 'flex-end' }}
+
+
                 initValue={initValue || "Select"}
+                initValueTextStyle={{ color: (props.color || "white"), textAlign: I18nManager.isRTL ? 'right' : 'left' }}
                 onChange={onChangeText}
             />
             {!noIcon &&
                 <Icon
                     size={iconsize || 20}
                     containerStyle={iconStyle || styles.iconStyle}
-                    color={iconColor || "black"}
+                    color={iconColor || "gray"}
                     name={iconStyle || "downcircleo"}
                     type={iconType || "antdesign"}
                 />
@@ -52,21 +68,24 @@ const ModalSelectorCustom = (props) => {
 }
 const styles = StyleSheet.create({
     modalSelector: {
-        marginVertical: hp(1.0),
-        height: hp(5.8),
-        paddingVertical: 3,
-        paddingLeft: 15,
-        borderRadius: 5,
-        borderWidth: 0.5,
-        fontSize: 20,
-        justifyContent: 'center',
+        // marginVertical: hp(1.0),
+        // height: hp(5.8),
+        // paddingVertical: 3,
+        // paddingLeft: 15,
+        // borderRadius: 5,
+        // borderWidth: 0.5,
+        // fontSize: 20,
 
-        backgroundColor: 'transparent',
+
+        justifyContent: 'center',
+        alignSelf: 'flex-start',
+        // backgroundColor: 'transparent',
+
     },
     iconStyle: {
         position: 'absolute',
         right: wp(5),
-        top: hp(3),
+        top: hp(1.5),
     }
 
 })

@@ -15,6 +15,7 @@ import { Header } from '_components/Header';
 import { ADD_ADDRESS_SAGA } from '_redux/actionTypes';
 import { useTranslation } from 'react-i18next';
 import { EDIT_ADDRESS } from '../../redux/actionTypes';
+import { colors } from 'react-native-elements';
 
 const AddNewAddress = (props) => {
   const { route, navigation } = props;
@@ -95,49 +96,58 @@ const AddNewAddress = (props) => {
             // value={null}
             onChangeText={(value) => setState({ ...state, country_id: value.key })}
             initValue={selectedCountry.name || t('country')}
+            color={"gray"}
+
           />
           <ModalSelectorCustom
             data={selectedCountry.city}
             onChangeText={(value) => setState({ ...state, city_id: value.id })}
             initValue={t('state')}
+            color={"gray"}
+
+
+
+
 
           />
 
-          <InputWithLabel color={"black"}
+          <InputWithLabel
+            color={"black"}
+
             value={state.state}
-            placeholder={t('state')}
+            placeholder={t('City*')}
             required
             onChangeText={(val) => setStateHandler('state', val)}
           />
           <InputWithLabel color={"black"}
             value={state.address_line1}
-            placeholder={t('addressLine1')}
+            placeholder={t('Address Line 1*')}
             required
             onChangeText={(val) => setStateHandler('address_line1', val)}
           />
           <InputWithLabel color={"black"}
             value={state.address_line2}
-            placeholder={t('addressline2')}
+            placeholder={t('Address Line 2*')}
 
             required
             onChangeText={(val) => setStateHandler('address_line2', val)}
           />
           <InputWithLabel color={"black"}
             value={state.post_code}
-            placeholder={t('postalCode')}
+            placeholder={t('Postal Code*')}
             required
             onChangeText={(val) => setStateHandler('post_code', val)}
           />
           <InputWithLabel color={"black"}
             value={state.phone}
-            placeholder={t('mobileNumber')}
+            placeholder={t('Mobile Number*')}
             required
             onChangeText={(val) => setStateHandler('phone', val)}
           />
         </View>
         <View key="footer">
           <Button primary onPress={() => AddAddress()}>
-            {t('addAddress')}
+            {t('Add Address')}
           </Button>
         </View>
       </Screen>
