@@ -1,12 +1,16 @@
 import { put, call } from 'redux-saga/effects';
 import { Alert } from 'react-native';
 import { API_ENDPOINTS } from '_constants/Network';
+import { startAction, stopAction } from '_redux/actions';
 import { RestClient } from '_network/RestClient';
+import * as NavigationService from '../../../NavigationService';
 import { UPDATE_PASSWORD_FAILURE } from '_redux/actionTypes';
-import { FETCH_USER_PROFILE } from '../actionTypes';
+import { FETCH_USER_PROFILE, UPDATE_PROFILE_FAILURE, UPDATE_PROFILE_SUCCESS } from '../actionTypes';
+import { MY_PROFILE } from '_constants/Screens';
 
 export function* UpdateProfileSaga({ type, payload }) {
   try {
+    yield put(startAction(type));
     const form_data = new FormData();
     form_data.append('first_name', payload.first_name);
     form_data.append('last_name', payload.last_name);
@@ -18,10 +22,19 @@ export function* UpdateProfileSaga({ type, payload }) {
     const response = yield call(() =>
       RestClient.post(API_ENDPOINTS.user, form_data),
     )
-    console.log(response, "update prof respobnse");
-    yield put({ type: FETCH_USER_PROFILE });
-
+    console.log(response, "response")
+    const { status, data, message } = response;
+    if (status === 200) {
+      yield put({ type: UPDATE_PROFILE_SUCCESS, payload: data });
+      yield put({ type: FETCH_USER_PROFILE }),
+        Alert.alert('Your Profile have been Updated', message, [{
+          onPress: () => NavigationService.navigate('MyProfile', { screen: MY_PROFILE })
+        }])
+    }
   } catch (error) {
-    yield put({ type: UPDATE_PASSWORD_FAILURE, error });
+    yield put({ type: UPDATE_PROFILE_FAILURE, error });
+  }
+  finally {
+    yield put(stopAction(type));
   }
 }

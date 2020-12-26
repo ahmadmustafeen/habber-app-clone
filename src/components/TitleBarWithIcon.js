@@ -61,7 +61,7 @@ const TitleBarWithIcon = (props) => {
         ]}>
         <AppText subheading primary={!color} bold {...props}>
           {label || 'Title'}
-          {horizontalLine ? <View
+          {/* {horizontalLine ? <View
             style={{
               marginLeft: 20,
               width: wp(25),
@@ -70,7 +70,7 @@ const TitleBarWithIcon = (props) => {
               borderWidth: 1,
               borderBottomColor: 'rgba(0,0,0,0.5),',
 
-            }}></View> : null}
+            }}></View> : null} */}
         </AppText>
         {centerLine && (
           <Text style={{

@@ -23,6 +23,8 @@ import {
 import { useTheme } from '@react-navigation/native';
 import { useTranslation } from 'react-i18next';
 import { AppText } from '../../components/common';
+import { UPDATE_PROFILE } from '../../redux/actionTypes';
+import { checkIfLoading } from '../../redux/selectors';
 
 const imageOptions = {
   title: 'Select Avatar',
@@ -40,7 +42,14 @@ const EditProfile = (props) => {
     shallowEqual,
   );
   const dispatch = useDispatch();
-
+  const { isLoading } = useSelector((state) => {
+    return {
+      isLoading: checkIfLoading(
+        state,
+        UPDATE_PROFILE,
+      )
+    };
+  }, shallowEqual);
   const [state, setState] = useState({
     first_name: UserProfileReducer.first_name,
     last_name: UserProfileReducer.last_name,
@@ -125,7 +134,7 @@ const EditProfile = (props) => {
           </TouchableOpacity>
         </View>
         <View style={{ position: 'absolute', right: wp(0), top: hp(8) }}>
-          <AppText primary onPress={() => setState({ ...state, profile_pic: '' })}>
+          <AppText bold primary onPress={() => setState({ ...state, profile_pic: '' })}>
             Reset Image
           </AppText>
         </View>
@@ -159,7 +168,7 @@ const EditProfile = (props) => {
         </View>
       </View>
       <View key="footer" style={styles.content}>
-        <Button style={styles.button} appColor primary onPress={() => save()}>
+        <Button loading={isLoading} style={styles.button} appColor primary onPress={() => save()}>
           {t('save')}
         </Button>
       </View>
