@@ -134,6 +134,7 @@ const Checkout = (props) => {
               fontSize={17}
               primary
               bold
+              aadres
               onPress={() => navigate(ADD_NEW_ADDRESS)}>
               ADD NEW ADDRESS
             </Button>

@@ -13,7 +13,7 @@ export const validatePassword = (password) => password.length >= 6;
 export const validatePhone = (phone) => phone && phone.length > 9;
 export const validateIsTrue = (val, text = 'details', concat = true) => {
   if (!val) {
-    Alert.alert(concat ? `Please enter ${text}` : text)
+    Alert.alert(concat ? `Please Enter ${text}` : text)
     return false
   }
   return true

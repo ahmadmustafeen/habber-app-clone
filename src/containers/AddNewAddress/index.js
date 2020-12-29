@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, ScrollView, I18nManager, ImageBackground } from 'react-native';
+import { View, ScrollView, I18nManager, ImageBackground, Alert } from 'react-native';
 
 import {
   widthPercentageToDP as wp,
@@ -16,9 +16,14 @@ import { ADD_ADDRESS_SAGA } from '_redux/actionTypes';
 import { useTranslation } from 'react-i18next';
 import { EDIT_ADDRESS } from '../../redux/actionTypes';
 import { colors } from 'react-native-elements';
-
+import {
+  validatePhone,
+  validateEmail,
+  validateIsTrue,
+} from '_helpers/Validators';
 const AddNewAddress = (props) => {
   const { route, navigation } = props;
+  console.log(props)
   // const data = route.params.params.item.item;
   // var item = !!route.params.item ? route.params.item : ""
   // item = route.params.item;
@@ -59,12 +64,50 @@ const AddNewAddress = (props) => {
   };
   const dispatch = useDispatch();
   const AddAddress = () => {
-    item ?
-      dispatch(withDataActions({ ...state, id: item.id }, EDIT_ADDRESS))
-      :
-      dispatch(withDataActions(state, ADD_ADDRESS_SAGA));
+    validate() && (
+      item ?
+        dispatch(withDataActions({ ...state, id: item.id }, EDIT_ADDRESS))
+        :
+        dispatch(withDataActions(state, ADD_ADDRESS_SAGA)))
   };
   const { navigate } = navigation;
+
+  const validate = () => {
+    // if (!state.address_name) {
+    //   Alert.alert('Please Enter Name');
+    //   return false;
+    // }
+    // if (!state.address_name) {
+    //   Alert.alert('Please Enter Name');
+    //   return false;
+    // }
+    // if (!state.address_name) {
+    //   Alert.alert('Please Enter Name');
+    //   return false;
+    // }
+    // if (!validateEmail(state.email)) {
+    //   Alert.alert('Invalid Email');
+    //   return false;
+    // }
+
+
+    validateIsTrue(state.address_name, 'Address Name') &&
+      validateIsTrue(state.country_id, "Select a Country", false) &&
+      validateIsTrue(state.city_id, "Select a State", false) &&
+      validateIsTrue(state.state, 'City') &&
+      validateIsTrue(state.address_line1, 'Address') &&
+
+      // validateIsTrue(state.address_line2, 'Address!');
+      validateIsTrue(state.post_code, 'Postal Code') &&
+      validateIsTrue(state.phone, 'Phone No')
+
+
+
+  };
+  const onSubmit = () => {
+    validate() &&
+      dispatch(withDataActions(state, SUBMIT_JOIN_US));
+  };
   return (
     <ScrollView>
       <ImageBackground
@@ -78,7 +121,7 @@ const AddNewAddress = (props) => {
         }}
         resizeMode="stretch"
         source={require('_assets/images/header.png')}>
-        <Header {...props} backIcon headerLeft />
+        <Header {...props} backIcon headerLeft title={"CHECKOUT"} />
       </ImageBackground>
       <Screen>
         <View key="header"></View>
@@ -146,7 +189,7 @@ const AddNewAddress = (props) => {
           />
         </View>
         <View key="footer">
-          <Button primary onPress={() => AddAddress()}>
+          <Button primary onPress={() => AddAddress()}   >
             {t('Add Address')}
           </Button>
         </View>

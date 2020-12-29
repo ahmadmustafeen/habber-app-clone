@@ -100,7 +100,7 @@ const SignIn = (props) => {
           style={[styles.forgotPassword, { color: colors.primary }]}
           size={18}
           onPress={() => navigate(FORGOT_PASSWORD_SCREEN)}>
-          {t('forgetPassword')}
+          {t('Forgot Password?')}
         </AppText>
         <View style={{ alignItems: 'center' }}>
           <Button

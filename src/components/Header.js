@@ -19,7 +19,7 @@ import {
 } from 'react-native-responsive-screen';
 import { useTranslation } from 'react-i18next';
 
-const Header = (props) => {
+const Header = (props, { adddok }) => {
   const { t } = useTranslation(['Header']);
 
   const { colors } = useTheme();
@@ -36,8 +36,12 @@ const Header = (props) => {
     backIcon,
     headerImage,
     cartNumber, onModalPress,
-    noTitle
+    noTitle,
+
   } = props;
+
+
+
   const headerColor =
     color || (secondary && colors.secondary) || colors.primary;
   return (headerImage ?
@@ -81,10 +85,11 @@ const Header = (props) => {
             width: wp(20),
             paddingLeft: 10,
             transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }],
+
           }}>
           <TouchableOpacity onPress={backIcon ? () => navigation.goBack() : () => navigation.openDrawer()} >
             <AppText bold small color={headerColor} >
-              {title || t(route.name)}
+              {!adddok ? title || t(route.name) : title || t('kkk')}
             </AppText>
           </TouchableOpacity>
 

@@ -82,8 +82,8 @@ const JoinUs = (props) => {
     props.navigation.goBack();
   };
   const onSubmit = () => {
-    console.log(validate());
-    dispatch(withDataActions(state, SUBMIT_JOIN_US));
+    validate() &&
+      dispatch(withDataActions(state, SUBMIT_JOIN_US));
   };
   const { navigate } = props.navigation;
   const { colors } = useTheme()
