@@ -90,7 +90,7 @@ const Header = (props, { adddok }) => {
           }}>
           <TouchableOpacity onPress={backIcon ? () => navigation.goBack() : () => navigation.openDrawer()} >
             <AppText bold small color={headerColor} >
-              {!adddok ? title || t(route.name) : title || t('kkk')}
+              {title || t(route.name)}
             </AppText>
           </TouchableOpacity>
 
@@ -176,8 +176,9 @@ const Header = (props, { adddok }) => {
             flex: 4,
             paddingLeft: 10,
             transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }],
+
           }}>
-          <AppText bold small color={headerColor}>
+          <AppText style={{ width: wp(50) }} bold small color={headerColor}>
             {title || t(route.name)}
           </AppText>
         </View>
