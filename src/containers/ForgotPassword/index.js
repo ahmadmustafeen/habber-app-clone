@@ -79,7 +79,10 @@ const ForgotPassword = (props) => {
         />
       </View>
       <View key="footer" style={styles.footer}>
+
+
         <Button onPress={onSubmit} loading={isLoading}>{t('resetPassword')}</Button>
+
         <ModalScreen
           forgetPassword
           image={require("../../assets/images/forgetPassword.png")}
@@ -105,8 +108,18 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   footer: {
-    paddingTop: hp(24),
+    paddingTop: hp(30),
+    marginBottom: hp(6),
+    paddingBottom: hp(6),
+
     // marginTop: hp
+
+
+    flex: 1,
+
+
+
+
   }
 });
 export default ForgotPassword;

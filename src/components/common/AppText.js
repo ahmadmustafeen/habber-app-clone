@@ -29,7 +29,8 @@ const AppText = (props) => {
     iconsize,
     iconColor,
     iconStyle,
-    subheading
+    subheading,
+    capitalize
   } = props;
 
   return (
@@ -59,7 +60,8 @@ const AppText = (props) => {
           center && { textAlign: 'center' },
           right && { textAlign: 'right' },
           small && { fontSize: 17 },
-          subheading && { fontSize: 20 }
+          subheading && { fontSize: 20 },
+          capitalize && { textTransform: 'capitalize' }
 
         ]}>
         {children}
@@ -73,6 +75,7 @@ const styles = StyleSheet.create({
     fontSize: hp(2.6),
     color: 'black',
     textAlign: 'left',
+
   },
   iconStyle: {
     top: -15,

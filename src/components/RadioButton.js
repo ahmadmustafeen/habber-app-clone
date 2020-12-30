@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { View, TouchableOpacity, StyleSheet, Text } from 'react-native'
+import { View, TouchableOpacity, StyleSheet, Text, Image } from 'react-native'
 
 const RadioButton = (props) => {
     const { key, title, value, onPress, selected, style, noTitle, showSelect, currentValue, elementValue } = props;
@@ -8,7 +8,14 @@ const RadioButton = (props) => {
     return (
 
         <View key={key} style={style || styles.buttonContainer}  >
-            <TouchableOpacity style={selected ? styles.checkedCircle : styles.circle} onPress={onPress} />
+            {/* <TouchableOpacity
+                style={selected ? styles.checkedCircle : styles.circle} onPress={onPress} /> */}
+            <TouchableOpacity onPress={onPress}>
+                <Image source={
+                    selected ? require('../assets/images/tick.png') :
+                        require('../assets/images/Ellipse55.png')
+                } />
+            </TouchableOpacity>
             {!noTitle && <Text style={[styles.title, (selected && { color: '#c27e12' })]} >{title}</Text>}
 
         </View >

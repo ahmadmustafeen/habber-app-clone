@@ -9,9 +9,11 @@ import { AppText } from "../../components/common"
 
 export const BDScreenText = (props) => {
     const { title, value } = props;
-    return (<AppText {...props} style={styles.infoProduct} bold size={15}>
-        {title}: {value}
-    </AppText>)
+    return (
+        <AppText {...props} style={styles.infoProduct} bold size={15}>
+            {title}: {value}
+        </AppText>
+    )
 }
 
 const styles = StyleSheet.create({

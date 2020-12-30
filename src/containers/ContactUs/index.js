@@ -186,7 +186,7 @@ const ContactUs = (props) => {
                 iconType="font-awesome"
                 iconSize={23}
                 title={t('supportChat')}
-                value="1234 43222"
+                value={FetchSiteReducer.whatsaap_number}
                 onPress={() =>
                   Linking.openURL(
                     `whatsapp://send?text=""&phone=${FetchSiteReducer.whatsaap_number}`,
@@ -199,7 +199,7 @@ const ContactUs = (props) => {
                 iconType="feather"
                 iconSize={23}
                 title={t('phoneNumber')}
-                value="1234 43222"
+                value={FetchSiteReducer.phone_no}
                 onPress={() =>
                   Platform.OS === 'ios'
                     ? Linking.openURL(`telprompt:${FetchSiteReducer.phone_no}`)
@@ -215,7 +215,7 @@ const ContactUs = (props) => {
                   Linking.openURL(`mailto:${FetchSiteReducer.email}`)
                 }
                 title={t('displayEmail')}
-                value="asd@gmail.com"
+                value={FetchSiteReducer.email}
               />
             </View>
           </ImageBackground>
@@ -223,7 +223,7 @@ const ContactUs = (props) => {
         </View>
 
       </Screen>
-      <FloatingActionButton image={require("_assets/images/fab.png")} onPress={() => console.log("presses")} />
+      {/* <FloatingActionButton image={require("_assets/images/fab.png")} onPress={() => console.log("presses")} /> */}
     </>
   );
 };

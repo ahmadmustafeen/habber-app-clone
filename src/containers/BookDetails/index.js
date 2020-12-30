@@ -226,6 +226,7 @@ const BookDetails = (props) => {
               <BDScreenText title={t('totalPages')} value={book.total_pages} />
               <BDScreenText title={t('coverType')} value={book.cover_type} />
               <BDScreenText
+                capitalize
                 title={t("genre")}
                 value={book.genre.map((item) => item.title).join(' | ')}
               />

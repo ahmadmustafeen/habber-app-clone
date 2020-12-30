@@ -81,8 +81,8 @@
     "description": "Description",
     "addToCart": "Add To Cart",
     "outOfStock": "Out Of Stock",
-    "youMayAlsoLike": "You may also like",
-    "by": "by",
+    "youMayAlsoLike": "You may also like:",
+    "by": "by ",
     "price": "Price:"
   },
   "Settings": {
@@ -96,12 +96,12 @@
     "Arabic": "مرحبا"
   },
   "ContactUs": {
-    "supportChat": "Support Chat",
-    "phoneNumber": "Phone Number",
+    "supportChat": "Support Chat:",
+    "phoneNumber": "Phone Number:",
     "email": "Email*",
-    "displayEmail": "Email",
+    "displayEmail": "Email:",
     "name": "Name*",
-    "mobileNumberOptional": "Mobile Number Optional",
+    "mobileNumberOptional": "Mobile Number (optional)",
     "message": "Message*"
   },
   "Cart": {

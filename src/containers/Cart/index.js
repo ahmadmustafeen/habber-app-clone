@@ -132,8 +132,8 @@ const AddToCart = (props) => {
                         style={{
                           borderColor: 'rgb(200, 200, 200)',
                           borderWidth: hp(0.1),
-                          width: wp(45),
-                          backgroundColor: 'pink'
+                          width: wp(40),
+
                         }}
                       />
                       <TouchableOpacity style={styles.removeContainer} onPress={() => updateCartItem(product, 'remove')}>
@@ -150,7 +150,7 @@ const AddToCart = (props) => {
                           size={17}
                           primary
                           style={styles.txt}
-                        // style={{ backgroundColor: 'pink' }}
+
                         >
                           Remove
                       </AppText>
@@ -182,11 +182,20 @@ const AddToCart = (props) => {
                 {t('shippingCharges')}
               </AppText>
 
-              <View
+              {/* <View
                 style={[
                   styles.horizontalRow,
                   { borderBottomColor: colors.borderColor },
                 ]}
+              /> */}
+              <HorizontalRow
+                style={{
+                  borderColor: 'rgb(200, 200, 200)',
+                  borderWidth: hp(0.1),
+                  width: wp(87),
+
+
+                }}
               />
               <AppText small primary bold>
                 {t('total')}
@@ -223,6 +232,10 @@ const AddToCart = (props) => {
 };
 
 const styles = StyleSheet.create({
+  txt: {
+    width: wp(45)
+  },
+
   imgContainer: {
     height: 220,
     aspectRatio: 0.7,
