@@ -50,7 +50,7 @@ const RequestBooks = (props) => {
   };
 
   const onSubmit = () => {
-    validate() && dispatch(withDataActions(state, REQUEST_BOOK));
+    validate() && dispatch(withDataActions(state, REQUEST_BOOK)) && console.log("Authenticated Successfully!");
   };
 
   const setImage = () => {

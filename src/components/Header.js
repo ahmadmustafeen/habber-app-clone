@@ -37,6 +37,7 @@ const Header = (props, { adddok }) => {
     headerImage,
     cartNumber, onModalPress,
     noTitle,
+    noSearch
 
   } = props;
 
@@ -129,7 +130,7 @@ const Header = (props, { adddok }) => {
                 </TouchableOpacity>
 
 
-                {(!!route && (route.name !== 'Search')) && (
+                { !noSearch ? (!!route && (route.name !== 'Search')) && (
                   <Icon
                     props={props}
                     onPress={() =>
@@ -139,7 +140,7 @@ const Header = (props, { adddok }) => {
                     name="search1"
                     type="antdesign"
                   />
-                )}
+                ) : null}
               </View>
             )}
         </View>

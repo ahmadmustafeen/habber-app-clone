@@ -1,9 +1,11 @@
+import { Alert } from 'react-native';
 import { put, call } from 'redux-saga/effects';
 import { NETWORK_ERROR, SHOW_NETWORK_MODAL } from 'redux/actionTypes';
-
+import * as NavigationService from '../../../NavigationService';
 import { API_ENDPOINTS } from '_constants/Network';
 import { RestClient } from '_network/RestClient';
 import { REQUEST_BOOK_SUCCESS, REQUEST_BOOK_FAILURE } from '_redux/actionTypes';
+import { HOME } from '../../constants/Screens';
 
 export function* BookRequestSaga({ type, payload }) {
   const form_data = new FormData();
@@ -28,6 +30,10 @@ export function* BookRequestSaga({ type, payload }) {
     }
 
     const { status, data, message } = response;
+    Alert.alert('Your Request have been Updated', message, [{
+      onPress: () => NavigationService.navigate('Home', { screen: HOME })
+    }])
+    console.log(response, "bookrequestsaga")
     yield put({ type: REQUEST_BOOK_SUCCESS, payload: null });
   } catch (error) {
     yield put({ type: REQUEST_BOOK_FAILURE, error });

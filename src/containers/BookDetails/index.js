@@ -37,6 +37,7 @@ import {
 import { withDataActions } from '../../redux/actions/GenericActions';
 import { checkIsFavourite } from '../../redux/selectors';
 import { useTranslation } from 'react-i18next';
+import { Text } from 'react-native';
 
 const BookDetails = (props) => {
   const { t } = useTranslation(["BookDetails"]);
@@ -184,18 +185,21 @@ const BookDetails = (props) => {
             title={(type ? props.route.params.book.title : true)}
             color={colors.secondary}
           />
-          {type !== 'bookclub' ? (
-            <View
-              style={{ width: wp(90), paddingTop: hp(2), alignSelf: 'center' }}>
-              <BookDetailsCard
-                onClickFavourite={handleFavouriteClick}
-                favourite={isFavourite}
-                {...book}
-                onClickShare={onShare}
-                onGoodReads={() => Linking.openURL('https://www.goodreads.com/book/isbn/' + book.isbn)}
-              />
-            </View>
-          ) : (
+          {type !== 'bookclub' ?
+            (
+
+              <View
+                style={{ width: wp(90), paddingTop: hp(2), alignSelf: 'center' }}>
+                <BookDetailsCard
+                  onClickFavourite={handleFavouriteClick}
+                  favourite={isFavourite}
+                  {...book}
+                  onClickShare={onShare}
+                  onGoodReads={() => Linking.openURL('https://www.goodreads.com/book/isbn/' + book.isbn)}
+                />
+              </View>
+            )
+            : (
               <View
                 style={{ width: wp(90), alignSelf: 'center', paddingBottom: 20 }}>
                 <Image
@@ -207,17 +211,19 @@ const BookDetails = (props) => {
         </ImageBackground>
       </View>
       <View key="content">
-        {type === 'bookclub' && (
-          <View style={{ paddingTop: hp(3) }}>
-            <BookDetailsCard
-              onClickFavourite={handleFavouriteClick}
-              favourite={isFavourite}
-              onClickShare={onShare}
-              onGoodReads={() => Linking.openURL('https://www.goodreads.com/book/isbn/' + book.isbn)}
-              {...book}
-            />
-          </View>
-        )}
+        {type === 'bookclub' &&
+          (
+            <View style={{ paddingTop: hp(3) }}>
+              <BookDetailsCard
+                onClickFavourite={handleFavouriteClick}
+                favourite={isFavourite}
+                onClickShare={onShare}
+                onGoodReads={() => Linking.openURL('https://www.goodreads.com/book/isbn/' + book.isbn)}
+                {...book}
+              />
+            </View>
+          )
+        }
         <HorizontalRow style={styles.row} />
         <View>
           {product_type !== 'bookmark' ? (
@@ -322,7 +328,50 @@ const BookDetails = (props) => {
               />
             </View>
           </View>
-        ) : null}
+        ) : (
+
+            <View
+              style={{
+                width: wp(90),
+                alignSelf: 'center',
+                paddingVertical: hp(2),
+              }}>
+              <AppText> {t("morebookclubs")}</AppText>
+              <View style={{ paddingVertical: hp(2) }}>
+                <DashboardComponent
+                  noTitle
+                  data={FetchRelatedBookList.filter((book) => book.featured)}
+                  renderComponent={(item) => {
+                    if (product_type === 'book') {
+                      return (
+                        <RelatedThumbnailBook
+                          onPress={() => {
+                            props.navigation.push(BOOK_DETAILS_SCREEN, {
+                              ...item.item,
+                              product_type,
+                            });
+                          }}
+                          url={item.item.image}
+                        />
+                      );
+                    }
+                    return (
+                      <RelatedThumbnailBookmarks
+                        onPress={() => {
+                          props.navigation.push(BOOK_DETAILS_SCREEN, {
+                            ...item.item,
+                            product_type,
+                          });
+                        }}
+                        url={item.item.image}
+                      />
+
+                    );
+                  }}
+                />
+              </View>
+            </View>
+          )}
       </View>
     </Screen>
   );

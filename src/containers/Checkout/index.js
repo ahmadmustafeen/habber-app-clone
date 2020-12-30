@@ -50,7 +50,8 @@ const Checkout = (props) => {
 
       <View key="header">
 
-        <Header headerLeft backIcon {...props} headerImage />
+        <Header
+          headerLeft backIcon {...props} headerImage noSearch />
       </View>
       <View key="content">
         <View style={styles.addressbookview}>
