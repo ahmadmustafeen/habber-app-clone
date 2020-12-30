@@ -133,11 +133,13 @@ const AddToCart = (props) => {
                           borderColor: 'rgb(200, 200, 200)',
                           borderWidth: hp(0.1),
                           width: wp(45),
+                          backgroundColor: 'pink'
                         }}
                       />
                       <TouchableOpacity style={styles.removeContainer} onPress={() => updateCartItem(product, 'remove')}>
                         <Icon
-                          style={{ paddingRight: 10 }}
+                          size={18}
+                          style={{ paddingRight: 30 }}
                           onPress={() => navigation.openDrawer()}
                           color={colors.primary}
                           name="trash-o"
@@ -148,6 +150,7 @@ const AddToCart = (props) => {
                           size={17}
                           primary
                           style={styles.txt}
+                        // style={{ backgroundColor: 'pink' }}
                         >
                           Remove
                       </AppText>

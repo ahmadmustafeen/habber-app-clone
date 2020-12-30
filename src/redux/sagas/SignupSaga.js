@@ -1,5 +1,6 @@
 import { Alert } from 'react-native';
 import { put, call } from 'redux-saga/effects';
+import { delay } from 'redux-saga'
 
 import { getItem } from '../../helpers/Localstorage';
 import { API_ENDPOINTS } from '../../constants/Network';
@@ -39,6 +40,13 @@ export function* signupSaga({ payload, type }) {
   }
   finally {
 
-    yield put(stopAction(SIGN_UP));
+    // yield put(
+    //   delay(1000)
+    // )
+    yield put(
+      stopAction(SIGN_UP)
+
+
+    );
   }
 }

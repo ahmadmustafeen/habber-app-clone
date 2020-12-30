@@ -82,8 +82,8 @@ const JoinUs = (props) => {
     props.navigation.goBack();
   };
   const onSubmit = () => {
-    validate() &&
-      dispatch(withDataActions(state, SUBMIT_JOIN_US));
+    console.log(validate());
+    dispatch(withDataActions(state, SUBMIT_JOIN_US));
   };
   const { navigate } = props.navigation;
   const { colors } = useTheme()
@@ -172,12 +172,12 @@ const JoinUs = (props) => {
           <AppText style={styles.businesstype}>{t("selectProductType")}</AppText>
           <View style={styles.row}>
             <RadioButton
-              title={"books"}
+              title={t('books')}
               selected={state.product_type.has("Books")}
               onPress={() => productTypeFunc('Books')}
             />
             <RadioButton
-              title={'bookmarks'}
+              title={t('bookmarks')}
               selected={state.product_type.has("Bookmarks")}
               // selected={state.product_type === 'Bookmarks'}
               onPress={() => productTypeFunc('Bookmarks')}
@@ -222,6 +222,7 @@ const styles = StyleSheet.create({
     borderWidth: 3,
     marginVertical: 20,
     textAlignVertical: 'top',
+    paddingLeft: 15
     // padding: 10,
   },
   row: {

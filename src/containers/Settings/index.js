@@ -237,7 +237,12 @@ const Settings = (props) => {
         />
       </View>
 
-      <View key="footer" style={[styles.content, { marginTop: hp(-10) }]}>
+      <View
+        key="footer"
+        // style={[styles.content, { marginTop: hp(-10) }]}
+        style={styles.content}
+
+      >
         {UserProfileReducer.token && (
           <Button bold onPress={onLogout}>
             LOGOUT

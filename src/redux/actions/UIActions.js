@@ -16,16 +16,17 @@ export const startAction = (name, params) => ({
 });
 
 export const stopAction = (name) => ({
+
   type: STOP_ACTION,
-  payload: {name},
+  payload: { name },
 });
 
 export const refreshActionStart = (refreshAction) => ({
   type: REFRESH_ACTION_START,
-  payload: {refreshAction},
+  payload: { refreshAction },
 });
 
 export const refreshActionStop = (refreshAction) => ({
   type: REFRESH_ACTION_STOP,
-  payload: {refreshAction},
+  payload: { refreshAction },
 });

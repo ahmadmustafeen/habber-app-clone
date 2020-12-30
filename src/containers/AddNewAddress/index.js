@@ -63,35 +63,12 @@ const AddNewAddress = (props) => {
     setState({ ...state, [key]: val });
   };
   const dispatch = useDispatch();
-  const AddAddress = () => {
-    validate() && (
-      item ?
-        dispatch(withDataActions({ ...state, id: item.id }, EDIT_ADDRESS))
-        :
-        dispatch(withDataActions(state, ADD_ADDRESS_SAGA)))
-  };
   const { navigate } = navigation;
 
   const validate = () => {
-    // if (!state.address_name) {
-    //   Alert.alert('Please Enter Name');
-    //   return false;
-    // }
-    // if (!state.address_name) {
-    //   Alert.alert('Please Enter Name');
-    //   return false;
-    // }
-    // if (!state.address_name) {
-    //   Alert.alert('Please Enter Name');
-    //   return false;
-    // }
-    // if (!validateEmail(state.email)) {
-    //   Alert.alert('Invalid Email');
-    //   return false;
-    // }
+    return (
 
-
-    validateIsTrue(state.address_name, 'Address Name') &&
+      validateIsTrue(state.address_name, 'Address Name') &&
       validateIsTrue(state.country_id, "Select a Country", false) &&
       validateIsTrue(state.city_id, "Select a State", false) &&
       validateIsTrue(state.state, 'City') &&
@@ -100,13 +77,23 @@ const AddNewAddress = (props) => {
       // validateIsTrue(state.address_line2, 'Address!');
       validateIsTrue(state.post_code, 'Postal Code') &&
       validateIsTrue(state.phone, 'Phone No')
+    )
+
 
 
 
   };
-  const onSubmit = () => {
-    validate() &&
-      dispatch(withDataActions(state, SUBMIT_JOIN_US));
+
+  const AddAddress = () => {
+    if (validate()) {
+
+      item ?
+        dispatch(withDataActions({ ...state, id: item.id }, EDIT_ADDRESS))
+        :
+        dispatch(withDataActions(state, ADD_ADDRESS_SAGA))
+    }
+
+
   };
   return (
     <ScrollView>
@@ -137,14 +124,14 @@ const AddNewAddress = (props) => {
 
             data={countries_list}
             // value={null}
-            onChangeText={(value) => setState({ ...state, country_id: value.key })}
+            onChangeText={value => setState({ ...state, country_id: value.key })}
             initValue={selectedCountry.name || t('country')}
             color={"gray"}
 
           />
           <ModalSelectorCustom
             data={selectedCountry.city}
-            onChangeText={(value) => setState({ ...state, city_id: value.id })}
+            onChangeText={value => setState({ ...state, city_id: value.id })}
             initValue={t('state')}
             color={"gray"}
 
