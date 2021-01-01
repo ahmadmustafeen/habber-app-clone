@@ -52,7 +52,9 @@ const SignUp = (props) => {
       validateIsTrue((password === password_confirmation), "Password is not Valid", false)
     )
 
+
   };
+
   const onSignUp = () => {
     validate() && dispatch(withDataActions(state, SIGN_UP));
   };
@@ -64,6 +66,7 @@ const SignUp = (props) => {
       isLoading: checkIfLoading(
         state,
         SIGN_UP,
+        SIGN_IN
       )
     };
   }, shallowEqual);
@@ -171,6 +174,7 @@ const SignUp = (props) => {
         <ModalScreen
           visible={visible}
           onContinue={onContinueModal}
+          loading={isLoading}
           {...signUp.modalData}
         />
       </View>
