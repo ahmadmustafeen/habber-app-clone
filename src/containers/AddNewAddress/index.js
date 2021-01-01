@@ -76,7 +76,7 @@ const AddNewAddress = (props) => {
 
       // validateIsTrue(state.address_line2, 'Address!');
       validateIsTrue(state.post_code, 'Postal Code') &&
-      validateIsTrue(state.phone, 'Phone No')
+      validateIsTrue(!!validatePhone(state.phone), 'Phone No')
     )
 
 
