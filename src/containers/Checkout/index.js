@@ -136,7 +136,7 @@ const Checkout = (props) => {
               primary
               bold
               aadres
-              onPress={() => navigate(ADD_NEW_ADDRESS)}>
+              onPress={() => navigate('AddNewAddress', { screen: ADD_NEW_ADDRESS, checkout: true })}>
               ADD NEW ADDRESS
             </Button>
             <Button

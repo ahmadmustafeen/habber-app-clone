@@ -118,7 +118,8 @@ const EditProfile = (props) => {
   const link = state.profile_pic ? state.profile_pic.uri : UserProfileReducer.profile_pic
   const { colors } = useTheme();
   return (
-    <Screen noPadding>
+    <ScrollView>
+
       <View key="header">
         <Header {...props} headerImage />
       </View>
@@ -168,12 +169,14 @@ const EditProfile = (props) => {
           />
         </View>
       </View>
-      <View key="footer" style={styles.content}>
-        <Button loading={isLoading} style={styles.button} appColor primary onPress={() => save()}>
+
+
+      <View style={[styles.content, { marginTop: hp(10) }]}>
+        <Button loading={isLoading} appColor primary onPress={() => save()}>
           {t('save')}
         </Button>
       </View>
-    </Screen >
+    </ScrollView>
   );
 };
 

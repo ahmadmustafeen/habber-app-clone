@@ -27,7 +27,7 @@ const AddNewAddress = (props) => {
   // const data = route.params.params.item.item;
   // var item = !!route.params.item ? route.params.item : ""
   // item = route.params.item;
-  const item = (props.route.params ? props.route.params.item.item : "")
+  const item = (props.route.params ? props.route.params.item ? props.route.params.item.item : "" : "")
   const { t } = useTranslation(['AddNewAddress'])
   const [state, setState] = useState({
     address_name: (item ? item.address_name : ""),
@@ -108,7 +108,8 @@ const AddNewAddress = (props) => {
         }}
         resizeMode="stretch"
         source={require('_assets/images/header.png')}>
-        <Header {...props} backIcon headerLeft title={"CHECKOUT"} />
+        <Header {...props} backIcon headerLeft title
+          ={!!(props.route.params) ? props.route.params.checkout ? "Checkout" : "Edit Address" : ""} />
       </ImageBackground>
       <Screen>
         <View key="header"></View>

@@ -29,7 +29,7 @@ export function* signupSaga({ payload, type }) {
     if (status === 200) {
       yield put({ type: SHOW_MODAL });
       yield put({ type: SIGN_UP_SUCCESS });
-      yield put({ payload: payload, type: SIGN_IN, });
+      // yield put({ payload: payload, type: SIGN_IN, });
 
     } else {
       Alert.alert('Registration Failed', data.message);
