@@ -9,6 +9,8 @@ target 'HEBBER_Mobile' do
   use_react_native!(:path => config["reactNativePath"])
 
 
+  pod 'react-native-image-picker', :path => '../node_modules/react-native-image-picker'
+
   target 'HEBBER_MobileTests' do
     inherit! :complete
     # Pods for testing

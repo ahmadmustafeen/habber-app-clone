@@ -147,7 +147,7 @@ const Header = (props, { adddok }) => {
       </View>
     </ImageBackground>
     : (
-      <View style={styles.container}>
+      <View style={[styles.container, { alignItems: 'center' }]}>
         <View>
           {headerLeft ? (
             headerLeft

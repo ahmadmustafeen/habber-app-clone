@@ -239,8 +239,8 @@ const Settings = (props) => {
 
       <View
         key="footer"
-        // style={[styles.content, { marginTop: hp(-10) }]}
-        style={styles.content}
+        style={{ width: wp(90), alignSelf: 'center', paddingBottom: 20 }}
+      // style={styles.content}
 
       >
         {UserProfileReducer.token && (
@@ -249,7 +249,7 @@ const Settings = (props) => {
           </Button>
         )}
       </View>
-    </Screen>
+    </Screen >
   );
 };
 

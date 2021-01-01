@@ -74,11 +74,12 @@ const TitleBarWithIcon = (props) => {
         </AppText>
         {centerLine && (
           <Text style={{
-            borderBottomColor: 'gray', borderBottomWidth: 1, width: '36%',
+            borderBottomColor: 'gray', borderBottomWidth: 1, width: '34%',
 
 
             position: 'absolute',
-            right: 45
+            right: 45,
+
 
           }}> </Text>
 

@@ -73,7 +73,7 @@ const BookDetailsCard = (props) => {
           </AppText>
         </View>
         <View
-          style={styles.iconContainer}>
+          style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
           <RoundIcon
             name="heart"
             type="font-awesome"
@@ -115,6 +115,7 @@ const styles = StyleSheet.create({
   imgContainer: {
     aspectRatio: 0.6 / 1,
     height: hp(30),
+
   },
   image: {
     width: '100%',

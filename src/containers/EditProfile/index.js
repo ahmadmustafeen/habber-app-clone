@@ -96,7 +96,8 @@ const EditProfile = (props) => {
         console.log('User tapped custom button: ', response.customButton);
       } else {
         setStateHandler('profile_pic', {
-          uri: response.uri,
+          uri: Platform.OS == 'ios' ? response.uri.replace("file://", "/private") : response.uri,
+
           type: response.type,
           name: response.fileName,
         });
@@ -133,8 +134,8 @@ const EditProfile = (props) => {
             <Image style={styles.image} source={require("_assets/images/addsign.png")} />
           </TouchableOpacity>
         </View>
-        <View style={{ position: 'absolute', right: wp(0), top: hp(8) }}>
-          <AppText bold primary onPress={() => setState({ ...state, profile_pic: '' })}>
+        <View style={{ position: 'absolute', right: 0, top: hp(8) }}>
+          <AppText primary onPress={() => setState({ ...state, profile_pic: '' })}>
             Reset Image
           </AppText>
         </View>
@@ -178,7 +179,7 @@ const EditProfile = (props) => {
 
 const styles = StyleSheet.create({
   imgContainer: {
-    height: hp(15),
+    height: hp(12),
     aspectRatio: 1,
     borderRadius: 50,
     borderWidth: 2,
