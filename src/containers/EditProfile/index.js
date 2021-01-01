@@ -99,7 +99,7 @@ const EditProfile = (props) => {
           uri: Platform.OS == 'ios' ? response.uri.replace("file://", "/private") : response.uri,
 
           type: response.type,
-          name: response.fileName,
+          name: Platform.OS == 'ios' ? "placeholder_text" : response.fileName,
         });
 
       }

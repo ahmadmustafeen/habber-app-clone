@@ -73,15 +73,16 @@ const TitleBarWithIcon = (props) => {
             }}></View> : null} */}
         </AppText>
         {centerLine && (
-          <Text style={{
-            borderBottomColor: 'gray', borderBottomWidth: 1, width: '34%',
+          <View style={{
+            borderBottomColor: "rgba(230,230,230,240)", borderBottomWidth: hp(0.5), width: '34%',
 
 
             position: 'absolute',
+            bottom: hp(2),
             right: 45,
 
 
-          }}> </Text>
+          }} />
 
         )}
 
