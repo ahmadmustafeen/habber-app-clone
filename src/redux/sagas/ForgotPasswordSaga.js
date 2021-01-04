@@ -15,7 +15,7 @@ export function* ForgotPasswordSaga({ type, payload }) {
     yield put(startAction(type));
     console.log('ForgotPassword Saga . . . .  .1', payload);
     const response = yield call(() =>
-      RestClient.post(API_ENDPOINTS.forgotPassword, { email: payload }),
+      RestClient.post(API_ENDPOINTS.forgotPassword, { email: payload, base_url: "habber://app" }),
     );
     if (response.problem === NETWORK_ERROR) {
       return yield put({ type: SHOW_NETWORK_MODAL });
