@@ -70,7 +70,7 @@ const SignIn = (props) => {
       source={require('_assets/images/background.jpg')}>
 
       <View key="header">
-        <AuthHeader {...props} />
+        <AuthHeader {...props} customNavigate />
 
         <AppText bold color={colors.primary} heading style={[styles.hellotxt, { marginLeft: 5 }]}>
           {t('signInHeader')}

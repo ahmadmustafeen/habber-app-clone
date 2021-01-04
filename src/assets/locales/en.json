@@ -29,6 +29,17 @@
     "modal_button_label": "Continue",
     "email": "Email"
   },
+  "ResetPassword": {
+    "reset_password": "Reset Password?",
+    "enter_email": "Enter the email address you used to create your account and we will email you a link to reset your password",
+    "resetPassword": "Reset Password",
+    "modal_heading": "Please check your Registered Email",
+    "modal_description": "Your Password Reset Link Has Been Sent To Your Email",
+    "modal_button_label": "Continue",
+   
+    "password" : "Password",
+    "confirm_password" : "Confirm Password"
+  },
   "login": {
     "email": "Email",
     "password": "Password",

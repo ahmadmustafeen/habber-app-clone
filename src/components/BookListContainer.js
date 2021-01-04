@@ -72,7 +72,7 @@ const BookListContainer = (props) => {
       )}
       ListEmptyComponent={() => (
         <View>
-          <AppText>No Book Available</AppText>
+          <AppText>Nope</AppText>
         </View>
       )}
       ListFooterComponent={() => <View style={{ paddingBottom: 50 }} />}

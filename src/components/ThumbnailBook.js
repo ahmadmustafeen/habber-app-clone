@@ -20,6 +20,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     marginHorizontal: 10,
     borderRadius: 10,
+    overflow: 'hidden'
 
   },
 });
