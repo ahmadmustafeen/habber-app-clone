@@ -124,7 +124,7 @@ const AddNewAddress = (props) => {
           <ModalSelectorCustom
 
             data={countries_list}
-            // value={null}
+
             onChangeText={value => setState({ ...state, country_id: value.key })}
             initValue={selectedCountry.name || t('country')}
             color={"gray"}

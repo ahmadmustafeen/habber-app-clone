@@ -4,6 +4,7 @@ import { Text } from 'react-native';
 import { View, StyleSheet, I18nManager } from 'react-native';
 import { Icon } from 'react-native-elements';
 import ModalSelector from 'react-native-modal-selector';
+import { color } from 'react-native-reanimated';
 import {
     widthPercentageToDP as wp,
     heightPercentageToDP as hp,
@@ -51,7 +52,7 @@ const ModalSelectorCustom = (props) => {
 
 
                 initValue={initValue || "Select"}
-                initValueTextStyle={{ color: (props.color || "white"), textAlign: I18nManager.isRTL ? 'right' : 'left' }}
+                initValueTextStyle={{ color: (props.color || "black"), textAlign: I18nManager.isRTL ? 'right' : 'left' }}
                 onChange={onChangeText}
             />
             {!noIcon &&
@@ -81,6 +82,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignSelf: 'flex-start',
         // backgroundColor: 'transparent',
+        color: 'black'
 
     },
     iconStyle: {
