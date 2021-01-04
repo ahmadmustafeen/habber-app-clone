@@ -21,16 +21,12 @@ export function* DeleteAddressSaga({ payload }) {
         const { status, data, message } = response;
         console.log('Delete Address Saga Response . . . .  .', response);
         console.log("DAFRADasd", data)
-        if (data.success) {
+        if (data.status) {
             yield put({ type: FETCH_ADDRESS }),
 
                 yield put({ type: DELETE_ADDRESS_SUCCESS });
-            Alert.alert('Successfully Deleted Address', message, [
-                {
-                    onPress: () =>
-                        NavigationService.navigate('MyProfile', { screen: ADD_NEW_ADDRESS, params: { data } }),
-                },
-            ]);
+
+            Alert.alert('Successfully Deleted Address', message,);
         }
     } catch (error) {
         yield put(errorAction(EDIT_ADDRESS_FAILURE, error));

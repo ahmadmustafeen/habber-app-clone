@@ -31,7 +31,15 @@ export function* UpdateProfileSaga({ type, payload }) {
           onPress: () => NavigationService.navigate('MyProfile', { screen: MY_PROFILE })
         }])
     }
+    else {
+      Alert.alert('Something went wrong', message, [{
+        onPress: () => NavigationService.navigate('MyProfile', { screen: MY_PROFILE })
+      }])
+    }
   } catch (error) {
+    Alert.alert(error, [{
+      onPress: () => NavigationService.navigate('MyProfile', { screen: MY_PROFILE })
+    }])
     yield put({ type: UPDATE_PROFILE_FAILURE, error });
   }
   finally {

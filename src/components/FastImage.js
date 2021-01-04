@@ -1,12 +1,17 @@
 import React from 'react';
+import { TouchableHighlight } from 'react-native';
+import { View } from 'react-native';
+import { Platform } from 'react-native';
 import { StyleSheet, TouchableOpacity, } from 'react-native';
 
 import RNFastImage from 'react-native-fast-image';
 
 const FastImage = (props) => {
   const { resizeMode, onPress, style } = props;
+  // console.log(style, "stkye")
   return (
-    <TouchableOpacity style={style} onPress={onPress}>
+    <TouchableOpacity onPress={onPress} style={style}>
+
       <RNFastImage
         {...props}
         style={styles.image}
@@ -16,6 +21,7 @@ const FastImage = (props) => {
             : RNFastImage.resizeMode.cover
         }
       />
+
     </TouchableOpacity>
   );
 };

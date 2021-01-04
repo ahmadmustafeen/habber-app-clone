@@ -85,6 +85,7 @@ const Home = (props) => {
       ),
     };
   }, shallowEqual);
+  console.log("BookmarkReducer  home ", BookmarksReducer);
   const dispatch = useDispatch();
   const { colors } = useTheme();
   const DATA = BannerReducer.map(({ banner_image, product }) => ({ coverImageUri: banner_image, product }));
@@ -264,6 +265,8 @@ const Home = (props) => {
                 onPress={() =>
                   navigate(BOOK_DETAILS_SCREEN, {
                     ...item.item,
+                    product_id: item.item.id,
+                    author_name: item.item.maker_name,
                     product_type: item.item.product_type,
                   })
                 }
@@ -274,7 +277,7 @@ const Home = (props) => {
               navigate(BOOKLIST_SCREEN, {
                 label: t('bookmark'),
                 data: BookmarksReducer,
-                product_type: 'bookmark',
+                product_type: "bookmark",
               })
             }
           />

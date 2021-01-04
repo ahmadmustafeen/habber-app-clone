@@ -40,6 +40,7 @@ import { useTranslation } from 'react-i18next';
 import { Text } from 'react-native';
 
 const BookDetails = (props) => {
+  // console.log("bookdetail", props, "delete")
   const { t } = useTranslation(["BookDetails"]);
   const { colors } = useTheme();
   const dispatch = useDispatch();
@@ -47,7 +48,7 @@ const BookDetails = (props) => {
   var { params: book } = props.route;
   // (book.product_type === 'bookclub') ? book = book.book : null
 
-  var { id: product_id, quantity, product_type, price, bookClub, type } = book;
+  var { id: product_id = 33, quantity, product_type, price, bookClub, type } = book;
   var old_product;
   console.log(book, "BOOKADASDASWDASDFDFDRGDFHFJ")
   if (book.product_type === 'bookclub') {
@@ -156,9 +157,6 @@ const BookDetails = (props) => {
       alert(error.message);
     }
   };
-  const onGoodReads = () => {
-
-  }
 
   return (
     <Screen noPadding contentPadding>
@@ -171,7 +169,6 @@ const BookDetails = (props) => {
           }}
           source={require('_assets/images/book-detail.png')}>
           <Header
-
             cartNumber={CartReducer.book.length + CartReducer.bookmark.length}
             {...props}
             headerLeft={
@@ -195,7 +192,7 @@ const BookDetails = (props) => {
                   favourite={isFavourite}
                   {...book}
                   onClickShare={onShare}
-                  onGoodReads={() => Linking.openURL('https://www.goodreads.com/book/isbn/' + book.isbn)}
+                  onGoodReads={product_type === 'book' ? () => Linking.openURL('https://www.goodreads.com/book/isbn/' + book.isbn) : null}
                 />
               </View>
             )

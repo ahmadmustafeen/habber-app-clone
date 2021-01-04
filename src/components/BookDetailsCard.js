@@ -13,11 +13,12 @@ import {
 import { useTranslation } from 'react-i18next';
 import { useSelector, shallowEqual } from 'react-redux';
 const BookDetailsCard = (props) => {
+  console.log("book details card", props)
   const { t } = useTranslation(['BookDetails'])
   const { colors } = useTheme();
   const {
     isbn,
-
+    maker_name,
     author_name,
     image,
     price,
@@ -63,7 +64,7 @@ const BookDetailsCard = (props) => {
           <AppText
             size={15}
             style={{ paddingBottom: wp(10), fontStyle: 'italic' }}>
-            {t('by')}{author_name}
+            {t('by')}{product_type === "book" ? author_name : maker_name}
           </AppText>
           <AppText bold size={17}>
             {t('price')} {rtlLayout && price_product.symbol} {parseFloat(price).toFixed(2)} {rtlLayout || price_product.symbol}
