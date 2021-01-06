@@ -86,6 +86,7 @@ const ForgotPassword = (props) => {
         <ModalScreen
           forgetPassword
           image={require("../../assets/images/forgetPassword.png")}
+
           visible={visible}
           onContinue={onContinue}
           heading={t('modal_heading')}

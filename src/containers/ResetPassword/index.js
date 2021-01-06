@@ -62,7 +62,7 @@ const ForgotPassword = (props) => {
           bold
           heading
           style={{ marginTop: 40, marginBottom: 10, color: '#c27e12' }}>
-          {t('reset_password')}
+          {t('resetPassword')}
         </AppText>
 
       </View>
