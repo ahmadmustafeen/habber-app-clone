@@ -84,9 +84,7 @@ const Navigator = (props, ref) => {
   }, shallowEqual);
   const linking = {
     prefixes: ['https://habbar.com', 'habbar-app://'],
-    // config: {
-    //   ChangePassword: ChangePassword
-    // }
+
   };
   return (
     <NavigationContainer linking={linking} ref={ref} theme={MyTheme}>

@@ -58,6 +58,7 @@ import { Payment } from '../containers/Payment';
 const Stack = createStackNavigator();
 
 export const DashboardNav = () => {
+
   return (
     <Stack.Navigator
       screenOptions={{
