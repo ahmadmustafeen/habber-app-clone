@@ -85,7 +85,7 @@ const Home = (props) => {
       ),
     };
   }, shallowEqual);
-  console.log("BookmarkReducer  home ", BookmarksReducer);
+  // console.log("BookmarkReducer  home ", BookmarksReducer);
   const dispatch = useDispatch();
   const { colors } = useTheme();
   const DATA = BannerReducer.map(({ banner_image, product }) => ({ coverImageUri: banner_image, product }));
