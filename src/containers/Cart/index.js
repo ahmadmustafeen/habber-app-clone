@@ -6,7 +6,8 @@ import {
   Image,
   ImageBackground,
   I18nManager,
-  TouchableOpacity
+  TouchableOpacity,
+  Text
 } from 'react-native';
 import { AppText, Button, Screen } from '_components/common';
 import { HorizontalRow, Counter } from '_components';
@@ -44,7 +45,7 @@ const AddToCart = (props) => {
   (UserProfileReducer.currency.iso === "USD" || UserProfileReducer.currency.iso === "GBP" || UserProfileReducer.currency.iso === "EUR") && (rtlLayout = true)
 
   const price_product = FetchCurrencyReducer.find((item) => item.iso === UserProfileReducer.currency.iso)
-  console.log(isLoading);
+
   const updateCartItem = (book, action) => {
     dispatch(
       withDataActions(
@@ -72,80 +73,93 @@ const AddToCart = (props) => {
         <View key="header"></View>
 
         <View key="content">
+          {(!(CartReducer.book.length + CartReducer.bookmark.length)) ? <AppText>NO ITEMS IN CART </AppText> : null}
           <Loader loading={isLoading} />
-          {Object.values(CartReducer)
-            .filter((key) => Array.isArray(key))
-            .map((product_type) =>
-              product_type.map((product) => {
-                const {
-                  image,
-                  title,
-                  author_name,
-                  cart_price,
-                  cart_quantity,
-                } = product;
-                return (
-                  <View style={styles.profiletop}>
-                    <View style={styles.imgContainer}>
-                      <Image style={styles.image} source={{ uri: image }} />
-                    </View>
-                    <View style={styles.viewtxt}>
-                      <AppText bold size={18} style={styles.txt}>
-                        {title}
-                      </AppText>
-                      <AppText size={15} style={[styles.txt, styles.author]}>
-                        by {author_name}
-                      </AppText>
-                      <AppText bold size={17} style={styles.pricetxt}>
-                        Price: {rtlLayout && price_product.symbol} {cart_price} {rtlLayout || price_product.symbol}
-                      </AppText>
-                      <View
-                        style={{
-                          width: wp(30),
-                          height: hp(6),
-                          marginBottom: hp(3),
-                          marginTop: hp(3),
-                          marginLeft: wp(5)
-                        }}>
-                        <Counter
-                          value={cart_quantity}
-                          onIncrement={() => updateCartItem(product, 'add')}
-                          onDecrement={() => updateCartItem(product, 'sub')}
-                        />
+          {/* if (CartReducer)
+          {
+            <Text>
+              biya
+            <Text>
+          } */}
+          {(!CartReducer) ? <Text>biya</Text>
+            : Object.values(CartReducer)
+              .filter((key) => Array.isArray(key))
+              .map((product_type) =>
+                product_type.map((product) => {
+                  const {
+                    image,
+                    title,
+                    author_name,
+                    cart_price,
+                    cart_quantity,
+                  } = product;
+                  console.log("Carttooooo", CartReducer)
+                  console.log("quantity", cart_quantity)
+
+
+                  return (
+                    <View style={styles.profiletop}>
+                      <View style={styles.imgContainer}>
+                        <Image style={styles.image} source={{ uri: image }} />
                       </View>
-                      <HorizontalRow
-                        style={{
-                          borderColor: 'rgb(200, 200, 200)',
-                          borderWidth: hp(0.1),
-                          width: wp(40),
+                      <View style={styles.viewtxt}>
+                        <AppText bold size={18} style={styles.txt}>
+                          {title}
+                        </AppText>
+                        <AppText size={15} style={[styles.txt, styles.author]}>
+                          by {author_name}
+                        </AppText>
+                        <AppText bold size={17} style={styles.pricetxt}>
+                          Price: {rtlLayout && price_product.symbol} {cart_price} {rtlLayout || price_product.symbol}
+                        </AppText>
+                        <View
+                          style={{
+                            width: wp(30),
+                            height: hp(6),
+                            marginBottom: hp(3),
+                            marginTop: hp(3),
+                            marginLeft: wp(5)
+                          }}>
+                          <Counter
+                            value={cart_quantity}
+                            onIncrement={() => updateCartItem(product, 'add')}
+                            onDecrement={() => updateCartItem(product, 'sub')}
+                          />
+                        </View>
+                        <HorizontalRow
+                          style={{
+                            borderColor: 'rgb(200, 200, 200)',
+                            borderWidth: hp(0.1),
+                            width: wp(40),
 
-                        }}
-                      />
-                      <TouchableOpacity style={styles.removeContainer} onPress={() => updateCartItem(product, 'remove')}>
-                        <Icon
-                          size={18}
-                          style={{ paddingRight: 30 }}
-                          onPress={() => navigation.openDrawer()}
-                          color={colors.primary}
-                          name="trash-o"
-                          type="font-awesome"
+                          }}
                         />
-                        <AppText
-                          bold
-                          size={17}
-                          primary
-                          style={styles.txt}
+                        <TouchableOpacity style={styles.removeContainer} onPress={() => updateCartItem(product, 'remove')}>
+                          <Icon
+                            size={18}
+                            style={{ paddingRight: 30 }}
+                            onPress={() => navigation.openDrawer()}
+                            color={colors.primary}
+                            name="trash-o"
+                            type="font-awesome"
+                          />
+                          <AppText
+                            bold
+                            size={17}
+                            primary
+                            style={styles.txt}
 
-                        >
-                          Remove
+                          >
+                            Remove
                       </AppText>
-                      </TouchableOpacity>
+                        </TouchableOpacity>
 
+                      </View>
                     </View>
-                  </View>
-                );
-              }),
-            )}
+                  )
+
+                }),
+              )}
 
           {/* <View
             style={[
@@ -153,7 +167,7 @@ const AddToCart = (props) => {
               { borderBottomColor: colors.borderColor },
             ]}
           /> */}
-          <View style={styles.totalcontainer}>
+          {/* <View style={styles.totalcontainer}>
             <View
               style={{
                 flex: 1,
@@ -165,15 +179,15 @@ const AddToCart = (props) => {
               </AppText>
               <AppText style={{ paddingVertical: hp(0.7) }} small bold>
                 {t('shippingCharges')}
-              </AppText>
+              </AppText> */}
 
-              {/* <View
+          {/* <View
                 style={[
                   styles.horizontalRow,
                   { borderBottomColor: colors.borderColor },
                 ]}
               /> */}
-              <HorizontalRow
+          {/* <HorizontalRow
                 style={{
                   borderColor: 'rgb(200, 200, 200)',
                   borderWidth: hp(0.1),
@@ -200,9 +214,9 @@ const AddToCart = (props) => {
               <AppText small primary bold> {rtlLayout && price_product.symbol} {parseFloat(CartReducer.total_price + delivery_charges).toFixed(2)} {rtlLayout || price_product.symbol}
               </AppText>
             </View>
-          </View>
+          </View> */}
         </View>
-        <View key="footer">
+        {/* <View key="footer">
           <Button
             bold
             primary
@@ -210,7 +224,7 @@ const AddToCart = (props) => {
             onPress={() => props.navigation.navigate(CHECKOUT)}>
             {t("checkout")}
           </Button>
-        </View>
+        </View> */}
       </Screen>
     </ScrollView>
   );
