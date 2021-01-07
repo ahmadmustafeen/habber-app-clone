@@ -40,12 +40,8 @@ const Favorites = (props) => {
   return (
     <Screen noPadding>
       <View key="header">
-        <ImageBackground
-          style={styles.bgImage}
-          resizeMode="stretch"
-          source={require('_assets/images/header.png')}>
-          <Header {...props} />
-        </ImageBackground>
+
+        <Header {...props} headerImage />
       </View>
 
       <View key="content" style={{ width: wp(90), alignSelf: 'center' }}>

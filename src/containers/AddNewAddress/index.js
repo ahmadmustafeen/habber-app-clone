@@ -21,6 +21,7 @@ import {
   validateEmail,
   validateIsTrue,
 } from '_helpers/Validators';
+import { checkIfLoading } from '../../redux/selectors';
 const AddNewAddress = (props) => {
   const { route, navigation } = props;
   console.log(props)
@@ -46,8 +47,9 @@ const AddNewAddress = (props) => {
   //   { key: index++, label: 'Cranberries', accessibilityLabel: 'Tap here for cranberries' },
   // ];
 
-  const { FetchCountriesReducer } = useSelector((state) => {
+  const { FetchCountriesReducer, isLoading } = useSelector((state) => {
     return {
+      isLoading: checkIfLoading(state, ADD_ADDRESS_SAGA),
       FetchCountriesReducer: state.FetchCountriesReducer,
     };
   }, shallowEqual);
@@ -72,10 +74,12 @@ const AddNewAddress = (props) => {
       validateIsTrue(state.country_id, "Select a Country", false) &&
       validateIsTrue(state.city_id, "Select a State", false) &&
       validateIsTrue(state.state, 'City') &&
+      // validateIsTrue((state.state.length > 2), 'City') &&
       validateIsTrue(state.address_line1, 'Address') &&
 
       // validateIsTrue(state.address_line2, 'Address!');
-      validateIsTrue(state.post_code, 'Postal Code') &&
+      // validateIsTrue(state.post_code, 'Postal Code') &&
+      validateIsTrue(((state.phone.length > 10) && (state.phone.length < 16)), "Phone Number should be between 11 digits to 15 digits", false) &&
       validateIsTrue(!!validatePhone(state.phone), 'Phone No')
     )
 
@@ -97,20 +101,10 @@ const AddNewAddress = (props) => {
   };
   return (
     <ScrollView>
-      <ImageBackground
-        style={{
-          height: hp(21),
-          paddingHorizontal: wp(3),
-          paddingBottom: hp(8),
-          marginBottom: hp(1),
-          justifyContent: 'flex-end',
-          transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }],
-        }}
-        resizeMode="stretch"
-        source={require('_assets/images/header.png')}>
-        <Header {...props} backIcon headerLeft title
-          ={!!(props.route.params) ? props.route.params.checkout ? "Checkout" : "Edit Address" : ""} />
-      </ImageBackground>
+
+      <Header {...props} backIcon headerLeft headerImage
+        title={!!(props.route.params) ? props.route.params.checkout ? "CHECKOUT" : "EDIT ADDRESS" : "Add Address"} />
+
       <Screen>
         <View key="header"></View>
         <View key="content">
@@ -177,8 +171,9 @@ const AddNewAddress = (props) => {
           />
         </View>
         <View key="footer">
-          <Button primary onPress={() => AddAddress()}   >
-            {t('Add Address')}
+          <Button primary onPress={() => AddAddress()} loading={isLoading}>
+            {/* {t('Add Address')} */}
+            {!!(props.route.params) ? props.route.params.checkout ? "USE THIS ADDRESS" : "Edit Address" : "Add Address"}
           </Button>
         </View>
       </Screen>

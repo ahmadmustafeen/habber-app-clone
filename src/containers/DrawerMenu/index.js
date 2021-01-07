@@ -180,7 +180,7 @@ const DrawerMenu = (props) => {
             />
           </View>
         </View>
-        <AppText style={{ marginLeft: wp(30) }} small white>Version 1.18</AppText>
+        <AppText style={{ marginLeft: wp(30) }} small white>Version 1.19</AppText>
       </View>
     </ImageBackground>
   );

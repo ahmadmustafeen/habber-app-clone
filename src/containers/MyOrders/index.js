@@ -25,7 +25,7 @@ const MyOrders = (props) => {
     return (
       <View style={styles.profiletop}>
         <View style={styles.orderContainer}>
-          <AppText size={16} style={styles.apptextpadding}><AppText bold size={17}>Order ID: </AppText> {item.order_id}</AppText>
+          <AppText size={16} style={styles.apptextpadding}><AppText bold size={17}>Order ID: </AppText> {item.id}</AppText>
           {item.books.map((title) =>
             <AppText size={14} style={styles.apptextpadding}>{title.title}</AppText>
           )}
@@ -36,7 +36,7 @@ const MyOrders = (props) => {
           <AppText size={16} style={styles.statuspadding}><AppText bold size={17}>Status: </AppText>{item.status}</AppText>
         </View>
         <View style={styles.totalContainer}>
-          <AppText size={16} style={styles.apptextpadding}><AppText size={17} bold>Total: </AppText>${item.total_price}</AppText>
+          <AppText size={16} style={styles.apptextpadding}><AppText size={17} bold>Total: </AppText>{item.currency_iso} {item.total_price}</AppText>
           <AppText size={16} style={styles.apptextpadding}>{item.date}</AppText>
         </View>
       </View>
@@ -46,32 +46,14 @@ const MyOrders = (props) => {
 
     <Screen noPadding>
       <View key="header">
-        <ImageBackground
-          style={{
-            height: hp(21),
-            paddingHorizontal: wp(3),
-            paddingBottom: hp(8),
-            marginBottom: hp(1),
-            justifyContent: 'flex-end',
-            transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }],
-          }}
-          resizeMode='stretch'
-          source={require('_assets/images/header.png')}>
 
-          <Header {...props}
-            headerLeft={
-              <Icon
-                onPress={() => props.navigation.goBack()}
-                color={colors.primary}
-                name="leftcircleo"
-                type="ant-design"
-              />
-            }
-
-          />
+        <Header {...props}
+          headerLeft
+          headerImage
+          backIcon
+        />
 
 
-        </ImageBackground>
       </View>
 
       <View key="content" style={{ width: wp(90), alignSelf: 'center' }}>

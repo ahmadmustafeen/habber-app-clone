@@ -34,6 +34,7 @@ const Header = (props, { adddok }) => {
     headerLeft,
     headerRight,
     backIcon,
+    UpperCase,
     headerImage,
     cartNumber, onModalPress,
     noTitle,
@@ -89,7 +90,7 @@ const Header = (props, { adddok }) => {
 
           }}>
           <TouchableOpacity onPress={backIcon ? () => navigation.goBack() : () => navigation.openDrawer()} >
-            <AppText bold small color={headerColor} >
+            <AppText bold small color={headerColor} UpperCase={UpperCase} >
               {title || t(route.name)}
             </AppText>
           </TouchableOpacity>

@@ -18,6 +18,7 @@ import {
 } from '_helpers/Validators';
 import useModal from '_utils/customHooks/useModal';
 import { ImageBackground } from 'react-native';
+import { Platform } from 'react-native';
 const ForgotPassword = (props) => {
   const dispatch = useDispatch();
   const { visible, toggleModal } = useModal();
@@ -109,9 +110,10 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   footer: {
-    paddingTop: hp(30),
-    marginBottom: hp(6),
-    paddingBottom: hp(6),
+    position: 'absolute',
+    bottom: Platform.OS === 'ios' ? hp(8) : hp(10),
+    left: wp(10),
+    width: wp(80),
 
     // marginTop: hp
 

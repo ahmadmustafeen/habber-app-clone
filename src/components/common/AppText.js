@@ -19,6 +19,7 @@ const AppText = (props) => {
     underline,
     size,
     center,
+    UpperCase,
     right,
     color,
     white,
@@ -49,6 +50,7 @@ const AppText = (props) => {
         style={[
           styles.TextStyle,
           style && style,
+          UpperCase && { textTransform: 'uppercase' },
           heading && { fontSize: 30 },
           bold && { fontWeight: 'bold' },
           color && { color },

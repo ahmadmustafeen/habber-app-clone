@@ -46,6 +46,7 @@ const ContactUs = (props) => {
     email: '',
     message: '',
     phone: '',
+    whataap_number: "223232323232"
   });
   const { isLoading, FetchSiteReducer } = useSelector((state) => {
     return {
@@ -82,31 +83,14 @@ const ContactUs = (props) => {
     <>
       <Screen noPadding>
         <View key="header">
-          <ImageBackground
-            style={{
-              height: hp(21),
-              paddingHorizontal: wp(3),
-              paddingBottom: hp(8),
-              marginBottom: hp(1),
-              justifyContent: 'flex-end',
-              transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }],
-            }}
-            resizeMode='stretch'
-            source={require('_assets/images/header.png')}>
 
 
-            <Header
-              headerLeft={
-                <Icon
-                  onPress={() => props.navigation.goBack()}
-                  color={colors.primary}
-                  name="leftcircleo"
-                  type="ant-design"
-                />
-              }
-              {...props} />
+          <Header
+            headerLeft
+            backIcon
+            headerImage
+            {...props} />
 
-          </ImageBackground>
         </View>
         <View key="content" style={styles.content}>
           <InputWithLabel
@@ -250,8 +234,8 @@ const styles = StyleSheet.create({
   },
   textwithIconContainer: {
     flex: 1,
-    marginTop: hp(11.5),
-    width: wp(80),
+    marginTop: hp(13.5),
+    width: wp(70),
     alignSelf: 'center'
   },
   inputWithLabel: {

@@ -13,7 +13,7 @@
     "profile": "Profile",
     "signIn": "Sign In",
     "aboutUs": "About Us",
-    "favorite": "Favourite",
+    "favorite": "Favourites",
     "myOrder": "My Order",
     "setting": "Settings",
     "contactUs": "Contact Us",
@@ -36,9 +36,8 @@
     "modal_heading": "Please check your Registered Email",
     "modal_description": "Your Password Reset Link Has Been Sent To Your Email",
     "modal_button_label": "Continue",
-   
-    "password" : "Password",
-    "confirm_password" : "Confirm Password"
+    "password": "Password",
+    "confirm_password": "Confirm Password"
   },
   "login": {
     "email": "Email",
@@ -95,7 +94,7 @@
     "youMayAlsoLike": "You may also like:",
     "by": "by ",
     "price": "Price:",
-    "morebookclubs" : "More Book Clubs:"
+    "morebookclubs": "More Book Clubs:"
   },
   "Settings": {
     "language": "Language",

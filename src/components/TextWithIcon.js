@@ -35,7 +35,7 @@ const TextWithIcon = (props) => {
                 color={colors.primary}
                 name={iconName || "feather"}
                 type={iconType || "font-awesome"}
-                size={iconSize || 16}
+                size={iconSize || 14}
             />
 
             <View style={styles.text}>
@@ -54,7 +54,7 @@ const TextWithIcon = (props) => {
 const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
-        marginVertical: hp(1)
+        marginVertical: hp(0.5)
 
     },
     text: {

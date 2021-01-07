@@ -1,9 +1,9 @@
-import React, {useRef, useState} from 'react';
-import {ActivityIndicator, View} from 'react-native';
-import {WebView} from 'react-native-webview';
-import {Header, ModalScreen} from '../../components';
-import {Screen} from '../../components/common';
-import {INVOICE} from '../../constants/Screens';
+import React, { useRef, useState } from 'react';
+import { ActivityIndicator, View } from 'react-native';
+import { WebView } from 'react-native-webview';
+import { Header, ModalScreen } from '../../components';
+import { Screen } from '../../components/common';
+import { INVOICE } from '../../constants/Screens';
 
 export const Payment = (props) => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -22,7 +22,7 @@ Please Retry`,
     setModalVisible(!modalVisible);
   };
   const handleWebViewNavigationStateChange = (navState) => {
-    const {url, loading} = navState;
+    const { url, loading } = navState;
     if (!url) return;
 
     if (url.includes('payment/failure')) {
@@ -47,19 +47,19 @@ Please Retry`,
     success && props.navigation.navigate(INVOICE);
   };
   return (
-    <Screen>
+    <Screen noPadding>
       <View key="header">
-        <Header {...props} />
+        <Header {...props} backIcon headerLeft headerImage />
       </View>
-      <View key="content" style={{flex: 1, backgroundColor: 'silver'}}>
+      <View key="content" style={{ flex: 1, backgroundColor: 'silver' }}>
         <WebView
           ref={WEBVIEW_REF}
           scalesPageToFit={false}
-          source={{uri: props.route.params.paymentUrl}}
+          source={{ uri: props.route.params.paymentUrl }}
           renderLoading={() => {
             return (
               <ActivityIndicator
-                style={{width: 100, height: 100}}
+                style={{ width: 100, height: 100 }}
                 size="large"
               />
             );

@@ -34,8 +34,9 @@ const RequestBooks = (props) => {
     book_type,
     title: '',
     author_name: '',
-    image: '',
+    image: "",
   });
+  console.log(state, "request book")
   const { title, author_name } = state;
   const dispatch = useDispatch();
 
@@ -64,10 +65,15 @@ const RequestBooks = (props) => {
       } else if (response.customButton) {
         console.log('User tapped custom button: ', response.customButton);
       } else {
+        console.log(response.data.size, "image")
         // You can also display the image using data:
         // const source = { uri: 'data:image/jpeg;base64,' + response.data };
         // console.log(response)
-        handleChange('image', response);
+        handleChange('image', {
+          uri: Platform.OS == 'ios' ? response.uri.replace("file://", "/private") : response.uri,
+          type: response.type,
+          name: Platform.OS == 'ios' ? "placeholder_text" : response.fileName,
+        });
       }
     });
   };

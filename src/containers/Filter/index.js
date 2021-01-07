@@ -62,29 +62,17 @@ const FilterModal = (props) => {
     <Modal animationType="fade" visible={visible}>
       <View style={styles.container}>
 
-        <ImageBackground
-          style={{
-            height: hp(21),
-            paddingHorizontal: wp(3),
-            paddingBottom: hp(8),
-            marginBottom: hp(1),
-            justifyContent: 'flex-end',
-            transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }],
-          }}
-          resizeMode='stretch'
-          source={require('_assets/images/header.png')}>
 
-          <Header {...props} title={t("filter")}
-            headerLeft={
-              <Icon
-                color={colors.primary}
-                onPress={onToggle}
-                name="leftcircleo"
-                type="antdesign" />
-            } />
+        <Header {...props} title={t("filter")}
+          headerImage
+          headerLeft={
+            <Icon
+              color={colors.primary}
+              onPress={onToggle}
+              name="leftcircleo"
+              type="antdesign" />
+          } />
 
-
-        </ImageBackground>
 
 
 
