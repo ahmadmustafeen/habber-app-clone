@@ -87,7 +87,7 @@ const Settings = (props) => {
             flexDirection: 'row',
           }, selected ? { borderLeftColor: colors.primary } : { borderLeftColor: colors.borderColor }]}
           onPress={() => onPress(value)}>
-          <AppText primary={selected} small color={colors.borderColor} style={{ paddingLeft: wp(2) }}>
+          <AppText primary={selected} small color={colors.borderColor} style={{ paddingLeft: wp(2), }}>
             {currencyName}
           </AppText>
 

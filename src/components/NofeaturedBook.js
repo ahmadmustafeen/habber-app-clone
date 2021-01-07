@@ -1,15 +1,15 @@
 import React from 'react';
 import { Modal, View, StyleSheet, Image } from 'react-native';
-import { colors } from 'react-native-elements';
 import { AppText, Button, Screen } from './common';
 
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
+import { useTheme } from '@react-navigation/native';
 
 const NofeaturedBook = props => {
-
+  const { colors } = useTheme()
 
   return (
 

@@ -52,7 +52,6 @@ const BookDetails = (props) => {
 
   var { id: product_id = 33, quantity, product_type, price, bookClub, type } = book;
   var old_product;
-  console.log(book, "BOOKADASDASWDASDFDFDRGDFHFJ")
   var book_removed = false
   if (book.product_type === 'bookclub' && book.book) {
     product_id = book.book.id;
@@ -63,11 +62,11 @@ const BookDetails = (props) => {
     old_product = book;
     book = book.book
   }
-  else if (!book.book) {
-    product_id = 12312312312312,
+  else if (book.product_type === 'bookclub' && !book.book) {
+    product_id = book.id,
       product_type = 'book'
     book_removed = true,
-      type = true
+      type = "bookclub"
     old_product = book
   }
 
@@ -192,7 +191,7 @@ const BookDetails = (props) => {
             title={(type ? props.route.params.name : true)}
             color={colors.secondary}
           />
-          {(!book_removed && type !== 'bookclub') ?
+          {(!type && (product_type === 'book' || product_type === 'bookmark')) ?
             (
 
               <View
@@ -204,8 +203,7 @@ const BookDetails = (props) => {
                   onClickShare={onShare}
                   onGoodReads={product_type === 'book' ? () => Linking.openURL('https://www.goodreads.com/book/isbn/' + book.isbn) : null}
                 />
-              </View>
-            )
+              </View>)
             : (
               <View
                 style={{ width: wp(90), alignSelf: 'center', paddingBottom: 20 }}>
@@ -310,7 +308,7 @@ const BookDetails = (props) => {
               alignSelf: 'center',
               paddingVertical: hp(2),
             }}>
-            {!book_removed && <>
+            {true && <>
               <AppText> {t("youMayAlsoLike")}</AppText>
               <View style={{ paddingVertical: hp(2) }}>
                 <DashboardComponent
@@ -349,24 +347,36 @@ const BookDetails = (props) => {
 
           </View>
 
-        ) : (!book_removed && (
+        ) : (
 
-          <View
-            style={{
-              width: wp(90),
-              alignSelf: 'center',
-              paddingVertical: hp(2),
-            }}>
-            <AppText> {t("morebookclubs")}</AppText>
-            <View style={{ paddingVertical: hp(2) }}>
-              {!book_removed &&
-                <DashboardComponent
-                  noTitle
-                  data={FetchRelatedBookList.filter((book) => book.featured)}
-                  renderComponent={(item) => {
-                    if (product_type === 'book') {
+            <View
+              style={{
+                width: wp(90),
+                alignSelf: 'center',
+                paddingVertical: hp(2),
+              }}>
+              <AppText> {t("morebookclubs")}</AppText>
+              <View style={{ paddingVertical: hp(2) }}>
+                {true &&
+                  <DashboardComponent
+                    noTitle
+                    data={FetchRelatedBookList.filter((book) => book.featured)}
+                    renderComponent={(item) => {
+                      if (product_type === 'book') {
+                        return (
+                          <RelatedThumbnailBook
+                            onPress={() => {
+                              props.navigation.push(BOOK_DETAILS_SCREEN, {
+                                ...item.item,
+                                product_type,
+                              });
+                            }}
+                            url={item.item.image}
+                          />
+                        );
+                      }
                       return (
-                        <RelatedThumbnailBook
+                        <RelatedThumbnailBookmarks
                           onPress={() => {
                             props.navigation.push(BOOK_DETAILS_SCREEN, {
                               ...item.item,
@@ -375,28 +385,17 @@ const BookDetails = (props) => {
                           }}
                           url={item.item.image}
                         />
-                      );
-                    }
-                    return (
-                      <RelatedThumbnailBookmarks
-                        onPress={() => {
-                          props.navigation.push(BOOK_DETAILS_SCREEN, {
-                            ...item.item,
-                            product_type,
-                          });
-                        }}
-                        url={item.item.image}
-                      />
 
-                    );
-                  }}
-                />
-              }
+                      );
+                    }}
+                  />
+                }
+              </View>
             </View>
-          </View>
-        ))}
-      </View>
-    </Screen>
+          )
+        }
+      </View >
+    </Screen >
   );
 };
 
