@@ -32,6 +32,7 @@ import {
 } from '../../components';
 import { AppText, Button, Screen } from '../../components/common';
 import { useTranslation } from 'react-i18next';
+import { combineEpics } from 'redux-observable';
 
 const ContactUs = (props) => {
   const { t } = useTranslation(['ContactUs'])
@@ -54,9 +55,21 @@ const ContactUs = (props) => {
       isLoading: checkIfLoading(state, SUBMIT_CONTACT_US),
     };
   }, shallowEqual);
+  const pjooo = FetchSiteReducer
+  console.log(pjooo)
 
   const setStateHandler = (key, val) => {
     setState({ ...state, [key]: val });
+    // $("key[name='phone']").keyup(function() {
+    //   var curchr = value.length;
+    //   var curval = $(this).val();
+    //   if (curchr == 1) {
+    //       $("input[name='phone']").val("" + curval + "" + " ");
+    //   } else if (curchr == 4) {
+    //       $("input[name='phone']").val(curval + " ");
+    //   }else if (curchr == 8) { 
+    //       $("input[name='phone']").val(curval + " ");
+    //   }
   };
   const validate = () => {
     if (!state.name) {
@@ -118,7 +131,7 @@ const ContactUs = (props) => {
             color={"black"}
             required
             value={state.phone}
-            onChangeText={(val) => setStateHandler('phone', val)}
+            onChangeText={(val) => setStateHandler('phone', (val.length == 4 ? val + " " : val))}
           />
           <TextInput
 

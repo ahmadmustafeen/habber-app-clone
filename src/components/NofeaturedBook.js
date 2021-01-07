@@ -13,57 +13,44 @@ const NofeaturedBook = props => {
 
   return (
 
-    <View style={styles.container}>
 
-      <View
-        key="content"
-        style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
 
-        <Image
-          source={require("../assets/images/Icon material-error-outline.png")}
-          // source={image}
-          style={{ marginRight: wp(3) }}
+    <View
+      key="content"
+      style={{ alignItems: 'center', justifyContent: 'center', paddingTop: 50 }}>
 
-        />
+      <Image
+        source={props.source}
+        // source={image}
+        style={{ marginRight: wp(3) }}
 
-        <AppText
-          bold
-          primary={!colors}
-          style={{
-            color: colors && colors.primary,
-            paddingHorizontal: 20,
-            textAlign: 'center',
-            fontSize: 25,
-            marginTop: 20,
-            marginBottom: 20,
-          }}>
-          {unavailabetitle}
-        </AppText>
-        <AppText
-          style={{
-            paddingHorizontal: 20,
-            fontSize: 18,
-            textAlign: 'center',
-          }}>
-          {unavailabe}
-        </AppText>
+      />
 
-      </View>
+      <AppText
+        bold
+        primary={colors}
+        style={{
+          color: colors && colors.primary,
+          paddingHorizontal: 20,
+          textAlign: 'center',
+          fontSize: 22,
+
+          marginTop: 20,
+          // marginBottom: 20,
+        }}>
+        {props.unavailabetitle}
+      </AppText>
 
 
     </View>
 
+
+
+
   );
 };
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  footer: {
-    marginBottom: hp(3),
-    width: wp(90),
-    alignSelf: 'center'
-  },
+
 
 });
 

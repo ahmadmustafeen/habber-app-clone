@@ -17,6 +17,7 @@ import {
 import { useTheme } from '@react-navigation/native';
 
 import { AppText, Button, Screen } from '../../components/common';
+
 import {
   Counter,
   BookDetailsCard,
@@ -38,6 +39,7 @@ import { withDataActions } from '../../redux/actions/GenericActions';
 import { checkIsFavourite } from '../../redux/selectors';
 import { useTranslation } from 'react-i18next';
 import { Text } from 'react-native';
+import { NofeaturedBook } from '../../components/NofeaturedBook';
 
 const BookDetails = (props) => {
   // console.log("bookdetail", props, "delete")
@@ -216,7 +218,9 @@ const BookDetails = (props) => {
         </ImageBackground>
       </View>
       <View key="content">
-        {book_removed && <AppText>No Books Are found</AppText>}
+        {book_removed && <NofeaturedBook unavailabetitle="THE FEATURED BOOK IS CURRENTLY UNAVAILABLE"
+          source={require("../../assets/images/nofeatured.png")} />}
+
         {(type === 'bookclub' && !book_removed) &&
           (
             <View style={{ paddingTop: hp(3) }}>
