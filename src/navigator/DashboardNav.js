@@ -26,6 +26,7 @@ import {
   CARTNEW,
   TERMS_AND_CONDITIONS_SCREEN,
   PAYMENT_SCREEN,
+  RESET_PASSWORD
 } from '../constants/Screens';
 
 import Home from '../containers/Home';
@@ -37,6 +38,7 @@ import MyProfile from '../containers/MyProfile';
 import MyAddressBook from '../containers/MyAddressBook';
 import AddNewAddress from '../containers/AddNewAddress';
 import ChangePassword from '../containers/ChangePassword';
+import ResetPassword from '../containers/ResetPassword'
 import EditProfile from '../containers/EditProfile';
 import BookDetails from '../containers/BookDetails';
 import Settings from '../containers/Settings';
@@ -56,6 +58,7 @@ import { Payment } from '../containers/Payment';
 const Stack = createStackNavigator();
 
 export const DashboardNav = () => {
+
   return (
     <Stack.Navigator
       screenOptions={{
@@ -70,6 +73,7 @@ export const DashboardNav = () => {
       <Stack.Screen name={MY_ADDRESS_BOOK} component={MyAddressBook} />
       <Stack.Screen name={ADD_NEW_ADDRESS} component={AddNewAddress} />
       <Stack.Screen name={CHANGE_PASSWORD} component={ChangePassword} />
+      <Stack.Screen name={RESET_PASSWORD} component={ResetPassword} />
       <Stack.Screen name={EDIT_PROFILE} component={EditProfile} />
       <Stack.Screen name={SETTINGS_SCREEN} component={Settings} />
       <Stack.Screen name={FAVORITES} component={Favorites} />

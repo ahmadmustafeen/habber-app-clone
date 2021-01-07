@@ -1,16 +1,16 @@
 /* eslint-disable prettier/prettier */
-import React, {forwardRef, useEffect, useState} from 'react';
-import {NavigationContainer, DefaultTheme} from '@react-navigation/native';
+import React, { forwardRef, useEffect, useState } from 'react';
+import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
 
-import {createStackNavigator} from '@react-navigation/stack';
-import {createDrawerNavigator} from '@react-navigation/drawer';
+import { createStackNavigator } from '@react-navigation/stack';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 
 import Splash from '../containers/Splash';
-import {AuthNav} from './AuthNav';
+import { AuthNav } from './AuthNav';
 import DrawerMenu from '../containers/DrawerMenu';
-import {DashboardNav} from './DashboardNav';
-import {shallowEqual, useSelector} from 'react-redux';
-import {AD_SCREEN} from '../constants/Screens';
+import { DashboardNav } from './DashboardNav';
+import { shallowEqual, useSelector } from 'react-redux';
+import { AD_SCREEN } from '../constants/Screens';
 import AdScreen from '../containers/AdScreen';
 
 const Drawer = createDrawerNavigator();
@@ -39,7 +39,7 @@ const DrawerNav = () => {
       initialRouteName="Home"
       drawerContent={(props) => <DrawerMenu {...props} />}
       statusBarAnimation="fade"
-      drawerStyle={{backgroundColor: 'transparent', width: '90%'}}
+      drawerStyle={{ backgroundColor: 'transparent', width: '90%' }}
       drawerType="front">
       <Drawer.Screen name="Main" component={DashboardNav} />
     </Drawer.Navigator>
@@ -48,7 +48,7 @@ const DrawerNav = () => {
 const navigatorComponent = (splashScreen, ad, backUser) => {
   if (splashScreen) {
     return (
-      <RootStack.Navigator screenOptions={{headerShown: false}}>
+      <RootStack.Navigator screenOptions={{ headerShown: false }}>
         <RootStack.Screen name="Splash" component={Splash} />
       </RootStack.Navigator>
     );
@@ -75,15 +75,19 @@ const navigatorComponent = (splashScreen, ad, backUser) => {
   );
 };
 const Navigator = (props, ref) => {
-  const {splashScreen, ad, backUser} = useSelector(({SplashReducer}) => {
+  const { splashScreen, ad, backUser } = useSelector(({ SplashReducer }) => {
     return {
       splashScreen: SplashReducer.splashScreen,
       ad: SplashReducer.ad,
       backUser: SplashReducer.backUser,
     };
   }, shallowEqual);
+  const linking = {
+    prefixes: ['https://habbar.com', 'habbar-app://'],
+
+  };
   return (
-    <NavigationContainer ref={ref} theme={MyTheme}>
+    <NavigationContainer linking={linking} ref={ref} theme={MyTheme}>
       {navigatorComponent(splashScreen, ad, backUser)}
     </NavigationContainer>
   );

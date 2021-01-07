@@ -41,14 +41,14 @@ const AddressCard = (props) => {
       {actionButton &&
         <View style={styles.imageContainer}>
           <View style={[styles.image]} >
-            <TouchableOpacity onPress={onEditPress}>
-              <Image style={styles.imagePic} source={require("_assets/images/edit.png")} />
+            <TouchableOpacity style={styles.image} onPress={onEditPress}>
+              <Image source={require("_assets/images/edit.png")} />
             </TouchableOpacity>
           </View>
 
 
           <TouchableOpacity style={styles.image} onPress={onTrashPress}>
-            <Image style={styles.imagePic} source={require("_assets/images/delete.png")} />
+            <Image source={require("_assets/images/delete.png")} />
           </TouchableOpacity>
 
         </View>
@@ -67,6 +67,7 @@ const AddressCard = (props) => {
 };
 
 const styles = StyleSheet.create({
+
   container: {
     width: '100%',
     flexDirection: 'row',
@@ -84,8 +85,8 @@ const styles = StyleSheet.create({
   },
   image: {
     marginHorizontal: wp(1),
-    width: wp(3.7),
-    height: wp(4.5)
+    width: wp(6),
+    height: wp(6.2)
   },
   headerImage: {
     width: '100%',
