@@ -46,7 +46,7 @@ const BookmarkCard = (props) => {
                         </AppText>
                         :
                         <View style={[styles.outOfStock, { backgroundColor: colors.primary }]}>
-                            <AppText color="white" bold size={12}>Out Of Stock</AppText>
+                            <AppText color="white" bold size={9}>Out Of Stock</AppText>
                         </View>
                     }
                 </View>
@@ -62,8 +62,7 @@ const BookmarkCard = (props) => {
 const styles = StyleSheet.create({
     containerStyle: {
         width: wp(20.6),
-        aspectRatio: 0.26,
-        margin: 3
+        aspectRatio: 0.27,
     },
     imageContainer: {
         width: wp(20.6),
@@ -72,14 +71,14 @@ const styles = StyleSheet.create({
     outOfStock: {
         marginTop: hp(1),
         width: wp(20.6),
-        height: hp(3),
+        height: hp(4),
         justifyContent: 'center',
         alignItems: 'center'
     },
     detailContainer: {
         flex: 1,
         paddingVertical: 10,
-        justifyContent: 'flex-start',
+        justifyContent: 'flex-end',
 
     }
 });

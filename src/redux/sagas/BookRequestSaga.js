@@ -29,6 +29,9 @@ export function* BookRequestSaga({ type, payload }) {
 
     console.log('BookRequestSaga Saga Response . . . .  .', response);
     if (!response.data.success) {
+      Alert.alert('Something Went Wrong!', [{
+        // onPress: () => NavigationService.navigate('Home', { screen: HOME })
+      }])
       return yield put({ type: REQUEST_BOOK_FAILURE });
     }
 

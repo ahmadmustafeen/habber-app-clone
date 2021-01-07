@@ -243,7 +243,7 @@ const BookDetails = (props) => {
                   Size in (inch): {book.size}
                 </AppText>
                 <AppText style={styles.infoProduct} bold size={15}>
-                  Type of Bookmark: {book.cover_type}
+                  Type of Bookmark: {book.type_of_bookmark}
                 </AppText>
               </>
             )}
@@ -275,7 +275,8 @@ const BookDetails = (props) => {
           <Button
             bold
             color={colors.white}
-            outOfStock={!!quantity}
+            outOfStock={!quantity}
+            inStock={!!quantity}
             secondary
             onPress={() => {
               quantity && onAddToCart();
