@@ -51,7 +51,8 @@ const BookDetails = (props) => {
   var { id: product_id = 33, quantity, product_type, price, bookClub, type } = book;
   var old_product;
   console.log(book, "BOOKADASDASWDASDFDFDRGDFHFJ")
-  if (book.product_type === 'bookclub') {
+  var book_removed = false
+  if (book.product_type === 'bookclub' && book.book) {
     product_id = book.book.id;
     quantity = book.book.quantity;
     price = book.book.price;
@@ -59,6 +60,13 @@ const BookDetails = (props) => {
     product_type = 'book';
     old_product = book;
     book = book.book
+  }
+  else if (!book.book) {
+    product_id = 12312312312312,
+      product_type = 'book'
+    book_removed = true,
+      type = true
+    old_product = book
   }
 
   useEffect(() => {
@@ -157,7 +165,7 @@ const BookDetails = (props) => {
       alert(error.message);
     }
   };
-
+  console.log(props.route.params.name, "namw")
   return (
     <Screen noPadding contentPadding>
       <View key="header">
@@ -179,10 +187,10 @@ const BookDetails = (props) => {
                 type="ant-design"
               />
             }
-            title={(type ? props.route.params.book.title : true)}
+            title={(type ? props.route.params.name : true)}
             color={colors.secondary}
           />
-          {type !== 'bookclub' ?
+          {(!book_removed && type !== 'bookclub') ?
             (
 
               <View
@@ -208,7 +216,8 @@ const BookDetails = (props) => {
         </ImageBackground>
       </View>
       <View key="content">
-        {type === 'bookclub' &&
+        {book_removed && <AppText>No Books Are found</AppText>}
+        {(type === 'bookclub' && !book_removed) &&
           (
             <View style={{ paddingTop: hp(3) }}>
               <BookDetailsCard
@@ -221,9 +230,11 @@ const BookDetails = (props) => {
             </View>
           )
         }
-        <HorizontalRow style={styles.row} />
+        {!book_removed &&
+          <HorizontalRow style={styles.row} />
+        }
         <View>
-          {product_type !== 'bookmark' ? (
+          {((product_type !== 'bookmark')) ? (!book_removed && (
             <>
               <BDScreenText primary title={t('isbn')} value={book.isbn} />
               <BDScreenText title={t('totalPages')} value={book.total_pages} />
@@ -234,6 +245,7 @@ const BookDetails = (props) => {
                 value={book.genre.map((item) => item.title).join(' | ')}
               />
             </>
+          )
           ) : (
               <>
                 <AppText style={styles.infoProduct} bold primary size={15}>
@@ -248,11 +260,13 @@ const BookDetails = (props) => {
               </>
             )}
         </View>
-        <HorizontalRow style={styles.row} />
+        {!book_removed && <HorizontalRow style={styles.row} />}
         <View style={{ marginTop: 20, minHeight: hp(20) }}>
-          <AppText bold style={{ marginBottom: 10 }}>
-            {t('description')}
-          </AppText>
+          {!book_removed &&
+            <AppText bold style={{ marginBottom: 10 }}>
+              {t('description')}
+            </AppText>
+          }
           <AppText size={14}>{book.description}</AppText>
         </View>
       </View>
@@ -270,37 +284,50 @@ const BookDetails = (props) => {
             />
           ) : null}
         </View>
-
-        <View style={{ width: wp(75), alignSelf: 'center' }}>
-          <Button
-            bold
-            color={colors.white}
-            outOfStock={!quantity}
-            inStock={!!quantity}
-            secondary
-            onPress={() => {
-              quantity && onAddToCart();
-            }}>
-            {quantity ? t('addToCart') : t('outOfStock')}
-          </Button>
-        </View>
-
-        {type !== 'bookclub' ? (
+        {!book_removed &&
+          <View style={{ width: wp(75), alignSelf: 'center' }}>
+            <Button
+              bold
+              color={colors.white}
+              outOfStock={!quantity}
+              inStock={!!quantity}
+              secondary
+              onPress={() => {
+                quantity && onAddToCart();
+              }}>
+              {quantity ? t('addToCart') : t('outOfStock')}
+            </Button>
+          </View>
+        }
+        {(type !== 'bookclub') ? (
           <View
             style={{
               width: wp(90),
               alignSelf: 'center',
               paddingVertical: hp(2),
             }}>
-            <AppText> {t("youMayAlsoLike")}</AppText>
-            <View style={{ paddingVertical: hp(2) }}>
-              <DashboardComponent
-                noTitle
-                data={EnglishBooksReducer.filter((book) => book.featured)}
-                renderComponent={(item) => {
-                  if (product_type === 'book') {
+            {!book_removed && <>
+              <AppText> {t("youMayAlsoLike")}</AppText>
+              <View style={{ paddingVertical: hp(2) }}>
+                <DashboardComponent
+                  noTitle
+                  data={EnglishBooksReducer.filter((book) => book.featured)}
+                  renderComponent={(item) => {
+                    if (product_type === 'book') {
+                      return (
+                        <RelatedThumbnailBook
+                          onPress={() => {
+                            props.navigation.push(BOOK_DETAILS_SCREEN, {
+                              ...item.item,
+                              product_type,
+                            });
+                          }}
+                          url={item.item.image}
+                        />
+                      );
+                    }
                     return (
-                      <RelatedThumbnailBook
+                      <RelatedThumbnailBookmarks
                         onPress={() => {
                           props.navigation.push(BOOK_DETAILS_SCREEN, {
                             ...item.item,
@@ -310,32 +337,25 @@ const BookDetails = (props) => {
                         url={item.item.image}
                       />
                     );
-                  }
-                  return (
-                    <RelatedThumbnailBookmarks
-                      onPress={() => {
-                        props.navigation.push(BOOK_DETAILS_SCREEN, {
-                          ...item.item,
-                          product_type,
-                        });
-                      }}
-                      url={item.item.image}
-                    />
-                  );
-                }}
-              />
-            </View>
-          </View>
-        ) : (
+                  }}
+                />
 
-            <View
-              style={{
-                width: wp(90),
-                alignSelf: 'center',
-                paddingVertical: hp(2),
-              }}>
-              <AppText> {t("morebookclubs")}</AppText>
-              <View style={{ paddingVertical: hp(2) }}>
+              </View>
+            </>}
+
+          </View>
+
+        ) : (!book_removed && (
+
+          <View
+            style={{
+              width: wp(90),
+              alignSelf: 'center',
+              paddingVertical: hp(2),
+            }}>
+            <AppText> {t("morebookclubs")}</AppText>
+            <View style={{ paddingVertical: hp(2) }}>
+              {!book_removed &&
                 <DashboardComponent
                   noTitle
                   data={FetchRelatedBookList.filter((book) => book.featured)}
@@ -367,9 +387,10 @@ const BookDetails = (props) => {
                     );
                   }}
                 />
-              </View>
+              }
             </View>
-          )}
+          </View>
+        ))}
       </View>
     </Screen>
   );
