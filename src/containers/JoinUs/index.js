@@ -4,7 +4,7 @@ import {
   validateEmail,
   validateIsTrue,
 } from '_helpers/Validators';
-import { useDispatch } from 'react-redux';
+import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import {
   View,
   TextInput,
@@ -33,7 +33,18 @@ import {
 import { Icon } from 'react-native-elements';
 import { useTheme } from '@react-navigation/native';
 import { useTranslation } from 'react-i18next';
+import { checkIfLoading } from '../../redux/selectors';
 const JoinUs = (props) => {
+
+
+
+
+  const { isLoading } = useSelector((state) => {
+    return {
+      isLoading: checkIfLoading(state, SUBMIT_JOIN_US),
+    };
+  }, shallowEqual);
+
   const { t } = useTranslation(['JoinUs'])
   const { visible, toggleModal } = useModal();
   const dispatch = useDispatch();
@@ -89,30 +100,13 @@ const JoinUs = (props) => {
   const { colors } = useTheme()
   return (
     <ScrollView>
-      <ImageBackground
-        style={{
-          height: hp(21),
-          paddingHorizontal: wp(3),
-          paddingBottom: hp(8),
-          marginBottom: hp(1),
-          justifyContent: 'flex-end',
-          transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }],
-        }}
-        resizeMode="stretch"
-        source={require('_assets/images/header.png')}>
-        <Header {...props}
 
-          headerLeft={
-            <Icon
-              onPress={() => props.navigation.goBack()}
-              color={colors.primary}
-              name="leftcircleo"
-              type="ant-design"
-            />
-          }
+      <Header {...props}
+        headerImage
+        headerLeft
+        backIcon
 
-        />
-      </ImageBackground>
+      />
       <View key="content" style={styles.content}>
         <InputWithLabel
           color={'black'}
@@ -188,7 +182,7 @@ const JoinUs = (props) => {
       <View key="footer">
         <View>
           <View style={{ width: wp(80), alignSelf: 'center' }}>
-            <Button bold color="white" onPress={() => onSubmit()}>
+            <Button bold color="white" onPress={() => onSubmit()} loading={isLoading}>
               {t('Submit')}
             </Button>
           </View>
