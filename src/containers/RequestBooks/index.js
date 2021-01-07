@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, Alert, ImageBackground, I18nManager } from 'react-native';
 import ImagePicker from 'react-native-image-picker';
 
-import { useDispatch } from 'react-redux';
+import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import { withDataActions } from '_redux/actions';
 import { REQUEST_BOOK } from '_redux/actionTypes';
 import { InputWithLabel, Header } from '_components';
@@ -13,6 +13,7 @@ import {
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 import { useTranslation } from 'react-i18next';
+import { checkIfLoading } from '../../redux/selectors';
 const options = {
   title: 'Select Avatar',
   customButtons: [{ name: 'fb', title: 'Choose Photo from Facebook' }],
@@ -22,6 +23,14 @@ const options = {
   },
 };
 const RequestBooks = (props) => {
+
+
+  const { isLoading } = useSelector((state) => {
+    return {
+      isLoading: checkIfLoading(state, REQUEST_BOOK),
+    };
+  }, shallowEqual);
+
   const { t } = useTranslation(['RequestBook'])
   const {
     navigation: { navigate },
@@ -119,7 +128,7 @@ const RequestBooks = (props) => {
         </AppText>
       </View>
       <View key="footer" style={styles.content}>
-        <Button color="white" bold primary onPress={onSubmit} style={{ marginTop: hp(-10) }}>
+        <Button color="white" bold primary onPress={onSubmit} style={{ marginTop: hp(-10) }} loading={isLoading} >
           {t('sendRequest')}
         </Button>
       </View>

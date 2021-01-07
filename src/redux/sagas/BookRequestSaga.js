@@ -6,8 +6,11 @@ import { API_ENDPOINTS } from '_constants/Network';
 import { RestClient } from '_network/RestClient';
 import { REQUEST_BOOK_SUCCESS, REQUEST_BOOK_FAILURE } from '_redux/actionTypes';
 import { HOME } from '../../constants/Screens';
+import { startAction, stopAction } from '../actions';
 
 export function* BookRequestSaga({ type, payload }) {
+
+  yield put(startAction(type));
   const form_data = new FormData();
   form_data.append('book_type', payload.book_type);
   form_data.append('title', payload.title);
@@ -37,5 +40,7 @@ export function* BookRequestSaga({ type, payload }) {
     yield put({ type: REQUEST_BOOK_SUCCESS, payload: null });
   } catch (error) {
     yield put({ type: REQUEST_BOOK_FAILURE, error });
+  } finally {
+    yield put(stopAction(type));
   }
 }
