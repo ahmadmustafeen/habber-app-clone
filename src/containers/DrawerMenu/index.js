@@ -48,7 +48,6 @@ const DrawerIcon = (props) => {
 // console.log(Dimensions);
 const DrawerMenu = (props) => {
   const { t } = useTranslation(['drawer']);
-
   const {
     UserProfileReducer,
     FetchSiteReducer
@@ -58,6 +57,8 @@ const DrawerMenu = (props) => {
       FetchSiteReducer: state.FetchSiteReducer
     };
   }, shallowEqual);
+
+  console.log(UserProfileReducer.profile_pic)
   return (
     <ImageBackground
       {...props}

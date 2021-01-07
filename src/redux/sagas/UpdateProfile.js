@@ -5,7 +5,7 @@ import { startAction, stopAction } from '_redux/actions';
 import { RestClient } from '_network/RestClient';
 import * as NavigationService from '../../../NavigationService';
 import { UPDATE_PASSWORD_FAILURE } from '_redux/actionTypes';
-import { FETCH_USER_PROFILE, SIGN_IN_SUCCESS, UPDATE_PROFILE_FAILURE, UPDATE_PROFILE_SUCCESS } from '../actionTypes';
+import { FETCH_USER_PROFILE, SIGN_IN_SUCCESS, SPLASH_ACTION, UPDATE_PROFILE_FAILURE, UPDATE_PROFILE_SUCCESS } from '../actionTypes';
 import { MY_PROFILE } from '_constants/Screens';
 
 export function* UpdateProfileSaga({ type, payload }) {
@@ -25,8 +25,7 @@ export function* UpdateProfileSaga({ type, payload }) {
     console.log(response, "response")
     const { status, data, message } = response;
     if (status === 200) {
-      yield put({ type: SIGN_IN_SUCCESS, payload: data });
-      yield put({ type: FETCH_USER_PROFILE }),
+      yield put({ type: SPLASH_ACTION }),
         Alert.alert('Your Profile have been Updated', message, [{
           onPress: () => NavigationService.navigate('MyProfile', { screen: MY_PROFILE })
         }])
