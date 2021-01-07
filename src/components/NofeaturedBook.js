@@ -1,51 +1,52 @@
 import React from 'react';
 import { Modal, View, StyleSheet, Image } from 'react-native';
-import { colors } from 'react-native-elements';
 import { AppText, Button, Screen } from './common';
 
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
+import { useTheme } from '@react-navigation/native';
 
 const NofeaturedBook = props => {
-
+  const { colors } = useTheme()
 
   return (
 
-    <View style={styles.container}>
+    <View key="content" style={styles.container}>
 
       <View
-        key="content"
+
         style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <View style={styles.image}>
+          <Image
+            source={require("../assets/images/errorImage.png")}
+            style={{ width: '100%', height: '100%' }}
+          />
+        </View>
 
-        <Image
-          source={require("../assets/images/Icon material-error-outline.png")}
-          // source={image}
-          style={{ marginRight: wp(3) }}
-
-        />
 
         <AppText
           bold
           primary={!colors}
+          UpperCase
+          small
           style={{
-            color: colors && colors.primary,
-            paddingHorizontal: 20,
+            color: colors && colors.secondary,
             textAlign: 'center',
-            fontSize: 25,
-            marginTop: 20,
-            marginBottom: 20,
           }}>
-          {unavailabetitle}
+          {props.unavailabetitle}
         </AppText>
         <AppText
+          size={28}
+          bold
           style={{
-            paddingHorizontal: 20,
-            fontSize: 18,
+
+            // fontSize: 18,
+            fontStyle: "italic",
             textAlign: 'center',
           }}>
-          {unavailabe}
+          {props.unavailabe}
         </AppText>
 
       </View>
@@ -57,14 +58,18 @@ const NofeaturedBook = props => {
 };
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   footer: {
-    marginBottom: hp(3),
     width: wp(90),
     alignSelf: 'center'
   },
-
+  image: {
+    marginBottom: hp(5),
+    width: wp(30),
+    aspectRatio: 1,
+  }
 });
 
 export { NofeaturedBook };

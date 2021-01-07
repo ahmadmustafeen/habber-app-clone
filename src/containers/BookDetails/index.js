@@ -38,6 +38,7 @@ import { withDataActions } from '../../redux/actions/GenericActions';
 import { checkIsFavourite } from '../../redux/selectors';
 import { useTranslation } from 'react-i18next';
 import { Text } from 'react-native';
+import { NofeaturedBook } from '../../components/NofeaturedBook';
 
 const BookDetails = (props) => {
   // console.log("bookdetail", props, "delete")
@@ -216,7 +217,7 @@ const BookDetails = (props) => {
         </ImageBackground>
       </View>
       <View key="content">
-        {book_removed && <AppText>No Books Are found</AppText>}
+        {book_removed && <NofeaturedBook unavailabetitle="The Featured Book is Currently " unavailabe="UNAVAILABLE" />}
         {(type === 'bookclub' && !book_removed) &&
           (
             <View style={{ paddingTop: hp(3) }}>
@@ -306,7 +307,7 @@ const BookDetails = (props) => {
               alignSelf: 'center',
               paddingVertical: hp(2),
             }}>
-            {!book_removed && <>
+            {true && <>
               <AppText> {t("youMayAlsoLike")}</AppText>
               <View style={{ paddingVertical: hp(2) }}>
                 <DashboardComponent
@@ -345,24 +346,36 @@ const BookDetails = (props) => {
 
           </View>
 
-        ) : (!book_removed && (
+        ) : (
 
-          <View
-            style={{
-              width: wp(90),
-              alignSelf: 'center',
-              paddingVertical: hp(2),
-            }}>
-            <AppText> {t("morebookclubs")}</AppText>
-            <View style={{ paddingVertical: hp(2) }}>
-              {!book_removed &&
-                <DashboardComponent
-                  noTitle
-                  data={FetchRelatedBookList.filter((book) => book.featured)}
-                  renderComponent={(item) => {
-                    if (product_type === 'book') {
+            <View
+              style={{
+                width: wp(90),
+                alignSelf: 'center',
+                paddingVertical: hp(2),
+              }}>
+              <AppText> {t("morebookclubs")}</AppText>
+              <View style={{ paddingVertical: hp(2) }}>
+                {true &&
+                  <DashboardComponent
+                    noTitle
+                    data={FetchRelatedBookList.filter((book) => book.featured)}
+                    renderComponent={(item) => {
+                      if (product_type === 'book') {
+                        return (
+                          <RelatedThumbnailBook
+                            onPress={() => {
+                              props.navigation.push(BOOK_DETAILS_SCREEN, {
+                                ...item.item,
+                                product_type,
+                              });
+                            }}
+                            url={item.item.image}
+                          />
+                        );
+                      }
                       return (
-                        <RelatedThumbnailBook
+                        <RelatedThumbnailBookmarks
                           onPress={() => {
                             props.navigation.push(BOOK_DETAILS_SCREEN, {
                               ...item.item,
@@ -371,28 +384,17 @@ const BookDetails = (props) => {
                           }}
                           url={item.item.image}
                         />
-                      );
-                    }
-                    return (
-                      <RelatedThumbnailBookmarks
-                        onPress={() => {
-                          props.navigation.push(BOOK_DETAILS_SCREEN, {
-                            ...item.item,
-                            product_type,
-                          });
-                        }}
-                        url={item.item.image}
-                      />
 
-                    );
-                  }}
-                />
-              }
+                      );
+                    }}
+                  />
+                }
+              </View>
             </View>
-          </View>
-        ))}
-      </View>
-    </Screen>
+          )
+        }
+      </View >
+    </Screen >
   );
 };
 
