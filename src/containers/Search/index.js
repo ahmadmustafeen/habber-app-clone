@@ -18,6 +18,7 @@ import {
 import useFilter from '_utils/customHooks/useFilter';
 import { FilterModal } from '_containers/Filter';
 import { useTranslation } from 'react-i18next';
+import NoBookAvailbe from '../../components/NoBookAvailable';
 
 const Search = (props) => {
   const { t } = useTranslation(['Search']);
@@ -32,7 +33,7 @@ const Search = (props) => {
       SearchBooksReducer,
     };
   }, shallowEqual);
-
+  console.log("bookkkkkk", SearchBooksReducer)
   const [filter, setFilter] = useState([])
   const onSubmit = () => {
     dispatch(withDataActions({ keyword }, SEARCH_BOOKS));
@@ -77,8 +78,11 @@ const Search = (props) => {
       </View>
       <View key="content">
         <View style={{ width: wp(90), alignSelf: 'center' }}>
-          {(SearchBooksReducer.length > 0) && <TitleBarWithIcon label={`${SearchBooksReducer.length} ${t('bookFound')}`} filter={filter} noIcon onIconPress={toggleFilter} />}
+          {(SearchBooksReducer.length > 0) &&
+            <TitleBarWithIcon label={`${SearchBooksReducer.length} ${t('bookFound')}`}
+              filter={filter} noIcon onIconPress={toggleFilter} />}
         </View>
+
         <View style={styles.filterApply}>
           {filter.map((item) =>
             <View key={item} style={[styles.filterView, { backgroundColor: colors.borderColor }]}>
@@ -89,7 +93,8 @@ const Search = (props) => {
             </View>
           )}
         </View>
-        {(SearchBooksReducer.length > 0) && <BookListContainer data={SearchBooksReducer} product_type="book" {...props} />}
+        {/* {(SearchBooksReducer.length > 0) && <BookListContainer data={SearchBooksReducer} product_type="book" {...props} />} */}
+        {(SearchBooksReducer.length > 0) ? <BookListContainer data={SearchBooksReducer} product_type="book" {...props} /> : <NoBookAvailbe />}
 
         <FilterModal {...props} visible={visible} onApply={onApplyFilter} />
       </View>
