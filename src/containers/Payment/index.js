@@ -6,6 +6,7 @@ import { Screen } from '../../components/common';
 import { INVOICE } from '../../constants/Screens';
 
 export const Payment = (props) => {
+  console.log("payment props", props)
   const [modalVisible, setModalVisible] = useState(false);
   const [success, setSuccess] = useState(null);
   const WEBVIEW_REF = useRef(null);
@@ -44,7 +45,7 @@ Please Retry`,
   };
   onContinue = () => {
     toggleModal();
-    success && props.navigation.navigate(INVOICE);
+    success && props.navigation.navigate(INVOICE, { item: props.route.params.orderDetails });
   };
   return (
     <Screen noPadding>

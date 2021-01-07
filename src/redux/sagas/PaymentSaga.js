@@ -1,12 +1,12 @@
-import {put, call} from 'redux-saga/effects';
+import { put, call } from 'redux-saga/effects';
 import hesabeCrypt from 'hesabe-crypt';
 import aesjs from 'aes-js';
-import {create} from 'apisauce';
-import {Alert} from 'react-native';
+import { create } from 'apisauce';
+import { Alert } from 'react-native';
 
 import * as NavigationService from '../../../NavigationService';
-import {PAYMENT_SCREEN} from '../../constants/Screens';
-import {NETWORK_ERROR} from '../actionTypes';
+import { PAYMENT_SCREEN } from '../../constants/Screens';
+import { NETWORK_ERROR } from '../actionTypes';
 import {
   HSB_BASE_URL,
   HSB_ACCESS_CODE,
@@ -15,10 +15,11 @@ import {
   IV_CODE,
   SECRET_KEY,
 } from '../../constants/HesabeConfig';
-import {errorAction} from '../actions';
+import { errorAction } from '../actions';
 
-export function* PaymentSaga({payload, type}) {
+export function* PaymentSaga({ payload, type }) {
   try {
+    console.log("PAYMENT SAGA", payload.order_details)
     const key = aesjs.utils.utf8.toBytes(SECRET_KEY);
     const iv = aesjs.utils.utf8.toBytes(IV_CODE);
     const payment = new hesabeCrypt(key, iv);
@@ -31,11 +32,11 @@ export function* PaymentSaga({payload, type}) {
       variable5: '',
       merchantCode: HSB_MERCHANT_ID,
       version: HSB_API_VERSION,
-      currency: payload.currency_iso,
-      amount: payload.total_price,
-      orderReferenceNumber: payload.id,
-      responseUrl: payload.payment_success_url,
-      failureUrl: payload.payment_failure_url,
+      currency: payload.payload.currency_iso,
+      amount: payload.payload.total_price,
+      orderReferenceNumber: payload.payload.id,
+      responseUrl: payload.payload.payment_success_url,
+      failureUrl: payload.payload.payment_failure_url,
     };
     const encrypted = payment.encryptAes(JSON.stringify(payload_obj));
     const api = create({
@@ -48,7 +49,7 @@ export function* PaymentSaga({payload, type}) {
 
     const result = yield call(() =>
       api
-        .post('/checkout', {data: encrypted})
+        .post('/checkout', { data: encrypted })
         .then((res) => {
           if (res.problem === NETWORK_ERROR) {
             Alert.alert('ERROR', res.problem);
@@ -63,6 +64,7 @@ export function* PaymentSaga({payload, type}) {
     const paymentUrl = `${HSB_BASE_URL}/payment?data=${paymentData}`;
     NavigationService.navigate(PAYMENT_SCREEN, {
       paymentUrl,
+      orderDetails: payload.order_details
     });
   } catch (error) {
     console.log('ERROR AT PAYMENT', error);

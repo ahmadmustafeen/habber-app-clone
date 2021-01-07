@@ -23,26 +23,43 @@ import { useTheme } from '@react-navigation/native';
 import { withDataActions } from '../../redux/actions';
 import { CREATE_ORDER } from '../../redux/actionTypes';
 import { checkIfLoading } from '../../redux/selectors';
+import { Alert } from 'react-native';
+import { useTranslation } from 'react-i18next';
 
 const Checkout = (props) => {
+
+  const { t } = useTranslation(['Cart'])
   const { colors } = useTheme();
-  const { AddressReducer, isLoading } = useSelector((state) => {
+  const { AddressReducer, CartReducer, isLoading, UserProfileReducer, FetchCurrencyReducer } = useSelector((state) => {
     return {
+      CartReducer: state.CartReducer,
       AddressReducer: state.AddressReducer,
+      UserProfileReducer: state.UserProfileReducer,
+      FetchCurrencyReducer: state.FetchCurrencyReducer,
       isLoading: checkIfLoading(state, CREATE_ORDER),
     };
   }, shallowEqual);
-
+  console.log(CartReducer)
   const [state, setState] = useState({
     paymentMethod: '',
     address: '',
   });
+  console.log("Checkout props", state.address)
   const setStateHandler = (key, val) => {
     // console.log(key, val)
     setState({ ...state, [key]: val });
   };
   const { navigate } = props.navigation;
   const dispatch = useDispatch();
+  var rtlLayout = false;
+  (UserProfileReducer.currency.iso === "USD" || UserProfileReducer.currency.iso === "GBP" || UserProfileReducer.currency.iso === "EUR") && (rtlLayout = true)
+  const price_product = FetchCurrencyReducer.find((item) => item.iso === UserProfileReducer.currency.iso)
+
+
+  var Address_VAL = AddressReducer.find((addresss) => addresss.id === state.address)
+  if (!Address_VAL) Address_VAL = { id: 123213123123123123123, shipping_charges: "$" }
+  console.log(Address_VAL, "ADDRESS")
+
   return (
 
 
@@ -129,6 +146,70 @@ const Checkout = (props) => {
               />
             </View>
           </View>
+
+          <View style={[styles.totalcontainer, { height: hp(20) }]}>
+
+            <View style={styles.row}>
+              <AppText bold>Sub Total </AppText>
+              <View style={styles.pricerow}><AppText bold>{parseInt(CartReducer.total_price).toFixed(2)}</AppText></View>
+            </View>
+
+            <View style={styles.row}>
+              <AppText bold>Delivery Charges </AppText>
+              <View style={styles.pricerow}><AppText bold>{(Address_VAL.shipping_charges.split("$")[1])}</AppText></View>
+            </View>
+
+            <HorizontalRow />
+            <View style={styles.row}>
+              <AppText bold>Total </AppText>
+              <View style={styles.pricerow}><AppText bold>{parseFloat(parseFloat(CartReducer.total_price)) + parseFloat(parseFloat(Address_VAL.shipping_charges.split("$")[1]))}</AppText></View>
+            </View>
+
+
+
+            {/* <View
+              style={{
+                width: wp(60),
+                backgroundColor: 'red',
+                flexDirection: 'column',
+                justifyContent: 'flex-start',
+              }}>
+              <AppText style={{ paddingVertical: hp(0.5) }} small bold>
+                {t('subTotal')}
+              </AppText>
+              <AppText style={{ paddingVertical: hp(0.7) }} small bold>
+                {t('shippingCharges')}
+              </AppText> */}
+
+
+            {/* <HorizontalRow
+              style={{
+                borderColor: 'rgb(200, 200, 200)',
+                borderWidth: hp(0.1),
+                width: wp(87),
+
+
+              }}
+            /> */}
+            {/* <AppText small primary bold>
+              {t('total')}
+            </AppText>
+          </View> */}
+            {/* <View
+              style={{
+                flexDirection: 'column',
+                justifyContent: 'flex-end',
+                alignItems: 'flex-end',
+              }}>
+
+              <AppText style={{ paddingVertical: hp(0.5) }} small bold> {rtlLayout && price_product.symbol} {parseFloat(CartReducer.total_price).toFixed(2)} {rtlLayout || price_product.symbol}
+              </AppText>
+              <AppText style={{ paddingVertical: hp(0.5) }} small bold> {rtlLayout && price_product.symbol} {parseFloat(delivery_charges).toFixed(2)} {rtlLayout || price_product.symbol}
+              </AppText>
+              <AppText small primary bold> {rtlLayout && price_product.symbol} {parseFloat(CartReducer.total_price + delivery_charges).toFixed(2)} {rtlLayout || price_product.symbol}
+              </AppText> */}
+            {/* </View> */}
+          </View>
           <View style={{ height: hp(17), justifyContent: 'space-between' }}>
             <Button
               add
@@ -145,14 +226,14 @@ const Checkout = (props) => {
               color={'white'}
               bold
               loading={isLoading}
-              onPress={() => dispatch(withDataActions({}, CREATE_ORDER))}>
+              onPress={() => (state.paymentMethod && state.address) ? dispatch(withDataActions(state.address, CREATE_ORDER)) : Alert.alert("ENTER ADDRESS")}>
               PAY NOW
             </Button>
 
           </View>
         </View>
       </View>
-    </Screen>
+    </Screen >
   );
 };
 
@@ -163,6 +244,18 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     borderWidth: 2,
     overflow: 'hidden',
+  },
+  totalcontainer: {
+    flexDirection: 'column',
+  },
+  row: {
+    height: hp(4),
+    flexDirection: 'row',
+    width: wp(90),
+    justifyContent: 'space-between'
+  },
+  pricerow: {
+    width: wp(25)
   },
   radioButton: {
     position: 'absolute',

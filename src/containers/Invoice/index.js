@@ -3,14 +3,24 @@ import { ScrollView, StyleSheet, View, ImageBackground, I18nManager, Text } from
 import { Header } from '_components';
 import {
     widthPercentageToDP as wp,
-    heightPercentageToDP as hp,
+    heightPercentageToDP as hp
 } from 'react-native-responsive-screen';
 import { useTheme } from '@react-navigation/native';
 import { AppText } from 'components/common';
+import { shallowEqual, useSelector } from 'react-redux';
 
 
 const Invoice = (props) => {
-
+    console.log(props, "ORDER DATA")
+    const {
+        UserProfileReducer,
+    } = useSelector((state) => {
+        return {
+            UserProfileReducer: state.UserProfileReducer,
+        };
+    }, shallowEqual);
+    const item = props.route.params.item
+    console.log(item, UserProfileReducer)
     const { colors } = useTheme()
     const InvoiceItem = (props) => {
         return (
@@ -21,7 +31,7 @@ const Invoice = (props) => {
 
                 <View style={{ paddingLeft: wp(2), flex: 1, }}>
                     <AppText style={styles.txt} size={20} bold >{props.headerLeft}</AppText>
-                    <AppText small >{props.textLeft}</AppText>
+                    <AppText capitalize small >{props.textLeft}</AppText>
                 </View>
 
                 <View style={{ width: wp(0.8), height: hp(5), position: "absolute", right: 0, top: hp(2), backgroundColor: colors.primary }} />
@@ -29,7 +39,7 @@ const Invoice = (props) => {
 
                 <View style={{ paddingRight: wp(2), flex: 1, alignItems: 'flex-end', justifyContent: 'flex-start', }}>
                     <AppText style={styles.txt} size={20} bold>{props.headerRight}</AppText>
-                    <AppText small >{props.textRight}</AppText>
+                    <AppText capitalize small >{props.textRight}</AppText>
                 </View >
             </View >
         )
@@ -37,22 +47,22 @@ const Invoice = (props) => {
     const OrderBox = (props) => {
         return (
             <View style={styles.detailCartHeader}>
-                <View style={{ flex: 2, justifyContent: 'center', alignItems: 'center', height: hp(5) }}>
+                <View style={{ flex: 2, justifyContent: 'center', alignItems: 'center', }}>
                     <AppText text small>
                         {props.name}
                     </AppText>
                 </View>
-                <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', height: hp(5) }}>
+                <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', }}>
                     <AppText text small>
                         {props.price}
                     </AppText>
                 </View>
-                <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', height: hp(5) }}>
+                <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', }}>
                     <AppText text small>
                         {props.quantity}
                     </AppText>
                 </View>
-                <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', height: hp(5) }}>
+                <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', }}>
                     <AppText text small>
                         {props.subtotal}
                     </AppText>
@@ -61,31 +71,25 @@ const Invoice = (props) => {
             </View>
         )
     }
+
+    var rtlLayout = false;
+    (UserProfileReducer.currency.iso === "USD" || UserProfileReducer.currency.iso === "GBP" || UserProfileReducer.currency.iso === "EUR") && (rtlLayout = true)
+
     return (
         <ScrollView>
-            <ImageBackground
-                style={{
-                    height: hp(21),
-                    paddingHorizontal: wp(3),
-                    paddingBottom: hp(8),
-                    marginBottom: hp(1),
-                    justifyContent: 'flex-end',
-                    transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }],
-                }}
-                resizeMode='stretch'
-                source={require('_assets/images/header.png')}>
-                <Header backIcon {...props} headerLeft title={"Invoice"} />
-            </ImageBackground>
+
+            <Header backIcon {...props} title={props.route.params.orderDetails && "Orders Detail"} headerLeft headerImage backIcon headerLeft />
+
             <View key="content">
-                <InvoiceItem headerLeft="Order ID" headerRight="Order Date" textLeft="23423423423" textRight="05/09/2020" />
+                <InvoiceItem headerLeft="Order ID" headerRight="Order Date" textLeft={item.id} textRight={item.created_at.split('T')[0]} />
                 <View style={{ width: wp(80), alignSelf: "center", borderBottomColor: colors.primary, borderBottomWidth: hp(0.1) }} />
-                <InvoiceItem headerLeft="Customer Name" headerRight="Khalid Ammer" textLeft="Phone no " textRight="234234234234" />
+                <InvoiceItem headerLeft="Customer Name" headerRight="Phone No." textLeft={UserProfileReducer.first_name} textRight={UserProfileReducer.phone} />
                 <View style={{ width: wp(80), paddingVertical: hp(1), alignSelf: "center", borderBottomColor: colors.primary, borderBottomWidth: hp(0.1) }} />
-                <InvoiceItem headerLeft="Address" headerRight="Payment Method" textLeft="23-E/23 Nasasd Kasdas" textRight="K Net" />
+                <InvoiceItem headerLeft="Address" headerRight="Payment Method" textLeft={item.Address} textRight={item.payment_type} />
 
                 <View style={[styles.detailCart]}>
                     <View style={[styles.detailCartHeader, { backgroundColor: colors.borderColor }]}>
-                        <View style={{ flex: 2, justifyContent: 'center', alignItems: 'center', height: hp(5) }}>
+                        <View style={{ flex: 3, justifyContent: 'center', alignItems: 'center', height: hp(5) }}>
                             <AppText bold secondary small >
                                 Name
                             </AppText>
@@ -100,18 +104,16 @@ const Invoice = (props) => {
                                 Qty
                             </AppText>
                         </View>
-                        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', height: hp(5) }}>
+                        <View style={{ flex: 2, justifyContent: 'center', alignItems: 'center', height: hp(5) }}>
                             <AppText bold secondary small >
                                 Subtotal
                             </AppText>
                         </View>
 
                     </View>
+                    {item.books.map(book => { return <OrderBox key={book.id} name={book.title} price={book.cart_price} quantity={book.cart_quantity} subtotal={book.cart_quantity * book.cart_price} /> })}
+                    {item.bookmarks.map(book => { return <OrderBox key={book.id} name={book.title} price={book.cart_price} quantity={book.cart_quantity} subtotal={book.cart_quantity * book.cart_price} /> })}
 
-                    <OrderBox name="book title" price="2132" quantity="23" subtotal="212" />
-                    <OrderBox name="book title" price="2132" quantity="23" subtotal="212" />
-                    <OrderBox name="book title" price="2132" quantity="23" subtotal="212" />
-                    <OrderBox name="book title" price="2132" quantity="23" subtotal="212" />
                     <View style={[styles.detailCartHeader, { backgroundColor: colors.secondary, justifyContent: 'space-between', paddingHorizontal: wp(5) }]}>
                         <View style={{ justifyContent: 'center', alignItems: 'center', height: hp(5) }}>
                             <AppText white bold secondary small >
@@ -120,7 +122,7 @@ const Invoice = (props) => {
                         </View>
                         <View style={{ justifyContent: 'center', alignItems: 'center', height: hp(5) }}>
                             <AppText white bold secondary small >
-                                $140
+                                {rtlLayout || item.currency_iso} {item.total_price} {rtlLayout && item.currency_iso}
                             </AppText>
                         </View>
 
@@ -149,10 +151,9 @@ const styles = StyleSheet.create({
         overflow: 'hidden'
     },
     detailCartHeader: {
-        paddingRight: 20,
         width: wp(90),
         flexDirection: 'row',
-        height: hp(5),
+        height: hp(8),
     }
 });
 export default Invoice;

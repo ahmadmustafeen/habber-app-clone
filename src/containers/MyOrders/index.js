@@ -10,7 +10,11 @@ import { useSelector } from 'react-redux';
 import { useTheme } from '@react-navigation/native';
 import { Icon } from 'react-native-elements';
 import { useTranslation } from 'react-i18next';
+import NoBookAvailbe from '../../components/NoBookAvailable';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import { INVOICE } from '../../constants/Screens';
 const MyOrders = (props) => {
+  const { navigate } = props.navigation;
   const { colors } = useTheme();
   const { OrderReducer } = useSelector((state) => {
     return {
@@ -18,12 +22,9 @@ const MyOrders = (props) => {
     }
   })
   const { t } = useTranslation(['Order'])
-  console.log("order ka page", OrderReducer);
   const OrderItem = (item) => {
-    console.log(item.bookmarks)
-    console.log(item)
     return (
-      <View style={styles.profiletop}>
+      <View style={styles.profiletop} key={item.id}>
         <View style={styles.orderContainer}>
           <AppText size={16} style={styles.apptextpadding}><AppText bold size={17}>Order ID: </AppText> {item.id}</AppText>
           {item.books.map((title) =>
@@ -38,6 +39,16 @@ const MyOrders = (props) => {
         <View style={styles.totalContainer}>
           <AppText size={16} style={styles.apptextpadding}><AppText size={17} bold>Total: </AppText>{item.currency_iso} {item.total_price}</AppText>
           <AppText size={16} style={styles.apptextpadding}>{item.date}</AppText>
+        </View>
+        <View style={styles.Icon}>
+          <Icon
+            onPress={() => navigate(INVOICE, {
+              item, orderDetails: true
+            })}
+            color="#c27e12"
+            name="rightcircleo"
+            type="ant-design"
+          />
         </View>
       </View>
     )
@@ -66,8 +77,7 @@ const MyOrders = (props) => {
           renderItem={(item) => OrderItem(item.item)}
           ListEmptyComponent={() => (
             <View>
-              <AppText>{t("noBookAvailable")}
-              </AppText>
+              <NoBookAvailbe emptyy="No orders available" />
             </View>
           )}
           ListFooterComponent={() => <View style={{ paddingBottom: 50 }} />}
@@ -108,6 +118,11 @@ const styles = StyleSheet.create({
   statuspadding: {
     paddingVertical: 15,
     textTransform: "capitalize",
+  },
+  Icon: {
+    position: 'absolute',
+    bottom: hp(6),
+    right: wp(10),
   }
 });
 

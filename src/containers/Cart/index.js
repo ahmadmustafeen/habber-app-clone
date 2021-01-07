@@ -106,7 +106,7 @@ const AddToCart = (props) => {
                         by {author_name}
                       </AppText>
                       <AppText bold size={17} style={styles.pricetxt}>
-                        Price: {rtlLayout && price_product.symbol} {cart_price} {rtlLayout || price_product.symbol}
+                        Price: {rtlLayout && price_product.symbol} {parseInt(cart_price).toFixed(2)} {rtlLayout || price_product.symbol}
                       </AppText>
                       <View
                         style={{
