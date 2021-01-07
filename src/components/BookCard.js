@@ -48,7 +48,7 @@ const BookCard = (props) => {
         </View>
         <View style={styles.details}>
 
-          <View style={{ width: wp(30) }}>
+          <View style={{ width: wp(26), marginRight: wp(5), justifyContent: 'space-around', height: '100%' }}>
             <AppText small>{title}</AppText>
             <AppText small primary bold>
               {author_name}
@@ -61,11 +61,11 @@ const BookCard = (props) => {
           &&
           <>
             <View style={styles.forgetPassImageContainet}>
-              <Image style={styles.image} source={require("../assets/images/forgetPassword.png")} />
+              <Image style={styles.image} source={require("../assets/images/noItem.png")} />
             </View>
 
             <View style={[styles.outOfStock, { backgroundColor: colors.primary }]}>
-              <AppText large>Out of Stock</AppText>
+              <AppText small >Out of Stock</AppText>
             </View>
           </>
         }
@@ -78,6 +78,7 @@ const BookCard = (props) => {
 const styles = StyleSheet.create({
   containerStyle: {
     width: wp(41.1),
+    // aspectRatio: 0.4,
     borderWidth: 0.5,
     margin: 3,
   },
@@ -91,18 +92,21 @@ const styles = StyleSheet.create({
   },
   forgetPassImageContainet: {
     position: 'absolute',
-    bottom: hp(6),
-    right: 20,
-    width: 20,
-    height: 30
+    bottom: hp(8),
+    right: wp(1),
+    aspectRatio: 1,
+    height: hp(8)
   },
   details: {
     flex: 1,
     paddingVertical: 10,
-    justifyContent: 'space-between',
+    // justifyContent: 'flex-end',
     paddingHorizontal: 10,
   },
   outOfStock: {
+    alignItems: 'center',
+    height: hp(5),
+    justifyContent: 'center',
     alignItems: 'center'
   }
 });
