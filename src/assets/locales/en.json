@@ -30,8 +30,6 @@
     "email": "Email"
   },
   "ResetPassword": {
-   
-   
     "resetPassword": "Reset Password",
     "modal_heading": "Please check your Registered Email",
     "modal_description": "Your Password Reset Link Has Been Sent To Your Email",
@@ -104,7 +102,7 @@
     "privacyPolicy": "Privacy Policy",
     "returnPolicy": "Return Policy",
     "joinUs": "Join Us",
-    "Arabic": "مرحبا"
+    "Arabic": "مرحباx"
   },
   "ContactUs": {
     "supportChat": "Support Chat:",

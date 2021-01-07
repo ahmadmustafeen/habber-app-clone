@@ -51,7 +51,6 @@ const BookDetails = (props) => {
 
   var { id: product_id = 33, quantity, product_type, price, bookClub, type } = book;
   var old_product;
-  console.log(book, "BOOKADASDASWDASDFDFDRGDFHFJ")
   var book_removed = false
   if (book.product_type === 'bookclub' && book.book) {
     product_id = book.book.id;
@@ -62,11 +61,11 @@ const BookDetails = (props) => {
     old_product = book;
     book = book.book
   }
-  else if (!book.book) {
-    product_id = 12312312312312,
+  else if (book.product_type === 'bookclub' && !book.book) {
+    product_id = book.id,
       product_type = 'book'
     book_removed = true,
-      type = true
+      type = "bookclub"
     old_product = book
   }
 
@@ -191,7 +190,7 @@ const BookDetails = (props) => {
             title={(type ? props.route.params.name : true)}
             color={colors.secondary}
           />
-          {(!book_removed && type !== 'bookclub') ?
+          {(!type && (product_type === 'book' || product_type === 'bookmark')) ?
             (
 
               <View
@@ -203,8 +202,7 @@ const BookDetails = (props) => {
                   onClickShare={onShare}
                   onGoodReads={product_type === 'book' ? () => Linking.openURL('https://www.goodreads.com/book/isbn/' + book.isbn) : null}
                 />
-              </View>
-            )
+              </View>)
             : (
               <View
                 style={{ width: wp(90), alignSelf: 'center', paddingBottom: 20 }}>
