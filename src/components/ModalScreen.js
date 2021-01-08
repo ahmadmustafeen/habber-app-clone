@@ -22,7 +22,7 @@ const ModalScreen = props => {
     loading,
     image, descriptionNextLine
   } = props
-  console.log("CC", colors)
+  // console.log("CC", colors)
   return (
     <Modal animationType="fade" visible={visible}>
       <View style={styles.container}>

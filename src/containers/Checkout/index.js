@@ -226,7 +226,7 @@ const Checkout = (props) => {
               color={'white'}
               bold
               loading={isLoading}
-              onPress={() => { (state.paymentMethod && state.address) ? dispatch(withDataActions(state.address, CREATE_ORDER)) : (state.paymentMethod) ? Alert.alert("Select or add new Address") : Alert.alert("Select a payment method") }}>
+              onPress={() => { dispatch(withDataActions(state.address, CREATE_ORDER)) }}>
               PAY NOW
             </Button>
 
