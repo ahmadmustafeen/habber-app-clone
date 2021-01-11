@@ -17,6 +17,7 @@ import {
 import { useTheme } from '@react-navigation/native';
 
 import { AppText, Button, Screen } from '../../components/common';
+
 import {
   Counter,
   BookDetailsCard,
@@ -215,7 +216,9 @@ const BookDetails = (props) => {
         </ImageBackground>
       </View>
       <View key="content">
-        {book_removed && <NofeaturedBook unavailabetitle="The Featured Book is Currently " unavailabe="UNAVAILABLE" />}
+        {book_removed && <NofeaturedBook unavailabetitle="THE FEATURED BOOK IS CURRENTLY UNAVAILABLE"
+          source={require("../../assets/images/nofeatured.png")} />}
+
         {(type === 'bookclub' && !book_removed) &&
           (
             <View style={{ paddingTop: hp(3) }}>

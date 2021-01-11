@@ -32,8 +32,10 @@ import {
 } from '../../components';
 import { AppText, Button, Screen } from '../../components/common';
 import { useTranslation } from 'react-i18next';
+import { combineEpics } from 'redux-observable';
 
 const ContactUs = (props) => {
+  // console.log(FetchSiteReducer.phone_no)
   const { t } = useTranslation(['ContactUs'])
   const { visible, toggleModal } = useModal();
   const onContinue = () => {
@@ -54,9 +56,21 @@ const ContactUs = (props) => {
       isLoading: checkIfLoading(state, SUBMIT_CONTACT_US),
     };
   }, shallowEqual);
+  const Phone_Number_footer = FetchSiteReducer.phone_no
+  const support_chat = FetchSiteReducer.whatsaap_number;
+  var resookkk = String(support_chat);
+  var resoo = String(Phone_Number_footer);
+
+
+  // var res = resoo
+
+  // const checckk = Number(pjooo)
+  // { checckk.length === 4 ? checckk + " " : checckk }
+  console.log(resookkk)
 
   const setStateHandler = (key, val) => {
     setState({ ...state, [key]: val });
+
   };
   const validate = () => {
     if (!state.name) {
@@ -118,7 +132,7 @@ const ContactUs = (props) => {
             color={"black"}
             required
             value={state.phone}
-            onChangeText={(val) => setStateHandler('phone', val)}
+            onChangeText={(val) => setStateHandler('phone', (val.length == 4 ? val + " " : val))}
           />
           <TextInput
 
@@ -170,20 +184,24 @@ const ContactUs = (props) => {
                 iconType="font-awesome"
                 iconSize={23}
                 title={t('supportChat')}
-                value={FetchSiteReducer.whatsaap_number}
+                value={`${resookkk.substr(0, 4) + " " + resookkk.substr(4)}`}
                 onPress={() =>
                   Linking.openURL(
                     `whatsapp://send?text=""&phone=${FetchSiteReducer.whatsaap_number}`,
                   ).catch((err) => console.log('Err', err))
                 }
               />
+
               <TextWithIcon
                 small
                 iconName="phone-call"
                 iconType="feather"
                 iconSize={23}
                 title={t('phoneNumber')}
-                value={FetchSiteReducer.phone_no}
+                // value={(Number(FetchSiteReducer.phone_no))}
+                // value={FetchSiteReducer.phone_no == 5 ? FetchSiteReducer.phone_no + " " : FetchSiteReducer.phone_no}
+                value={`${resoo.substr(0, 4) + " " + resoo.substr(4)}`}
+
                 onPress={() =>
                   Platform.OS === 'ios'
                     ? Linking.openURL(`telprompt:${FetchSiteReducer.phone_no}`)

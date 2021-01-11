@@ -13,63 +13,45 @@ const NofeaturedBook = props => {
 
   return (
 
-    <View key="content" style={styles.container}>
-
-      <View
-
-        style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <View style={styles.image}>
-          <Image
-            source={require("../assets/images/errorImage.png")}
-            style={{ width: '100%', height: '100%' }}
-          />
-        </View>
 
 
-        <AppText
-          bold
-          primary={!colors}
-          UpperCase
-          small
-          style={{
-            color: colors && colors.secondary,
-            textAlign: 'center',
-          }}>
-          {props.unavailabetitle}
-        </AppText>
-        <AppText
-          size={28}
-          bold
-          style={{
+    <View
+      key="content"
+      style={{ alignItems: 'center', justifyContent: 'center', paddingTop: 50 }}>
 
-            // fontSize: 18,
-            fontStyle: "italic",
-            textAlign: 'center',
-          }}>
-          {props.unavailabe}
-        </AppText>
+      <Image
+        source={props.source}
+        // source={image}
+        style={{ marginRight: wp(3) }}
 
-      </View>
+      />
+
+      <AppText
+        bold
+        primary={colors}
+        style={{
+          color: colors && colors.primary,
+          paddingHorizontal: 20,
+          textAlign: 'center',
+          fontSize: 22,
+
+          marginTop: 20,
+          // marginBottom: 20,
+        }}>
+        {props.unavailabetitle}
+      </AppText>
 
 
     </View>
 
+
+
+
   );
 };
 const styles = StyleSheet.create({
-  container: {
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  footer: {
-    width: wp(90),
-    alignSelf: 'center'
-  },
-  image: {
-    marginBottom: hp(5),
-    width: wp(30),
-    aspectRatio: 1,
-  }
+
+
 });
 
 export { NofeaturedBook };
