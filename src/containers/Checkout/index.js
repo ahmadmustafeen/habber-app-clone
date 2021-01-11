@@ -57,9 +57,8 @@ const Checkout = (props) => {
 
 
   var Address_VAL = AddressReducer.find((addresss) => addresss.id === state.address)
-  if (!Address_VAL) Address_VAL = { id: 123213123123123123123, shipping_charges: "$" }
-
-
+  if (!Address_VAL) Address_VAL = { id: 123213123123123123123, shipping_charges: "0" }
+  console.log(Address_VAL)
   return (
 
 
@@ -156,13 +155,13 @@ const Checkout = (props) => {
 
             <View style={styles.row}>
               <AppText bold>Delivery Charges </AppText>
-              <View style={styles.pricerow}><AppText bold>{(Address_VAL.shipping_charges.split("$")[1])}</AppText></View>
+              <View style={styles.pricerow}><AppText bold>{parseFloat((Address_VAL.shipping_charges)).toFixed(2)}</AppText></View>
             </View>
 
             <HorizontalRow />
             <View style={styles.row}>
               <AppText bold>Total </AppText>
-              <View style={styles.pricerow}><AppText bold>{parseFloat(parseFloat(CartReducer.total_price)) + parseFloat(parseFloat(Address_VAL.shipping_charges.split("$")[1]))}</AppText></View>
+              <View style={styles.pricerow}><AppText bold>{parseFloat(parseFloat(CartReducer.total_price)) + parseFloat(parseFloat(Address_VAL.shipping_charges).toFixed(2))}</AppText></View>
             </View>
 
 

@@ -40,7 +40,7 @@ export function* CreateOrderSaga({ type, payload }) {
         price: cart_price, // or product.price, depends on API
       }));
     var Address_VAL = AddressReducer.find((addresss) => addresss.id === payload)
-    const shipping_charges = parseFloat(Address_VAL.shipping_charges.split("$")[1]);
+    const shipping_charges = parseFloat(Address_VAL.shipping_charges);
     // console.log('PRODUCTS', product);
     const obj = {
       product,
@@ -53,7 +53,7 @@ export function* CreateOrderSaga({ type, payload }) {
       currency_id: 1,
       payment_type: 'online',
     };
-
+    console.log(obj, "OBJ")
     const response = yield call(() =>
       RestClient.post(API_ENDPOINTS.order, obj),
     );
@@ -64,6 +64,8 @@ export function* CreateOrderSaga({ type, payload }) {
     const {
       data: { data: res, success },
     } = response;
+
+    console.log(response, "RESPONSE")
     if (!success) {
       console.error('Error', response);
       yield put({ type: CREATE_ORDER_FAILURE });

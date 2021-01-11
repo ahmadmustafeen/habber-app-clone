@@ -19,7 +19,7 @@ import { errorAction } from '../actions';
 
 export function* PaymentSaga({ payload, type }) {
   try {
-    console.log("PAYMENT SAGA", payload.order_details)
+    console.log("PAYMENT SAGA", payload)
     const key = aesjs.utils.utf8.toBytes(SECRET_KEY);
     const iv = aesjs.utils.utf8.toBytes(IV_CODE);
     const payment = new hesabeCrypt(key, iv);

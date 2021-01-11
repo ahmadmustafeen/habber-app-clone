@@ -94,7 +94,7 @@ const AddNewAddress = (props) => {
       item ?
         dispatch(withDataActions({ ...state, id: item.id }, EDIT_ADDRESS))
         :
-        dispatch(withDataActions(state, ADD_ADDRESS_SAGA))
+        dispatch(withDataActions({ ...state, checkout: true }, ADD_ADDRESS_SAGA))
     }
 
 
