@@ -8,7 +8,7 @@ const NoBookAvailbe = (props) => {
 
     <View style={styles.Container}>
       <View style={styles.textoo}>
-        <Text style={{ alignSelf: 'center', fontSize: 35 }}>Oops</Text>
+        <Text style={{ alignSelf: 'center', fontSize: 35 }}>{props.title}</Text>
         <Text style={{ alignSelf: 'center', fontSize: 20, width: "60%" }}>{props.emptyy}</Text>
       </View>
     </View>

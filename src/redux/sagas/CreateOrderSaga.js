@@ -78,7 +78,6 @@ export function* CreateOrderSaga({ type, payload }) {
     if (payload.paymentMethod === 'cod') {
       console.log(payload.paymentMethod)
       NavigationService.navigate('Invoice', {
-
         item: response.data.data
       });
     }

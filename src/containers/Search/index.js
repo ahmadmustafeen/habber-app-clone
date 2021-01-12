@@ -94,7 +94,7 @@ const Search = (props) => {
           )}
         </View>
         {/* {(SearchBooksReducer.length > 0) && <BookListContainer data={SearchBooksReducer} product_type="book" {...props} />} */}
-        {(SearchBooksReducer.length > 0) ? <BookListContainer data={SearchBooksReducer} product_type="book" {...props} /> : <NoBookAvailbe />}
+        {(SearchBooksReducer.length > 0) ? <BookListContainer data={SearchBooksReducer} product_type="book" {...props} /> : <NoBookAvailbe title="Nothing to show here," emptyy="Enter Something to Search" />}
 
         <FilterModal {...props} visible={visible} onApply={onApplyFilter} />
       </View>

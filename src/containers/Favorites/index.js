@@ -11,6 +11,7 @@ import { withDataActions } from '../../redux/actions';
 import { UPDATE_CART_ITEM, UPDATE_FAVOURITE } from '../../redux/actionTypes';
 import { FavouriteCard, Header } from '../../components';
 import { AppText, Screen } from '../../components/common';
+import { Alert } from 'react-native';
 
 const Favorites = (props) => {
   const dispatch = useDispatch();
@@ -18,6 +19,7 @@ const Favorites = (props) => {
   const Favourite_length = Favourites.book.length + Favourites.bookmark.length
   const onAddToCart = (item) => {
     const { quantity, product_type, id: product_id } = item;
+    Alert.alert("Item is Added to Cart")
     dispatch(
       withDataActions(
         {

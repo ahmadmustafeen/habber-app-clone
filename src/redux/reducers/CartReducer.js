@@ -1,3 +1,4 @@
+import { Alert } from 'react-native';
 import {
   ADD_TO_CART,
   FETCH_USER_CART_SUCCESS,
@@ -9,7 +10,7 @@ const initialState = {
   total_price: 0,
 };
 
-export default (state = initialState, {type, payload}) => {
+export default (state = initialState, { type, payload }) => {
   switch (type) {
     case UPDATE_CART_ITEM: {
       const alreadyAvailable = state[payload.product_type].findIndex(
@@ -21,6 +22,7 @@ export default (state = initialState, {type, payload}) => {
           return state;
         }
         payload.cart_price = payload.price;
+
         return {
           ...state,
           [payload.product_type]: [...state[payload.product_type], payload],
@@ -38,9 +40,11 @@ export default (state = initialState, {type, payload}) => {
               0,
             ),
         };
+
+
       }
 
-      const updatedState = {...state};
+      const updatedState = { ...state };
       let product = updatedState[payload.product_type][alreadyAvailable];
       if (payload.action === 'add') {
         product.cart_quantity < product.quantity && product.cart_quantity++;
@@ -67,7 +71,7 @@ export default (state = initialState, {type, payload}) => {
 
           0,
         );
-      return {...updatedState};
+      return { ...updatedState };
     }
 
     case FETCH_USER_CART_SUCCESS: {

@@ -35,6 +35,7 @@ const Header = (props, { adddok }) => {
     },
   )
   const qua = CartReducer.book.length + CartReducer.bookmark.length
+  console.log(qua)
   const { colors } = useTheme();
   const {
     navigation,
@@ -70,7 +71,7 @@ const Header = (props, { adddok }) => {
         transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }],
       }}
       resizeMode="stretch"
-      source={require('_assets/images/header.png')}>
+      source={I18nManager.isRTL ? require('_assets/images/header-arabic.png') : require('_assets/images/header-arabic.png')}>
       <View style={styles.container}>
         <View>
           {headerLeft ? (
@@ -130,13 +131,13 @@ const Header = (props, { adddok }) => {
                     source={
                       cartNumber
                         ? require('../assets/images/filledcart.png')
-                        : require('../assets/images/nocart.png')
+                        : (qua === 0 ? require('../assets/images/emptycart.png') : require('../assets/images/nocart.png'))
                     }
                     style={{ marginRight: wp(3) }}
                   />
                   {qua ? (
-                    <View style={styles.circle}>
-                      <AppText size={13} bold white>
+                    <View style={I18nManager.isRTL ? styles.circleArabic : styles.circle}>
+                      <AppText style={{ transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }], }} size={13} bold white>
                         {qua}
                       </AppText>
                     </View>
@@ -217,17 +218,21 @@ const Header = (props, { adddok }) => {
                     source={
                       cartNumber
                         ? require('../assets/images/filledcart.png')
-                        : require('../assets/images/nocart.png')
+                        : (qua === 0 ? require('../assets/images/nocart.png') : require('../assets/images/emptycart.png'))
                     }
                     style={{ marginRight: wp(3) }}
                   />
-                  {true ? (
-                    <View style={[styles.circle, cartNumber && { right: wp(3.3) }]}>
-                      <AppText size={13} bold white>
+                  {qua ? (
+                    <View style={I18nManager.isRTL ? styles.circleArabic : styles.circle}>
+                      <AppText size={13} style={{ transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }], }} bold white>
                         {qua}
                       </AppText>
                     </View>
-                  ) : null}
+                  ) : <View style={I18nManager.isRTL ? styles.circleArabic : styles.circle}>
+                      <AppText style={{ transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }], }} size={13} bold white>
+                        {0}
+                      </AppText>
+                    </View>}
                 </TouchableOpacity>
 
                 {/* <Icon
@@ -279,7 +284,15 @@ const styles = StyleSheet.create({
   },
   circle: {
     position: 'absolute',
-    right: wp(2.0),
+    right: wp(4.0),
+    top: hp(0),
+    width: wp(3),
+    height: wp(3),
+  },
+  circleArabic: {
+    position: 'absolute',
+    // right: wp(4.0),
+    left: wp(1.3),
     top: hp(0),
     width: wp(3),
     height: wp(3),

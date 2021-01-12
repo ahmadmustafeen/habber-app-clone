@@ -6,6 +6,7 @@ import {
 } from 'react-native-responsive-screen';
 import { Icon } from 'react-native-elements';
 import { AppText } from './common';
+import { I18nManager } from 'react-native';
 
 
 
@@ -26,6 +27,8 @@ const CarasoulRender = ({ item }, width) => {
                     zIndex: 5,
                     width: wp(80),
                     justifyContent: 'space-between',
+                    // flexDirection: (I18nManager.isRTL ? 'row-reverse' : 'row'),
+                    // flexDirection: I18nManager.isRTL ? 'row-reverse' : 'row',
                     flexDirection: 'row',
                     position: 'absolute',
                     top: hp(2.5),

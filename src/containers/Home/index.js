@@ -107,7 +107,9 @@ const Home = (props) => {
             zIndex: 5,
             width: wp(80),
             justifyContent: 'space-between',
-            flexDirection: 'row',
+            // flexDirection: 'row',
+            flexDirection: I18nManager.isRTL ? 'row-reverse' : 'row',
+
             position: 'absolute',
             top: hp(2.5),
             paddingHorizontal: 20,
@@ -118,7 +120,9 @@ const Home = (props) => {
             name="left"
             type="ant-design"
             onPress={() =>
-              CAROUSEL.current ? CAROUSEL.current.snapToPrev() : null
+              I18nManager.isRTL ? CAROUSEL.current ? CAROUSEL.current.snapToNext() : null : (CAROUSEL.current ? CAROUSEL.current.snapToPrev() : null)
+
+
             }
           />
           <Icon
@@ -127,7 +131,8 @@ const Home = (props) => {
             name="right"
             type="ant-design"
             onPress={() =>
-              CAROUSEL.current ? CAROUSEL.current.snapToNext() : null
+              I18nManager.isRTL ? CAROUSEL.current ? CAROUSEL.current.snapToPrev() : null : (CAROUSEL.current ? CAROUSEL.current.snapToNext() : null)
+
             }
           />
         </View>
