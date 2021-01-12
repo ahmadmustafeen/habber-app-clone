@@ -1,5 +1,6 @@
 import { Alert } from 'react-native';
 import { put, call, select } from 'redux-saga/effects';
+import * as NavigationService from '../../../NavigationService';
 
 import { API_ENDPOINTS } from '_constants/Network';
 import { RestClient } from '_network/RestClient';
@@ -10,10 +11,11 @@ import {
   DO_PAYMENT,
 } from '../actionTypes';
 import { errorAction, startAction, stopAction } from '../actions';
+import { INVOICE } from '../../constants/Screens';
 
 export function* CreateOrderSaga({ type, payload }) {
 
-
+  console.log(payload.address);
   try {
     yield put(startAction(type));
 
@@ -39,7 +41,7 @@ export function* CreateOrderSaga({ type, payload }) {
         product_type,
         price: cart_price, // or product.price, depends on API
       }));
-    var Address_VAL = AddressReducer.find((addresss) => addresss.id === payload)
+    var Address_VAL = AddressReducer.find((addresss) => addresss.id === payload.address)
     const shipping_charges = parseFloat(Address_VAL.shipping_charges);
     // console.log('PRODUCTS', product);
     const obj = {
@@ -49,9 +51,9 @@ export function* CreateOrderSaga({ type, payload }) {
         (total, currentValue) => total + currentValue.quantity,
         0,
       ),
-      address_id: payload,
+      address_id: payload.address,
       currency_id: 1,
-      payment_type: 'online',
+      payment_type: payload.paymentMethod,
     };
     console.log(obj, "OBJ")
     const response = yield call(() =>
@@ -73,8 +75,18 @@ export function* CreateOrderSaga({ type, payload }) {
     }
     console.log("CREATE ORDER SUCCESS RESPONSE :", response)
     yield put({ type: CREATE_ORDER_SUCCESS });
+    if (payload.paymentMethod === 'cod') {
+      console.log(payload.paymentMethod)
+      NavigationService.navigate('Invoice', {
+
+        item: response.data.data
+      });
+    }
     if (res.navigation) {
+
+
       yield put({ type: DO_PAYMENT, payload: { payload: res, order_details: response.data.data } });
+
     }
   } catch (error) {
     yield put(errorAction(error, CREATE_ORDER_FAILURE));

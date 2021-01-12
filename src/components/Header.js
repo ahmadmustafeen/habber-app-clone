@@ -18,10 +18,23 @@ import {
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
 
 const Header = (props, { adddok }) => {
   const { t } = useTranslation(['Header']);
 
+  const {
+    CartReducer,
+  } = useSelector(
+    ({
+      CartReducer,
+    }) => {
+      return {
+        CartReducer,
+      }
+    },
+  )
+  const qua = CartReducer.book.length + CartReducer.bookmark.length
   const { colors } = useTheme();
   const {
     navigation,
@@ -121,10 +134,10 @@ const Header = (props, { adddok }) => {
                     }
                     style={{ marginRight: wp(3) }}
                   />
-                  {cartNumber ? (
+                  {qua ? (
                     <View style={styles.circle}>
                       <AppText size={13} bold white>
-                        {cartNumber}
+                        {qua}
                       </AppText>
                     </View>
                   ) : null}
@@ -208,10 +221,10 @@ const Header = (props, { adddok }) => {
                     }
                     style={{ marginRight: wp(3) }}
                   />
-                  {cartNumber ? (
-                    <View style={styles.circle}>
+                  {true ? (
+                    <View style={[styles.circle, cartNumber && { right: wp(3.3) }]}>
                       <AppText size={13} bold white>
-                        {cartNumber}
+                        {qua}
                       </AppText>
                     </View>
                   ) : null}
@@ -266,7 +279,7 @@ const styles = StyleSheet.create({
   },
   circle: {
     position: 'absolute',
-    right: wp(3.3),
+    right: wp(2.0),
     top: hp(0),
     width: wp(3),
     height: wp(3),

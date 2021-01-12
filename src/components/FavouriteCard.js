@@ -1,9 +1,9 @@
-import {useTheme} from '@react-navigation/native';
+import { useTheme } from '@react-navigation/native';
 import React from 'react';
-import {View, Image, TouchableOpacity, StyleSheet} from 'react-native';
-import {Icon} from 'react-native-elements';
-import {AppText, Button} from './common';
-import {HorizontalRow} from './HorizontalRow';
+import { View, Image, TouchableOpacity, StyleSheet } from 'react-native';
+import { Icon } from 'react-native-elements';
+import { AppText, Button } from './common';
+import { HorizontalRow } from './HorizontalRow';
 
 import {
   widthPercentageToDP as wp,
@@ -11,12 +11,12 @@ import {
 } from 'react-native-responsive-screen';
 
 const FavouriteCard = (props) => {
-  const {colors} = useTheme();
+  const { colors } = useTheme();
   return (
     <>
       <View style={styles.profiletop}>
         <View style={styles.imgContainer}>
-          <Image style={styles.image} source={{uri: props.item.image}} />
+          <Image style={styles.image} source={{ uri: props.item.image }} />
         </View>
 
         <View style={styles.viewtxt}>
@@ -27,7 +27,7 @@ const FavouriteCard = (props) => {
             by {props.item.author_name}
           </AppText>
           <AppText bold style={styles.pricetxt}>
-            Price: {props.item.price} KW
+            Price: {(props.item.price)} KW
           </AppText>
           <Button
             bold
@@ -54,13 +54,13 @@ const FavouriteCard = (props) => {
               flexDirection: 'row',
             }}>
             <Icon
-              containerStyle={{paddingRight: wp(5)}}
+              containerStyle={{ paddingRight: wp(5) }}
               size={30}
               color={colors.primary}
               name="trash-o"
               type="font-awesome"
             />
-            <AppText bold primary style={[styles.txt, {marginLeft: wp(-3)}]}>
+            <AppText bold primary style={[styles.txt, { marginLeft: wp(-3) }]}>
               Remove
             </AppText>
           </TouchableOpacity>
@@ -108,4 +108,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export {FavouriteCard};
+export { FavouriteCard };

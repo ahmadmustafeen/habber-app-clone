@@ -10,12 +10,12 @@ import { retrieveFavourites } from '../../redux/selectors';
 import { withDataActions } from '../../redux/actions';
 import { UPDATE_CART_ITEM, UPDATE_FAVOURITE } from '../../redux/actionTypes';
 import { FavouriteCard, Header } from '../../components';
-import { Screen } from '../../components/common';
+import { AppText, Screen } from '../../components/common';
 
 const Favorites = (props) => {
   const dispatch = useDispatch();
   const Favourites = useSelector((state) => retrieveFavourites(state));
-
+  const Favourite_length = Favourites.book.length + Favourites.bookmark.length
   const onAddToCart = (item) => {
     const { quantity, product_type, id: product_id } = item;
     dispatch(
@@ -45,6 +45,7 @@ const Favorites = (props) => {
       </View>
 
       <View key="content" style={{ width: wp(90), alignSelf: 'center' }}>
+        {(!Favourite_length) && <AppText>No Items in Favourites</AppText>}
         {Object.values(Favourites)
           .filter((key) => Array.isArray(key))
           .map((product_type) =>

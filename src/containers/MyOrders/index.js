@@ -21,9 +21,9 @@ const MyOrders = (props) => {
     }
   })
   const { t } = useTranslation(['Order'])
-  const OrderItem = (item) => {
+  const OrderItem = (item, index) => {
     return (
-      <View key={item.id} style={styles.profiletop}>
+      <View key={index} style={styles.profiletop}>
         <View style={styles.orderContainer}>
           <AppText size={16} style={styles.apptextpadding}><AppText bold size={17}>Order ID: </AppText> {item.id}</AppText>
           {item.books.map((title) =>
@@ -72,7 +72,7 @@ const MyOrders = (props) => {
           showsHorizontalScrollIndicator={false}
           // horizontal
           data={OrderReducer}
-          // keyExtractor={(item, index) => index.toString() + item}
+          keyExtractor={(item, index) => index.toString() + item}
           renderItem={(item) => OrderItem(item.item)}
           ListEmptyComponent={() => (
             <View>
