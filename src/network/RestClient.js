@@ -1,6 +1,6 @@
 /* eslint-disable import/named */
-import {create} from 'apisauce';
-import {BASE_URL, API_VERSION} from '_constants/Network';
+import { create } from 'apisauce';
+import { BASE_URL, API_VERSION } from '_constants/Network';
 
 // Rest Client for Americamp APIs
 export const RestClient = create({

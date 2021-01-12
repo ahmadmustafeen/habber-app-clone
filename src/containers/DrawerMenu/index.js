@@ -60,130 +60,135 @@ const DrawerMenu = (props) => {
 
   console.log(UserProfileReducer.profile_pic)
   return (
+
     <ImageBackground
       {...props}
       style={styles.bgImage}
       resizeMode={'stretch'}
       source={require('_assets/images/drawer_menu.png')}>
-      <View>
-        <View style={styles.container}>
-          <View style={styles.profiletop}>
-            <View style={styles.imgContainer}>
-              <Image
-                style={styles.image}
-                source={require('../../assets/images/logo.png')}
-              />
-            </View>
-            <View style={styles.row}>
-              <View style={styles.imageProfile}>
+      <ScrollView showsVerticalScrollIndicator={false}
+        showsHorizontalScrollIndicator={false}>
+        <View>
+          <View style={styles.container}>
+            <View style={styles.profiletop}>
+              <View style={styles.imgContainer}>
                 <Image
-                  style={styles.imageAvatar}
-                  source={UserProfileReducer.profile_pic ? { uri: UserProfileReducer.profile_pic } : require('_assets/images/noUser.png')}
-
+                  style={styles.image}
+                  source={require('../../assets/images/logo.png')}
                 />
               </View>
+              <View style={styles.row}>
+                <View style={styles.imageProfile}>
+                  <Image
+                    style={styles.imageAvatar}
+                    source={UserProfileReducer.profile_pic ? { uri: UserProfileReducer.profile_pic } : require('_assets/images/noUser.png')}
 
-              <AppText white bold size={16} style={styles.txt}>
-                {UserProfileReducer.first_name
-                  ? UserProfileReducer.first_name +
-                  ' ' +
-                  UserProfileReducer.last_name
-                  : t('guestUser')}
-              </AppText>
+                  />
+                </View>
+
+                <AppText white bold size={16} style={styles.txt}>
+                  {UserProfileReducer.first_name
+                    ? UserProfileReducer.first_name +
+                    ' ' +
+                    UserProfileReducer.last_name
+                    : t('guestUser')}
+                </AppText>
+              </View>
             </View>
-          </View>
-          <View>
-            <TitleBarWithIcon
-              label={t('home')}
-              color={colors.white}
-              onPress={() => props.navigation.navigate(HOME)}
-              noIcon
-            />
-            <View style={styles.Horizontalrow} />
-            {UserProfileReducer.token ? (
-              <>
-                <TitleBarWithIcon
-                  label={t('profile')}
-                  color={colors.white}
-                  onPress={() => props.navigation.navigate(MY_PROFILE)}
-                  noIcon
-                />
-                <View style={styles.Horizontalrow} />
-              </>
-            ) : (
+            <View>
+              <TitleBarWithIcon
+                label={t('home')}
+                color={colors.white}
+                onPress={() => props.navigation.navigate(HOME)}
+                noIcon
+              />
+              <View style={styles.Horizontalrow} />
+              {UserProfileReducer.token ? (
                 <>
                   <TitleBarWithIcon
-                    label={t('signIn')}
+                    label={t('profile')}
                     color={colors.white}
-                    onPress={() => props.navigation.navigate(SIGNIN_SCREEN)}
+                    onPress={() => props.navigation.navigate(MY_PROFILE)}
                     noIcon
                   />
                   <View style={styles.Horizontalrow} />
                 </>
-              )}
+              ) : (
+                  <>
+                    <TitleBarWithIcon
+                      label={t('signIn')}
+                      color={colors.white}
+                      onPress={() => props.navigation.navigate(SIGNIN_SCREEN)}
+                      noIcon
+                    />
+                    <View style={styles.Horizontalrow} />
+                  </>
+                )}
 
-            <TitleBarWithIcon
-              label={t('favorite')}
-              color={colors.white}
-              onPress={() => props.navigation.navigate(FAVORITES)}
-              noIcon
-            />
-            <View style={styles.Horizontalrow} />
-            <TitleBarWithIcon
-              label={t('myOrder')}
-              color={colors.white}
-              onPress={() => props.navigation.navigate(MY_ORDERS)}
-              noIcon
-            />
-            <View style={styles.Horizontalrow} />
-            <TitleBarWithIcon
-              label={t('aboutUs')}
-              color={colors.white}
-              onPress={() => props.navigation.navigate(ABOUT_US)}
-              noIcon
-            />
-            <View style={styles.Horizontalrow} />
-            <TitleBarWithIcon
-              label={t('contactUs')}
-              color={colors.white}
-              onPress={() => props.navigation.navigate(CONTACT_US)}
-              noIcon
-            />
-            <View style={styles.Horizontalrow} />
-            <TitleBarWithIcon
-              label={t('setting')}
-              color={colors.white}
-              onPress={() => props.navigation.navigate(SETTINGS_SCREEN)}
-              noIcon
-            />
-            <View style={styles.Horizontalrow} />
-            <AppText secondary size={18} white style={styles.poweredbyline}>
-              {t('poweredBy')}
-            </AppText>
+              <TitleBarWithIcon
+                label={t('favorite')}
+                color={colors.white}
+                onPress={() => props.navigation.navigate(FAVORITES)}
+                noIcon
+              />
+              <View style={styles.Horizontalrow} />
+              <TitleBarWithIcon
+                label={t('myOrder')}
+                color={colors.white}
+                onPress={() => props.navigation.navigate(MY_ORDERS)}
+                noIcon
+              />
+              <View style={styles.Horizontalrow} />
+              <TitleBarWithIcon
+                label={t('aboutUs')}
+                color={colors.white}
+                onPress={() => props.navigation.navigate(ABOUT_US)}
+                noIcon
+              />
+              <View style={styles.Horizontalrow} />
+              <TitleBarWithIcon
+                label={t('contactUs')}
+                color={colors.white}
+                onPress={() => props.navigation.navigate(CONTACT_US)}
+                noIcon
+              />
+              <View style={styles.Horizontalrow} />
+              <TitleBarWithIcon
+                label={t('setting')}
+                color={colors.white}
+                onPress={() => props.navigation.navigate(SETTINGS_SCREEN)}
+                noIcon
+              />
+              <View style={styles.Horizontalrow} />
+              <AppText secondary size={18} white style={styles.poweredbyline}>
+                {t('poweredBy')}
+              </AppText>
+            </View>
+            <View
+              style={{
+                flexDirection: 'row',
+                justifyContent: 'space-around',
+                width: wp(70),
+              }}>
+              <DrawerIcon
+                name="snapchat"
+                onPress={() => Linking.openURL(FetchSiteReducer.snapchat_url)}
+              />
+              <DrawerIcon
+                name="instagram"
+                onPress={() => Linking.openURL(FetchSiteReducer.instagram_url)}
+              />
+              <DrawerIcon
+                name="twitter"
+                onPress={() => Linking.openURL(FetchSiteReducer.twitter_url)}
+              />
+            </View>
           </View>
-          <View
-            style={{
-              flexDirection: 'row',
-              justifyContent: 'space-around',
-              width: wp(70),
-            }}>
-            <DrawerIcon
-              name="snapchat"
-              onPress={() => Linking.openURL(FetchSiteReducer.snapchat_url)}
-            />
-            <DrawerIcon
-              name="instagram"
-              onPress={() => Linking.openURL(FetchSiteReducer.instagram_url)}
-            />
-            <DrawerIcon
-              name="twitter"
-              onPress={() => Linking.openURL(FetchSiteReducer.twitter_url)}
-            />
-          </View>
+          <AppText style={{ marginLeft: wp(30) }} small white>Version 1.20</AppText>
         </View>
-        <AppText style={{ marginLeft: wp(30) }} small white>Version 1.20</AppText>
-      </View>
-    </ImageBackground>
+      </ScrollView>
+
+    </ImageBackground >
   );
 };
 
