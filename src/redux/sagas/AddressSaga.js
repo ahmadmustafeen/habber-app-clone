@@ -5,7 +5,7 @@ import { API_ENDPOINTS } from '_constants/Network';
 import { RestClient } from '_network/RestClient';
 import { MY_PROFILE } from '_constants/Screens';
 import { NETWORK_ERROR, SHOW_NETWORK_MODAL } from 'redux/actionTypes';
-import { ADD_ADDRESS_FAILURE, ADD_ADDRESS_SUCCESS, FETCH_ADDRESS } from '_redux/actionTypes';
+import { ADD_ADDRESS_FAILURE, ADD_ADDRESS_SUCCESS, FETCH_ADDRESS, SHOW_MODAL } from '_redux/actionTypes';
 import * as NavigationService from '../../../NavigationService';
 import { startAction, stopAction } from '../actions';
 import { CHECKOUT } from '../../constants/Screens';
@@ -25,14 +25,16 @@ export function* addressSaga({ type, payload }) {
     if (data.success) {
       yield put({ type: ADD_ADDRESS_SUCCESS, });
       yield put({ type: FETCH_ADDRESS }),
-        Alert.alert('Successfully Added new Address', message, [
-          {
-            onPress: () => {
-              (payload.checkout) ? NavigationService.navigate('Checkout', { screen: CHECKOUT }) :
-                NavigationService.navigate('MyProfile', { screen: MY_PROFILE })
-            }
-          },
-        ]);
+        yield put({ type: SHOW_MODAL, payload: null });
+
+      // Alert.alert('Successfully Added new Address', message, [
+      //   {
+      //     onPress: () => {
+      //       (payload.checkout) ? NavigationService.navigate('Checkout', { screen: CHECKOUT }) :
+      //         NavigationService.navigate('MyProfile', { screen: MY_PROFILE })
+      //     }
+      //   },
+      // ]);
     }
   } catch (error) {
     yield put(errorAction(ADD_ADDRESS_FAILURE, error));

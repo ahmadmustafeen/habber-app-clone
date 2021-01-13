@@ -36,6 +36,7 @@ export function* contactUsSaga({ type, payload }) {
       // Alert.alert('Success', message);
       yield put({ type: SUBMIT_CONTACT_US_SUCCESS, payload: null });
       yield put({ type: SHOW_MODAL, payload: null });
+
       yield put(stopAction(type));
     }
   } catch (error) {

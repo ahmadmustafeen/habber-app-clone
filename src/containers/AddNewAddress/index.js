@@ -8,7 +8,8 @@ import {
 import { useDispatch, useSelector, shallowEqual } from 'react-redux';
 
 import { withDataActions } from '_redux/actions';
-import { InputWithLabel, ModalSelectorCustom } from '_components';
+import { InputWithLabel, ModalSelectorCustom, ModalScreen } from '_components';
+import useModal from '_utils/customHooks/useModal';
 import { Button, Screen } from '_components/common';
 import { MY_PROFILE } from '_constants/Screens';
 import { Header } from '_components/Header';
@@ -16,6 +17,7 @@ import { ADD_ADDRESS_SAGA } from '_redux/actionTypes';
 import { useTranslation } from 'react-i18next';
 import { EDIT_ADDRESS } from '../../redux/actionTypes';
 import { colors } from 'react-native-elements';
+import { ADD_NEW_ADDRESS } from '_assets/data/StaticData';
 import {
   validatePhone,
   validateEmail,
@@ -23,6 +25,11 @@ import {
 } from '_helpers/Validators';
 import { checkIfLoading } from '../../redux/selectors';
 const AddNewAddress = (props) => {
+  const { visible, toggleModal } = useModal();
+  const onContinue = () => {
+    toggleModal();
+    props.navigation.goBack();
+  };
   const { route, navigation } = props;
   console.log(props)
   // const data = route.params.params.item.item;
@@ -168,6 +175,12 @@ const AddNewAddress = (props) => {
             placeholder={t('Mobile Number*')}
             required
             onChangeText={(val) => setStateHandler('phone', val)}
+          />
+          <ModalScreen
+            // image={require("")}
+            visible={visible}
+            onContinue={onContinue}
+            {...ADD_NEW_ADDRESS.modalData}
           />
         </View>
         <View key="footer">

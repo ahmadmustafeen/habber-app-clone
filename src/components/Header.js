@@ -68,11 +68,11 @@ const Header = (props, { adddok }) => {
         paddingBottom: hp(8),
         marginBottom: hp(1),
         justifyContent: 'flex-end',
-        transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }],
       }}
       resizeMode="stretch"
-      source={I18nManager.isRTL ? require('_assets/images/header-arabic.png') : require('_assets/images/header-arabic.png')}>
-      <View style={styles.container}>
+      source={I18nManager.isRTL ? require('_assets/images/header-arabic.png') : require('_assets/images/header.png')}>
+
+      <View style={[styles.container, { transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }] }]}>
         <View>
           {headerLeft ? (
             headerLeft

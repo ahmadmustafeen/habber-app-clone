@@ -37,3 +37,11 @@ export const CONTACT_US = {
     buttonLabel: 'Continue',
   },
 };
+
+export const ADD_NEW_ADDRESS = {
+  modalData: {
+    heading: 'Address Added Successfully!',
+    description: 'You can start making orders to this address now',
+    buttonLabel: 'Ok',
+  },
+};

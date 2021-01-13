@@ -54,9 +54,10 @@ const RequestBooks = (props) => {
   };
 
   const validate = () => {
-    validateIsTrue(title, 'Title');
-    validateIsTrue(author_name, 'Author Name');
-    return true;
+    return (
+      validateIsTrue(title, 'Title') &&
+      validateIsTrue(author_name, 'Author Name')
+    )
   };
 
   const onSubmit = () => {
@@ -87,23 +88,13 @@ const RequestBooks = (props) => {
     });
   };
   return (
-    <Screen noPadding>
+
+    <View style={{ height: hp(100) }}>
       <View key="header">
-        <ImageBackground
-          style={{
-            height: hp(21),
-            paddingHorizontal: wp(3),
-            paddingBottom: hp(8),
-            marginBottom: hp(1),
-            justifyContent: 'flex-end',
-            transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }],
-          }}
-          resizeMode="stretch"
-          source={require('_assets/images/header.png')}>
-          <Header {...props}
-            title={(book_type === 'educational') ? t("requestEducationalBook") : t("requestBook")}
-          />
-        </ImageBackground>
+
+        <Header {...props} headerImage
+          title={(book_type === 'educational') ? t("requestEducationalBook") : t("requestBook")}
+        />
       </View>
       <View key="content" style={styles.content}>
         <InputWithLabel
@@ -127,12 +118,13 @@ const RequestBooks = (props) => {
           {t('restrictionText')}
         </AppText>
       </View>
-      <View key="footer" style={styles.content}>
-        <Button color="white" bold primary onPress={onSubmit} style={{ marginTop: hp(-10) }} loading={isLoading} >
+      <View key="footer" style={[styles.content, { position: 'absolute', bottom: hp(6) }]}>
+        <Button color="white" bold primary onPress={onSubmit} style={{ marginTop: hp(-5) }} loading={isLoading} >
           {t('sendRequest')}
         </Button>
       </View>
-    </Screen>
+    </View>
+
   );
 };
 
@@ -141,6 +133,7 @@ const styles = StyleSheet.create({
     marginVertical: 20,
   },
   content: {
+
     width: wp(90),
     alignSelf: 'center'
   }
