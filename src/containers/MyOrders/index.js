@@ -73,7 +73,7 @@ const MyOrders = (props) => {
           // horizontal
           data={OrderReducer}
           keyExtractor={(item, index) => index.toString() + item}
-          renderItem={(item) => OrderItem(item.item)}
+          renderItem={({ item }) => OrderItem(item)}
           ListEmptyComponent={() => (
             <View>
               <NoBookAvailbe emptyy="No orders available" />
