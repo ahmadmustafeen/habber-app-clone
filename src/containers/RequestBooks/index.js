@@ -14,6 +14,7 @@ import {
 } from 'react-native-responsive-screen';
 import { useTranslation } from 'react-i18next';
 import { checkIfLoading } from '../../redux/selectors';
+import { Keyboard } from 'react-native';
 const options = {
   title: 'Select Avatar',
   customButtons: [{ name: 'fb', title: 'Choose Photo from Facebook' }],
@@ -23,7 +24,7 @@ const options = {
   },
 };
 const RequestBooks = (props) => {
-
+  // console.log(Keyboard.removeCurrentListener(() => console.log("worked")))
 
   const { isLoading } = useSelector((state) => {
     return {

@@ -54,37 +54,42 @@ const MyOrders = (props) => {
   }
   return (
 
-    <Screen noPadding>
-      <View key="header">
-
-        <Header {...props}
-          headerLeft
-          headerImage
-          backIcon
-        />
+    // <ScrollView noPadding>
 
 
-      </View>
+    // <View key="content" style={{ width: wp(90), alignSelf: 'center' }}>
+    <FlatList
+      ListHeaderComponent={() => (
+        <>
+          <View key="header">
 
-      <View key="content" style={{ width: wp(90), alignSelf: 'center' }}>
-        <FlatList
-          style={styles.flatlist}
-          showsHorizontalScrollIndicator={false}
-          // horizontal
-          data={OrderReducer}
-          keyExtractor={(item, index) => index.toString() + item}
-          renderItem={({ item }) => OrderItem(item)}
-          ListEmptyComponent={() => (
-            <View>
-              <NoBookAvailbe emptyy="No orders available" />
-            </View>
-          )}
-          ListFooterComponent={() => <View style={{ paddingBottom: 50 }} />}
-        />
+            <Header {...props}
+              headerLeft
+              headerImage
+              backIcon
+            />
 
-      </View>
-    </Screen>
-  );
+
+          </View>
+        </>)}
+      style={styles.flatlist}
+      showsHorizontalScrollIndicator={false}
+      // horizontal
+      data={OrderReducer}
+      keyExtractor={(item, index) => index.toString() + item}
+      renderItem={({ item }) => OrderItem(item)}
+      ListEmptyComponent={() => (
+        <View>
+          <NoBookAvailbe emptyy="No orders available" />
+        </View>
+      )}
+      ListFooterComponent={() => <View style={{ paddingBottom: 50 }} />}
+    />
+
+    /* </View>
+  // </ScrollView> */
+    // );
+  )
 };
 
 const styles = StyleSheet.create({
