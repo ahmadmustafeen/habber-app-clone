@@ -99,14 +99,14 @@ const RequestBooks = (props) => {
       </View>
       <View key="content" style={styles.content}>
         <InputWithLabel
-          placeholder={t('book Title*')}
+          placeholder={t('bookTitle')}
           required
           color="black"
           value={title}
           onChangeText={(value) => handleChange('title', value)}
         />
         <InputWithLabel
-          placeholder={t('Author Name*')}
+          placeholder={t('authorName')}
           required
           color="black"
           value={author_name}

@@ -180,8 +180,8 @@
     "apply": "Apply"
   },
   "RequestBook": {
-    "bookTitle": "Book Title",
-    "authorName": "Author Name",
+    "bookTitle": "Book Title*",
+    "authorName": "Author Name*",
     "uploadImage": "Upload Image",
     "restrictionText": "1 Image allowed (PNG,JPEG,JPG) formats ONLY maximum size 5 MB",
     "sendRequest": "Send Request",
