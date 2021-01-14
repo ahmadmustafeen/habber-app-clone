@@ -26,7 +26,7 @@ import {
   CARTNEW,
   TERMS_AND_CONDITIONS_SCREEN,
   PAYMENT_SCREEN,
-  RESET_PASSWORD
+  RESET_PASSWORD_SCREEN
 } from '../constants/Screens';
 
 import Home from '../containers/Home';
@@ -73,7 +73,7 @@ export const DashboardNav = () => {
       <Stack.Screen name={MY_ADDRESS_BOOK} component={MyAddressBook} />
       <Stack.Screen name={ADD_NEW_ADDRESS} component={AddNewAddress} />
       <Stack.Screen name={CHANGE_PASSWORD} component={ChangePassword} />
-      <Stack.Screen name={RESET_PASSWORD} component={ResetPassword} />
+      <Stack.Screen name={RESET_PASSWORD_SCREEN} component={ResetPassword} />
       <Stack.Screen name={EDIT_PROFILE} component={EditProfile} />
       <Stack.Screen name={SETTINGS_SCREEN} component={Settings} />
       <Stack.Screen name={FAVORITES} component={Favorites} />

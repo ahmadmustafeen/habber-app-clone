@@ -5,16 +5,19 @@ import i18n from 'utils/i18n';
 import * as NavigationService from '../../../NavigationService';
 import { SIGNIN_SCREEN } from '_constants/Screens';
 import { setItem, getItem } from '_helpers/Localstorage';
+import { SWITCH_CURRENCY_FAILURE, SWITCH_CURRENCY_SUCCESS } from '../actionTypes';
 
 export function* SwitchCurrencySaga({ payload }) {
     try {
         console.log(payload, "SCS");
         yield setItem('@userProfile', JSON.stringify(payload));
         yield put({
-            type: SWITCH_LANG_SUCCESS,
+            type: SWITCH_CURRENCY_SUCCESS,
             payload,
         });
+
+        yield put({ type: FETCH_ADDRESS });
     } catch (error) {
-        yield put({ type: SWITCH_LANG_FAILURE, error });
+        yield put({ type: SWITCH_CURRENCY_FAILURE, error });
     }
 }

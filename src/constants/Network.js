@@ -30,5 +30,6 @@ export const API_ENDPOINTS = {
   banners: '/banners',
   static_pages: '/static_page/link',
   fcm: '/fcm',
-  profile: '/profile'
+  profile: '/profile',
+  update_password: '/update_password'
 };

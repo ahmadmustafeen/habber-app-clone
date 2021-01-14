@@ -1,21 +1,31 @@
-import { Linking } from "react-native";
 
-const { default: ChangePassword } = require("../containers/ChangePassword");
+
+const { default: ResetPassword } = require("../containers/ResetPassword");
+const { default: BookDetails } = require("../containers/BookDetails");
 
 const config = {
   screens: {
-    ChangePassword: {
+    ResetPassword: {
 
-      path: "ChangePassword"
+      path: "ResetPassword/:token",
+      parse: {
+        token: (token) => `${token}`,
+      },
     },
-    Profile: {
-      path: "profile/:id"
-    }
+    BookDetails: {
+
+      path: "BookDetails/:id/:product_type",
+      parse: {
+        id: (id) => `${id}`,
+        product_type: (product_type) => `${product_type}`,
+      },
+
+    },
 
   }
 }
-const linking = {
-  prefixes: ["demo://app"],
+const Linking = {
+  prefixes: ["habber://"],
   config,
 
 }

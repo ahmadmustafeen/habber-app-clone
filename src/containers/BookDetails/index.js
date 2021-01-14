@@ -47,7 +47,39 @@ const BookDetails = (props) => {
   const { colors } = useTheme();
   const dispatch = useDispatch();
   console.log("props", props)
-  var { params: book } = props.route;
+
+  var book = null
+  var product_type2 = null
+  var id2 = null
+  if (props.route.params) product_type2 = props.route.params.product_type
+  if (props.route.params) id2 = props.route.params.id
+  const {
+    UserProfileReducer2,
+    EnglishBooksReducer2,
+    ArabicBooksReducer2,
+    BookmarksReducer2,
+    BookClubReducer2,
+    FetchSiteReducer2,
+    BannerReducer
+  } = useSelector((state) => {
+    return {
+      UserProfileReducer: state.UserProfileReducer,
+      FetchSiteReducer: state.FetchSiteReducer,
+      EnglishBooksReducer2: state.EnglishBooksReducer,
+      ArabicBooksReducer2: state.ArabicBooksReducer,
+      BookmarksReducer2: state.BookmarksReducer,
+      BookClubReducer2: state.BookClubReducer,
+      BannerReducer: state.BannerReducer,
+
+    };
+  }, shallowEqual);
+  if (product_type2 === 'bookmark') book = (BookmarksReducer2.find((item) => item.id == id2))
+  if (product_type2 === 'bookclub') book = (BookClubReducer2.find((item) => item.id == id2))
+  const CombinedReducer = [...ArabicBooksReducer2, ...EnglishBooksReducer2]
+  if (product_type2 === 'book') book = (CombinedReducer.find((item) => item.id == id2))
+
+
+  if (book === null) book = props.route.params;
   // (book.product_type === 'bookclub') ? book = book.book : null
 
   var { id: product_id = 33, quantity, product_type, price, bookClub, type } = book;
@@ -73,7 +105,6 @@ const BookDetails = (props) => {
   useEffect(() => {
     dispatch(withDataActions({ product_id }, FETCH_RELATED_BOOKS));
   }, []);
-
   const {
     CartReducer,
     FetchRelatedBookList,
@@ -99,6 +130,8 @@ const BookDetails = (props) => {
       };
     },
   );
+
+
   // if (product_type === 'bookclub') {
   //   product_id = book.book.id;
   //   quantity = book.book.quantity;
@@ -150,8 +183,10 @@ const BookDetails = (props) => {
   const onShare = async () => {
     try {
       const result = await Share.share({
-        message:
-          'https://www.google.com/' + book.id + "/" + book.type
+        message: "Habber",
+        openUrl:
+          'habber://BookDetails/' + (type ? old_product.id : product_id) + "/" + (type ? type : product_type)
+        // <iframe src="paulsawesomeapp://page1"> </iframe>
       });
       if (result.action === Share.sharedAction) {
         if (result.activityType) {

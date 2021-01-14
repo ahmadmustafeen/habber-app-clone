@@ -193,5 +193,11 @@
     "noAddressAvailable": "No Address Available",
     "addNewAddress": "Add New Address",
     "myProfile": "My Profile"
+  },
+  "resetPassword": {
+    "resetPassword": "Reset Password",
+    "password": "Password",
+    "email": "Email",
+    "confirmPassword": "Confirm Password"
   }
 }

@@ -12,7 +12,7 @@ import { DashboardNav } from './DashboardNav';
 import { shallowEqual, useSelector } from 'react-redux';
 import { AD_SCREEN } from '../constants/Screens';
 import AdScreen from '../containers/AdScreen';
-
+import linking from './Linking'
 const Drawer = createDrawerNavigator();
 const RootStack = createStackNavigator();
 
@@ -74,6 +74,25 @@ const navigatorComponent = (splashScreen, ad, backUser) => {
     </RootStack.Navigator>
   );
 };
+const config = {
+  screens: {
+    HOME: {
+      path: "home/:id",
+      parse: {
+        id: (id) => `${id}`,
+      },
+    },
+    Profile: {
+      path: "profile/:id",
+      parse: {
+        id: (id) => `${id}`,
+      },
+    },
+    Notifications: "notifications",
+    Settings: "settings",
+  },
+};
+
 const Navigator = (props, ref) => {
   const { splashScreen, ad, backUser } = useSelector(({ SplashReducer }) => {
     return {
@@ -82,10 +101,7 @@ const Navigator = (props, ref) => {
       backUser: SplashReducer.backUser,
     };
   }, shallowEqual);
-  const linking = {
-    prefixes: ['https://habbar.com', 'habbar-app://'],
 
-  };
   return (
     <NavigationContainer linking={linking} ref={ref} theme={MyTheme}>
       {navigatorComponent(splashScreen, ad, backUser)}

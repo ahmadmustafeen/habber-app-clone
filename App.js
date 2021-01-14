@@ -9,6 +9,7 @@ import { Color } from './src/constants/Colors';
 import RemotePushController from './src/services/RemotePushController';
 import PushNotificationIOS from '@react-native-community/push-notification-ios';
 import { googleConfigure } from './src/services/googleLoginController';
+import Linking from './src/navigator/Linking'
 
 const App = () => {
   const { network, toggleModal } = useNetworkModal();

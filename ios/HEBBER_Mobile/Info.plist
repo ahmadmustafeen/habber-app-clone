@@ -23,9 +23,13 @@
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>HEBBER_Mobile</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>fb405142173762217</string>
+				<string>HEBBER_Mobile</string>
 			</array>
 		</dict>
 		<dict>
@@ -35,6 +39,16 @@
 			<array>
 				<string>fb405142173762217</string>
 				<string>com.googleusercontent.apps.883976937926-r0ihrebiafb403c792bg28c6q1i8qm61</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>habber</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>habber</string>
 			</array>
 		</dict>
 	</array>

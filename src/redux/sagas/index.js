@@ -38,7 +38,8 @@ import {
   DELETE_ADDRESS,
   FETCH_STATIC,
   PUSH_NOTIFICATION_FUNCTION,
-  FETCH_USER_PROFILE
+  FETCH_USER_PROFILE,
+  RESET_PASSWORD
 } from '../actionTypes';
 
 import { signupSaga } from './SignupSaga';
@@ -78,6 +79,7 @@ import { DeleteAddressSaga } from './DeleteAddressSaga'
 import { StaticSaga } from './FetchStaticSaga'
 import { notificationSaga } from './NotificationSaga'
 import { ProfileSaga } from './ProfileSaga'
+import { ResetPasswordSaga } from './ResetPasswordSaga'
 
 function* actionWatcher() {
   yield takeLatest(SPLASH_ACTION, splashSaga);
@@ -117,6 +119,7 @@ function* actionWatcher() {
   yield takeLatest(FETCH_STATIC, StaticSaga)
   yield takeLatest(PUSH_NOTIFICATION_FUNCTION, notificationSaga)
   yield takeLatest(FETCH_USER_PROFILE, ProfileSaga)
+  yield takeLatest(RESET_PASSWORD, ResetPasswordSaga)
 }
 
 export default function* rootSaga() {

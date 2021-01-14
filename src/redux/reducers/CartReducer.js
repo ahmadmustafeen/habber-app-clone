@@ -27,19 +27,19 @@ export default (state = initialState, { type, payload }) => {
         return {
           ...state,
           [payload.product_type]: [...state[payload.product_type], payload],
-          // total_price:
-          //   state.book.reduce(
-          //     (total, book) => 
-          //       parseFloat(total.toString().replace(',', '')) +
-          //       parseFloat(book.price.toString().replace(',', '')),
-          //     0,
-          //   ) +
-          //   state.bookmark.reduce(
-          //     (total, book) =>
-          //       parseFloat(total.toString().replace(',', '')) +
-          //       parseFloat(book.price.toString().replace(',', '')),
-          //     0,
-          //   ),
+          total_price:
+            state.book.reduce(
+              (total, book) =>
+                parseFloat(total.toString().replace(',', '')) +
+                parseFloat(book.price.toString().replace(',', '')),
+              0,
+            ) +
+            state.bookmark.reduce(
+              (total, book) =>
+                parseFloat(total.toString().replace(',', '')) +
+                parseFloat(book.price.toString().replace(',', '')),
+              0,
+            ),
         };
 
 

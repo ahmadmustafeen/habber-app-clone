@@ -28,7 +28,7 @@ export const INVOICE = "Invoice";
 export const CARTNEW = "CartNew";
 export const TERMS_AND_CONDITIONS_SCREEN = "TermsAndConditionsScreen";
 export const PAYMENT_SCREEN = 'PaymentView';
-export const RESET_PASSWORD = 'ResetPassword';
+export const RESET_PASSWORD_SCREEN = 'ResetPassword';
 
 
 

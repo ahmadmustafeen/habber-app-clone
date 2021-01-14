@@ -25,13 +25,14 @@ import {
 import { checkIfLoading } from '_redux/selectors';
 
 const SignUp = (props) => {
+
   const dispatch = useDispatch();
   const { navigate } = props.navigation;
   const { visible } = useModal();
 
   const { t } = useTranslation(['createAccount']);
   const [state, setState] = useState({
-    first_name: '',
+    first_name: "",
     last_name: '',
     email: '',
     password: '',

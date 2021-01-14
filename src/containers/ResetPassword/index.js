@@ -18,17 +18,33 @@ import {
 } from '_helpers/Validators';
 import useModal from '_utils/customHooks/useModal';
 import { ImageBackground } from 'react-native';
-const ForgotPassword = (props) => {
+import { validateIsTrue, validatePassword } from '../../helpers/Validators';
+import { RESET_PASSWORD } from '../../constants/Screens';
+const ResetPassword = (props) => {
+
   const dispatch = useDispatch();
   const { visible, toggleModal } = useModal();
 
-  const { t } = useTranslation(['forgotPassword']);
+  const { t } = useTranslation(['resetPassword']);
   const { navigate } = props.navigation;
+  const [token, setToken] = useState(props.route.params.token);
   const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
 
+
+
+  const Validate = () => {
+    return (
+      validateIsTrue(password, "Password") &&
+      validateIsTrue(confirmPassword, "Confirm Password") &&
+      validatePassword(password) && validateIsTrue((password === confirmPassword), "Password Don't Match", false)
+    )
+
+  }
   const onSubmit = () => {
-    (!validateEmail(email)) ? Alert.alert("Invalid Email") :
-      dispatch(withDataActions(email, FORGOT_PASSWORD));
+    Validate() &&
+      dispatch(withDataActions({ token, password }, RESET_PASSWORD));
   };
   const onContinue = () => {
     toggleModal()
@@ -70,17 +86,24 @@ const ForgotPassword = (props) => {
       <View key="content">
         <InputWithLabel
           white
-          placeholder="Password"
-          label={t('password')}
+          placeholder="Email"
+          label={t('email')}
           value={email}
           onChangeText={(val) => setEmail(val)}
         />
         <InputWithLabel
           white
+          placeholder="Password"
+          label={t('password')}
+          value={password}
+          onChangeText={(val) => setPassword(val)}
+        />
+        <InputWithLabel
+          white
           placeholder="Confirm_Password"
           label={t('confirm_password')}
-          value={email}
-          onChangeText={(val) => setEmail(val)}
+          value={confirmPassword}
+          onChangeText={(val) => setConfirmPassword(val)}
         />
       </View>
       <View key="footer" style={styles.footer}>
@@ -88,7 +111,7 @@ const ForgotPassword = (props) => {
 
         <Button onPress={onSubmit} loading={isLoading}>{t('resetPassword')}</Button>
 
-        <ModalScreen
+        {/* <ModalScreen
           forgetPassword
           image={require("../../assets/images/forgetPassword.png")}
           visible={visible}
@@ -97,7 +120,7 @@ const ForgotPassword = (props) => {
           description={t('modal_description')}
           buttonLabel={t('modal_button_label')}
 
-        />
+        /> */}
       </View>
     </ImageBackground>
   );
@@ -127,4 +150,4 @@ const styles = StyleSheet.create({
 
   }
 });
-export default ForgotPassword;
+export default ResetPassword;
