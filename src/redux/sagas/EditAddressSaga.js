@@ -7,8 +7,10 @@ import { ADD_NEW_ADDRESS } from '_constants/Screens';
 import { NETWORK_ERROR, SHOW_NETWORK_MODAL } from 'redux/actionTypes';
 import { EDIT_ADDRESS_FAILURE, EDIT_ADDRESS_SUCCESS, FETCH_ADDRESS } from '_redux/actionTypes';
 import * as NavigationService from '../../../NavigationService';
-export function* EditAddressSaga({ payload }) {
+import { startAction, stopAction } from '../actions';
+export function* EditAddressSaga({ type, payload }) {
     try {
+        yield put(startAction(type));
         console.log('Edit Address Saga . . . .  .1', payload.id);
         const response = yield call(() =>
             RestClient.put(API_ENDPOINTS.addresses + "/" + payload.id, payload),
@@ -31,5 +33,7 @@ export function* EditAddressSaga({ payload }) {
         }
     } catch (error) {
         yield put(errorAction(EDIT_ADDRESS_FAILURE, error));
+    } finally {
+        yield put(stopAction(type));
     }
 }

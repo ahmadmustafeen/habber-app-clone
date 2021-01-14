@@ -54,8 +54,9 @@ const AddNewAddress = (props) => {
   //   { key: index++, label: 'Cranberries', accessibilityLabel: 'Tap here for cranberries' },
   // ];
 
-  const { FetchCountriesReducer, isLoading } = useSelector((state) => {
+  const { FetchCountriesReducer, isLoading, isLoading2 } = useSelector((state) => {
     return {
+      isLoading2: checkIfLoading(state, EDIT_ADDRESS),
       isLoading: checkIfLoading(state, ADD_ADDRESS_SAGA),
       FetchCountriesReducer: state.FetchCountriesReducer,
     };
@@ -184,7 +185,7 @@ const AddNewAddress = (props) => {
           />
         </View>
         <View key="footer">
-          <Button primary onPress={() => AddAddress()} loading={isLoading}>
+          <Button primary onPress={() => AddAddress()} loading={isLoading || isLoading2}>
             {/* {t('Add Address')} */}
             {!!(props.route.params) ? props.route.params.checkout ? "USE THIS ADDRESS" : "Edit Address" : "Add Address"}
           </Button>
