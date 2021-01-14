@@ -22,23 +22,24 @@ export default (state = initialState, { type, payload }) => {
           return state;
         }
         payload.cart_price = payload.price;
+        console.log(payload.cart_price, "CART PRICE")
 
         return {
           ...state,
           [payload.product_type]: [...state[payload.product_type], payload],
-          total_price:
-            state.book.reduce(
-              (total, book) =>
-                parseFloat(total.toString().replace(',', '')) +
-                parseFloat(book.price.toString().replace(',', '')),
-              0,
-            ) +
-            state.bookmark.reduce(
-              (total, book) =>
-                parseFloat(total.toString().replace(',', '')) +
-                parseFloat(book.price.toString().replace(',', '')),
-              0,
-            ),
+          // total_price:
+          //   state.book.reduce(
+          //     (total, book) => 
+          //       parseFloat(total.toString().replace(',', '')) +
+          //       parseFloat(book.price.toString().replace(',', '')),
+          //     0,
+          //   ) +
+          //   state.bookmark.reduce(
+          //     (total, book) =>
+          //       parseFloat(total.toString().replace(',', '')) +
+          //       parseFloat(book.price.toString().replace(',', '')),
+          //     0,
+          //   ),
         };
 
 
@@ -71,6 +72,7 @@ export default (state = initialState, { type, payload }) => {
 
           0,
         );
+      console.log("updatedState", updatedState,)
       return { ...updatedState };
     }
 
@@ -87,10 +89,10 @@ export default (state = initialState, { type, payload }) => {
       return {
         book: distinctBooks,
         bookmark: distinctBookmarks,
-        total_price:
-          state.total_price > 0
-            ? state.total_price + payload.total_price
-            : payload.total_price,
+        // total_price: state.total_price + payload.total_price
+        total_price: state.total_price > 0
+          ? state.total_price + payload.total_price
+          : payload.total_price,
       };
     }
     default:

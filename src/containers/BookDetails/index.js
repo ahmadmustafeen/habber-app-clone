@@ -151,7 +151,7 @@ const BookDetails = (props) => {
     try {
       const result = await Share.share({
         message:
-          'React Native | A framework for building native apps using React',
+          'https://www.google.com/' + book.id + "/" + book.type
       });
       if (result.action === Share.sharedAction) {
         if (result.activityType) {

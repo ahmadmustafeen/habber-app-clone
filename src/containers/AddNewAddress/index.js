@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { View, ScrollView, I18nManager, ImageBackground, Alert } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { View, ScrollView, Keyboard, I18nManager, ImageBackground, Alert } from 'react-native';
 
 import {
   widthPercentageToDP as wp,
@@ -32,9 +32,23 @@ const AddNewAddress = (props) => {
   };
   const { route, navigation } = props;
   console.log(props)
-  // const data = route.params.params.item.item;
-  // var item = !!route.params.item ? route.params.item : ""
-  // item = route.params.item;
+
+
+  const _keyboardDidHide = () => {
+    Keyboard.dismiss()
+  }
+
+
+
+  useEffect(() => {
+    const keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', _keyboardDidHide);
+    return () => {
+      keyboardDidHideListener.remove();
+    }
+  }, []);
+
+
+
   const item = (props.route.params ? props.route.params.item ? props.route.params.item.item : "" : "")
   const { t } = useTranslation(['AddNewAddress'])
   const [state, setState] = useState({
