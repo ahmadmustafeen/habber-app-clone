@@ -56,8 +56,8 @@ const RequestBooks = (props) => {
 
   const validate = () => {
     return (
-      validateIsTrue(title, 'Title') &&
-      validateIsTrue(author_name, 'Author Name')
+      validateIsTrue(title, `${t('Please')}  ${t('Title')}`, false) &&
+      validateIsTrue(author_name, `${t('Please')}  ${t('author')}`, false)
     )
   };
 

@@ -46,7 +46,9 @@
     "confirmPassword": "تغيير كلمة المرور",
     "signIn": "تسجيل الدخول",
     "bycreating": "بتسجيلك يتم على",
-    "termAndService": "شروط الخدمة وسياسة الخصوصية"
+    "termAndService": "شروط الخدمة وسياسة الخصوصية",
+    "Please" : "حركي",
+    "valid email" : "البريد الالكترون"
   },
   "Header": {
     "Home": "الرئيسية",
@@ -133,11 +135,14 @@
     "country": "البلد",
     "state": "المحافظة",
     "city": "المدينة",
+    "address" : "عنوان ",
     "addressLine1": "عنوان 1",
     "addressline2": "عنوان 2",
     "postalCode": "رقم البريدي",
+    "phoneValidation" : "تغيير كلمة المرو",
     "mobileNumber": "رقم الهاتف",
-    "addAddress": "اضافة عنوان"
+    "addAddress": "اضافة عنوان",
+    "Please" : "حركي"
   },
   "EditProfile": {
     "firstName": "الاسم الاول",
@@ -169,17 +174,27 @@
   },
   "RequestBook": {
     "bookTitle": "عنوان الكتاب",
+     "Title" : "عنوان الكتاب",
+     "author" : "اسم المؤل",
     "authorName": "اسم المؤلف",
     "uploadImage": "ارفع صورة",
     "restrictionText": "يسمح لصورة واحدة صيغتها (png,jpeg,jpg) فقط والحد الاعلى 5 ميجابايت",
     "sendRequest": "ارسل الطلب",
     "requestEducationalBook": "طلب كتاب تعليمي",
-    "requestBook": "طلب كتاب"
+    "requestBook": "طلب كتاب",
+    "Please" : "تفضل"
   },
   "MyAddressBook": {
     "myAddressBook": "عناويني",
     "noAddressAvailable": "لا يوجد عنوان متوفر",
     "addNewAddress": "اضافة عنوان جديد",
     "myProfile": "الملف الشخصي"
+  },
+  "Validation" :{
+    "Please" : "حركي"
+  },
+  "SignIn" :{
+    "email" : ""
   }
+
 }

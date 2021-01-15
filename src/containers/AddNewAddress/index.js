@@ -78,17 +78,18 @@ const AddNewAddress = (props) => {
   const validate = () => {
     return (
 
-      validateIsTrue(state.address_name, 'Address Name') &&
-      validateIsTrue(state.country_id, "Select a Country", false) &&
-      validateIsTrue(state.city_id, "Select a State", false) &&
-      validateIsTrue(state.state, 'City') &&
+      validateIsTrue(state.address_name, `${t('Please')}  ${t('addressName')}`, false) &&
+      validateIsTrue(state.country_id, `${t('Please')}  ${t('country')}`, false) &&
+      validateIsTrue(state.city_id, `${t('Please')}  ${t('state')}`, false) &&
+      validateIsTrue(state.state, `${t('Please')}  ${t('city')}`, false) &&
       // validateIsTrue((state.state.length > 2), 'City') &&
-      validateIsTrue(state.address_line1, 'Address') &&
+      validateIsTrue(state.address_line1, `${t('Please')}  ${t('address')}`, false) &&
 
       // validateIsTrue(state.address_line2, 'Address!');
       // validateIsTrue(state.post_code, 'Postal Code') &&
-      validateIsTrue(((state.phone.length > 10) && (state.phone.length < 16)), "Phone Number should be between 11 digits to 15 digits", false) &&
-      validateIsTrue(!!validatePhone(state.phone), 'Phone No')
+      validateIsTrue(((state.phone.length > 10) && (state.phone.length < 16)),
+        `${t('Please')}  ${t('phoneValidation')}`, false) &&
+      validateIsTrue(!!validatePhone(state.phone), `${t('Please')}  ${t('mobileNumber')}`, false)
     )
 
 

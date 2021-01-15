@@ -1,3 +1,15 @@
+
+
+import {
+  View,
+  TextInput,
+  StyleSheet,
+  Alert,
+  ImageBackground,
+  I18nManager,
+  Linking,
+  Platform,
+} from 'react-native';
 export const forgotPassword = {
   forgot_password: 'Forgot Password?',
   enter_email:
@@ -11,37 +23,38 @@ export const forgotPassword = {
 };
 
 export const signUp = {
-  agreement: 'By creating an account you agree to our',
-  TermsAndPolicies: 'Terms of Services and Privacy Policy',
-  sign_up: 'SIGN UP',
+  agreement: I18nManager.isRTL ? 'عناويني' : 'By creating an account you agree to our',
+  TermsAndPolicies: I18nManager.isRTL ? 'عناويني' : 'Terms of Services and Privacy Policy',
+  sign_up: I18nManager.isRTL ? 'عناويني' : 'SIGN UP',
   modalData: {
-    heading: 'Welcome to HEBBER!',
-    description: 'Your ID Has Been Registered Successfully',
-    buttonLabel: 'Continue',
+    heading: I18nManager.isRTL ? 'عناويني' : 'Welcome to HEBBER!',
+    description: I18nManager.isRTL ? 'عناويني' : 'Your ID Has Been Registered Successfully',
+    buttonLabel: I18nManager.isRTL ? 'عناويني' : 'Continue',
   },
 };
 
 
 export const JOIN_US = {
   modalData: {
-    heading: 'We Will Contact You Shortly!',
-    description: 'Your Join Request Form is submitted Successfully',
-    buttonLabel: 'Continue',
+    heading: I18nManager.isRTL ? 'عناويني' : 'We Will Contact You Shortly!',
+    description: I18nManager.isRTL ? 'عناويني' : 'Your Join Request Form is submitted Successfully',
+    buttonLabel: I18nManager.isRTL ? 'عناويني' : 'Continue',
   },
 };
 
 export const CONTACT_US = {
   modalData: {
-    heading: 'We Will Contact You Shortly!',
-    description: 'Your Contact Request Submission Form is submitted Successfully',
-    buttonLabel: 'Continue',
+    heading: I18nManager.isRTL ? 'عناويني' : 'We Will Contact You Shortly!',
+    description: I18nManager.isRTL ? 'عناويني' : 'Your Contact Request Submission Form is submitted Successfully',
+    buttonLabel: I18nManager.isRTL ? 'عناويني' : 'Continue',
   },
 };
 
 export const ADD_NEW_ADDRESS = {
   modalData: {
-    heading: 'Address Added Successfully!',
-    description: 'You can start making orders to this address now',
-    buttonLabel: 'Ok',
+
+    heading: I18nManager.isRTL ? 'عناويني' : 'Address Added Successfully!',
+    description: I18nManager.isRTL ? 'عناويني' : 'You can start making orders to this address now',
+    buttonLabel: I18nManager.isRTL ? 'عناويني' : 'ok',
   },
 };

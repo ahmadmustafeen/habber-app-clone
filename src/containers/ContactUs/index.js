@@ -33,6 +33,13 @@ import {
 import { AppText, Button, Screen } from '../../components/common';
 import { useTranslation } from 'react-i18next';
 import { combineEpics } from 'redux-observable';
+// export const CONTACT_US = {
+//   modalData: {
+//     heading: isRTL ? 'We Will Contact You Shortly!' : 'عناويني',
+//     description: 'Your Contact Request Submission Form is submitted Successfully',
+//     buttonLabel: 'Continue',
+//   },
+// };
 
 const ContactUs = (props) => {
   // console.log(FetchSiteReducer.phone_no)
