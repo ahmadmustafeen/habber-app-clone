@@ -56,7 +56,9 @@
     "signIn": "Sign In",
     "bycreating": "By creating an account you agree to our",
     "termAndService": "Terms of Services and Privacy Policy",
-    "signUp": "SIGN UP"
+    "signUp": "SIGN UP",
+    "Please": "Please Enter",
+    "valid email": "valid email"
   },
   "Header": {
     "Home": "HOME",
@@ -145,11 +147,13 @@
     "country": "Country",
     "state": "State",
     "city": "City",
+    "address": "Address",
     "addressLine1": "Address Line 1",
     "addressline2": "Address Line 2",
     "postalCode": "Postal Code",
     "mobileNumber": "Mobile Number",
-    "addAddress": "Use This Address"
+    "addAddress": "Use This Address",
+    "phoneValidation": "Phone Number should be between 11 digits to 15 digits"
   },
   "EditProfile": {
     "firstName": "First Name",
@@ -181,12 +185,15 @@
   },
   "RequestBook": {
     "bookTitle": "Book Title*",
+    "Title": "Book Title",
+    "author": "Author Name",
     "authorName": "Author Name*",
     "uploadImage": "Upload Image",
     "restrictionText": "1 Image allowed (PNG,JPEG,JPG) formats ONLY maximum size 5 MB",
     "sendRequest": "Send Request",
     "requestEducationalBook": "Request Educational Book",
-    "requestBook": "Request Book"
+    "requestBook": "Request Book",
+    "Please": "Please Enter"
   },
   "MyAddressBook": {
     "myAddressBook": "MY ADDRESS BOOK",
@@ -199,5 +206,8 @@
     "password": "Password",
     "email": "Email",
     "confirmPassword": "Confirm Password"
+  },
+  "Validation": {
+    "Please": "Please Enter"
   }
 }

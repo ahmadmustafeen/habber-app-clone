@@ -1,4 +1,5 @@
 import { Alert } from 'react-native';
+import { useTranslation } from 'react-i18next';
 
 export const validateEmail = (email) => {
   return (
@@ -13,6 +14,7 @@ export const validatePassword = (password) => password.length >= 6;
 export const validatePhone = (phone) => phone && phone.length > 9;
 export const validateIsTrue = (val, text = 'details', concat = true) => {
   if (!val) {
+
     Alert.alert(concat ? `Please Enter ${text}` : text)
     return false
   }

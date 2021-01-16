@@ -37,11 +37,11 @@ const SignIn = (props) => {
 
   const validate = () => {
     if (!validateEmail(email)) {
-      Alert.alert('Invalid Email');
+      Alert.alert(t('email'));
       return false;
     }
     if (!validatePassword(password)) {
-      Alert.alert('Invalid Password');
+      Alert.alert(t('password'));
       return false;
     }
     return true;

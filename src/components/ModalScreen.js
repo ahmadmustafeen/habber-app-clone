@@ -3,6 +3,8 @@ import { Modal, View, StyleSheet, Image } from 'react-native';
 import { colors } from 'react-native-elements';
 import { AppText, Button, Screen } from './common';
 import { RoundIcon } from './RoundIcon';
+import { useTranslation } from 'react-i18next';
+
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -23,6 +25,7 @@ const ModalScreen = props => {
     image, descriptionNextLine
   } = props
   // console.log("CC", colors)
+  const { t } = useTranslation(['AddNewAddress'])
   return (
     <Modal animationType="fade" visible={visible}>
       <View style={styles.container}>
@@ -58,7 +61,7 @@ const ModalScreen = props => {
                 marginTop: 20,
                 marginBottom: 20,
               }}>
-              {heading}
+              {t(heading)}
             </AppText>
             <AppText
               style={{
