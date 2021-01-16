@@ -16,13 +16,13 @@ export function* UpdateProfileSaga({ type, payload }) {
     form_data.append('last_name', payload.last_name);
     form_data.append('phone', payload.phone);
     form_data.append('profile_pic', payload.profile_pic);
-    form_data.append('language_id', 1);
-    form_data.append('currency_id', 2);
-
+    form_data.append('language_id', payload.language_id);
+    form_data.append('currency_id', payload.currency_id);
+    console.log(form_data)
     const response = yield call(() =>
       RestClient.post(API_ENDPOINTS.user, form_data),
     )
-    console.log(response.data.data, "response")
+    console.log(response, "response")
     const { status, data, message } = response;
     if (status === 200) {
       yield put({ type: SIGN_IN_SUCCESS, payload: { ...response.data.data } }),

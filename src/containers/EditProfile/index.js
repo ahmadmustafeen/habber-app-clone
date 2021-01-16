@@ -42,6 +42,7 @@ const EditProfile = (props) => {
     shallowEqual,
   );
   const dispatch = useDispatch();
+  console.log(UserProfileReducer, "ADSASD")
   const { isLoading } = useSelector((state) => {
     return {
       isLoading: checkIfLoading(
@@ -54,9 +55,10 @@ const EditProfile = (props) => {
     first_name: UserProfileReducer.first_name,
     last_name: UserProfileReducer.last_name,
     email: UserProfileReducer.email,
-    profile_pic: UserProfileReducer.profile_pic,
+    // profile_pic: { uri: UserProfileReducer.profile_pic, name: "something", type: "image/jpeg" },
+    profile_pic: "",
     language_id: UserProfileReducer.language.id,
-    currency_id: 2,
+    currency_id: UserProfileReducer.currency.id,
     token: UserProfileReducer.token,
   });
   const validate = () => {

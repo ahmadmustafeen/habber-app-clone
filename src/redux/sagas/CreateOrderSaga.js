@@ -9,6 +9,8 @@ import {
   CREATE_ORDER_FAILURE,
   CREATE_ORDER_SUCCESS,
   DO_PAYMENT,
+  FETCH_USER_CART,
+  FETCH_USER_CART_SUCCESS,
 } from '../actionTypes';
 import { errorAction, startAction, stopAction } from '../actions';
 import { INVOICE } from '../../constants/Screens';
@@ -75,6 +77,7 @@ export function* CreateOrderSaga({ type, payload }) {
     }
     console.log("CREATE ORDER SUCCESS RESPONSE :", response)
     yield put({ type: CREATE_ORDER_SUCCESS });
+    yield put({ type: FETCH_USER_CART_SUCCESS, payload: [] });
     if (payload.paymentMethod === 'cod') {
       console.log(payload.paymentMethod)
       NavigationService.navigate('Invoice', {

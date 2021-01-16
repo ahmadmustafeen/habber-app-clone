@@ -14,6 +14,7 @@ import {
 } from '_redux/actionTypes';
 import { all, put, select } from 'redux-saga/effects';
 import { RestClient } from 'network/RestClient';
+import { FETCH_ORDER_SUCCESS } from '../actionTypes';
 
 export function* splashAdSaga() {
   try {
