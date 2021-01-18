@@ -77,7 +77,7 @@ export function* CreateOrderSaga({ type, payload }) {
     }
     console.log("CREATE ORDER SUCCESS RESPONSE :", response)
     yield put({ type: CREATE_ORDER_SUCCESS });
-    yield put({ type: FETCH_USER_CART_SUCCESS, payload: [] });
+
     if (payload.paymentMethod === 'cod') {
       console.log(payload.paymentMethod)
       NavigationService.navigate('Invoice', {
@@ -94,5 +94,12 @@ export function* CreateOrderSaga({ type, payload }) {
     yield put(errorAction(error, CREATE_ORDER_FAILURE));
   } finally {
     yield put(stopAction(type));
+    yield put({
+      type: FETCH_USER_CART_SUCCESS, payload: [{
+        book: [],
+        bookmark: [],
+        total_price: 0,
+      }]
+    });
   }
 }
