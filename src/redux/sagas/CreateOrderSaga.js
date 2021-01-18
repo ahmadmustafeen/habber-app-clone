@@ -77,14 +77,14 @@ export function* CreateOrderSaga({ type, payload }) {
     }
     console.log("CREATE ORDER SUCCESS RESPONSE :", response)
     yield put({ type: CREATE_ORDER_SUCCESS });
-
-    if (payload.paymentMethod === 'cod') {
-      console.log(payload.paymentMethod)
+    yield put({ type: FETCH_USER_CART });
+    if (!res.navigation) {
+      console.log(response.data.data, "this is somthing inmportant")
       NavigationService.navigate('Invoice', {
         item: response.data.data
       });
     }
-    if (res.navigation) {
+    else if (res.navigation) {
 
 
       yield put({ type: DO_PAYMENT, payload: { payload: res, order_details: response.data.data } });
@@ -95,11 +95,7 @@ export function* CreateOrderSaga({ type, payload }) {
   } finally {
     yield put(stopAction(type));
     yield put({
-      type: FETCH_USER_CART_SUCCESS, payload: [{
-        book: [],
-        bookmark: [],
-        total_price: 0,
-      }]
+      type: FETCH_USER_CART
     });
   }
 }

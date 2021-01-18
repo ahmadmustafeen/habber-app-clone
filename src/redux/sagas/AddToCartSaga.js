@@ -30,10 +30,12 @@ export function* AddToCartSaga({ type, payload }) {
         price: parseFloat(item.cart_price.toString().replace(',', '')),
       };
     });
+    const total_price = CartReducer.book.map(item => parseFloat(item.cart_price.toString().replace(',', ''))) + CartReducer.bookmark.map(item => parseFloat(item.cart_price.toString().replace(',', '')))
 
     const obj = {
       product,
-      total_price: CartReducer.total_price,
+      total_price
+      // total_price: (CartReducer.total_price + parseFloat(product[0].cart_price.toString().replace(',', '')))
     };
     console.log('OBJ CART', obj);
     const response = yield call(() => RestClient.post(API_ENDPOINTS.cart, obj));

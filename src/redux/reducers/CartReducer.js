@@ -22,7 +22,6 @@ export default (state = initialState, { type, payload }) => {
           return state;
         }
         payload.cart_price = payload.price;
-        console.log(payload.cart_price, "CART PRICE")
 
         return {
           ...state,
@@ -31,13 +30,13 @@ export default (state = initialState, { type, payload }) => {
             state.book.reduce(
               (total, book) =>
                 parseFloat(total.toString().replace(',', '')) +
-                parseFloat(book.price.toString().replace(',', '')),
+                parseFloat(book.cart_price.toString().replace(',', '')),
               0,
             ) +
             state.bookmark.reduce(
               (total, book) =>
                 parseFloat(total.toString().replace(',', '')) +
-                parseFloat(book.price.toString().replace(',', '')),
+                parseFloat(book.cart_price.toString().replace(',', '')),
               0,
             ),
         };

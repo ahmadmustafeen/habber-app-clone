@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView, StyleSheet, View, ImageBackground, I18nManager, Text } from 'react-native';
+import { ScrollView, StyleSheet, View, ImageBackground, I18nManager, Text, } from 'react-native';
 import { Header } from '_components';
 import {
     widthPercentageToDP as wp,
@@ -8,7 +8,7 @@ import {
 import { useTheme } from '@react-navigation/native';
 import { AppText } from 'components/common';
 import { shallowEqual, useSelector } from 'react-redux';
-
+import { Icon } from 'react-native-elements'
 
 const Invoice = (props) => {
     console.log(props, "ORDER DATA")

@@ -89,8 +89,6 @@ const AddToCart = (props) => {
                   cart_price,
                   cart_quantity,
                 } = product;
-                console.log("Carttooooo", CartReducer)
-                console.log("quantity", cart_quantity)
 
 
                 return (
@@ -106,7 +104,7 @@ const AddToCart = (props) => {
                         by {author_name}
                       </AppText>
                       <AppText bold size={17} style={styles.pricetxt}>
-                        Price: {rtlLayout && price_product.symbol} {parseInt(cart_price).toFixed(2)} {rtlLayout || price_product.symbol}
+                        Price: {rtlLayout && price_product.symbol} {parseFloat(cart_price.toString().replace(',', '')).toFixed(2)} {rtlLayout || price_product.symbol}
                       </AppText>
                       <View
                         style={{
