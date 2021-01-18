@@ -9,6 +9,7 @@ import { useTheme } from '@react-navigation/native';
 import { AppText } from 'components/common';
 import { shallowEqual, useSelector } from 'react-redux';
 import { Icon } from 'react-native-elements'
+import { HOME } from '../../constants/Screens';
 
 const Invoice = (props) => {
     console.log(props, "ORDER DATA")
@@ -78,12 +79,13 @@ const Invoice = (props) => {
     return (
         <ScrollView>
 
-            <Header  {...props} title={props.route.params.orderDetails && "Orders Detail"} headerLeft={<Icon
-                onPress={() => props.navigation.navigate(Language)}
-                color={colors.primary}
-                name={I18nManager.isRTL ? "rightcircleo" : "leftcircleo"}
-                type="antdesign"
-            />} headerImage headerLeft />
+            <Header  {...props} title={props.route.params.orderDetails && "Orders Detail"}
+                headerLeft={<Icon
+                    onPress={() => props.navigation.navigate(HOME)}
+                    color={colors.primary}
+                    name={I18nManager.isRTL ? "rightcircleo" : "leftcircleo"}
+                    type="antdesign"
+                />} headerImage />
 
             <View key="content">
                 <InvoiceItem headerLeft="Order ID" headerRight="Order Date" textLeft={item.id} textRight={item.created_at.split('T')[0]} />

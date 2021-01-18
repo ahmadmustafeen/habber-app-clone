@@ -11,9 +11,13 @@ import {
   DO_PAYMENT,
   FETCH_USER_CART,
   FETCH_USER_CART_SUCCESS,
+  UPDATE_CART_ITEM,
+  UPDATE_CART_ITEM_ORDER_COMPLETE,
 } from '../actionTypes';
 import { errorAction, startAction, stopAction } from '../actions';
 import { INVOICE } from '../../constants/Screens';
+import { getItem } from '../../helpers/Localstorage';
+import { bookmarkdata } from '../../assets/data/dummydata';
 
 export function* CreateOrderSaga({ type, payload }) {
 
@@ -77,7 +81,8 @@ export function* CreateOrderSaga({ type, payload }) {
     }
     console.log("CREATE ORDER SUCCESS RESPONSE :", response)
     yield put({ type: CREATE_ORDER_SUCCESS });
-    yield put({ type: FETCH_USER_CART });
+    // yield put({ type: FETCH_USER_CART });
+    yield put({ type: FETCH_USER_CART_SUCCESS, payload: null });
     if (!res.navigation) {
       console.log(response.data.data, "this is somthing inmportant")
       NavigationService.navigate('Invoice', {
@@ -93,9 +98,14 @@ export function* CreateOrderSaga({ type, payload }) {
   } catch (error) {
     yield put(errorAction(error, CREATE_ORDER_FAILURE));
   } finally {
+    // let userProfile = yield getItem('@userProfile');
+    // userProfile = JSON.parse(userProfile);
+    // RestClient.setHeader('Authorization', `Bearer ${userProfile.token}`);
+    // yield put({
+    //   type: FETCH_USER_CART
+    // });
+
     yield put(stopAction(type));
-    yield put({
-      type: FETCH_USER_CART
-    });
+
   }
 }

@@ -3,6 +3,7 @@ import {
   ADD_TO_CART,
   FETCH_USER_CART_SUCCESS,
   UPDATE_CART_ITEM,
+  UPDATE_CART_ITEM_ORDER_COMPLETE
 } from '_redux/actionTypes';
 const initialState = {
   book: [],
@@ -76,6 +77,9 @@ export default (state = initialState, { type, payload }) => {
     }
 
     case FETCH_USER_CART_SUCCESS: {
+      if (payload === null) {
+        return initialState
+      }
       const mergedBook = state.book.concat(payload.book);
       const distinctBooks = mergedBook.filter(
         (item, i, a) => a.findIndex((t) => t.isbn === item.isbn) === i,
@@ -93,6 +97,10 @@ export default (state = initialState, { type, payload }) => {
           ? state.total_price + payload.total_price
           : payload.total_price,
       };
+    }
+    case UPDATE_CART_ITEM_ORDER_COMPLETE: {
+      // console.log(state, "UPDATE_CART_ITEM_ORDER_COMPLETE")
+      return state
     }
     default:
       return state;
