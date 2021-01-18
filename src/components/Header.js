@@ -35,7 +35,7 @@ const Header = (props, { adddok }) => {
     },
   )
   const qua = CartReducer.book.length + CartReducer.bookmark.length
-  console.log(qua)
+  // console.log(qua)
   const { colors } = useTheme();
   const {
     navigation,
