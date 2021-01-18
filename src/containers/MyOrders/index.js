@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, Image, ScrollView, ImageBackground, I18nManager, FlatList } from 'react-native';
+import { View, StyleSheet, Image, ScrollView, ImageBackground, I18nManager, FlatList, Text } from 'react-native';
 import { AppText, Screen } from '../../components/common';
 import { Header, } from '../../components';
 import {
@@ -13,6 +13,8 @@ import { useTranslation } from 'react-i18next';
 import NoBookAvailbe from '../../components/NoBookAvailable';
 import { INVOICE } from '../../constants/Screens';
 const MyOrders = (props) => {
+  console.log(props)
+
   const { navigate } = props.navigation;
   const { colors } = useTheme();
   const { OrderReducer } = useSelector((state) => {
@@ -20,10 +22,13 @@ const MyOrders = (props) => {
       OrderReducer: state.OrderReducer
     }
   })
+  console.log(OrderReducer)
   const { t } = useTranslation(['Order'])
-  const OrderItem = (item, index) => {
+  const renderItem = ({ item }) => {
+
+
     return (
-      <View key={index} style={styles.profiletop}>
+      <View style={styles.profiletop}>
         <View style={styles.orderContainer}>
           <AppText size={16} style={styles.apptextpadding}><AppText bold size={17}>Order ID: </AppText> {item.id}</AppText>
           {item.books.map((title) =>
@@ -50,44 +55,89 @@ const MyOrders = (props) => {
           />
         </View>
       </View>
-    )
-  }
+    );
+  };
+  // const OrderItem = (item, index) => {
+  //   return (
+  //     <View key={index} style={styles.profiletop}>
+  //       <View style={styles.orderContainer}>
+  //         <AppText size={16} style={styles.apptextpadding}><AppText bold size={17}>Order ID: </AppText> {item.id}</AppText>
+  //         {item.books.map((title) =>
+  //           <AppText size={14} style={styles.apptextpadding}>{title.title}</AppText>
+  //         )}
+  //         {item.bookmarks.map((title) =>
+  //           <AppText size={14} style={styles.apptextpadding}>{title.title}</AppText>
+  //         )}
+
+  //         <AppText size={16} style={styles.statuspadding}><AppText bold size={17}>Status: </AppText>{item.status}</AppText>
+  //       </View>
+  //       <View style={styles.totalContainer}>
+  //         <AppText size={16} style={styles.apptextpadding}><AppText size={17} bold>Total: </AppText>{item.currency_iso} {item.total_price}</AppText>
+  //         <AppText size={16} style={styles.apptextpadding}>{item.date}</AppText>
+  //       </View>
+  //       <View style={styles.Icon}>
+  //         <Icon
+  //           onPress={() => navigate(INVOICE, {
+  //             item, orderDetails: true
+  //           })}
+  //           color="#c27e12"
+  //           name="rightcircleo"
+  //           type="ant-design"
+  //         />
+  //       </View>
+  //     </View>
+  //   )
+  // }
   return (
 
     // <ScrollView noPadding>
 
 
     // <View key="content" style={{ width: wp(90), alignSelf: 'center' }}>
-    <FlatList
-      ListHeaderComponent={() => (
-        <>
-          <View key="header">
+    <View>
+      {/* ListHeaderComponent={() => (
+        <> */}
+      <View key="header">
 
-            <Header {...props}
-              headerLeft
-              headerImage
-              backIcon
-            />
+        <Header {...props}
+          headerLeft
+          headerImage
+          backIcon
+        />
 
 
+      </View>
+      {/* {OrderReducer.map((item, index) => {
+        return (
+
+          <Text key={index}>{item.total_price}</Text>
+        )
+      })} */}
+
+      <FlatList
+        data={OrderReducer}
+        renderItem={renderItem}
+        keyExtractor={item => item.id}
+      />
+      {/* <FlatList
+
+        style={styles.flatlist}
+        showsHorizontalScrollIndicator={false}
+        // horizontal
+
+        data={OrderReducer}
+        keyExtractor={(item, index) => index.toString() + item}
+        renderItem={({ item }) => OrderItem(item)}
+        ListEmptyComponent={() => (
+          <View>
+            <NoBookAvailbe emptyy="No orders available" />
           </View>
-        </>)}
-      style={styles.flatlist}
-      showsHorizontalScrollIndicator={false}
-      // horizontal
-      data={OrderReducer}
-      keyExtractor={(item, index) => index.toString() + item}
-      renderItem={({ item }) => OrderItem(item)}
-      ListEmptyComponent={() => (
-        <View>
-          <NoBookAvailbe emptyy="No orders available" />
-        </View>
-      )}
-      ListFooterComponent={() => <View style={{ paddingBottom: 50 }} />}
-    />
+        )}
+        ListFooterComponent={() => <View style={{ paddingBottom: 50 }} />}
+      /> */}
 
-    /* </View>
-  // </ScrollView> */
+    </View>
+    // </ScrollView> */
     // );
   )
 };
