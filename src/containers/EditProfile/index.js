@@ -71,10 +71,10 @@ const EditProfile = (props) => {
       Alert.alert('Please Enter Second Name');
       return false;
     }
-    if (!validatePhone(state.phone)) {
-      Alert.alert('Invalid Phone');
-      return false;
-    }
+    // if (!validatePhone(state.phone)) {
+    //   Alert.alert('Invalid Phone');
+    //   return false;
+    // }
     return true;
   };
   const { navigate } = props.navigation;
@@ -82,8 +82,8 @@ const EditProfile = (props) => {
     setState({ ...state, [key]: val });
   };
   const save = () => {
-    // validate() &&
-    dispatch(withDataActions(state, 'UPDATE_PROFILE'));
+    validate() &&
+      dispatch(withDataActions(state, 'UPDATE_PROFILE'));
     // navigate(MY_PROFILE)
   };
   const setImage = () => {

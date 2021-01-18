@@ -78,7 +78,12 @@ const Invoice = (props) => {
     return (
         <ScrollView>
 
-            <Header backIcon {...props} title={props.route.params.orderDetails && "Orders Detail"} headerLeft headerImage backIcon headerLeft />
+            <Header  {...props} title={props.route.params.orderDetails && "Orders Detail"} headerLeft={<Icon
+                onPress={() => props.navigation.navigate(Language)}
+                color={colors.primary}
+                name={I18nManager.isRTL ? "rightcircleo" : "leftcircleo"}
+                type="antdesign"
+            />} headerImage headerLeft />
 
             <View key="content">
                 <InvoiceItem headerLeft="Order ID" headerRight="Order Date" textLeft={item.id} textRight={item.created_at.split('T')[0]} />

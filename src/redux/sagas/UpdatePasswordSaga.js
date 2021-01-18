@@ -11,7 +11,9 @@ import {
 import { NETWORK_ERROR, SHOW_NETWORK_MODAL } from 'redux/actionTypes';
 import { MY_PROFILE } from '_constants/Screens';
 import * as NavigationService from '../../../NavigationService';
+import { startAction, stopAction } from '../actions';
 export function* UpdatePasswordSaga({ type, payload }) {
+  yield put(startAction(type));
   try {
     console.log('UpdatePasswordSaga Saga . . . .  .1', payload);
     const response = yield call(() =>
@@ -37,5 +39,7 @@ export function* UpdatePasswordSaga({ type, payload }) {
     }
   } catch (error) {
     yield put({ type: UPDATE_PASSWORD_FAILURE, error });
+  } finally {
+    yield put(stopAction(type));
   }
 }

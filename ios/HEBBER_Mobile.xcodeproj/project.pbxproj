@@ -33,6 +33,8 @@
 		943488522584067D00A9A544 /* assets in Resources */ = {isa = PBXBuildFile; fileRef = 943488482584061600A9A544 /* assets */; };
 		A843883049E64A9E98671423 /* Roboto-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A6EB10E4BC4D4101B011A209 /* Roboto-LightItalic.ttf */; };
 		C4F9F5924B144D65953611F8 /* Almarai-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3BFB72CDEC844A1493750743 /* Almarai-Light.ttf */; };
+		E23B13BC25B2B0280070C739 /* hebber-Icon-32x32.png in Resources */ = {isa = PBXBuildFile; fileRef = E23B13BB25B2B0280070C739 /* hebber-Icon-32x32.png */; };
+		E23B141525B2B12D0070C739 /* hebber-Icon-32x32.png in Resources */ = {isa = PBXBuildFile; fileRef = E23B141425B2B12D0070C739 /* hebber-Icon-32x32.png */; };
 		E27966032551B0330058E6DB /* main.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = 008F07F21AC5B25A0029DE68 /* main.jsbundle */; };
 		F3B0945EF57FEDE9987D9EEC /* libPods-HEBBER_Mobile-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F8F674040BEA472B7A6682F /* libPods-HEBBER_Mobile-tvOSTests.a */; };
 		F6033492457343DEB8633A90 /* Almarai-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 243C1BBBDA2D4BFC8681EF3E /* Almarai-ExtraBold.ttf */; };
@@ -113,6 +115,8 @@
 		A3DDA60A81E646B18DA09AE0 /* Almarai-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Almarai-Bold.ttf"; path = "../src/assets/font/Almarai-Bold.ttf"; sourceTree = "<group>"; };
 		A6EB10E4BC4D4101B011A209 /* Roboto-LightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-LightItalic.ttf"; path = "../src/assets/font/Roboto-LightItalic.ttf"; sourceTree = "<group>"; };
 		BF1A71A5B5CF41538F22355D /* Roboto-MediumItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-MediumItalic.ttf"; path = "../src/assets/font/Roboto-MediumItalic.ttf"; sourceTree = "<group>"; };
+		E23B13BB25B2B0280070C739 /* hebber-Icon-32x32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hebber-Icon-32x32.png"; sourceTree = "<group>"; };
+		E23B141425B2B12D0070C739 /* hebber-Icon-32x32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "hebber-Icon-32x32.png"; path = "../../../../Downloads/hebber-Icon-32x32.png"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 		EECD5B219F0AB68924985146 /* libPods-HEBBER_Mobile.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HEBBER_Mobile.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -179,6 +183,8 @@
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
+				E23B13BB25B2B0280070C739 /* hebber-Icon-32x32.png */,
+				E23B141425B2B12D0070C739 /* hebber-Icon-32x32.png */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
 				13B07FB71A68108700A75B9A /* main.m */,
@@ -440,6 +446,7 @@
 			files = (
 				9413E80C258A582F004CEC9E /* GoogleService-Info.plist in Resources */,
 				943488522584067D00A9A544 /* assets in Resources */,
+				E23B141525B2B12D0070C739 /* hebber-Icon-32x32.png in Resources */,
 				E27966032551B0330058E6DB /* main.jsbundle in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
@@ -451,6 +458,7 @@
 				7B7A2515E8A942A8BD801360 /* Roboto-BoldItalic.ttf in Resources */,
 				731668E8C7BA406EAF9887C7 /* Roboto-Italic.ttf in Resources */,
 				322A1DF53F004BD69320E039 /* Roboto-Light.ttf in Resources */,
+				E23B13BC25B2B0280070C739 /* hebber-Icon-32x32.png in Resources */,
 				A843883049E64A9E98671423 /* Roboto-LightItalic.ttf in Resources */,
 				3C4B86D8F7A544CCB389EB1D /* Roboto-Medium.ttf in Resources */,
 				500B723967794A008FEE7A85 /* Roboto-MediumItalic.ttf in Resources */,

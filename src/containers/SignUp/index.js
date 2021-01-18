@@ -23,6 +23,8 @@ import {
   isSignedIn,
 } from '../../services/googleLoginController';
 import { checkIfLoading } from '_redux/selectors';
+import { TERMS_AND_CONDITIONS_SCREEN } from '../../constants/Screens';
+import { TouchableOpacity } from 'react-native';
 
 const SignUp = (props) => {
 
@@ -142,9 +144,12 @@ const SignUp = (props) => {
           <AppText white secondary size={17}>
             {t('bycreating')}
           </AppText>
-          <AppText underline style={styles.termsandservices} size={17}>
-            {t('termAndService')}
-          </AppText>
+          <TouchableOpacity onPress={() => props.navigation.navigate(TERMS_AND_CONDITIONS_SCREEN)}>
+            <AppText underline style={styles.termsandservices} size={17}>
+              {t('termAndService')}
+            </AppText>
+          </TouchableOpacity>
+
           <Button round width="60%" onPress={onSignUp} loading={isLoading}>
             {t('signUp')}
           </Button>

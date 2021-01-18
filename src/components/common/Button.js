@@ -58,12 +58,12 @@ const Button = (props) => {
       </AppText>
       {/* please make single component for it */}
       {outOfStock &&
-        <View style={{ position: "absolute", left: wp(14), width: 20, height: 25, zIndex: 1, top: hp(1.25) }}>
-          <Image style={{ width: "100%", height: "100%" }} source={require("../../assets/images/emptycart.png")} />
+        <View style={{ position: "absolute", left: wp(13), width: 20, height: 25, zIndex: 1, top: hp(1.25) }}>
+          <Image style={{ width: "100%", height: "100%" }} source={require("../../assets/images/nocart2.png")} />
         </View>
       }
       {inStock &&
-        <View style={{ position: "absolute", left: wp(14), width: 20, height: 25, zIndex: 1, top: hp(1.25) }}>
+        <View style={{ position: "absolute", left: wp(13), width: 20, height: 25, zIndex: 1, top: hp(1.25) }}>
           <Image style={{ width: "100%", height: "100%" }} source={require("../../assets/images/emptycart.png")} />
         </View>
       }

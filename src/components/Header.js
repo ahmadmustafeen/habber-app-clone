@@ -78,6 +78,7 @@ const Header = (props, { adddok }) => {
             headerLeft
           ) : (
               <Icon
+                size={12}
                 onPress={() => navigation.openDrawer()}
                 color={headerColor}
                 name="menu"
@@ -131,13 +132,13 @@ const Header = (props, { adddok }) => {
                     source={
                       cartNumber
                         ? require('../assets/images/filledcart.png')
-                        : (qua === 0 ? require('../assets/images/emptycart.png') : require('../assets/images/nocart.png'))
+                        : (qua === 0 ? require('../assets/images/emptycart.png') : require('../assets/images/nocart3.png'))
                     }
                     style={{ marginRight: wp(3) }}
                   />
                   {qua ? (
                     <View style={I18nManager.isRTL ? styles.circleArabic : styles.circle}>
-                      <AppText style={{ transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }], }} size={13} bold white>
+                      <AppText style={{ transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }], }} size={13} bold color={"#0a2937"}>
                         {qua}
                       </AppText>
                     </View>

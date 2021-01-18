@@ -19,6 +19,8 @@ import useFilter from '_utils/customHooks/useFilter';
 import { FilterModal } from '_containers/Filter';
 import { useTranslation } from 'react-i18next';
 import NoBookAvailbe from '../../components/NoBookAvailable';
+import { TouchableOpacity } from 'react-native';
+import { TouchableWithoutFeedback } from 'react-native';
 
 const Search = (props) => {
   const { t } = useTranslation(['Search']);
@@ -69,11 +71,17 @@ const Search = (props) => {
             onChangeText={(val) => setKeyword(val)}
             onSubmitEditing={onSubmit}
           />
-          <Icon
-            containerStyle={styles.iconStyle}
-            name="search1"
-            type="antdesign"
-          />
+          <TouchableWithoutFeedback onPress={onSubmit} >
+            <Icon
+              size={22}
+              containerStyle={styles.iconStyle}
+              // name="search1"
+              // type="antdesign"
+              name="leftcircleo"
+              type="ant-design"
+            />
+          </TouchableWithoutFeedback>
+
         </View>
       </View>
       <View key="content">

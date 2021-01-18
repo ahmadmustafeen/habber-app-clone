@@ -9,7 +9,7 @@ import { SIGN_IN } from '_redux/actionTypes';
 import { InputWithLabel, RoundIcon, AuthHeader } from '_components';
 import { AppText, BackgroundImage, Button } from '_components/common';
 import { FORGOT_PASSWORD_SCREEN, SIGNUP_SCREEN } from '_constants/Screens';
-import { validateEmail, validatePassword } from '../../helpers/Validators';
+import { validateEmail, validateIsTrue, validatePassword } from '../../helpers/Validators';
 import { checkIfLoading } from '_redux/selectors';
 import {
   widthPercentageToDP as wp,
@@ -36,15 +36,12 @@ const SignIn = (props) => {
 
 
   const validate = () => {
-    if (!validateEmail(email)) {
-      Alert.alert(t('email'));
-      return false;
-    }
-    if (!validatePassword(password)) {
-      Alert.alert(t('password'));
-      return false;
-    }
-    return true;
+
+    return (
+      validateIsTrue(validateEmail(state.email), "Email") &&
+      validateIsTrue(validatePassword(state.password), "Password")
+
+    )
   };
 
   const onSignIn = () => {

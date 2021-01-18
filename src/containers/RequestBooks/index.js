@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, Alert, ImageBackground, I18nManager } from 'react-native';
+import { View, Text, StyleSheet, Alert, ImageBackground, I18nManager, Image } from 'react-native';
 import ImagePicker from 'react-native-image-picker';
 
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
@@ -118,6 +118,10 @@ const RequestBooks = (props) => {
         <AppText size={15} color="grey" style={styles.txt}>
           {t('restrictionText')}
         </AppText>
+
+        <View style={{ width: wp(80), height: hp(30) }}>
+          <Image source={{ uri: state.image.uri }}></Image>
+        </View>
       </View>
       <View key="footer" style={[styles.content, { position: 'absolute', bottom: hp(6) }]}>
         <Button color="white" bold primary onPress={onSubmit} style={{ marginTop: hp(-5) }} loading={isLoading} >

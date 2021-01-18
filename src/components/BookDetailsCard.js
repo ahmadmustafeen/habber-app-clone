@@ -67,14 +67,14 @@ const BookDetailsCard = (props) => {
             {t('by')}{product_type === "book" ? author_name : maker_name}
           </AppText>
           <AppText bold size={17}>
-            {t('price')} {rtlLayout && price_product.symbol} {parseFloat(price).toFixed(2)} {rtlLayout || price_product.symbol}
+            {t('price')} {rtlLayout && price_product.symbol} {(parseFloat(price.replace(",", "")).toFixed(2))} {rtlLayout || price_product.symbol}
           </AppText>
           <AppText bold size={15} color="red">
             {!quantity && t('outOfStock')}
           </AppText>
         </View>
         <View
-          style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+          style={{ flexDirection: 'row', justifyContent: 'space-between', transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }], }}>
           <RoundIcon
             name="heart"
             type="font-awesome"

@@ -183,8 +183,8 @@ const BookDetails = (props) => {
   const onShare = async () => {
     try {
       const result = await Share.share({
-        message: "Habber",
-        openUrl:
+        // cdmessage: "Habber",
+        message:
           'habber://BookDetails/' + (type ? old_product.id : product_id) + "/" + (type ? type : product_type)
         // <iframe src="paulsawesomeapp://page1"> </iframe>
       });
@@ -241,10 +241,13 @@ const BookDetails = (props) => {
               </View>)
             : (
               <View
-                style={{ width: wp(90), alignSelf: 'center', paddingBottom: 20 }}>
+                style={{
+                  transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }],
+                  width: wp(90), alignSelf: 'center', paddingBottom: 20
+                }}>
                 <Image
                   style={{ width: wp(90), height: hp(18) }}
-                  source={{ url: old_product.image }}
+                  source={{ uri: old_product.image }}
                 />
               </View>
             )}
@@ -256,7 +259,7 @@ const BookDetails = (props) => {
 
         {(type === 'bookclub' && !book_removed) &&
           (
-            <View style={{ paddingTop: hp(3) }}>
+            <View style={{ paddingTop: hp(3), transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }], }}>
               <BookDetailsCard
                 onClickFavourite={handleFavouriteClick}
                 favourite={isFavourite}
@@ -270,7 +273,7 @@ const BookDetails = (props) => {
         {!book_removed &&
           <HorizontalRow style={styles.row} />
         }
-        <View>
+        <View >
           {((product_type !== 'bookmark')) ? (!book_removed && (
             <>
               <BDScreenText primary title={t('isbn')} value={book.isbn} />
