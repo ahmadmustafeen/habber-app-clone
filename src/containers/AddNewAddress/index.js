@@ -92,18 +92,18 @@ const AddNewAddress = (props) => {
   const validate = () => {
     return (
 
-      validateIsTrue(state.address_name, `${t('Please')}  ${t('addressName')}`, false) &&
-      validateIsTrue(state.country_id, `${t('Please')}  ${t('country')}`, false) &&
-      validateIsTrue(state.city_id, `${t('Please')}  ${t('state')}`, false) &&
-      validateIsTrue(state.state, `${t('Please')}  ${t('city')}`, false) &&
+      validateIsTrue(state.address_name, `${t('Please')}  ${t('addressName')}`, false, t('ok')) &&
+      validateIsTrue(state.country_id, `${t('Please')}  ${t('country')}`, false, t('ok')) &&
+      validateIsTrue(state.city_id, `${t('Please')}  ${t('state')}`, false, t('ok')) &&
+      validateIsTrue(state.state, `${t('Please')}  ${t('city')}`, false, t('ok')) &&
       // validateIsTrue((state.state.length > 2), 'City') &&
-      validateIsTrue(state.address_line1, `${t('Please')}  ${t('address')}`, false) &&
+      validateIsTrue(state.address_line1, `${t('Please')}  ${t('address')}`, false, t('ok')) &&
 
       // validateIsTrue(state.address_line2, 'Address!');
       // validateIsTrue(state.post_code, 'Postal Code') &&
       validateIsTrue(((state.phone.length > 10) && (state.phone.length < 16)),
         `${t('Please')}  ${t('phoneValidation')}`, false) &&
-      validateIsTrue(!!validatePhone(state.phone), `${t('Please')}  ${t('mobileNumber')}`, false)
+      validateIsTrue(!!validatePhone(state.phone), `${t('Please')}  ${t('mobileNumber')}`, false, t('ok'))
     )
 
 
@@ -163,32 +163,32 @@ const AddNewAddress = (props) => {
             color={"black"}
 
             value={state.state}
-            placeholder={t('City*')}
+            placeholder={t('city')}
             required
             onChangeText={(val) => setStateHandler('state', val)}
           />
           <InputWithLabel color={"black"}
             value={state.address_line1}
-            placeholder={t('Address Line 1*')}
+            placeholder={t('addressLine1')}
             required
             onChangeText={(val) => setStateHandler('address_line1', val)}
           />
           <InputWithLabel color={"black"}
             value={state.address_line2}
-            placeholder={t('Address Line 2*')}
+            placeholder={t('addressline2')}
 
             required
             onChangeText={(val) => setStateHandler('address_line2', val)}
           />
           <InputWithLabel color={"black"}
             value={state.post_code}
-            placeholder={t('Postal Code*')}
+            placeholder={t('postalCode')}
             required
             onChangeText={(val) => setStateHandler('post_code', val)}
           />
           <InputWithLabel color={"black"}
             value={state.phone}
-            placeholder={t('Mobile Number*')}
+            placeholder={t('mobileNumber')}
             required
             onChangeText={(val) => setStateHandler('phone', val)}
           />
@@ -202,7 +202,8 @@ const AddNewAddress = (props) => {
         <View key="footer">
           <Button primary onPress={() => AddAddress()} loading={isLoading || isLoading2}>
             {/* {t('Add Address')} */}
-            {!!(props.route.params) ? props.route.params.checkout ? "USE THIS ADDRESS" : "Edit Address" : "Add Address"}
+            {!!(props.route.params) ? props.route.params.checkout ?
+              t('useAddress') : t('useAddress') : t('addAddress')}
           </Button>
         </View>
       </Screen>

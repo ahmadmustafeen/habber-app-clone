@@ -36,7 +36,10 @@
     "forgetPassword": "نسيت كلمة المرور",
     "signIn": "تسجيل الدخول",
     "createAccount": "تسجيل حساب جديد",
-    "skip": "تخطي"
+    "skip": "تخطي",
+    "Please" : "رجاء",
+    "LoginFailed" : "Login Failed",
+    "ok" : "حسنا"
   },
   "createAccount": {
     "firstName": "الاسم الاول",
@@ -47,8 +50,9 @@
     "signIn": "تسجيل الدخول",
     "bycreating": "بتسجيلك يتم على",
     "termAndService": "شروط الخدمة وسياسة الخصوصية",
-    "Please" : "حركي",
-    "valid email" : "البريد الالكترون"
+    "Please" : "رجاء",
+    "valid email" : "البريد الالكترون",
+    "ok" : "حسنا"
   },
   "Header": {
     "Home": "الرئيسية",
@@ -82,7 +86,8 @@
     "outOfStock": "الكمية نفذت",
     "youMayAlsoLike": "يمكن ان يعجبك",
     "by": "مرحبا",
-    "price": "مرحبا"
+    "price": "مرحبا",
+    "ok" : "حسنا"
   },
   "Settings": {
     "language": "اللغة",
@@ -101,7 +106,18 @@
     "name": "الاسم",
     "mobileNumberOptional": "رقم الموبايل",
     "message": "رسالة",
-    "Submit": "تطبيق"
+    "Submit": "تطبيق",
+    "ok" : "حسنا",
+    "Please" : "رجاء",
+    "phoneValidation" : "تغيير كلمة المرو",
+    "emailstaric": "البريد الالكتروني",
+  
+    "Messangestaric": "رسالة",
+
+    "Namestaric": "الاسم"
+
+
+    
   },
   "Cart": {
     "subTotal": "المجموع",
@@ -121,7 +137,18 @@
     "selectProductType": "اختر نوع المنتجات",
     "bookmarks": "علامة",
     "books": "كتب",
-    "Submit": "تثبيت"
+    "Submit": "تثبيت",
+    "ok" : "حسنا",
+
+    "Namestaric": "الاسم",
+    "emailstaric": "البريد الالكتروني",
+    "mobileNumberstaric": "رقم الموبايل",
+    "selectBusinessTypestaric": "اختر نوع العمل",
+    "selectProductTypestaric": "اختر نوع المنتجات",
+    "detailsestaric" : "تفاصيل"
+    
+    
+   
   },
   "Order": {
     "noBookAvailable": "لا يوجد كتاب"
@@ -142,19 +169,28 @@
     "phoneValidation" : "تغيير كلمة المرو",
     "mobileNumber": "رقم الهاتف",
     "addAddress": "اضافة عنوان",
-    "Please" : "حركي"
+    "Please" : "رجاء",
+    "useAddress": "استخدم هذا العنوان",
+    "editAddress" : "تعديل",
+    "ok" : "حسنا"
+    
+    
+
+   
   },
   "EditProfile": {
     "firstName": "الاسم الاول",
     "lastName": "الاسم الاخير",
     "phone": "رقم التلفون",
-    "save": "حفظ"
+    "save": "حفظ",
+    "ok" : "حسنا"
   },
   "ChangePassword": {
     "password": "كلمة مرور",
     "newPassword": "كلمة مرور جديدة",
     "confirmNewPassword": "تاكيد كلمة المرور الجديدة",
-    "save": "حفظ"
+    "save": "حفظ",
+    "ok" : "حسنا"
   },
   "Search": {
     "bookFound": "كتب وجدت"
@@ -182,7 +218,8 @@
     "sendRequest": "ارسل الطلب",
     "requestEducationalBook": "طلب كتاب تعليمي",
     "requestBook": "طلب كتاب",
-    "Please" : "تفضل"
+    "Please" : "رجاء",
+    "ok" : "حسنا"
   },
   "MyAddressBook": {
     "myAddressBook": "عناويني",
@@ -191,10 +228,8 @@
     "myProfile": "الملف الشخصي"
   },
   "Validation" :{
-    "Please" : "حركي"
-  },
-  "SignIn" :{
-    "email" : ""
+    "Please" : "رجاء"
   }
+ 
 
 }
