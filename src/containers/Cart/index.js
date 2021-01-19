@@ -131,7 +131,7 @@ const AddToCart = (props) => {
                       <TouchableOpacity style={styles.removeContainer} onPress={() => updateCartItem(product, 'remove')}>
                         <Icon
                           size={18}
-                          style={{ paddingRight: 30 }}
+                          // style={{ paddingRight: wp(30) }}
                           onPress={() => navigation.openDrawer()}
                           color={colors.primary}
                           name="trash-o"
@@ -141,7 +141,7 @@ const AddToCart = (props) => {
                           bold
                           size={17}
                           primary
-                          style={styles.txt}
+                          style={[styles.txt, styles.removeTxt]}
 
                         >
                           Remove
@@ -219,7 +219,10 @@ const AddToCart = (props) => {
 
 const styles = StyleSheet.create({
   txt: {
-    width: wp(45)
+    width: wp(45),
+  },
+  removeTxt: {
+    marginLeft: wp(2)
   },
 
   imgContainer: {
@@ -271,7 +274,9 @@ const styles = StyleSheet.create({
   },
   removeContainer: {
     marginVertical: hp(1),
-    flexDirection: 'row'
+    flexDirection: 'row',
+    // justifyContent: 'center'
+    alignItems: 'center'
   }
 });
 
