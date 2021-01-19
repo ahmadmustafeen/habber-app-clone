@@ -36,7 +36,18 @@ export function* addressSaga({ type, payload }) {
       //   },
       // ]);
     }
+    else {
+      Alert.alert('Cannot add new address, Please signin or signup first', message, [
+        {
+          onPress: () => {
+            (payload.checkout) ? NavigationService.navigate('Checkout', { screen: CHECKOUT }) :
+              NavigationService.navigate('MyProfile', { screen: MY_PROFILE })
+          }
+        },
+      ]);
+    }
   } catch (error) {
+
     yield put(errorAction(ADD_ADDRESS_FAILURE, error));
   } finally {
     yield put(stopAction(type));

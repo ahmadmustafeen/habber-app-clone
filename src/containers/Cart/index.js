@@ -42,7 +42,7 @@ const AddToCart = (props) => {
     UserProfileReducer: state.UserProfileReducer,
     isLoading: checkIfLoading(state, FETCH_USER_CART),
   }));
-  console.log('CartReducer', FetchCurrencyReducer);
+  console.log('CartReducer', CartReducer);
   var rtlLayout = false;
   (UserProfileReducer.currency.iso === "USD" || UserProfileReducer.currency.iso === "GBP" || UserProfileReducer.currency.iso === "EUR") && (rtlLayout = true)
 

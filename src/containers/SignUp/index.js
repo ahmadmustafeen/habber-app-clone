@@ -23,7 +23,7 @@ import {
   isSignedIn,
 } from '../../services/googleLoginController';
 import { checkIfLoading } from '_redux/selectors';
-import { TERMS_AND_CONDITIONS_SCREEN } from '../../constants/Screens';
+import { FORGOT_PASSWORD_SCREEN, TERMS_AND_CONDITIONS_SCREEN } from '../../constants/Screens';
 import { TouchableOpacity } from 'react-native';
 
 const SignUp = (props) => {
@@ -144,7 +144,7 @@ const SignUp = (props) => {
           <AppText white secondary size={17}>
             {t('bycreating')}
           </AppText>
-          <TouchableOpacity onPress={() => props.navigation.navigate(TERMS_AND_CONDITIONS_SCREEN)}>
+          <TouchableOpacity onPress={() => navigate('TermsAndConditions', { screen: 'TermsAndConditions' })}>
             <AppText underline style={styles.termsandservices} size={17}>
               {t('termAndService')}
             </AppText>

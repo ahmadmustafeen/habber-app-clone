@@ -78,7 +78,7 @@ const Header = (props, { adddok }) => {
             headerLeft
           ) : (
               <Icon
-                size={12}
+                size={20}
                 onPress={() => navigation.openDrawer()}
                 color={headerColor}
                 name="menu"

@@ -161,7 +161,7 @@ const Checkout = (props) => {
             <HorizontalRow />
             <View style={styles.row}>
               <AppText bold>Total </AppText>
-              <View style={styles.pricerow}><AppText bold>{parseFloat(parseFloat(CartReducer.total_price)) + parseFloat(parseFloat(Address_VAL.shipping_charges).toFixed(2))}</AppText></View>
+              <View style={styles.pricerow}><AppText bold>{(parseFloat(parseFloat(CartReducer.total_price).toFixed(2)) + parseFloat(parseFloat(Address_VAL.shipping_charges).toFixed(2))).toFixed(2)}</AppText></View>
             </View>
 
 
@@ -254,7 +254,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between'
   },
   pricerow: {
-    width: wp(25)
+    // width: wp(25)
   },
   radioButton: {
     position: 'absolute',

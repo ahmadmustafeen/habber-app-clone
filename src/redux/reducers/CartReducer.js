@@ -23,23 +23,25 @@ export default (state = initialState, { type, payload }) => {
           return state;
         }
         payload.cart_price = payload.price;
-
+        console.log("CART REDUCERS", payload)
         return {
           ...state,
           [payload.product_type]: [...state[payload.product_type], payload],
-          total_price:
-            state.book.reduce(
-              (total, book) =>
-                parseFloat(total.toString().replace(',', '')) +
-                parseFloat(book.cart_price.toString().replace(',', '')),
-              0,
-            ) +
+          // total_price: (!!state.total_price) ? state.total_price : (state.total_price + parseFloat(payload.cart_price.toString().replace(',', '')))
+          // total_price: state.total_price + parseFloat(payload.cart_price.toString().replace(',', ''))
+
+          total_price: state.total_price ? (state.book.reduce(
+            (total_price, book) =>
+              parseFloat(total_price.toString().replace(',', '')) +
+              parseFloat(book.cart_price.toString().replace(',', '')),
+            0,
+          ) +
             state.bookmark.reduce(
-              (total, book) =>
-                parseFloat(total.toString().replace(',', '')) +
-                parseFloat(book.cart_price.toString().replace(',', '')),
+              (total_price, bookmark) =>
+                parseFloat(total_price.toString().replace(',', '')) +
+                parseFloat(bookmark.cart_price.toString().replace(',', '')),
               0,
-            ),
+            )) : (parseFloat(payload.cart_price.toString().replace(',', '')))
         };
 
 
