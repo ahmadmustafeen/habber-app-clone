@@ -20,7 +20,7 @@ export function* AddToCartSaga({ type, payload }) {
     );
     if (!UserProfileReducer.token) {
       // UPDATE_CART_ITEM
-      console.log(payload, "this is the payload")
+      console.log(CartReducer.total_price, "this is the payload")
       NavigationService.navigate(CART_SCREEN);
       return;
     }

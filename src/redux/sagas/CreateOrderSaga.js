@@ -76,9 +76,16 @@ export function* CreateOrderSaga({ type, payload }) {
     console.log(response, "RESPONSE")
     if (!success) {
       console.error('Error', response);
+      Alert.alert("Cannot Create Order", response.data.message)
+
       yield put({ type: CREATE_ORDER_FAILURE });
       return;
     }
+    // console.log("REQUIRED DATA", response.data.status)
+    // if (!response.data.status) {
+    //   Alert.alert({ title: "Cannot Create Order", message: "Some Product ran out of stock" })
+    //   return;
+    // }
     console.log("CREATE ORDER SUCCESS RESPONSE :", response)
     yield put({ type: CREATE_ORDER_SUCCESS });
     // yield put({ type: FETCH_USER_CART });
@@ -96,6 +103,7 @@ export function* CreateOrderSaga({ type, payload }) {
 
     }
   } catch (error) {
+
     yield put(errorAction(error, CREATE_ORDER_FAILURE));
   } finally {
     // let userProfile = yield getItem('@userProfile');

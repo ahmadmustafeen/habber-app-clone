@@ -23,25 +23,56 @@ export default (state = initialState, { type, payload }) => {
           return state;
         }
         payload.cart_price = payload.price;
-        console.log("CART REDUCERS", payload)
+        console.log("STARTS HERE")
+        console.log(payload);
+        console.log({
+          ...state,
+          [payload.product_type]: [...state[payload.product_type], payload],
+          // total_price: (!!state.total_price) ? state.total_price : (state.total_price + parseFloat(payload.cart_price.toString().replace(',', '')))
+          // total_price: state.total_price + parseFloat(payload.cart_price.toString().replace(',', ''))
+
+          total_price:
+            // (state.total_price !== 0) ? (
+            //   state.book.reduce(
+            //     (total_price, book) =>
+            //       parseFloat(total_price.toString().replace(',', '')) +
+            //       parseFloat(book.cart_price.toString().replace(',', '')),
+
+            //   ),
+            //   state.bookmark.reduce(
+            //     (total_price, bookmark) =>
+            //       parseFloat(total_price.toString().replace(',', '')) +
+            //       parseFloat(bookmark.cart_price.toString().replace(',', '')),
+            //     0,
+            //   ))
+            //   :
+            (parseFloat(payload.cart_price.toString().replace(',', '')))
+        })
+        console.log("CART REDUCERS", parseFloat(payload.cart_price.toString().replace(',', '')))
+        console.log("ENDS HERE")
+
         return {
           ...state,
           [payload.product_type]: [...state[payload.product_type], payload],
           // total_price: (!!state.total_price) ? state.total_price : (state.total_price + parseFloat(payload.cart_price.toString().replace(',', '')))
           // total_price: state.total_price + parseFloat(payload.cart_price.toString().replace(',', ''))
 
-          total_price: state.total_price ? (state.book.reduce(
-            (total_price, book) =>
-              parseFloat(total_price.toString().replace(',', '')) +
-              parseFloat(book.cart_price.toString().replace(',', '')),
-            0,
-          ) +
-            state.bookmark.reduce(
-              (total_price, bookmark) =>
-                parseFloat(total_price.toString().replace(',', '')) +
-                parseFloat(bookmark.cart_price.toString().replace(',', '')),
-              0,
-            )) : (parseFloat(payload.cart_price.toString().replace(',', '')))
+          total_price:
+            // (state.total_price !== 0) ? (
+            //   state.book.reduce(
+            //     (total_price, book) =>
+            //       parseFloat(total_price.toString().replace(',', '')) +
+            //       parseFloat(book.cart_price.toString().replace(',', '')),
+
+            //   ),
+            //   state.bookmark.reduce(
+            //     (total_price, bookmark) =>
+            //       parseFloat(total_price.toString().replace(',', '')) +
+            //       parseFloat(bookmark.cart_price.toString().replace(',', '')),
+            //     0,
+            //   ))
+            //   :
+            (parseFloat(payload.cart_price.toString().replace(',', '')))
         };
 
 
@@ -94,10 +125,11 @@ export default (state = initialState, { type, payload }) => {
       return {
         book: distinctBooks,
         bookmark: distinctBookmarks,
-        // total_price: state.total_price + payload.total_price
-        total_price: state.total_price > 0
-          ? state.total_price + payload.total_price
-          : payload.total_price,
+        // total_price: state.total_price
+        total_price: payload.total_price
+        // total_price: state.total_price > 0
+        //   ? state.total_price + payload.total_price
+        //   : payload.total_price,
       };
     }
     case UPDATE_CART_ITEM_ORDER_COMPLETE: {
