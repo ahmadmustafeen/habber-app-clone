@@ -46,7 +46,7 @@ export default (state = initialState, { type, payload }) => {
             //     0,
             //   ))
             //   :
-            (parseFloat(payload.cart_price.toString().replace(',', '')))
+            (parseFloat(payload.cart_price.toString().replace(',', ''))) + state.total_price
         })
         console.log("CART REDUCERS", parseFloat(payload.cart_price.toString().replace(',', '')))
         console.log("ENDS HERE")
@@ -57,7 +57,7 @@ export default (state = initialState, { type, payload }) => {
           // total_price: (!!state.total_price) ? state.total_price : (state.total_price + parseFloat(payload.cart_price.toString().replace(',', '')))
           // total_price: state.total_price + parseFloat(payload.cart_price.toString().replace(',', ''))
 
-          total_price:
+          total_price: state.total_price !== 0 ?
             // (state.total_price !== 0) ? (
             //   state.book.reduce(
             //     (total_price, book) =>
@@ -72,6 +72,7 @@ export default (state = initialState, { type, payload }) => {
             //     0,
             //   ))
             //   :
+            (parseFloat(payload.cart_price.toString().replace(',', '')) + state.total_price) :
             (parseFloat(payload.cart_price.toString().replace(',', '')))
         };
 
@@ -122,11 +123,16 @@ export default (state = initialState, { type, payload }) => {
       const distinctBookmarks = mergedBookmark.filter(
         (item, i, a) => a.findIndex((t) => t.id === item.id) === i,
       );
+      // console.log("DISTINCT BOOK ", distinctBookmarks, distinctBooks)
+      let total_price = 0
+      distinctBooks.map(item => { total_price += parseFloat(parseFloat(item.cart_price.toString().replace(',', ''))) })
+      distinctBookmarks.map(item => { total_price += parseFloat(parseFloat(item.cart_price.toString().replace(',', ''))) })
+      console.log(total_price, "DITSKV")
       return {
         book: distinctBooks,
         bookmark: distinctBookmarks,
         // total_price: state.total_price
-        total_price: payload.total_price
+        total_price: total_price
         // total_price: state.total_price > 0
         //   ? state.total_price + payload.total_price
         //   : payload.total_price,
