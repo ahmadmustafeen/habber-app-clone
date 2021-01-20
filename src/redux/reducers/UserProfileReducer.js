@@ -4,6 +4,7 @@ import {
   SIGN_OUT_SUCCESS,
   SWITCH_LANG_SUCCESS,
 } from '_redux/actionTypes';
+import { SWITCH_CURRENCY_SUCCESS } from '../actionTypes';
 
 const initialState = {
   currency: { id: 1, iso: 'KWD', name: 'Kuwaiti dinar', symbol: 'KD' },
@@ -11,6 +12,9 @@ const initialState = {
 export default (state = initialState, action) => {
   switch (action.type) {
     case SWITCH_LANG_SUCCESS: {
+      return { ...state, ...action.payload };
+    }
+    case SWITCH_CURRENCY_SUCCESS: {
       return { ...state, ...action.payload };
     }
     case SIGN_IN_SUCCESS: {
