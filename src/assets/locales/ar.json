@@ -73,7 +73,8 @@
     "Search": "بحث",
     "Filter": "تصفية",
     "AboutUs": "من نحن",
-    "Checkout": "الدفع"
+    "Checkout": "الدفع",
+    "PaymentView": "دفع"
   },
   "BookDetails": {
     "isbn": "الرقم العالمي الموحد",
