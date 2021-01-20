@@ -61,6 +61,7 @@
     "ReturnPolicy": "سياسة الاسترجاع",
     "PrivacyPolicy": "سياسة الخصوصية",
     "TermsAndConditionsScreen": "الشروط والاحكام",
+    "SignUpTermCondition": "الشروط والاحكام",
     "JoinUs": "انضم الينا",
     "AddToCart": "السلة",
     "MyOrders": "طلباتي",
@@ -85,9 +86,10 @@
     "addToCart": "اضف الى السلة",
     "outOfStock": "الكمية نفذت",
     "youMayAlsoLike": "يمكن ان يعجبك",
-    "by": "بواسطة",
-    "price": "السعر",
-    "ok": "حسنا"
+    "by": "مرحبا",
+    "price": "مرحبا",
+    "ok": "حسنا",
+    "morebookclubs": "المزيد من نوادي الكتاب"
   },
   "Settings": {
     "language": "اللغة",

@@ -12,7 +12,7 @@ import { Icon } from 'react-native-elements';
 import WebView from 'react-native-webview';
 import { useSelector } from 'react-redux';
 
-const TermsAndConditions = (props) => {
+const SignUpTermCondition = (props) => {
 
 
 
@@ -64,4 +64,4 @@ const styles = StyleSheet.create({
     width: wp(100)
   }
 })
-export default TermsAndConditions;
+export default SignUpTermCondition;

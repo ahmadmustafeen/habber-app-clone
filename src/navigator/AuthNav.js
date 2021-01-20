@@ -1,13 +1,14 @@
 /* eslint-disable prettier/prettier */
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 
-import {createStackNavigator} from '@react-navigation/stack';
+import { createStackNavigator } from '@react-navigation/stack';
 
 import AdScreen from '../containers/AdScreen';
 import SignIn from '../containers/SignIn';
 import SignUp from '../containers/SignUp';
 import Language from '../containers/Language';
 import ForgotPassword from '../containers/ForgotPassword';
+import SignUpTermCondition from '../containers/SignUpTermCondition';
 
 import {
   FORGOT_PASSWORD_SCREEN,
@@ -15,6 +16,8 @@ import {
   SIGNIN_SCREEN,
   SIGNUP_SCREEN,
   AD_SCREEN,
+  SIGNUP_TERM_CODITION
+
 } from '../constants/Screens';
 const AuthScreen = createStackNavigator();
 export const AuthNav = () => {
@@ -29,6 +32,10 @@ export const AuthNav = () => {
       <AuthScreen.Screen
         name={FORGOT_PASSWORD_SCREEN}
         component={ForgotPassword}
+      />
+      <AuthScreen.Screen
+        name={SIGNUP_TERM_CODITION}
+        component={SignUpTermCondition}
       />
     </AuthScreen.Navigator>
   );

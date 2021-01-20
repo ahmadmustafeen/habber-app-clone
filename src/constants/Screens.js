@@ -29,6 +29,6 @@ export const CARTNEW = "CartNew";
 export const TERMS_AND_CONDITIONS_SCREEN = "TermsAndConditionsScreen";
 export const PAYMENT_SCREEN = 'PaymentView';
 export const RESET_PASSWORD_SCREEN = 'ResetPassword';
-
+export const SIGNUP_TERM_CODITION = 'SignUpTermCondition'
 
 
