@@ -126,7 +126,7 @@ const AddNewAddress = (props) => {
     <ScrollView>
 
       <Header {...props} backIcon headerLeft headerImage
-        title={!!(props.route.params) ? props.route.params.checkout ? "CHECKOUT" : "EDIT ADDRESS" : "Add Address"} />
+        title={!!(props.route.params) ? props.route.params.checkout ? (I18nManager.isRTL ? "الدفع" : "CHECKOUT") : (I18nManager.isRTL ? "تعديل العنوان" : "EDIT ADDRESS") : (I18nManager.isRTL ? "اضف عنوان" : "Add Address")} />
 
       <Screen>
         <View key="header"></View>
