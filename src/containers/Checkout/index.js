@@ -72,15 +72,15 @@ const Checkout = (props) => {
       <View key="content">
         <View style={styles.addressbookview}>
           <AppText bold style={{ paddingStart: wp(10), paddingVertical: 10 }}>
-            Select Payment Option
-            </AppText>
+            {I18nManager.isRTL ? "حدد خيار الدفع" : "Select Payment Option"}
+          </AppText>
           <View style={styles.addressbook}>
             <View style={styles.addressbookimg}>
               <Image
                 style={styles.img}
                 source={require('_assets/images/onlinepayment.png')}></Image>
             </View>
-            <AppText size={16}>Online Payment</AppText>
+            <AppText size={16}> {I18nManager.isRTL ? "الدفع الالكتروني" : "Online Payment"}</AppText>
             <RadioButton
               hideTitle
               selected={state.paymentMethod === 'online'}
@@ -95,7 +95,7 @@ const Checkout = (props) => {
                 source={require('_assets/images/cash.png')}></Image>
             </View>
 
-            <AppText size={16}>Cash On Delivery</AppText>
+            <AppText size={16}>{I18nManager.isRTL ? "الدفع عند الاستلام" : "Cash On Delivery"}</AppText>
             <RadioButton
               hideTitle
               selected={state.paymentMethod === 'cod'}
@@ -113,7 +113,7 @@ const Checkout = (props) => {
         />
         <View style={styles.addressbookview}>
           <AppText bold style={{ paddingStart: wp(10), paddingVertical: 10 }}>
-            Deliver To:
+            {I18nManager.isRTL ? "يسلم إلى" : "Deliver To"}:
             </AppText>
           <View style={styles.addressbook}>
             <View>
@@ -136,7 +136,7 @@ const Checkout = (props) => {
                 }}
                 ListEmptyComponent={() => (
                   <View>
-                    <AppText>No Address Available</AppText>
+                    <AppText>{I18nManager.isRTL ? "لا يوجد عنوان متاح" : " No Address Available"}</AppText>
                   </View>
                 )}
                 ListFooterComponent={() => (
@@ -149,18 +149,18 @@ const Checkout = (props) => {
           <View style={[styles.totalcontainer, { height: hp(20) }]}>
 
             <View style={styles.row}>
-              <AppText bold>Sub Total </AppText>
+              <AppText bold>{I18nManager.isRTL ? "المجموع الفرعي" : "Sub Total"} </AppText>
               <View style={styles.pricerow}><AppText bold>{parseInt(CartReducer.total_price).toFixed(2)}</AppText></View>
             </View>
 
             <View style={styles.row}>
-              <AppText bold>Delivery Charges </AppText>
+              <AppText bold>{I18nManager.isRTL ? "رسوم التوصيل" : "Delivery Charges"} </AppText>
               <View style={styles.pricerow}><AppText bold>{parseFloat((Address_VAL.shipping_charges)).toFixed(2)}</AppText></View>
             </View>
 
             <HorizontalRow />
             <View style={styles.row}>
-              <AppText bold>Total </AppText>
+              <AppText bold>{I18nManager.isRTL ? "مجموع" : "Total"} </AppText>
               <View style={styles.pricerow}><AppText bold>{(parseFloat(parseFloat(CartReducer.total_price).toFixed(2)) + parseFloat(parseFloat(Address_VAL.shipping_charges).toFixed(2))).toFixed(2)}</AppText></View>
             </View>
 
@@ -217,7 +217,7 @@ const Checkout = (props) => {
               bold
               aadres
               onPress={() => navigate('AddNewAddress', { screen: ADD_NEW_ADDRESS, checkout: true })}>
-              ADD NEW ADDRESS
+              {I18nManager.isRTL ? "أضف عنوانًا جديدًا" : "ADD NEW ADDRESS"}
             </Button>
             <Button
               fontSize={17}
@@ -225,8 +225,8 @@ const Checkout = (props) => {
               color={'white'}
               bold
               loading={isLoading}
-              onPress={() => { ((!!state.address) && (!!state.paymentMethod)) ? (dispatch(withDataActions({ address: state.address, paymentMethod: state.paymentMethod }, CREATE_ORDER))) : ((state.paymentMethod) ? Alert.alert("Select or Enter an Address to Continue") : Alert.alert("Select Payment Method")) }}>
-              PAY NOW
+              onPress={() => { ((!!state.address) && (!!state.paymentMethod)) ? (dispatch(withDataActions({ address: state.address, paymentMethod: state.paymentMethod }, CREATE_ORDER))) : ((state.paymentMethod) ? Alert.alert(I18nManager.isRTL ? "حدد أو أدخل عنوانًا للمتابعة" : "Select or Enter an Address to Continue") : Alert.alert(I18nManager.isRTL ? "اختار طريقة الدفع" : "Select Payment Method")) }}>
+              {I18nManager.isRTL ? "ادفع الآن" : "PAY NOW"}
             </Button>
 
           </View>

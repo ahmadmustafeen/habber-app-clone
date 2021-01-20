@@ -103,10 +103,10 @@ const AddToCart = (props) => {
                         {title}
                       </AppText>
                       <AppText size={15} style={[styles.txt, styles.author]}>
-                        by {author_name}
+                        {I18nManager.isRTL ? "بواسطة" : "by"}: {author_name}
                       </AppText>
                       <AppText bold size={17} style={styles.pricetxt}>
-                        Price: {rtlLayout && price_product.symbol} {parseFloat(cart_price.toString().replace(',', '')).toFixed(2)} {rtlLayout || price_product.symbol}
+                        {I18nManager.isRTL ? "السعر" : "Price"}: {rtlLayout && price_product.symbol} {parseFloat(cart_price.toString().replace(',', '')).toFixed(2)} {rtlLayout || price_product.symbol}
                       </AppText>
                       <View
                         style={{
@@ -146,8 +146,8 @@ const AddToCart = (props) => {
                           style={[styles.txt, styles.removeTxt]}
 
                         >
-                          Remove
-                      </AppText>
+                          {I18nManager.isRTL ? "إزالة" : "Remove"}
+                        </AppText>
                       </TouchableOpacity>
 
                     </View>

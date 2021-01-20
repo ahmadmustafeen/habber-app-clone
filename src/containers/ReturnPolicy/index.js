@@ -25,33 +25,9 @@ const ReturnPolicy = (props) => {
     return (
         <Screen noPadding>
             <View key="header">
-                <ImageBackground
-                    style={{
-                        height: hp(21),
-                        paddingHorizontal: wp(3),
-                        paddingBottom: hp(8),
-                        marginBottom: hp(1),
-                        justifyContent: 'flex-end',
-                        transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }],
-                    }}
-                    resizeMode='stretch'
-                    source={require('_assets/images/header.png')}>
+                <Header {...props} headerImage backIcon headerLeft />
 
-                    <Header {...props}
-
-                        headerLeft={
-                            <Icon
-                                onPress={() => props.navigation.goBack()}
-                                color={colors.primary}
-                                name="leftcircleo"
-                                type="ant-design"
-                            />
-                        } />
-
-
-                </ImageBackground>
             </View>
-
             <View key="content">
                 <WebView source={{ uri: link }} style={styles.staticPage} />
             </View>

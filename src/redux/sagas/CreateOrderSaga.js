@@ -9,6 +9,7 @@ import {
   CREATE_ORDER_FAILURE,
   CREATE_ORDER_SUCCESS,
   DO_PAYMENT,
+  FETCH_ORDER,
   FETCH_USER_CART,
   FETCH_USER_CART_SUCCESS,
   UPDATE_CART_ITEM,
@@ -88,6 +89,7 @@ export function* CreateOrderSaga({ type, payload }) {
     // }
     console.log("CREATE ORDER SUCCESS RESPONSE :", response)
     yield put({ type: CREATE_ORDER_SUCCESS });
+    yield put({ type: FETCH_ORDER });
     // yield put({ type: FETCH_USER_CART });
     yield put({ type: FETCH_USER_CART_SUCCESS, payload: null });
     if (!res.navigation) {

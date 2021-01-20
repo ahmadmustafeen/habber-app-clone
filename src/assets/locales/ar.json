@@ -72,7 +72,8 @@
     "ChangePassword": "تغيير كلمة المرور",
     "Search": "بحث",
     "Filter": "تصفية",
-    "AboutUs": "من نحن"
+    "AboutUs": "من نحن",
+    "Checkout": "الدفع"
   },
   "BookDetails": {
     "isbn": "الرقم العالمي الموحد",

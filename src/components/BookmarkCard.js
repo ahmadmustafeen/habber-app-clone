@@ -10,6 +10,7 @@ import { useSelector, shallowEqual } from 'react-redux';
 import { AppText } from './common/AppText';
 import { FastImage } from './FastImage';
 import { ModalImage } from './ModalImage';
+import { I18nManager } from 'react-native';
 const BookmarkCard = (props) => {
 
     const { image, title, price, prices, onPress, quantity } = props;
@@ -46,7 +47,7 @@ const BookmarkCard = (props) => {
                         </AppText>
                         :
                         <View style={[styles.outOfStock, { backgroundColor: colors.primary }]}>
-                            <AppText color="white" bold size={9}>Out Of Stock</AppText>
+                            <AppText color="white" bold size={9}>{I18nManager.isRTL ? "إنتهى من المخزن" : "Out Of Stock"}</AppText>
                         </View>
                     }
                 </View>

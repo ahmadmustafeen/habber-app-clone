@@ -234,7 +234,7 @@ const Settings = (props) => {
       >
         {UserProfileReducer.token && (
           <Button bold onPress={onLogout}>
-            LOGOUT
+            {I18nManager.isRTL ? "تسجيل خروج" : "LOGOUT"}
           </Button>
         )}
       </View>

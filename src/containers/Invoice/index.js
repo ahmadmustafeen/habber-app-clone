@@ -79,7 +79,7 @@ const Invoice = (props) => {
     return (
         <ScrollView>
 
-            <Header  {...props} title={props.route.params.orderDetails && "Orders Detail"}
+            <Header  {...props} title={props.route.params.orderDetails && (I18nManager.isRTL ? "تفاصيل الطلب" : "Orders Detail")}
                 headerLeft={<Icon
                     onPress={() => props.navigation.navigate(HOME)}
                     color={colors.primary}
@@ -88,32 +88,32 @@ const Invoice = (props) => {
                 />} headerImage />
 
             <View key="content">
-                <InvoiceItem headerLeft="Order ID" headerRight="Order Date" textLeft={item.id} textRight={item.created_at.split('T')[0]} />
+                <InvoiceItem headerLeft={I18nManager.isRTL ? "رقم التعريف الخاص بالطلب" : "Order ID"} headerRight={I18nManager.isRTL ? "تاريخ الطلب" : "Order Date"} textLeft={item.id} textRight={item.created_at.split('T')[0]} />
                 <View style={{ width: wp(80), alignSelf: "center", borderBottomColor: colors.primary, borderBottomWidth: hp(0.1) }} />
-                <InvoiceItem headerLeft="Customer Name" headerRight="Phone No." textLeft={UserProfileReducer.first_name} textRight={UserProfileReducer.phone} />
+                <InvoiceItem headerLeft={I18nManager.isRTL ? "اسم الزبون" : "Customer Name"} headerRight={I18nManager.isRTL ? "رقم الهاتف" : "Phone No."} textLeft={UserProfileReducer.first_name} textRight={UserProfileReducer.phone} />
                 <View style={{ width: wp(80), paddingVertical: hp(1), alignSelf: "center", borderBottomColor: colors.primary, borderBottomWidth: hp(0.1) }} />
-                <InvoiceItem headerLeft="Address" headerRight="Payment Method" textLeft={item.Address} textRight={item.payment_type} />
+                <InvoiceItem headerLeft={I18nManager.isRTL ? "عنوان" : "Address"} headerRight={I18nManager.isRTL ? "طريقة الدفع او السداد" : "Payment Method"} textLeft={item.Address} textRight={item.payment_type} />
 
                 <View style={[styles.detailCart]}>
                     <View style={[styles.detailCartHeader, { backgroundColor: colors.borderColor }]}>
                         <View style={{ flex: 3, justifyContent: 'center', alignItems: 'center', height: hp(5) }}>
                             <AppText bold secondary small >
-                                Name
+                                {I18nManager.isRTL ? "اسم" : "Name"}
                             </AppText>
                         </View>
                         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', height: hp(5) }}>
                             <AppText bold secondary small >
-                                Price
+                                {I18nManager.isRTL ? "السعر" : "Price"}
                             </AppText>
                         </View>
                         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', height: hp(5) }}>
                             <AppText bold secondary small >
-                                Qty
+                                {I18nManager.isRTL ? "كمية" : "Qty"}
                             </AppText>
                         </View>
                         <View style={{ flex: 2, justifyContent: 'center', alignItems: 'center', height: hp(5) }}>
                             <AppText bold secondary small >
-                                Subtotal
+                                {I18nManager.isRTL ? "المجموع الفرعي" : "Subtotal"}
                             </AppText>
                         </View>
 
@@ -124,7 +124,7 @@ const Invoice = (props) => {
                     <View style={[styles.detailCartHeader, { backgroundColor: colors.secondary, justifyContent: 'space-between', paddingHorizontal: wp(5) }]}>
                         <View style={{ justifyContent: 'center', alignItems: 'center', height: hp(5) }}>
                             <AppText white bold secondary small >
-                                Total
+                                {I18nManager.isRTL ? "مجموع" : "Total"}
                             </AppText>
                         </View>
                         <View style={{ justifyContent: 'center', alignItems: 'center', height: hp(5) }}>
@@ -135,6 +135,20 @@ const Invoice = (props) => {
 
 
                     </View>
+                    {/* <View style={[styles.detailCartHeader, { backgroundColor: colors.secondary, justifyContent: 'space-between', paddingHorizontal: wp(5) }]}>
+                        <View style={{ justifyContent: 'center', alignItems: 'center', height: hp(5) }}>
+                            <AppText white bold secondary small >
+                                {I18nManager.isRTL ? "مجموع" : "Total"}
+                            </AppText>
+                        </View>
+                        <View style={{ justifyContent: 'center', alignItems: 'center', height: hp(5) }}>
+                            <AppText white bold secondary small >
+                                {rtlLayout || item.currency_iso} {item.total_price.toFixed(2)} {rtlLayout && item.currency_iso}
+                            </AppText>
+                        </View>
+
+
+                    </View> */}
 
                 </View>
             </View>

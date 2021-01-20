@@ -28,7 +28,6 @@ export function* SwitchCurrencySaga({ payload }) {
                 yield put({ type: FETCH_ADDRESS })
             }
         }
-        console.log(payload.currency.id, "SCS");
 
 
         yield setItem('@userProfile', JSON.stringify(payload));

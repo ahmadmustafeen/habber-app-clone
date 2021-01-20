@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { View } from 'react-native';
 import { Image, StyleSheet } from 'react-native';
 import { useDispatch } from 'react-redux';
 import { withoutDataActions, withDataActions } from '_redux/actions';
@@ -8,17 +9,20 @@ import {
 } from '_redux/actionTypes';
 
 const Splash = (props) => {
-  console.log('Hello From Habber');
+  console.log('Hello From Habber', props);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(withoutDataActions(SPLASH_ACTION))
   }, []);
   return (
-    <Image
-      style={styles.Image}
-      resizeMode="stretch"
-      source={require('../../assets/images/splash.png')}
-    />
+    <View>
+      <Image
+        style={styles.Image}
+        resizeMode="stretch"
+        source={require('../../assets/images/splash.png')}
+      />
+    </View>
+
   );
 };
 const styles = StyleSheet.create({

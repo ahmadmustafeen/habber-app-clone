@@ -245,7 +245,7 @@ const Home = (props) => {
             label={t('bookclub')}
             renderComponent={(item) => (
               <ThumbnailClub
-                url={item.item.image}
+                url={item.item.bookclub_logo}
                 onPress={() =>
                   navigate(BOOK_DETAILS_SCREEN, {
                     ...item.item,

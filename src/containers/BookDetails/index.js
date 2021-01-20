@@ -81,7 +81,7 @@ const BookDetails = (props) => {
 
   if (book === null) book = props.route.params;
   // (book.product_type === 'bookclub') ? book = book.book : null
-
+  console.log("bookmark", book)
   var { id: product_id = 33, quantity, product_type, price, bookClub, type } = book;
   var old_product;
   var book_removed = false
@@ -130,8 +130,9 @@ const BookDetails = (props) => {
       };
     },
   );
-
-
+  console.log("THIS IS THE ANSWER",
+    FetchRelatedBookList)
+  // console.log("old_product", old_product.banner_image)
   // if (product_type === 'bookclub') {
   //   product_id = book.book.id;
   //   quantity = book.book.quantity;
@@ -167,7 +168,7 @@ const BookDetails = (props) => {
       inCartPosition === -1 ||
       CartReducer[product_type][inCartPosition].cart_quantity === 0
     ) {
-      Alert.alert('Please add quantity');
+      Alert.alert(I18nManager.isRTL ? "الرجاء إضافة الكمية" : "Please add quantity");
       return;
     }
 
@@ -201,7 +202,6 @@ const BookDetails = (props) => {
       alert(error.message);
     }
   };
-  console.log(props.route.params.name, "namw")
   return (
     <Screen noPadding contentPadding>
       <View key="header">
@@ -243,18 +243,19 @@ const BookDetails = (props) => {
               <View
                 style={{
                   transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }],
-                  width: wp(90), alignSelf: 'center', paddingBottom: 20
+                  width: wp(90), alignSelf: 'center', paddingBottom: 20, height: hp(22)
                 }}>
                 <Image
-                  style={{ width: wp(90), height: hp(18) }}
-                  source={{ uri: old_product.image }}
+                  // style={{ width: wp(90),  }}
+                  style={{ width: "100%", height: '100%' }}
+                  source={{ uri: old_product.banner_image }}
                 />
               </View>
             )}
         </ImageBackground>
       </View>
       <View key="content">
-        {book_removed && <NofeaturedBook unavailabetitle="THE FEATURED BOOK IS CURRENTLY UNAVAILABLE"
+        {book_removed && <NofeaturedBook unavailabetitle={I18nManager.isRTL ? "الكتاب المميز غير متوفر حاليًا" : "THE FEATURED BOOK IS CURRENTLY UNAVAILABLE"}
           source={require("../../assets/images/nofeatured.png")} />}
 
         {(type === 'bookclub' && !book_removed) &&
@@ -371,7 +372,8 @@ const BookDetails = (props) => {
                         onPress={() => {
                           props.navigation.push(BOOK_DETAILS_SCREEN, {
                             ...item.item,
-                            product_type,
+                            // product_type: 'book'
+                            // product_type: "bookmark",
                           });
                         }}
                         url={item.item.image}

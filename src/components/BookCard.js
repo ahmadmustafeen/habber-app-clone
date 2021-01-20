@@ -66,7 +66,7 @@ const BookCard = (props) => {
             </View>
 
             <View style={[styles.outOfStock, { backgroundColor: colors.primary }]}>
-              <AppText small >Out of Stock</AppText>
+              <AppText small >{I18nManager.isRTL ? "إنتهى من المخزن" : "Out Of Stock"}</AppText>
             </View>
           </>
         }

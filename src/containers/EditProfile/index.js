@@ -139,7 +139,7 @@ const EditProfile = (props) => {
         </View>
         <View style={{ position: 'absolute', right: 0, top: hp(8) }}>
           <AppText primary onPress={() => setState({ ...state, profile_pic: '' })}>
-            Reset Image
+            {I18nManager.isRTL ? "إعادة تعيين الصورة" : "Reset Image"}
           </AppText>
         </View>
         <HorizontalRow style={[styles.HorizontalRow, { borderBottomColor: colors.borderColor }]} />

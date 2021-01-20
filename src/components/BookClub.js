@@ -8,7 +8,7 @@ import { AppText } from './common/AppText';
 import { FastImage } from './FastImage';
 import { ModalImage } from './ModalImage';
 const BookClub = (props) => {
-    const { image, name, onPress } = props;
+    const { bookclub_logo, name, onPress } = props;
     const modalRef = useRef(null);
     const toggleModal = () => {
         modalRef.current.toggle();
@@ -18,14 +18,14 @@ const BookClub = (props) => {
         <TouchableWithoutFeedback onPress={onPress}>
             <View style={styles.containerStyle}>
                 <View style={styles.imageContainer}>
-                    <FastImage source={{ uri: image }} onPress={toggleModal} />
+                    <FastImage source={{ uri: bookclub_logo }} onPress={toggleModal} />
                 </View>
                 <View
                     style={styles.txtDetails}>
                     <AppText size={19}>{name}</AppText>
 
                 </View>
-                <ModalImage ref={modalRef} source={{ uri: image }} />
+                <ModalImage ref={modalRef} source={{ uri: bookclub_logo }} />
             </View>
         </TouchableWithoutFeedback>
     );
