@@ -87,13 +87,13 @@ export function* CreateOrderSaga({ type, payload }) {
     //   Alert.alert({ title: "Cannot Create Order", message: "Some Product ran out of stock" })
     //   return;
     // }
-    console.log("CREATE ORDER SUCCESS RESPONSE :", response)
+    // console.log("CREATE ORDER SUCCESS RESPONSE :", response)
     yield put({ type: CREATE_ORDER_SUCCESS });
     yield put({ type: FETCH_ORDER });
     // yield put({ type: FETCH_USER_CART });
     yield put({ type: FETCH_USER_CART_SUCCESS, payload: null });
     if (!res.navigation) {
-      console.log(response.data.data, "this is somthing inmportant")
+      // console.log(response.data.data, "this is somthing inmportant")
       NavigationService.navigate('Invoice', {
         item: response.data.data
       });

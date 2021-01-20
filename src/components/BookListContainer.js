@@ -7,6 +7,8 @@ import { BOOK_DETAILS_SCREEN } from '../constants/Screens';
 import { BookmarkCard } from './BookmarkCard';
 import { BookCard } from './BookCard';
 import { BookClub } from './BookClub';
+import NoBookAvailbe from './NoBookAvailable';
+import { I18nManager } from 'react-native';
 
 const BookListContainer = (props) => {
   const { data, navigation, product_type } = props;
@@ -72,7 +74,8 @@ const BookListContainer = (props) => {
       )}
       ListEmptyComponent={() => (
         <View>
-          <AppText>Nope</AppText>
+          {/* <AppText></AppText> */}
+          <NoBookAvailbe title={I18nManager.isRTL ? 'لا يوجد شيء لعرضه هنا!' : 'Nothing to Show here!'} />
         </View>
       )}
       ListFooterComponent={() => <View style={{ paddingBottom: 50 }} />}
