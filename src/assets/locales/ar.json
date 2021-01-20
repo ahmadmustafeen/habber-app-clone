@@ -61,6 +61,9 @@
     "ReturnPolicy": "سياسة الاسترجاع",
     "PrivacyPolicy": "سياسة الخصوصية",
     "TermsAndConditionsScreen": "الشروط والاحكام",
+   
+    "SignUpTermCondition": "الشروط والاحكام",
+
     "JoinUs": "انضم الينا",
     "AddToCart": "السلة",
     "MyOrders": "طلباتي",
@@ -87,7 +90,8 @@
     "youMayAlsoLike": "يمكن ان يعجبك",
     "by": "مرحبا",
     "price": "مرحبا",
-    "ok" : "حسنا"
+    "ok" : "حسنا",
+    "morebookclubs" : "المزيد من نوادي الكتاب"
   },
   "Settings": {
     "language": "اللغة",

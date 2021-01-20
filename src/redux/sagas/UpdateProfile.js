@@ -1,5 +1,5 @@
 import { put, call } from 'redux-saga/effects';
-import { Alert } from 'react-native';
+import { Alert, I18nManager } from 'react-native';
 import { API_ENDPOINTS } from '_constants/Network';
 import { startAction, stopAction } from '_redux/actions';
 import { RestClient } from '_network/RestClient';
@@ -26,9 +26,18 @@ export function* UpdateProfileSaga({ type, payload }) {
     const { status, data, message } = response;
     if (status === 200) {
       yield put({ type: SIGN_IN_SUCCESS, payload: { ...response.data.data } }),
-        Alert.alert('Your Profile have been Updated', message, [{
-          onPress: () => NavigationService.navigate('MyProfile', { screen: MY_PROFILE })
-        }])
+
+        // Alert.alert('Your Profile have been Updated', message, [{
+        //   onPress: () => NavigationService.navigate('MyProfile', { screen: MY_PROFILE })
+        // }])
+        Alert.alert(
+          '',
+          I18nManager.isRTL ? 'بيانات الاعتماد غير صالحة' : 'Your Profile have been Updated',
+          [
+
+            { text: I18nManager.isRTL ? 'حسنا' : 'ok', onPress: () => NavigationService.navigate('MyProfile', { screen: MY_PROFILE }) },
+          ]
+        );
     }
     else {
       Alert.alert('Something went wrong', message, [{

@@ -8,6 +8,7 @@ import { signUp } from '_assets/data/StaticData';
 import { withDataActions } from '_redux/actions/GenericActions';
 import { SIGN_UP, SIGN_IN } from '_redux/actionTypes';
 import useModal from '_utils/customHooks/useModal';
+// import { BOOK_DETAILS_SCREEN } from '../../';
 import { validateEmail, validatePassword, validateIsTrue } from '../../helpers/Validators';
 import {
   widthPercentageToDP as wp,
@@ -23,13 +24,15 @@ import {
   isSignedIn,
 } from '../../services/googleLoginController';
 import { checkIfLoading } from '_redux/selectors';
-import { FORGOT_PASSWORD_SCREEN, TERMS_AND_CONDITIONS_SCREEN } from '../../constants/Screens';
+import { FORGOT_PASSWORD_SCREEN, TERMS_AND_CONDITIONS_SCREEN, BOOK_DETAILS_SCREEN, SIGNUP_TERM_CODITION } from '../../constants/Screens';
+
 import { TouchableOpacity } from 'react-native';
 
 const SignUp = (props) => {
 
   const dispatch = useDispatch();
-  const { navigate } = props.navigation;
+  // const { navigate } = props.navigation;
+  const { navigation } = props;
   const { visible } = useModal();
 
   const { t } = useTranslation(['createAccount']);
@@ -158,7 +161,9 @@ const SignUp = (props) => {
           <AppText white secondary size={17}>
             {t('bycreating')}
           </AppText>
-          <TouchableOpacity onPress={() => navigate('TermsAndConditions', { screen: 'TermsAndConditions' })}>
+          <TouchableOpacity onPress={() => navigation.navigate(SIGNUP_TERM_CODITION)}
+
+          >
             <AppText underline style={styles.termsandservices} size={17}>
               {t('termAndService')}
             </AppText>
