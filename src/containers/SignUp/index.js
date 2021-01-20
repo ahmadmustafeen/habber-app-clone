@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { View, StyleSheet, Alert } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, StyleSheet, Alert, Keyboard } from 'react-native';
 import { useDispatch, useSelector, shallowEqual } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { InputWithLabel, RoundIcon, ModalScreen, AuthHeader } from '_components';
@@ -57,6 +57,20 @@ const SignUp = (props) => {
 
 
   };
+
+  const _keyboardDidHide = () => {
+    Keyboard.dismiss()
+  }
+
+
+
+  useEffect(() => {
+    const keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', _keyboardDidHide);
+    return () => {
+      keyboardDidHideListener.remove();
+    }
+  }, []);
+
 
   const onSignUp = () => {
     validate() && dispatch(withDataActions(state, SIGN_UP));

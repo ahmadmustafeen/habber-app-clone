@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, StyleSheet } from 'react-native';
-import { InputWithLabel } from '_components';
+import { InputWithLabel, ModalScreen } from '_components';
 import { Button, Screen } from '_components/common';
 // import { MY_PROFILE } from '_constants/Screens';
 import { Header } from '_components/Header';
@@ -12,11 +12,18 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
+import { PASSWORD_CHANGE } from '_assets/data/StaticData';
+import useModal from '_utils/customHooks/useModal';
 import { useTranslation } from 'react-i18next';
 import { validateIsTrue, validatePassword } from '../../helpers/Validators';
 import { checkIfLoading } from '../../redux/selectors';
 const ChangePassword = (props) => {
   const { t } = useTranslation(['ChangePassword'])
+  const { visible, toggleModal } = useModal();
+  const onContinue = () => {
+    toggleModal();
+    props.navigation.goBack();
+  };
   const { navigate } = props.navigation;
   const { colors } = useTheme();
   const dispatch = useDispatch();
@@ -51,11 +58,11 @@ const ChangePassword = (props) => {
   };
   const Validate = () => {
     return (
-      validateIsTrue(state.old_password, "Old Password") &&
-      validateIsTrue(state.password, "New Password") &&
-      validateIsTrue(state.password_confirmation, "Confirm Password") &&
+      validateIsTrue(state.old_password, `${t('Please')}  ${t('password')}`, false, t('ok')) &&
+      validateIsTrue(state.password, `${t('Please')}  ${t('newPassword')}`, false, t('ok')) &&
+      validateIsTrue(state.password_confirmation, `${t('Please')}  ${t('confirmNewPassword')}`, false, t('ok')) &&
       validatePassword(state.password) &&
-      validateIsTrue((state.password === state.password_confirmation), "Password does not Match", false)
+      validateIsTrue((state.password === state.password_confirmation), `${t('Please')}  ${t('PassNotMatch')}`, false, t('ok'))
     )
   }
   const passChange = () => {
@@ -67,7 +74,7 @@ const ChangePassword = (props) => {
     // navigate(MY_PROFILE)
   };
   return (
-    <View style={{ flex: 1 }} >
+    <View style={{ height: hp(100) }} >
       <View >
         <Header {...props} headerImage headerLeft backIcon />
       </View>
@@ -104,7 +111,13 @@ const ChangePassword = (props) => {
         />
 
       </View>
-      <View style={styles.footer}>
+      <ModalScreen
+        // image={require("")}
+        visible={visible}
+        onContinue={onContinue}
+        {...PASSWORD_CHANGE.modalData}
+      />
+      <View style={{ marginBottom: hp(5) }}>
         <Button
           loading={isLoading}
           style={styles.button}

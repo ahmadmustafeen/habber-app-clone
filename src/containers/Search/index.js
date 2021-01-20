@@ -23,7 +23,8 @@ import { TouchableOpacity } from 'react-native';
 import { TouchableWithoutFeedback } from 'react-native';
 
 const Search = (props) => {
-  const { t } = useTranslation(['Search']);
+  // const { t } = useTranslation(['Search']);
+  const { t } = useTranslation(['Search'])
   const { navigate } = props.navigation;
   const { colors } = useTheme();
   const [keyword, setKeyword] = useState('');
@@ -67,7 +68,7 @@ const Search = (props) => {
         <View style={{ transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }] }}>
           <TextInput
             style={[styles.textInput, { textAlign: I18nManager.isRTL ? "right" : "left" }]}
-            placeholder="Search keyword"
+            placeholder={I18nManager.isRTL ? 'بحث' : 'Search'}
             onChangeText={(val) => setKeyword(val)}
             onSubmitEditing={onSubmit}
           />
@@ -102,7 +103,9 @@ const Search = (props) => {
           )}
         </View>
         {/* {(SearchBooksReducer.length > 0) && <BookListContainer data={SearchBooksReducer} product_type="book" {...props} />} */}
-        {(SearchBooksReducer.length > 0) ? <BookListContainer data={SearchBooksReducer} product_type="book" {...props} /> : <NoBookAvailbe title="Nothing to show here," emptyy="Enter Something to Search" />}
+        {(SearchBooksReducer.length > 0) ? <BookListContainer data={SearchBooksReducer} product_type="book" {...props} />
+          : <NoBookAvailbe title={I18nManager.isRTL ? 'لا يوجد شيء لعرضه هنا!' : 'Nothing to Show here!'}
+            emptyy={I18nManager.isRTL ? 'أدخل شيئا للبحث' : 'Enter Something to Search'} />}
 
         <FilterModal {...props} visible={visible} onApply={onApplyFilter} />
       </View>

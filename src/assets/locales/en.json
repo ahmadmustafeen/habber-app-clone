@@ -109,7 +109,7 @@
     "privacyPolicy": "Privacy Policy",
     "returnPolicy": "Return Policy",
     "joinUs": "Join Us",
-    "Arabic": "مرحباx"
+    "Arabic": "عربى"
   },
   "ContactUs": {
     "supportChat": "Support Chat:",
@@ -158,7 +158,10 @@
     "phoneValidation": "Phone Number should be between 11 digits to 15 digits"
   },
   "Order": {
-    "noBookAvailable": "No Book Available"
+    "noBookAvailable": "No Book Available",
+    "nothingshown" : "Nothing to Show here!",
+    "EnterSomething" : "Enter Something to Search ",
+    "Search": "Search"
   },
   "MyProfile": {
     "myAddressBook": "MY ADDRESS BOOK",
@@ -189,14 +192,20 @@
     "ok" : "Ok"
   },
   "ChangePassword": {
-    "password": "Password",
+    "password": " Old Password",
     "newPassword": "New Password",
     "confirmNewPassword": "Confirm New Password",
     "save": "SAVE",
-    "ok" : "Ok"
+    "ok" : "Ok",
+    "Please" : "Please",
+    "PassNotMatch" : "Password does not Match"
   },
   "Search": {
-    "bookFound": "Book(s) Found"
+    "bookFound": "Book(s) Found",
+    "noBookAvailable": "No Book Available",
+    "nothingshown" : "Nothing to Show here!",
+    "EnterSomething" : "Enter Something to Search ",
+    "Search": "Search"
   },
   "Filter": {
     "filter": "FILTER",
@@ -240,5 +249,9 @@
   },
   "Validation": {
     "Please": "Please Enter"
+  }
+  ,
+  "Favorites" :{
+    "NoFavorities" : "No Items in Favourites"
   }
 }

@@ -81,6 +81,8 @@ const JoinUs = (props) => {
   //   return true;
   // };
   const validate = () => {
+    console.log("product_type", state.product_type)
+    console.log("state.business_type", state.business_type)
     return (
 
       validateIsTrue(state.name, `${t('Please')} ${t('name')}`, false, t('ok')) &&
@@ -93,9 +95,12 @@ const JoinUs = (props) => {
         `${t('Please')} ${t('phoneValidation')}`, false) &&
       validateIsTrue(!!validatePhone(state.phone), `${t('Please')}  ${t('mobileNumberOptional')}`, false, t('ok'))
       &&
+
+      validateIsTrue(state.business_type, `${t('Please')} ${t('selectBusinessType')}`, false, t('ok')) &&
+
       validateIsTrue(state.details, `${t('Please')} ${t('details')}`, false, t('ok')) &&
-      validateIsTrue(state.business_type, `${t('Please')} ${t('selectBusinessTyp')}`, false, t('ok')) &&
-      validateIsTrue(state.product_type, `${t('Please')} ${t('selectProductType')}`, false, t('ok'))
+      validateIsTrue(state.product_type.size, `${t('Please')} ${t('selectProductType')}`, false, t('ok'))
+
 
     )
 
