@@ -289,13 +289,13 @@ const BookDetails = (props) => {
           ) : (
               <>
                 <AppText style={styles.infoProduct} bold primary size={15}>
-                  Product ID: {book.bookmark_id}
+                  {t("productId")}: {book.bookmark_id}
                 </AppText>
                 <AppText style={styles.infoProduct} bold size={15}>
-                  Size in (inch): {book.size}
+                  {t("sizeInInches")}: {book.size}
                 </AppText>
                 <AppText style={styles.infoProduct} bold size={15}>
-                  Type of Bookmark: {book.type_of_bookmark}
+                  {t("typeOfBookmark")}: {book.type_of_bookmark}
                 </AppText>
               </>
             )}

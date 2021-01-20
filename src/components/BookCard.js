@@ -10,6 +10,7 @@ import {
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 import { useSelector, shallowEqual } from 'react-redux';
+import { I18nManager } from 'react-native';
 const BookCard = (props) => {
   const { image, author_name, title, price, prices, onPress, quantity } = props;
 
@@ -41,7 +42,7 @@ const BookCard = (props) => {
     <TouchableWithoutFeedback onPress={onPress}>
       <View style={[styles.containerStyle, { borderColor: colors.borderColor }]}>
         <AppText size={16} bold style={{ backgroundColor: colors.primary, padding: 10 }}>
-          Price: {rtlLayout && price_product.symbol} {parseFloat(price.toString().replace(',', '')).toFixed(2)} {rtlLayout || price_product.symbol}
+          {I18nManager.isRTL ? "السعر" : "Price"}  : {rtlLayout && price_product.symbol} {parseFloat(price.toString().replace(',', '')).toFixed(2)} {rtlLayout || price_product.symbol}
         </AppText>
         <View style={styles.imageContainer}>
           <FastImage source={{ uri: image }} onPress={toggleModal} />

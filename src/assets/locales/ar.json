@@ -85,8 +85,8 @@
     "addToCart": "اضف الى السلة",
     "outOfStock": "الكمية نفذت",
     "youMayAlsoLike": "يمكن ان يعجبك",
-    "by": "مرحبا",
-    "price": "مرحبا",
+    "by": "بواسطة",
+    "price": "السعر",
     "ok": "حسنا"
   },
   "Settings": {
@@ -199,10 +199,17 @@
     "Romance": "رومانسية",
     "Horror": "رعب",
     "Thriller": "اثارة",
-    "Suspence": "تشويق",
+    "Suspense": "تشويق",
     "Biography": "سيرة ذاتية",
     "Mystery": "غموض",
     "Action": "حركي",
+    "romance": "رومانسية",
+    "horror": "رعب",
+    "thriller": "اثارة",
+    "suspense": "تشويق",
+    "biography": "سيرة ذاتية",
+    "mystery": "غموض",
+    "action": "حركي",
     "apply": "تطبيق"
   },
   "RequestBook": {
