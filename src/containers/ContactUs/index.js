@@ -108,9 +108,9 @@ const ContactUs = (props) => {
 
 
 
-      validateIsTrue(((state.phone.length > 10) && (state.phone.length < 16)),
-        `${t('Please')} ${t('phoneValidation')}`, false) &&
-      validateIsTrue(!!validatePhone(state.phone), `${t('Please')}  ${t('mobileNumberOptional')}`, false, t('ok'))
+      validateIsTrue(((state.phone.length === 0) || ((state.phone.length > 10) && (state.phone.length < 16))),
+        `${t('Please')} ${t('phoneValidation')}`, false)
+
       && validateIsTrue(state.message, `${t('Please')} ${t('message')}`, false, t('ok'))
     )
 
@@ -168,7 +168,7 @@ const ContactUs = (props) => {
 
             style={styles.textArea}
             underlineColorAndroid="transparent"
-            placeholder={t('message')}
+            placeholder={t('Messangestaric')}
             placeholderTextColor="grey"
             numberOfLines={10}
             multiline

@@ -1,5 +1,5 @@
 import { put, call } from 'redux-saga/effects';
-
+import { Alert } from 'react-native';
 import { API_ENDPOINTS } from '_constants/Network';
 import { RestClient } from '_network/RestClient';
 import {
@@ -26,14 +26,19 @@ export function* JoinUsSaga({ type, payload }) {
     } = response;
     console.log('JoinUsSaga  Response . . . .  .', response);
     if (status !== 200) {
+      // Alert.alert('SOrry', message);
       yield put({ type: SUBMIT_JOIN_US_FAILURE, error });
     }
     else {
-      yield put({ type: SUBMIT_JOIN_US_SUCCESS });
+      yield put({ type: SUBMIT_JOIN_US_SUCCESS, response });
       yield put({ type: SHOW_MODAL, payload: null });
     }
   } catch (error) {
-    console.log(error)
+    // console.log(error)
+
+
+
+
     yield put({ type: SUBMIT_JOIN_US_FAILURE, error });
   } finally {
     yield put(stopAction(type));

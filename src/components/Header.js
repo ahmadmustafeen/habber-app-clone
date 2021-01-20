@@ -134,7 +134,7 @@ const Header = (props, { adddok }) => {
                         ? require('../assets/images/filledcart.png')
                         : (qua === 0 ? require('../assets/images/emptycart.png') : require('../assets/images/nocart3.png'))
                     }
-                    style={{ marginRight: wp(3) }}
+                    style={{ marginRight: wp(3), marginHorizontal: wp(1) }}
                   />
                   {qua ? (
                     <View style={I18nManager.isRTL ? styles.circleArabic : styles.circle}>
@@ -285,16 +285,16 @@ const styles = StyleSheet.create({
   },
   circle: {
     position: 'absolute',
-    right: wp(4.0),
-    top: hp(0),
-    width: wp(3),
-    height: wp(3),
+    right: wp(4.6),
+    top: hp(0.2),
+    width: wp(2.5),
+    height: wp(2.5),
   },
   circleArabic: {
     position: 'absolute',
     // right: wp(4.0),
-    left: wp(1.3),
-    top: hp(0),
+    left: wp(1.9),
+    top: hp(0.2),
     width: wp(3),
     height: wp(3),
   },

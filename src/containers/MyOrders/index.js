@@ -50,7 +50,7 @@ const MyOrders = (props) => {
               item, orderDetails: true
             })}
             color="#c27e12"
-            name="rightcircleo"
+            name={I18nManager.isRTL ? "leftcircleo" : "rightcircleo"}
             type="ant-design"
           />
         </View>

@@ -29,9 +29,10 @@ export function* UpdatePasswordSaga({ type, payload }) {
     console.log(response)
     if (status === 200) {
       yield put({ type: UPDATE_PASSWORD_SUCCESS, payload: data });
-      Alert.alert('Successfully Updated', message, [{
-        onPress: () => NavigationService.navigate('MyProfile', { screen: MY_PROFILE })
-      }])
+      yield put({ type: SHOW_MODAL, payload: null });
+      // Alert.alert('Successfully Updated', message, [{
+      //   onPress: () => NavigationService.navigate('MyProfile', { screen: MY_PROFILE })
+      // }])
       console.log('UpdatePasswordSagaSaga Saga Response . . . .  .', data);
 
       // yield put({type: SHOW_MODAL, payload: null});

@@ -5,6 +5,7 @@ import { put, call, all, select } from 'redux-saga/effects';
 import { API_ENDPOINTS } from '_constants/Network';
 import { RestClient } from '_network/RestClient';
 import { useTranslation } from 'react-i18next';
+import { I18nManager } from 'react-native'
 import {
   SIGN_IN_FAILURE,
   SIGN_IN_SUCCESS,
@@ -61,7 +62,15 @@ export function* signinSaga({ payload }) {
       });
 
     } else {
-      Alert.alert('Login Failed', message);
+      Alert.alert(
+        '',
+        I18nManager.isRTL ? 'بيانات الاعتماد غير صالحة' : 'Invalid credentials',
+        [
+
+          { text: I18nManager.isRTL ? 'حسنا' : 'ok' },
+        ]
+      );
+      // Alert.alert((I18nManager.isRTL ? 'هل نسيت كلمة المرور؟' : 'Login Failed'), (I18nManager.isRTL ? 'هل؟' : 'ok'), (I18nManager.isRTL ? 'هل؟' : 'ok'));
       yield put({ type: SIGN_IN_FAILURE, payload: null });
     }
   } catch (error) {

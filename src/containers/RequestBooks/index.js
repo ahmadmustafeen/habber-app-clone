@@ -5,9 +5,15 @@ import ImagePicker from 'react-native-image-picker';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import { withDataActions } from '_redux/actions';
 import { REQUEST_BOOK } from '_redux/actionTypes';
-import { InputWithLabel, Header } from '_components';
+import { InputWithLabel, Header, ModalScreen, } from '_components';
 import { Button, AppText, Screen } from '_components/common';
 import { validateIsTrue } from '_helpers/Validators';
+// import {
+//   ModalScreen,
+//   InputWithLabel,
+//   Header,
+
+// } from '../../components'
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -15,6 +21,8 @@ import {
 import { useTranslation } from 'react-i18next';
 import { checkIfLoading } from '../../redux/selectors';
 import { Keyboard } from 'react-native';
+import { REQUEST_BOOK_MODAL } from '_assets/data/StaticData';
+import useModal from '_utils/customHooks/useModal';
 const options = {
   title: 'Select Avatar',
   customButtons: [{ name: 'fb', title: 'Choose Photo from Facebook' }],
@@ -33,6 +41,11 @@ const RequestBooks = (props) => {
   }, shallowEqual);
 
   const { t } = useTranslation(['RequestBook'])
+  const { visible, toggleModal } = useModal();
+  const onContinue = () => {
+    toggleModal();
+    props.navigation.goBack();
+  };
   const {
     navigation: { navigate },
     route: {
@@ -56,8 +69,8 @@ const RequestBooks = (props) => {
 
   const validate = () => {
     return (
-      validateIsTrue(title, `${t('Please')}  ${t('Title')}`, false) &&
-      validateIsTrue(author_name, `${t('Please')}  ${t('author')}`, false)
+      validateIsTrue(title, `${t('Please')}  ${t('Title')}`, false, t('ok')) &&
+      validateIsTrue(author_name, `${t('Please')}  ${t('author')}`, false, t('ok'))
     )
   };
 
@@ -123,6 +136,12 @@ const RequestBooks = (props) => {
           <Image source={{ uri: state.image.uri }}></Image>
         </View>
       </View>
+      <ModalScreen
+        // image={require("")}
+        visible={visible}
+        onContinue={onContinue}
+        {...REQUEST_BOOK_MODAL.modalData}
+      />
       <View key="footer" style={[styles.content, { position: 'absolute', bottom: hp(6) }]}>
         <Button color="white" bold primary onPress={onSubmit} style={{ marginTop: hp(-5) }} loading={isLoading} >
           {t('sendRequest')}

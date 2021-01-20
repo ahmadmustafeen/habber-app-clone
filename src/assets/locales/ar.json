@@ -97,7 +97,7 @@
     "privacyPolicy": "سياسة الخصوصية",
     "returnPolicy": "سياسة الاسترجاع",
     "joinUs": "انضم الينا",
-    "Arabic": "مرحبا"
+    "Arabic": "عربى"
   },
   "ContactUs": {
     "supportChat": " دعم العملاء",
@@ -139,10 +139,14 @@
     "mobileNumberstaric": "رقم الموبايل",
     "selectBusinessTypestaric": "اختر نوع العمل",
     "selectProductTypestaric": "اختر نوع المنتجات",
-    "detailsestaric": "تفاصيل"
+    "detailsestaric": "تفاصيل",
+    "Please": "تفضل",
+    "phoneValidation": "يجب أن يتراوح رقم الهاتف بين 11 رقمًا و 15 رقمًا"
   },
   "Order": {
-    "noBookAvailable": "لا يوجد كتاب"
+    "noBookAvailable": "لا يوجد كتاب",
+    "nothingshown": "لا يوجد شيء لعرضه هنا!",
+    "EnterSomething": "أدخل شيئا للبحث"
   },
   "MyProfile": {
     "myAddressBook": "عناويني",
@@ -177,10 +181,16 @@
     "newPassword": "كلمة مرور جديدة",
     "confirmNewPassword": "تاكيد كلمة المرور الجديدة",
     "save": "حفظ",
-    "ok": "حسنا"
+    "ok": "حسنا",
+    "Please": "رجاء",
+    "PassNotMatch": "كلمة السر غير متطابقة"
   },
   "Search": {
-    "bookFound": "كتب وجدت"
+    "bookFound": "كتب وجدت",
+    "noBookAvailable": "لا يوجد كتاب",
+    "nothingshown": "لا يوجد شيء لعرضه هنا!",
+    "EnterSomething": "أدخل شيئا للبحث",
+    "Search": "بحث"
   },
   "Filter": {
     "filter": "تصفية",
@@ -216,5 +226,8 @@
   },
   "Validation": {
     "Please": "رجاء"
+  },
+  "Favorites": {
+    "NoFavorities": "لا توجد عناصر في المفضلة"
   }
 }
