@@ -60,25 +60,48 @@ const JoinUs = (props) => {
   const setStateHandler = (key, val) => {
     setState({ ...state, [key]: val });
   };
+  // const validate = () => {
+  //   if (!state.name) {
+  //     Alert.alert('Please Enter Name');
+  //     return false;
+  //   }
+  //   if (!validateEmail(state.email)) {
+  //     Alert.alert('Invalid Email');
+  //     return false;
+  //   }
+
+  //   if (!validatePhone(state.phone)) {
+  //     Alert.alert('Invalid Phone Number');
+  //     return false;
+  //   }
+  //   validateIsTrue(state.details, 'Details');
+  //   validateIsTrue(state.business_type, 'Business Type');
+  //   validateIsTrue(state.product_type, 'Product Type');
+
+  //   return true;
+  // };
   const validate = () => {
-    if (!state.name) {
-      Alert.alert('Please Enter Name');
-      return false;
-    }
-    if (!validateEmail(state.email)) {
-      Alert.alert('Invalid Email');
-      return false;
-    }
+    return (
 
-    if (!validatePhone(state.phone)) {
-      Alert.alert('Invalid Phone Number');
-      return false;
-    }
-    validateIsTrue(state.details, 'Details');
-    validateIsTrue(state.business_type, 'Business Type');
-    validateIsTrue(state.product_type, 'Product Type');
+      validateIsTrue(state.name, `${t('Please')} ${t('name')}`, false, t('ok')) &&
+      validateIsTrue(state.email, `${t('Please')} ${t('email')}`, false, t('ok')) &&
 
-    return true;
+
+
+
+      validateIsTrue(((state.phone.length > 10) && (state.phone.length < 16)),
+        `${t('Please')} ${t('phoneValidation')}`, false) &&
+      validateIsTrue(!!validatePhone(state.phone), `${t('Please')}  ${t('mobileNumberOptional')}`, false, t('ok'))
+      &&
+      validateIsTrue(state.details, `${t('Please')} ${t('details')}`, false, t('ok')) &&
+      validateIsTrue(state.business_type, `${t('Please')} ${t('selectBusinessTyp')}`, false, t('ok')) &&
+      validateIsTrue(state.product_type, `${t('Please')} ${t('selectProductType')}`, false, t('ok'))
+
+    )
+
+
+
+
   };
   const businessTypeFunc = (id) => {
     setStateHandler('business_type', id);
@@ -111,27 +134,27 @@ const JoinUs = (props) => {
         <InputWithLabel
           color={'black'}
           style={styles.inputfield}
-          placeholder={t('name')}
+          placeholder={t('Namestaric')}
           required
           value={state.name}
           onChangeText={(val) => setStateHandler('name', val)}
         />
         <InputWithLabel
-          placeholder={t('email')}
+          placeholder={t('emailstaric')}
           required
           color={'black'}
           value={state.email}
           onChangeText={(val) => setStateHandler('email', val)}
         />
         <InputWithLabel
-          placeholder={t('mobileNumber')}
+          placeholder={t('mobileNumberstaric')}
           required
           color={'black'}
           value={state.phone}
           onChangeText={(val) => setStateHandler('phone', val)}
         />
         <View style={{ padding: wp(4) }}>
-          <AppText style={styles.businesstype}>{t('selectBusinessType')}</AppText>
+          <AppText style={styles.businesstype}>{t('selectBusinessTypestaric')}</AppText>
           <View style={styles.row}>
             <RadioButton
               title={t('individual')}
@@ -155,7 +178,7 @@ const JoinUs = (props) => {
         <TextInput
           style={styles.textArea}
           underlineColorAndroid="transparent"
-          placeholder="Details*"
+          placeholder={t('detailsestaric')}
           placeholderTextColor="grey"
           numberOfLines={10}
           multiline={true}
@@ -163,7 +186,7 @@ const JoinUs = (props) => {
           onChangeText={(val) => setStateHandler('details', val)}
         />
         <View style={{ padding: wp(4) }}>
-          <AppText style={styles.businesstype}>{t("selectProductType")}</AppText>
+          <AppText style={styles.businesstype}>{t("selectProductTypestaric")}</AppText>
           <View style={styles.row}>
             <RadioButton
               title={t('books')}

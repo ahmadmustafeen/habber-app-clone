@@ -77,7 +77,7 @@ const Search = (props) => {
               containerStyle={styles.iconStyle}
               // name="search1"
               // type="antdesign"
-              name="leftcircleo"
+              name="search1"
               type="ant-design"
             />
           </TouchableWithoutFeedback>

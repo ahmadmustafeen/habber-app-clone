@@ -10,6 +10,7 @@ import { AppText } from 'components/common';
 import { shallowEqual, useSelector } from 'react-redux';
 import { Icon } from 'react-native-elements'
 import { HOME } from '../../constants/Screens';
+// import { parse } from '@babel/core';
 
 const Invoice = (props) => {
     console.log(props, "ORDER DATA")
@@ -21,6 +22,7 @@ const Invoice = (props) => {
         };
     }, shallowEqual);
     const item = props.route.params.item
+    console.log("item", item)
     console.log(item, UserProfileReducer)
     const { colors } = useTheme()
     const InvoiceItem = (props) => {
@@ -28,8 +30,6 @@ const Invoice = (props) => {
             <View style={{ width: wp(90), paddingVertical: hp(1), alignSelf: 'center', flex: 2, flexDirection: 'row', justifyContent: 'space-between', }}>
 
                 <View style={{ width: wp(0.8), height: hp(5), position: "absolute", left: 0, top: hp(2), backgroundColor: colors.primary }} />
-
-
                 <View style={{ paddingLeft: wp(2), flex: 1, }}>
                     <AppText style={styles.txt} size={20} bold >{props.headerLeft}</AppText>
                     <AppText capitalize small >{props.textLeft}</AppText>
@@ -118,8 +118,8 @@ const Invoice = (props) => {
                         </View>
 
                     </View>
-                    {item.books.map(book => { return <OrderBox key={book.id} name={book.title} price={book.cart_price} quantity={book.cart_quantity} subtotal={book.cart_quantity * book.cart_price} /> })}
-                    {item.bookmarks.map(book => { return <OrderBox key={book.id} name={book.title} price={book.cart_price} quantity={book.cart_quantity} subtotal={book.cart_quantity * book.cart_price} /> })}
+                    {item.books.map(book => { return <OrderBox key={book.id} name={book.title} price={(parseFloat(parseFloat(book.price.toString().replace(',', '')))).toFixed(2)} quantity={book.cart_quantity} subtotal={book.cart_price} /> })}
+                    {item.bookmarks.map(book => { return <OrderBox key={book.id} name={book.title} price={(parseFloat(parseFloat(book.price.toString().replace(',', '')))).toFixed(2)} quantity={book.cart_quantity} subtotal={book.cart_price} /> })}
 
                     <View style={[styles.detailCartHeader, { backgroundColor: colors.secondary, justifyContent: 'space-between', paddingHorizontal: wp(5) }]}>
                         <View style={{ justifyContent: 'center', alignItems: 'center', height: hp(5) }}>
@@ -129,7 +129,7 @@ const Invoice = (props) => {
                         </View>
                         <View style={{ justifyContent: 'center', alignItems: 'center', height: hp(5) }}>
                             <AppText white bold secondary small >
-                                {rtlLayout || item.currency_iso} {item.total_price} {rtlLayout && item.currency_iso}
+                                {rtlLayout || item.currency_iso} {item.total_price.toFixed(2)} {rtlLayout && item.currency_iso}
                             </AppText>
                         </View>
 

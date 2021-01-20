@@ -48,11 +48,11 @@ const SignUp = (props) => {
   };
   const validate = () => {
     return (
-      validateIsTrue(first_name, `${t('Please')}  ${t('firstName')}`, false) &&
-      validateIsTrue(last_name, `${t('Please')}  ${t('lastName')}`, false) &&
-      validateIsTrue(validateEmail(email), `${t('Please')}  ${t('email')}`, false) &&
-      validateIsTrue(validatePassword(password), `${t('Please')}  ${t('password')}`, false) &&
-      validateIsTrue((password === password_confirmation), `${t('Please')}  ${t('confirmPassword')}`, false)
+      validateIsTrue(first_name, `${t('Please')}  ${t('firstName')}`, false, t('ok')) &&
+      validateIsTrue(last_name, `${t('Please')}  ${t('lastName')}`, false, t('ok')) &&
+      validateIsTrue(validateEmail(email), `${t('Please')}  ${t('email')}`, false, t('ok')) &&
+      validateIsTrue(validatePassword(password), `${t('Please')}  ${t('password')}`, false, t('ok')) &&
+      validateIsTrue((password === password_confirmation), `${t('Please')}  ${t('confirmPassword')}`, false, t('ok'))
     )
 
 

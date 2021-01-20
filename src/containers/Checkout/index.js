@@ -39,7 +39,7 @@ const Checkout = (props) => {
       isLoading: checkIfLoading(state, CREATE_ORDER),
     };
   }, shallowEqual);
-  console.log(CartReducer)
+  console.log(UserProfileReducer, "UserProfileReducer")
   const [state, setState] = useState({
     paymentMethod: '',
     address: '',

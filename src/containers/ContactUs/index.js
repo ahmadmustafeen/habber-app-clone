@@ -22,7 +22,7 @@ import { withDataActions } from '_redux/actions';
 import { SUBMIT_CONTACT_US } from '_redux/actionTypes';
 import useModal from '_utils/customHooks/useModal';
 import { checkIfLoading } from '_redux/selectors';
-import { validatePhone, validateEmail } from '_helpers/Validators';
+import { validatePhone, validateEmail, validateIsTrue } from '_helpers/Validators';
 import {
   ModalScreen,
   InputWithLabel,
@@ -33,6 +33,7 @@ import {
 import { AppText, Button, Screen } from '../../components/common';
 import { useTranslation } from 'react-i18next';
 import { combineEpics } from 'redux-observable';
+
 // export const CONTACT_US = {
 //   modalData: {
 //     heading: isRTL ? 'We Will Contact You Shortly!' : 'عناويني',
@@ -79,21 +80,43 @@ const ContactUs = (props) => {
     setState({ ...state, [key]: val });
 
   };
-  const validate = () => {
-    if (!state.name) {
-      Alert.alert('Please Enter Name');
-      return false;
-    }
-    if (!validateEmail(state.email)) {
-      Alert.alert('Invalid Email');
-      return false;
-    }
-    if (!state.message) {
-      Alert.alert('Please Enter Message');
-      return false;
-    }
+  // const validate = () => {
+  //   if (!state.name) {
+  //     Alert.alert(`${t('Please')}  ${t('name')}`);
+  //     return false;
+  //   }
+  //   if (!validateEmail(state.email)) {
+  //     Alert.alert('Invalid Email');
+  //     return false;
+  //   }
+  //   if (!state.message) {
+  //     Alert.alert('Please Enter Message');
+  //     return false;
+  //   }
 
-    return true;
+  //   return true;
+
+
+
+  // };
+  const validate = () => {
+    return (
+
+      validateIsTrue(state.name, `${t('Please')} ${t('name')}`, false, t('ok')) &&
+      validateIsTrue(state.email, `${t('Please')} ${t('email')}`, false, t('ok')) &&
+
+
+
+
+      validateIsTrue(((state.phone.length > 10) && (state.phone.length < 16)),
+        `${t('Please')} ${t('phoneValidation')}`, false) &&
+      validateIsTrue(!!validatePhone(state.phone), `${t('Please')}  ${t('mobileNumberOptional')}`, false, t('ok'))
+      && validateIsTrue(state.message, `${t('Please')} ${t('message')}`, false, t('ok'))
+    )
+
+
+
+
   };
 
   const onSubmit = () => {
@@ -118,7 +141,7 @@ const ContactUs = (props) => {
             containerStyle={styles.inputWithLabel}
             borderColor={colors.borderColor}
             color={"black"}
-            placeholder={t('name')}
+            placeholder={t('Namestaric')}
             required
             value={state.name}
             onChangeText={(val) => setStateHandler('name', val)}
@@ -126,7 +149,7 @@ const ContactUs = (props) => {
           <InputWithLabel
             borderColor={colors.borderColor}
             containerStyle={styles.inputWithLabel}
-            placeholder={t('email')}
+            placeholder={t('emailstaric')}
             required
             color={"black"}
             value={state.email}

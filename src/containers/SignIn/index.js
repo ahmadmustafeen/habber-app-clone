@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, Alert } from 'react-native';
+import { View, StyleSheet, Alert, Text } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 
@@ -16,6 +16,7 @@ import {
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 import { ImageBackground } from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const SignIn = (props) => {
   const { t } = useTranslation(['login']);
@@ -38,8 +39,8 @@ const SignIn = (props) => {
   const validate = () => {
 
     return (
-      validateIsTrue(validateEmail(state.email), "Email") &&
-      validateIsTrue(validatePassword(state.password), "Password")
+      validateIsTrue(validateEmail(state.email), `${t('Please')}  ${t('email')}`, false, t('ok')) &&
+      validateIsTrue(validatePassword(state.password), `${t('Please')}  ${t('password')}`, false, t('ok'))
 
     )
   };
@@ -149,7 +150,7 @@ Login with Social media account`}
         </View>  */}
         </View>
       </View>
-      <View key="footer">
+      <View style={{ width: wp(20), alignSelf: 'flex-end' }}>
         <AppText
           right
           underline
@@ -159,6 +160,9 @@ Login with Social media account`}
           {t('skip')}
         </AppText>
       </View>
+      {/* <TouchableOpacity style={{ backgroundColor: 'red', width: wp(20) }} onPress={() => navigate('Drawer', { screen: 'Home' })}>
+        <Text>hhh</Text>
+      </TouchableOpacity> */}
     </ImageBackground>
   );
 };

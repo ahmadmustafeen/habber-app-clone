@@ -29,6 +29,8 @@ import { FETCH_USER_CART } from 'redux/actionTypes';
 import { Icon } from 'react-native-elements';
 import { useTranslation } from 'react-i18next';
 import NoBookAvailbe from '../../components/NoBookAvailable';
+import { SIGNIN_SCREEN } from '../../constants/Screens';
+import { Alert } from 'react-native';
 const delivery_charges = 10;
 const AddToCart = (props) => {
   const { emptyy } = props
@@ -207,8 +209,16 @@ const AddToCart = (props) => {
               bold
               primary
               style={styles.footerbtn}
-              onPress={() => props.navigation.navigate(CHECKOUT)}>
-              {t("checkout")}
+              onPress={() => (UserProfileReducer.token ? props.navigation.navigate(CHECKOUT) :
+                Alert.alert((I18nManager.isRTL ? "" : ""), (I18nManager.isRTL ? "يرجى تسجيل الدخول أو التسجيل أولا للمتابعة" : "Kindly sign-in or sign-up first to continue"), [
+                  {
+                    text: I18nManager.isRTL ? "تقدم" : "Proceed",
+                    onPress: () => {
+                      // (payload.checkout) ? NavigationService.navigate('Checkout', { screen: CHECKOUT }) :
+                      props.navigation.navigate(SIGNIN_SCREEN)
+                    }
+                  },
+                ]))}> {t("checkout")}
             </Button>
           }
         </View>
