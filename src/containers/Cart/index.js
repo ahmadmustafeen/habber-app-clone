@@ -45,18 +45,20 @@ const AddToCart = (props) => {
     UserProfileReducer: state.UserProfileReducer,
     isLoading: checkIfLoading(state, FETCH_USER_CART),
   }));
-  console.log('CartReducer', CartReducer);
+
   var rtlLayout = false;
   (UserProfileReducer.currency.iso === "USD" || UserProfileReducer.currency.iso === "GBP" || UserProfileReducer.currency.iso === "EUR") && (rtlLayout = true)
 
   const price_product = FetchCurrencyReducer.find((item) => item.iso === UserProfileReducer.currency.iso)
 
   const updateCartItem = (book, action) => {
+    let price = (book.prices.find((item) => item.iso === UserProfileReducer.currency.iso).price);
     dispatch(
       withDataActions(
         {
           ...book,
           action,
+          price
         },
         UPDATE_CART_ITEM,
       ),

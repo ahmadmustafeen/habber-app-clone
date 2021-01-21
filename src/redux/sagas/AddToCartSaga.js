@@ -19,8 +19,7 @@ export function* AddToCartSaga({ type, payload }) {
       },
     );
     if (!UserProfileReducer.token) {
-      // UPDATE_CART_ITEM
-      console.log(CartReducer.total_price, "this is the payload")
+
       NavigationService.navigate(CART_SCREEN);
       return;
     }
@@ -49,7 +48,6 @@ export function* AddToCartSaga({ type, payload }) {
       data: { data: res, message, status },
     } = response;
 
-    console.log('CartSAGA  Response . . . .  .', response);
     if (status) {
       yield all([
         put({ type: FETCH_USER_CART }),
@@ -57,7 +55,6 @@ export function* AddToCartSaga({ type, payload }) {
       ]);
       NavigationService.navigate(CART_SCREEN);
     } else {
-      console.error('Error', response);
       yield put({ type: ADD_TO_CART_FAILURE });
     }
   } catch (error) {

@@ -15,6 +15,7 @@ export function* FetchUserCartSaga() {
     if (!res.success) {
       yield put({ type: FETCH_USER_CART_FAILURE });
     } else {
+      console.log(res.data, "THIS IS THE REPONSE DATA")
       yield put({ type: FETCH_USER_CART_SUCCESS, payload: res.data });
     }
   } catch (error) {

@@ -23,7 +23,6 @@ export function* ReAddToCartSaga({ type, payload }) {
                 return { CartReducer, UserProfileReducer };
             },
         );
-        console.log(CartReducer, "THIS IS IN  CART")
         // if (!UserProfileReducer.token) {
         //     // UPDATE_CART_ITEM
         //     console.log(CartReducer.total_price, "this is the payload")

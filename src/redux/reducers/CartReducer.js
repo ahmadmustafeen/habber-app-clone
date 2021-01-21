@@ -1,10 +1,12 @@
 import { Alert } from 'react-native';
+import { select } from 'redux-saga/effects';
 import {
   ADD_TO_CART,
   FETCH_USER_CART_SUCCESS,
   UPDATE_CART_ITEM,
   UPDATE_CART_ITEM_ORDER_COMPLETE
 } from '_redux/actionTypes';
+import store from '../store'
 const initialState = {
   book: [],
   bookmark: [],
@@ -12,6 +14,7 @@ const initialState = {
 };
 
 export default (state = initialState, { type, payload }) => {
+
   switch (type) {
     case UPDATE_CART_ITEM: {
       const alreadyAvailable = state[payload.product_type].findIndex(
@@ -90,8 +93,10 @@ export default (state = initialState, { type, payload }) => {
       }
 
       product.cart_price =
+        // this is the problem here
         parseFloat(payload.price.toString().replace(',', '')) *
         product.cart_quantity;
+      // till here
       updatedState.total_price =
         updatedState.book.reduce(
           (total, book) =>

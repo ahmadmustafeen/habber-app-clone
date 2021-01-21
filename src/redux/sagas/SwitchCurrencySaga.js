@@ -5,9 +5,11 @@ import i18n from 'utils/i18n';
 import * as NavigationService from '../../../NavigationService';
 import { SIGNIN_SCREEN } from '_constants/Screens';
 import { setItem, getItem } from '_helpers/Localstorage';
-import { FETCH_ADDRESS, FETCH_ADDRESS_SUCCESS, FETCH_ARABIC_BOOKS, FETCH_BANNER, FETCH_BANNER_SUCCESS, FETCH_BOOKCLUBS, FETCH_BOOKCLUBS_SUCCESS, FETCH_BOOKMARKS, FETCH_BOOKMARKS_SUCCESS, FETCH_BOOK_LISTS, FETCH_ENGLISH_BOOKS, FETCH_ENGLISH_BOOKS_SUCCESS, RE_ADD_TO_CART, SPLASH_ACTION, SWITCH_CURRENCY_FAILURE, SWITCH_CURRENCY_SUCCESS, UPDATE_CART_PRICES } from '../actionTypes';
+import { FETCH_ADDRESS, FETCH_ADDRESS_SUCCESS, FETCH_ARABIC_BOOKS, FETCH_BANNER, FETCH_BANNER_SUCCESS, FETCH_BOOKCLUBS, FETCH_BOOKCLUBS_SUCCESS, FETCH_BOOKMARKS, FETCH_BOOKMARKS_SUCCESS, FETCH_BOOK_LISTS, FETCH_ENGLISH_BOOKS, FETCH_ENGLISH_BOOKS_SUCCESS, FETCH_USER_PROFILE, RE_ADD_TO_CART, SPLASH_ACTION, SWITCH_CURRENCY_FAILURE, SWITCH_CURRENCY_SUCCESS, UPDATE_CART_ITEM, UPDATE_CART_PRICES } from '../actionTypes';
 import { RestClient } from '../../network/RestClient';
 import { API_ENDPOINTS } from '../../constants/Network';
+import RNRestart from 'react-native-restart';
+
 
 export function* SwitchCurrencySaga({ payload }) {
     try {
@@ -25,12 +27,7 @@ export function* SwitchCurrencySaga({ payload }) {
             )
             // console.log("THIS IS THE RESPONSE", response)
             if (response.status === 200) {
-                yield setItem('@userProfile', JSON.stringify(payload));
-                yield put({
-                    type: SWITCH_CURRENCY_SUCCESS,
-                    payload,
-                });
-                yield put({ type: UPDATE_CART_PRICES })
+
 
                 yield put({ type: FETCH_ADDRESS });
                 // yield put({ type: SPLASH_ACTION })
@@ -48,8 +45,15 @@ export function* SwitchCurrencySaga({ payload }) {
                 // yield put({ type: FETCH_BOOKMARKS })
                 // yield put({ type: FETCH_BANNER })
             }
-        }
 
+        }
+        yield setItem('@userProfile', JSON.stringify(payload));
+        yield put({
+            type: SWITCH_CURRENCY_SUCCESS,
+            payload,
+        });
+        yield put({ type: UPDATE_CART_PRICES })
+        // RNRestart.Restart()
 
 
 

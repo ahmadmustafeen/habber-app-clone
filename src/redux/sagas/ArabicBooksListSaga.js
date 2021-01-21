@@ -1,27 +1,30 @@
-import {put, call, select, all} from 'redux-saga/effects';
-import {getItem} from '../../helpers/Localstorage';
+import { put, call, select, all } from 'redux-saga/effects';
+import { getItem } from '../../helpers/Localstorage';
 
-import {API_ENDPOINTS} from '_constants/Network';
-import {RestClient} from '_network/RestClient';
+import { API_ENDPOINTS } from '_constants/Network';
+import { RestClient } from '_network/RestClient';
 import {
   FETCH_ARABIC_BOOKS_FAILURE,
   FETCH_ARABIC_BOOKS_SUCCESS,
 } from '_redux/actionTypes';
-import {startAction, stopAction} from '_redux/actions';
+import { startAction, stopAction } from '_redux/actions';
 
-export function* ArabicBookListSaga({type}) {
+export function* ArabicBookListSaga({ type }) {
   try {
     yield put(startAction(type));
-    const UserProfileReducer = yield select(
-      ({UserProfileReducer}) => UserProfileReducer,
-    );
+    // const UserProfileReducer = yield select(
+    //   ({UserProfileReducer}) => UserProfileReducer,
+    // );
+    let UserProfileReducer = yield getItem('@userProfile');
+    UserProfileReducer = JSON.parse(UserProfileReducer)
+    console.log("THIS IS USER PROFILE REDUCER COMING", UserProfileReducer)
     const response = yield call(() =>
       RestClient.get(API_ENDPOINTS.booksArabic),
     );
-    const {status, data, message} = response;
+    const { status, data, message } = response;
     console.log('ARABIC_BOOKS Saga Response . . . .  .', response);
     if (status !== 200) {
-      yield put({type: FETCH_ARABIC_BOOKS_FAILURE});
+      yield put({ type: FETCH_ARABIC_BOOKS_FAILURE });
     } else {
       const updatePrice = data.data.map((item) => ({
         ...item,
@@ -31,11 +34,11 @@ export function* ArabicBookListSaga({type}) {
       }));
       yield put({
         type: FETCH_ARABIC_BOOKS_SUCCESS,
-        payload: {data: updatePrice},
+        payload: { data: updatePrice },
       });
     }
   } catch (error) {
-    yield put({type: FETCH_ARABIC_BOOKS_FAILURE, error});
+    yield put({ type: FETCH_ARABIC_BOOKS_FAILURE, error });
   } finally {
     yield put(stopAction(type));
   }

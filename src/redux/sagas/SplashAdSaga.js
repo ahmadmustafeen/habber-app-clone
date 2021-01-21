@@ -48,15 +48,15 @@ export function* splashAdSaga() {
         screen: SIGNIN_SCREEN,
       });
     } else {
-      // if (!!!UserProfileReducer.currency) {
-      //   yield setItem(
-      //     '@userProfile',
-      //     JSON.stringify({
-      //       ...userProfile,
-      //       currency: {id: 1, iso: 'KWD', name: 'Kuwaiti dinar', symbol: 'KD'},
-      //     }),
-      //   );
-      // }
+      if (!userProfile.currency) {
+        yield setItem(
+          '@userProfile',
+          JSON.stringify({
+            ...userProfile,
+            currency: { id: 1, iso: 'KWD', name: 'Kuwaiti dinar', symbol: 'KD' },
+          }),
+        );
+      }
       return NavigationService.navigate('Auth', {
         screen: LANGUAGE_SCREEN,
       });

@@ -42,11 +42,9 @@ import { Text } from 'react-native';
 import { NofeaturedBook } from '../../components/NofeaturedBook';
 
 const BookDetails = (props) => {
-  // console.log("bookdetail", props, "delete")
   const { t } = useTranslation(["BookDetails"]);
   const { colors } = useTheme();
   const dispatch = useDispatch();
-  console.log("props", props)
 
   var book = null
   var product_type2 = null
@@ -81,7 +79,6 @@ const BookDetails = (props) => {
 
   if (book === null) book = props.route.params;
   // (book.product_type === 'bookclub') ? book = book.book : null
-  console.log("bookmark", book)
   var { id: product_id = 33, quantity, product_type, price, bookClub, type } = book;
   var old_product;
   var book_removed = false
@@ -130,21 +127,9 @@ const BookDetails = (props) => {
       };
     },
   );
-  console.log("THIS IS THE ANSWER",
-    FetchRelatedBookList)
-  // console.log("old_product", old_product.banner_image)
-  // if (product_type === 'bookclub') {
-  //   product_id = book.book.id;
-  //   quantity = book.book.quantity;
-  //   price = book.book.price;
-  //   type = 'bookclub';
-  //   product_type = 'book';
-  // }
-
   let inCartPosition = CartReducer[product_type].findIndex(
     (el) => el.product_id === product_id,
   );
-  console.log("props.route.params.book", props.route.params.book)
   const handleCounter = (action) => {
     //TODO : For restrict counter for maximum quantity and out of stock..
 
@@ -157,6 +142,7 @@ const BookDetails = (props) => {
           product_id,
           action,
           product_type,
+
         },
         UPDATE_CART_ITEM,
       ),

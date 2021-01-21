@@ -13,7 +13,7 @@ import { NETWORK_ERROR, SHOW_NETWORK_MODAL } from 'redux/actionTypes';
 import RNRestart from 'react-native-restart';
 import { CHECKOUT } from '../../constants/Screens';
 import { getItem } from '../../helpers/Localstorage';
-import { FETCH_USER_CART_SUCCESS } from '../actionTypes';
+import { FETCH_ARABIC_BOOKS, FETCH_BOOKCLUBS, FETCH_BOOKMARKS, FETCH_ENGLISH_BOOKS, FETCH_USER_CART_SUCCESS } from '../actionTypes';
 
 export function* UpdateCartPriceSaga({ type, payload }) {
     try {
@@ -34,7 +34,8 @@ export function* UpdateCartPriceSaga({ type, payload }) {
         let books = [...ArabicBooksReducer, ...EnglishBooksReducer]
         let userProfile = yield getItem('@userProfile');
         userProfile = JSON.parse(userProfile);
-        console.log(books, "SHOULD M<ATCH")
+        console.log(userProfile, "SHOULD M<ATCH")
+
         const productBook = CartReducer.book.map((book) => {
             let price = (books.find(bookss => book.id === bookss.id).prices.find((id) => userProfile.currency.id === id.id).price)
             price = parseFloat(parseFloat(price.toString().replace(",", ""))).toFixed(2)
@@ -59,41 +60,79 @@ export function* UpdateCartPriceSaga({ type, payload }) {
             }
         })
         console.log(productBookmark, "found")
-
-        // if (!UserProfileReducer.token) {
-        //     // UPDATE_CART_ITEM
-        //     console.log(CartReducer.total_price, "this is the payload")
-        //     NavigationService.navigate(CART_SCREEN);
-        //     return;
-        // }
-        // const productBook = CartReducer.book.map((item) => {
-        //     return {
-        //         product_id: item.id,
-        //         product_type: "book",
-        //         quantity: item.cart_quantity,
-        //         price: parseFloat(item.cart_price.toString().replace(',', '')),
-        //     };
-        // });
-        // const productBookmark = CartReducer.bookmark.map((item) => {
-        //     return {
-        //         product_id: item.id,
-        //         product_type: "bookmark",
-        //         quantity: item.cart_quantity,
-        //         price: parseFloat(item.cart_price.toString().replace(',', '')),
-        //     };
-        // });
-
         const total_price = CartReducer.total_price
-        // const total_price = CartReducer.book.map(item => parseFloat(item.cart_price.toString().replace(',', '')) + CartReducer.bookmark.map(item => parseFloat(item.cart_price.toString().replace(',', ''))))
         const product = [...productBook, ...productBookmark]
         const obj = {
             product,
             total_price
-            // total_price: (CartReducer.total_price + parseFloat(product[0].cart_price.toString().replace(',', '')))
         };
-        console.log('OBJ CART', obj);
+        // yield put({ type: FETCH_USER_CART_SUCCESS, payload: null });
 
-        yield put({ type: FETCH_USER_CART_SUCCESS, payload: null });
+        if (!userProfile.token) {
+            const Productbooks = CartReducer.book.map((book) => {
+                let price = (books.find(bookss => book.id === bookss.id).prices.find((id) => userProfile.currency.id === id.id).price)
+                price = parseFloat(parseFloat(price.toString().replace(",", ""))).toFixed(2)
+
+                return {
+                    ...book,
+                    cart_price: price * book.cart_quantity,
+                    price: price
+                }
+            })
+            console.log(Productbooks, "THIS")
+            const Productbookmarks = CartReducer.bookmark.map((book) => {
+                let price = (books.find(bookss => book.id === bookss.id).prices.find((id) => userProfile.currency.id === id.id).price)
+                price = parseFloat(parseFloat(price.toString().replace(",", ""))).toFixed(2)
+
+                return {
+                    ...book,
+                    cart_price: price * book.cart_quantity,
+                    price: price
+                }
+            })
+            let total_price = 0
+            Productbookmarks.map(bookmark => total_price += bookmark.cart_price)
+            Productbooks.map(bookmark => total_price += bookmark.cart_price)
+            var objCArt = {
+                book: Productbooks,
+                bookmark: Productbookmarks,
+                total_price: total_price,
+            }
+
+            yield put({ type: FETCH_USER_CART_SUCCESS, payload: objCArt });
+            return false
+        }
+        const Productbooks = CartReducer.book.map((book) => {
+            let price = (books.find(bookss => book.id === bookss.id).prices.find((id) => userProfile.currency.id === id.id).price)
+            price = parseFloat(parseFloat(price.toString().replace(",", ""))).toFixed(2)
+
+            return {
+                ...book,
+                cart_price: price * book.cart_quantity,
+                price: price
+            }
+        })
+        console.log(Productbooks, "THIS")
+        const Productbookmarks = CartReducer.bookmark.map((book) => {
+            let price = (books.find(bookss => book.id === bookss.id).prices.find((id) => userProfile.currency.id === id.id).price)
+            price = parseFloat(parseFloat(price.toString().replace(",", ""))).toFixed(2)
+
+            return {
+                ...book,
+                cart_price: price * book.cart_quantity,
+                price: price
+            }
+        })
+        let total_prices = 0
+        Productbookmarks.map(bookmark => total_prices += bookmark.cart_price)
+        Productbooks.map(bookmark => total_prices += bookmark.cart_price)
+        var objCArt = {
+            book: Productbooks,
+            bookmark: Productbookmarks,
+            total_price: total_prices,
+        }
+        yield put({ type: FETCH_USER_CART_SUCCESS, payload: { book: [], bookmark: [], total_price: 0 } })
+        yield put({ type: FETCH_USER_CART_SUCCESS, payload: objCArt })
         const response = yield call(() => RestClient.post(API_ENDPOINTS.cart, obj));
         if (response.problem === NETWORK_ERROR) {
             return yield put({ type: SHOW_NETWORK_MODAL });
@@ -104,8 +143,15 @@ export function* UpdateCartPriceSaga({ type, payload }) {
 
         console.log('CartSAGA  Response . . . .  .', response);
         if (status) {
-            RNRestart.Restart();
 
+            yield put({ type: FETCH_ENGLISH_BOOKS });
+            yield put({ type: FETCH_ARABIC_BOOKS });
+            yield put({ type: FETCH_BOOKCLUBS });
+            yield put({ type: FETCH_BOOKMARKS });
+            yield put({
+                type:
+                    FETCH_USER_CART
+            });
             // yield all([
             //     put({ type: FETCH_USER_CART }),
             //     put({ type: RE_ADD_TO_CART_SUCCESS }),

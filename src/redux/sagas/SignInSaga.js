@@ -20,7 +20,7 @@ import {
 } from '_redux/actionTypes';
 import * as NavigationService from '../../../NavigationService';
 import { startAction, stopAction } from '../actions';
-import { FETCH_ORDER, SIGN_IN } from '../actionTypes';
+import { FETCH_ORDER, SIGN_IN, UPDATE_CART_PRICES } from '../actionTypes';
 
 export function* signinSaga({ payload }) {
 
@@ -47,8 +47,8 @@ export function* signinSaga({ payload }) {
       yield setItem('@userProfile', JSON.stringify(res));
       RestClient.setHeader('Authorization', `Bearer ${res.token}`);
       yield all([
+        put({ type: UPDATE_CART_PRICES }),
         put({ type: SIGN_IN_SUCCESS, payload: res }),
-
         put({ type: FETCH_ADDRESS }),
         put({ type: FETCH_USER_CART }),
         put({ type: FETCH_USER_FAVOURITE }),
