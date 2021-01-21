@@ -24,7 +24,7 @@ const BookCard = (props) => {
   var rtlLayout = false;
   (UserProfileReducer.currency.iso === "USD" || UserProfileReducer.currency.iso === "GBP" || UserProfileReducer.currency.iso === "EUR") && (rtlLayout = true)
 
-  console.log(UserProfileReducer, "userPRofile");
+  // console.log(UserProfileReducer, "userPRofile");
   const price_product = prices.find((item) => item.iso === UserProfileReducer.currency.iso)
   // console.log(price_product)
 

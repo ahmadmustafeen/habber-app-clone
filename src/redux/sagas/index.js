@@ -39,7 +39,9 @@ import {
   FETCH_STATIC,
   PUSH_NOTIFICATION_FUNCTION,
   FETCH_USER_PROFILE,
-  RESET_PASSWORD
+  RESET_PASSWORD,
+  RE_ADD_TO_CART,
+  UPDATE_CART_PRICES
 } from '../actionTypes';
 
 import { signupSaga } from './SignupSaga';
@@ -80,6 +82,8 @@ import { StaticSaga } from './FetchStaticSaga'
 import { notificationSaga } from './NotificationSaga'
 import { ProfileSaga } from './ProfileSaga'
 import { ResetPasswordSaga } from './ResetPasswordSaga'
+import { ReAddToCartSaga } from './ReAddToCartSaga'
+import { UpdateCartPriceSaga } from './UpdateCartPriceSaga'
 
 function* actionWatcher() {
   yield takeLatest(SPLASH_ACTION, splashSaga);
@@ -120,6 +124,8 @@ function* actionWatcher() {
   yield takeLatest(PUSH_NOTIFICATION_FUNCTION, notificationSaga)
   yield takeLatest(FETCH_USER_PROFILE, ProfileSaga)
   yield takeLatest(RESET_PASSWORD, ResetPasswordSaga)
+  yield takeLatest(RE_ADD_TO_CART, ReAddToCartSaga)
+  yield takeLatest(UPDATE_CART_PRICES, UpdateCartPriceSaga)
 }
 
 export default function* rootSaga() {

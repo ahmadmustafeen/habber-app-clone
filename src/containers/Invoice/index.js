@@ -47,7 +47,7 @@ const Invoice = (props) => {
     }
     const OrderBox = (props) => {
         return (
-            <View style={styles.detailCartHeader}>
+            <View style={[styles.detailCartHeader, { paddingVertical: hp(6), paddingHorizontal: wp(3) }]}>
                 <View style={{ flex: 2, justifyContent: 'center', alignItems: 'center', }}>
                     <AppText text small>
                         {props.name}
@@ -75,6 +75,13 @@ const Invoice = (props) => {
 
     var rtlLayout = false;
     (UserProfileReducer.currency.iso === "USD" || UserProfileReducer.currency.iso === "GBP" || UserProfileReducer.currency.iso === "EUR") && (rtlLayout = true)
+
+    var delivery_charges = 0;
+    item.books.map(book => delivery_charges += parseFloat(book.cart_price.toString().replace(",", "")))
+    item.bookmarks.map(book => delivery_charges += parseFloat(book.cart_price.toString().replace(",", "")))
+    // item.bookmarks.map(book => delivery_charges += (parseFloat(parseFloat(book.price.toString().replace(',', '')))).toFixed(2))
+    delivery_charges = item.total_price - delivery_charges
+    // console.log(delivery_charges)
 
     return (
         <ScrollView>
@@ -118,10 +125,28 @@ const Invoice = (props) => {
                         </View>
 
                     </View>
-                    {item.books.map(book => { return <OrderBox key={book.id} name={book.title} price={(parseFloat(parseFloat(book.price.toString().replace(',', '')))).toFixed(2)} quantity={book.cart_quantity} subtotal={book.cart_price} /> })}
-                    {item.bookmarks.map(book => { return <OrderBox key={book.id} name={book.title} price={(parseFloat(parseFloat(book.price.toString().replace(',', '')))).toFixed(2)} quantity={book.cart_quantity} subtotal={book.cart_price} /> })}
+                    {item.books.map(book => {
+                        // (book.find(bookss => book.id === bookss.id).prices.find((id) => book.currency.id === id.id).price)
+                        return <OrderBox key={book.id} name={book.title} price={(parseFloat((book.cart_price.toString().replace(',', ''))) / book.cart_quantity).toFixed(0)} quantity={book.cart_quantity} subtotal={parseFloat((book.cart_price.toString().replace(',', '')))} />
+                    })
+                    }
+                    {item.bookmarks.map(book => { return <OrderBox key={book.id} name={book.title} price={parseFloat((book.cart_price.toString().replace(',', ''))) / book.cart_quantity} quantity={book.cart_quantity} subtotal={parseFloat((book.cart_price.toString().replace(',', '')))} /> })}
 
                     <View style={[styles.detailCartHeader, { backgroundColor: colors.secondary, justifyContent: 'space-between', paddingHorizontal: wp(5) }]}>
+                        <View style={{ justifyContent: 'center', alignItems: 'center', }}>
+                            <AppText white bold secondary small >
+                                {I18nManager.isRTL ? "رسوم التوصيل" : "Delivery Charges"}
+                            </AppText>
+                        </View>
+                        <View style={{ justifyContent: 'center', alignItems: 'center', }}>
+                            <AppText white bold secondary small >
+                                {rtlLayout || item.currency_iso} {delivery_charges.toFixed(2)} {rtlLayout && item.currency_iso}
+                            </AppText>
+                        </View>
+
+
+                    </View>
+                    <View style={[styles.detailCartHeader, { backgroundColor: colors.secondary, justifyContent: 'space-between', paddingHorizontal: wp(5), borderBottomLeftRadius: 20, borderBottomEndRadius: 20, }]}>
                         <View style={{ justifyContent: 'center', alignItems: 'center', height: hp(5) }}>
                             <AppText white bold secondary small >
                                 {I18nManager.isRTL ? "مجموع" : "Total"}
@@ -135,20 +160,6 @@ const Invoice = (props) => {
 
 
                     </View>
-                    {/* <View style={[styles.detailCartHeader, { backgroundColor: colors.secondary, justifyContent: 'space-between', paddingHorizontal: wp(5) }]}>
-                        <View style={{ justifyContent: 'center', alignItems: 'center', height: hp(5) }}>
-                            <AppText white bold secondary small >
-                                {I18nManager.isRTL ? "مجموع" : "Total"}
-                            </AppText>
-                        </View>
-                        <View style={{ justifyContent: 'center', alignItems: 'center', height: hp(5) }}>
-                            <AppText white bold secondary small >
-                                {rtlLayout || item.currency_iso} {item.total_price.toFixed(2)} {rtlLayout && item.currency_iso}
-                            </AppText>
-                        </View>
-
-
-                    </View> */}
 
                 </View>
             </View>
@@ -168,6 +179,7 @@ const styles = StyleSheet.create({
         borderRadius: 20,
         alignSelf: 'center',
         width: wp(90),
+        paddingBottom: hp(10),
         // height: hp(20),
         overflow: 'hidden'
     },

@@ -34,7 +34,7 @@ const BooksList = (props) => {
       setBookData(data);
       return;
     }
-    let filtered = setFilterHandler(bookData, item);
+    let filtered = setFilterHandler(data, item);
     setBookData(filtered);
   };
   const { colors } = useTheme();
@@ -69,7 +69,7 @@ const BooksList = (props) => {
           </View>
         }
 
-        <FilterChip filter={filter} selectedFilter={filter} onIconPress={() => onApplyFilter()} />
+        <FilterChip filter={filter} selectedFilter={filter} onIconPress={() => onApplyFilter()} onCrossPress={(id) => { console.log(id, filter) }} />
         {/* <View style={styles.filterApply}>
 
           {filter.map((item) =>

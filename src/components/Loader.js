@@ -1,8 +1,12 @@
-import React, {Component} from 'react';
-import {StyleSheet, View, Modal, ActivityIndicator} from 'react-native';
+import React, { Component } from 'react';
+import { StyleSheet, View, Modal, ActivityIndicator } from 'react-native';
 
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
 const Loader = (props) => {
-  const {loading, ...attributes} = props;
+  const { loading, ...attributes } = props;
 
   return (
     <Modal
@@ -14,7 +18,7 @@ const Loader = (props) => {
       }}>
       <View style={styles.modalBackground}>
         <View style={styles.activityIndicatorWrapper}>
-          <ActivityIndicator animating={loading} />
+          <ActivityIndicator animating={loading} color="white" />
         </View>
       </View>
     </Modal>
@@ -27,12 +31,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'column',
     justifyContent: 'space-around',
-    backgroundColor: '#00000040',
+    backgroundColor: 'rgba(0,0,0,0.3)',
+    // backgroundColor: 'red'
   },
   activityIndicatorWrapper: {
-    backgroundColor: '#FFFFFF',
-    height: 100,
-    width: 100,
+    backgroundColor: 'rgba(0,0,0,0.4)',
+    height: hp(10),
+    aspectRatio: 1,
     borderRadius: 10,
     display: 'flex',
     alignItems: 'center',

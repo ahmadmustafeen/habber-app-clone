@@ -10,6 +10,7 @@ import RemotePushController from './src/services/RemotePushController';
 import PushNotificationIOS from '@react-native-community/push-notification-ios';
 import { googleConfigure } from './src/services/googleLoginController';
 import Linking from './src/navigator/Linking'
+import { I18nManager } from 'react-native';
 
 const App = () => {
   const { network, toggleModal } = useNetworkModal();
@@ -54,10 +55,10 @@ const App = () => {
         colors={Color}
         visible={network}
         onContinue={toggleModal}
-        heading="No Internet"
-        description="Oops! Internet Failed,"
-        descriptionNextLine="Please Retry"
-        buttonLabel="Retry"
+        heading={I18nManager.isRTL ? "بدون انترنت" : "No Internet"}
+        description={I18nManager.isRTL ? "وجه الفتاة! فشل الإنترنت" : "Oops! Internet Failed,"}
+        descriptionNextLine={I18nManager.isRTL ? "الرجاء اعادة المحاولة" : "Please Retry"}
+        buttonLabel={I18nManager.isRTL ? "أعد المحاولة" : "Retry"}
       />
       <RemotePushController />
       {/* <OfflineNotice /> */}

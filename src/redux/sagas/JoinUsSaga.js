@@ -10,6 +10,7 @@ import {
 import { startAction, stopAction } from '../actions';
 
 import { NETWORK_ERROR, SHOW_NETWORK_MODAL } from 'redux/actionTypes';
+import { I18nManager } from 'react-native';
 export function* JoinUsSaga({ type, payload }) {
   try {
     yield put(startAction(type));
@@ -26,7 +27,7 @@ export function* JoinUsSaga({ type, payload }) {
     } = response;
     console.log('JoinUsSaga  Response . . . .  .', response);
     if (status !== 200) {
-      // Alert.alert('SOrry', message);
+      Alert.alert(I18nManager.isRTL ? "آسف! هذا البريد الإلكتروني مأخوذ من قبل ، جرب بريدًا آخر ..." : "Sorry! This email is already taken, try another one...");
       yield put({ type: SUBMIT_JOIN_US_FAILURE, error });
     }
     else {

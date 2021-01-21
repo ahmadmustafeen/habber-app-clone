@@ -94,7 +94,7 @@ const MyOrders = (props) => {
 
 
     // <View key="content" style={{ width: wp(90), alignSelf: 'center' }}>
-    <View>
+    <Screen noPadding>
       {/* ListHeaderComponent={() => (
         <> */}
       <View key="header">
@@ -113,13 +113,15 @@ const MyOrders = (props) => {
           <Text key={index}>{item.total_price}</Text>
         )
       })} */}
-
-      <FlatList
-        data={OrderReducer}
-        renderItem={renderItem}
-        keyExtractor={item => item.id}
-      />
-      {/* <FlatList
+      <View key="content">
+        <FlatList
+          data={OrderReducer}
+          renderItem={renderItem}
+          keyExtractor={item => item.id}
+          ListFooterComponent={<View style={{ paddingBottom: hp(5) }}></View>}
+          ListEmptyComponent={<NoBookAvailbe title={I18nManager.isRTL ? 'لا يوجد شيء لعرضه هنا!' : 'Nothing to Show here!'} />}
+        />
+        {/* <FlatList
 
         style={styles.flatlist}
         showsHorizontalScrollIndicator={false}
@@ -136,7 +138,8 @@ const MyOrders = (props) => {
         ListFooterComponent={() => <View style={{ paddingBottom: 50 }} />}
       /> */}
 
-    </View>
+      </View>
+    </Screen>
     // </ScrollView> */
     // );
   )
