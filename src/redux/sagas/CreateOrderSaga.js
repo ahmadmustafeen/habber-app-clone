@@ -53,13 +53,14 @@ export function* CreateOrderSaga({ type, payload }) {
     // console.log('PRODUCTS', product);
     const obj = {
       product,
+
       total_price: CartReducer.total_price + shipping_charges,
       total_quantity: product.reduce(
         (total, currentValue) => total + currentValue.quantity,
         0,
       ),
       address_id: payload.address,
-      currency_id: 1,
+      currency_id: UserProfileReducer.currency.id,
       payment_type: payload.paymentMethod,
     };
     console.log(obj, "OBJ")
@@ -82,12 +83,12 @@ export function* CreateOrderSaga({ type, payload }) {
       yield put({ type: CREATE_ORDER_FAILURE });
       return;
     }
-    // console.log("REQUIRED DATA", response.data.status)
+    console.log("REQUIRED DATA", response)
     // if (!response.data.status) {
     //   Alert.alert({ title: "Cannot Create Order", message: "Some Product ran out of stock" })
     //   return;
     // }
-    // console.log("CREATE ORDER SUCCESS RESPONSE :", response)
+    console.log("CREATE ORDER SUCCESS RESPONSE :", response)
     yield put({ type: CREATE_ORDER_SUCCESS });
     yield put({ type: FETCH_ORDER });
     // yield put({ type: FETCH_USER_CART });
