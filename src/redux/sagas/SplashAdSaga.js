@@ -48,11 +48,11 @@ export function* splashAdSaga() {
         screen: SIGNIN_SCREEN,
       });
     } else {
-      if (!userProfile.currency) {
+      if (!userProfile) {
         yield setItem(
           '@userProfile',
           JSON.stringify({
-            ...userProfile,
+            // ...userProfile,
             currency: { id: 1, iso: 'KWD', name: 'Kuwaiti dinar', symbol: 'KD' },
           }),
         );
