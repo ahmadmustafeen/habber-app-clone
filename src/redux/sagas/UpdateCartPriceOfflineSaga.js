@@ -27,8 +27,8 @@ import { ADD_TO_CART, FETCH_USER_CART_SUCCESS, RE_ADD_TO_CART } from '../actionT
 export function* UpdateCartPriceSagaOffline(payload) {
     let UserProfileReducer = yield getItem('@userProfile');
     UserProfileReducer = JSON.parse(UserProfileReducer)
-    const { CartReducer, ArabicBooksReducer, EnglishBooksReducer } = yield select(
-        ({ CartReducer, ArabicBooksReducer, EnglishBooksReducer }) => ({ CartReducer, ArabicBooksReducer, EnglishBooksReducer })
+    const { CartReducer, ArabicBooksReducer, EnglishBooksReducer, BookmarksReducer } = yield select(
+        ({ CartReducer, ArabicBooksReducer, EnglishBooksReducer, BookmarksReducer }) => ({ CartReducer, ArabicBooksReducer, BookmarksReducer, EnglishBooksReducer })
     );
     console.log("CUURENCY", UserProfileReducer.currency.iso)
     const CombinedReducer = [...ArabicBooksReducer, ...EnglishBooksReducer];
@@ -45,7 +45,7 @@ export function* UpdateCartPriceSagaOffline(payload) {
     })
     console.log(Productbooks, "THIS")
     const Productbookmarks = CartReducer.bookmark.map((book) => {
-        let price = (books.find(bookss => book.id === bookss.id).prices.find((id) => UserProfileReducer.currency.id === id.id).price)
+        let price = (BookmarksReducer.find(bookss => book.id === bookss.id).prices.find((id) => UserProfileReducer.currency.id === id.id).price)
         price = parseFloat(parseFloat(price.toString().replace(",", ""))).toFixed(2)
 
         return {
