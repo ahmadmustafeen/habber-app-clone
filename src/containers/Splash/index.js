@@ -9,7 +9,6 @@ import {
 } from '_redux/actionTypes';
 
 const Splash = (props) => {
-  console.log('Hello From Habber', props);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(withoutDataActions(SPLASH_ACTION))
