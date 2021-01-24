@@ -63,7 +63,6 @@ export function* CreateOrderSaga({ type, payload }) {
       currency_id: UserProfileReducer.currency.id,
       payment_type: payload.paymentMethod,
     };
-    console.log(obj, "OBJ")
     const response = yield call(() =>
       RestClient.post(API_ENDPOINTS.order, obj),
     );
@@ -75,26 +74,21 @@ export function* CreateOrderSaga({ type, payload }) {
       data: { data: res, success },
     } = response;
 
-    console.log(response, "RESPONSE")
     if (!success) {
-      console.error('Error', response);
       Alert.alert("Cannot Create Order", response.data.message)
 
       yield put({ type: CREATE_ORDER_FAILURE });
       return;
     }
-    console.log("REQUIRED DATA", response)
     // if (!response.data.status) {
     //   Alert.alert({ title: "Cannot Create Order", message: "Some Product ran out of stock" })
     //   return;
     // }
-    console.log("CREATE ORDER SUCCESS RESPONSE :", response)
     yield put({ type: CREATE_ORDER_SUCCESS });
     yield put({ type: FETCH_ORDER });
     // yield put({ type: FETCH_USER_CART });
     yield put({ type: FETCH_USER_CART_SUCCESS, payload: null });
     if (!res.navigation) {
-      // console.log(response.data.data, "this is somthing inmportant")
       NavigationService.navigate('Invoice', {
         item: response.data.data
       });

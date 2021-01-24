@@ -30,20 +30,7 @@ export function* SwitchCurrencySaga({ payload }) {
 
 
                 yield put({ type: FETCH_ADDRESS });
-                // yield put({ type: SPLASH_ACTION })
-                // yield put({ type: FETCH_BOOKCLUBS_SUCCESS, payload: [] })
-                // yield put({ type: FETCH_ENGLISH_BOOKS_SUCCESS, payload: [] })
-                // yield put({ type: FETCH_BOOKMARKS_SUCCESS, payload: [] })
-                // yield put({ type: FETCH_BANNER_SUCCESS, payload: [] })
-                // // yield put({ type: FETCH_ADDRESS_SUCCESS, payload: [] })
-                // yield put({ type: FETCH_ARABIC_BOOKS })
-                // yield put({ type: FETCH_ADDRESS })
 
-
-                // yield put({ type: FETCH_BOOKCLUBS })
-                // yield put({ type: FETCH_ENGLISH_BOOKS })
-                // yield put({ type: FETCH_BOOKMARKS })
-                // yield put({ type: FETCH_BANNER })
             }
 
         }
@@ -52,7 +39,21 @@ export function* SwitchCurrencySaga({ payload }) {
             type: SWITCH_CURRENCY_SUCCESS,
             payload,
         });
-        yield put({ type: UPDATE_CART_PRICES })
+        yield put({ type: SPLASH_ACTION })
+        yield put({ type: FETCH_BOOKCLUBS_SUCCESS, payload: [] })
+        yield put({ type: FETCH_ENGLISH_BOOKS_SUCCESS, payload: [] })
+        yield put({ type: FETCH_BOOKMARKS_SUCCESS, payload: [] })
+        yield put({ type: FETCH_BANNER_SUCCESS, payload: [] })
+        // yield put({ type: FETCH_ADDRESS_SUCCESS, payload: [] })
+        yield put({ type: FETCH_ARABIC_BOOKS })
+        yield put({ type: FETCH_ADDRESS })
+
+
+        yield put({ type: FETCH_BOOKCLUBS })
+        yield put({ type: FETCH_ENGLISH_BOOKS })
+        yield put({ type: FETCH_BOOKMARKS })
+        yield put({ type: FETCH_BANNER })
+        // yield put({ type: UPDATE_CART_PRICES })
         // RNRestart.Restart()
 
 

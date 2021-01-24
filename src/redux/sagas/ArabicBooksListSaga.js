@@ -17,12 +17,10 @@ export function* ArabicBookListSaga({ type }) {
     );
     // let UserProfileReducer = yield getItem('@userProfile');
     // UserProfileReducer = JSON.parse(UserProfileReducer)
-    console.log("THIS IS USER PROFILE REDUCER COMING", UserProfileReducer)
     const response = yield call(() =>
       RestClient.get(API_ENDPOINTS.booksArabic),
     );
     const { status, data, message } = response;
-    console.log('ARABIC_BOOKS Saga Response . . . .  .', response);
     if (status !== 200) {
       yield put({ type: FETCH_ARABIC_BOOKS_FAILURE });
     } else {

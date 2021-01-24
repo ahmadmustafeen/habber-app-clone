@@ -11,11 +11,9 @@ export function* FetchUserCartSaga() {
   try {
     const response = yield call(() => RestClient.get(API_ENDPOINTS.cart));
     const { status, data: res, message } = response;
-    console.log('FetchUserCartSaga Saga Response . . . .  .', response);
     if (!res.success) {
       yield put({ type: FETCH_USER_CART_FAILURE });
     } else {
-      console.log(res.data, "THIS IS THE REPONSE DATA")
       yield put({ type: FETCH_USER_CART_SUCCESS, payload: res.data });
     }
   } catch (error) {

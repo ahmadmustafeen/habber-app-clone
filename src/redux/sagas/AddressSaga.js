@@ -11,9 +11,7 @@ import { startAction, stopAction } from '../actions';
 import { CHECKOUT, SIGNIN_SCREEN } from '../../constants/Screens';
 export function* addressSaga({ type, payload }) {
   yield put(startAction(type));
-  console.log('Add Address Saga . . . .  .1', payload);
   try {
-    console.log('Add Address Saga . . . .  .1', payload);
     const response = yield call(() =>
       RestClient.post(API_ENDPOINTS.addresses, payload),
     );
@@ -21,7 +19,6 @@ export function* addressSaga({ type, payload }) {
       return yield put({ type: SHOW_NETWORK_MODAL });
     }
     const { status, data, message } = response;
-    console.log('Addres Saga Response . . . .  .', response);
     if (data.success) {
       yield put({ type: ADD_ADDRESS_SUCCESS, });
       yield put({ type: FETCH_ADDRESS }),

@@ -13,7 +13,6 @@ export function* Carasoul({ type }) {
         yield put(startAction(type));
         const response = yield call(() => RestClient.get(API_ENDPOINTS.banners));
         const { status, data, message } = response;
-        console.log('BANNERS Response . . . .  .', response);
         if (status !== 200) {
             yield put({ type: FETCH_BANNER_FAILURE });
             return;

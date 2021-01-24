@@ -24,12 +24,10 @@ export function* BookRequestSaga({ type, payload }) {
     const response = yield call(() =>
       RestClient.post(API_ENDPOINTS.requestBook, form_data),
     );
-    console.log('RESPOIBDE', response);
     if (response.problem === NETWORK_ERROR) {
       return yield put({ type: SHOW_NETWORK_MODAL });
     }
 
-    console.log('BookRequestSaga Saga Response . . . .  .', response);
     if (!response.data.success) {
       Alert.alert('Something Went Wrong!', [{
         // onPress: () => NavigationService.navigate('Home', { screen: HOME })

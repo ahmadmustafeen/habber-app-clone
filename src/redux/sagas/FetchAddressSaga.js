@@ -5,9 +5,7 @@ import { RestClient } from '_network/RestClient';
 import { FETCH_ADDRESS_FAILURE, FETCH_ADDRESS_SUCCESS } from '_redux/actionTypes';
 export function* fetchAddressSaga({ }) {
 
-    console.log('FETCH Address Saga . . . .  .1',);
     try {
-        console.log('FETCH Address Saga . . . .  .1',);
 
         const response = yield call(() =>
 
@@ -15,9 +13,7 @@ export function* fetchAddressSaga({ }) {
         );
 
         const { status, data, res, message } = response;
-        console.log('Fetch Address Saga Response . . . .  .', response);
         if (data.status === 200) {
-            console.log("RSPONSE", response)
             yield put({ type: FETCH_ADDRESS_FAILURE, payload: response.data });
         }
         else {
