@@ -181,9 +181,9 @@ const Home = (props) => {
             inactiveDotColor={colors.borderColor}
             dotColor={colors.primary}
             activeDotIndex={activeSlide}
-            containerStyle={{ width: wp(30), paddingVertical: hp(1), alignSelf: 'center' }}
+            containerStyle={{ width: wp(30), paddingVertical: hp(1), alignSelf: 'center', overflow: 'scroll' }}
             dotStyle={{
-              width: wp(7),
+              width: wp(5),
               marginHorizontal: wp(0),
               height: hp(0.5),
               borderRadius: 5,

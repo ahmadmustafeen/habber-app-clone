@@ -154,7 +154,7 @@ const Invoice = (props) => {
                         </View>
                         <View style={{ justifyContent: 'center', alignItems: 'center', height: hp(5) }}>
                             <AppText white bold secondary small >
-                                {rtlLayout || item.currency_iso} {item.total_price.toFixed(2)} {rtlLayout && item.currency_iso}
+                                {rtlLayout || item.currency_iso} {item.total_price} {rtlLayout && item.currency_iso}
                             </AppText>
                         </View>
 
