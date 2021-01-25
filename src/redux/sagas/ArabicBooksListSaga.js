@@ -17,6 +17,7 @@ export function* ArabicBookListSaga({ type }) {
     // );
     let UserProfileReducer = yield getItem('@userProfile');
     UserProfileReducer = JSON.parse(UserProfileReducer)
+    console.log(UserProfileReducer.currency.iso, "USERPRODILE")
     const response = yield call(() =>
       RestClient.get(API_ENDPOINTS.booksArabic),
     );

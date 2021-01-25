@@ -10,16 +10,36 @@ import {
 } from 'react-native-responsive-screen';
 import { Icon } from 'react-native-elements';
 import { useTranslation } from 'react-i18next';
-const items = [
-  { label: 'Romance', value: 'romance' },
-  { label: 'Horror', value: 'horror' },
-  { label: 'Thriller', value: 'thriller' },
-  { label: 'Suspense', value: 'suspense' },
-  { label: 'Biography', value: 'biography' },
-  { label: 'Mystery', value: 'mystery' },
-  { label: 'Action', value: 'action' },
-];
+import { shallowEqual, useSelector } from 'react-redux';
+// const items = [
+//   { label: 'Romance', value: 'romance' },
+//   { label: 'Horror', value: 'horror' },
+//   { label: 'Thriller', value: 'thriller' },
+//   { label: 'Suspense', value: 'suspense' },
+//   { label: 'Biography', value: 'biography' },
+//   { label: 'Mystery', value: 'mystery' },
+//   { label: 'Action', value: 'action' },
+// ];
 const FilterModal = (props) => {
+  const {
+    FilterGenreReducer,
+
+  } = useSelector((state) => {
+    return {
+      FilterGenreReducer: state.FilterGenreReducer,
+    }
+  }, shallowEqual);
+
+  console.log(FilterGenreReducer, "thisuadfasd");
+  const items = FilterGenreReducer.map((filter) => {
+    return {
+      label: filter.title,
+      value: filter.title
+    }
+
+  })
+
+
 
   const { t } = useTranslation(["Filter"])
   const { colors } = useTheme();
@@ -40,6 +60,7 @@ const FilterModal = (props) => {
           <AppText
             style={styles.filterText}
             bold={selected}
+            capitalize
             color={selected && colors.primary}>
             {props.title}
           </AppText>

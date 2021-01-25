@@ -32,13 +32,12 @@
         </intent-filter>
 
 
-          <intent-filter>
+          <intent-filter android:label="deeplink">
         <action android:name="android.intent.action.VIEW" />
         <category android:name="android.intent.category.DEFAULT" />
         <category android:name="android.intent.category.BROWSABLE" />
-        <data android:scheme="http" android:host="habber" />
-<data android:scheme="http" android:host="www.habber.com" />
-<data android:scheme="https" android:host="www.habber.com" />
+        <!-- <data android:scheme="http" android:host="habber" /> -->
+        <data android:scheme="http" android:host="www.autolineinternational.com" />
     </intent-filter>
 
 
