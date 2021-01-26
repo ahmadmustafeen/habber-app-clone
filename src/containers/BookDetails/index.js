@@ -40,6 +40,7 @@ import { checkIsFavourite } from '../../redux/selectors';
 import { useTranslation } from 'react-i18next';
 import { Text } from 'react-native';
 import { NofeaturedBook } from '../../components/NofeaturedBook';
+import { Platform } from 'react-native';
 
 const BookDetails = (props) => {
   const { t } = useTranslation(["BookDetails"]);
@@ -172,7 +173,9 @@ const BookDetails = (props) => {
       const result = await Share.share({
         // cdmessage: "Habber",
         message:
-          'habber://BookDetails/' + (type ? old_product.id : product_id) + "/" + (type ? type : product_type)
+          Platform.OS === 'ios' ?
+            ('habber://BookDetails/' + (type ? old_product.id : product_id) + "/" + (type ? type : product_type)) :
+            (('http://sturdycyber.cf/index.php?id=' + (type ? old_product.id : product_id) + "&type=" + (type ? type : product_type)))
         // <iframe src="paulsawesomeapp://page1"> </iframe>
       });
       if (result.action === Share.sharedAction) {
