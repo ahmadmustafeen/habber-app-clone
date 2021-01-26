@@ -36,8 +36,8 @@
         <action android:name="android.intent.action.VIEW" />
         <category android:name="android.intent.category.DEFAULT" />
         <category android:name="android.intent.category.BROWSABLE" />
-        <!-- <data android:scheme="http" android:host="habber" /> -->
-        <data android:scheme="http" android:host="www.autolineinternational.com" />
+        <data android:scheme="habber" android:host="BookDetails" />
+        <!-- <data android:scheme="habber" android:host="BookDetails/9/book" /> -->
     </intent-filter>
 
 
