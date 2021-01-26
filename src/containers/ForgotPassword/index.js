@@ -19,6 +19,7 @@ import {
 import useModal from '_utils/customHooks/useModal';
 import { ImageBackground } from 'react-native';
 import { Platform } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
 const ForgotPassword = (props) => {
   const dispatch = useDispatch();
   const { visible, toggleModal } = useModal();
@@ -49,54 +50,58 @@ const ForgotPassword = (props) => {
     };
   }, shallowEqual);
   return (
-    <ImageBackground
-      style={{
-        height: hp(100),
-        paddingHorizontal: wp(5),
-        paddingBottom: hp(3),
-      }}
-      resizeMode="stretch"
-      source={require('_assets/images/background.jpg')}>
-      <View key="header">
-        <AuthHeader {...props} />
-        <AppText
-          bold
-          heading
-          style={{ marginTop: 40, marginBottom: 10, color: '#c27e12' }}>
-          {t('forgot_password')}
-        </AppText>
-        <AppText secondary white style={{ marginBottom: 20 }}>
-          {t('enter_email')}
-        </AppText>
-      </View>
+    <ScrollView contentContainerStyle={{ height: hp(100) }}>
 
-      <View key="content">
-        <InputWithLabel
-          white
-          placeholder="ahmadalajmi@gmail.com"
-          label={t('email')}
-          value={email}
-          onChangeText={(val) => setEmail(val)}
-        />
-      </View>
-      <View key="footer" style={styles.footer}>
+      <ImageBackground
+        style={{
+          height: hp(100),
+          paddingHorizontal: wp(5),
+          paddingBottom: hp(3),
+        }}
+        resizeMode="stretch"
+        source={require('_assets/images/background.jpg')}>
+        <View key="header">
+          <AuthHeader {...props} />
+          <AppText
+            bold
+            heading
+            style={{ marginTop: 40, marginBottom: 10, color: '#c27e12' }}>
+            {t('forgot_password')}
+          </AppText>
+          <AppText secondary white style={{ marginBottom: 20 }}>
+            {t('enter_email')}
+          </AppText>
+        </View>
+
+        <View key="content">
+          <InputWithLabel
+            white
+            placeholder="ahmadalajmi@gmail.com"
+            label={t('email')}
+            value={email}
+            onChangeText={(val) => setEmail(val)}
+          />
+        </View>
+        <View key="footer" style={styles.footer}>
 
 
-        <Button onPress={onSubmit} loading={isLoading}>{t('resetPassword')}</Button>
+          <Button onPress={onSubmit} loading={isLoading}>{t('resetPassword')}</Button>
 
-        <ModalScreen
-          forgetPassword
-          image={require("../../assets/images/forgetPassword.png")}
+          <ModalScreen
+            forgetPassword
+            image={require("../../assets/images/forgetPassword.png")}
 
-          visible={visible}
-          onContinue={onContinue}
-          heading={t('modal_heading')}
-          description={t('modal_description')}
-          buttonLabel={t('modal_button_label')}
+            visible={visible}
+            onContinue={onContinue}
+            heading={t('modal_heading')}
+            description={t('modal_description')}
+            buttonLabel={t('modal_button_label')}
 
-        />
-      </View>
-    </ImageBackground>
+          />
+        </View>
+      </ImageBackground>
+    </ScrollView>
+
   );
 };
 const styles = StyleSheet.create({

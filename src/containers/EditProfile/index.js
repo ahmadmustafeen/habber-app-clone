@@ -106,7 +106,9 @@ const EditProfile = (props) => {
 
       }
     });
-  }; getProfilePic = () => {
+  };
+
+  getProfilePic = () => {
     if (state.profile_pic.uri) {
       return { uri: state.profile_pic.uri }
     }

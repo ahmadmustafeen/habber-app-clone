@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Icon } from 'react-native-elements';
-import { View, StyleSheet, Text, TextInput, FlatList, Image, I18nManager } from 'react-native';
+import { View, StyleSheet, Text, TextInput, FlatList, Image, I18nManager, Keyboard } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import {
@@ -39,7 +39,10 @@ const Search = (props) => {
   console.log("bookkkkkk", SearchBooksReducer)
   const [filter, setFilter] = useState([])
   const onSubmit = () => {
-    dispatch(withDataActions({ keyword }, SEARCH_BOOKS));
+    return (
+      Keyboard.dismiss() &&
+      dispatch(withDataActions({ keyword }, SEARCH_BOOKS))
+    )
   };
 
   // const onApplyFilter = (item) => {
@@ -72,7 +75,9 @@ const Search = (props) => {
             onChangeText={(val) => setKeyword(val)}
             onSubmitEditing={onSubmit}
           />
-          <TouchableWithoutFeedback onPress={onSubmit} >
+          <TouchableWithoutFeedback
+          //  onPress={Keyboard.dismiss()} 
+          >
             <Icon
               size={22}
               containerStyle={styles.iconStyle}
@@ -80,8 +85,18 @@ const Search = (props) => {
               // type="antdesign"
               name="search1"
               type="ant-design"
+              onPress={onSubmit}
             />
           </TouchableWithoutFeedback>
+          {/* <Icon
+            size={22}
+            containerStyle={styles.iconStyle}
+            // name="search1"
+            // type="antdesign"
+            name="search1"
+            type="ant-design"
+            onPress={onSubmit}
+          /> */}
 
         </View>
       </View>
@@ -129,8 +144,11 @@ const styles = StyleSheet.create({
   iconStyle: {
     height: '100%',
     position: 'absolute',
-    right: 20,
+    right: 0,
+    paddingRight: 15,
+    width: wp(15),
     justifyContent: 'center',
+    backgroundColor: 'pink'
   },
   filterApply: {
     flexDirection: 'row',

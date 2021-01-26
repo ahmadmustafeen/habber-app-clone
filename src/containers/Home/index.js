@@ -89,10 +89,10 @@ const Home = (props) => {
   const dispatch = useDispatch();
   const { colors } = useTheme();
   const DATA = BannerReducer.map(({ banner_image, product }) => ({ coverImageUri: banner_image, product }));
-  console.log("BANNER REDUCER ", BannerReducer)
+  // console.log("BANNER REDUCER ", BannerReducer)
 
   const panig = DATA.splice(0, 3)
-  console.log("BANNER PAGINATION ", panig)
+  // console.log("BANNER PAGINATION ", panig)
 
 
 
