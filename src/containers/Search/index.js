@@ -21,6 +21,7 @@ import { useTranslation } from 'react-i18next';
 import NoBookAvailbe from '../../components/NoBookAvailable';
 import { TouchableOpacity } from 'react-native';
 import { TouchableWithoutFeedback } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
 
 const Search = (props) => {
   // const { t } = useTranslation(['Search']);
@@ -39,11 +40,22 @@ const Search = (props) => {
   console.log("bookkkkkk", SearchBooksReducer)
   const [filter, setFilter] = useState([])
   const onSubmit = () => {
-    return (
-      Keyboard.dismiss() &&
-      dispatch(withDataActions({ keyword }, SEARCH_BOOKS))
-    )
+    dispatch(withDataActions({ keyword }, SEARCH_BOOKS))
   };
+
+  const _keyboardDidHide = () => {
+    Keyboard.dismiss()
+  }
+
+
+
+  useEffect(() => {
+    const keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', _keyboardDidHide);
+    return () => {
+      keyboardDidHideListener.remove();
+    }
+  }, []);
+
 
   // const onApplyFilter = (item) => {
   //   console.log(item);
@@ -63,7 +75,7 @@ const Search = (props) => {
   };
   console.log('SearchBooksReducer', SearchBooksReducer);
   return (
-    <Screen noPadding>
+    <ScrollView keyboardShouldPersistTaps='always'>
       <View
         key="header"
         style={{ backgroundColor: colors.secondary, padding: 10, transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }], }}>
@@ -74,9 +86,12 @@ const Search = (props) => {
             placeholder={I18nManager.isRTL ? 'بحث' : 'Search'}
             onChangeText={(val) => setKeyword(val)}
             onSubmitEditing={onSubmit}
+            blurOnSubmit={true}
+            keyboardType='default'
+
           />
           <TouchableWithoutFeedback
-          //  onPress={Keyboard.dismiss()} 
+
           >
             <Icon
               size={22}
@@ -126,7 +141,7 @@ const Search = (props) => {
       </View>
 
 
-    </Screen>
+    </ScrollView>
 
 
   );
