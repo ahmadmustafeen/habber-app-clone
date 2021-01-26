@@ -44,7 +44,7 @@ const ResetPassword = (props) => {
   }
   const onSubmit = () => {
     Validate() &&
-      dispatch(withDataActions({ token, password }, RESET_PASSWORD));
+      dispatch(withDataActions({ email, token, password }, "RESET_PASSWORD_SAGA"));
   };
   const onContinue = () => {
     toggleModal()
@@ -136,7 +136,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   footer: {
-    paddingTop: hp(30),
+    paddingTop: hp(10),
     marginBottom: hp(6),
     paddingBottom: hp(6),
 

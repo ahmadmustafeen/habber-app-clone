@@ -17,9 +17,11 @@ import {
   SIGNIN_SCREEN,
   SIGNUP_SCREEN,
   AD_SCREEN,
-  SIGNUP_TERM_CODITION
+  SIGNUP_TERM_CODITION,
+  RESET_PASSWORD_SCREEN
 
 } from '../constants/Screens';
+import ResetPassword from '../containers/ResetPassword';
 const AuthScreen = createStackNavigator();
 export const AuthNav = () => {
   return (
@@ -33,6 +35,7 @@ export const AuthNav = () => {
       <AuthScreen.Screen name={LANGUAGE_SCREEN} component={Language} />
       <AuthScreen.Screen name={AD_SCREEN} component={AdScreen} />
       <AuthScreen.Screen name={SIGNUP_SCREEN} component={SignUp} />
+      <AuthScreen.Screen name={RESET_PASSWORD_SCREEN} component={ResetPassword} />
       <AuthScreen.Screen
         name={FORGOT_PASSWORD_SCREEN}
         component={ForgotPassword}

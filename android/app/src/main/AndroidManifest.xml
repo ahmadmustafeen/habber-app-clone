@@ -37,6 +37,7 @@
         <category android:name="android.intent.category.DEFAULT" />
         <category android:name="android.intent.category.BROWSABLE" />
         <data android:scheme="habber" android:host="BookDetails" />
+        <data android:scheme="habber" android:host="ResetPassword" />
         <!-- <data android:scheme="habber" android:host="BookDetails/9/book" /> -->
     </intent-filter>
 

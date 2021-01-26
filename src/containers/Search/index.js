@@ -51,9 +51,7 @@ const Search = (props) => {
 
 
 
-  useEffect(() => {
-    SearchBooksReducer = []
-  });
+
   console.log("empty", SearchBooksReducer)
 
 

@@ -13,14 +13,15 @@ import { startAction, stopAction } from '_redux/actions';
 import { NETWORK_ERROR, SHOW_NETWORK_MODAL, SIGN_IN } from 'redux/actionTypes';
 import { RESET_PASSWORD } from '../../constants/Screens';
 export function* ResetPasswordSaga({ type, payload }) {
+    console.log('ResetPassword  . . . .  .1', payload);
     try {
         yield put(startAction(type));
-        console.log('ResetPassword  . . . .  .1', payload);
+
         const response = yield call(() =>
             RestClient.post(API_ENDPOINTS.update_password, payload),
         );
 
-        console.log(response, "RESET PASSWORD response")
+
 
         if (response.problem === NETWORK_ERROR) {
             return yield put({ type: SHOW_NETWORK_MODAL });
@@ -30,12 +31,14 @@ export function* ResetPasswordSaga({ type, payload }) {
             data: { data: res, message, status },
         } = response;
 
-        console.log(status);
+        console.log(response, "RESPONSE");
 
         if (status) {
-            // Alert.alert('Success', message);
             yield put({ type: RESET_PASSWORD_SUCCESS, payload: null });
             yield put({ type: SIGN_IN, payload: { email: payload.email, password: payload.email } })
+        }
+        else if (response.data.code === 401) {
+            Alert.alert(response.data.message)
         }
     } catch (error) {
         yield put({ type: RESET_PASSWORD_FAILURE, error });

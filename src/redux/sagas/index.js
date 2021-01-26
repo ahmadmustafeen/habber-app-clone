@@ -132,6 +132,7 @@ function* actionWatcher() {
   yield takeLatest(UPDATE_CART_PRICES, UpdateCartPriceSaga)
   yield takeLatest(UPDATE_CART_PRICES_OFFLINE, UpdateCartPriceSagaOffline)
   yield takeLatest(FETCH_GENRE, FilterSaga)
+  yield takeLatest("RESET_PASSWORD_SAGA", ResetPasswordSaga)
 }
 
 export default function* rootSaga() {
