@@ -288,7 +288,7 @@ const styles = StyleSheet.create({
     right: wp(4.6),
     top: hp(0.2),
     width: wp(2.5),
-    height: wp(2.5),
+    // height: wp(4.5),
   },
   circleArabic: {
     position: 'absolute',
@@ -296,7 +296,7 @@ const styles = StyleSheet.create({
     left: wp(1.9),
     top: hp(0.2),
     width: wp(3),
-    height: wp(3),
+    // height: wp(3),
   },
 });
 export { Header };
