@@ -20,7 +20,7 @@ import {
 } from '_redux/actionTypes';
 import * as NavigationService from '../../../NavigationService';
 import { startAction, stopAction } from '../actions';
-import { FETCH_ORDER, SIGN_IN, UPDATE_CART_PRICES } from '../actionTypes';
+import { FETCH_ARABIC_BOOKS, FETCH_BOOKMARKS, FETCH_BOOK_LISTS, FETCH_ENGLISH_BOOKS, FETCH_ORDER, SIGN_IN, UPDATE_CART_PRICES, UPDATE_CART_PRICES_OFFLINE } from '../actionTypes';
 
 export function* signinSaga({ payload }) {
 
@@ -48,6 +48,11 @@ export function* signinSaga({ payload }) {
       RestClient.setHeader('Authorization', `Bearer ${res.token}`);
       yield all([
         put({ type: UPDATE_CART_PRICES }),
+        put({ type: FETCH_ARABIC_BOOKS }),
+        put({ type: FETCH_ENGLISH_BOOKS }),
+        put({ type: FETCH_BOOKMARKS }),
+        put({ type: FETCH_BOOK_LISTS }),
+        put({ type: UPDATE_CART_PRICES_OFFLINE }),
         put({ type: SIGN_IN_SUCCESS, payload: res }),
         put({ type: FETCH_ADDRESS }),
         put({ type: FETCH_USER_CART }),

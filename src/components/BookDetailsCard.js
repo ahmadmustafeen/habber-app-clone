@@ -67,7 +67,9 @@ const BookDetailsCard = (props) => {
             {t('by')}{product_type === "book" ? author_name : maker_name}
           </AppText>
           <AppText bold size={17}>
-            {t('price')} {rtlLayout && price_product.symbol} {(parseFloat(price.replace(",", "")).toFixed(2))} {rtlLayout || price_product.symbol}
+            {t('price')} {rtlLayout && price_product.symbol}
+            {(parseFloat(prices.find((price) => price.iso === UserProfileReducer.currency.iso).price.toString().replace(",", ""))).toFixed(2)}
+            {rtlLayout || price_product.symbol}
           </AppText>
           <AppText bold size={15} color="red">
             {!quantity && t('outOfStock')}

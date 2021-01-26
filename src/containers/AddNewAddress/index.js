@@ -75,12 +75,9 @@ const AddNewAddress = (props) => {
       FetchCountriesReducer: state.FetchCountriesReducer,
     };
   }, shallowEqual);
-  console.log(state.country_id, "state");
-  // console.log(FetchCountriesReducer, "FETCh")
   var selectedCountry = (FetchCountriesReducer.find((country) => country.id === state.country_id));
   (!selectedCountry) ? (selectedCountry = { city: [] }) : null;
 
-  console.log("adteer", selectedCountry)
   const countries_list = FetchCountriesReducer.map((data) => ({ key: data.id, label: data.name })).map(city => { return { key: city.key, label: city.label } })
   console.log(countries_list, selectedCountry)
   const setStateHandler = (key, val) => {
@@ -88,7 +85,7 @@ const AddNewAddress = (props) => {
   };
   const dispatch = useDispatch();
   const { navigate } = navigation;
-
+  const city = selectedCountry.city.find(city => city.id == state.city_id);
   const validate = () => {
     return (
 
@@ -150,7 +147,7 @@ const AddNewAddress = (props) => {
           <ModalSelectorCustom
             data={selectedCountry.city}
             onChangeText={value => setState({ ...state, city_id: value.id })}
-            initValue={t('state')}
+            initValue={city ? city.label : false || t('state')}
             color={"gray"}
 
 

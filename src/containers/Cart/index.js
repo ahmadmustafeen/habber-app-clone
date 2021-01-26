@@ -109,7 +109,8 @@ const AddToCart = (props) => {
                         {I18nManager.isRTL ? "بواسطة" : "by"}: {author_name}
                       </AppText>
                       <AppText bold size={17} style={styles.pricetxt}>
-                        {I18nManager.isRTL ? "السعر" : "Price"}: {rtlLayout && price_product.symbol} {parseFloat(cart_price.toString().replace(',', '')).toFixed(2)} {rtlLayout || price_product.symbol}
+                        {I18nManager.isRTL ? "السعر" : "Price"}:
+{rtlLayout && price_product.symbol} {parseFloat(cart_price.toString().replace(',', '')).toFixed(2)} {rtlLayout || price_product.symbol}
                       </AppText>
                       <View
                         style={{

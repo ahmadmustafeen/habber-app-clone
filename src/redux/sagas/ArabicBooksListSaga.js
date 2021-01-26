@@ -12,11 +12,12 @@ import { startAction, stopAction } from '_redux/actions';
 export function* ArabicBookListSaga({ type }) {
   try {
     yield put(startAction(type));
-    // const UserProfileReducer = yield select(
-    //   ({ UserProfileReducer }) => UserProfileReducer,
-    // );
-    let UserProfileReducer = yield getItem('@userProfile');
-    UserProfileReducer = JSON.parse(UserProfileReducer)
+    const UserProfileReducer = yield select(
+      ({ UserProfileReducer }) => UserProfileReducer,
+    );
+    console.log(UserProfileReducer, "THIS IS UserProfileReducer")
+    // let UserProfileReducer = yield getItem('@userProfile');
+    // UserProfileReducer = JSON.parse(UserProfileReducer)
     console.log(UserProfileReducer.currency.iso, "USERPRODILE")
     const response = yield call(() =>
       RestClient.get(API_ENDPOINTS.booksArabic),
