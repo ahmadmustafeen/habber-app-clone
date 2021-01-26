@@ -5,17 +5,20 @@ import { Icon } from 'react-native-elements'; import {
     heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 import { useTheme } from '@react-navigation/native';
-import Language from '../containers/Language'
+// import Language from '../containers/Language'
+import { LANGUAGE_SCREEN } from '../constants/Screens';
 
 
 const AuthHeader = (props) => {
     const { customNavigate } = props
+    const { navigation } = props
     const { colors } = useTheme()
     return (
         <View style={styles.container}>
             <View style={styles.icon}>
                 {!props.noIcon && <Icon
-                    onPress={!customNavigate ? () => props.navigation.goBack() : () => props.navigation.navigate(Language)}
+                    onPress={!!customNavigate ? () => navigation.navigate(LANGUAGE_SCREEN) : () => navigation.goBack()}
+                    // onPress={() => navigation.goBack()}
                     color={colors.primary}
                     name={I18nManager.isRTL ? "rightcircleo" : "leftcircleo"}
                     type="antdesign"
