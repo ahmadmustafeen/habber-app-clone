@@ -89,6 +89,11 @@ const Home = (props) => {
   const dispatch = useDispatch();
   const { colors } = useTheme();
   const DATA = BannerReducer.map(({ banner_image, product }) => ({ coverImageUri: banner_image, product }));
+  // console.log("BANNER REDUCER ", BannerReducer)
+
+  const panig = DATA.splice(0, 3)
+  // console.log("BANNER PAGINATION ", panig)
+
 
 
 
@@ -162,7 +167,7 @@ const Home = (props) => {
 
             ref={CAROUSEL}
             renderItem={renderItem}
-            data={DATA}
+            data={panig}
             sliderWidth={width}
             inactiveSlideScale={1}
             inactiveSlideOpacity={0.5}
@@ -176,7 +181,7 @@ const Home = (props) => {
             loop
           />
           <Pagination
-            dotsLength={DATA.length}
+            dotsLength={panig.length}
             inactiveDotScale={1}
             inactiveDotColor={colors.borderColor}
             dotColor={colors.primary}
@@ -197,7 +202,7 @@ const Home = (props) => {
           <Loader loading={isLoading} />
 
           <DashboardComponent
-            data={ArabicBooksReducer.filter((book) => book.featured)}
+            data={ArabicBooksReducer.filter((book) => book.featured).splice(0, 8)}
             label={t('arabicBook')}
             renderComponent={(item) => (
               <ThumbnailBook
@@ -219,7 +224,7 @@ const Home = (props) => {
             }
           />
           <DashboardComponent
-            data={EnglishBooksReducer.filter((book) => book.featured)}
+            data={EnglishBooksReducer.filter((book) => book.featured).splice(0, 8)}
             label={t('englishBook')}
             renderComponent={(item) => (
               <ThumbnailBook
@@ -241,7 +246,7 @@ const Home = (props) => {
             }
           />
           <DashboardComponent
-            data={BookClubReducer.filter((book) => book.featured)}
+            data={BookClubReducer.filter((book) => book.featured).splice(0, 8)}
             label={t('bookclub')}
             renderComponent={(item) => (
               <ThumbnailClub
@@ -263,7 +268,7 @@ const Home = (props) => {
             }
           />
           <DashboardComponent
-            data={BookmarksReducer.filter((book) => book.featured)}
+            data={BookmarksReducer.filter((book) => book.featured).splice(0, 8)}
             renderComponent={(item) => (
               <ThumbnailBookmarks
                 url={item.item.image}

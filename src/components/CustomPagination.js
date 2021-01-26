@@ -17,7 +17,7 @@ const CustomPagination = (props) => {
 
     const renderDots = () => {
         const Dots = [];
-        for (let i = 0; i < total; i += 1) {
+        for (let i = 0; i < 3; i += 1) {
             const isActive = currentPage === i + 1;
 
             const additionalStyle = {

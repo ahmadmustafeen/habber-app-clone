@@ -101,6 +101,17 @@ const RequestBooks = (props) => {
       }
     });
   };
+  const getProfilePic = () => {
+    if (state.image.uri) {
+      return { uri: state.image.uri }
+    }
+    if (state.image) {
+      return { uri: state.image.uri }
+    }
+    return require('_assets/images/noUser.png')
+
+  }
+  console.log("ImageINrequestbook", state)
   return (
 
     <View style={{ height: hp(100) }}>
@@ -132,9 +143,18 @@ const RequestBooks = (props) => {
           {t('restrictionText')}
         </AppText>
 
-        <View style={{ width: wp(80), height: hp(30) }}>
-          <Image source={{ uri: state.image.uri }}></Image>
-        </View>
+
+        {/* source={{ uri: state.image.uri }}  */}
+        {/* <View style={{ width: wp(80), height: hp(30) }}>
+          <Image source={require("_assets/images/addsign.png")} />
+        </View> */}
+
+
+        <Image
+          style={styles.image}
+          source={{ uri: state.image.uri }}
+
+        />
       </View>
       <ModalScreen
         // image={require("")}
@@ -159,6 +179,13 @@ const styles = StyleSheet.create({
   content: {
 
     width: wp(90),
+    alignSelf: 'center'
+  },
+  image: {
+
+    width: wp(25),
+    height: hp(19),
+    justifyContent: 'center',
     alignSelf: 'center'
   }
 });

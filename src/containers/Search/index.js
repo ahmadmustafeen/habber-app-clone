@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Icon } from 'react-native-elements';
-import { View, StyleSheet, Text, TextInput, FlatList, Image, I18nManager } from 'react-native';
+import { View, StyleSheet, Text, TextInput, FlatList, Image, I18nManager, Keyboard } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import {
@@ -21,6 +21,9 @@ import { useTranslation } from 'react-i18next';
 import NoBookAvailbe from '../../components/NoBookAvailable';
 import { TouchableOpacity } from 'react-native';
 import { TouchableWithoutFeedback } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
+import { withoutDataActions } from '../../redux/actions';
+import { SEARCH_BOOKS_SUCCESS } from '../../redux/actionTypes';
 
 const Search = (props) => {
   // const { t } = useTranslation(['Search']);
@@ -31,7 +34,7 @@ const Search = (props) => {
   const { visible, toggleFilter } = useFilter();
   const dispatch = useDispatch();
 
-  const { SearchBooksReducer } = useSelector(({ SearchBooksReducer }) => {
+  var { SearchBooksReducer } = useSelector(({ SearchBooksReducer }) => {
     return {
       SearchBooksReducer,
     };
@@ -39,8 +42,20 @@ const Search = (props) => {
   console.log("bookkkkkk", SearchBooksReducer)
   const [filter, setFilter] = useState([])
   const onSubmit = () => {
-    dispatch(withDataActions({ keyword }, SEARCH_BOOKS));
+    dispatch(withDataActions({ keyword }, SEARCH_BOOKS))
   };
+
+  const _keyboardDidHide = () => {
+    Keyboard.dismiss()
+  }
+
+
+
+  useEffect(() => {
+    SearchBooksReducer = []
+  });
+  console.log("empty", SearchBooksReducer)
+
 
   // const onApplyFilter = (item) => {
   //   console.log(item);
@@ -60,7 +75,7 @@ const Search = (props) => {
   };
   console.log('SearchBooksReducer', SearchBooksReducer);
   return (
-    <Screen noPadding>
+    <ScrollView keyboardShouldPersistTaps='always'>
       <View
         key="header"
         style={{ backgroundColor: colors.secondary, padding: 10, transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }], }}>
@@ -71,8 +86,13 @@ const Search = (props) => {
             placeholder={I18nManager.isRTL ? 'بحث' : 'Search'}
             onChangeText={(val) => setKeyword(val)}
             onSubmitEditing={onSubmit}
+            blurOnSubmit={true}
+            keyboardType='default'
+
           />
-          <TouchableWithoutFeedback onPress={onSubmit} >
+          <TouchableWithoutFeedback
+
+          >
             <Icon
               size={22}
               containerStyle={styles.iconStyle}
@@ -80,8 +100,18 @@ const Search = (props) => {
               // type="antdesign"
               name="search1"
               type="ant-design"
+              onPress={onSubmit}
             />
           </TouchableWithoutFeedback>
+          {/* <Icon
+            size={22}
+            containerStyle={styles.iconStyle}
+            // name="search1"
+            // type="antdesign"
+            name="search1"
+            type="ant-design"
+            onPress={onSubmit}
+          /> */}
 
         </View>
       </View>
@@ -111,7 +141,7 @@ const Search = (props) => {
       </View>
 
 
-    </Screen>
+    </ScrollView>
 
 
   );
@@ -129,8 +159,11 @@ const styles = StyleSheet.create({
   iconStyle: {
     height: '100%',
     position: 'absolute',
-    right: 20,
+    right: 0,
+    paddingRight: 15,
+    width: wp(15),
     justifyContent: 'center',
+
   },
   filterApply: {
     flexDirection: 'row',
