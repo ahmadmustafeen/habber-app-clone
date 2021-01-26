@@ -22,6 +22,8 @@ import NoBookAvailbe from '../../components/NoBookAvailable';
 import { TouchableOpacity } from 'react-native';
 import { TouchableWithoutFeedback } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
+import { withoutDataActions } from '../../redux/actions';
+import { SEARCH_BOOKS_SUCCESS } from '../../redux/actionTypes';
 
 const Search = (props) => {
   // const { t } = useTranslation(['Search']);
@@ -32,7 +34,7 @@ const Search = (props) => {
   const { visible, toggleFilter } = useFilter();
   const dispatch = useDispatch();
 
-  const { SearchBooksReducer } = useSelector(({ SearchBooksReducer }) => {
+  var { SearchBooksReducer } = useSelector(({ SearchBooksReducer }) => {
     return {
       SearchBooksReducer,
     };
@@ -50,11 +52,9 @@ const Search = (props) => {
 
 
   useEffect(() => {
-    const keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', _keyboardDidHide);
-    return () => {
-      keyboardDidHideListener.remove();
-    }
-  }, []);
+    SearchBooksReducer = []
+  });
+  console.log("empty", SearchBooksReducer)
 
 
   // const onApplyFilter = (item) => {
@@ -163,7 +163,7 @@ const styles = StyleSheet.create({
     paddingRight: 15,
     width: wp(15),
     justifyContent: 'center',
-    backgroundColor: 'pink'
+
   },
   filterApply: {
     flexDirection: 'row',
