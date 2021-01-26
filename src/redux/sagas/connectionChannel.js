@@ -1,7 +1,7 @@
 import navigator from 'navigator';
-import {eventChannel} from 'redux-saga';
-import {put, takeLatest} from 'redux-saga/effects';
-import {NETWORK_INACTIVE, NETWORK_ACTIVE} from '_redux/actionTypes';
+import { eventChannel } from 'redux-saga';
+import { put, takeLatest } from 'redux-saga/effects';
+import { NETWORK_INACTIVE, NETWORK_ACTIVE } from '_redux/actionTypes';
 
 const Status = {
   ONLINE: true,
@@ -14,7 +14,6 @@ function createConnectionChannel() {
     navigator.mozConnection ||
     navigator.webkitConnection;
   if (!connection) {
-    console.log('!CONNECTION', connection);
     return eventChannel((emit) => {
       function onlineHandler() {
         emit(Status.ONLINE);
@@ -59,12 +58,10 @@ function createConnectionChannel() {
 function* handleConnectionChange(status) {
   switch (status) {
     case Status.OFFLINE:
-      yield put({type: NETWORK_INACTIVE});
-      console.log(`You're offline, check your internet connection.`);
+      yield put({ type: NETWORK_INACTIVE });
       break;
     case Status.ONLINE:
-      yield put({type: NETWORK_ACTIVE});
-      console.log(`Welcome back online!`);
+      yield put({ type: NETWORK_ACTIVE });
       break;
   }
 }

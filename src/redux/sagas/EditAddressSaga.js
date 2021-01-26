@@ -12,7 +12,6 @@ import { I18nManager } from 'react-native';
 export function* EditAddressSaga({ type, payload }) {
     try {
         yield put(startAction(type));
-        // console.log('Edit Address Saga . . . .  .1', payload.id);
         const response = yield call(() =>
             RestClient.put(API_ENDPOINTS.addresses + "/" + payload.id, payload),
         );
@@ -20,8 +19,6 @@ export function* EditAddressSaga({ type, payload }) {
             return yield put({ type: SHOW_NETWORK_MODAL });
         }
         const { status, data, message } = response;
-        // console.log('Edit Address Saga Response . . . .  .', response);
-        // console.log("DAFRADasd", data)
         if (data.success) {
             yield put({ type: EDIT_ADDRESS_SUCCESS, });
             yield put({ type: FETCH_ADDRESS }),

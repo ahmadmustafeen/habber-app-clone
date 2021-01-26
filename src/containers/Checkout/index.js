@@ -150,18 +150,18 @@ const Checkout = (props) => {
 
             <View style={styles.row}>
               <AppText bold>{I18nManager.isRTL ? "المجموع الفرعي" : "Sub Total"} </AppText>
-              <View style={styles.pricerow}><AppText bold>{parseInt(CartReducer.total_price).toFixed(2)}</AppText></View>
+              <View style={styles.pricerow}><AppText bold>{(parseFloat(CartReducer.total_price.toString().replace(",", ""))).toFixed(2)}</AppText></View>
             </View>
 
             <View style={styles.row}>
               <AppText bold>{I18nManager.isRTL ? "رسوم التوصيل" : "Delivery Charges"} </AppText>
-              <View style={styles.pricerow}><AppText bold>{parseFloat((Address_VAL.shipping_charges)).toFixed(2)}</AppText></View>
+              <View style={styles.pricerow}><AppText bold>{(parseFloat(Address_VAL.shipping_charges.toString().replace(",", ""))).toFixed(2)}</AppText></View>
             </View>
 
             <HorizontalRow />
             <View style={styles.row}>
               <AppText bold>{I18nManager.isRTL ? "مجموع" : "Total"} </AppText>
-              <View style={styles.pricerow}><AppText bold>{(parseFloat(parseFloat(CartReducer.total_price).toFixed(2)) + parseFloat(parseFloat(Address_VAL.shipping_charges).toFixed(2))).toFixed(2)}</AppText></View>
+              <View style={styles.pricerow}><AppText bold>{parseFloat((parseFloat(CartReducer.total_price.toString().replace(",", ""))) + (parseFloat(Address_VAL.shipping_charges.toString().replace(",", "")))).toFixed(2)}</AppText></View>
             </View>
 
 

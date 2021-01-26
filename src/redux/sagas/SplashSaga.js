@@ -20,6 +20,7 @@ import {
   FETCH_BANNER,
   FETCH_STATIC
 } from '_redux/actionTypes';
+import { FETCH_GENRE } from '../actionTypes';
 
 
 export function* splashSaga() {
@@ -36,6 +37,7 @@ export function* splashSaga() {
     yield put({ type: FETCH_COUNTRIES });
     yield put({ type: FETCH_SITE_DETAILS });
     yield put({ type: FETCH_STATIC });
+    yield put({ type: FETCH_GENRE });
     yield put({ type: FETCH_BANNER });
 
     if (response.problem === NETWORK_ERROR) {

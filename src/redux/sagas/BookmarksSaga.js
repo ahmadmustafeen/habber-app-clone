@@ -11,11 +11,11 @@ import {
 } from '_redux/actionTypes';
 export function* BookmarksSaga({ type, payload }) {
   try {
-    const UserProfileReducer = yield select(
-      ({ UserProfileReducer }) => UserProfileReducer,
-    );
-    // let UserProfileReducer = yield getItem('@userProfile');
-    // UserProfileReducer = JSON.parse(UserProfileReducer)
+    // const UserProfileReducer = yield select(
+    //   ({ UserProfileReducer }) => UserProfileReducer,
+    // );
+    let UserProfileReducer = yield getItem('@userProfile');
+    UserProfileReducer = JSON.parse(UserProfileReducer)
     const response = yield call(() => RestClient.get(API_ENDPOINTS.bookmarks));
     const { status, data, message } = response;
     const updatePrice = data.data.map((item) => ({

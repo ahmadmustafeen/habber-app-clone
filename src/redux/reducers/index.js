@@ -20,6 +20,7 @@ import FCMReducer from './FCMReducer';
 import FetchCountriesReducer from "./FetchCountriesReducer"
 import BannerReducer from "./BannerReducer";
 import StaticReducer from "./StaticReducer"
+import FilterGenreReducer from "./FilterGenreReducer"
 export default combineReducers({
   ModalReducer,
   LoadingReducer,
@@ -42,4 +43,5 @@ export default combineReducers({
   FetchCountriesReducer,
   BannerReducer,
   StaticReducer,
+  FilterGenreReducer,
 });

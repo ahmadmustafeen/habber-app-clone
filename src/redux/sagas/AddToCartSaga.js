@@ -39,7 +39,6 @@ export function* AddToCartSaga({ type, payload }) {
       total_price
       // total_price: (CartReducer.total_price + parseFloat(product[0].cart_price.toString().replace(',', '')))
     };
-    console.log('OBJ CART', obj);
     const response = yield call(() => RestClient.post(API_ENDPOINTS.cart, obj));
     if (response.problem === NETWORK_ERROR) {
       return yield put({ type: SHOW_NETWORK_MODAL });

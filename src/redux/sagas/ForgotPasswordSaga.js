@@ -11,10 +11,10 @@ import {
 
 import { NETWORK_ERROR, SHOW_NETWORK_MODAL } from 'redux/actionTypes';
 import { Alert } from 'react-native'
+import { I18nManager } from 'react-native';
 export function* ForgotPasswordSaga({ type, payload }) {
   try {
     yield put(startAction(type));
-    console.log('ForgotPassword Saga . . . .  .1', payload);
     const response = yield call(() =>
       RestClient.post(API_ENDPOINTS.forgotPassword, { email: payload, base_url: "habber://" }),
     );
@@ -23,15 +23,12 @@ export function* ForgotPasswordSaga({ type, payload }) {
     }
     const { status, data, message } = response;
 
-    console.log('ForgotPasswordSaga Saga Response . . . .  .', response);
     if (status === 200) {
       yield put({ type: FORGOT_PASSWORD_SUCCESS, payload: null });
       yield put({ type: SHOW_MODAL, payload: null });
-
     }
     else {
-
-      Alert.alert("This email is not registered!")
+      Alert.alert(I18nManager.isRTL ? "هذا البريد الإلكتروني غير مسجل!" : "This email is not registered!")
     }
   } catch (error) {
     yield put({ type: FORGOT_PASSWORD_FAILURE, error });

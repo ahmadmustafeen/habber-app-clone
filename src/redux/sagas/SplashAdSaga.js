@@ -14,12 +14,41 @@ import {
 } from '_redux/actionTypes';
 import { all, put, select } from 'redux-saga/effects';
 import { RestClient } from 'network/RestClient';
-import { FETCH_ORDER_SUCCESS } from '../actionTypes';
+import { FETCH_ARABIC_BOOKS, FETCH_BOOKCLUBS, FETCH_BOOKMARKS, FETCH_ENGLISH_BOOKS, FETCH_ORDER_SUCCESS } from '../actionTypes';
 
 export function* splashAdSaga() {
   try {
+
     const backUser = yield getItem('@backUser');
     let userProfile = yield getItem('@userProfile');
+    if (userProfile && !userProfile.currency) {
+      yield setItem(
+        '@userProfile',
+        JSON.stringify({
+          ...userProfile,
+          currency: { id: 1, iso: 'KWD', name: 'Kuwaiti dinar', symbol: 'KD' },
+        }),
+
+      ); yield put({ type: FETCH_ENGLISH_BOOKS });
+      yield put({ type: FETCH_ARABIC_BOOKS });
+      yield put({ type: FETCH_BOOKCLUBS });
+      yield put({ type: FETCH_BOOKMARKS });
+    }
+    else if (!userProfile) {
+      yield setItem(
+        '@userProfile',
+        JSON.stringify({
+
+          currency: { id: 1, iso: 'KWD', name: 'Kuwaiti dinar', symbol: 'KD' },
+        }),
+
+      );
+
+      yield put({ type: FETCH_ENGLISH_BOOKS });
+      yield put({ type: FETCH_ARABIC_BOOKS });
+      yield put({ type: FETCH_BOOKCLUBS });
+      yield put({ type: FETCH_BOOKMARKS });
+    }
     userProfile = JSON.parse(userProfile);
     yield put({
       type: FETCH_USER_PROFILE_SUCCESS,

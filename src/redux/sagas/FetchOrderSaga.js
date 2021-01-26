@@ -10,7 +10,6 @@ export function* FetchOrderSaga({ type }) {
     try {
         const response = yield call(() => RestClient.get(API_ENDPOINTS.order));
         // const { status, data, message } = response;
-        console.log('FETCH_ORDER Response . . . .  .', response);
         const { data: { data }, status } = response;
 
         if (status !== 200) {

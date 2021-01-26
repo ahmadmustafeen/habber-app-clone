@@ -15,12 +15,10 @@ import { NETWORK_ERROR, SHOW_NETWORK_MODAL } from 'redux/actionTypes';
 export function* contactUsSaga({ type, payload }) {
   try {
     yield put(startAction(type));
-    console.log('contactUsSaga  . . . .  .1', payload);
     const response = yield call(() =>
       RestClient.post(API_ENDPOINTS.contactus, payload),
     );
 
-    console.log(response, "Contact us response")
 
     if (response.problem === NETWORK_ERROR) {
       return yield put({ type: SHOW_NETWORK_MODAL });

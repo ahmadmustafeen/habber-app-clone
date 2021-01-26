@@ -81,27 +81,15 @@ const JoinUs = (props) => {
   //   return true;
   // };
   const validate = () => {
-    console.log("product_type", state.product_type)
-    console.log("state.business_type", state.business_type)
     return (
-
       validateIsTrue(state.name, `${t('Please')} ${t('name')}`, false, t('ok')) &&
       validateIsTrue(state.email, `${t('Please')} ${t('email')}`, false, t('ok')) &&
-
-
-
-
       validateIsTrue(((state.phone.length > 10) && (state.phone.length < 16)),
         `${t('Please')} ${t('phoneValidation')}`, false) &&
-      validateIsTrue(!!validatePhone(state.phone), `${t('Please')}  ${t('mobileNumberOptional')}`, false, t('ok'))
-      &&
-
+      validateIsTrue(!!validatePhone(state.phone), `${t('Please')}  ${t('mobileNumberOptional')}`, false, t('ok')) &&
       validateIsTrue(state.business_type, `${t('Please')} ${t('selectBusinessType')}`, false, t('ok')) &&
-
       validateIsTrue(state.details, `${t('Please')} ${t('details')}`, false, t('ok')) &&
       validateIsTrue(state.product_type.size, `${t('Please')} ${t('selectProductType')}`, false, t('ok'))
-
-
     )
 
 
@@ -121,8 +109,8 @@ const JoinUs = (props) => {
     props.navigation.goBack();
   };
   const onSubmit = () => {
-    console.log(validate());
-    dispatch(withDataActions(state, SUBMIT_JOIN_US));
+    validate() &&
+      dispatch(withDataActions(state, SUBMIT_JOIN_US));
   };
   const { navigate } = props.navigation;
   const { colors } = useTheme()

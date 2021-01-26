@@ -14,9 +14,7 @@ export function* FetchCurrencySaga({ type }) {
     try {
         const response = yield call(() => RestClient.get(API_ENDPOINTS.currencies));
         // const { status, data, message } = response;
-        console.log('Currency Saga Response . . . .  .', response);
         const { data: { data }, status } = response;
-        console.log("currency", data);
         if (status !== 200) {
             yield put({ type: FETCH_CURRENCIES_FAILURE, payload: data });
         }

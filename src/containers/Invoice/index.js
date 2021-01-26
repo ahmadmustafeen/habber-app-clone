@@ -80,7 +80,7 @@ const Invoice = (props) => {
     item.books.map(book => delivery_charges += parseFloat(book.cart_price.toString().replace(",", "")))
     item.bookmarks.map(book => delivery_charges += parseFloat(book.cart_price.toString().replace(",", "")))
     // item.bookmarks.map(book => delivery_charges += (parseFloat(parseFloat(book.price.toString().replace(',', '')))).toFixed(2))
-    delivery_charges = item.total_price - delivery_charges
+    delivery_charges = (parseFloat(item.total_price.toString().replace(",", ""))).toFixed(2) - delivery_charges
     // console.log(delivery_charges)
 
     return (
@@ -127,7 +127,7 @@ const Invoice = (props) => {
                     </View>
                     {item.books.map(book => {
                         // (book.find(bookss => book.id === bookss.id).prices.find((id) => book.currency.id === id.id).price)
-                        return <OrderBox key={book.id} name={book.title} price={(parseFloat((book.cart_price.toString().replace(',', ''))) / book.cart_quantity).toFixed(0)} quantity={book.cart_quantity} subtotal={parseFloat((book.cart_price.toString().replace(',', '')))} />
+                        return <OrderBox key={book.id} name={book.title} price={(parseFloat((book.cart_price.toString().replace(',', ''))) / book.cart_quantity).toFixed(0)} quantity={book.cart_quantity} subtotal={(parseFloat((book.cart_price.toString().replace(',', '')))).toFixed(0)} />
                     })
                     }
                     {item.bookmarks.map(book => { return <OrderBox key={book.id} name={book.title} price={parseFloat((book.cart_price.toString().replace(',', ''))) / book.cart_quantity} quantity={book.cart_quantity} subtotal={parseFloat((book.cart_price.toString().replace(',', '')))} /> })}
@@ -154,7 +154,7 @@ const Invoice = (props) => {
                         </View>
                         <View style={{ justifyContent: 'center', alignItems: 'center', height: hp(5) }}>
                             <AppText white bold secondary small >
-                                {rtlLayout || item.currency_iso} {item.total_price.toFixed(2)} {rtlLayout && item.currency_iso}
+                                {rtlLayout || item.currency_iso} {(parseFloat(item.total_price.toString().replace(",", ""))).toFixed(2)} {rtlLayout && item.currency_iso}
                             </AppText>
                         </View>
 

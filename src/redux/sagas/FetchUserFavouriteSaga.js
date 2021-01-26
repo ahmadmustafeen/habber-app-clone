@@ -19,7 +19,6 @@ export function* FetchFavouriteSaga({ type }) {
       return yield put({ type: SHOW_NETWORK_MODAL });
     }
     const { status, data, message } = response;
-    console.log('Fetch Favourite Saga Response . . . .  .', response, data);
     if (status !== 200) {
       yield put({ type: FETCH_USER_FAVOURITE_FAILURE });
     } else {

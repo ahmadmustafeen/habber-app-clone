@@ -15,9 +15,9 @@ export function* EnglishBookListSaga({ type }) {
   UserProfileReducer = JSON.parse(UserProfileReducer)
   try {
     yield put(startAction(type));
-    const UserProfileReducer = yield select(
-      ({ UserProfileReducer }) => UserProfileReducer,
-    );
+    // const UserProfileReducer = yield select(
+    //   ({ UserProfileReducer }) => UserProfileReducer,
+    // );
     const response = yield call(() =>
       RestClient.get(API_ENDPOINTS.booksEnglish),
     );

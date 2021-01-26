@@ -31,5 +31,6 @@ export const API_ENDPOINTS = {
   static_pages: '/static_page/link',
   fcm: '/fcm',
   profile: '/profile',
-  update_password: '/update_password'
+  update_password: '/update_password',
+  genre: '/genre'
 };
