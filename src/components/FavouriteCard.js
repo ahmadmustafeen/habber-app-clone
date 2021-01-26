@@ -9,8 +9,19 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
+import { useSelector } from 'react-redux';
+import { checkIfLoading } from '../redux/selectors';
+import { I18nManager } from 'react-native';
 
 const FavouriteCard = (props) => {
+
+  const { UserProfileReducer } = useSelector((state) => ({
+    UserProfileReducer: state.UserProfileReducer,
+  }));
+  var rtlLayout = false;
+  (UserProfileReducer.currency.iso === "USD" || UserProfileReducer.currency.iso === "GBP" || UserProfileReducer.currency.iso === "EUR") && (rtlLayout = true)
+
+
   const { colors } = useTheme();
   return (
     <>
@@ -24,10 +35,10 @@ const FavouriteCard = (props) => {
             {props.item.title}
           </AppText>
           <AppText bold small style={[styles.txt, styles.author]}>
-            by {props.item.author_name}
+            {I18nManager.isRTL ? "بواسطة" : "by"} {props.item.author_name}
           </AppText>
           <AppText bold style={styles.pricetxt}>
-            Price: {(props.item.price)} KW
+            {I18nManager.isRTL ? "السعر:" : "Price:"} {rtlLayout && UserProfileReducer.currency.symbol} {(parseFloat(props.item.prices.find((price) => price.iso === UserProfileReducer.currency.iso).price.toString().replace(",", ""))).toFixed(2)} {rtlLayout || UserProfileReducer.currency.symbol}
           </AppText>
           <Button
             bold
@@ -37,7 +48,7 @@ const FavouriteCard = (props) => {
             style={styles.pricetxt}
             onPress={props.onAddToCart}
             round>
-            Add To Cart
+            {I18nManager.isRTL ? "أضف إلى السلة" : "Add To Cart"}
           </Button>
           <HorizontalRow
             style={{

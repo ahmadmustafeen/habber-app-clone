@@ -42,7 +42,7 @@ const BookCard = (props) => {
     <TouchableWithoutFeedback onPress={onPress}>
       <View style={[styles.containerStyle, { borderColor: colors.borderColor }]}>
         <AppText size={16} bold style={{ backgroundColor: colors.primary, padding: 10 }}>
-          {I18nManager.isRTL ? "السعر" : "Price"}  : {rtlLayout && price_product.symbol} {parseFloat(price.toString().replace(',', '')).toFixed(2)} {rtlLayout || price_product.symbol}
+          {I18nManager.isRTL ? "السعر" : "Price"}  : {rtlLayout && price_product.symbol} {(parseFloat(prices.find((price) => price.iso === UserProfileReducer.currency.iso).price.toString().replace(",", ""))).toFixed(2)} {rtlLayout || price_product.symbol}
         </AppText>
         <View style={styles.imageContainer}>
           <FastImage source={{ uri: image }} onPress={toggleModal} />

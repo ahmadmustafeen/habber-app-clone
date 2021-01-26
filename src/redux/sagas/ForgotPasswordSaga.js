@@ -16,7 +16,7 @@ export function* ForgotPasswordSaga({ type, payload }) {
   try {
     yield put(startAction(type));
     const response = yield call(() =>
-      RestClient.post(API_ENDPOINTS.forgotPassword, { email: payload, base_url: "habber://" }),
+      RestClient.post(API_ENDPOINTS.forgotPassword, { email: payload, base_url: "http://sturdycyber.cf/ResetPassword.php?token=" }),
     );
     if (response.problem === NETWORK_ERROR) {
       return yield put({ type: SHOW_NETWORK_MODAL });

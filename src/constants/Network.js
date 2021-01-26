@@ -5,7 +5,7 @@ export const API_ENDPOINTS = {
   signup: '/register',
   signin: '/login',
   ads: '/ads',
-  forgotPassword: '/forgot-password',
+  forgotPassword: '/forgot_password',
   requestBook: '/request/book',
   booksList: '/books',
   booksArabic: '/books/arabic',

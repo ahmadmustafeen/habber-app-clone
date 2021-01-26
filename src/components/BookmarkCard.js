@@ -43,7 +43,7 @@ const BookmarkCard = (props) => {
                     <AppText bold size={13}>{title}</AppText>
                     {quantity ?
                         <AppText primary bold size={13} style={styles.outOfStock} >
-                            {rtlLayout && price_product.symbol} {parseFloat(price).toFixed(2)} {rtlLayout || price_product.symbol}
+                            {rtlLayout && price_product.symbol} {(parseFloat(prices.find((price) => price.iso === UserProfileReducer.currency.iso).price.toString().replace(",", ""))).toFixed(2)} {rtlLayout || price_product.symbol}
                         </AppText>
                         :
                         <View style={[styles.outOfStock, { backgroundColor: colors.primary }]}>
