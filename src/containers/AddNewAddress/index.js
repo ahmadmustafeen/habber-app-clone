@@ -89,7 +89,7 @@ const AddNewAddress = (props) => {
   const validate = () => {
     return (
 
-      validateIsTrue(state.address_name, `${t('Please')}  ${t('addressName')}`, false, t('ok')) &&
+      validateIsTrue(state.address_name, `${t('Please')}  ${t('addressName')}`, false,) &&
       validateIsTrue(state.country_id, `${t('Please')}  ${t('country')}`, false, t('ok')) &&
       validateIsTrue(state.city_id, `${t('Please')}  ${t('state')}`, false, t('ok')) &&
       validateIsTrue(state.state, `${t('Please')}  ${t('city')}`, false, t('ok')) &&

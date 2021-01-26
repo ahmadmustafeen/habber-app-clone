@@ -1,4 +1,4 @@
-import { Alert } from 'react-native';
+import { Alert, I18nManager } from 'react-native';
 
 export const validateEmail = (email) => {
   return (
@@ -20,10 +20,22 @@ export const validateIsTrue = (val, text = 'details', concat = true, button = "o
       concat ? ` ${text}` : text,
 
 
+      // [
+      //   { text: I18nManager.isRTL ? ' بيانات الاعتماد غير صالح' : button },
+
+
+      // ]
+
       [
-        { text: button },
+        {
+          text: I18nManager.isRTL ? 'حسنا' : ' ',
 
+        },
+        {
+          text: ' ',
 
+        },
+        { text: I18nManager.isRTL ? ' ' : button }
       ]
 
     )

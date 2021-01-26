@@ -64,7 +64,7 @@ const BookDetailsCard = (props) => {
           <AppText
             size={15}
             style={{ paddingBottom: wp(10), fontStyle: 'italic' }}>
-            {t('by')}{product_type === "book" ? author_name : maker_name}
+            {t('by')}  {product_type === "book" ? author_name : maker_name}
           </AppText>
           <AppText bold size={17}>
             {t('price')} {rtlLayout && price_product.symbol}

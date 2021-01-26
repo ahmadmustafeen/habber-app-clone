@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, ActivityIndicator, TouchableOpacity, Image } from 'react-native';
+import { StyleSheet, View, ActivityIndicator, TouchableOpacity, Image, I18nManager } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 import { Icon } from 'react-native-elements';
 
@@ -76,7 +76,7 @@ const Button = (props) => {
         size={15}
         containerStyle={styles.iconStyle}
         color="black"
-        name="rightcircleo"
+        name={I18nManager.isRTL ? "leftcircleo" : "rightcircleo"}
         type="antdesign"
       />
       }
