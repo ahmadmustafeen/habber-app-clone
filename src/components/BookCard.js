@@ -66,7 +66,7 @@ const BookCard = (props) => {
             </View>
 
             <View style={[styles.outOfStock, { backgroundColor: colors.primary }]}>
-              <AppText small >{I18nManager.isRTL ? "إنتهى من المخزن" : "Out Of Stock"}</AppText>
+              <AppText small style={{ color: '#fff', fontSize: 10 }} >{I18nManager.isRTL ? "إنتهى من المخزن" : "Out Of Stock"}</AppText>
             </View>
           </>
         }
@@ -84,8 +84,10 @@ const styles = StyleSheet.create({
     margin: 3,
   },
   image: {
-    width: '100%',
-    height: '100%'
+    width: wp(14),
+    height: hp(8),
+    marginTop: 10,
+    marginLeft: 10
   },
   imageContainer: {
     width: wp(40.85),

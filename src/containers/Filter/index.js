@@ -66,7 +66,8 @@ const FilterModal = (props) => {
           </AppText>
           {selected && (
             <Icon
-              size={19}
+              size={25}
+
               color={selected && colors.primary}
               name="check"
               type="antdesign"
@@ -102,7 +103,7 @@ const FilterModal = (props) => {
           right
           onPress={() => reset()}
           color={colors.primary}
-          style={{ paddingVertical: hp(1), paddingHorizontal: wp(1) }}>
+          style={{ paddingVertical: hp(1), paddingHorizontal: wp(5) }}>
           {t('reset')}
         </AppText>
         <HorizontalRow style={styles.line} />

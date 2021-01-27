@@ -116,8 +116,14 @@ const Search = (props) => {
       <View key="content">
         <View style={{ width: wp(90), alignSelf: 'center' }}>
           {(SearchBooksReducer.length > 0) &&
+            // <TitleBarWithIcon label={`${SearchBooksReducer.length} ${t('bookFound')}`}
+            //   filter={filter} noIcon onIconPress={toggleFilter} />
+
+
             <TitleBarWithIcon label={`${SearchBooksReducer.length} ${t('bookFound')}`}
-              filter={filter} noIcon onIconPress={toggleFilter} />}
+              noIcon filter={filter} onIconPress={toggleFilter} centerLine={true} />
+
+          }
         </View>
 
         <View style={styles.filterApply}>

@@ -35,7 +35,7 @@ const AddressCard = (props) => {
           {item.address_name}
         </AppText>
         <AppText size={15} style={styles.spacebtwaddresses}>
-          {`${item.address_line1}${item.address_line2}`}
+          {`${item.address_line1} ${item.address_line2}`}
         </AppText>
       </View>
       {actionButton &&

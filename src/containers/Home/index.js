@@ -293,8 +293,9 @@ const Home = (props) => {
           />
           <TitleBarWithIcon label={t('requestBook')} noIcon />
           <View style={styles.requestBooksBtns}>
-            <View style={{ width: wp(28) }}>
+            <View style={{ width: wp(32) }}>
               <Button
+                style={{ paddingLeft: 5 }}
                 bold
                 color={colors.white}
                 borderRadius={2}
@@ -306,7 +307,7 @@ const Home = (props) => {
                 {t('requestBook')}
               </Button>
             </View>
-            <View style={{ width: wp(58) }}>
+            <View style={{ width: wp(55) }}>
               <Button
                 // bold
                 borderRadius={2}

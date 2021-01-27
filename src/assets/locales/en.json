@@ -179,7 +179,8 @@
     "phoneValidation": "Phone Number should be between 11 digits to 15 digits",
     "useAddress": "Use This Address",
     "editAddress": "Edit Address",
-    "ok": "Ok"
+    "ok": "Ok",
+    "Please": "Please Enter",
   },
   "EditProfile": {
     "firstName": "First Name",
@@ -194,7 +195,7 @@
     "confirmNewPassword": "Confirm New Password",
     "save": "SAVE",
     "ok": "Ok",
-    "Please": "Please",
+    "Please": "Please Enter",
     "PassNotMatch": "Password does not Match"
   },
   "Search": {
