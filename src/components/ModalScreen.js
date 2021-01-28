@@ -35,7 +35,7 @@ const ModalScreen = props => {
             {/* <Header headerImage noTitle backIcon headerRight headerLeft {...props} onModalPress={onContinue} /> */}
             {/* <Header {...props} backIcon headerLeft headerImage noTitle
             /> */}
-            <Header headerImage backIcon headerLeft noTitle route />
+            <Header headerImage backIcon headerLeft noTitle route onModalPress={onContinue} />
           </View>
           <View
             key="content"

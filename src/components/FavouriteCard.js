@@ -72,7 +72,7 @@ const FavouriteCard = (props) => {
               type="font-awesome"
             />
             <AppText bold primary style={[styles.txt, { marginLeft: wp(-3) }]}>
-              Remove
+              {I18nManager.isRTL ? "إزالة" : "Remove"}
             </AppText>
           </TouchableOpacity>
         </View>
@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     marginLeft: 15,
     marginTop: 10,
-    maxWidth: wp(50),
+    maxWidth: wp(43),
   },
   pricetxt: {
     marginTop: 20,
