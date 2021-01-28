@@ -31,7 +31,7 @@ const ModalSelectorCustom = (props) => {
     return (
         <View style={[containerStyle], {
             marginVertical: hp(1.0),
-            height: hp(5.8),
+            // height: hp(5.8),
             paddingVertical: 1,
             paddingLeft: 5,
             borderRadius: 5,
@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
     iconStyle: {
         position: 'absolute',
         right: wp(5),
-        top: hp(1),
+        // top: hp(1),
     }
 
 })

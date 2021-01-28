@@ -104,12 +104,13 @@ const ContactUs = (props) => {
 
       validateIsTrue(state.name, `${t('Please')} ${t('name')}`, false, t('ok')) &&
       validateIsTrue(state.email, `${t('Please')} ${t('email')}`, false, t('ok')) &&
+      validateIsTrue(validateEmail(state.email), I18nManager.isRTL ? ("يرجى إدخال بريد إلكتروني صالح") : "Kindly enter a valid email", false, t('ok')) &&
 
 
 
 
       validateIsTrue(((state.phone.length === 0) || ((state.phone.length > 10) && (state.phone.length < 16))),
-        `${t('Please')} ${t('phoneValidation')}`, false)
+        I18nManager.isRTL ? "" : "Please Enter a valid number", false)
 
       && validateIsTrue(state.message, `${t('Please')} ${t('message')}`, false, t('ok'))
     )

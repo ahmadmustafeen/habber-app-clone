@@ -41,7 +41,7 @@ export function* UpdateProfileSaga({ type, payload }) {
         );
     }
     else {
-      Alert.alert('Something went wrong', message, [{
+      Alert.alert(I18nManager.isRTL ? "من المحتمل أن يتم أخذ هذا البريد الإلكتروني" : "Possibly this email is taken!", message, [{
         onPress: () => NavigationService.navigate('MyProfile', { screen: MY_PROFILE })
       }])
     }

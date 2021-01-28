@@ -81,11 +81,14 @@ const Settings = (props) => {
             marginVertical: hp(0.5),
             width: wp(80),
             borderLeftWidth: 4,
-            height: hp(3),
+            // height: hp(6),
             alignItems: 'center',
             justifyContent: 'space-between',
             flexDirection: 'row',
-          }, selected ? { borderLeftColor: colors.primary } : { borderLeftColor: colors.borderColor }]}
+
+          }, selected ? { borderLeftColor: colors.primary } : { borderLeftColor: colors.borderColor }
+            ,
+          ]}
           onPress={() => onPress(value)}>
           <AppText primary={selected} small color={colors.borderColor} style={{ paddingLeft: wp(2), }}>
             {currencyName}
