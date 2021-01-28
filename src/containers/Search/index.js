@@ -25,6 +25,9 @@ import { ScrollView } from 'react-native-gesture-handler';
 import { withoutDataActions } from '../../redux/actions';
 import { SEARCH_BOOKS_SUCCESS } from '../../redux/actionTypes';
 
+import { setFilterHandler } from '../../helpers/Filter';
+
+
 const Search = (props) => {
   // const { t } = useTranslation(['Search']);
   const { t } = useTranslation(['Search'])
@@ -33,14 +36,16 @@ const Search = (props) => {
   const [keyword, setKeyword] = useState('');
   const { visible, toggleFilter } = useFilter();
   const dispatch = useDispatch();
+  const [filter, setFilter] = useState([])
 
-  var { SearchBooksReducer } = useSelector(({ SearchBooksReducer }) => {
+
+  const { SearchBooksReducer } = useSelector(({ SearchBooksReducer }) => {
     return {
       SearchBooksReducer,
     };
   }, shallowEqual);
-  console.log("bookkkkkk", SearchBooksReducer)
-  const [filter, setFilter] = useState([])
+  const [bookData, setBookData] = useState(SearchBooksReducer);
+  console.log("bookkkkkk", bookData)
   const onSubmit = () => {
     dispatch(withDataActions({ keyword }, SEARCH_BOOKS))
   };
@@ -54,23 +59,36 @@ const Search = (props) => {
 
   console.log("empty", SearchBooksReducer)
 
-
+  const onApplyFilter = (item) => {
+    // filter keys in UI should be displayed from ITEM array - Ahmad
+    setFilter([...item]);
+    toggleFilter();
+    if (!item.length) {
+      setBookData(SearchBooksReducer);
+      return;
+    }
+    let filtered = setFilterHandler(SearchBooksReducer, item);
+    setBookData(filtered);
+  };
   // const onApplyFilter = (item) => {
   //   console.log(item);
   //   toggleFilter();
   // };
-  const onApplyFilter = (item) => {
-    // filter keys in UI should be displayed from ITEM array - Ahmad
-    setFilter([...item])
-    toggleFilter();
-    // if (!item.length) {
-    //   setBookData(data);
-    //   return;
-    // }
+  // const onApplyFilter = (item) => {
 
-    // let filtered = setFilterHandler(bookData, item);
-    // setBookData(filtered);
-  };
+
+
+  //   // filter keys in UI should be displayed from ITEM array - Ahmad
+  //   setFilter([...item])
+  //   toggleFilter();
+  //   // if (!item.length) {
+  //   //   setBookData(data);
+  //   //   return;
+  //   // }
+
+  //   // let filtered = setFilterHandler(bookData, item);
+  //   // setBookData(filtered);
+  // };
   console.log('SearchBooksReducer', SearchBooksReducer);
   return (
     <ScrollView keyboardShouldPersistTaps='always'>
@@ -116,14 +134,8 @@ const Search = (props) => {
       <View key="content">
         <View style={{ width: wp(90), alignSelf: 'center' }}>
           {(SearchBooksReducer.length > 0) &&
-            // <TitleBarWithIcon label={`${SearchBooksReducer.length} ${t('bookFound')}`}
-            //   filter={filter} noIcon onIconPress={toggleFilter} />
-
-
-            <TitleBarWithIcon label={`${SearchBooksReducer.length} ${t('bookFound')}`}
-              noIcon filter={filter} onIconPress={toggleFilter} centerLine={true} />
-
-          }
+            <TitleBarWithIcon label={`${bookData.length} ${t('bookFound')}`}
+              filter={filter} noIcon onIconPress={toggleFilter} centerLine />}
         </View>
 
         <View style={styles.filterApply}>
@@ -136,8 +148,8 @@ const Search = (props) => {
             </View>
           )}
         </View>
-        {/* {(SearchBooksReducer.length > 0) && <BookListContainer data={SearchBooksReducer} product_type="book" {...props} />} */}
-        {(SearchBooksReducer.length > 0) ? <BookListContainer data={SearchBooksReducer} product_type="book" {...props} />
+        {/* {(bookData.length > 0) && <BookListContainer data={bookData} product_type="book" {...props} />} */}
+        {(bookData.length > 0) ? <BookListContainer data={bookData} product_type="book" {...props} />
           : <NoBookAvailbe title={I18nManager.isRTL ? 'لا يوجد شيء لعرضه هنا!' : 'Nothing to Show here!'}
             emptyy={I18nManager.isRTL ? 'أدخل شيئا للبحث' : 'Enter Something to Search'} />}
 

@@ -84,6 +84,7 @@ const JoinUs = (props) => {
     return (
       validateIsTrue(state.name, `${t('Please')} ${t('name')}`, false, t('ok')) &&
       validateIsTrue(state.email, `${t('Please')} ${t('email')}`, false, t('ok')) &&
+      validateIsTrue(validateEmail(state.email), I18nManager.isRTL ? "يرجى إدخال البريد الإلكتروني الصحيح!" : "Please enter a valid email!", false, t('ok')) &&
       validateIsTrue(((state.phone.length > 10) && (state.phone.length < 16)),
         `${t('Please')} ${t('phoneValidation')}`, false) &&
       validateIsTrue(!!validatePhone(state.phone), `${t('Please')}  ${t('mobileNumberOptional')}`, false, t('ok')) &&

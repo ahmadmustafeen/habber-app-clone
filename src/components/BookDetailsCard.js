@@ -12,6 +12,7 @@ import {
 } from 'react-native-responsive-screen';
 import { useTranslation } from 'react-i18next';
 import { useSelector, shallowEqual } from 'react-redux';
+import { ModalImage } from './ModalImage';
 const BookDetailsCard = (props) => {
   console.log("book details card", props)
   const { t } = useTranslation(['BookDetails'])
@@ -46,6 +47,10 @@ const BookDetailsCard = (props) => {
   var rtlLayout = false;
   (UserProfileReducer.currency.iso === "USD" || UserProfileReducer.currency.iso === "GBP" || UserProfileReducer.currency.iso === "EUR") && (rtlLayout = true)
 
+  const modalRef = useRef(null);
+  const toggleModal = () => {
+    modalRef.current.toggle();
+  };
   return (
     <View style={styles.container}>
       <View style={product_type === 'bookmark' ? { aspectRatio: 0.6 / 1, height: hp(35) } : styles.imgContainer}>
@@ -53,6 +58,7 @@ const BookDetailsCard = (props) => {
           style={styles.image}
           source={{ uri: image }}
           resizeMode="contain"
+          onPress={toggleModal}
         />
       </View>
 
@@ -110,6 +116,7 @@ const BookDetailsCard = (props) => {
 
         </View>
       </View>
+      <ModalImage ref={modalRef} source={{ uri: image }} />
     </View>
   );
 };

@@ -33,11 +33,12 @@ export function* PaymentSaga({ payload, type }) {
       merchantCode: HSB_MERCHANT_ID,
       version: HSB_API_VERSION,
       currency: payload.payload.currency_iso,
-      amount: payload.payload.total_price,
+      amount: parseFloat((payload.payload.total_price).toString().replace(",", "")),
       orderReferenceNumber: payload.payload.id,
       responseUrl: payload.payload.payment_success_url,
       failureUrl: payload.payload.payment_failure_url,
     };
+    console.log("payload_obj", payload_obj)
     const encrypted = payment.encryptAes(JSON.stringify(payload_obj));
     const api = create({
       baseURL: HSB_BASE_URL,
@@ -60,6 +61,7 @@ export function* PaymentSaga({ payload, type }) {
         .then((data) => JSON.parse(data))
         .catch((err) => console.log('HESABE ERROR', err)),
     );
+    console.log("result", result)
     const paymentData = result.response.data;
     const paymentUrl = `${HSB_BASE_URL}/payment?data=${paymentData}`;
     NavigationService.navigate(PAYMENT_SCREEN, {
