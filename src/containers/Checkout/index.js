@@ -238,7 +238,7 @@ const Checkout = (props) => {
               </AppText> */}
             {/* </View> */}
           </View>
-          <View style={{ height: hp(15), justifyContent: 'space-between' }}>
+          <View style={{ height: hp(20), justifyContent: 'space-around' }}>
             <Button
               add
               fontSize={17}

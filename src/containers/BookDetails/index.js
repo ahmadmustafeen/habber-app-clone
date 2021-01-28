@@ -445,7 +445,7 @@ const styles = StyleSheet.create({
     marginVertical: hp(2),
   },
   infoProduct: {
-    paddingVertical: hp(0.1),
+    paddingVertical: hp(0.3),
   },
 });
 
