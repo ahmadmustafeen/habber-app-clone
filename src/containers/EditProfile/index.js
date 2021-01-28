@@ -26,6 +26,9 @@ import { AppText } from '../../components/common';
 import { UPDATE_PROFILE } from '../../redux/actionTypes';
 import { checkIfLoading } from '../../redux/selectors';
 
+
+
+
 const imageOptions = {
   title: 'Select Avatar',
   customButtons: [{ name: 'fb', title: 'Choose Photo from Facebook' }],
@@ -125,7 +128,9 @@ const EditProfile = (props) => {
     <ScrollView>
 
       <View key="header">
-        <Header {...props} headerImage />
+        <Header {...props} headerImage backIcon headerLeft />
+
+
       </View>
       <View key="content" style={styles.content}>
         <View style={styles.profiletop}>
@@ -176,7 +181,7 @@ const EditProfile = (props) => {
 
 
       <View style={[styles.content, { marginTop: hp(10) }]}>
-        <Button loading={isLoading} appColor primary onPress={() => save()}>
+        <Button loading={isLoading} appColor color={"white"} bold primary onPress={() => save()}>
           {t('save')}
         </Button>
       </View>

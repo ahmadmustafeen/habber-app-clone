@@ -52,7 +52,8 @@ const Header = (props, { adddok }) => {
     headerImage,
     cartNumber, onModalPress,
     noTitle,
-    noSearch
+    noSearch,
+    noCart
 
   } = props;
 
@@ -105,7 +106,7 @@ const Header = (props, { adddok }) => {
 
           }}>
           <TouchableOpacity onPress={backIcon ? () => navigation.goBack() : () => navigation.openDrawer()} >
-            <AppText bold small color={headerColor} UpperCase={UpperCase} >
+            <AppText bold small color={headerColor} UpperCase={UpperCase}  >
               {title || t(route.name)}
             </AppText>
           </TouchableOpacity>
@@ -128,14 +129,17 @@ const Header = (props, { adddok }) => {
                       CART_SCREEN,
                     });
                   }}>
-                  <Image
-                    source={
-                      cartNumber
-                        ? require('../assets/images/filledcart.png')
-                        : (qua === 0 ? require('../assets/images/emptycart.png') : require('../assets/images/nocart3.png'))
-                    }
-                    style={{ marginRight: wp(3), marginHorizontal: wp(1) }}
-                  />
+                  {!noCart ?
+
+                    <Image
+                      source={
+                        cartNumber
+                          ? require('../assets/images/filledcart.png')
+                          : (qua === 0 ? require('../assets/images/emptycart.png') : require('../assets/images/nocart3.png'))
+                      }
+                      style={{ marginRight: wp(3), marginHorizontal: wp(1) }}
+                    /> : null
+                  }
                   {qua ? (
                     <View style={I18nManager.isRTL ? styles.circleArabic : styles.circle}>
                       <AppText style={{ transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }], }} size={13} bold color={"#0a2937"}>

@@ -22,7 +22,7 @@ const BookClub = (props) => {
                 </View>
                 <View
                     style={styles.txtDetails}>
-                    <AppText size={19}>{name}</AppText>
+                    <AppText capitalize size={19}>{name}</AppText>
 
                 </View>
                 <ModalImage ref={modalRef} source={{ uri: bookclub_logo }} />

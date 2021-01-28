@@ -68,7 +68,8 @@ export const PASSWORD_CHANGE = {
   modalData: {
 
     heading: I18nManager.isRTL ? 'تم تغيير الرقم السري بنجاح!' : 'Password Changed Successfully!',
-    description: I18nManager.isRTL ? 'يمكنك الآن تسجيل الدخول بأخذ كلمة مرور جديدة' : 'You can now Login with New Password taking',
+    description: I18nManager.isRTL ? 'يمكنك الآن تسجيل الدخول بأخذ كلمة مرور جديدة' :
+      'You can Login with Your New Password',
     buttonLabel: I18nManager.isRTL ? 'حسنا' : 'ok',
   },
 };

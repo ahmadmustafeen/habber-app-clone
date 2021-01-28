@@ -221,11 +221,13 @@ const BookDetails = (props) => {
               <View
                 style={{ width: wp(90), paddingTop: hp(2), alignSelf: 'center' }}>
                 <BookDetailsCard
+                  subheading
                   onClickFavourite={handleFavouriteClick}
                   favourite={isFavourite}
                   {...book}
                   onClickShare={onShare}
-                  onGoodReads={product_type === 'book' ? () => Linking.openURL('https://www.goodreads.com/book/isbn/' + book.isbn) : null}
+                  onGoodReads={product_type === 'book' ? () => Linking.openURL('https://www.goodreads.com/book/isbn/' + book.isbn)
+                    : null}
                 />
               </View>)
             : (
@@ -282,10 +284,10 @@ const BookDetails = (props) => {
                   {t("productId")}: {book.bookmark_id}
                 </AppText>
                 <AppText style={styles.infoProduct} bold size={15}>
-                  {t("sizeInInches")}: {book.size}
+                  {t("sizeInInches")} : {book.size}
                 </AppText>
                 <AppText style={styles.infoProduct} bold size={15}>
-                  {t("typeOfBookmark")}: {book.type_of_bookmark}
+                  {t("typeOfBookmark")} : {book.type_of_bookmark}
                 </AppText>
               </>
             )}

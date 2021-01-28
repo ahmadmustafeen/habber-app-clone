@@ -166,14 +166,14 @@
     "changePassword": "CHANGE PASSWORD"
   },
   "AddNewAddress": {
-    "addressName": "Address Name",
+    "addressName": "Address Name*",
     "country": "Country",
     "state": "State",
     "city": "City*",
     "address": "Address",
     "addressLine1": "Address Line 1*",
-    "addressline2": "Address Line 2*",
-    "postalCode": "Postal Code*",
+    "addressline2": "Address Line 2",
+    "postalCode": "Postal Code",
     "mobileNumber": "Mobile Number*",
     "addAddress": "Add Address",
     "phoneValidation": "Phone Number should be between 11 digits to 15 digits",
@@ -190,7 +190,7 @@
     "ok": "Ok"
   },
   "ChangePassword": {
-    "password": " Old Password",
+    "password": "Password",
     "newPassword": "New Password",
     "confirmNewPassword": "Confirm New Password",
     "save": "SAVE",

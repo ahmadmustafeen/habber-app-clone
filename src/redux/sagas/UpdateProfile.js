@@ -14,7 +14,7 @@ export function* UpdateProfileSaga({ type, payload }) {
     const form_data = new FormData();
     form_data.append('first_name', payload.first_name);
     form_data.append('last_name', payload.last_name);
-    form_data.append('phone', payload.phone);
+    form_data.append('email', payload.email);
     if (payload.profile_pic.uri) (form_data.append('profile_pic', payload.profile_pic));
 
     form_data.append('language_id', payload.language_id);

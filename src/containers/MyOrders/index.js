@@ -22,8 +22,9 @@ const MyOrders = (props) => {
       OrderReducer: state.OrderReducer
     }
   })
-  console.log(OrderReducer)
+  console.log("OrderReducer In Order", OrderReducer)
   const { t } = useTranslation(['Order'])
+
   const renderItem = ({ item }) => {
 
 
@@ -41,8 +42,10 @@ const MyOrders = (props) => {
           <AppText size={16} style={styles.statuspadding}><AppText bold size={17}>{I18nManager.isRTL ? "الحالة" : "Status"}: </AppText>{item.status}</AppText>
         </View>
         <View style={styles.totalContainer}>
-          <AppText size={16} style={styles.apptextpadding}><AppText size={17} bold>{I18nManager.isRTL ? "مجموع" : "Total"}: </AppText>{item.currency_iso} {item.total_price}</AppText>
-          <AppText size={16} style={styles.apptextpadding}>{item.date}</AppText>
+          <AppText size={16} style={styles.apptextpadding}><AppText size={17} bold>{I18nManager.isRTL ? "مجموع" : "Total"}: </AppText>{item.currency_iso} {(parseFloat(item.total_price.toString().replace(",", ""))).toFixed(2)}</AppText>
+          <AppText size={16} style={styles.apptextpadding}>{item.created_at.split('T')[0]}</AppText>
+
+
         </View>
         <View style={styles.Icon}>
           <Icon
@@ -178,7 +181,7 @@ const styles = StyleSheet.create({
   },
   Icon: {
     position: 'absolute',
-    bottom: hp(6),
+    bottom: hp(3),
     right: wp(10),
   }
 });

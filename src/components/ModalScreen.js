@@ -26,12 +26,16 @@ const ModalScreen = props => {
   } = props
   // console.log("CC", colors)
   const { t } = useTranslation(['AddNewAddress'])
+
   return (
     <Modal animationType="fade" visible={visible}>
       <View style={styles.container}>
         <Screen noPadding>
           <View key="header">
-            <Header headerImage noTitle backIcon headerRight headerLeft {...props} onModalPress={onContinue} noCart />
+            {/* <Header headerImage noTitle backIcon headerRight headerLeft {...props} onModalPress={onContinue} /> */}
+            {/* <Header {...props} backIcon headerLeft headerImage noTitle
+            /> */}
+            <Header headerImage backIcon headerLeft noTitle route />
           </View>
           <View
             key="content"

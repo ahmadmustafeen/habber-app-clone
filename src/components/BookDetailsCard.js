@@ -30,7 +30,8 @@ const BookDetailsCard = (props) => {
     prices,
     favourite,
     onClickShare,
-    onGoodReads
+    onGoodReads,
+    subheading
   } = props;
 
 
@@ -57,7 +58,11 @@ const BookDetailsCard = (props) => {
 
       <View
         style={styles.bookDetailsContainer}>
-        <View style={{ transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }], marginTop: wp(3) }}>
+        <View style={{
+          transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }],
+          // subheading: { fontSize: 20 },
+          marginTop: wp(7)
+        }}>
           <AppText bold size={17}>
             {title}
           </AppText>

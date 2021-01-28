@@ -197,7 +197,7 @@ const Settings = (props) => {
                 <SettingsDropdown
                   // key={iso}
                   selected={item.iso === currencyVal.iso}
-                  currencyName={item.name}
+                  currencyName={item.iso}
                   symbol={item.symbol}
                   onPress={() => {
                     setCurrencyVal(item)
@@ -233,7 +233,7 @@ const Settings = (props) => {
 
       >
         {UserProfileReducer.token && (
-          <Button bold onPress={onLogout}>
+          <Button bold color="white" onPress={onLogout}>
             {I18nManager.isRTL ? "تسجيل خروج" : "LOGOUT"}
           </Button>
         )}

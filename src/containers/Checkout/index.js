@@ -67,7 +67,7 @@ const Checkout = (props) => {
       <View key="header">
 
         <Header
-          headerLeft backIcon {...props} headerImage noSearch />
+          headerLeft backIcon {...props} headerImage noSearch noCart />
       </View>
       <View key="content">
         <View style={styles.addressbookview}>
@@ -104,11 +104,21 @@ const Checkout = (props) => {
             />
           </View>
         </View>
-        <HorizontalRow
+        {/* <HorizontalRow
           style={{
             borderBottomColor: colors.borderColor,
             borderBottomWidth: hp(0.2),
             marginVertical: hp(3),
+          }}
+        /> */}
+        <HorizontalRow
+          style={{
+            borderColor: 'rgb(200, 200, 200)',
+            borderWidth: hp(0.1),
+            width: wp(90),
+            alignSelf: 'center',
+            marginVertical: hp(2),
+
           }}
         />
         <View style={styles.addressbookview}>
@@ -145,6 +155,16 @@ const Checkout = (props) => {
               />
             </View>
           </View>
+          <HorizontalRow
+            style={{
+              borderColor: 'rgb(200, 200, 200)',
+              borderWidth: hp(0.1),
+              width: wp(90),
+              alignSelf: 'center',
+              marginVertical: hp(2),
+
+            }}
+          />
 
           <View style={[styles.totalcontainer, { height: hp(20) }]}>
 
@@ -158,7 +178,16 @@ const Checkout = (props) => {
               <View style={styles.pricerow}><AppText bold>{(parseFloat(Address_VAL.shipping_charges.toString().replace(",", ""))).toFixed(2)}</AppText></View>
             </View>
 
-            <HorizontalRow />
+            <HorizontalRow
+              style={{
+                borderColor: 'rgb(200, 200, 200)',
+                borderWidth: hp(0.1),
+                width: wp(90),
+                alignSelf: 'center',
+                marginVertical: hp(1),
+
+              }}
+            />
             <View style={styles.row}>
               <AppText bold>{I18nManager.isRTL ? "مجموع" : "Total"} </AppText>
               <View style={styles.pricerow}><AppText bold>{parseFloat((parseFloat(CartReducer.total_price.toString().replace(",", ""))) + (parseFloat(Address_VAL.shipping_charges.toString().replace(",", "")))).toFixed(2)}</AppText></View>
@@ -209,7 +238,7 @@ const Checkout = (props) => {
               </AppText> */}
             {/* </View> */}
           </View>
-          <View style={{ height: hp(17), justifyContent: 'space-between' }}>
+          <View style={{ height: hp(15), justifyContent: 'space-between' }}>
             <Button
               add
               fontSize={17}

@@ -26,7 +26,8 @@ const Button = (props) => {
     icon,
     outOfStock,
     add,
-    inStock
+    inStock,
+
   } = props;
   const { colors } = useTheme();
   return (
@@ -49,10 +50,12 @@ const Button = (props) => {
       <AppText
         size={fontSize}
         bold={bold}
+        capitalize
         style={{
           textAlign: 'center',
           color: color || 'black',
           fontSize: 20,
+          textTransform: 'capitalize'
         }}>
         {children || 'Button'}
       </AppText>
@@ -68,7 +71,7 @@ const Button = (props) => {
         </View>
       }
       {add &&
-        <View style={{ position: "absolute", left: wp(16), width: wp(5), height: wp(5), zIndex: 1 }}>
+        <View style={{ position: "absolute", left: wp(8), width: wp(5), height: wp(5), zIndex: 1 }}>
           <Image style={{ width: "100%", height: "100%" }} source={require("../../assets/images/adddark.png")} />
         </View>
       }

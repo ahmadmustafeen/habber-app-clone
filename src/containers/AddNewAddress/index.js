@@ -122,7 +122,10 @@ const AddNewAddress = (props) => {
   return (
     <ScrollView>
 
-      <Header {...props} backIcon headerLeft headerImage
+      <Header {...props} backIcon headerLeft headerImage noCart
+        noSearch={!!(props.route.params) ? props.route.params.checkout ? true : null : null}
+        noCart={!!(props.route.params) ? props.route.params.checkout ? true : null : null}
+        title={!!(props.route.params) ? props.route.params.checkout ? (I18nManager.isRTL ? "الدفع" : "CHECKOUT") : (I18nManager.isRTL ? "تعديل العنوان" : "EDIT ADDRESS") : (I18nManager.isRTL ? "اضف عنوان" : "Add Address")}
         title={!!(props.route.params) ? props.route.params.checkout ? (I18nManager.isRTL ? "الدفع" : "CHECKOUT") : (I18nManager.isRTL ? "تعديل العنوان" : "EDIT ADDRESS") : (I18nManager.isRTL ? "اضف عنوان" : "Add Address")} />
 
       <Screen>
@@ -197,7 +200,7 @@ const AddNewAddress = (props) => {
           />
         </View>
         <View key="footer">
-          <Button primary onPress={() => AddAddress()} loading={isLoading || isLoading2}>
+          <Button primary color={"white"} onPress={() => AddAddress()} loading={isLoading || isLoading2}>
             {/* {t('Add Address')} */}
             {!!(props.route.params) ? props.route.params.checkout ?
               t('useAddress') : t('useAddress') : t('addAddress')}
