@@ -99,7 +99,7 @@ const Invoice = (props) => {
                 <View style={{ width: wp(80), alignSelf: "center", borderBottomColor: colors.primary, borderBottomWidth: hp(0.1) }} />
                 <InvoiceItem headerLeft={I18nManager.isRTL ? "اسم الزبون" : "Customer Name"}
                     headerRight={I18nManager.isRTL ? "رقم الهاتف" : "Phone No."} textLeft={UserProfileReducer.first_name}
-                    textRight={UserProfileReducer.phone} />
+                    textRight={item.phone} />
                 <View style={{
                     width: wp(80), paddingVertical: hp(1), alignSelf: "center",
                     borderBottomColor: colors.primary, borderBottomWidth: hp(0.1)
