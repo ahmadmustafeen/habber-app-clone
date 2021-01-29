@@ -84,8 +84,8 @@ const styles = StyleSheet.create({
     margin: 3,
   },
   image: {
-    width: wp(14),
-    height: hp(8),
+    width: wp(11),
+    height: hp(6.5),
     marginTop: 10,
     marginLeft: 10
   },
@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
     bottom: hp(8),
     right: wp(1),
     aspectRatio: 1,
-    height: hp(8)
+    height: hp(8.5)
   },
   details: {
     flex: 1,
