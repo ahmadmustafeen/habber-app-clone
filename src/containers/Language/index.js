@@ -10,6 +10,7 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
+import { I18nManager } from 'react-native';
 const Language = (props) => {
   const { navigate } = props.navigation;
   const { colors } = useTheme();
@@ -23,7 +24,7 @@ const Language = (props) => {
         />
       </View>
       <View key="content" style={{ alignItems: 'center', paddingTop: hp(10) }}>
-        <AppText style={styles.selecttxt}>Select Your Language</AppText>
+        <AppText style={styles.selecttxt}>{I18nManager.isRTL ? "اختر لغتك" : "Select Your Language"}</AppText>
         <Button
           style={styles.btn}
           round
