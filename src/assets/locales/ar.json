@@ -116,7 +116,8 @@
     "phoneValidation": "تغيير كلمة المرو",
     "emailstaric": "البريد الالكتروني",
     "Messangestaric": "رسالة",
-    "Namestaric": "الاسم"
+    "Namestaric": "الاسم",
+    "displayEmail": "البريد الإلكتروني"
   },
   "Cart": {
     "subTotal": "المجموع",

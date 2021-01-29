@@ -15,28 +15,7 @@ export const validateIsTrue = (val, text = 'details', concat = true, button = "o
   if (!val) {
 
     // Alert.alert(concat ? `${please} ${text}` : text)
-    Alert.alert(
-      '',
-      concat ? ` ${text}` : text,
-
-
-      // [
-      //   { text: I18nManager.isRTL ? ' بيانات الاعتماد غير صالح' : button },
-
-
-      // ]
-
-      [
-        {
-          text: I18nManager.isRTL ? 'حسنا' : ' ',
-
-        },
-        {
-          text: ' ',
-
-        },
-        { text: I18nManager.isRTL ? ' ' : button }
-      ]
+    Alert.alert('', concat ? ` ${text}` : text, [{ text: I18nManager.isRTL ? 'حسنا' : ' ', }, { text: ' ', }, { text: I18nManager.isRTL ? ' ' : button }]
 
     )
     return false

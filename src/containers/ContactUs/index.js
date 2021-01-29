@@ -167,7 +167,7 @@ const ContactUs = (props) => {
           />
           <TextInput
 
-            style={styles.textArea}
+            style={[styles.textArea, I18nManager.isRTL && { textAlign: 'right' }]}
             underlineColorAndroid="transparent"
             placeholder={t('Messangestaric')}
             placeholderTextColor="grey"
@@ -207,7 +207,10 @@ const ContactUs = (props) => {
             resizeMode='stretch'
             source={require('_assets/images/footer.png')}>
 
-            <View style={[styles.textwithIconContainer, { transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }] }]}>
+            <View style={[styles.textwithIconContainer, { transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }], }, I18nManager.isRTL && {
+              marginTop: hp(10.0),
+              width: wp(75)
+            }]}>
 
               <TextWithIcon
                 small

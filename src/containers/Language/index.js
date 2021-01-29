@@ -22,7 +22,7 @@ const Language = (props) => {
           source={require('_assets/images/Screenshot_Logo.jpg')}
         />
       </View>
-      <View key="content" style={{ alignItems: 'center', paddingTop: hp(15) }}>
+      <View key="content" style={{ alignItems: 'center', paddingTop: hp(10) }}>
         <AppText style={styles.selecttxt}>Select Your Language</AppText>
         <Button
           style={styles.btn}
@@ -51,9 +51,9 @@ const Language = (props) => {
 };
 const styles = StyleSheet.create({
   imageContainer: {
-    width: 100,
-    height: 100,
-    marginVertical: 20,
+    height: hp(25),
+    aspectRatio: 1,
+    // marginVertical: 20,
     marginTop: '30%',
     alignSelf: 'center',
   },
@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   btn: {
-    marginBottom: 25,
+    marginBottom: hp(2),
   },
 });
 export default Language;
