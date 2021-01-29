@@ -170,7 +170,7 @@ const JoinUs = (props) => {
         </View>
 
         <TextInput
-          style={styles.textArea}
+          style={[styles.textArea, I18nManager.isRTL && { textAlign: 'right' }]}
           underlineColorAndroid="transparent"
           placeholder={t('detailsestaric')}
           placeholderTextColor="grey"

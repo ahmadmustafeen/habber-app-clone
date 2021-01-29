@@ -63,7 +63,9 @@ const MyProfile = (props) => {
             <TouchableOpacity
               style={{ position: 'absolute', right: wp(5), top: hp(-3) }}
               onPress={() => navigate(EDIT_PROFILE)}>
-              <Image source={require('../../assets/images/editbtn.png')} />
+              {I18nManager.isRTL ?
+                <Image source={require('../../assets/images/editbtnAR.png')} /> :
+                <Image source={require('../../assets/images/editbtn.png')} />}
             </TouchableOpacity>
           </View>
           <HorizontalRow

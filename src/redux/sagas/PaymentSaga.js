@@ -33,7 +33,7 @@ export function* PaymentSaga({ payload, type }) {
       merchantCode: HSB_MERCHANT_ID,
       version: HSB_API_VERSION,
       currency: payload.payload.currency_iso,
-      amount: parseFloat((payload.payload.total_price).toString().replace(",", "")),
+      amount: parseFloat((payload.payload.total_price).toString().replace(",", "")).toFixed(2),
       orderReferenceNumber: payload.payload.id,
       responseUrl: payload.payload.payment_success_url,
       failureUrl: payload.payload.payment_failure_url,
