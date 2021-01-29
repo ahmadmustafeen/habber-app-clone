@@ -61,7 +61,7 @@ const BookCard = (props) => {
           !quantity
           &&
           <>
-            <View style={styles.forgetPassImageContainet}>
+            <View style={[styles.forgetPassImageContainet, I18nManager.isRTL && { right: hp(3) }]}>
               <Image style={styles.image} source={require("../assets/images/noItem.png")} />
             </View>
 
