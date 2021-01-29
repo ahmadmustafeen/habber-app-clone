@@ -121,7 +121,7 @@ const Header = (props, { adddok }) => {
           {headerRight ? (
             headerRight
           ) : (
-              <View style={styles.right}>
+              <View style={[styles.right,]}>
                 <TouchableOpacity
                   onPress={() => {
                     navigation.navigate(CART_SCREEN, {

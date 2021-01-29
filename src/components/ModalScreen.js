@@ -31,11 +31,10 @@ const ModalScreen = props => {
     <Modal animationType="fade" visible={visible}>
       <View style={styles.container}>
         <Screen noPadding>
-          <View key="header">
-            {/* <Header headerImage noTitle backIcon headerRight headerLeft {...props} onModalPress={onContinue} /> */}
-            {/* <Header {...props} backIcon headerLeft headerImage noTitle
-            /> */}
-            <Header headerImage backIcon headerLeft noTitle route onModalPress={onContinue} />
+          <View key="header" >
+            <Header headerImage noTitle backIcon headerRight headerLeft {...props} onModalPress={onContinue} />
+
+            {/* <Header {...props} headerImage route backIcon headerLeft onModalPress={onContinue} /> */}
           </View>
           <View
             key="content"

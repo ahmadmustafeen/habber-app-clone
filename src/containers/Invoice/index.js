@@ -97,9 +97,16 @@ const Invoice = (props) => {
             <View key="content">
                 <InvoiceItem headerLeft={I18nManager.isRTL ? "رقم التعريف الخاص بالطلب" : "Order ID"} headerRight={I18nManager.isRTL ? "تاريخ الطلب" : "Order Date"} textLeft={item.id} textRight={item.created_at.split('T')[0]} />
                 <View style={{ width: wp(80), alignSelf: "center", borderBottomColor: colors.primary, borderBottomWidth: hp(0.1) }} />
-                <InvoiceItem headerLeft={I18nManager.isRTL ? "اسم الزبون" : "Customer Name"} headerRight={I18nManager.isRTL ? "رقم الهاتف" : "Phone No."} textLeft={UserProfileReducer.first_name} textRight={UserProfileReducer.phone} />
-                <View style={{ width: wp(80), paddingVertical: hp(1), alignSelf: "center", borderBottomColor: colors.primary, borderBottomWidth: hp(0.1) }} />
-                <InvoiceItem headerLeft={I18nManager.isRTL ? "عنوان" : "Address"} headerRight={I18nManager.isRTL ? "طريقة الدفع او السداد" : "Payment Method"} textLeft={item.Address} textRight={item.payment_type} />
+                <InvoiceItem headerLeft={I18nManager.isRTL ? "اسم الزبون" : "Customer Name"}
+                    headerRight={I18nManager.isRTL ? "رقم الهاتف" : "Phone No."} textLeft={UserProfileReducer.first_name}
+                    textRight={UserProfileReducer.phone} />
+                <View style={{
+                    width: wp(80), paddingVertical: hp(1), alignSelf: "center",
+                    borderBottomColor: colors.primary, borderBottomWidth: hp(0.1)
+                }} />
+                <InvoiceItem headerLeft={I18nManager.isRTL ? "عنوان" : "Address"}
+                    headerRight={I18nManager.isRTL ? "طريقة الدفع او السداد" : "Payment Method"}
+                    textLeft={item.address_name} textRight={item.payment_type} />
 
                 <View style={[styles.detailCart]}>
                     <View style={[styles.detailCartHeader, { backgroundColor: colors.borderColor }]}>
