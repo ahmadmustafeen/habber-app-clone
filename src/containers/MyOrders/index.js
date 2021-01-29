@@ -107,9 +107,9 @@ const MyOrders = (props) => {
       <View key="header">
 
         <Header {...props}
-          headerLeft
+          // headerLeft
           headerImage
-          backIcon
+        // backIcon
         />
 
 

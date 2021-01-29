@@ -64,11 +64,12 @@ const ForgotPassword = (props) => {
           <AuthHeader {...props} />
           <AppText
             bold
+            size={25}
             heading
             style={{ marginTop: 40, marginBottom: 10, color: '#c27e12' }}>
             {t('forgot_password')}
           </AppText>
-          <AppText secondary white style={{ marginBottom: 20 }}>
+          <AppText size={16} secondary white style={{ marginBottom: 20 }}>
             {t('enter_email')}
           </AppText>
         </View>
