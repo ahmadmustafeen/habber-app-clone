@@ -115,10 +115,11 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   footer: {
+    alignSelf: 'center',
     position: 'absolute',
     bottom: Platform.OS === 'ios' ? hp(8) : hp(10),
-    left: wp(10),
-    width: wp(80),
+    // left: wp(10),
+    width: wp(92),
 
     // marginTop: hp
 

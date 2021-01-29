@@ -50,12 +50,12 @@ const Button = (props) => {
       <AppText
         size={fontSize}
         bold={bold}
-        capitalize
+        // capitalize
         style={{
           textAlign: 'center',
           color: color || 'black',
           fontSize: 20,
-          textTransform: 'capitalize'
+          // textTransform: 'capitalize'
         }}>
         {children || 'Button'}
       </AppText>
