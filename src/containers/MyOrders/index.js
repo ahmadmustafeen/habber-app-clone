@@ -31,7 +31,8 @@ const MyOrders = (props) => {
     return (
       <View style={styles.profiletop}>
         <View style={styles.orderContainer}>
-          <AppText size={16} style={styles.apptextpadding}><AppText bold size={17}>{I18nManager.isRTL ? "رقم التعريف الخاص بالطلب" : "Order ID"}: </AppText> {item.id}</AppText>
+          <AppText size={16} style={styles.apptextpadding}>
+            <AppText bold size={17}>{I18nManager.isRTL ? "رقم التعريف الخاص بالطلب" : "Order ID"}: </AppText> {item.id}</AppText>
           {item.books.map((title) =>
             <AppText size={14} style={styles.apptextpadding}>{title.title}</AppText>
           )}
@@ -39,10 +40,13 @@ const MyOrders = (props) => {
             <AppText size={14} style={styles.apptextpadding}>{title.title}</AppText>
           )}
 
+          {/* <AppText size={14} style={styles.apptextpadding}>{item.address_name}</AppText> */}
+
           <AppText size={16} style={styles.statuspadding}><AppText bold size={17}>{I18nManager.isRTL ? "الحالة" : "Status"}: </AppText>{item.status}</AppText>
         </View>
         <View style={styles.totalContainer}>
-          <AppText size={16} style={styles.apptextpadding}><AppText size={17} bold>{I18nManager.isRTL ? "مجموع" : "Total"}: </AppText>{item.currency_iso} {(parseFloat(item.total_price.toString().replace(",", ""))).toFixed(2)}</AppText>
+          <AppText size={16} style={styles.apptextpadding}><AppText size={17} bold>{I18nManager.isRTL ? "مجموع" : "Total"}:
+          </AppText>{item.currency_iso} {(parseFloat(item.total_price.toString().replace(",", ""))).toFixed(2)}</AppText>
           <AppText size={16} style={styles.apptextpadding}>{item.created_at.split('T')[0]}</AppText>
 
 
