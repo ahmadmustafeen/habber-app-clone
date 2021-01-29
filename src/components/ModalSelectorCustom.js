@@ -1,6 +1,7 @@
 import { useTheme } from '@react-navigation/native';
 import React from 'react'
 import { Text } from 'react-native';
+import { Platform } from 'react-native';
 import { View, StyleSheet, I18nManager } from 'react-native';
 import { Icon } from 'react-native-elements';
 import ModalSelector from 'react-native-modal-selector';
@@ -45,6 +46,7 @@ const ModalSelectorCustom = (props) => {
                 selectStyle={[style, styles.modalSelector,
                     { borderColor: 'transparent' },
                     { fontSize: (fontSize || 25) },
+                    Platform.OS === 'ios' && { height: hp(6), paddingBottom: hp(0.2), marginTo: hp(0.5) }
                 ]}
 
                 data={data}

@@ -1,3 +1,4 @@
+import { Platform } from 'react-native';
 import { Alert, I18nManager } from 'react-native';
 
 export const validateEmail = (email) => {
@@ -15,14 +16,15 @@ export const validateIsTrue = (val, text = 'details', concat = true, button = "o
   if (!val) {
 
     // Alert.alert(concat ? `${please} ${text}` : text)
-    Alert.alert('', concat ? ` ${text}` : text, [{ text: I18nManager.isRTL ? 'حسنا' : ' ', }, { text: ' ', }, { text: I18nManager.isRTL ? ' ' : button }]
+    Platform.OS === 'ios' ? Alert.alert(concat ? ` ${text}` : text, '', [{ text: I18nManager.isRTL ? 'حسنا' : 'OK', }])
+      : Alert.alert(concat ? ` ${text}` : text, '', [{ text: I18nManager.isRTL ? 'حسنا' : ' ', }, { text: I18nManager.isRTL ? '' : ' ', }, { text: I18nManager.isRTL ? ' ' : button }]
 
-    )
+      )
     return false
   }
   return true
 }
-export const validateWordCount = (value, lengßth) => {
+export const validateWordCount = (value, length) => {
   if (value.split(' ').length >= length) return true;
   // Alert.alert(`Minimum ${length} words required`);
   return false;

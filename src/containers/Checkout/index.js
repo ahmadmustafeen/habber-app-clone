@@ -25,6 +25,7 @@ import { CREATE_ORDER } from '../../redux/actionTypes';
 import { checkIfLoading } from '../../redux/selectors';
 import { Alert } from 'react-native';
 import { useTranslation } from 'react-i18next';
+import { Platform } from 'react-native';
 
 const Checkout = (props) => {
 
@@ -67,7 +68,7 @@ const Checkout = (props) => {
       <View key="header">
 
         <Header
-          headerLeft backIcon {...props} headerImage noSearch noCart />
+          headerLeft backIcon {...props} headerImage noSearch noCart headerRight />
       </View>
       <View key="content">
         <View style={styles.addressbookview}>
@@ -166,7 +167,7 @@ const Checkout = (props) => {
             }}
           />
 
-          <View style={[styles.totalcontainer, { height: hp(20) }]}>
+          <View style={[styles.totalcontainer, { height: hp(20) }, Platform.OS === 'ios' && { height: hp(24) }]}>
 
             <View style={styles.row}>
               <AppText bold>{I18nManager.isRTL ? "المجموع الفرعي" : "Sub Total"} </AppText>
@@ -277,7 +278,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
   },
   row: {
-    height: hp(4),
+    // height: hp(4),
     flexDirection: 'row',
     width: wp(90),
     justifyContent: 'space-between'
