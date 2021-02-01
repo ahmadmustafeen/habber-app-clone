@@ -87,8 +87,9 @@ export function* CreateOrderSaga({ type, payload }) {
     yield put({ type: CREATE_ORDER_SUCCESS });
     yield put({ type: FETCH_ORDER });
     // yield put({ type: FETCH_USER_CART });
-    yield put({ type: FETCH_USER_CART_SUCCESS, payload: null });
+
     if (!res.navigation) {
+      yield put({ type: FETCH_USER_CART_SUCCESS, payload: null });
       NavigationService.navigate('Invoice', {
         item: response.data.data
       });

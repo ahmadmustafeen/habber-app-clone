@@ -57,6 +57,10 @@ const Checkout = (props) => {
   const price_product = FetchCurrencyReducer.find((item) => item.iso === UserProfileReducer.currency.iso)
 
 
+  const CheckoutData = CartReducer
+
+
+
   var Address_VAL = AddressReducer.find((addresss) => addresss.id === state.address)
   if (!Address_VAL) Address_VAL = { id: 123213123123123123123, shipping_charges: "0" }
   console.log(Address_VAL)
@@ -171,7 +175,7 @@ const Checkout = (props) => {
 
             <View style={styles.row}>
               <AppText bold>{I18nManager.isRTL ? "المجموع الفرعي" : "Sub Total"} </AppText>
-              <View style={styles.pricerow}><AppText bold>{(parseFloat(CartReducer.total_price.toString().replace(",", ""))).toFixed(2)}</AppText></View>
+              <View style={styles.pricerow}><AppText bold>{CheckoutData && (parseFloat(CheckoutData.total_price.toString().replace(",", ""))).toFixed(2)}</AppText></View>
             </View>
 
             <View style={styles.row}>
@@ -191,7 +195,7 @@ const Checkout = (props) => {
             />
             <View style={styles.row}>
               <AppText bold>{I18nManager.isRTL ? "مجموع" : "Total"} </AppText>
-              <View style={styles.pricerow}><AppText bold>{parseFloat((parseFloat(CartReducer.total_price.toString().replace(",", ""))) + (parseFloat(Address_VAL.shipping_charges.toString().replace(",", "")))).toFixed(2)}</AppText></View>
+              <View style={styles.pricerow}><AppText bold>{CheckoutData && parseFloat((parseFloat(CheckoutData.total_price.toString().replace(",", ""))) + (parseFloat(Address_VAL.shipping_charges.toString().replace(",", "")))).toFixed(2)}</AppText></View>
             </View>
 
 

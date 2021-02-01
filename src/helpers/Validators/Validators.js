@@ -32,9 +32,13 @@ export const validateIsTrue = (val, text = 'details', concat = true, button = "o
   if (!val) {
 
     // Alert.alert(concat ? `${please} ${text}` : text)
-    Platform.OS === 'ios' ? Alert.alert(concat ? ` ${text}` : text, '', [{ text: I18nManager.isRTL ? 'حسنا' : 'OK', }])
-      : Alert.alert(concat ? ` ${text}` : text, '', [{ text: I18nManager.isRTL ? 'حسنا' : ' ', }, { text: I18nManager.isRTL ? '' : ' ', }, { text: I18nManager.isRTL ? ' ' : button }]
-
+    Platform.OS === 'ios' ?
+      Alert.alert(concat ? ` ${text}` : text, '', [{ text: I18nManager.isRTL ? 'حسنا' : 'OK', }])
+      : (
+        I18nManager.isRTL ?
+          Alert.alert(concat ? `${text}` : '', text, [{ text: I18nManager.isRTL ? 'حسنا' : ' ', }, { text: I18nManager.isRTL ? '' : ' ', }, { text: I18nManager.isRTL ? ' ' : button }])
+          : Alert.alert(concat ? `${text}` : text, '', [{ text: I18nManager.isRTL ? 'حسنا' : ' ', }, { text: I18nManager.isRTL ? '' : ' ', }, { text: I18nManager.isRTL ? ' ' : button }]
+          )
       )
     return false
   }

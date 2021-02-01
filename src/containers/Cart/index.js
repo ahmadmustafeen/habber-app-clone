@@ -52,6 +52,10 @@ const AddToCart = (props) => {
   const price_product = FetchCurrencyReducer.find((item) => item.iso === UserProfileReducer.currency.iso)
 
   const updateCartItem = (book, action) => {
+    if (action === 'sub' && book.cart_quantity === 1) {
+      action = 'remove'
+
+    }
     let price = (book.prices.find((item) => item.iso === UserProfileReducer.currency.iso).price);
     dispatch(
       withDataActions(

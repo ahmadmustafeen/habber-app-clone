@@ -6,7 +6,7 @@ import { Alert } from 'react-native';
 
 import * as NavigationService from '../../../NavigationService';
 import { PAYMENT_SCREEN } from '../../constants/Screens';
-import { NETWORK_ERROR } from '../actionTypes';
+import { FETCH_USER_CART_SUCCESS, NETWORK_ERROR } from '../actionTypes';
 import {
   HSB_BASE_URL,
   HSB_ACCESS_CODE,
@@ -19,6 +19,7 @@ import { errorAction } from '../actions';
 
 export function* PaymentSaga({ payload, type }) {
   try {
+
     console.log("PAYMENT SAGA", payload)
     const key = aesjs.utils.utf8.toBytes(SECRET_KEY);
     const iv = aesjs.utils.utf8.toBytes(IV_CODE);
@@ -68,6 +69,8 @@ export function* PaymentSaga({ payload, type }) {
       paymentUrl,
       orderDetails: payload.order_details
     });
+
+    yield put({ type: FETCH_USER_CART_SUCCESS, payload: null });
   } catch (error) {
     console.log('ERROR AT PAYMENT', error);
     // yield put(errorAction(error, type));

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, StyleSheet, Alert, Text, ScrollView } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
@@ -30,7 +30,8 @@ const SignIn = (props) => {
     password: '',
   });
 
-  const { email, password } = state;
+
+
 
   const handleChange = (key, value) => {
     if (key === 'email' || key === 'phone') {
@@ -96,7 +97,7 @@ const SignIn = (props) => {
             white
             placeholder="ahmadalajmi@gmail.com"
             label={t('email')}
-            value={email}
+            value={state.email}
             onChangeText={(value) => handleChange('email', value)}
           />
 
@@ -106,7 +107,7 @@ const SignIn = (props) => {
             secureTextEntry
             placeholder="*********"
             label={t('password')}
-            value={password}
+            value={state.password}
             onChangeText={(value) => handleChange('password', value)}
           />
 
