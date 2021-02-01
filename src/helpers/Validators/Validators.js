@@ -11,7 +11,23 @@ export const validateEmail = (email) => {
 };
 
 export const validatePassword = (password) => password.length >= 6;
-export const validatePhone = (phone) => phone && phone.length > 9;
+// export const validatePhone = (phone) => phone && phone.length > 9;
+
+
+
+export const validatePhone = number => {
+  var regex = new RegExp("^[0-9.]*$");
+  if (number.length > 10 && number.length < 16) {
+    if (regex.test(number)) {
+      return true
+    }
+  }
+  return false
+}
+
+
+
+
 export const validateIsTrue = (val, text = 'details', concat = true, button = "ok") => {
   if (!val) {
 

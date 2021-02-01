@@ -74,7 +74,7 @@ const ContactUs = (props) => {
 
   // const checckk = Number(pjooo)
   // { checckk.length === 4 ? checckk + " " : checckk }
-  console.log(resookkk)
+  // console.log(resookkk)
 
   const setStateHandler = (key, val) => {
     setState({ ...state, [key]: val });
@@ -109,7 +109,7 @@ const ContactUs = (props) => {
 
 
 
-      validateIsTrue(((state.phone.length === 0) || ((state.phone.length > 10) && (state.phone.length < 16))),
+      validateIsTrue(((state.phone.length === 0) || validatePhone(state.phone)),
         I18nManager.isRTL ? "" : "Please Enter a valid number", false)
 
       && validateIsTrue(state.message, `${t('Please')} ${t('message')}`, false, t('ok'))
