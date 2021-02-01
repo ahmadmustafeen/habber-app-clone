@@ -200,7 +200,7 @@ const AddNewAddress = (props) => {
           />
         </View>
         <View key="footer">
-          <Button primary color={"white"} onPress={() => AddAddress()} loading={isLoading || isLoading2}>
+          <Button primary color={"white"} onPress={() => AddAddress()} loading={isLoading || isLoading2} bold>
             {/* {t('Add Address')} */}
             {!!(props.route.params) ? props.route.params.checkout ?
               I18nManager.isRTL ? "استخدم هذا العنوان" : "USE THIS ADDRESS" : I18nManager.isRTL ? "تعديل العنوان" : "Edit Address" : t('addAddress')}

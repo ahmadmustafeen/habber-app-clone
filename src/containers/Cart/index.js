@@ -94,6 +94,7 @@ const AddToCart = (props) => {
                 const {
                   image,
                   title,
+                  arabic_title,
                   author_name,
                   cart_price,
                   cart_quantity,
@@ -107,7 +108,7 @@ const AddToCart = (props) => {
                     </View>
                     <View style={styles.viewtxt}>
                       <AppText bold size={18} style={styles.txt}>
-                        {title}
+                        {I18nManager.isRTL ? arabic_title : title}
                       </AppText>
                       <AppText size={15} style={[styles.txt, styles.author]}>
                         {I18nManager.isRTL ? "بواسطة" : "by"}: {author_name}

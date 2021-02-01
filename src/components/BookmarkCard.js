@@ -13,7 +13,7 @@ import { ModalImage } from './ModalImage';
 import { I18nManager } from 'react-native';
 const BookmarkCard = (props) => {
 
-    const { image, title, price, prices, onPress, quantity } = props;
+    const { image, title, arabic_title, price, prices, onPress, quantity } = props;
     const { colors } = useTheme();
     const modalRef = useRef(null);
     const toggleModal = () => {
@@ -40,7 +40,7 @@ const BookmarkCard = (props) => {
 
                 <View
                     style={styles.detailContainer}>
-                    <AppText bold size={13}>{title}</AppText>
+                    <AppText bold size={13}>{I18nManager.isRTL ? arabic_title : title}</AppText>
                     {quantity ?
                         <AppText primary bold size={13} style={styles.outOfStock} >
                             {rtlLayout && price_product.symbol} {(parseFloat(prices.find((price) => price.iso === UserProfileReducer.currency.iso).price.toString().replace(",", ""))).toFixed(2)} {rtlLayout || price_product.symbol}

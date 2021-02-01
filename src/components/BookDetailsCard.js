@@ -23,7 +23,7 @@ const BookDetailsCard = (props) => {
     author_name,
     image,
     price,
-    title,
+    title, arabic_title,
     quantity,
     genre,
     onClickFavourite,
@@ -70,7 +70,7 @@ const BookDetailsCard = (props) => {
           marginTop: wp(7)
         }}>
           <AppText bold size={17}>
-            {title}
+            {I18nManager.isRTL ? arabic_title : title}
           </AppText>
           <AppText
             size={15}

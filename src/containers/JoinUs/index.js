@@ -203,7 +203,7 @@ const JoinUs = (props) => {
         <View>
           <View style={{ width: wp(80), alignSelf: 'center' }}>
             <Button bold color="white" onPress={() => onSubmit()} loading={isLoading}>
-              {t('Submit')}
+              {t('submit')}
             </Button>
           </View>
 

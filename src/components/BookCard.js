@@ -12,7 +12,7 @@ import {
 import { useSelector, shallowEqual } from 'react-redux';
 import { I18nManager } from 'react-native';
 const BookCard = (props) => {
-  const { image, author_name, title, price, prices, onPress, quantity } = props;
+  const { image, author_name, title, arabic_title, price, prices, onPress, quantity } = props;
 
   const {
     UserProfileReducer,
@@ -50,7 +50,7 @@ const BookCard = (props) => {
         <View style={styles.details}>
 
           <View style={{ width: wp(26), marginRight: wp(5), justifyContent: 'space-around', height: '100%' }}>
-            <AppText small>{title}</AppText>
+            <AppText small>{I18nManager.isRTL ? arabic_title : title}</AppText>
             <AppText small primary bold>
               {author_name}
             </AppText>

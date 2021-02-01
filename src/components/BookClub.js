@@ -1,4 +1,5 @@
 import React, { useRef } from 'react';
+import { I18nManager } from 'react-native';
 import { View, StyleSheet, TouchableWithoutFeedback } from 'react-native';
 import {
     widthPercentageToDP as wp,
@@ -8,7 +9,7 @@ import { AppText } from './common/AppText';
 import { FastImage } from './FastImage';
 import { ModalImage } from './ModalImage';
 const BookClub = (props) => {
-    const { bookclub_logo, name, onPress } = props;
+    const { bookclub_logo, name, arabic_name, onPress } = props;
     const modalRef = useRef(null);
     const toggleModal = () => {
         modalRef.current.toggle();
@@ -22,7 +23,7 @@ const BookClub = (props) => {
                 </View>
                 <View
                     style={styles.txtDetails}>
-                    <AppText capitalize size={14}>{name}</AppText>
+                    <AppText capitalize size={14}>{I18nManager.isRTL ? arabic_name : name}</AppText>
 
                 </View>
                 <ModalImage ref={modalRef} source={{ uri: bookclub_logo }} />

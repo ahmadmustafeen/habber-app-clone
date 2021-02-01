@@ -47,7 +47,7 @@ const Invoice = (props) => {
     }
     const OrderBox = (props) => {
         return (
-            <View style={[styles.detailCartHeader, { paddingVertical: hp(6), paddingHorizontal: wp(3) }]}>
+            <View style={[styles.detailCartHeader, { paddingVertical: hp(0), paddingHorizontal: wp(3) }]}>
                 <View style={{ flex: 2, justifyContent: 'center', alignItems: 'center', }}>
                     <AppText text small>
                         {props.name}
@@ -90,7 +90,7 @@ const Invoice = (props) => {
                 headerLeft={<Icon
                     onPress={() => props.navigation.navigate(HOME)}
                     color={colors.primary}
-                    name={I18nManager.isRTL ? "rightcircleo" : "leftcircleo"}
+                    name={I18nManager.isRTL ? "leftcircleo" : "rightcircleo"}
                     type="antdesign"
                 />} headerImage />
 
@@ -134,7 +134,7 @@ const Invoice = (props) => {
                     </View>
                     {item.books.map(book => {
                         // (book.find(bookss => book.id === bookss.id).prices.find((id) => book.currency.id === id.id).price)
-                        return <OrderBox key={book.id} name={book.title} price={(parseFloat(parseFloat(book.cart_price.toString().replace(',', ''))) / parseFloat(book.cart_quantity))} quantity={book.cart_quantity} subtotal={(parseFloat((book.cart_price.toString().replace(',', '')))).toFixed(2)} />
+                        return <OrderBox key={book.id} name={I18nManager.isRTL ? book.arabic_title : book.title} price={(parseFloat(parseFloat(book.cart_price.toString().replace(',', ''))) / parseFloat(book.cart_quantity))} quantity={book.cart_quantity} subtotal={(parseFloat((book.cart_price.toString().replace(',', '')))).toFixed(2)} />
                     })
                     }
                     {item.bookmarks.map(book => { return <OrderBox key={book.id} name={book.title} price={parseFloat((book.cart_price.toString().replace(',', ''))) / book.cart_quantity} quantity={(parseFloat(book.cart_quantity.toString(",", ""))).toFixed(2)} subtotal={(parseFloat((book.cart_price.toString().replace(',', '')))).toFixed(2)} /> })}

@@ -32,7 +32,7 @@ const FavouriteCard = (props) => {
 
         <View style={styles.viewtxt}>
           <AppText bold style={styles.txt}>
-            {props.item.title}
+            {I18nManager.isRTL ? props.item.arabic_title : props.item.title}
           </AppText>
           <AppText bold small style={[styles.txt, styles.author]}>
             {I18nManager.isRTL ? "بواسطة" : "by"} {props.item.author_name}

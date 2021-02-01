@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import {
   View,
-  ScrollView,
   StyleSheet,
   Image,
   Alert,
@@ -25,6 +24,8 @@ import { useTranslation } from 'react-i18next';
 import { AppText } from '../../components/common';
 import { UPDATE_PROFILE } from '../../redux/actionTypes';
 import { checkIfLoading } from '../../redux/selectors';
+import { KeyboardAvoidingView } from 'react-native';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 
 
@@ -128,7 +129,7 @@ const EditProfile = (props) => {
   const link = state.profile_pic ? state.profile_pic.uri : UserProfileReducer.profile_pic
   const { colors } = useTheme();
   return (
-    <ScrollView>
+    <KeyboardAwareScrollView>
 
       <View key="header">
         <Header {...props} headerImage backIcon headerLeft />
@@ -188,7 +189,7 @@ const EditProfile = (props) => {
           {t('save')}
         </Button>
       </View>
-    </ScrollView>
+    </KeyboardAwareScrollView>
   );
 };
 
