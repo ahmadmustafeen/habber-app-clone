@@ -14,15 +14,15 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-import {
-  loginWithFacebook,
-  getInfoFromToken,
-} from '../../services/facebookLoginController';
+// import {
+//   loginWithFacebook,
+//   getInfoFromToken,
+// } from '../../services/facebookLoginController';
 
-import {
-  googleSignInHandler,
-  isSignedIn,
-} from '../../services/googleLoginController';
+// import {
+//   googleSignInHandler,
+//   isSignedIn,
+// } from '../../services/googleLoginController';
 import { checkIfLoading } from '_redux/selectors';
 import { FORGOT_PASSWORD_SCREEN, TERMS_AND_CONDITIONS_SCREEN, BOOK_DETAILS_SCREEN, SIGNUP_TERM_CODITION } from '../../constants/Screens';
 
@@ -90,25 +90,25 @@ const SignUp = (props) => {
       )
     };
   }, shallowEqual);
-  const signInGoogle = async () => {
-    let user = await isSignedIn();
-    if (user) {
-      Alert.alert('Ops!', 'Already Signed In');
-      return user;
-    }
-    user = await googleSignInHandler();
-    return user;
-  };
-  const signInFacebook = async () => {
-    try {
-      const data = await loginWithFacebook();
-      const accessToken = data.accessToken.toString();
-      const userInfo = await getInfoFromToken(accessToken);
-      console.log('INFO', userInfo);
-    } catch (error) {
-      Alert.alert('ERROR', 'Something went wrong, contact admin!');
-    }
-  };
+  // const signInGoogle = async () => {
+  //   let user = await isSignedIn();
+  //   if (user) {
+  //     Alert.alert('Ops!', 'Already Signed In');
+  //     return user;
+  //   }
+  //   user = await googleSignInHandler();
+  //   return user;
+  // };
+  // const signInFacebook = async () => {
+  //   try {
+  //     const data = await loginWithFacebook();
+  //     const accessToken = data.accessToken.toString();
+  //     const userInfo = await getInfoFromToken(accessToken);
+  //     console.log('INFO', userInfo);
+  //   } catch (error) {
+  //     Alert.alert('ERROR', 'Something went wrong, contact admin!');
+  //   }
+  // };
   return (
     <BackgroundImage>
       <View key="header">

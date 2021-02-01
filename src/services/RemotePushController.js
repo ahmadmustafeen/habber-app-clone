@@ -1,17 +1,18 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import PushNotification from 'react-native-push-notification';
 import PushNotificationIOS from '@react-native-community/push-notification-ios';
 
 import NotifService from '../../NotifService';
-import {withDataActions} from '../redux/actions';
-import {SET_FCM_TOKEN} from '../redux/actionTypes';
-import {useDispatch} from 'react-redux';
+import { withDataActions } from '../redux/actions';
+import { SET_FCM_TOKEN } from '../redux/actionTypes';
+import { useDispatch } from 'react-redux';
 const RemotePushController = () => {
   const dispatch = useDispatch();
   const onRemoteNotification = (notification) => {
-    const isClicked = notification.getData().userInteraction === 1;
+    // const isClicked = notification.getData().userInteraction === 0;
+
     console.log('NOTIFCATION ', notification);
-    if (isClicked) {
+    if (true || isClicked) {
       console.log('NOTIFCATION CLICKED');
     } else {
       console.log('NOTIFCATION Clicked Else block ');
