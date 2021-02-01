@@ -6,7 +6,6 @@
 #import <React/RCTRootView.h>
 #import <React/RCTI18nUtil.h>
 #import <UserNotifications/UserNotifications.h>
-#import <FBSDKCoreKit/FBSDKCoreKit.h> 
 #import <React/RCTLinkingManager.h>
 
 #ifdef FB_SONARKIT_ENABLED
