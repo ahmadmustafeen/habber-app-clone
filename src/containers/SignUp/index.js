@@ -47,6 +47,9 @@ const SignUp = (props) => {
   const { first_name, last_name, email, password, password_confirmation } = state;
 
   const handleChange = (key, value) => {
+    if (key === 'email' || key === 'phone') {
+      value = value.replace(" ", "")
+    }
     setState((state) => ({ ...state, [key]: value }));
   };
   const validate = () => {

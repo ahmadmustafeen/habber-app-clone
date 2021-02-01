@@ -89,7 +89,7 @@ const ResetPassword = (props) => {
           placeholder="Email"
           label={t('email')}
           value={email}
-          onChangeText={(val) => setEmail(val)}
+          onChangeText={(val) => setEmail(val.replace(" ", ""))}
         />
         <InputWithLabel
           white

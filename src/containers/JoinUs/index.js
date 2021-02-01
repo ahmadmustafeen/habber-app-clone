@@ -58,6 +58,9 @@ const JoinUs = (props) => {
     product_type: new Set(),
   });
   const setStateHandler = (key, val) => {
+    if (key === 'email' || key === 'phone') {
+      val = val.replace(" ", "")
+    }
     setState({ ...state, [key]: val });
   };
   // const validate = () => {
@@ -87,7 +90,7 @@ const JoinUs = (props) => {
       validateIsTrue(validateEmail(state.email), I18nManager.isRTL ? "يرجى إدخال البريد الإلكتروني الصحيح!" : "Please enter a valid email!", false, t('ok')) &&
       validateIsTrue(((state.phone.length > 10) && (state.phone.length < 16)),
         `${t('Please')} ${t('phoneValidation')}`, false) &&
-      validateIsTrue(!!validatePhone(state.phone), `${t('Please')}  ${t('mobileNumberOptional')}`, false, t('ok')) &&
+      validateIsTrue(!!validatePhone(state.phone), `${t('Please')} ${t('mobileNumber')}`, false, t('ok')) &&
       validateIsTrue(state.business_type, `${t('Please')} ${t('selectBusinessType')}`, false, t('ok')) &&
       validateIsTrue(state.details, `${t('Please')} ${t('details')}`, false, t('ok')) &&
       validateIsTrue(state.product_type.size, `${t('Please')} ${t('selectProductType')}`, false, t('ok'))

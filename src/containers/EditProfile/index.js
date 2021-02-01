@@ -82,6 +82,9 @@ const EditProfile = (props) => {
   };
   const { navigate } = props.navigation;
   const setStateHandler = (key, val) => {
+    if (key === 'email' || key === 'phone') {
+      val = val.replace(" ", "")
+    }
     setState({ ...state, [key]: val });
   };
   const save = () => {

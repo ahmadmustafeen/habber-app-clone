@@ -33,6 +33,9 @@ const SignIn = (props) => {
   const { email, password } = state;
 
   const handleChange = (key, value) => {
+    if (key === 'email' || key === 'phone') {
+      value = value.replace(" ", "")
+    }
     setState((state) => ({ ...state, [key]: value }));
   };
 

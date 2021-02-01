@@ -77,6 +77,9 @@ const ContactUs = (props) => {
   // console.log(resookkk)
 
   const setStateHandler = (key, val) => {
+    if (key === 'email' || key === 'phone') {
+      val = val.replace(" ", "")
+    }
     setState({ ...state, [key]: val });
 
   };

@@ -80,7 +80,7 @@ const ForgotPassword = (props) => {
             placeholder="ahmadalajmi@gmail.com"
             label={t('email')}
             value={email}
-            onChangeText={(val) => setEmail(val)}
+            onChangeText={(val) => { setEmail(val.replace(" ", "")) }}
           />
         </View>
         <View key="footer" style={styles.footer}>
