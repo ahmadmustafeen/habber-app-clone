@@ -50,7 +50,10 @@ const Header = (props, { adddok }) => {
     backIcon,
     UpperCase,
     headerImage,
-    cartNumber, onModalPress,
+    cartNumber, onModalPressOnly,
+    onModalPress,
+    onCart,
+    onSearch,
     noTitle,
     noSearch,
     noCart
@@ -123,12 +126,22 @@ const Header = (props, { adddok }) => {
           ) : (
               <View style={[styles.right,]}>
                 <TouchableOpacity
-                  onPress={() => {
-                    navigation.navigate(CART_SCREEN, {
-                      label: 'CART_SCREEN',
-                      CART_SCREEN,
-                    });
-                  }}>
+                  // onPress={() => {
+
+                  // navigation.navigate(CART_SCREEN, {
+                  //   label: 'CART_SCREEN',
+                  //   CART_SCREEN,
+                  // });
+                  // }}
+                  onPress={
+                    onCart ? onCart : () => {
+                      navigation.navigate(CART_SCREEN, {
+                        label: 'CART_SCREEN',
+                        CART_SCREEN,
+                      })
+                    }
+                  }
+                >
                   {!noCart ?
 
                     <Image
@@ -153,7 +166,7 @@ const Header = (props, { adddok }) => {
                 { !noSearch ? (!!route && (route.name !== 'Search')) && (
                   <Icon
                     props={props}
-                    onPress={() =>
+                    onPress={onSearch ? onSearch : () =>
                       navigation.navigate(SEARCH, { label: 'SEARCH', SEARCH })
                     }
                     color={headerColor}

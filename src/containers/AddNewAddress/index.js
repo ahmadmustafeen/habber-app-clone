@@ -48,6 +48,14 @@ const AddNewAddress = (props) => {
   }, []);
 
 
+  const toggleCart = () => {
+    toggleModal();
+    props.navigation.navigate('AddToCart');
+  }
+  const toggleSearch = () => {
+    toggleModal();
+    props.navigation.navigate('Search');
+  }
 
   const item = (props.route.params ? props.route.params.item ? props.route.params.item.item : "" : "")
   const { t } = useTranslation(['AddNewAddress'])
@@ -144,14 +152,14 @@ const AddNewAddress = (props) => {
 
             onChangeText={value => setState({ ...state, country_id: value.key })}
             initValue={selectedCountry.name || t('country')}
-            color={"gray"}
+            color={selectedCountry.name ? "black" : "grey"}
 
           />
           <ModalSelectorCustom
             data={selectedCountry.city}
             onChangeText={value => setState({ ...state, city_id: value.id })}
             initValue={city ? city.label : false || t('state')}
-            color={"gray"}
+            color={state.city_id ? "black" : "grey"}
 
 
 
@@ -196,6 +204,9 @@ const AddNewAddress = (props) => {
             // image={require("")}
             visible={visible}
             onContinue={onContinue}
+
+            onCart={toggleCart}
+            onSearch={toggleSearch}
             {...ADD_NEW_ADDRESS.modalData}
           />
         </View>

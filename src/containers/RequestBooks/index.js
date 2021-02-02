@@ -46,6 +46,14 @@ const RequestBooks = (props) => {
     toggleModal();
     props.navigation.goBack();
   };
+  const toggleCart = () => {
+    toggleModal();
+    props.navigation.navigate('AddToCart');
+  }
+  const toggleSearch = () => {
+    toggleModal();
+    props.navigation.navigate('Search');
+  }
   const {
     navigation: { navigate },
     route: {
@@ -160,6 +168,8 @@ const RequestBooks = (props) => {
         // image={require("")}
         visible={visible}
         onContinue={onContinue}
+        onCart={toggleCart}
+        onSearch={toggleSearch}
         {...REQUEST_BOOK_MODAL.modalData}
       />
       <View key="footer" style={[styles.content, { position: 'absolute', bottom: hp(6) }]}>

@@ -73,6 +73,15 @@ const ChangePassword = (props) => {
       dispatch(withDataActions(state, UPDATE_PASSWORD));
     // navigate(MY_PROFILE)
   };
+
+  const toggleCart = () => {
+    toggleModal();
+    props.navigation.navigate('AddToCart');
+  }
+  const toggleSearch = () => {
+    toggleModal();
+    props.navigation.navigate('Search');
+  }
   return (
     <View style={{ height: hp(100) }} >
       <View >
@@ -119,6 +128,9 @@ const ChangePassword = (props) => {
         visible={visible}
         onContinue={onContinue}
         {...PASSWORD_CHANGE.modalData}
+
+        onCart={toggleCart}
+        onSearch={toggleSearch}
       />
       <View style={{ marginBottom: hp(5) }}>
         <Button

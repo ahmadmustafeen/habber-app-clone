@@ -52,8 +52,8 @@ export const CONTACT_US = {
 export const REQUEST_BOOK_MODAL = {
   modalData: {
     heading: I18nManager.isRTL ? 'سوف نتصل بك قريبا' : 'We Will Contact You Shortly!',
-    description: I18nManager.isRTL ? 'تم تقديم نموذج تقديم طلب الاتصال الخاص بك بنجاح' : 'Your Book Request is submitted Successfully',
-    buttonLabel: I18nManager.isRTL ? 'استمر' : 'Continue',
+    description: I18nManager.isRTL ? 'تم إرسال نموذج طلب كتابك بنجاح' : 'Your Book Request Form is Submitted Successfully',
+    buttonLabel: I18nManager.isRTL ? 'حسنا' : 'OK',
   },
 };
 export const ADD_NEW_ADDRESS = {
@@ -61,15 +61,14 @@ export const ADD_NEW_ADDRESS = {
 
     heading: I18nManager.isRTL ? 'تمت إضافة العنوان بنجاح!' : 'Address Added Successfully!',
     description: I18nManager.isRTL ? 'يمكنك البدء في إصدار أوامر على هذا العنوان الآن' : 'You can start making orders to this address now',
-    buttonLabel: I18nManager.isRTL ? 'حسنا' : 'ok',
+    buttonLabel: I18nManager.isRTL ? 'حسنا' : 'OK',
   },
 };
 export const PASSWORD_CHANGE = {
   modalData: {
-
     heading: I18nManager.isRTL ? 'تم تغيير الرقم السري بنجاح!' : 'Password Changed Successfully!',
-    description: I18nManager.isRTL ? 'يمكنك الآن تسجيل الدخول بأخذ كلمة مرور جديدة' :
-      'You can Login with Your New Password',
-    buttonLabel: I18nManager.isRTL ? 'حسنا' : 'ok',
+    description: I18nManager.isRTL ? 'يمكنك تسجيل الدخول باستخدام كلمة المرور الجديدة الخاصة بك' :
+      'You can login with your new password making',
+    buttonLabel: I18nManager.isRTL ? 'حسنا' : 'OK',
   },
 };

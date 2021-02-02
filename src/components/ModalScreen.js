@@ -20,9 +20,13 @@ const ModalScreen = props => {
     buttonLabel,
     visible,
     onContinue,
+    toggle,
+    onSearch,
+    onCart,
     colors, forgetPassword,
     loading,
-    image, descriptionNextLine
+    image, descriptionNextLine,
+
   } = props
   // console.log("CC", colors)
   const { t } = useTranslation(['AddNewAddress'])
@@ -32,9 +36,9 @@ const ModalScreen = props => {
       <View style={styles.container}>
         <Screen noPadding>
           <View key="header" >
-            <Header headerImage noTitle backIcon headerRight headerLeft {...props} onModalPress={onContinue} />
+            {/* <Header headerImage noTitle backIcon headerRight headerLeft {...props} onModalPress={onContinue} /> */}
 
-            {/* <Header {...props} headerImage route backIcon headerLeft onModalPress={onContinue} /> */}
+            <Header {...props} headerImage route backIcon headerLeft noCart={!onCart} noSearch={!onSearch} onModalPress={onContinue} onModalPressOnly={toggle} onCart={onCart} />
           </View>
           <View
             key="content"
@@ -84,7 +88,7 @@ const ModalScreen = props => {
             </AppText>
           </View>
           <View key="footer" style={styles.footer}>
-            <Button background={colors && colors.primary} color="white" onPress={onContinue} loading={loading}>
+            <Button background={colors && colors.primary} color="white" onPress={onContinue} loading={loading} bold Capitalize>
               {buttonLabel}
             </Button>
           </View>
