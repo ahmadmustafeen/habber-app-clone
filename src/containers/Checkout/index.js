@@ -15,6 +15,8 @@ import { Header } from '_components/Header';
 import { RadioButton, AddressCard } from '_components';
 import { useSelector, shallowEqual, useDispatch } from 'react-redux';
 
+import useModal from '_utils/customHooks/useModal';
+
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -26,9 +28,12 @@ import { checkIfLoading } from '../../redux/selectors';
 import { Alert } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { Platform } from 'react-native';
+import { ModalScreen } from '../../components';
+import { CREATE_ORDER_TEXT } from '../../assets/data/StaticData';
 
 const Checkout = (props) => {
 
+  const { visible, toggleModal } = useModal();
   const { t } = useTranslation(['Cart'])
   const { colors } = useTheme();
   const { AddressReducer, CartReducer, isLoading, UserProfileReducer, FetchCurrencyReducer } = useSelector((state) => {
@@ -40,7 +45,6 @@ const Checkout = (props) => {
       isLoading: checkIfLoading(state, CREATE_ORDER),
     };
   }, shallowEqual);
-  console.log(UserProfileReducer, "UserProfileReducer")
   const [state, setState] = useState({
     paymentMethod: '',
     address: '',
@@ -59,7 +63,10 @@ const Checkout = (props) => {
 
   const CheckoutData = CartReducer
 
-
+  const onContinue = () => {
+    toggleModal();
+    // props.navigation.goBack();
+  };
 
   var Address_VAL = AddressReducer.find((addresss) => addresss.id === state.address)
   if (!Address_VAL) Address_VAL = { id: 123213123123123123123, shipping_charges: "0" }
@@ -262,7 +269,15 @@ const Checkout = (props) => {
               onPress={() => { ((!!state.address) && (!!state.paymentMethod)) ? (dispatch(withDataActions({ address: state.address, paymentMethod: state.paymentMethod }, CREATE_ORDER))) : ((state.paymentMethod) ? Alert.alert(I18nManager.isRTL ? "حدد أو أدخل عنوانًا للمتابعة" : "Select or Enter an Address to Continue") : Alert.alert(I18nManager.isRTL ? "اختار طريقة الدفع" : "Select Payment Method")) }}>
               {I18nManager.isRTL ? "ادفع الآن" : "PAY NOW"}
             </Button>
-
+            <ModalScreen
+              // image={require("")}
+              visible={visible}
+              noBackIcon
+              onContinue={onContinue}
+              // onCart={toggleCart}
+              // onSearch={toggleSearch}
+              {...CREATE_ORDER_TEXT.modalData}
+            />
           </View>
         </View>
       </View>

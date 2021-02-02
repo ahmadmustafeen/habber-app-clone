@@ -13,16 +13,16 @@ const initialState = {
 export default (state = initialState, action) => {
   switch (action.type) {
     case SHOW_MODAL: {
-      return {...state, visible: true};
+      return { ...state, visible: true };
     }
     case HIDE_MODAL: {
-      return {...state, visible: false};
+      return { ...state, visible: false };
     }
     case SHOW_NETWORK_MODAL: {
-      return {...state, network: true, networkStatus: false};
+      return { ...state, network: true, networkStatus: false };
     }
     case HIDE_NETWORK_MODAL: {
-      return {...state, network: false};
+      return { ...state, network: false };
     }
 
     default:

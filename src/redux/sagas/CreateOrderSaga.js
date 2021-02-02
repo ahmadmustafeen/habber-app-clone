@@ -12,6 +12,7 @@ import {
   FETCH_ORDER,
   FETCH_USER_CART,
   FETCH_USER_CART_SUCCESS,
+  SHOW_MODAL,
   UPDATE_CART_ITEM,
   UPDATE_CART_ITEM_ORDER_COMPLETE,
 } from '../actionTypes';
@@ -90,6 +91,7 @@ export function* CreateOrderSaga({ type, payload }) {
 
     if (!res.navigation) {
       yield put({ type: FETCH_USER_CART_SUCCESS, payload: null });
+      yield put({ type: SHOW_MODAL, payload: response.data.data });
       NavigationService.navigate('Invoice', {
         item: response.data.data
       });

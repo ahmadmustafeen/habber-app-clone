@@ -11,6 +11,7 @@ import {
 } from 'react-native-responsive-screen';
 import { Header } from './Header';
 const ModalScreen = props => {
+  console.log("MODAL SCREEM0", props)
   const {
     heading,
     description,
@@ -26,7 +27,7 @@ const ModalScreen = props => {
     colors, forgetPassword,
     loading,
     image, descriptionNextLine,
-
+    noBackIcon
   } = props
   // console.log("CC", colors)
   const { t } = useTranslation(['AddNewAddress'])
@@ -38,7 +39,7 @@ const ModalScreen = props => {
           <View key="header" >
             {/* <Header headerImage noTitle backIcon headerRight headerLeft {...props} onModalPress={onContinue} /> */}
 
-            <Header {...props} headerImage route backIcon headerLeft noCart={!onCart} noSearch={!onSearch} onModalPress={onContinue} onModalPressOnly={toggle} onCart={onCart} />
+            <Header {...props} headerImage route backIcon={!noBackIcon} headerLeft noCart={!onCart} noSearch={!onSearch} onModalPress={onContinue} onModalPressOnly={toggle} onCart={onCart} />
           </View>
           <View
             key="content"

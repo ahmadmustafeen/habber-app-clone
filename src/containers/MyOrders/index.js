@@ -12,9 +12,12 @@ import { Icon } from 'react-native-elements';
 import { useTranslation } from 'react-i18next';
 import NoBookAvailbe from '../../components/NoBookAvailable';
 import { INVOICE } from '../../constants/Screens';
+import useModal from '_utils/customHooks/useModal';
+
 const MyOrders = (props) => {
   console.log(props)
 
+  const { visible, toggleModal } = useModal();
   const { navigate } = props.navigation;
   const { colors } = useTheme();
   const { OrderReducer } = useSelector((state) => {

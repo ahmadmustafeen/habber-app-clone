@@ -72,3 +72,11 @@ export const PASSWORD_CHANGE = {
     buttonLabel: I18nManager.isRTL ? 'حسنا' : 'OK',
   },
 };
+
+export const CREATE_ORDER_TEXT = {
+  modalData: {
+    heading: I18nManager.isRTL ? 'تم إنشاء طلبك بنجاح!' : 'Order is Successfully Placed',
+    description: I18nManager.isRTL ? 'تم إنشاء طلبك بنجاح!' : 'Your Order is created successfully!',
+    buttonLabel: I18nManager.isRTL ? 'استمر' : 'Continue',
+  },
+};
