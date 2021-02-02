@@ -34,10 +34,9 @@ import PushNotification from 'react-native-push-notification';
 import { PUSH_NOTIFICATION_FUNCTION, SWITCH_LANG } from '../../redux/actionTypes';
 
 const LANGUAGES = [{ id: 1, iso: 'ar', name: 'Arabic' }, { id: 2, iso: 'en', name: 'English' }];
-
 const Settings = (props) => {
   const { colors } = useTheme();
-  const { UserProfileReducer, FetchCurrencyReducer } = useSelector((state) => {
+  const { UserProfileReducer, FetchCurrencyReducer, FetchCountriesReducer } = useSelector((state) => {
     return {
       UserProfileReducer: state.UserProfileReducer,
       FetchCountriesReducer: state.FetchCountriesReducer,
@@ -47,7 +46,7 @@ const Settings = (props) => {
   const [item, setItemVisible] = useState({
     currency: false,
     language: false,
-    notification: UserProfileReducer.notification,
+    notifications: !!UserProfileReducer.notification,
   });
 
   const [currencyVal, setCurrencyVal] = useState(UserProfileReducer.currency);
@@ -58,13 +57,12 @@ const Settings = (props) => {
   const dispatch = useDispatch();
 
 
-  console.log('USERPROFILE CURRENCY', UserProfileReducer);
   const onLogout = () => {
     dispatch(withoutDataActions(SIGN_OUT));
   };
+  console.log({ ...UserProfileReducer }, "THIS IS USER PROFILE REDUCER")
 
   const { navigation } = props;
-  console.log(currencyVal);
   const SettingsDropdown = (props) => {
     const {
       value,
