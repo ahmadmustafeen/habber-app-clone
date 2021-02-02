@@ -27,7 +27,7 @@ const ResetPassword = (props) => {
 
   const { t } = useTranslation(['resetPassword']);
   const { navigate } = props.navigation;
-  const [token, setToken] = useState(props.route.params.token);
+  const [remember_token, setToken] = useState(props.route.params.token);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -44,7 +44,7 @@ const ResetPassword = (props) => {
   }
   const onSubmit = () => {
     Validate() &&
-      dispatch(withDataActions({ email, token, password }, "RESET_PASSWORD_SAGA"));
+      dispatch(withDataActions({ email, remember_token, password }, "RESET_PASSWORD_SAGA"));
   };
   const onContinue = () => {
     toggleModal()
@@ -59,7 +59,7 @@ const ResetPassword = (props) => {
     return {
       isLoading: checkIfLoading(
         state,
-        FORGOT_PASSWORD,
+        RESET_PASSWORD,
       ),
     };
   }, shallowEqual);

@@ -35,7 +35,7 @@ export function* ResetPasswordSaga({ type, payload }) {
 
         if (status) {
             yield put({ type: RESET_PASSWORD_SUCCESS, payload: null });
-            yield put({ type: SIGN_IN, payload: { email: payload.email, password: payload.email } })
+            yield put({ type: SIGN_IN, payload: { email: payload.email, password: payload.password } })
         }
         else if (response.data.code === 401) {
             Alert.alert(response.data.message)
