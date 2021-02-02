@@ -203,7 +203,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   hellotxt: {
-    marginTop: wp(5),
+    marginTop: wp(8),
   },
   forgotPassword: {
     textAlign: 'right',
