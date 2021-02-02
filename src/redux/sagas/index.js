@@ -43,7 +43,8 @@ import {
   RE_ADD_TO_CART,
   UPDATE_CART_PRICES,
   UPDATE_CART_PRICES_OFFLINE,
-  FETCH_GENRE
+  FETCH_GENRE,
+  GUESTUSER_TOKEN
 } from '../actionTypes';
 
 import { signupSaga } from './SignupSaga';
@@ -88,6 +89,7 @@ import { ReAddToCartSaga } from './ReAddToCartSaga'
 import { UpdateCartPriceSaga } from './UpdateCartPriceSaga'
 import { UpdateCartPriceSagaOffline } from './UpdateCartPriceOfflineSaga'
 import { FilterSaga } from './FilterSaga'
+import { GuestUser_token } from './GuestUser_token'
 
 function* actionWatcher() {
   yield takeLatest(SPLASH_ACTION, splashSaga);
@@ -133,6 +135,7 @@ function* actionWatcher() {
   yield takeLatest(UPDATE_CART_PRICES_OFFLINE, UpdateCartPriceSagaOffline)
   yield takeLatest(FETCH_GENRE, FilterSaga)
   yield takeLatest("RESET_PASSWORD_SAGA", ResetPasswordSaga)
+  yield takeLatest(GUESTUSER_TOKEN, GuestUser_token)
 }
 
 export default function* rootSaga() {

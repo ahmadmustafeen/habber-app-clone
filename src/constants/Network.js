@@ -32,5 +32,6 @@ export const API_ENDPOINTS = {
   fcm: '/fcm',
   profile: '/profile',
   update_password: '/update_password',
-  genre: '/genre'
+  genre: '/genre',
+  guestuser_token: '/guest_user'
 };

@@ -14,7 +14,7 @@ import {
 } from '_redux/actionTypes';
 import { all, put, select } from 'redux-saga/effects';
 import { RestClient } from 'network/RestClient';
-import { FETCH_ARABIC_BOOKS, FETCH_BOOKCLUBS, FETCH_BOOKMARKS, FETCH_ENGLISH_BOOKS, FETCH_ORDER_SUCCESS } from '../actionTypes';
+import { FETCH_ARABIC_BOOKS, FETCH_BOOKCLUBS, FETCH_BOOKMARKS, FETCH_ENGLISH_BOOKS, FETCH_ORDER_SUCCESS, GUESTUSER_TOKEN } from '../actionTypes';
 
 export function* splashAdSaga() {
   try {
@@ -69,6 +69,7 @@ export function* splashAdSaga() {
         screen: HOME,
       });
     } else if (backUser) {
+      yield put({ type: GUESTUSER_TOKEN });
       const { UserProfileReducer } = yield select(({ UserProfileReducer }) => {
         return { UserProfileReducer };
       });
@@ -77,6 +78,7 @@ export function* splashAdSaga() {
         screen: SIGNIN_SCREEN,
       });
     } else {
+      yield put({ type: GUESTUSER_TOKEN });
       if (!userProfile) {
         yield setItem(
           '@userProfile',
