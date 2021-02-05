@@ -10,7 +10,6 @@ export function* switchLangSaga({ payload }) {
   try {
     console.log("adsdasdasdas", payload);
 
-    RNRestart.Restart();
     yield i18n.changeLanguage(payload.language.iso);
     yield I18nManager.forceRTL(payload.language.iso == 'ar');
     yield setItem('@userProfile', JSON.stringify(payload));
@@ -22,6 +21,7 @@ export function* switchLangSaga({ payload }) {
       type: SWITCH_LANG_SUCCESS,
       payload: { language: { iso: i18n.language } },
     });
+    RNRestart.Restart();
 
 
   } catch (error) {

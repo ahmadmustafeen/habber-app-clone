@@ -15,6 +15,7 @@ import {
 import { all, put, select } from 'redux-saga/effects';
 import { RestClient } from 'network/RestClient';
 import { FETCH_ARABIC_BOOKS, FETCH_BOOKCLUBS, FETCH_BOOKMARKS, FETCH_ENGLISH_BOOKS, FETCH_ORDER_SUCCESS, GUESTUSER_TOKEN } from '../actionTypes';
+import { Platform } from 'react-native';
 
 export function* splashAdSaga() {
   try {
@@ -69,7 +70,7 @@ export function* splashAdSaga() {
         screen: HOME,
       });
     } else if (backUser) {
-      yield put({ type: GUESTUSER_TOKEN });
+      yield put({ type: Platform.OS === 'android' && GUESTUSER_TOKEN });
       const { UserProfileReducer } = yield select(({ UserProfileReducer }) => {
         return { UserProfileReducer };
       });
@@ -78,13 +79,14 @@ export function* splashAdSaga() {
         screen: SIGNIN_SCREEN,
       });
     } else {
-      yield put({ type: GUESTUSER_TOKEN });
       if (!userProfile) {
+        yield put({ type: Platform.OS === 'android' && GUESTUSER_TOKEN });
         yield setItem(
           '@userProfile',
           JSON.stringify({
             // ...userProfile,
             currency: { id: 1, iso: 'KWD', name: 'Kuwaiti dinar', symbol: 'KD' },
+            notification: 1,
           }),
         );
       }
