@@ -39,7 +39,6 @@ export function* splashAdSaga() {
       yield setItem(
         '@userProfile',
         JSON.stringify({
-
           currency: { id: 1, iso: 'KWD', name: 'Kuwaiti dinar', symbol: 'KD' },
         }),
 

@@ -7,6 +7,7 @@ export const SWITCH_LANG_FAILURE = 'SWITCH_LANG_FAILURE';
 
 export const FETCH_AD = 'FETCH_AD';
 export const FETCH_AD_SUCCESS = 'FETCH_AD_SUCCESS';
+export const FETCH_AD_SUCCESS_REFURB = 'FETCH_AD_SUCCESS_REFURB';
 export const FETCH_AD_FAILURE = 'FETCH_AD_FAILURE';
 
 export const SKIP_AD = 'SKIP_AD';

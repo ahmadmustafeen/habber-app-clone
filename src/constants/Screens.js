@@ -4,6 +4,7 @@ export const SIGNUP_SCREEN = 'SignUp';
 export const SIGNIN_SCREEN = 'SignIn';
 export const FORGOT_PASSWORD_SCREEN = 'ForgotPassword';
 export const AD_SCREEN = 'AdScreen';
+export const AD_SCREENS = 'AdScreens';
 export const DRAWERMENU = 'DrawerMenu';
 export const JOINUS = 'JoinUs';
 export const REQUESTBOOKS_SCREEN = 'Request Books';

@@ -67,7 +67,6 @@ const Search = (props) => {
   // setBookData[];
   useEffect(() => {
     setBookData(SearchBooksReducer)
-    console.log(SearchBooksReducer)
     console.log("THIS IS USE EFFECT", bookData)
 
   }, [SearchBooksReducer])

@@ -18,10 +18,12 @@ import {
   SIGNUP_SCREEN,
   AD_SCREEN,
   SIGNUP_TERM_CODITION,
-  RESET_PASSWORD_SCREEN
+  RESET_PASSWORD_SCREEN,
+  AD_SCREENS
 
 } from '../constants/Screens';
 import ResetPassword from '../containers/ResetPassword';
+import AdScreens from '../containers/AdScreens';
 const AuthScreen = createStackNavigator();
 export const AuthNav = () => {
   return (
@@ -29,11 +31,12 @@ export const AuthNav = () => {
 
       screenOptions={{
         headerShown: false,
-        initialRouteName: 'AD_SCREEN',
+        initialRouteName: 'SIGNIN_SCREEN',
       }}>
       <AuthScreen.Screen name={SIGNIN_SCREEN} component={SignIn} />
       <AuthScreen.Screen name={LANGUAGE_SCREEN} component={Language} />
       <AuthScreen.Screen name={AD_SCREEN} component={AdScreen} />
+      <AuthScreen.Screen name={AD_SCREENS} component={AdScreens} />
       <AuthScreen.Screen name={SIGNUP_SCREEN} component={SignUp} />
       <AuthScreen.Screen name={RESET_PASSWORD_SCREEN} component={ResetPassword} />
       <AuthScreen.Screen

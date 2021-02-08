@@ -4,6 +4,7 @@ import {
   SIGN_IN_FAILURE,
   FETCH_AD_SUCCESS,
   FETCH_AD_FAILURE,
+  FETCH_AD_SUCCESS_REFURB
 } from '_redux/actionTypes';
 
 const initialState = {
@@ -13,20 +14,23 @@ const initialState = {
 export default (state = initialState, action) => {
   switch (action.type) {
     case SIGN_IN: {
-      return {loading: true};
+      return { loading: true };
     }
     case SIGN_IN_SUCCESS: {
-      return {loading: false};
+      return { loading: false };
     }
     case SIGN_IN_FAILURE: {
-      return {loading: false};
+      return { loading: false };
     }
 
     case FETCH_AD_SUCCESS: {
-      return {...state, splashScreen: false, ad: true};
+      return { ...state, splashScreen: false, ad: true };
+    }
+    case FETCH_AD_SUCCESS_REFURB: {
+      return { ...state, splashScreen: false, ad: false };
     }
     case FETCH_AD_FAILURE: {
-      return {...state, splashScreen: false};
+      return { ...state, splashScreen: false };
     }
     default:
       return state;

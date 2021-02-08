@@ -21,9 +21,10 @@ import {
   FETCH_STATIC
 } from '_redux/actionTypes';
 import { FETCH_GENRE } from '../actionTypes';
+import { AD_SCREENS } from '../../constants/Screens';
 
 
-export function* splashSaga() {
+export function* splashSaga({ payload }) {
   try {
     const response = yield call(() => RestClient.get(API_ENDPOINTS.ads));
     if (response.status === 521) {
@@ -52,16 +53,16 @@ export function* splashSaga() {
       status,
       data: { data: res, message },
     } = response;
-
-    if (!res.length) {
+    console.log("response", !!res)
+    if (!res && !payload) {
       yield put({ type: SKIP_AD });
       yield put({ type: FETCH_AD_FAILURE });
     } else {
-      yield put({ type: FETCH_AD_SUCCESS });
-      NavigationService.navigate('Auth', {
-        screen: AD_SCREEN,
-        params: { res },
-      });
+      yield put({ type: FETCH_AD_SUCCESS, payload: { ad: false } });
+      // NavigationService.navigate('Auth', {
+      //   screen: AD_SCREENS,
+      //   params: { res },
+      // });
     }
   } catch (error) {
     console.log('SPLASH ERROR: ', error);
