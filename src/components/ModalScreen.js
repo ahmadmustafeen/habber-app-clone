@@ -73,6 +73,7 @@ const ModalScreen = props => {
             </AppText>
             <AppText
               style={{
+                width: wp(70),
                 paddingHorizontal: 20,
                 fontSize: 18,
                 textAlign: 'center',

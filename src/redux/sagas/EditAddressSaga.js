@@ -9,6 +9,7 @@ import { EDIT_ADDRESS_FAILURE, EDIT_ADDRESS_SUCCESS, FETCH_ADDRESS } from '_redu
 import * as NavigationService from '../../../NavigationService';
 import { startAction, stopAction } from '../actions';
 import { I18nManager } from 'react-native';
+import { Platform } from 'react-native';
 export function* EditAddressSaga({ type, payload }) {
     try {
         yield put(startAction(type));
@@ -21,13 +22,23 @@ export function* EditAddressSaga({ type, payload }) {
         const { status, data, message } = response;
         if (data.success) {
             yield put({ type: EDIT_ADDRESS_SUCCESS, });
-            yield put({ type: FETCH_ADDRESS }),
-                Alert.alert(I18nManager.isRTL ? "عنوان تم تعديله بنجاح" : 'Successfully Edited Address', message, [
-                    {
-                        onPress: () =>
-                            NavigationService.navigate('MyProfile', { screen: ADD_NEW_ADDRESS, params: { data } }),
-                    },
-                ]);
+            yield put({ type: FETCH_ADDRESS })
+            const text = I18nManager.isRTL ? "عنوان تم تعديله بنجاح" : 'Successfully Edited Address'
+            Platform.OS === 'ios' ?
+                Alert.alert(concat ? ` ${text}` : text, '', [{ text: I18nManager.isRTL ? 'حسنا' : 'OK', }])
+                : (
+                    I18nManager.isRTL ?
+                        Alert.alert(concat ? `${text}` : '', text, [{ text: I18nManager.isRTL ? 'حسنا' : ' ', }, { text: I18nManager.isRTL ? '' : ' ', }, { text: I18nManager.isRTL ? ' ' : button }])
+                        : Alert.alert(concat ? `${text}` : text, '', [{ text: I18nManager.isRTL ? 'حسنا' : ' ', }, { text: I18nManager.isRTL ? '' : ' ', }, { text: I18nManager.isRTL ? ' ' : button }]
+                        )
+                )
+
+
+
+
+
+
+
         }
     } catch (error) {
         yield put(errorAction(EDIT_ADDRESS_FAILURE, error));
