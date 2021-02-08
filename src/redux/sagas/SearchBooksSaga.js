@@ -5,8 +5,10 @@ import { RestClient } from '_network/RestClient';
 import { SEARCH_BOOKS_FAILURE, SEARCH_BOOKS_SUCCESS } from '_redux/actionTypes';
 
 import { NETWORK_ERROR, SHOW_NETWORK_MODAL } from 'redux/actionTypes';
+import { startAction, stopAction } from '../actions';
 export function* SearchBooksSaga({ type, payload }) {
   try {
+    yield put(startAction(type));
     console.log('SearchBooksSaga  . . . .  .1', payload);
     const response = yield call(() =>
       RestClient.post(API_ENDPOINTS.booksSearch, payload),
@@ -28,5 +30,7 @@ export function* SearchBooksSaga({ type, payload }) {
   } catch (error) {
     console.log(error);
     yield put({ type: SEARCH_BOOKS_FAILURE, error });
+  } finally {
+    yield put(stopAction(type));
   }
 }

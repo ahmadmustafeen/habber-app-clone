@@ -15,6 +15,8 @@ import {
   TitleBarWithIcon,
   Header,
 } from '_components';
+
+import Loader from '_components/Loader';
 import useFilter from '_utils/customHooks/useFilter';
 import { FilterModal } from '_containers/Filter';
 import { useTranslation } from 'react-i18next';
@@ -26,6 +28,7 @@ import { withoutDataActions } from '../../redux/actions';
 import { SEARCH_BOOKS_SUCCESS } from '../../redux/actionTypes';
 
 import { setFilterHandler } from '../../helpers/Filter';
+import { checkIfLoading } from '../../redux/selectors';
 
 
 const Search = (props) => {
@@ -39,13 +42,20 @@ const Search = (props) => {
   const [filter, setFilter] = useState([])
 
 
+  const { isLoading } = useSelector((state) => {
+    return {
+      isLoading: checkIfLoading(state, SEARCH_BOOKS),
+
+    };
+  }, shallowEqual);
+
   const { SearchBooksReducer } = useSelector(({ SearchBooksReducer }) => {
     return {
       SearchBooksReducer,
     };
   }, shallowEqual);
   const [bookData, setBookData] = useState(SearchBooksReducer);
-  console.log("bookkkkkk", bookData)
+
   const onSubmit = () => {
     dispatch(withDataActions({ keyword }, SEARCH_BOOKS))
   };
@@ -54,8 +64,13 @@ const Search = (props) => {
     Keyboard.dismiss()
   }
 
+  // setBookData[];
+  useEffect(() => {
+    setBookData(SearchBooksReducer)
+    console.log(SearchBooksReducer)
+    console.log("THIS IS USE EFFECT", bookData)
 
-
+  }, [SearchBooksReducer])
 
   console.log("empty", SearchBooksReducer)
 
@@ -63,12 +78,15 @@ const Search = (props) => {
     // filter keys in UI should be displayed from ITEM array - Ahmad
     setFilter([...item]);
     toggleFilter();
-    if (!item.length) {
+    if (item.length === 0) {
       setBookData(SearchBooksReducer);
       return;
     }
-    let filtered = setFilterHandler(SearchBooksReducer, item);
-    setBookData(filtered);
+    else {
+
+      let filtered = setFilterHandler(SearchBooksReducer, item);
+      setBookData(filtered);
+    }
   };
   // const onApplyFilter = (item) => {
   //   console.log(item);
@@ -92,6 +110,8 @@ const Search = (props) => {
   console.log('SearchBooksReducer', SearchBooksReducer);
   return (
     <ScrollView keyboardShouldPersistTaps='always'>
+
+      <Loader loading={isLoading} />
       <View
         key="header"
         style={{ backgroundColor: colors.secondary, padding: 10, transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }], }}>
