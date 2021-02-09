@@ -7,7 +7,7 @@
 #import <React/RCTI18nUtil.h>
 #import <UserNotifications/UserNotifications.h>
 #import <React/RCTLinkingManager.h>
-
+@import Firebase;
 #ifdef FB_SONARKIT_ENABLED
 #import <FlipperKit/FlipperClient.h>
 #import <FlipperKitLayoutPlugin/FlipperKitLayoutPlugin.h>
@@ -36,6 +36,14 @@ static void InitializeFlipper(UIApplication *application) {
   InitializeFlipper(application);
 #endif
 
+  // Use Firebase library to configure APIs
+  [FIRApp configure];
+  
+  // Define UNUserNotificationCenter
+ UNUserNotificationCenter *center =
+     [UNUserNotificationCenter currentNotificationCenter];
+ center.delegate = self;
+  
   RCTBridge *bridge = [[RCTBridge alloc] initWithDelegate:self launchOptions:launchOptions];
   RCTRootView *rootView = [[RCTRootView alloc] initWithBridge:bridge
                                                    moduleName:@"HEBBER_Mobile"
@@ -49,10 +57,7 @@ static void InitializeFlipper(UIApplication *application) {
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
   [[RCTI18nUtil sharedInstance] allowRTL:YES];
-   // Define UNUserNotificationCenter
-  UNUserNotificationCenter *center =
-      [UNUserNotificationCenter currentNotificationCenter];
-  center.delegate = self;
+  
   return YES;
 }
 

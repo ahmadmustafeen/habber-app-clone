@@ -1,15 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
-    <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
-    "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-    <plist version="1.0">
-    <dict>
-      <key>CLIENT_ID</key>
-      <string>883976937926-r0ihrebiafb403c792bg28c6q1i8qm61.apps.googleusercontent.com</string>
-      <key>REVERSED_CLIENT_ID</key>
-      <string>com.googleusercontent.apps.883976937926-r0ihrebiafb403c792bg28c6q1i8qm61</string>
-      <key>PLIST_VERSION</key>
-      <string>1</string>
-      <key>BUNDLE_ID</key>
-      <string>com.attribes.Habber</string>
-    </dict>
-    </plist>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>540308436088-dm0807ogvqsq33fr48vtfdu2k62bhcd0.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.540308436088-dm0807ogvqsq33fr48vtfdu2k62bhcd0</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCs3fyYUUMkQs3f8CK47bLZzKPqZTQU300</string>
+	<key>GCM_SENDER_ID</key>
+	<string>540308436088</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.attribes.Habber</string>
+	<key>PROJECT_ID</key>
+	<string>hebber-72e2b</string>
+	<key>STORAGE_BUCKET</key>
+	<string>hebber-72e2b.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:540308436088:ios:a7d6295f8de53ab855e98d</string>
+	<key>DATABASE_URL</key>
+	<string>https://hebber-72e2b.firebaseio.com</string>
+</dict>
+</plist>
