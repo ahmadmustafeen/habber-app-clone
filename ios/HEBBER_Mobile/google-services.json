@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "540308436088",
+    "firebase_url": "https://hebber-72e2b.firebaseio.com",
+    "project_id": "hebber-72e2b",
+    "storage_bucket": "hebber-72e2b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:540308436088:android:91bb7da443a89ee955e98d",
+        "android_client_info": {
+          "package_name": "com.hebber_mobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "540308436088-illtgla7864gmepgmd1gfc1p67vm76db.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCYlAN97OZpFdxGIT5i56uabHZjpSk9uf4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "540308436088-illtgla7864gmepgmd1gfc1p67vm76db.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "540308436088-dm0807ogvqsq33fr48vtfdu2k62bhcd0.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.attribes.Habber"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

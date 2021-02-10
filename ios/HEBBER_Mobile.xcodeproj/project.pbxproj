@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* HEBBER_MobileTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* HEBBER_MobileTests.m */; };
+		05801C5325D3041300F5AE43 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 05801C5225D3041200F5AE43 /* GoogleService-Info.plist */; };
+		05801C5425D3041300F5AE43 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 05801C5225D3041200F5AE43 /* GoogleService-Info.plist */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
@@ -21,9 +23,7 @@
 		81DBA72FD53E05D118F17D5D /* libPods-HEBBER_Mobile-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 36F5635F73D68F624273DE58 /* libPods-HEBBER_Mobile-tvOS.a */; };
 		940DC533258A197300D111BE /* HEBBER_Mobile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 940DC532258A197300D111BE /* HEBBER_Mobile.swift */; };
 		943488522584067D00A9A544 /* assets in Resources */ = {isa = PBXBuildFile; fileRef = 943488482584061600A9A544 /* assets */; };
-		E23B141525B2B12D0070C739 /* hebber-Icon-32x32.png in Resources */ = {isa = PBXBuildFile; fileRef = E23B141425B2B12D0070C739 /* hebber-Icon-32x32.png */; };
 		E27966032551B0330058E6DB /* main.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = 008F07F21AC5B25A0029DE68 /* main.jsbundle */; };
-		E284667725B5E93F009BE7B4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9413E80B258A582F004CEC9E /* GoogleService-Info.plist */; };
 		F3B0945EF57FEDE9987D9EEC /* libPods-HEBBER_Mobile-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F8F674040BEA472B7A6682F /* libPods-HEBBER_Mobile-tvOSTests.a */; };
 /* End PBXBuildFile section */
 
@@ -49,6 +49,8 @@
 		00E356EE1AD99517003FC87E /* HEBBER_MobileTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HEBBER_MobileTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* HEBBER_MobileTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HEBBER_MobileTests.m; sourceTree = "<group>"; };
+		05801C4525D2F9B200F5AE43 /* HEBBER_Mobile.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = HEBBER_Mobile.entitlements; path = HEBBER_Mobile/HEBBER_Mobile.entitlements; sourceTree = "<group>"; };
+		05801C5225D3041200F5AE43 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "HEBBER_Mobile/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		083ACD463ECA47C79C98AACC /* Almarai-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Almarai-Regular.ttf"; path = "../src/assets/font/Almarai-Regular.ttf"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* HEBBER_Mobile.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HEBBER_Mobile.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = HEBBER_Mobile/AppDelegate.h; sourceTree = "<group>"; };
@@ -84,7 +86,6 @@
 		924C048B6C7D46038BB60AF1 /* libPods-HEBBER_Mobile-HEBBER_MobileTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HEBBER_Mobile-HEBBER_MobileTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		940DC531258A197100D111BE /* HEBBER_Mobile-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HEBBER_Mobile-Bridging-Header.h"; sourceTree = "<group>"; };
 		940DC532258A197300D111BE /* HEBBER_Mobile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HEBBER_Mobile.swift; sourceTree = "<group>"; };
-		9413E80B258A582F004CEC9E /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "HEBBER_Mobile/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		943488482584061600A9A544 /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = assets; sourceTree = "<group>"; };
 		94A3226F2535FB72002B8D62 /* Fontisto.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Fontisto.ttf; path = "../../node_modules/react-native-vector-icons/Fonts/Fontisto.ttf"; sourceTree = "<group>"; };
 		94A322702535FB72002B8D62 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = SimpleLineIcons.ttf; path = "../../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
@@ -102,7 +103,6 @@
 		94A3227C2535FB73002B8D62 /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = MaterialCommunityIcons.ttf; path = "../../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
 		94A3227D2535FB73002B8D62 /* EvilIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = EvilIcons.ttf; path = "../../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
 		94A3227E2535FB73002B8D62 /* AntDesign.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = AntDesign.ttf; path = "../../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf"; sourceTree = "<group>"; };
-		94C5A282257A5181003568F3 /* HEBBER_MobileRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = HEBBER_MobileRelease.entitlements; path = HEBBER_Mobile/HEBBER_MobileRelease.entitlements; sourceTree = "<group>"; };
 		96C0A682A22FEF861217418F /* Pods-HEBBER_Mobile-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HEBBER_Mobile-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-HEBBER_Mobile-tvOS/Pods-HEBBER_Mobile-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
 		A3DDA60A81E646B18DA09AE0 /* Almarai-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Almarai-Bold.ttf"; path = "../src/assets/font/Almarai-Bold.ttf"; sourceTree = "<group>"; };
 		A6EB10E4BC4D4101B011A209 /* Roboto-LightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-LightItalic.ttf"; path = "../src/assets/font/Roboto-LightItalic.ttf"; sourceTree = "<group>"; };
@@ -116,7 +116,6 @@
 		D4D66B714A764E809C16C4C2 /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
 		DBA15B8B8F974107BE9456FE /* AntDesign.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = AntDesign.ttf; path = "../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf"; sourceTree = "<group>"; };
 		E23B13BB25B2B0280070C739 /* hebber-Icon-32x32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hebber-Icon-32x32.png"; sourceTree = "<group>"; };
-		E23B141425B2B12D0070C739 /* hebber-Icon-32x32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "hebber-Icon-32x32.png"; path = "../../../../Downloads/hebber-Icon-32x32.png"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 		EECD5B219F0AB68924985146 /* libPods-HEBBER_Mobile.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HEBBER_Mobile.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -181,13 +180,13 @@
 		13B07FAE1A68108700A75B9A /* HEBBER_Mobile */ = {
 			isa = PBXGroup;
 			children = (
-				94C5A282257A5181003568F3 /* HEBBER_MobileRelease.entitlements */,
+				05801C5225D3041200F5AE43 /* GoogleService-Info.plist */,
+				05801C4525D2F9B200F5AE43 /* HEBBER_Mobile.entitlements */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				E23B13BB25B2B0280070C739 /* hebber-Icon-32x32.png */,
-				E23B141425B2B12D0070C739 /* hebber-Icon-32x32.png */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
 				13B07FB71A68108700A75B9A /* main.m */,
@@ -218,7 +217,6 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				9413E80B258A582F004CEC9E /* GoogleService-Info.plist */,
 				940DC532258A197300D111BE /* HEBBER_Mobile.swift */,
 				943488482584061600A9A544 /* assets */,
 				94A3226E2535FABB002B8D62 /* Fonts */,
@@ -463,10 +461,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E284667725B5E93F009BE7B4 /* GoogleService-Info.plist in Resources */,
 				943488522584067D00A9A544 /* assets in Resources */,
-				E23B141525B2B12D0070C739 /* hebber-Icon-32x32.png in Resources */,
 				E27966032551B0330058E6DB /* main.jsbundle in Resources */,
+				05801C5325D3041300F5AE43 /* GoogleService-Info.plist in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 			);
@@ -477,6 +474,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */,
+				05801C5425D3041300F5AE43 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -853,7 +851,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CURRENT_PROJECT_VERSION = 27;
+				CODE_SIGN_ENTITLEMENTS = HEBBER_Mobile/HEBBER_Mobile.entitlements;
+				CURRENT_PROJECT_VERSION = 26;
 				DEVELOPMENT_TEAM = GZHG762PM3;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = HEBBER_Mobile/Info.plist;
@@ -879,8 +878,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = HEBBER_Mobile/HEBBER_MobileRelease.entitlements;
-				CURRENT_PROJECT_VERSION = 27;
+				CODE_SIGN_ENTITLEMENTS = HEBBER_Mobile/HEBBER_Mobile.entitlements;
+				CURRENT_PROJECT_VERSION = 26;
 				DEVELOPMENT_TEAM = GZHG762PM3;
 				INFOPLIST_FILE = HEBBER_Mobile/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
