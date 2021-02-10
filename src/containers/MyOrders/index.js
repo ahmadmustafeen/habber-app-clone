@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View, StyleSheet, Image, ScrollView, ImageBackground, I18nManager, FlatList, Text } from 'react-native';
 import { AppText, Screen } from '../../components/common';
 import { Header, } from '../../components';
@@ -6,26 +6,35 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useTheme } from '@react-navigation/native';
 import { Icon } from 'react-native-elements';
 import { useTranslation } from 'react-i18next';
 import NoBookAvailbe from '../../components/NoBookAvailable';
 import { INVOICE } from '../../constants/Screens';
 import useModal from '_utils/customHooks/useModal';
+import { withoutDataActions } from '../../redux/actions';
+import { FETCH_ORDER } from '../../redux/actionTypes';
 
+import Loader from '_components/Loader';
+import { checkIfLoading } from '../../redux/selectors';
 const MyOrders = (props) => {
   console.log(props)
 
+  const dispatch = useDispatch()
   const { visible, toggleModal } = useModal();
   const { navigate } = props.navigation;
   const { colors } = useTheme();
-  const { OrderReducer } = useSelector((state) => {
+  useEffect(() => {
+    dispatch(withoutDataActions(FETCH_ORDER));
+  }, [])
+  const { OrderReducer, isLoading } = useSelector((state) => {
     return {
-      OrderReducer: state.OrderReducer
+      OrderReducer: state.OrderReducer,
+      isLoading: checkIfLoading(state, FETCH_ORDER)
     }
   })
-  console.log("OrderReducer In Order", OrderReducer)
+  console.log("OrderReducer In Order", isLoading)
   const { t } = useTranslation(['Order'])
 
   const renderItem = ({ item }) => {
@@ -52,7 +61,7 @@ const MyOrders = (props) => {
           </AppText>{item.currency_iso} {(parseFloat(item.total_price.toString().replace(",", ""))).toFixed(2)}</AppText>
           <AppText size={16} style={styles.apptextpadding}>{item.created_at.split('T')[0]}</AppText>
 
-
+          <Loader loading={isLoading} />
         </View>
         <View style={styles.Icon}>
           <Icon

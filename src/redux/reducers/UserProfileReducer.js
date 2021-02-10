@@ -10,10 +10,11 @@ const initialState = {
   currency: { id: 1, iso: 'KWD', name: 'Kuwaiti dinar', symbol: 'KD' },
   notification: 1
 };
+
 export default (state = initialState, action) => {
   switch (action.type) {
     case SWITCH_LANG_SUCCESS: {
-      return { ...state, ...action.payload };
+      return { ...action.payload };
     }
     case SWITCH_CURRENCY_SUCCESS: {
       return { ...state, ...action.payload };

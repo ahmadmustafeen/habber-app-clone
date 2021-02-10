@@ -49,7 +49,8 @@ static void InitializeFlipper(UIApplication *application) {
                                                    moduleName:@"HEBBER_Mobile"
                                             initialProperties:nil];
 
-  rootView.backgroundColor = [[UIColor alloc] initWithRed:1.0f green:1.0f blue:1.0f alpha:1];
+  rootView.backgroundColor = [[UIColor alloc] initWithRed:0.03f green:0.16f blue:0.21f alpha:1];
+//  rootView.backgroundColor = [UIColor clearColor];
 
   self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
   UIViewController *rootViewController = [UIViewController new];
