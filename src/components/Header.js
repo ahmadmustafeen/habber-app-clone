@@ -56,7 +56,8 @@ const Header = (props, { adddok }) => {
     onSearch,
     noTitle,
     noSearch,
-    noCart
+    noCart,
+    capitalize,
 
   } = props;
 
@@ -109,7 +110,7 @@ const Header = (props, { adddok }) => {
 
           }}>
           <TouchableOpacity onPress={backIcon ? () => navigation.goBack() : () => navigation.openDrawer()} >
-            <AppText bold small color={headerColor} UpperCase={UpperCase}  >
+            <AppText bold small color={headerColor} UpperCase={UpperCase} capitalize={capitalize}  >
               {title || t(route.name)}
             </AppText>
           </TouchableOpacity>

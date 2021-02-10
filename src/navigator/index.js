@@ -10,9 +10,10 @@ import { AuthNav } from './AuthNav';
 import DrawerMenu from '../containers/DrawerMenu';
 import { DashboardNav } from './DashboardNav';
 import { shallowEqual, useSelector } from 'react-redux';
-import { AD_SCREEN } from '../constants/Screens';
+import { AD_SCREEN, LANGUAGE_SCREEN } from '../constants/Screens';
 import AdScreen from '../containers/AdScreen';
 import linking from './Linking'
+import Language from '../containers/Language';
 const Drawer = createDrawerNavigator();
 const RootStack = createStackNavigator();
 
@@ -63,6 +64,16 @@ const navigatorComponent = (splashScreen, ad, backUser) => {
       </RootStack.Navigator>
     );
   }
+  if (!backUser) {
+    return (
+      <RootStack.Navigator
+        screenOptions={{
+          headerShown: false,
+        }}>
+        <RootStack.Screen name={LANGUAGE_SCREEN} component={Language} />
+      </RootStack.Navigator>
+    );
+  }
 
   return (
     <RootStack.Navigator
@@ -94,14 +105,19 @@ const config = {
 };
 
 const Navigator = (props, ref) => {
-  const { splashScreen, ad, backUser } = useSelector(({ SplashReducer }) => {
+
+
+
+
+  const { splashScreen, ad, backUser, UserProfileReducer } = useSelector(({ SplashReducer, UserProfileReducer }) => {
     return {
       splashScreen: SplashReducer.splashScreen,
       ad: SplashReducer.ad,
-      backUser: SplashReducer.backUser,
+      UserProfileReducer: UserProfileReducer,
+      backUser: !!UserProfileReducer.language,
     };
   }, shallowEqual);
-
+  console.log("Navigator Splash backuser", backUser);
   return (
     <NavigationContainer linking={linking} ref={ref} theme={MyTheme}>
       {navigatorComponent(splashScreen, ad, backUser)}

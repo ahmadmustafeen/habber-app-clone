@@ -54,6 +54,7 @@ export function* splashAdSaga() {
       type: FETCH_USER_PROFILE_SUCCESS,
       payload: userProfile,
     });
+    console.log(userProfile, "userProfile");
     if (userProfile && userProfile.token) {
       RestClient.setHeader('Authorization', `Bearer ${userProfile.token}`);
 
@@ -68,7 +69,7 @@ export function* splashAdSaga() {
       return NavigationService.navigate('Drawer', {
         screen: HOME,
       });
-    } else if (backUser) {
+    } else if (userProfile) {
       yield put({ type: Platform.OS === 'android' && GUESTUSER_TOKEN });
       const { UserProfileReducer } = yield select(({ UserProfileReducer }) => {
         return { UserProfileReducer };
@@ -78,7 +79,7 @@ export function* splashAdSaga() {
         screen: SIGNIN_SCREEN,
       });
     } else {
-      if (!userProfile) {
+      if (!userProfile || !userProfile.language) {
         yield put({ type: Platform.OS === 'android' && GUESTUSER_TOKEN });
         yield setItem(
           '@userProfile',

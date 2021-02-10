@@ -53,9 +53,12 @@ const BooksList = (props) => {
               name="leftcircleo"
               type="ant-design"
             />)}
+          capitalize
           title={
+
             `${label[0].toUpperCase()}${label.slice(1).toLowerCase()}`
-          } />
+          }
+        />
 
 
       </View>

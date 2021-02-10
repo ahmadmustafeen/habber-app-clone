@@ -33,7 +33,8 @@ const AdScreen = (props) => {
           }}
           // onPress={() => NavigationService.navigate(AD_SCREEN, { screen: 'Home' })}
           // onPress={() => console.log(props.navigation.goBack())}
-          onPress={() => (dispatch(withDataActions({ ad: false }, FETCH_AD_SUCCESS_REFURB)))}
+          onPress={() => (dispatch(withDataActions({ ad: false }, FETCH_AD_SUCCESS_REFURB)) && (dispatch(withDataActions({ ad: false }, SKIP_AD))))}
+
         // dispatch(withDataActions(SKIP_AD))
         // dispatch(withoutDataActions(FETCH_AD_FAILURE))
         >
