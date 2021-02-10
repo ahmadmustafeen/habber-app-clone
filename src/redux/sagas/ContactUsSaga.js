@@ -28,16 +28,23 @@ export function* contactUsSaga({ type, payload }) {
       data: { data: res, message, status },
     } = response;
 
-    console.log(status);
+    console.log(status, "asdasd", response, 'data');
 
     if (status) {
       // Alert.alert('Success', message);
       yield put({ type: SUBMIT_CONTACT_US_SUCCESS, payload: null });
       yield put({ type: SHOW_MODAL, payload: null });
 
-      yield put(stopAction(type));
+
+    }
+    else {
+      console.log(response);
+      Alert.alert("Something Went Wrong")
+      yield put({ type: SUBMIT_CONTACT_US_FAILURE });
     }
   } catch (error) {
     yield put({ type: SUBMIT_CONTACT_US_FAILURE, error });
+  } finally {
+    yield put(stopAction(type));
   }
 }

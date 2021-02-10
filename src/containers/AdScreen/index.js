@@ -13,12 +13,12 @@ const AdScreen = (props) => {
   const dispatch = useDispatch();
 
   const { navigate } = props.navigation;
-  console.log('AD PROPS', props);
+  console.log('AD PROPS', props.route.params.image);
   return (
     <BackgroundImage
       noPadding
       resizeMode="cover"
-      source={{ uri: "http://habber.attribes.com/storage/ads/12/Untitled-11611661955.jpg" }}>
+      source={{ uri: props.route.params.image }}>
       <View key="content" />
       <View key="footer">
         <TouchableOpacity

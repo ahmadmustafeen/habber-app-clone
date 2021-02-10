@@ -58,7 +58,7 @@ export function* splashSaga({ payload }) {
       yield put({ type: SKIP_AD });
       yield put({ type: FETCH_AD_FAILURE });
     } else {
-      yield put({ type: FETCH_AD_SUCCESS, payload: { ad: false } });
+      yield put({ type: FETCH_AD_SUCCESS, payload: { ad: false, res } });
 
       // NavigationService.navigate('Auth', {
       //   screen: AD_SCREENS,

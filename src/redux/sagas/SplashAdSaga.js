@@ -70,7 +70,7 @@ export function* splashAdSaga() {
         screen: HOME,
       });
     } else if (userProfile) {
-      yield put({ type: Platform.OS === 'android' && GUESTUSER_TOKEN });
+      yield put({ type: GUESTUSER_TOKEN });
       const { UserProfileReducer } = yield select(({ UserProfileReducer }) => {
         return { UserProfileReducer };
       });
@@ -80,7 +80,7 @@ export function* splashAdSaga() {
       });
     } else {
       if (!userProfile || !userProfile.language) {
-        yield put({ type: Platform.OS === 'android' && GUESTUSER_TOKEN });
+        yield put({ type: GUESTUSER_TOKEN });
         yield setItem(
           '@userProfile',
           JSON.stringify({

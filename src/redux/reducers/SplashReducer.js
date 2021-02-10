@@ -25,7 +25,7 @@ export default (state = initialState, action) => {
     }
 
     case FETCH_AD_SUCCESS: {
-      return { ...state, splashScreen: false, ad: true };
+      return { ...state, splashScreen: false, ad: true, res: action.payload.res };
     }
     case FETCH_AD_SUCCESS_REFURB: {
       return { ...state, splashScreen: false, ad: false };

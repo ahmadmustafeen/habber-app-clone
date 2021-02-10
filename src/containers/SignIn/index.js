@@ -23,6 +23,7 @@ const SignIn = (props) => {
   const { t } = useTranslation(['login']);
   const dispatch = useDispatch();
   const { navigate } = props.navigation;
+  console.log(props.route.params, "SIGN IN")
   const { colors } = useTheme();
 
   const [state, setState] = useState({
@@ -30,6 +31,14 @@ const SignIn = (props) => {
     password: '',
   });
 
+
+  const {
+    UserProfileReducer,
+  } = useSelector((state) => {
+    return {
+      UserProfileReducer: state.UserProfileReducer
+    };
+  }, shallowEqual);
 
 
 
@@ -39,6 +48,13 @@ const SignIn = (props) => {
     }
     setState((state) => ({ ...state, [key]: value }));
   };
+  useEffect(() => {
+    if (props.route.params) {
+      handleChange('email', '');
+      handleChange('password', '')
+    }
+  }, [props])
+
 
 
   const validate = () => {

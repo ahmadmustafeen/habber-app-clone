@@ -24,12 +24,14 @@ const InputWithLabel = (props) => {
         </AppText>
       )}
       <TextInput
+
         {...props}
         ref={(r) => {
           inputRef && inputRef(r);
         }}
         {...required ? <AppText white>*</AppText> : null}
         placeholderTextColor={Color.placeholder}
+        //  onFocus={() => }
         maxLength={maxLength}
         style={[styles.inputFieldStyle,
         { borderColor: (borderColor || colors.primary) },

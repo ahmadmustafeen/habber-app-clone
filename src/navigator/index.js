@@ -14,6 +14,7 @@ import { AD_SCREEN, LANGUAGE_SCREEN } from '../constants/Screens';
 import AdScreen from '../containers/AdScreen';
 import linking from './Linking'
 import Language from '../containers/Language';
+import AsyncStorage from '@react-native-community/async-storage';
 const Drawer = createDrawerNavigator();
 const RootStack = createStackNavigator();
 
@@ -35,6 +36,8 @@ const MyTheme = {
 };
 
 const DrawerNav = () => {
+
+
   return (
     <Drawer.Navigator
       initialRouteName="Home"
@@ -46,7 +49,9 @@ const DrawerNav = () => {
     </Drawer.Navigator>
   );
 };
-const navigatorComponent = (splashScreen, ad, backUser) => {
+const navigatorComponent = (splashScreen, ad, backUser, res) => {
+  console.log(res);
+
   if (splashScreen) {
     return (
       <RootStack.Navigator screenOptions={{ headerShown: false }}>
@@ -60,7 +65,7 @@ const navigatorComponent = (splashScreen, ad, backUser) => {
         screenOptions={{
           headerShown: false,
         }}>
-        <RootStack.Screen name={AD_SCREEN} component={AdScreen} />
+        <RootStack.Screen name={AD_SCREEN} component={AdScreen} initialParams={{ image: res.image }} />
       </RootStack.Navigator>
     );
   }
@@ -109,10 +114,11 @@ const Navigator = (props, ref) => {
 
 
 
-  const { splashScreen, ad, backUser, UserProfileReducer } = useSelector(({ SplashReducer, UserProfileReducer }) => {
+  const { splashScreen, ad, backUser, UserProfileReducer, res } = useSelector(({ SplashReducer, UserProfileReducer }) => {
     return {
       splashScreen: SplashReducer.splashScreen,
       ad: SplashReducer.ad,
+      res: SplashReducer.res,
       UserProfileReducer: UserProfileReducer,
       backUser: !!UserProfileReducer.language,
     };
@@ -120,7 +126,7 @@ const Navigator = (props, ref) => {
   console.log("Navigator Splash backuser", backUser);
   return (
     <NavigationContainer linking={linking} ref={ref} theme={MyTheme}>
-      {navigatorComponent(splashScreen, ad, backUser)}
+      {navigatorComponent(splashScreen, ad, backUser, res)}
     </NavigationContainer>
   );
 };

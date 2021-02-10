@@ -47,7 +47,7 @@ const Invoice = (props) => {
     }
     const OrderBox = (props) => {
         return (
-            <View style={[styles.detailCartHeader, { paddingVertical: hp(0), paddingHorizontal: wp(3) }]}>
+            <View style={[styles.detailCartHeader, { paddingVertical: hp(1), paddingHorizontal: wp(3) }]}>
                 <View style={{ flex: 2, justifyContent: 'center', alignItems: 'center', }}>
                     <AppText text small>
                         {props.name}
@@ -193,7 +193,7 @@ const styles = StyleSheet.create({
     detailCartHeader: {
         width: wp(90),
         flexDirection: 'row',
-        height: hp(8),
+        minHeight: hp(7),
     }
 });
 export default Invoice;
