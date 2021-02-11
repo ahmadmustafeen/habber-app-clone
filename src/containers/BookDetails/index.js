@@ -173,9 +173,10 @@ const BookDetails = (props) => {
       const result = await Share.share({
         // cdmessage: "Habber",
         message:
-          Platform.OS === 'ios' ?
-            ('habber://BookDetails/' + (type ? old_product.id : product_id) + "/" + (type ? type : product_type)) :
-            (('http://sturdycyber.cf/index.php?id=' + (type ? old_product.id : product_id) + "&type=" + (type ? type : product_type)))
+          "http://habber.attribes.com/social_share?redirec_url=BookDetails/' " + (type ? old_product.id : product_id) + "/" + (type ? type : product_type)
+        // Platform.OS === 'ios' ?
+        //   ('habber://BookDetails/' + (type ? old_product.id : product_id) + "/" + (type ? type : product_type)) :
+        //   (('http://sturdycyber.cf/index.php?id=' + (type ? old_product.id : product_id) + "&type=" + (type ? type : product_type)))
         // <iframe src="paulsawesomeapp://page1"> </iframe>
       });
       if (result.action === Share.sharedAction) {
