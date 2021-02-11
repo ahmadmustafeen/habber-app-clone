@@ -20,7 +20,7 @@ const FavouriteCard = (props) => {
   }));
   var rtlLayout = false;
   (UserProfileReducer.currency.iso === "USD" || UserProfileReducer.currency.iso === "GBP" || UserProfileReducer.currency.iso === "EUR") && (rtlLayout = true)
-
+  console.log(props, "FAVORUTIRE PROPS")
 
   const { colors } = useTheme();
   return (
@@ -46,9 +46,9 @@ const FavouriteCard = (props) => {
             primary
             color="black"
             style={styles.pricetxt}
-            onPress={props.onAddToCart}
+            onPress={props.item.quantity ? props.onAddToCart : () => console.log("NO QUANTITY")}
             round>
-            {I18nManager.isRTL ? "أضف إلى السلة" : "Add To Cart"}
+            {props.item.quantity ? (I18nManager.isRTL ? "أضف إلى السلة" : "Add To Cart") : (I18nManager.isRTL ? "إنتهى من المخزن" : "Out Of Stock")}
           </Button>
           <HorizontalRow
             style={{
