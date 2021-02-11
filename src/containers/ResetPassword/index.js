@@ -20,6 +20,7 @@ import useModal from '_utils/customHooks/useModal';
 import { ImageBackground } from 'react-native';
 import { validateIsTrue, validatePassword } from '../../helpers/Validators';
 import { RESET_PASSWORD } from '../../constants/Screens';
+import { ScrollView } from 'react-native';
 const ResetPassword = (props) => {
 
   const dispatch = useDispatch();
@@ -64,54 +65,55 @@ const ResetPassword = (props) => {
     };
   }, shallowEqual);
   return (
-    <ImageBackground
-      style={{
-        height: hp(100),
-        paddingHorizontal: wp(5),
-        paddingBottom: hp(3),
-      }}
-      resizeMode="stretch"
-      source={require('_assets/images/background.jpg')}>
-      <View key="header">
-        <AuthHeader {...props} />
-        <AppText
-          bold
-          heading
-          style={{ marginTop: 40, marginBottom: 10, color: '#c27e12' }}>
-          {t('resetPassword')}
-        </AppText>
+    <ScrollView contentContainerStyle={{ height: hp(100) }}>
+      <ImageBackground
+        style={{
+          height: hp(100),
+          paddingHorizontal: wp(5),
+          // paddingBottom: hp(3),
+        }}
+        resizeMode="stretch"
+        source={require('_assets/images/background.jpg')}>
+        <View key="header">
+          <AuthHeader {...props} />
+          <AppText
+            bold
+            heading
+            style={{ marginTop: 40, marginBottom: 10, color: '#c27e12' }}>
+            {t('resetPassword')}
+          </AppText>
 
-      </View>
+        </View>
 
-      <View key="content">
-        <InputWithLabel
-          white
-          placeholder="Email"
-          label={t('email')}
-          value={email}
-          onChangeText={(val) => setEmail(val.replace(" ", ""))}
-        />
-        <InputWithLabel
-          white
-          placeholder="Password"
-          label={t('password')}
-          value={password}
-          onChangeText={(val) => setPassword(val)}
-        />
-        <InputWithLabel
-          white
-          placeholder="Confirm_Password"
-          label={t('confirm_password')}
-          value={confirmPassword}
-          onChangeText={(val) => setConfirmPassword(val)}
-        />
-      </View>
-      <View key="footer" style={styles.footer}>
+        <View key="content">
+          <InputWithLabel
+            white
+            placeholder="Email"
+            label={t('email')}
+            value={email}
+            onChangeText={(val) => setEmail(val.replace(" ", ""))}
+          />
+          <InputWithLabel
+            white
+            placeholder="Password"
+            label={t('password')}
+            value={password}
+            onChangeText={(val) => setPassword(val)}
+          />
+          <InputWithLabel
+            white
+            placeholder="Confirm_Password"
+            label={t('confirm_password')}
+            value={confirmPassword}
+            onChangeText={(val) => setConfirmPassword(val)}
+          />
+        </View>
+        <View key="footer" style={styles.footer}>
 
 
-        <Button onPress={onSubmit} loading={isLoading}>{t('resetPassword')}</Button>
+          <Button onPress={onSubmit} loading={isLoading}>{t('resetPassword')}</Button>
 
-        {/* <ModalScreen
+          {/* <ModalScreen
           forgetPassword
           image={require("../../assets/images/forgetPassword.png")}
           visible={visible}
@@ -121,8 +123,9 @@ const ResetPassword = (props) => {
           buttonLabel={t('modal_button_label')}
 
         /> */}
-      </View>
-    </ImageBackground>
+        </View>
+      </ImageBackground>
+    </ScrollView>
   );
 };
 const styles = StyleSheet.create({

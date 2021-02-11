@@ -40,7 +40,7 @@ const FavouriteCard = (props) => {
           <AppText bold style={styles.pricetxt}>
             {I18nManager.isRTL ? "السعر:" : "Price:"} {rtlLayout && UserProfileReducer.currency.symbol} {(parseFloat(props.item.prices.find((price) => price.iso === UserProfileReducer.currency.iso).price.toString().replace(",", ""))).toFixed(2)} {rtlLayout || UserProfileReducer.currency.symbol}
           </AppText>
-          <Button
+          {props.item.quantity ? <Button
             bold
             fontSize={15}
             primary
@@ -49,7 +49,25 @@ const FavouriteCard = (props) => {
             onPress={props.item.quantity ? props.onAddToCart : () => console.log("NO QUANTITY")}
             round>
             {props.item.quantity ? (I18nManager.isRTL ? "أضف إلى السلة" : "Add To Cart") : (I18nManager.isRTL ? "إنتهى من المخزن" : "Out Of Stock")}
-          </Button>
+          </Button> :
+            <Button
+              bold
+              color={colors.white}
+              // outOfStock={true}
+              fontSize={15}
+              inStock={false}
+              secondary
+              round
+              style={styles.pricetxt}
+            // onPress={() => {
+            //   quantity && onAddToCart();
+            // }}>
+            >
+              {props.item.quantity ? t('addToCart') : "Out of Stock"}
+            </Button>
+
+          }
+
           <HorizontalRow
             style={{
               borderColor: 'rgb(200,200,200)',

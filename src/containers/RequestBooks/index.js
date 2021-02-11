@@ -122,7 +122,7 @@ const RequestBooks = (props) => {
   console.log("ImageINrequestbook", state)
   return (
 
-    <View style={{ height: hp(100) }}>
+    <Screen noPadding>
       <View key="header">
 
         <Header {...props} headerImage
@@ -150,7 +150,12 @@ const RequestBooks = (props) => {
         <AppText size={15} color="grey" style={styles.txt}>
           {t('restrictionText')}
         </AppText>
-
+        <View style={{ paddingBottom: hp(1) }}>
+          <Image
+            style={styles.image}
+            source={{ uri: state.image.uri }}
+          />
+        </View>
 
         {/* source={{ uri: state.image.uri }}  */}
         {/* <View style={{ width: wp(80), height: hp(30) }}>
@@ -158,11 +163,7 @@ const RequestBooks = (props) => {
         </View> */}
 
 
-        <Image
-          style={styles.image}
-          source={{ uri: state.image.uri }}
 
-        />
       </View>
       <ModalScreen
         // image={require("")}
@@ -172,12 +173,12 @@ const RequestBooks = (props) => {
         onSearch={toggleSearch}
         {...REQUEST_BOOK_MODAL.modalData}
       />
-      <View key="footer" style={[styles.content, { position: 'absolute', bottom: hp(6) }]}>
-        <Button color="white" bold primary onPress={onSubmit} style={{ marginTop: hp(-5) }} loading={isLoading} >
+      <View key="footer" style={[styles.content, { paddingBottom: hp(2) }]}>
+        <Button color="white" bold primary onPress={onSubmit} style={{ marginTop: hp(0) }} loading={isLoading} >
           {t('sendRequest')}
         </Button>
       </View>
-    </View>
+    </Screen>
 
   );
 };
@@ -195,6 +196,7 @@ const styles = StyleSheet.create({
 
     width: wp(25),
     height: hp(19),
+    paddingVertical: hp(10),
     justifyContent: 'center',
     alignSelf: 'center'
   }
