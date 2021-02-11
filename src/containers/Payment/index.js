@@ -1,14 +1,19 @@
 import React, { useRef, useState } from 'react';
 import { ActivityIndicator, View } from 'react-native';
+import { Icon } from 'react-native-elements'
 import { WebView } from 'react-native-webview';
 import { Header, ModalScreen } from '../../components';
 import { Screen } from '../../components/common';
-import { INVOICE } from '../../constants/Screens';
+import { HOME, INVOICE } from '../../constants/Screens';
 
+import { useTheme } from '@react-navigation/native';
+import { I18nManager } from 'react-native';
 export const Payment = (props) => {
   console.log("payment props", props)
   const [modalVisible, setModalVisible] = useState(false);
   const [success, setSuccess] = useState(null);
+
+  const { colors } = useTheme()
   const WEBVIEW_REF = useRef(null);
   const modalData = {
     heading: success ? 'Payment Success' : 'Payment Failure',
@@ -50,7 +55,14 @@ Please Retry`,
   return (
     <Screen noPadding>
       <View key="header">
-        <Header {...props} backIcon headerLeft headerImage />
+        <Header {...props}
+          headerRight
+          headerLeft={<Icon
+            onPress={() => props.navigation.navigate(HOME)}
+            color={colors.primary}
+            name={I18nManager.isRTL ? "rightcircleo" : "leftcircleo"}
+            type="antdesign"
+          />} headerImage />
       </View>
       <View key="content" style={{ flex: 1, backgroundColor: 'silver' }}>
         <WebView

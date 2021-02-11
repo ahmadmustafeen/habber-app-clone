@@ -307,7 +307,7 @@ const Home = (props) => {
                 {t('requestBook')}
               </Button>
             </View>
-            <View style={{ width: wp(55) }}>
+            <View style={{ width: wp(50) }}>
               <Button
                 // bold
                 borderRadius={2}
@@ -342,6 +342,9 @@ const styles = StyleSheet.create({
 
   requestBooksBtns: {
     flex: 1,
+    width: wp(87),
+    marginLeft: wp(4),
+    alignSelf: 'center',
     flexDirection: 'row',
     justifyContent: 'space-between',
     paddingEnd: 10,

@@ -10,6 +10,7 @@ import * as NavigationService from '../../../NavigationService';
 import { startAction, stopAction } from '../actions';
 import { I18nManager } from 'react-native';
 import { Platform } from 'react-native';
+import { MY_PROFILE } from '../../constants/Screens';
 export function* EditAddressSaga({ type, payload }) {
     try {
         yield put(startAction(type));
@@ -25,14 +26,15 @@ export function* EditAddressSaga({ type, payload }) {
             yield put({ type: FETCH_ADDRESS })
             const text = I18nManager.isRTL ? "عنوان تم تعديله بنجاح" : 'Successfully Edited Address'
             Platform.OS === 'ios' ?
-                Alert.alert(concat ? ` ${text}` : text, '', [{ text: I18nManager.isRTL ? 'حسنا' : 'OK', }])
+                Alert.alert(false ? ` ${text}` : text, '', [{ text: I18nManager.isRTL ? 'حسنا' : 'OK', }])
                 : (
                     I18nManager.isRTL ?
-                        Alert.alert(concat ? `${text}` : '', text, [{ text: I18nManager.isRTL ? 'حسنا' : ' ', }, { text: I18nManager.isRTL ? '' : ' ', }, { text: I18nManager.isRTL ? ' ' : button }])
-                        : Alert.alert(concat ? `${text}` : text, '', [{ text: I18nManager.isRTL ? 'حسنا' : ' ', }, { text: I18nManager.isRTL ? '' : ' ', }, { text: I18nManager.isRTL ? ' ' : button }]
+                        Alert.alert(false ? `${text}` : '', text, [{ text: I18nManager.isRTL ? 'حسنا' : ' ', }, { text: I18nManager.isRTL ? '' : ' ', }, { text: I18nManager.isRTL ? ' ' : null }])
+                        : Alert.alert(false ? `${text}` : text, '', [{ text: I18nManager.isRTL ? 'حسنا' : ' ', }, { text: I18nManager.isRTL ? '' : ' ', }, { text: I18nManager.isRTL ? ' ' : null }]
                         )
                 )
 
+            NavigationService.navigate('MyProfile', { screen: MY_PROFILE })
 
 
 
