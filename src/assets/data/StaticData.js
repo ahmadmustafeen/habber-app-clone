@@ -51,7 +51,7 @@ export const CONTACT_US = {
 };
 export const REQUEST_BOOK_MODAL = {
   modalData: {
-    heading: I18nManager.isRTL ? 'سوف نتصل بك قريبا' : 'We Will Contact You Shortly!',
+    heading: I18nManager.isRTL ? 'سوف نتصل بك قريبا' : 'We Will Contact You Shortly',
     description: I18nManager.isRTL ? 'تم إرسال نموذج طلب كتابك بنجاح' : 'Your Book Request Form is Submitted Successfully',
     buttonLabel: I18nManager.isRTL ? 'حسنا' : 'OK',
   },
