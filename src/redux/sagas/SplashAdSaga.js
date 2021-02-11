@@ -23,14 +23,17 @@ export function* splashAdSaga() {
     const backUser = yield getItem('@backUser');
     let userProfile = yield getItem('@userProfile');
     if (userProfile && !userProfile.currency) {
+
+      const userProfilecheck = JSON.parse(userProfile);
       yield setItem(
         '@userProfile',
         JSON.stringify({
-          ...userProfile,
+          ...userProfilecheck,
           currency: { id: 1, iso: 'KWD', name: 'Kuwaiti dinar', symbol: 'KD' },
         }),
 
-      ); yield put({ type: FETCH_ENGLISH_BOOKS });
+      );
+      yield put({ type: FETCH_ENGLISH_BOOKS });
       yield put({ type: FETCH_ARABIC_BOOKS });
       yield put({ type: FETCH_BOOKCLUBS });
       yield put({ type: FETCH_BOOKMARKS });

@@ -110,6 +110,24 @@ const config = {
 };
 
 const Navigator = (props, ref) => {
+  const [existingUser, setExistingUser] = useState("")
+
+  useEffect(() => {
+    retrieveData();
+  }, []);
+
+  const retrieveData = async () => {
+    try {
+      const valueString = await AsyncStorage.getItem('@userProfile');
+      const value = JSON.parse(valueString);
+      // setData(value);
+      setExistingUser(!!value.language)
+      console.log("ANSWER", value)
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
 
 
 
@@ -126,7 +144,7 @@ const Navigator = (props, ref) => {
   console.log("Navigator Splash backuser", backUser);
   return (
     <NavigationContainer linking={linking} ref={ref} theme={MyTheme}>
-      {navigatorComponent(splashScreen, ad, backUser, res)}
+      {navigatorComponent(splashScreen, ad, existingUser, res)}
     </NavigationContainer>
   );
 };
