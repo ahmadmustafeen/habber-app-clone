@@ -71,6 +71,10 @@ const Search = (props) => {
 
   }, [SearchBooksReducer])
 
+
+  useEffect(() => {
+    dispatch(withDataActions([], SEARCH_BOOKS_SUCCESS))
+  }, [])
   console.log("empty", SearchBooksReducer)
 
   const onApplyFilter = (item) => {
