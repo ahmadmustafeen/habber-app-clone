@@ -29,6 +29,7 @@ import { SEARCH_BOOKS_SUCCESS } from '../../redux/actionTypes';
 
 import { setFilterHandler } from '../../helpers/Filter';
 import { checkIfLoading } from '../../redux/selectors';
+import { FilterChip } from '../../components';
 
 
 const Search = (props) => {
@@ -91,26 +92,19 @@ const Search = (props) => {
       setBookData(filtered);
     }
   };
-  // const onApplyFilter = (item) => {
-  //   console.log(item);
-  //   toggleFilter();
-  // };
-  // const onApplyFilter = (item) => {
+  const removeFilter = (deleteFilter) => {
+    var filtered = filter.filter(function (item) { return item !== deleteFilter; });
+    setFilter(filtered);
+    if (!filtered.length) {
+      setBookData(SearchBooksReducer);
+      return;
+    }
+    else {
+      let filtereds = setFilterHandler(SearchBooksReducer, filtered);
+      setBookData(filtereds)
+    }
+  }
 
-
-
-  //   // filter keys in UI should be displayed from ITEM array - Ahmad
-  //   setFilter([...item])
-  //   toggleFilter();
-  //   // if (!item.length) {
-  //   //   setBookData(data);
-  //   //   return;
-  //   // }
-
-  //   // let filtered = setFilterHandler(bookData, item);
-  //   // setBookData(filtered);
-  // };
-  console.log('SearchBooksReducer', SearchBooksReducer);
   return (
     <ScrollView keyboardShouldPersistTaps='always'>
 
@@ -161,22 +155,25 @@ const Search = (props) => {
               filter={filter} noIcon onIconPress={toggleFilter} centerLine />}
         </View>
 
-        <View style={styles.filterApply}>
+        {/* <View style={styles.filterApply}>
           {filter.map((item) =>
             <View key={item} style={[styles.filterView, { backgroundColor: colors.borderColor }]}>
               <AppText size={13} style={{ marginRight: 16 }}>
                 {item}
               </AppText>
-              <Image style={styles.filterCross} source={require('../../assets/images/remove.png')} onPress={() => onApplyFilter()} />
+              <Image style={styles.filterCross} source={require('../../assets/images/remove.png')} onPress={() => onApplyFilter() } />
             </View>
           )}
-        </View>
+        </View> */}
+        <FilterChip filter={filter} selectedFilter={filter} onIconPress={() => onApplyFilter()} onCrossPress={(coming) => removeFilter(coming)} />
+
         {/* {(bookData.length > 0) && <BookListContainer data={bookData} product_type="book" {...props} />} */}
         {(bookData.length > 0) ? <BookListContainer data={bookData} product_type="book" {...props} />
           : <NoBookAvailbe title={I18nManager.isRTL ? 'لا يوجد شيء لعرضه هنا!' : 'Nothing to Show here!'}
             emptyy={I18nManager.isRTL ? 'أدخل شيئا للبحث' : 'Enter Something to Search'} />}
 
-        <FilterModal {...props} visible={visible} onApply={onApplyFilter} />
+        <FilterModal {...props}
+          filters={filter} visible={visible} onApply={onApplyFilter} />
       </View>
 
 

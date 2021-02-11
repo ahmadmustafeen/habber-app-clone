@@ -37,8 +37,6 @@ const BooksList = (props) => {
       let filtereds = setFilterHandler(data, filtered);
       setBookData(filtereds)
     }
-
-    // setBookData(filtereds);
   }
   const onApplyFilter = (item) => {
     // filter keys in UI should be displayed from ITEM array - Ahmad
