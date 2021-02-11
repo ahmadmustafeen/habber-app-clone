@@ -135,7 +135,7 @@ const Navigator = (props, ref) => {
   const { splashScreen, ad, backUser, UserProfileReducer, res } = useSelector(({ SplashReducer, UserProfileReducer }) => {
     return {
       splashScreen: SplashReducer.splashScreen,
-      ad: SplashReducer.ad,
+      ad: existingUser ? SplashReducer.ad : false,
       res: SplashReducer.res,
       UserProfileReducer: UserProfileReducer,
       backUser: !!UserProfileReducer.language,
