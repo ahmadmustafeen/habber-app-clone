@@ -8,6 +8,7 @@ import { useTheme } from '@react-navigation/native';
 import { AppText } from '_components/common'
 import { useTranslation } from 'react-i18next';
 import { TouchableOpacity } from 'react-native';
+import { I18nManager } from 'react-native';
 
 const FilterChip = (props) => {
     const { colors } = useTheme()
@@ -22,10 +23,9 @@ const FilterChip = (props) => {
             {filter.map((item) =>
                 <View key={item} style={[styles.filterView, { backgroundColor: colors.borderColor }]} >
                     <AppText size={13} style={{ marginRight: 16 }} capitalize>
-
                         {t(item)}
                     </AppText>
-                    <TouchableOpacity style={styles.filterCross} onPress={() => removeFilter(item)} >
+                    <TouchableOpacity style={styles.filterCross} onPress={() => props.onCrossPress(item)} >
                         <Image source={require('_assets/images/remove.png')} />
                     </TouchableOpacity>
                 </View>

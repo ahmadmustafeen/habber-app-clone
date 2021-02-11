@@ -26,6 +26,20 @@ const BooksList = (props) => {
   const { label, data, product_type } = props.route.params;
   const { visible, toggleFilter } = useFilter();
   const [bookData, setBookData] = useState(data);
+  const removeFilter = (deleteFilter) => {
+    var filtered = filter.filter(function (item) { return item !== deleteFilter; });
+    setFilter(filtered);
+    if (!filtered.length) {
+      setBookData(data);
+      return;
+    }
+    else {
+      let filtereds = setFilterHandler(data, filtered);
+      setBookData(filtereds)
+    }
+
+    // setBookData(filtereds);
+  }
   const onApplyFilter = (item) => {
     // filter keys in UI should be displayed from ITEM array - Ahmad
     setFilter([...item]);
@@ -38,7 +52,7 @@ const BooksList = (props) => {
     setBookData(filtered);
   };
   const { colors } = useTheme();
-  console.log(props);
+
   return (
     <Screen noPadding>
       <View key='header'>
@@ -72,7 +86,7 @@ const BooksList = (props) => {
           </View>
         }
 
-        <FilterChip filter={filter} selectedFilter={filter} onIconPress={() => onApplyFilter()} onCrossPress={(id) => { console.log(id, filter) }} />
+        <FilterChip filter={filter} selectedFilter={filter} onIconPress={() => onApplyFilter()} onCrossPress={(coming) => removeFilter(coming)} />
         {/* <View style={styles.filterApply}>
 
           {filter.map((item) =>
@@ -94,6 +108,7 @@ const BooksList = (props) => {
 
         <FilterModal
           {...props}
+          filters={filter}
           visible={visible}
           onToggle={toggleFilter}
           onApply={onApplyFilter}

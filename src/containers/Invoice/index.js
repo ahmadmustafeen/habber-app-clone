@@ -135,10 +135,10 @@ const Invoice = (props) => {
                     </View>
                     {item.books.map(book => {
                         // (book.find(bookss => book.id === bookss.id).prices.find((id) => book.currency.id === id.id).price)
-                        return <OrderBox key={book.id} name={I18nManager.isRTL ? book.arabic_title : book.title} price={(parseFloat(parseFloat(book.cart_price.toString().replace(',', ''))) / parseFloat(book.cart_quantity))} quantity={book.cart_quantity} subtotal={(parseFloat((book.cart_price.toString().replace(',', '')))).toFixed(2)} />
+                        return <OrderBox key={book.id} name={I18nManager.isRTL ? book.arabic_title : book.title} price={((parseFloat(book.cart_price)) / parseFloat(book.cart_quantity)).toFixed(2)} quantity={book.cart_quantity} subtotal={(((book.cart_price).toFixed(2)))} />
                     })
                     }
-                    {item.bookmarks.map(book => { return <OrderBox key={book.id} name={book.title} price={parseFloat((book.cart_price.toString().replace(',', ''))) / book.cart_quantity} quantity={(parseFloat(book.cart_quantity.toString(",", ""))).toFixed(2)} subtotal={(parseFloat((book.cart_price.toString().replace(',', '')))).toFixed(2)} /> })}
+                    {item.bookmarks.map(book => { return <OrderBox key={book.id} name={book.title} price={((book.cart_price) / book.cart_quantity).toFixed(2)} quantity={(parseFloat(book.cart_quantity))} subtotal={(((book.cart_price).toFixed(2)))} /> })}
 
                     <View style={[styles.detailCartHeader, { backgroundColor: colors.secondary, justifyContent: 'space-between', paddingHorizontal: wp(5) }]}>
                         <View style={{ justifyContent: 'center', alignItems: 'center', }}>

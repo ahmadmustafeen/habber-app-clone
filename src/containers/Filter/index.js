@@ -21,6 +21,8 @@ import { shallowEqual, useSelector } from 'react-redux';
 //   { label: 'Action', value: 'action' },
 // ];
 const FilterModal = (props) => {
+
+  console.log(props.filters, "filter")
   const {
     FilterGenreReducer,
 
@@ -29,8 +31,7 @@ const FilterModal = (props) => {
       FilterGenreReducer: state.FilterGenreReducer,
     }
   }, shallowEqual);
-
-  console.log(FilterGenreReducer, "thisuadfasd");
+  console.log(props, "FILTER MODAL")
   const items = FilterGenreReducer.map((filter) => {
     return {
       label: filter.title,
@@ -45,9 +46,19 @@ const FilterModal = (props) => {
   const { colors } = useTheme();
   const { buttonLabel, visible, onApply, onToggle } = props;
   const [state, setState] = useState(new Set());
+  useEffect(() => {
+    if (props.filters) {
+      // setState(new Set())
+
+      props.filters.map(val => state.add(val))
+      // console.log(state, "THIS IS STATE")
+      setState(new Set(props.filters));
+      // setState());
+
+    }
+  }, [props.filters])
 
   const onselect = (val) => {
-
     state.has(val) ? state.delete(val) : ((state.size < 3) && state.add(val));
     setState(new Set(state));
   };
@@ -116,6 +127,7 @@ const FilterModal = (props) => {
               style={{ paddingHorizontal: wp(2) }}
               key={item.label}
               title={t(item.label)}
+              // selected={state.has(item.value)}
               selected={state.has(item.value)}
               onPress={() => onselect(item.value)}
             />
