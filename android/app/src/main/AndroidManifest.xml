@@ -36,15 +36,15 @@
         </intent-filter>
 
 
-          <intent-filter android:label="deeplink">
+          <intent-filter android:label="Hebber">
         <action android:name="android.intent.action.VIEW" />
         <category android:name="android.intent.category.DEFAULT" />
         <category android:name="android.intent.category.BROWSABLE" />
-        <data android:scheme="habber" android:host="BookDetails" />
-        <data android:scheme="habber" android:host="ResetPassword" />
+        <data android:scheme="https" android:host="hebber.com" pathPrefix="ResetPassword" />
+        <data android:scheme="https" android:host="hebber.com" pathPrefix="BookDetails" />
+        <!-- <data android:scheme="http" android:host="ResetPassword" /> -->
         <!-- <data android:scheme="habber" android:host="BookDetails/9/book" /> -->
     </intent-filter>
-
 
       </activity>
       <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />

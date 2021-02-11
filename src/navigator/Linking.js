@@ -25,7 +25,7 @@ const config = {
   }
 }
 const Linking = {
-  prefixes: ["habber://"],
+  prefixes: ["hebber://", "https://hebber.com"],
   config,
 
 }
