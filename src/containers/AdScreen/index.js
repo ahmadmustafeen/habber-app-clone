@@ -21,7 +21,7 @@ const AdScreen = (props) => {
   return (
     <ImageBackground
       noPadding
-      resizeMode="cover"
+      resizeMode="contain"
       style={{ width: "100%", height: '100%' }}
       source={{ uri: props.route.params.image }}>
       <TouchableOpacity

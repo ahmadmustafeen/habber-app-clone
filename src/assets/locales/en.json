@@ -83,7 +83,8 @@
     "Search": "Search",
     "Filter": "Filter",
     "AboutUs": "About Us",
-    "Checkout": "CHECKOUT"
+    "Checkout": "CHECKOUT",
+    "PaymentView": "Payment View"
   },
   "BookDetails": {
     "isbn": "ISBN",

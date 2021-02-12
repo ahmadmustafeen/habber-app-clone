@@ -26,6 +26,8 @@ import {
   DashboardComponent,
   RelatedThumbnailBook,
   RelatedThumbnailBookmarks,
+  BookClub,
+  ThumbnailClub,
 } from '../../components';
 import { BDScreenText } from './components';
 import { BOOK_DETAILS_SCREEN } from '../../constants/Screens';
@@ -57,7 +59,7 @@ const BookDetails = (props) => {
     EnglishBooksReducer2,
     ArabicBooksReducer2,
     BookmarksReducer2,
-    BookClubReducer2,
+    BookClubReducer,
     FetchSiteReducer2,
     BannerReducer
   } = useSelector((state) => {
@@ -67,13 +69,13 @@ const BookDetails = (props) => {
       EnglishBooksReducer2: state.EnglishBooksReducer,
       ArabicBooksReducer2: state.ArabicBooksReducer,
       BookmarksReducer2: state.BookmarksReducer,
-      BookClubReducer2: state.BookClubReducer,
+      BookClubReducer: state.BookClubReducer,
       BannerReducer: state.BannerReducer,
 
     };
   }, shallowEqual);
   if (product_type2 === 'bookmark') book = (BookmarksReducer2.find((item) => item.id == id2))
-  if (product_type2 === 'bookclub') book = (BookClubReducer2.find((item) => item.id == id2))
+  if (product_type2 === 'bookclub') book = (BookClubReducer.find((item) => item.id == id2))
   const CombinedReducer = [...ArabicBooksReducer2, ...EnglishBooksReducer2]
   if (product_type2 === 'book') book = (CombinedReducer.find((item) => item.id == id2))
 
@@ -173,7 +175,7 @@ const BookDetails = (props) => {
       const result = await Share.share({
         // cdmessage: "Habber",
         message:
-          "http://habber.attribes.com/social_share?redirec_url=BookDetails/' " + (type ? old_product.id : product_id) + "/" + (type ? type : product_type)
+          "http://habber.attribes.com/social_share?redirec_url=BookDetails/" + (type ? old_product.id : product_id) + "/" + (type ? type : product_type)
         // Platform.OS === 'ios' ?
         //   ('habber://BookDetails/' + (type ? old_product.id : product_id) + "/" + (type ? type : product_type)) :
         //   (('http://sturdycyber.cf/index.php?id=' + (type ? old_product.id : product_id) + "&type=" + (type ? type : product_type)))
@@ -392,18 +394,19 @@ const BookDetails = (props) => {
                 {true &&
                   <DashboardComponent
                     noTitle
-                    data={FetchRelatedBookList.filter((book) => book.featured)}
+                    data={BookClubReducer.filter((book) => book.featured).splice(0, 8)}
                     renderComponent={(item) => {
+                      console.log(item.item)
                       if (product_type === 'book') {
                         return (
-                          <RelatedThumbnailBook
+                          <ThumbnailClub
                             onPress={() => {
                               props.navigation.push(BOOK_DETAILS_SCREEN, {
                                 ...item.item,
-                                product_type,
+                                product_type: 'bookclub',
                               });
                             }}
-                            url={item.item.image}
+                            url={item.item.bookclub_logo}
                           />
                         );
                       }

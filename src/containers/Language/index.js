@@ -20,7 +20,7 @@ const Language = (props) => {
       <View key="header" style={styles.imageContainer}>
         <Image
           style={styles.image}
-          source={require('_assets/images/Screenshot_Logo.jpg')}
+          source={require('_assets/images/logo.png')}
         />
       </View>
       <View key="content" style={{ alignItems: 'center', paddingTop: hp(10) }}>

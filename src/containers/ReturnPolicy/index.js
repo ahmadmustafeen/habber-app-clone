@@ -24,11 +24,11 @@ const ReturnPolicy = (props) => {
 
     return (
         <Screen noPadding>
-            <View key="header">
+            <View key="header" >
                 <Header {...props} headerImage backIcon headerLeft />
 
             </View>
-            <View key="content">
+            <View key="content" style={{ width: wp(90), alignSelf: "center" }}>
                 <WebView source={{ uri: link }} style={styles.staticPage} />
             </View>
         </Screen>

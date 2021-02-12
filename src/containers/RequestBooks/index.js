@@ -163,16 +163,16 @@ const RequestBooks = (props) => {
         </View> */}
 
 
-
+        <ModalScreen
+          // image={require("")}
+          visible={visible}
+          onContinue={onContinue}
+          onCart={toggleCart}
+          onSearch={toggleSearch}
+          {...REQUEST_BOOK_MODAL.modalData}
+        />
       </View>
-      <ModalScreen
-        // image={require("")}
-        visible={visible}
-        onContinue={onContinue}
-        onCart={toggleCart}
-        onSearch={toggleSearch}
-        {...REQUEST_BOOK_MODAL.modalData}
-      />
+
       <View key="footer" style={[styles.content, { paddingBottom: hp(2) }]}>
         <Button color="white" bold primary onPress={onSubmit} style={{ marginTop: hp(0) }} loading={isLoading} >
           {t('sendRequest')}

@@ -39,7 +39,7 @@ const MyOrders = (props) => {
 
   const renderItem = ({ item }) => {
 
-
+    console.log("item", item)
     return (
       <View style={styles.profiletop}>
         <View style={styles.orderContainer}>

@@ -49,8 +49,13 @@ const DrawerNav = () => {
     </Drawer.Navigator>
   );
 };
-const navigatorComponent = (splashScreen, ad, backUser, res) => {
+const navigatorComponent = (splashScreen, ad, backUser, res, User) => {
   console.log(res);
+
+
+
+
+
 
   if (splashScreen) {
     return (
@@ -69,26 +74,31 @@ const navigatorComponent = (splashScreen, ad, backUser, res) => {
       </RootStack.Navigator>
     );
   }
-  if (!backUser) {
+  if (backUser) {
+    console.log(User, "BackUser")
+
     return (
       <RootStack.Navigator
         screenOptions={{
           headerShown: false,
         }}>
-        <RootStack.Screen name={LANGUAGE_SCREEN} component={Language} />
+        {!User.token && <RootStack.Screen name="Auths" component={AuthNav} />}
+        <RootStack.Screen name="Drawer" component={DrawerNav} />
+        <RootStack.Screen name="Auth" component={AuthNav} />
+
+
       </RootStack.Navigator>
     );
   }
-
   return (
     <RootStack.Navigator
       screenOptions={{
         headerShown: false,
       }}>
-      <RootStack.Screen name="Auth" component={AuthNav} />
-      <RootStack.Screen name="Drawer" component={DrawerNav} />
+      <RootStack.Screen name={LANGUAGE_SCREEN} component={Language} />
     </RootStack.Navigator>
   );
+
 };
 const config = {
   screens: {
@@ -111,6 +121,7 @@ const config = {
 
 const Navigator = (props, ref) => {
   const [existingUser, setExistingUser] = useState("")
+  const [User, setUser] = useState("")
 
   useEffect(() => {
     retrieveData();
@@ -122,6 +133,7 @@ const Navigator = (props, ref) => {
       const value = JSON.parse(valueString);
       // setData(value);
       setExistingUser(!!value.language)
+      setUser(value)
       console.log("ANSWER", value)
     } catch (error) {
       console.log(error);
@@ -144,7 +156,7 @@ const Navigator = (props, ref) => {
   console.log("Navigator Splash backuser", backUser);
   return (
     <NavigationContainer linking={linking} ref={ref} theme={MyTheme}>
-      {navigatorComponent(splashScreen, ad, existingUser, res)}
+      {navigatorComponent(splashScreen, ad, existingUser, res, User)}
     </NavigationContainer>
   );
 };

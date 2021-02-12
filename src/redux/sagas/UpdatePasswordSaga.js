@@ -12,6 +12,7 @@ import { NETWORK_ERROR, SHOW_NETWORK_MODAL } from 'redux/actionTypes';
 import { MY_PROFILE } from '_constants/Screens';
 import * as NavigationService from '../../../NavigationService';
 import { startAction, stopAction } from '../actions';
+import { I18nManager } from 'react-native';
 export function* UpdatePasswordSaga({ type, payload }) {
   yield put(startAction(type));
   try {
@@ -33,6 +34,14 @@ export function* UpdatePasswordSaga({ type, payload }) {
       // Alert.alert('Successfully Updated', message, [{
       //   onPress: () => NavigationService.navigate('MyProfile', { screen: MY_PROFILE })
       // }])
+      // Alert.alert(
+      //   '',
+      //   I18nManager.isRTL ? 'تم تحديث كلمة المرور الخاصة بك' : 'Your Password have been Updated',
+      //   [
+
+      //     { text: I18nManager.isRTL ? 'حسنا' : 'ok', onPress: () => NavigationService.navigate('MyProfile', { screen: MY_PROFILE }) },
+      //   ]
+      // );
       console.log('UpdatePasswordSagaSaga Saga Response . . . .  .', data);
 
       // yield put({type: SHOW_MODAL, payload: null});

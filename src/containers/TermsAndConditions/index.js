@@ -29,8 +29,8 @@ const TermsAndConditions = (props) => {
 
       </View>
 
-      <View key="content">
-        <WebView source={{ uri: link }} style={styles.staticPage} />
+      <View key="content" style={{ width: wp(90), alignSelf: "center" }}>
+        <WebView source={{ uri: link }} style={styles.staticPage} scalesPageToFit={true} />
       </View>
     </Screen>
   );

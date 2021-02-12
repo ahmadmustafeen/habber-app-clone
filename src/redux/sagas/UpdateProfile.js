@@ -7,6 +7,7 @@ import * as NavigationService from '../../../NavigationService';
 import { UPDATE_PASSWORD_FAILURE } from '_redux/actionTypes';
 import { FETCH_USER_PROFILE, SIGN_IN_SUCCESS, SPLASH_ACTION, UPDATE_PROFILE_FAILURE, UPDATE_PROFILE_SUCCESS } from '../actionTypes';
 import { MY_PROFILE } from '_constants/Screens';
+import { getItem, setItem } from '../../helpers/Localstorage';
 
 export function* UpdateProfileSaga({ type, payload }) {
   try {
@@ -26,19 +27,23 @@ export function* UpdateProfileSaga({ type, payload }) {
     console.log(response, "response")
     const { status, data, message } = response;
     if (status === 200) {
-      yield put({ type: SIGN_IN_SUCCESS, payload: { ...response.data.data } }),
+      let userProfile = yield getItem('@userProfile');
+      userProfile = JSON.parse(userProfile);
+      yield setItem('@userProfile', JSON.stringify({ ...userProfile, ...response.data.data }));
 
-        // Alert.alert('Your Profile have been Updated', message, [{
-        //   onPress: () => NavigationService.navigate('MyProfile', { screen: MY_PROFILE })
-        // }])
-        Alert.alert(
-          '',
-          I18nManager.isRTL ? 'بيانات الاعتماد غير صالحة' : 'Your Profile have been Updated',
-          [
+      yield put({ type: SIGN_IN_SUCCESS, payload: { ...response.data.data } })
 
-            { text: I18nManager.isRTL ? 'حسنا' : 'ok', onPress: () => NavigationService.navigate('MyProfile', { screen: MY_PROFILE }) },
-          ]
-        );
+      // Alert.alert('Your Profile have been Updated', message, [{
+      //   onPress: () => NavigationService.navigate('MyProfile', { screen: MY_PROFILE })
+      // }])
+      Alert.alert(
+        '',
+        I18nManager.isRTL ? 'بيانات الاعتماد غير صالحة' : 'Your Profile have been Updated',
+        [
+
+          { text: I18nManager.isRTL ? 'حسنا' : 'ok', onPress: () => NavigationService.navigate('MyProfile', { screen: MY_PROFILE }) },
+        ]
+      );
     }
     else {
       Alert.alert(I18nManager.isRTL ? "من المحتمل أن يتم أخذ هذا البريد الإلكتروني" : "Possibly this email is taken!", message, [{

@@ -18,7 +18,7 @@ export function* signupSaga({ payload, type }) {
     const response = yield call(() =>
       RestClient.post(API_ENDPOINTS.signup, {
         ...payload,
-        language_id: userProfile.language.id,
+        language_id: userProfile.language.iso === 'ar' ? 1 : 2,
       }),
     );
     if (response.problem === NETWORK_ERROR) {

@@ -83,11 +83,11 @@ const ChangePassword = (props) => {
     props.navigation.navigate('Search');
   }
   return (
-    <View style={{ height: hp(100) }} >
-      <View >
+    <Screen noPadding style={{ height: hp(100) }} >
+      <View key="header">
         <Header {...props} headerImage headerLeft backIcon />
       </View>
-      <View style={styles.container}>
+      <View style={styles.container} key="content">
         <InputWithLabel
           color={colors.borderColor}
           // name="oldPassword"
@@ -121,18 +121,18 @@ const ChangePassword = (props) => {
             setStateHandler('password_confirmation', val)
           }
         />
+        <ModalScreen
+          // image={require("")}
+          visible={visible}
+          onContinue={onContinue}
+          {...PASSWORD_CHANGE.modalData}
 
+          onCart={toggleCart}
+          onSearch={toggleSearch}
+        />
       </View>
-      <ModalScreen
-        // image={require("")}
-        visible={visible}
-        onContinue={onContinue}
-        {...PASSWORD_CHANGE.modalData}
 
-        onCart={toggleCart}
-        onSearch={toggleSearch}
-      />
-      <View style={{ marginBottom: hp(5) }}>
+      <View style={{ marginBottom: hp(5) }} key="footer">
         <Button
           loading={isLoading}
           style={styles.button}
@@ -143,7 +143,7 @@ const ChangePassword = (props) => {
           {t('save')}
         </Button>
       </View>
-    </View >
+    </Screen >
   );
 };
 const styles = StyleSheet.create({

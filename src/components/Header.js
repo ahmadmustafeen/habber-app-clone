@@ -125,7 +125,7 @@ const Header = (props, { adddok }) => {
           {headerRight ? (
             headerRight
           ) : (
-              <View style={[styles.right,]}>
+              <View style={[styles.right]}>
                 <TouchableOpacity
                   // onPress={() => {
 
@@ -155,7 +155,7 @@ const Header = (props, { adddok }) => {
                     /> : null
                   }
                   {qua ? (
-                    <View style={I18nManager.isRTL ? styles.circleArabic : styles.circle}>
+                    <View style={I18nManager.isRTL ? styles.circleArabicCheck : styles.circleCheck}>
                       <AppText style={{ transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }], }} size={13} bold color={"#0a2937"}>
                         {qua}
                       </AppText>
@@ -239,7 +239,7 @@ const Header = (props, { adddok }) => {
                         ? require('../assets/images/filledcart.png')
                         : (qua === 0 ? require('../assets/images/nocart.png') : require('../assets/images/emptycart.png'))
                     }
-                    style={{ marginRight: wp(3) }}
+                    style={{ marginRight: wp(0) }}
                   />
                   {qua ? (
                     <View style={I18nManager.isRTL ? styles.circleArabic : styles.circle}>
@@ -303,12 +303,27 @@ const styles = StyleSheet.create({
   },
   circle: {
     position: 'absolute',
-    right: wp(4.6),
-    top: hp(0.2),
+    right: wp(1.6),
+    top: hp(0.1),
     width: wp(2.5),
     // height: wp(4.5),
   },
   circleArabic: {
+    position: 'absolute',
+    // right: wp(4.0),
+    left: wp(1.0),
+    top: hp(0.2),
+    width: wp(3),
+    // height: wp(3),
+  },
+  circleCheck: {
+    position: 'absolute',
+    right: wp(4.6),
+    top: hp(0.1),
+    width: wp(2.5),
+    // height: wp(4.5),
+  },
+  circleArabicCheck: {
     position: 'absolute',
     // right: wp(4.0),
     left: wp(1.9),

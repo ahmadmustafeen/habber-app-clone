@@ -61,7 +61,7 @@ const EditProfile = (props) => {
     email: UserProfileReducer.email,
     // profile_pic: { uri: UserProfileReducer.profile_pic, name: "something", type: "image/jpeg" },
     profile_pic: "",
-    language_id: UserProfileReducer.language.id,
+    language_id: UserProfileReducer.language.iso === "ar" ? 1 : 2,
     currency_id: UserProfileReducer.currency.id,
     token: UserProfileReducer.token,
   });
