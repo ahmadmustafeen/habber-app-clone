@@ -16,7 +16,7 @@ export function* ForgotPasswordSaga({ type, payload }) {
   try {
     yield put(startAction(type));
     const response = yield call(() =>
-      RestClient.post(API_ENDPOINTS.forgotPassword, { email: payload, base_url: "http://habber.attribes.com/social_share?redirec_url=ResetPassword/" }),
+      RestClient.post(API_ENDPOINTS.forgotPassword, { email: payload, base_url: "http://habber.attribes.com/social_share?redirec_url=ResetPassword" }),
     );
     if (response.problem === NETWORK_ERROR) {
       return yield put({ type: SHOW_NETWORK_MODAL });

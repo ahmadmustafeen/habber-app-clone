@@ -5,7 +5,6 @@ import { InputWithLabel, ModalScreen, AuthHeader } from '_components';
 import { AppText, BackgroundImage, Button } from '_components/common';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector, shallowEqual } from 'react-redux';
-import { FORGOT_PASSWORD } from '_redux/actionTypes';
 import { withDataActions } from '_redux/actions';
 import { checkIfLoading } from '_redux/selectors';
 
@@ -21,6 +20,7 @@ import { ImageBackground } from 'react-native';
 import { validateIsTrue, validatePassword } from '../../helpers/Validators';
 import { RESET_PASSWORD } from '../../constants/Screens';
 import { ScrollView } from 'react-native';
+import { PASSWORD_CHANGE } from '../../assets/data/StaticData';
 const ResetPassword = (props) => {
 
   const dispatch = useDispatch();
@@ -54,16 +54,15 @@ const ResetPassword = (props) => {
   }
 
 
-  const {
-    isLoading,
-  } = useSelector((state) => {
+  const { isLoading } = useSelector((state) => {
     return {
       isLoading: checkIfLoading(
         state,
         RESET_PASSWORD,
-      ),
+      )
     };
   }, shallowEqual);
+  console.log(isLoading, "THIS")
   return (
     <ScrollView contentContainerStyle={{ height: hp(100) }}>
       <ImageBackground
@@ -95,6 +94,7 @@ const ResetPassword = (props) => {
           />
           <InputWithLabel
             white
+            secureTextEntry
             placeholder="Password"
             label={t('password')}
             value={password}
@@ -102,10 +102,18 @@ const ResetPassword = (props) => {
           />
           <InputWithLabel
             white
+            secureTextEntry
             placeholder="Confirm_Password"
             label={t('confirm_password')}
             value={confirmPassword}
             onChangeText={(val) => setConfirmPassword(val)}
+          />
+          <ModalScreen
+            // image={require("")}
+            visible={visible}
+            onContinue={onContinue}
+            {...PASSWORD_CHANGE.modalData}
+
           />
         </View>
         <View key="footer" style={styles.footer}>
@@ -113,16 +121,7 @@ const ResetPassword = (props) => {
 
           <Button onPress={onSubmit} loading={isLoading}>{t('resetPassword')}</Button>
 
-          {/* <ModalScreen
-          forgetPassword
-          image={require("../../assets/images/forgetPassword.png")}
-          visible={visible}
-          onContinue={onContinue}
-          heading={t('modal_heading')}
-          description={t('modal_description')}
-          buttonLabel={t('modal_button_label')}
 
-        /> */}
         </View>
       </ImageBackground>
     </ScrollView>

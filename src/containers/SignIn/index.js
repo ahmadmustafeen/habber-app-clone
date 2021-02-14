@@ -23,7 +23,7 @@ const SignIn = (props) => {
   const { t } = useTranslation(['login']);
   const dispatch = useDispatch();
   const { navigate } = props.navigation;
-  console.log(props.route.params, "SIGN IN")
+  console.log(props, "SIGN IN")
   const { colors } = useTheme();
 
   const [state, setState] = useState({
@@ -219,7 +219,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   hellotxt: {
-    marginTop: wp(8),
+    marginTop: wp(16),
   },
   forgotPassword: {
     textAlign: 'right',

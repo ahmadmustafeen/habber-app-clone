@@ -48,7 +48,7 @@ const BookDetails = (props) => {
   const { t } = useTranslation(["BookDetails"]);
   const { colors } = useTheme();
   const dispatch = useDispatch();
-
+  console.log("BOOK DETAILS", props)
   var book = null
   var product_type2 = null
   var id2 = null

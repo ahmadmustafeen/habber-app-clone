@@ -49,7 +49,7 @@ const Favorites = (props) => {
       </View>
 
       <View key="content" style={{ width: wp(90), alignSelf: 'center' }}>
-        {(!Favourite_length) && <AppText>{t('NoFavorities')}</AppText>}
+        {/* {(!Favourite_length) && <AppText>{t('NoFavorities')}</AppText>}
         {Object.values(Favourites)
           .filter((key) => Array.isArray(key))
           .map((product_type) =>
@@ -62,7 +62,29 @@ const Favorites = (props) => {
                 />
               );
             }),
-          )}
+          )} */}
+
+        {(!Favourite_length) && <AppText>{t('NoFavorities')}</AppText>}
+        {Favourites.book.map(item => {
+          return (
+            <FavouriteCard
+              onAddToCart={() => onAddToCart(item)}
+              item={item}
+              onRemove={() => onRemove(item)}
+            />
+          );
+        })}
+        {Favourites.bookmark.map(item => {
+          return (
+            <FavouriteCard
+              onAddToCart={() => onAddToCart(item)}
+              item={item}
+              onRemove={() => onRemove(item)}
+            />
+          );
+        })}
+
+
       </View>
     </Screen>
   );

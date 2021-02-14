@@ -92,6 +92,7 @@ const Search = (props) => {
       setBookData(filtered);
     }
   };
+  console.log(bookData, "DATA")
   const removeFilter = (deleteFilter) => {
     var filtered = filter.filter(function (item) { return item !== deleteFilter; });
     setFilter(filtered);

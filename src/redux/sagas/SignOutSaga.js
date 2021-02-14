@@ -20,7 +20,7 @@ export function* signoutSaga() {
     yield put({ type: FETCH_ORDER_SUCCESS, payload: [] });
     yield put({ type: FETCH_USER_CART_SUCCESS, payload: null });
     yield put({ type: FETCH_ADDRESS_SUCCESS, payload: { data: [] } });
-    NavigationService.navigate("Auth", { payload: 'red' });
+    NavigationService.navigate(SIGNIN_SCREEN, { Screen: SIGNIN_SCREEN, payload: 'red' });
   } catch (error) {
     yield put({ type: SIGN_OUT_FAILURE, error });
   }
