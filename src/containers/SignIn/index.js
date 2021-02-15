@@ -18,6 +18,7 @@ import {
 } from 'react-native-responsive-screen';
 import { ImageBackground } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import { Screen } from '../../components/common';
 
 const SignIn = (props) => {
   const { t } = useTranslation(['login']);
@@ -79,10 +80,16 @@ const SignIn = (props) => {
   }, shallowEqual);
   return (
 
-    <ScrollView
-    // scrollEnabled={scrollEnabled}
-    // onContentSizeChange={onContentSizeChange}
-    >
+    <KeyboardAwareScrollView
+      //resetScrollToCoords={{ x: 0, y: 0 }}
+      contentContainerStyle={{ flexGrow: 1 }}
+      automaticallyAdjustContentInsets={true}
+      keyboardDismissMode="on-drag"
+      scrollsToTop={false}
+      showsHorizontalScrollIndicator={false}
+      showsVerticalScrollIndicator={false}
+      keyboardShouldPersistTaps="never"
+      enableResetScrollToCoords={false}>
       <ImageBackground
         style={{
           height: hp(100),
@@ -203,9 +210,9 @@ Login with Social media account`}
         {/* <TouchableOpacity style={{ backgroundColor: 'red', width: wp(20) }} onPress={() => navigate('Drawer', { screen: 'Home' })}>
         <Text>hhh</Text>
       </TouchableOpacity> */}
-
       </ImageBackground>
-    </ScrollView>
+
+    </KeyboardAwareScrollView>
 
   );
 };
@@ -219,7 +226,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   hellotxt: {
-    marginTop: wp(16),
+    paddingTop: wp(16),
   },
   forgotPassword: {
     textAlign: 'right',

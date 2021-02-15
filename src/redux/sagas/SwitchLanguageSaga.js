@@ -1,5 +1,5 @@
 import { I18nManager } from 'react-native';
-import { put, call } from 'redux-saga/effects';
+import { put, call, select } from 'redux-saga/effects';
 import RNRestart from 'react-native-restart';
 import i18n from 'utils/i18n';
 
@@ -18,7 +18,11 @@ export function* switchLangSaga({ payload }) {
 
 
     // yield setItem('@userProfile', JSON.stringify(payload));
+    const CartReducer = yield select((state) => state.CartReducer);
+    console.log(CartReducer, "LANGUAGE CARD REDUCER")
+    // debugger;
 
+    yield setItem('@cartREDUCER', JSON.stringify(CartReducer));
     let backUser = yield getItem('@backUser');
     if (!backUser) {
       yield setItem('@backUser', 'true');

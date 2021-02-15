@@ -14,14 +14,19 @@ import {
 } from '_redux/actionTypes';
 import { all, put, select } from 'redux-saga/effects';
 import { RestClient } from 'network/RestClient';
-import { FETCH_ARABIC_BOOKS, FETCH_BOOKCLUBS, FETCH_BOOKMARKS, FETCH_ENGLISH_BOOKS, FETCH_ORDER_SUCCESS, GUESTUSER_TOKEN, SIGN_OUT_SUCCESS } from '../actionTypes';
+import { FETCH_ARABIC_BOOKS, FETCH_BOOKCLUBS, FETCH_BOOKMARKS, FETCH_ENGLISH_BOOKS, FETCH_ORDER_SUCCESS, FETCH_USER_CART_SUCCESS, GUESTUSER_TOKEN, SIGN_OUT_SUCCESS } from '../actionTypes';
 import { Platform } from 'react-native';
+import CartReducer from '../reducers/CartReducer';
 
 export function* splashAdSaga() {
   try {
 
     const backUser = yield getItem('@backUser');
     let userProfile = yield getItem('@userProfile');
+
+    let cartREDUCER = yield getItem('@cartREDUCER');
+    cartREDUCER = JSON.parse(cartREDUCER);
+    console.log(CartReducer, "cartREDUCER");
     if (userProfile && !userProfile.currency) {
 
       const userProfilecheck = JSON.parse(userProfile);
@@ -78,7 +83,13 @@ export function* splashAdSaga() {
       const { UserProfileReducer } = yield select(({ UserProfileReducer }) => {
         return { UserProfileReducer };
       });
-
+      yield put({
+        type: FETCH_USER_CART_SUCCESS, payload: (cartREDUCER ? cartREDUCER : {
+          book: [],
+          bookmark: [],
+          total_price: 0,
+        })
+      })
       return NavigationService.navigate('Auth', {
         screen: SIGNIN_SCREEN,
       });
