@@ -16,13 +16,15 @@ export const Payment = (props) => {
   const { colors } = useTheme()
   const WEBVIEW_REF = useRef(null);
   const modalData = {
-    heading: success ? 'Payment Success' : 'Payment Failure',
+    heading: success ? I18nManager.isRTL ? "الدفع الناجح" : 'Payment Success' : I18nManager.isRTL ? "فشل الدفع" : 'Payment Failure',
     description: success
-      ? `Your Payment has successfully
+      ? I18nManager.isRTL ? `تم الدفع الخاص بك بنجاح
+مكتمل`: `Your Payment has successfully
 Completed`
-      : `Ops! Payment Failed
+      : I18nManager.isRTL ? `عفوًا! عملية الدفع فشلت
+الرجاء اعادة المحاولة`: `Ops! Payment Failed
 Please Retry`,
-    buttonLabel: 'Continue',
+    buttonLabel: I18nManager.isRTL ? 'يكمل' : 'Continue',
   };
   const toggleModal = () => {
     setModalVisible(!modalVisible);
@@ -48,9 +50,9 @@ Please Retry`,
     //   WEBVIEW_REF.injectJavaScript(redirectTo);
     // }
   };
-  onContinue = () => {
+  const onContinue = () => {
     toggleModal();
-    success && props.navigation.navigate(INVOICE, { item: props.route.params.orderDetails });
+    success ? props.navigation.navigate(INVOICE, { item: props.route.params.orderDetails }) : props.navigation.navigate(HOME)
   };
   return (
     <Screen noPadding>
@@ -60,7 +62,7 @@ Please Retry`,
           headerLeft={<Icon
             onPress={() => props.navigation.navigate(HOME)}
             color={colors.primary}
-            name={I18nManager.isRTL ? "rightcircleo" : "leftcircleo"}
+            name={I18nManager.isRTL ? "leftcircleo" : "leftcircleo"}
             type="antdesign"
           />} headerImage />
       </View>

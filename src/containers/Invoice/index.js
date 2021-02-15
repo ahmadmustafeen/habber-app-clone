@@ -91,7 +91,7 @@ const Invoice = (props) => {
                     <Icon
                         onPress={() => props.navigation.navigate(HOME)}
                         color={colors.primary}
-                        name={I18nManager.isRTL ? "rightcircleo" : "leftcircleo"}
+                        name={I18nManager.isRTL ? "leftcircleo" : "leftcircleo"}
                         type="antdesign"
                     />} headerImage />
 

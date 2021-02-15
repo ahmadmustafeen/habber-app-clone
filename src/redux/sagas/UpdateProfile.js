@@ -36,19 +36,41 @@ export function* UpdateProfileSaga({ type, payload }) {
       // Alert.alert('Your Profile have been Updated', message, [{
       //   onPress: () => NavigationService.navigate('MyProfile', { screen: MY_PROFILE })
       // }])
-      Alert.alert(
-        '',
-        I18nManager.isRTL ? 'بيانات الاعتماد غير صالحة' : 'Your Profile have been Updated',
-        [
 
-          { text: I18nManager.isRTL ? 'حسنا' : 'ok', onPress: () => NavigationService.navigate('MyProfile', { screen: MY_PROFILE }) },
-        ]
-      );
+
+
+      // Alert.alert(
+      //   '',
+      //   I18nManager.isRTL ? 'بيانات الاعتماد غير صالحة' : 'Your Profile have been Updated',
+      //   [
+
+      //     { text: I18nManager.isRTL ? 'حسنا' : 'ok', onPress: () => NavigationService.navigate('MyProfile', { screen: MY_PROFILE }) },
+      //   ]
+      // );
+
+      const text = I18nManager.isRTL ? 'بيانات الاعتماد غير صالحة' : 'Your Profile have been Updated'
+      Platform.OS === 'ios' ?
+        Alert.alert(false ? ` ${text}` : text, '', [{ text: I18nManager.isRTL ? 'حسنا' : 'OK', }])
+        : (
+          I18nManager.isRTL ?
+            Alert.alert(false ? `${text}` : '', text, [{ text: I18nManager.isRTL ? 'حسنا' : ' ', onPress: () => NavigationService.navigate('MyProfile', { screen: MY_PROFILE }) }, { text: I18nManager.isRTL ? '' : ' ', }, { text: I18nManager.isRTL ? ' ' : null }, { onPress: () => NavigationService.navigate('MyProfile', { screen: MY_PROFILE }) }])
+            : Alert.alert(false ? `${text}` : text, '', [{ text: I18nManager.isRTL ? 'حسنا' : ' ', onPress: () => NavigationService.navigate('MyProfile', { screen: MY_PROFILE }) }, { text: I18nManager.isRTL ? '' : ' ', }, { text: I18nManager.isRTL ? ' ' : null }]
+            )
+        )
+
+
+
     }
     else {
-      Alert.alert(I18nManager.isRTL ? "من المحتمل أن يتم أخذ هذا البريد الإلكتروني" : "Possibly this email is taken!", message, [{
-        onPress: () => NavigationService.navigate('MyProfile', { screen: MY_PROFILE })
-      }])
+      const text = I18nManager.isRTL ? 'لا يمكن تحديث ملف التعريف الخاص بك' : 'Your Profile cannot be Updated'
+      Platform.OS === 'ios' ?
+        Alert.alert(false ? ` ${text}` : text, '', [{ text: I18nManager.isRTL ? 'حسنا' : 'OK', onPress: () => NavigationService.navigate('MyProfile', { screen: MY_PROFILE }) }])
+        : (
+          I18nManager.isRTL ?
+            Alert.alert(false ? `${text}` : '', text, [{ text: I18nManager.isRTL ? 'حسنا' : ' ', onPress: () => NavigationService.navigate('MyProfile', { screen: MY_PROFILE }) }, { text: I18nManager.isRTL ? '' : ' ', }, { text: I18nManager.isRTL ? ' ' : null }, { onPress: () => NavigationService.navigate('MyProfile', { screen: MY_PROFILE }) }])
+            : Alert.alert(false ? `${text}` : text, '', [{ text: I18nManager.isRTL ? 'حسنا' : ' ', onPress: () => NavigationService.navigate('MyProfile', { screen: MY_PROFILE }) }, { text: I18nManager.isRTL ? '' : ' ', }, { text: I18nManager.isRTL ? ' ' : null }]
+            )
+        )
     }
   } catch (error) {
     Alert.alert(error, [{

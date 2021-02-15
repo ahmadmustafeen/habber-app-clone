@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   View,
   ScrollView,
@@ -14,14 +14,14 @@ import { HorizontalRow } from '_components/HorizontalRow';
 import { Header } from '_components/Header';
 import { RadioButton, AddressCard } from '_components';
 import { useSelector, shallowEqual, useDispatch } from 'react-redux';
-
+import { BackHandler } from 'react-native';
 import useModal from '_utils/customHooks/useModal';
 
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-import { useTheme } from '@react-navigation/native';
+import { useFocusEffect, useTheme } from '@react-navigation/native';
 import { withDataActions } from '../../redux/actions';
 import { CREATE_ORDER } from '../../redux/actionTypes';
 import { checkIfLoading } from '../../redux/selectors';
@@ -30,6 +30,7 @@ import { useTranslation } from 'react-i18next';
 import { Platform } from 'react-native';
 import { ModalScreen } from '../../components';
 import { CREATE_ORDER_TEXT } from '../../assets/data/StaticData';
+import { CART_SCREEN, CHECKOUT, HOME } from '../../constants/Screens';
 
 const Checkout = (props) => {
 
@@ -49,6 +50,30 @@ const Checkout = (props) => {
     paymentMethod: '',
     address: '',
   });
+
+  // useEffect(() => {
+  //   BackHandler.addEventListener('hardwareBackPress', () => props.navigation.navigate(CART_SCREEN)
+  //   );
+  //   return BackHandler.removeEventListener(
+  //     'hardwareBackPress', () => props.navigation.navigate(CART_SCREEN)
+  //   );
+
+  // })
+
+
+
+
+
+  useFocusEffect(
+    React.useCallback(() => {
+
+      BackHandler.addEventListener('hardwareBackPress', () => props.navigation.navigate(CHECKOUT, { screen: CHECKOUT, name: "Checkout" }));
+      return () =>
+        BackHandler.removeEventListener('hardwareBackPress', () => props.navigation.navigate(CHECKOUT));
+    }, [])
+  );
+
+
   console.log("Checkout props", state.address)
   const setStateHandler = (key, val) => {
     // console.log(key, val)
@@ -182,12 +207,12 @@ const Checkout = (props) => {
 
             <View style={styles.row}>
               <AppText bold>{I18nManager.isRTL ? "المجموع الفرعي" : "Sub Total"} </AppText>
-              <View style={styles.pricerow}><AppText bold>{CheckoutData && (parseFloat(CheckoutData.total_price.toString().replace(",", ""))).toFixed(2)}</AppText></View>
+              <View style={I18nManager.isRTL && styles.pricerow}><AppText bold>{CheckoutData && (parseFloat(CheckoutData.total_price.toString().replace(",", ""))).toFixed(2)}</AppText></View>
             </View>
 
             <View style={styles.row}>
               <AppText bold>{I18nManager.isRTL ? "رسوم التوصيل" : "Delivery Charges"} </AppText>
-              <View style={styles.pricerow}><AppText bold>{(parseFloat(Address_VAL.shipping_charges.toString().replace(",", ""))).toFixed(2)}</AppText></View>
+              <View style={I18nManager.isRTL && styles.pricerow}><AppText bold>{(parseFloat(Address_VAL.shipping_charges.toString().replace(",", ""))).toFixed(2)}</AppText></View>
             </View>
 
             <HorizontalRow
@@ -202,7 +227,7 @@ const Checkout = (props) => {
             />
             <View style={styles.row}>
               <AppText bold>{I18nManager.isRTL ? "مجموع" : "Total"} </AppText>
-              <View style={styles.pricerow}><AppText bold>{CheckoutData && parseFloat((parseFloat(CheckoutData.total_price.toString().replace(",", ""))) + (parseFloat(Address_VAL.shipping_charges.toString().replace(",", "")))).toFixed(2)}</AppText></View>
+              <View style={I18nManager.isRTL && styles.pricerow}><AppText bold>{CheckoutData && parseFloat((parseFloat(CheckoutData.total_price.toString().replace(",", ""))) + (parseFloat(Address_VAL.shipping_charges.toString().replace(",", "")))).toFixed(2)}</AppText></View>
             </View>
 
 
@@ -303,7 +328,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between'
   },
   pricerow: {
-    // width: wp(25)
+    width: wp(20)
   },
   radioButton: {
     position: 'absolute',

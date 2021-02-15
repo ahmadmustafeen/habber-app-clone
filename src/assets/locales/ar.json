@@ -218,10 +218,10 @@
     "apply": "تطبيق"
   },
   "RequestBook": {
-    "bookTitle": "عنوان الكتاب",
+    "bookTitle": "عنوان الكتاب*",
     "Title": "عنوان الكتاب",
     "author": "اسم المؤل",
-    "authorName": "اسم المؤلف",
+    "authorName": "اسم المؤلف*",
     "uploadImage": "ارفع صورة",
     "restrictionText": "يسمح لصورة واحدة صيغتها (png,jpeg,jpg) فقط والحد الاعلى 5 ميجابايت",
     "sendRequest": "ارسل الطلب",
