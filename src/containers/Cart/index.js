@@ -142,8 +142,6 @@ const AddToCart = (props) => {
                       <TouchableOpacity style={styles.removeContainer} onPress={() => updateCartItem(product, 'remove')}>
                         <Icon
                           size={18}
-                          // style={{ paddingRight: wp(30) }}
-                          onPress={() => navigation.openDrawer()}
                           color={colors.primary}
                           name="trash-o"
                           type="font-awesome"
