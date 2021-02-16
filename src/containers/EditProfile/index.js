@@ -26,6 +26,7 @@ import { UPDATE_PROFILE } from '../../redux/actionTypes';
 import { checkIfLoading } from '../../redux/selectors';
 import { KeyboardAvoidingView } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { validateEmail, validateIsTrue } from '../../helpers/Validators';
 
 
 
@@ -67,19 +68,12 @@ const EditProfile = (props) => {
   });
   const validate = () => {
     //todo - use validation method from src > helpers
-    if (!state.first_name) {
-      Alert.alert('Please Enter First Name');
-      return false;
-    }
-    if (!state.last_name) {
-      Alert.alert('Please Enter Second Name');
-      return false;
-    }
-    // if (!validatePhone(state.phone)) {
-    //   Alert.alert('Invalid Phone');
-    //   return false;
-    // }
-    return true;
+    return (
+      validateIsTrue(state.first_name, I18nManager.isRTL ? "الرجاء إدخال الاسم الأول" : "Please Enter First Name", false) &&
+      validateIsTrue(state.last_name, I18nManager.isRTL ? "الرجاء إدخال الاسم الأخير" : "Please Enter Last Name", false) &&
+      validateIsTrue(validateEmail(state.email), I18nManager.isRTL ? "الرجاء إدخال بريد إلكتروني صحيح" : "Please Enter Valid Email", false)
+    )
+
   };
   const { navigate } = props.navigation;
   const setStateHandler = (key, val) => {
@@ -115,7 +109,7 @@ const EditProfile = (props) => {
     });
   };
 
-  getProfilePic = () => {
+  const getProfilePic = () => {
     if (state.profile_pic.uri) {
       return { uri: state.profile_pic.uri }
     }

@@ -7,19 +7,19 @@ import {
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 import { useDispatch, useSelector } from 'react-redux';
-import { useTheme } from '@react-navigation/native';
+import { useFocusEffect, useTheme } from '@react-navigation/native';
 import { Icon } from 'react-native-elements';
 import { useTranslation } from 'react-i18next';
 import NoBookAvailbe from '../../components/NoBookAvailable';
-import { INVOICE } from '../../constants/Screens';
+import { HOME, INVOICE } from '../../constants/Screens';
 import useModal from '_utils/customHooks/useModal';
 import { withoutDataActions } from '../../redux/actions';
 import { FETCH_ORDER } from '../../redux/actionTypes';
 
 import Loader from '_components/Loader';
 import { checkIfLoading } from '../../redux/selectors';
+import { BackHandler } from 'react-native';
 const MyOrders = (props) => {
-  console.log(props)
 
   const dispatch = useDispatch()
   const { visible, toggleModal } = useModal();
@@ -34,12 +34,22 @@ const MyOrders = (props) => {
       isLoading: checkIfLoading(state, FETCH_ORDER)
     }
   })
-  console.log("OrderReducer In Order", isLoading)
   const { t } = useTranslation(['Order'])
+
+
+
+  useFocusEffect(
+    React.useCallback(() => {
+
+      BackHandler.addEventListener('hardwareBackPress', () => props.navigation.navigate(HOME, { screen: HOME, name: "Home" }));
+      return () =>
+        BackHandler.removeEventListener('hardwareBackPress', () => props.navigation.navigate(HOME));
+    }, [])
+  );
+
 
   const renderItem = ({ item }) => {
 
-    console.log("item", item)
     return (
       <View style={styles.profiletop}>
         <View style={styles.orderContainer}>

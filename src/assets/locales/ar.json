@@ -24,7 +24,7 @@
     "forgot_password": "نسيت كلمة المرور",
     "enter_email": "البريد الالكتروني",
     "resetPassword": "اعادى تعيين كلمة المرور",
-    "modal_heading": "ارجو  التحقق من بريدك الالكتروني المسجيل cd ",
+    "modal_heading": "ارجو  التحقق من بريدك الالكتروني المسجيل  ",
     "modal_description": "أدخل عنوان البريد الإلكتروني الذي استخدمته لإنشاء حسابك وسنرسل لك رابطًا عبر البريد الإلكتروني لإعادة تعيين كلمة المرور الخاصة بك",
     "modal_button_label": "الاستمرار"
   },
@@ -103,6 +103,14 @@
     "joinUs": "انضم الينا",
     "Arabic": "عربى"
   },
+  "resetPassword": {
+    "resetPassword": "إعادة تعيين كلمة المرور",
+    "password": "كلمة المرور",
+    "email": "بريد الالكتروني",
+    "confirm_password": "تأكيد كلمة المرور",
+    "ok": "موافق",
+    "Please": "تفضل"
+  },
   "ContactUs": {
     "supportChat": " دعم العملاء",
     "phoneNumber": " رقم الهاتف",
@@ -164,8 +172,8 @@
     "city": "المدينة*",
     "address": "عنوان ",
     "addressLine1": "عنوان 1*",
-    "addressline2": "عنوان 2*",
-    "postalCode": "رقم البريدي*",
+    "addressline2": "عنوان 2",
+    "postalCode": "رقم البريدي",
     "phoneValidation": "تغيير كلمة المرو",
     "mobileNumber": "رقم الهاتف*",
     "addAddress": "اضافة عنوان",

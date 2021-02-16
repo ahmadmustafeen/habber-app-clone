@@ -20,6 +20,8 @@ import useModal from '_utils/customHooks/useModal';
 import { ImageBackground } from 'react-native';
 import { Platform } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
+import { validateIsTrue } from '../../helpers/Validators';
+import { I18nManager } from 'react-native';
 const ForgotPassword = (props) => {
   const dispatch = useDispatch();
   const { visible, toggleModal } = useModal();
@@ -29,7 +31,7 @@ const ForgotPassword = (props) => {
   const [email, setEmail] = useState('');
 
   const onSubmit = () => {
-    (!validateEmail(email)) ? Alert.alert("Invalid Email") :
+    (!validateEmail(email)) ? validateIsTrue(validateEmail(email), I18nManager.isRTL ? "يرجى إدخال البريد الإلكتروني الصحيح" : "Please Enter a Valid Email", false) :
       dispatch(withDataActions(email, FORGOT_PASSWORD));
   };
   const onContinue = () => {

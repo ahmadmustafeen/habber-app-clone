@@ -30,6 +30,7 @@ Please Retry`,
     setModalVisible(!modalVisible);
   };
   const handleWebViewNavigationStateChange = (navState) => {
+    console.log(navState, "NAVSTATE")
     const { url, loading } = navState;
     if (!url) return;
 

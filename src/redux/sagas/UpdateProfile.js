@@ -54,7 +54,7 @@ export function* UpdateProfileSaga({ type, payload }) {
         : (
           I18nManager.isRTL ?
             Alert.alert(false ? `${text}` : '', text, [{ text: I18nManager.isRTL ? 'حسنا' : ' ', onPress: () => NavigationService.navigate('MyProfile', { screen: MY_PROFILE }) }, { text: I18nManager.isRTL ? '' : ' ', }, { text: I18nManager.isRTL ? ' ' : null }, { onPress: () => NavigationService.navigate('MyProfile', { screen: MY_PROFILE }) }])
-            : Alert.alert(false ? `${text}` : text, '', [{ text: I18nManager.isRTL ? 'حسنا' : ' ', onPress: () => NavigationService.navigate('MyProfile', { screen: MY_PROFILE }) }, { text: I18nManager.isRTL ? '' : ' ', }, { text: I18nManager.isRTL ? ' ' : null }]
+            : Alert.alert(false ? `${text}` : text, '', [{ text: I18nManager.isRTL ? 'حسنا' : ' ', onPress: () => NavigationService.navigate('MyProfile', { screen: MY_PROFILE }) }, { text: I18nManager.isRTL ? '' : ' ', }, { text: I18nManager.isRTL ? ' ' : null, onPress: () => NavigationService.navigate('MyProfile', { screen: MY_PROFILE }) }, { onPress: () => NavigationService.navigate('MyProfile', { screen: MY_PROFILE }) }]
             )
         )
 

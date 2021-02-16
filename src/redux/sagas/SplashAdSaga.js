@@ -66,6 +66,8 @@ export function* splashAdSaga() {
     if (userProfile && userProfile.token) {
       RestClient.setHeader('Authorization', `Bearer ${userProfile.token}`);
 
+
+      yield setItem('@cartREDUCER', JSON.stringify(null));
       yield all([
         // put({ type: SIGN_OUT_SUCCESS }),
         put({ type: FETCH_USER_PROFILE }),

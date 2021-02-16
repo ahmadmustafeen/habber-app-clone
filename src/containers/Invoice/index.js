@@ -1,18 +1,47 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { ScrollView, StyleSheet, View, ImageBackground, I18nManager, Text, } from 'react-native';
 import { Header } from '_components';
 import {
     widthPercentageToDP as wp,
     heightPercentageToDP as hp
 } from 'react-native-responsive-screen';
-import { useTheme } from '@react-navigation/native';
+import { useFocusEffect, useTheme } from '@react-navigation/native';
 import { AppText } from 'components/common';
 import { shallowEqual, useSelector } from 'react-redux';
 import { Icon } from 'react-native-elements'
 import { HOME } from '../../constants/Screens';
+import { BackHandler } from 'react-native';
 // import { parse } from '@babel/core';
 
 const Invoice = (props) => {
+
+    const handleBackButton = () => {
+        props.navigation.navigate(HOME)
+
+        return true;
+    };
+
+    useEffect(() => {
+        BackHandler.addEventListener('hardwareBackPress', handleBackButton);
+
+        // returned function will be called on component unmount 
+        return () => {
+            BackHandler.removeEventListener('hardwareBackPress', handleBackButton);
+        }
+    }, [])
+
+    // useFocusEffect(
+
+    //     React.useCallback(() => {
+
+    //         console.log("ADSDASDA", props);
+    //         BackHandler.addEventListener('hardwareBackPress', () => console.log("adsdas"));
+    //         return () => {
+    //             BackHandler.removeEventListener('hardwareBackPress', () => console.log("adsdas"));
+    //             props.navigation.navigate(HOME)
+    //         }
+    //     }, [])
+    // );
     console.log(props, "ORDER DATA")
     const {
         UserProfileReducer,

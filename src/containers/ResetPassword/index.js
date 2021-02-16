@@ -21,6 +21,7 @@ import { validateIsTrue, validatePassword } from '../../helpers/Validators';
 import { RESET_PASSWORD } from '../../constants/Screens';
 import { ScrollView } from 'react-native';
 import { PASSWORD_CHANGE } from '../../assets/data/StaticData';
+import { I18nManager } from 'react-native';
 const ResetPassword = (props) => {
 
   const dispatch = useDispatch();
@@ -37,9 +38,9 @@ const ResetPassword = (props) => {
 
   const Validate = () => {
     return (
-      validateIsTrue(password, "Password") &&
-      validateIsTrue(confirmPassword, "Confirm Password") &&
-      validatePassword(password) && validateIsTrue((password === confirmPassword), "Password Don't Match", false)
+      validateIsTrue(password, I18nManager.isRTL ? "الرجاء إدخال كلمة المرور" : "Please Enter Password", false) &&
+      validateIsTrue(confirmPassword, I18nManager.isRTL ? "الرجاء إدخال تأكيد كلمة المرور" : "Please Enter Confirm Password") &&
+      validatePassword(password) && validateIsTrue((password === confirmPassword), I18nManager.isRTL ? "كلمة السر غير متطابقة" : "Password Does Not Match", false)
     )
 
   }
@@ -87,7 +88,7 @@ const ResetPassword = (props) => {
         <View key="content">
           <InputWithLabel
             white
-            placeholder="Email"
+            placeholder="ahmadalajmi@gmail.com"
             label={t('email')}
             value={email}
             onChangeText={(val) => setEmail(val.replace(" ", ""))}
@@ -95,7 +96,7 @@ const ResetPassword = (props) => {
           <InputWithLabel
             white
             secureTextEntry
-            placeholder="Password"
+            placeholder="*********"
             label={t('password')}
             value={password}
             onChangeText={(val) => setPassword(val)}
@@ -103,7 +104,7 @@ const ResetPassword = (props) => {
           <InputWithLabel
             white
             secureTextEntry
-            placeholder="Confirm_Password"
+            placeholder="*********"
             label={t('confirm_password')}
             value={confirmPassword}
             onChangeText={(val) => setConfirmPassword(val)}

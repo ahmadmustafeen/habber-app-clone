@@ -89,11 +89,11 @@ const JoinUs = (props) => {
       validateIsTrue(state.email, `${t('Please')} ${t('email')}`, false, t('ok')) &&
       validateIsTrue(validateEmail(state.email), I18nManager.isRTL ? "يرجى إدخال البريد الإلكتروني الصحيح!" : "Please enter a valid email!", false, t('ok')) &&
       validateIsTrue(((state.phone.length > 10) && (state.phone.length < 16)),
-        `${t('Please')} ${t('phoneValidation')}`, false) &&
+        I18nManager.isRTL ? "يجب أن يتراوح رقم الهاتف بين 11 رقمًا و 15 رقمًا" : "Phone Number should be between 11 digits to 15 digits", false) &&
       validateIsTrue(!!validatePhone(state.phone), `${t('Please')} ${t('mobileNumber')}`, false, t('ok')) &&
       validateIsTrue(state.business_type, `${t('Please')} ${t('selectBusinessType')}`, false, t('ok')) &&
       validateIsTrue(state.details, `${t('Please')} ${t('details')}`, false, t('ok')) &&
-      validateIsTrue(state.product_type.size, `${t('Please')} ${t('selectProductType')}`, false, t('ok'))
+      validateIsTrue(state.product_type.size, I18nManager.isRTL ? 'الرجاء تحديد نوع منتج واحد على الأقل' : 'Please select atleast one Product Type', false, t('ok'))
     )
 
 

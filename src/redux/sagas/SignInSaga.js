@@ -21,6 +21,7 @@ import {
 import * as NavigationService from '../../../NavigationService';
 import { startAction, stopAction } from '../actions';
 import { FETCH_ARABIC_BOOKS, FETCH_BOOKMARKS, FETCH_BOOK_LISTS, FETCH_ENGLISH_BOOKS, FETCH_ORDER, SIGN_IN, UPDATE_CART_PRICES, UPDATE_CART_PRICES_OFFLINE } from '../actionTypes';
+import { Platform } from 'react-native';
 
 export function* signinSaga({ payload }) {
 
@@ -67,14 +68,24 @@ export function* signinSaga({ payload }) {
       });
 
     } else {
-      Alert.alert(
-        '',
-        I18nManager.isRTL ? 'بيانات الاعتماد غير صالحة' : 'Invalid credentials',
-        [
 
-          { text: I18nManager.isRTL ? 'حسنا' : 'ok' },
-        ]
-      );
+      const text = I18nManager.isRTL ? 'بيانات الاعتماد غير صالحة' : 'Invalid credentials'
+      Platform.OS === 'ios' ?
+        Alert.alert(false ? ` ${text}` : text, '', [{ text: I18nManager.isRTL ? 'حسنا' : 'OK' }])
+        : (
+          I18nManager.isRTL ?
+            Alert.alert(false ? `${text}` : '', text, [{ text: I18nManager.isRTL ? 'حسنا' : ' ' }, { text: I18nManager.isRTL ? '' : ' ', }, { text: I18nManager.isRTL ? ' ' : null },])
+            : Alert.alert(false ? `${text}` : text, '', [{ text: I18nManager.isRTL ? 'حسنا' : ' ' }, { text: I18nManager.isRTL ? '' : ' ', }, { text: I18nManager.isRTL ? ' ' : null }]
+            )
+        )
+      // Alert.alert(
+      //   '',
+      //   I18nManager.isRTL ? 'بيانات الاعتماد غير صالحة' : 'Invalid credentials',
+      //   [
+
+      //     { text: I18nManager.isRTL ? 'حسنا' : 'ok' },
+      //   ]
+      // );
       // Alert.alert((I18nManager.isRTL ? 'هل نسيت كلمة المرور؟' : 'Login Failed'), (I18nManager.isRTL ? 'هل؟' : 'ok'), (I18nManager.isRTL ? 'هل؟' : 'ok'));
       yield put({ type: SIGN_IN_FAILURE, payload: null });
     }

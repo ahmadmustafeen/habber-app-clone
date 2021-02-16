@@ -113,7 +113,7 @@ const ContactUs = (props) => {
 
 
       validateIsTrue(((state.phone.length === 0) || validatePhone(state.phone)),
-        I18nManager.isRTL ? "" : "Please Enter a valid number", false)
+        I18nManager.isRTL ? "يجب أن يتراوح رقم الهاتف بين 11 رقمًا و 15 رقمًا" : "Phone Number should be between 11 digits to 15 digits", false)
 
       && validateIsTrue(state.message, `${t('Please')} ${t('message')}`, false, t('ok'))
     )
@@ -180,6 +180,7 @@ const ContactUs = (props) => {
             onChangeText={(val) => setStateHandler('message', val)}
           />
           <ModalScreen
+            headerLeft
             // image={require("")}
             visible={visible}
             onContinue={onContinue}

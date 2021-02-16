@@ -80,6 +80,7 @@ const BookDetails = (props) => {
   if (product_type2 === 'book') book = (CombinedReducer.find((item) => item.id == id2))
 
 
+  console.log(book, "THIS IS BOOK")
   if (book === null) book = props.route.params;
   // (book.product_type === 'bookclub') ? book = book.book : null
   var { id: product_id = 33, quantity, product_type, price, bookClub, type } = book;
@@ -157,7 +158,20 @@ const BookDetails = (props) => {
       inCartPosition === -1 ||
       CartReducer[product_type][inCartPosition].cart_quantity === 0
     ) {
-      Alert.alert(I18nManager.isRTL ? "الرجاء إضافة الكمية" : "Please add quantity");
+      // Alert.alert(I18nManager.isRTL ? "الرجاء إضافة الكمية" : "Please add quantity");
+
+      const text = I18nManager.isRTL ? "الرجاء إضافة الكمية" : "Please add quantity"
+      Platform.OS === 'ios' ?
+        Alert.alert(false ? ` ${text}` : text, '', [{ text: I18nManager.isRTL ? 'حسنا' : 'OK', }])
+        : (
+          I18nManager.isRTL ?
+            Alert.alert(false ? `${text}` : '', text, [{ text: I18nManager.isRTL ? 'حسنا' : ' ', }, { text: I18nManager.isRTL ? '' : ' ', }, { text: I18nManager.isRTL ? ' ' : null }])
+            : Alert.alert(false ? `${text}` : text, '', [{ text: I18nManager.isRTL ? 'حسنا' : ' ', }, { text: I18nManager.isRTL ? '' : ' ', }, { text: I18nManager.isRTL ? ' ' : null }]
+            )
+        )
+
+
+
       return;
     }
 

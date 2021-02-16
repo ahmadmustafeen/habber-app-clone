@@ -6,6 +6,7 @@ import { put } from 'redux-saga/effects';
 import { RestClient } from '_network/RestClient';
 import { SIGN_OUT_SUCCESS, SIGN_OUT_FAILURE } from '_redux/actionTypes';
 import * as NavigationService from '../../../NavigationService';
+import { SIGNUP_SCREEN } from '../../constants/Screens';
 import { FETCH_ADDRESS_SUCCESS, FETCH_ORDER_SUCCESS, FETCH_USER_CART_SUCCESS } from '../actionTypes';
 export function* signoutSaga() {
   try {
@@ -20,7 +21,7 @@ export function* signoutSaga() {
     yield put({ type: FETCH_ORDER_SUCCESS, payload: [] });
     yield put({ type: FETCH_USER_CART_SUCCESS, payload: null });
     yield put({ type: FETCH_ADDRESS_SUCCESS, payload: { data: [] } });
-    NavigationService.navigate(SIGNIN_SCREEN, { Screen: SIGNIN_SCREEN, payload: 'red' });
+    NavigationService.navigate('Auth', { screen: SIGNIN_SCREEN, params: { cleanBack: true } });
   } catch (error) {
     yield put({ type: SIGN_OUT_FAILURE, error });
   }

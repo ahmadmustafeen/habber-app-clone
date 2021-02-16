@@ -51,27 +51,9 @@ const Checkout = (props) => {
     address: '',
   });
 
-  // useEffect(() => {
-  //   BackHandler.addEventListener('hardwareBackPress', () => props.navigation.navigate(CART_SCREEN)
-  //   );
-  //   return BackHandler.removeEventListener(
-  //     'hardwareBackPress', () => props.navigation.navigate(CART_SCREEN)
-  //   );
-
-  // })
 
 
 
-
-
-  useFocusEffect(
-    React.useCallback(() => {
-
-      BackHandler.addEventListener('hardwareBackPress', () => props.navigation.navigate(CHECKOUT, { screen: CHECKOUT, name: "Checkout" }));
-      return () =>
-        BackHandler.removeEventListener('hardwareBackPress', () => props.navigation.navigate(CHECKOUT));
-    }, [])
-  );
 
 
   console.log("Checkout props", state.address)

@@ -61,8 +61,8 @@ const SignIn = (props) => {
   const validate = () => {
 
     return (
-      validateIsTrue(validateEmail(state.email), `${t('Please')}  ${t('email')}`, false, t('ok')) &&
-      validateIsTrue(validatePassword(state.password), `${t('Please')}  ${t('password')}`, false, t('ok'))
+      validateIsTrue(validateEmail(state.email), `${t('Please')} ${t('email')}`, false, t('ok')) &&
+      validateIsTrue(validatePassword(state.password), `${t('Please')} ${t('password')}`, false, t('ok'))
 
     )
   };
@@ -203,7 +203,8 @@ Login with Social media account`}
             underline
             primary
             size={30}
-            onPress={() => navigate('Drawer', { screen: 'Home' })}>
+            onPress={() => navigate('Drawer', { screen: 'Home' })}
+          >
             {t('skip')}
           </AppText>
         </View>

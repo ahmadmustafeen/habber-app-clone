@@ -97,18 +97,20 @@ const AddNewAddress = (props) => {
   const validate = () => {
     return (
 
-      validateIsTrue(state.address_name, `${t('Please')}  ${t('addressName')}`, false,) &&
-      validateIsTrue(state.country_id, `${t('Please')}  ${t('country')}`, false, t('ok')) &&
-      validateIsTrue(state.city_id, `${t('Please')}  ${t('state')}`, false, t('ok')) &&
-      validateIsTrue(state.state, `${t('Please')}  ${t('city')}`, false, t('ok')) &&
+      validateIsTrue(state.address_name, I18nManager.isRTL ? "الرجاء إدخال اسم العنوان" : "Please Enter Address Name", false,) &&
+      validateIsTrue(state.country_id, `${t('Please')} ${t('country')}`, false, t('ok')) &&
+      validateIsTrue(state.city_id, `${t('Please')} ${t('state')}`, false, t('ok')) &&
+      validateIsTrue(state.state, I18nManager.isRTL ? "الرجاء إدخال المدينة" : "Please Enter City", false, t('ok')) &&
       // validateIsTrue((state.state.length > 2), 'City') &&
-      validateIsTrue(state.address_line1, `${t('Please')}  ${t('address')}`, false, t('ok')) &&
+      validateIsTrue(state.address_line1, I18nManager.isRTL ? "الرجاء إدخال سطر العنوان 1" : "Please Enter Address Line 1", false, t('ok')) &&
+      validateIsTrue(state.address_line2, I18nManager.isRTL ? "الرجاء إدخال سطر العنوان 2" : "Please Enter Address Line 2", false, t('ok')) &&
+      validateIsTrue(validatePhone(state.phone), I18nManager.isRTL ? "يجب أن يتراوح رقم الهاتف بين 11 رقمًا و 15 رقمًا" : "Phone Number should be between 11 digits to 15 digits", false)
 
       // validateIsTrue(state.address_line2, 'Address!');
       // validateIsTrue(state.post_code, 'Postal Code') &&
-      validateIsTrue(((state.phone.length > 10) && (state.phone.length < 16)),
-        `${t('Please')}  ${t('phoneValidation')}`, false) &&
-      validateIsTrue(!!validatePhone(state.phone), `${t('Please')}  ${t('mobileNumber')}`, false, t('ok'))
+      // validateIsTrue(((state.phone.length > 10) && (state.phone.length < 16)),
+      //   `${t('Please')}  ${t('phoneValidation')}`, false) &&
+      // validateIsTrue(!!validatePhone(state.phone), `${t('Please')}  ${t('mobileNumber')}`, false, t('ok'))
     )
 
 
@@ -132,7 +134,7 @@ const AddNewAddress = (props) => {
 
 
       <View key="header">
-        <Header {...props} backIcon headerLeft headerImage noCart
+        <Header {...props} backIcon headerLeft headerImage noCart headerRight
           noSearch={!!(props.route.params) ? props.route.params.checkout ? true : null : null}
           noCart={!!(props.route.params) ? props.route.params.checkout ? true : null : null}
           title={!!(props.route.params) ? props.route.params.checkout ? (I18nManager.isRTL ? "الدفع" : "CHECKOUT") : (I18nManager.isRTL ? "تعديل العنوان" : "EDIT ADDRESS") : (I18nManager.isRTL ? "اضف عنوان" : "Add Address")}

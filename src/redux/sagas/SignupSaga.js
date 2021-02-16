@@ -9,6 +9,8 @@ import { SHOW_MODAL, SIGN_UP, SIGN_UP_FAILURE, SIGN_UP_SUCCESS } from '../../red
 
 import { startAction, stopAction } from '_redux/actions';
 import { NETWORK_ERROR, SHOW_NETWORK_MODAL, SIGN_IN } from '../../redux/actionTypes';
+import { Platform } from 'react-native';
+import { I18nManager } from 'react-native';
 export function* signupSaga({ payload, type }) {
   try {
     yield put(startAction(SIGN_UP));
@@ -32,7 +34,17 @@ export function* signupSaga({ payload, type }) {
       // yield put({ payload: payload, type: SIGN_IN, });
 
     } else {
-      Alert.alert('Registration Failed', data.message);
+      // Alert.alert('Registration Failed', data.message);
+      const text = I18nManager.isRTL ? 'هذا البريد الإلكتروني مأخوذ بالفعل! جرب واحدة أخرى...' : 'This email is already been taken! try another one...'
+      Platform.OS === 'ios' ?
+        Alert.alert(false ? ` ${text}` : text, '', [{ text: I18nManager.isRTL ? 'حسنا' : 'OK', }])
+        : (
+          I18nManager.isRTL ?
+            Alert.alert(false ? `${text}` : '', text, [{ text: I18nManager.isRTL ? 'حسنا' : ' ', }, { text: I18nManager.isRTL ? '' : ' ', }, { text: I18nManager.isRTL ? ' ' : null }, { onPress: () => NavigationService.navigate('MyProfile', { screen: MY_PROFILE }) }])
+            : Alert.alert(false ? `${text}` : text, '', [{ text: I18nManager.isRTL ? 'حسنا' : ' ', }, { text: I18nManager.isRTL ? '' : ' ', }, { text: I18nManager.isRTL ? ' ' : null, }, {}]
+            )
+        )
+
       yield put({ type: SIGN_UP_FAILURE });
     }
   } catch (error) {

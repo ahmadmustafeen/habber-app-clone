@@ -17,6 +17,7 @@ import useModal from '_utils/customHooks/useModal';
 import { useTranslation } from 'react-i18next';
 import { validateIsTrue, validatePassword } from '../../helpers/Validators';
 import { checkIfLoading } from '../../redux/selectors';
+import { I18nManager } from 'react-native';
 const ChangePassword = (props) => {
   const { t } = useTranslation(['ChangePassword'])
   const { visible, toggleModal } = useModal();
@@ -58,11 +59,11 @@ const ChangePassword = (props) => {
   };
   const Validate = () => {
     return (
-      validateIsTrue(state.old_password, `${t('Please')}  ${t('password')}`, false, t('ok')) &&
-      validateIsTrue(state.password, `${t('Please')}  ${t('newPassword')}`, false, t('ok')) &&
-      validateIsTrue(state.password_confirmation, `${t('Please')}  ${t('confirmNewPassword')}`, false, t('ok')) &&
+      validateIsTrue(state.old_password, `${t('Please')} ${t('password')}`, false, t('ok')) &&
+      validateIsTrue(state.password, `${t('Please')} ${t('newPassword')}`, false, t('ok')) &&
+      validateIsTrue(state.password_confirmation, I18nManager.isRTL ? "الرجاء إدخال تأكيد كلمة المرور" : "Please Enter Confirm Password", false, t('ok')) &&
       validatePassword(state.password) &&
-      validateIsTrue((state.password === state.password_confirmation), `${t('Please')}  ${t('PassNotMatch')}`, false, t('ok'))
+      validateIsTrue((state.password === state.password_confirmation), I18nManager.isRTL ? "كلمة السر غير متطابقة!" : "Password does not match!", false, t('ok'))
     )
   }
   const passChange = () => {

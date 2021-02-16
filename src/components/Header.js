@@ -125,7 +125,7 @@ const Header = (props, { adddok }) => {
           {headerRight ? (
             headerRight
           ) : (
-              <View style={[styles.right]}>
+              <View style={[styles.right, (!!route && (route.name !== 'Search')) && I18nManager.isRTL && { width: wp(19.5), marginLeft: wp(-2) }]}>
                 <TouchableOpacity
                   // onPress={() => {
 
@@ -220,26 +220,25 @@ const Header = (props, { adddok }) => {
           style={{
             flex: 1,
             alignItems: 'flex-end',
+
           }}>
           {headerRight ? (
             headerRight
           ) : (
-              <View style={styles.right}>
-                <TouchableOpacity
-                  onPress={() => {
-                    navigation.navigate(CART_SCREEN, {
-                      label: 'CART_SCREEN',
-                      CART_SCREEN,
-                      // CARTNEW
-                    });
-                  }}>
+              <View style={[styles.right,]}>
+                <TouchableOpacity onPress={() => {
+                  navigation.navigate(CART_SCREEN, {
+                    label: 'CART_SCREEN',
+                    CART_SCREEN,
+                    // CARTNEW
+                  });
+                }}>
                   <Image
                     source={
                       cartNumber
                         ? require('../assets/images/filledcart.png')
-                        : (qua === 0 ? require('../assets/images/nocart.png') : require('../assets/images/emptycart.png'))
+                        : (qua !== 0 ? require('../assets/images/nocart.png') : require('../assets/images/nocart.png'))
                     }
-                    style={{ marginRight: wp(0) }}
                   />
                   {qua ? (
                     <View style={I18nManager.isRTL ? styles.circleArabic : styles.circle}>
@@ -254,19 +253,7 @@ const Header = (props, { adddok }) => {
                     </View>}
                 </TouchableOpacity>
 
-                {/* <Icon
-                onPress={() =>
-                  navigation.navigate(CART_SCREEN, {
-                    label: 'CART_SCREEN',
-                    CART_SCREEN,
-                    // CARTNEW
-                  })
-                }
-                color={headerColor}
-                name="shopping-bag"
-                type="font-awesome-5"
-                containerStyle={{ paddingEnd: 10 }}
-              /> */}
+
                 {(!!route && route.name) !== 'Search' && (
                   <Icon
                     props={props}
@@ -297,9 +284,11 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
   right: {
-    flexDirection: 'row',
     flexDirection: I18nManager.isRTL ? 'row-reverse' : 'row',
     justifyContent: 'space-around',
+    // width: wp(50),
+    // backgroundColor: 'red',
+
   },
   circle: {
     position: 'absolute',

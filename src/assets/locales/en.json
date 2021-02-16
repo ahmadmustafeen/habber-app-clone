@@ -242,7 +242,7 @@
     "resetPassword": "Reset Password",
     "password": "Password",
     "email": "Email",
-    "confirmPassword": "Confirm Password",
+    "confirm_password": "Confirm Password",
     "ok": "Ok",
     "Please": "Please Enter"
   },

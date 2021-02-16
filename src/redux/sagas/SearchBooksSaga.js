@@ -21,7 +21,7 @@ export function* SearchBooksSaga({ type, payload }) {
       status,
     } = response;
 
-    console.log('SearchBooksSaga  Response . . . .  .', res);
+    console.log('SearchBooksSaga  Response . . . .  .', response);
     if (status !== 200) {
       yield put({ type: SEARCH_BOOKS_FAILURE, error });
     } else {

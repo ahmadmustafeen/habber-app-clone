@@ -26,15 +26,16 @@ export function* EditAddressSaga({ type, payload }) {
             yield put({ type: FETCH_ADDRESS })
             const text = I18nManager.isRTL ? "عنوان تم تعديله بنجاح" : 'Successfully Edited Address'
             Platform.OS === 'ios' ?
-                Alert.alert(false ? ` ${text}` : text, '', [{ text: I18nManager.isRTL ? 'حسنا' : 'OK', }])
+                Alert.alert(false ? ` ${text}` : text, '', [{ text: I18nManager.isRTL ? 'حسنا' : 'OK', onPress: () => NavigationService.navigate('MyProfile', { screen: MY_PROFILE }) }])
                 : (
                     I18nManager.isRTL ?
-                        Alert.alert(false ? `${text}` : '', text, [{ text: I18nManager.isRTL ? 'حسنا' : ' ', }, { text: I18nManager.isRTL ? '' : ' ', }, { text: I18nManager.isRTL ? ' ' : null }])
-                        : Alert.alert(false ? `${text}` : text, '', [{ text: I18nManager.isRTL ? 'حسنا' : ' ', }, { text: I18nManager.isRTL ? '' : ' ', }, { text: I18nManager.isRTL ? ' ' : null }]
+                        Alert.alert(false ? `${text}` : '', text, [{ text: I18nManager.isRTL ? 'حسنا' : ' ', onPress: () => NavigationService.navigate('MyProfile', { screen: MY_PROFILE }) }, { text: I18nManager.isRTL ? '' : ' ', }, { text: I18nManager.isRTL ? ' ' : null }, { onPress: () => NavigationService.navigate('MyProfile', { screen: MY_PROFILE }) }])
+                        : Alert.alert(false ? `${text}` : text, '', [{ text: I18nManager.isRTL ? 'حسنا' : ' ', onPress: () => NavigationService.navigate('MyProfile', { screen: MY_PROFILE }) }, { text: I18nManager.isRTL ? '' : ' ', }, { text: I18nManager.isRTL ? ' ' : null, onPress: () => NavigationService.navigate('MyProfile', { screen: MY_PROFILE }) }, { onPress: () => NavigationService.navigate('MyProfile', { screen: MY_PROFILE }) }]
                         )
                 )
 
-            NavigationService.navigate('MyProfile', { screen: MY_PROFILE })
+
+            // NavigationService.navigate('MyProfile', { screen: MY_PROFILE })
 
 
 

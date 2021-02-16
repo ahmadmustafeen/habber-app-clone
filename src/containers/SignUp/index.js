@@ -28,6 +28,7 @@ import { FORGOT_PASSWORD_SCREEN, TERMS_AND_CONDITIONS_SCREEN, BOOK_DETAILS_SCREE
 
 import { TouchableOpacity } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { I18nManager } from 'react-native';
 
 const SignUp = (props) => {
 
@@ -55,11 +56,12 @@ const SignUp = (props) => {
   };
   const validate = () => {
     return (
-      validateIsTrue(first_name, `${t('Please')}  ${t('firstName')}`, false, t('ok')) &&
-      validateIsTrue(last_name, `${t('Please')}  ${t('lastName')}`, false, t('ok')) &&
-      validateIsTrue(validateEmail(email), `${t('Please')}  ${t('email')}`, false, t('ok')) &&
-      validateIsTrue(validatePassword(password), `${t('Please')}  ${t('password')}`, false, t('ok')) &&
-      validateIsTrue((password === password_confirmation), `${t('Please')}  ${t('confirmPassword')}`, false, t('ok'))
+      validateIsTrue(first_name, `${t('Please')} ${t('firstName')}`, false, t('ok')) &&
+      validateIsTrue(last_name, `${t('Please')} ${t('lastName')}`, false, t('ok')) &&
+      validateIsTrue(validateEmail(email), I18nManager.isRTL ? "" : "Please Enter A Valid Email", false, t('ok')) &&
+      validateIsTrue(validatePassword(password), `${t('Please')} ${t('password')}`, false, t('ok')) &&
+      validateIsTrue((password_confirmation), I18nManager.isRTL ? "الرجاء إدخال تأكيد كلمة المرور" : "Please Enter Confirm Password", false, t('ok')) &&
+      validateIsTrue((password === password_confirmation), I18nManager.isRTL ? "كلمة السر غير متطابقة" : "Password Does Not Match", false, t('ok'))
     )
 
 

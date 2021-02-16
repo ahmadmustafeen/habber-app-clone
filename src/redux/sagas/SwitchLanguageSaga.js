@@ -19,10 +19,13 @@ export function* switchLangSaga({ payload }) {
 
     // yield setItem('@userProfile', JSON.stringify(payload));
     const CartReducer = yield select((state) => state.CartReducer);
+
+    const UserProfileReducer = yield select((state) => state.UserProfileReducer);
     console.log(CartReducer, "LANGUAGE CARD REDUCER")
     // debugger;
-
-    yield setItem('@cartREDUCER', JSON.stringify(CartReducer));
+    if (!UserProfileReducer.token) {
+      yield setItem('@cartREDUCER', JSON.stringify(CartReducer));
+    }
     let backUser = yield getItem('@backUser');
     if (!backUser) {
       yield setItem('@backUser', 'true');
