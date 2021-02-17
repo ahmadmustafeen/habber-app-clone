@@ -175,7 +175,7 @@ const Invoice = (props) => {
                                 {I18nManager.isRTL ? "رسوم التوصيل" : "Delivery Charges"}
                             </AppText>
                         </View>
-                        <View style={[I18nManager.isRTL && { width: wp(30), marginRight: wp(-2), }, { justifyContent: 'center', }]}>
+                        <View style={[I18nManager.isRTL && { width: wp(35), marginRight: wp(-2), }, { justifyContent: 'center', }]}>
                             <AppText white bold secondary small >
                                 {rtlLayout || item.currency_iso} {(parseFloat(item.shipping_charges.toString().replace(",", ""))).toFixed(2)} {rtlLayout && item.currency_iso}
                             </AppText>
@@ -189,7 +189,7 @@ const Invoice = (props) => {
                                 {I18nManager.isRTL ? "مجموع" : "Total"}
                             </AppText>
                         </View>
-                        <View style={[I18nManager.isRTL && { width: wp(30), marginRight: wp(-2), }, { justifyContent: 'center', height: hp(5) }]}>
+                        <View style={[I18nManager.isRTL && { width: wp(35), marginRight: wp(-2), }, { justifyContent: 'center', height: hp(5) }]}>
                             <AppText white bold secondary small >
                                 {rtlLayout || item.currency_iso} {(parseFloat(item.total_price.toString().replace(",", ""))).toFixed(2)} {rtlLayout && item.currency_iso}
                             </AppText>
