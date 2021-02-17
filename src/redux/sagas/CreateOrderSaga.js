@@ -85,9 +85,11 @@ export function* CreateOrderSaga({ type, payload }) {
     //   Alert.alert({ title: "Cannot Create Order", message: "Some Product ran out of stock" })
     //   return;
     // }
+    yield put({ type: FETCH_USER_CART_SUCCESS, payload: null });
+
     yield put({ type: CREATE_ORDER_SUCCESS });
     yield put({ type: FETCH_ORDER });
-    // yield put({ type: FETCH_USER_CART });
+    yield put({ type: FETCH_USER_CART });
 
     if (!res.navigation) {
       yield put({ type: FETCH_USER_CART_SUCCESS, payload: null });

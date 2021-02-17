@@ -184,7 +184,9 @@ const DrawerMenu = (props) => {
               />
             </View>
           </View>
-          <AppText style={{ marginLeft: wp(30) }} small white>Version 1.31</AppText>
+          <View style={{ width: wp(100), paddingBottom: hp(10), alignItems: 'center', justifyContent: 'center', transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }] }}>
+            <AppText small white>Version 1.32</AppText>
+          </View>
         </View>
       </ScrollView>
 
