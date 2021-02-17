@@ -148,7 +148,7 @@ const MyOrders = (props) => {
           renderItem={renderItem}
           keyExtractor={item => item.id}
           ListFooterComponent={<View style={{ paddingBottom: hp(5) }}></View>}
-          ListEmptyComponent={<NoBookAvailbe title={I18nManager.isRTL ? 'لا يوجد شيء لعرضه هنا!' : 'Nothing to Show here!'} />}
+          ListEmptyComponent={<AppText style={{ paddingHorizontal: wp(10) }}>{I18nManager.isRTL ? 'لا يوجد شيء لعرضه هنا!' : 'Nothing to Show here!'}</AppText>}
         />
         {/* <FlatList
 

@@ -1,13 +1,17 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { ActivityIndicator, View } from 'react-native';
 import { Icon } from 'react-native-elements'
 import { WebView } from 'react-native-webview';
 import { Header, ModalScreen } from '../../components';
 import { Screen } from '../../components/common';
 import { HOME, INVOICE } from '../../constants/Screens';
-
+import { PAYMENT_FAILURE_SAGA } from '../../redux/actionTypes'
 import { useTheme } from '@react-navigation/native';
 import { I18nManager } from 'react-native';
+import { BackHandler } from 'react-native';
+import { useDispatch } from 'react-redux';
+import { withDataActions } from '../../redux/actions';
+import useModal from '../../utils/customHooks/useModal';
 export const Payment = (props) => {
   console.log("payment props", props)
   const [modalVisible, setModalVisible] = useState(false);
@@ -15,6 +19,28 @@ export const Payment = (props) => {
 
   const { colors } = useTheme()
   const WEBVIEW_REF = useRef(null);
+
+
+  const { visible, toggleModal } = useModal();
+  const dispatch = useDispatch()
+
+
+  const handleBackButton = () => {
+    // console.log(visible)
+    dispatch(withDataActions({ id: props.route.params.orderDetails.id }, PAYMENT_FAILURE_SAGA))
+    return true;
+  };
+
+  useEffect(() => {
+    BackHandler.addEventListener('hardwareBackPress', handleBackButton);
+
+    // returned function will be called on component unmount 
+    return () => {
+      BackHandler.removeEventListener('hardwareBackPress', handleBackButton);
+    }
+  }, [])
+
+
   const modalData = {
     heading: success ? I18nManager.isRTL ? "الدفع الناجح" : 'Payment Success' : I18nManager.isRTL ? "فشل الدفع" : 'Payment Failure',
     description: success
@@ -26,9 +52,6 @@ Completed`
 Please Retry`,
     buttonLabel: I18nManager.isRTL ? 'يكمل' : 'Continue',
   };
-  const toggleModal = () => {
-    setModalVisible(!modalVisible);
-  };
   const handleWebViewNavigationStateChange = (navState) => {
     console.log(navState, "NAVSTATE")
     const { url, loading } = navState;
@@ -36,10 +59,12 @@ Please Retry`,
 
     if (url.includes('payment/failure')) {
       setSuccess(false);
+      console.log("ASDSDASDfailurte")
       toggleModal();
     }
 
     if (url.includes('payment/success') && !loading) {
+      console.log("ASDSDASDsuuceess")
       setSuccess(true);
       toggleModal();
     }
@@ -52,16 +77,23 @@ Please Retry`,
     // }
   };
   const onContinue = () => {
+
+    success ? (props.navigation.navigate(INVOICE, { item: props.route.params.orderDetails })) : props.navigation.navigate(HOME);
+    props.navigation.navigate(HOME)
     toggleModal();
-    success ? props.navigation.navigate(INVOICE, { item: props.route.params.orderDetails }) : props.navigation.navigate(HOME)
+
   };
+  // const onContinue = () => {
+  //   toggleModal();
+  //   props.navigation.goBack();
+  // };
   return (
     <Screen noPadding>
       <View key="header">
         <Header {...props}
           headerRight
           headerLeft={<Icon
-            onPress={() => props.navigation.navigate(HOME)}
+            onPress={handleBackButton}
             color={colors.primary}
             name={I18nManager.isRTL ? "leftcircleo" : "leftcircleo"}
             type="antdesign"
@@ -84,9 +116,19 @@ Please Retry`,
         />
 
         <ModalScreen
-          visible={modalVisible}
+          visible={visible}
           onContinue={onContinue}
-          {...modalData}
+
+          heading={success ? I18nManager.isRTL ? "الدفع الناجح" : 'Payment Success' : I18nManager.isRTL ? "فشل الدفع" : 'Payment Failure'}
+          description={success
+            ? I18nManager.isRTL ? `تم الدفع الخاص بك بنجاح
+مكتمل`: `Your Payment has successfully
+Completed`
+            : I18nManager.isRTL ? `عفوًا! عملية الدفع فشلت
+الرجاء اعادة المحاولة`: `Ops! Payment Failed
+Please Retry`}
+          buttonLabel={I18nManager.isRTL ? 'يكمل' : 'Continue'}
+
         />
       </View>
     </Screen>

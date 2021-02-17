@@ -41,17 +41,18 @@ const AddressCard = (props) => {
       {actionButton &&
         <View style={styles.imageContainer}>
           <View style={[styles.image]} >
-            <TouchableOpacity style={styles.image} onPress={onEditPress}>
-              <Image source={require("_assets/images/edit.png")} />
+            <TouchableOpacity style={styles.simage} onPress={onEditPress}>
+              <Image source={require("_assets/images/edit.png")} style={{ width: '100%', height: '100%' }} />
             </TouchableOpacity>
           </View>
 
 
-          <TouchableOpacity style={styles.image} onPress={onTrashPress}>
-            <Image source={require("_assets/images/delete.png")} />
+          <TouchableOpacity style={styles.simage} onPress={onTrashPress}>
+            <Image source={require("_assets/images/delete.png")} style={{ width: '100%', height: '100%' }} />
           </TouchableOpacity>
 
         </View>
+
       }
       <View style={styles.radioButton}>
         {showRadio && (
@@ -85,11 +86,16 @@ const styles = StyleSheet.create({
   },
   image: {
     marginHorizontal: wp(1),
-    width: wp(6),
-    height: wp(6.2)
+    // width: wp(10),
+    // backgroundColor: 'red',
+    // aspectRatio: 1
+    // height: wp(6.2)
   },
   headerImage: {
     width: '100%',
+    width: wp(10),
+    // aspectRatio: 
+    height: wp(10),
     height: '100%'
   },
   imageContainer: {
@@ -97,11 +103,16 @@ const styles = StyleSheet.create({
     // position: 'absolute',
     // right: wp(2),
     // top: hp(1),
+    // width: wp(10),
     flexDirection: 'row'
   },
   radioButton: {
     flex: 1,
     alignItems: 'center'
+  },
+  simage: {
+    width: wp(4.5),
+    aspectRatio: 1
   }
 });
 export { AddressCard };

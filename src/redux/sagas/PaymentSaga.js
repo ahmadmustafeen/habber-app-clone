@@ -70,7 +70,7 @@ export function* PaymentSaga({ payload, type }) {
       orderDetails: payload.order_details
     });
 
-    // yield put({ type: FETCH_USER_CART_SUCCESS, payload: null });
+    yield put({ type: FETCH_USER_CART_SUCCESS, payload: null });
   } catch (error) {
     console.log('ERROR AT PAYMENT', error);
     // yield put(errorAction(error, type));

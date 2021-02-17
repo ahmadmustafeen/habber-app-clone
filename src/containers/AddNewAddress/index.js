@@ -134,9 +134,10 @@ const AddNewAddress = (props) => {
 
 
       <View key="header">
-        <Header {...props} backIcon headerLeft headerImage noCart headerRight
-          noSearch={!!(props.route.params) ? props.route.params.checkout ? true : null : null}
+        <Header {...props} backIcon headerLeft headerImage
+          noSearch={!!((props.route.params) ? props.route.params.checkout ? true : null : null)}
           noCart={!!(props.route.params) ? props.route.params.checkout ? true : null : null}
+          headerRight={!!(props.route.params) ? props.route.params.checkout ? true : null : null}
           title={!!(props.route.params) ? props.route.params.checkout ? (I18nManager.isRTL ? "الدفع" : "CHECKOUT") : (I18nManager.isRTL ? "تعديل العنوان" : "EDIT ADDRESS") : (I18nManager.isRTL ? "اضف عنوان" : "Add Address")}
           title={!!(props.route.params) ? props.route.params.checkout ? (I18nManager.isRTL ? "الدفع" : "CHECKOUT") : (I18nManager.isRTL ? "تعديل العنوان" : "EDIT ADDRESS") : (I18nManager.isRTL ? "اضف عنوان" : "Add Address")} />
 

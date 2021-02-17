@@ -17,7 +17,7 @@ import {
   UPDATE_CART_ITEM_ORDER_COMPLETE,
 } from '../actionTypes';
 import { errorAction, startAction, stopAction } from '../actions';
-import { INVOICE } from '../../constants/Screens';
+import { INVOICE, PAYMENT_SCREEN } from '../../constants/Screens';
 import { getItem } from '../../helpers/Localstorage';
 import { bookmarkdata } from '../../assets/data/dummydata';
 
@@ -85,7 +85,7 @@ export function* CreateOrderSaga({ type, payload }) {
     //   Alert.alert({ title: "Cannot Create Order", message: "Some Product ran out of stock" })
     //   return;
     // }
-    yield put({ type: FETCH_USER_CART_SUCCESS, payload: null });
+    // yield put({ type: FETCH_USER_CART_SUCCESS, payload: null });
 
     yield put({ type: CREATE_ORDER_SUCCESS });
     yield put({ type: FETCH_ORDER });
@@ -94,12 +94,12 @@ export function* CreateOrderSaga({ type, payload }) {
     if (!res.navigation) {
       yield put({ type: FETCH_USER_CART_SUCCESS, payload: null });
       yield put({ type: SHOW_MODAL, payload: response.data.data });
+      // yield put({ type: SHOW_MODAL, payload: null });
       NavigationService.navigate('Invoice', {
         item: response.data.data
       });
     }
     else if (res.navigation) {
-
 
       yield put({ type: DO_PAYMENT, payload: { payload: res, order_details: response.data.data } });
 

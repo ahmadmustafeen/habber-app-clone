@@ -13,6 +13,7 @@ import { FavouriteCard, Header } from '../../components';
 import { AppText, Screen } from '../../components/common';
 import { useTranslation } from 'react-i18next';
 import { Alert } from 'react-native';
+import { validateIsTrue } from '../../helpers/Validators';
 
 const Favorites = (props) => {
   const { t } = useTranslation(['Favorites'])
@@ -21,7 +22,16 @@ const Favorites = (props) => {
   const Favourite_length = Favourites.book.length + Favourites.bookmark.length
   const onAddToCart = (item) => {
     const { quantity, product_type, id: product_id } = item;
-    Alert.alert("Item is Added to Cart")
+    // validateIsTrue(true, I18nManager.isRTL ? "تمت إضافة العنصر إلى عربة التسوق" : "Item is Added to Cart", false)
+    const text = I18nManager.isRTL ? "تمت إضافة العنصر إلى عربة التسوق" : "Item is Added to Cart"
+    Platform.OS === 'ios' ?
+      Alert.alert(false ? ` ${text}` : text, '', [{ text: I18nManager.isRTL ? 'حسنا' : 'OK' }])
+      : (
+        I18nManager.isRTL ?
+          Alert.alert(false ? `${text}` : '', text, [{ text: I18nManager.isRTL ? 'حسنا' : ' ' }, { text: I18nManager.isRTL ? '' : ' ', }, { text: I18nManager.isRTL ? ' ' : null },])
+          : Alert.alert(false ? `${text}` : text, '', [{ text: I18nManager.isRTL ? 'حسنا' : ' ' }, { text: I18nManager.isRTL ? '' : ' ', }, { text: I18nManager.isRTL ? ' ' : null }]
+          )
+      )
     dispatch(
       withDataActions(
         {

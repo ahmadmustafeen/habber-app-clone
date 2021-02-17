@@ -33,5 +33,6 @@ export const API_ENDPOINTS = {
   profile: '/profile',
   update_password: '/update_password',
   genre: '/genre',
-  guestuser_token: '/guest_user'
+  guestuser_token: '/guest_user',
+  cancel_payment: '/cancel_payment'
 };

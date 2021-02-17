@@ -84,7 +84,12 @@ const AddToCart = (props) => {
         <View key="header"></View>
 
         <View key="content">
-          {(!(CartReducer.book.length + CartReducer.bookmark.length)) ? <NoBookAvailbe emptyy="No items are added In your cart yet" /> : null}
+          {(!(CartReducer.book.length + CartReducer.bookmark.length)) ?
+            <AppText  >{I18nManager.isRTL ? "لم يتم إضافة عناصر في عربة التسوق الخاصة بك حتى الآن" : "No items are added In your cart yet"}</AppText>
+
+            /* <NoBookAvailbe emptyy={I18nManager.isRTL ? "لم يتم إضافة عناصر في عربة التسوق الخاصة بك حتى الآن" : "No items are added In your cart yet"} */
+
+            : null}
           <Loader loading={isLoading} />
 
           {Object.values(CartReducer)

@@ -4,7 +4,7 @@ import {
   SIGN_OUT_SUCCESS,
   SWITCH_LANG_SUCCESS,
 } from '_redux/actionTypes';
-import { SWITCH_CURRENCY_SUCCESS } from '../actionTypes';
+import { PUSH_NOTIFICATION_FUNCTION_REDUCER, SWITCH_CURRENCY_SUCCESS } from '../actionTypes';
 
 const initialState = {
   currency: { id: 1, iso: 'KWD', name: 'Kuwaiti dinar', symbol: 'KD' },
@@ -27,6 +27,9 @@ export default (state = initialState, action) => {
     }
     case SIGN_OUT_SUCCESS: {
       return { ...action.payload };
+    }
+    case PUSH_NOTIFICATION_FUNCTION_REDUCER: {
+      return { ...state, notification: state.notification === 1 ? 0 : 1 };
     }
     default:
       return state;
