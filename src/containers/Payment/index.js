@@ -59,14 +59,14 @@ Please Retry`,
 
     if (url.includes('payment/failure')) {
       setSuccess(false);
-      console.log("ASDSDASDfailurte")
-      toggleModal();
+      // toggleModal();
+      setModalVisible(true)
     }
 
     if (url.includes('payment/success') && !loading) {
-      console.log("ASDSDASDsuuceess")
       setSuccess(true);
-      toggleModal();
+      setModalVisible(true)
+      // toggleModal();
     }
 
     // redirect somewhere else
@@ -77,10 +77,10 @@ Please Retry`,
     // }
   };
   const onContinue = () => {
-
+    setModalVisible(false)
     success ? (props.navigation.navigate(INVOICE, { item: props.route.params.orderDetails })) : props.navigation.navigate(HOME);
     props.navigation.navigate(HOME)
-    toggleModal();
+    // toggleModal();
 
   };
   // const onContinue = () => {
@@ -116,7 +116,7 @@ Please Retry`,
         />
 
         <ModalScreen
-          visible={visible}
+          visible={modalVisible}
           onContinue={onContinue}
 
           heading={success ? I18nManager.isRTL ? "الدفع الناجح" : 'Payment Success' : I18nManager.isRTL ? "فشل الدفع" : 'Payment Failure'}

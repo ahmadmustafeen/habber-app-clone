@@ -203,7 +203,13 @@ Login with Social media account`}
             underline
             primary
             size={30}
-            onPress={() => navigate('Drawer', { screen: 'Home' })}
+            onPress={() => {
+              setState({
+                email: '',
+                password: '',
+              })
+              navigate('Drawer', { screen: 'Home' })
+            }}
           >
             {t('skip')}
           </AppText>
