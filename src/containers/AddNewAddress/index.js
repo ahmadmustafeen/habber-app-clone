@@ -24,6 +24,7 @@ import {
   validateIsTrue,
 } from '_helpers/Validators';
 import { checkIfLoading } from '../../redux/selectors';
+import { BackHandler } from 'react-native';
 const AddNewAddress = (props) => {
   const { visible, toggleModal } = useModal();
   const onContinue = () => {
@@ -38,7 +39,16 @@ const AddNewAddress = (props) => {
     Keyboard.dismiss()
   }
 
-
+  const handleBackButton = () => {
+    props.navigation.goBack()
+    return true;
+  };
+  useEffect(() => {
+    BackHandler.addEventListener('hardwareBackPress', handleBackButton);
+    return () => {
+      BackHandler.removeEventListener('hardwareBackPress', handleBackButton);
+    }
+  }, [])
 
   useEffect(() => {
     const keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', _keyboardDidHide);

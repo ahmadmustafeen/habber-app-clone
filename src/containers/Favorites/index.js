@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View, StyleSheet, ImageBackground, I18nManager } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import {
@@ -14,6 +14,7 @@ import { AppText, Screen } from '../../components/common';
 import { useTranslation } from 'react-i18next';
 import { Alert } from 'react-native';
 import { validateIsTrue } from '../../helpers/Validators';
+import { BackHandler } from 'react-native';
 
 const Favorites = (props) => {
   const { t } = useTranslation(['Favorites'])
@@ -32,6 +33,7 @@ const Favorites = (props) => {
           : Alert.alert(false ? `${text}` : text, '', [{ text: I18nManager.isRTL ? 'حسنا' : ' ' }, { text: I18nManager.isRTL ? '' : ' ', }, { text: I18nManager.isRTL ? ' ' : null }]
           )
       )
+
     dispatch(
       withDataActions(
         {
@@ -46,6 +48,16 @@ const Favorites = (props) => {
       ),
     );
   };
+  const handleBackButton = () => {
+    props.navigation.goBack()
+    return true;
+  };
+  useEffect(() => {
+    BackHandler.addEventListener('hardwareBackPress', handleBackButton);
+    return () => {
+      BackHandler.removeEventListener('hardwareBackPress', handleBackButton);
+    }
+  }, [])
 
   const onRemove = ({ id, product_type }) => {
     dispatch(withDataActions({ product_id: id, product_type }, UPDATE_FAVOURITE));

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   validatePhone,
   validateEmail,
@@ -34,6 +34,7 @@ import { Icon } from 'react-native-elements';
 import { useTheme } from '@react-navigation/native';
 import { useTranslation } from 'react-i18next';
 import { checkIfLoading } from '../../redux/selectors';
+import { BackHandler } from 'react-native';
 const JoinUs = (props) => {
 
 
@@ -57,6 +58,17 @@ const JoinUs = (props) => {
     business_type: '',
     product_type: new Set(),
   });
+  const handleBackButton = () => {
+    props.navigation.goBack()
+    return true;
+  };
+  useEffect(() => {
+    BackHandler.addEventListener('hardwareBackPress', handleBackButton);
+    return () => {
+      BackHandler.removeEventListener('hardwareBackPress', handleBackButton);
+    }
+  }, [])
+
   const setStateHandler = (key, val) => {
     if (key === 'email' || key === 'phone') {
       val = val.replace(" ", "")

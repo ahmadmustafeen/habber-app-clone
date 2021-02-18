@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   View,
   StyleSheet,
@@ -27,6 +27,7 @@ import { checkIfLoading } from '../../redux/selectors';
 import { KeyboardAvoidingView } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { validateEmail, validateIsTrue } from '../../helpers/Validators';
+import { BackHandler } from 'react-native';
 
 
 
@@ -41,6 +42,18 @@ const imageOptions = {
 };
 
 const EditProfile = (props) => {
+
+  const handleBackButton = () => {
+    props.navigation.goBack()
+    return true;
+  };
+  useEffect(() => {
+    BackHandler.addEventListener('hardwareBackPress', handleBackButton);
+    return () => {
+      BackHandler.removeEventListener('hardwareBackPress', handleBackButton);
+    }
+  }, [])
+
   const { t } = useTranslation('EditProfile');
   const UserProfileReducer = useSelector(
     (state) => state.UserProfileReducer,

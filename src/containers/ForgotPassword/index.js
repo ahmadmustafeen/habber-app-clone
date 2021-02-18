@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { View, StyleSheet, Image, Alert } from 'react-native';
 // import {forgotPassword} from '_assets/data/StaticData';
 import { InputWithLabel, ModalScreen, AuthHeader } from '_components';
@@ -22,6 +22,7 @@ import { Platform } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { validateIsTrue } from '../../helpers/Validators';
 import { I18nManager } from 'react-native';
+import { BackHandler } from 'react-native';
 const ForgotPassword = (props) => {
   const dispatch = useDispatch();
   const { visible, toggleModal } = useModal();
@@ -39,6 +40,17 @@ const ForgotPassword = (props) => {
 
     props.navigation.goBack();
   }
+  const handleBackButton = () => {
+    props.navigation.goBack()
+    return true;
+  };
+  useEffect(() => {
+    BackHandler.addEventListener('hardwareBackPress', handleBackButton);
+    return () => {
+      BackHandler.removeEventListener('hardwareBackPress', handleBackButton);
+    }
+  }, [])
+
 
 
   const {

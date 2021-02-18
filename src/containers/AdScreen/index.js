@@ -1,5 +1,6 @@
 import { useTheme } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react';
+import { BackHandler } from 'react-native';
 import { ImageBackground } from 'react-native';
 import { View, TouchableOpacity } from 'react-native';
 import { heightPercentageToDP, widthPercentageToDP } from 'react-native-responsive-screen';
@@ -18,6 +19,17 @@ const AdScreen = (props) => {
   }, [])
   const { navigate } = props.navigation;
   console.log('AD PROPS', props.route.params.image);
+  const handleBackButton = () => {
+    // props.navigation.goBack()
+    return true;
+  };
+  useEffect(() => {
+    BackHandler.addEventListener('hardwareBackPress', handleBackButton);
+    return () => {
+      BackHandler.removeEventListener('hardwareBackPress', handleBackButton);
+    }
+  }, [])
+
   return (
     <ImageBackground
       noPadding

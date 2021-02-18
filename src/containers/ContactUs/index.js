@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Icon } from 'react-native-elements';
 import { useTheme } from '@react-navigation/native';
 import {
@@ -33,6 +33,7 @@ import {
 import { AppText, Button, Screen } from '../../components/common';
 import { useTranslation } from 'react-i18next';
 import { combineEpics } from 'redux-observable';
+import { BackHandler } from 'react-native';
 
 // export const CONTACT_US = {
 //   modalData: {
@@ -69,6 +70,16 @@ const ContactUs = (props) => {
   var resookkk = String(support_chat);
   var resoo = String(Phone_Number_footer);
 
+  const handleBackButton = () => {
+    props.navigation.goBack()
+    return true;
+  };
+  useEffect(() => {
+    BackHandler.addEventListener('hardwareBackPress', handleBackButton);
+    return () => {
+      BackHandler.removeEventListener('hardwareBackPress', handleBackButton);
+    }
+  }, [])
 
   // var res = resoo
 

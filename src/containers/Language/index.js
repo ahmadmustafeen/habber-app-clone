@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, StyleSheet, Image } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 
@@ -11,7 +11,19 @@ import {
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 import { I18nManager } from 'react-native';
+import { BackHandler } from 'react-native';
 const Language = (props) => {
+  const handleBackButton = () => {
+    props.navigation.goBack()
+    return true;
+  };
+  useEffect(() => {
+    BackHandler.addEventListener('hardwareBackPress', handleBackButton);
+    return () => {
+      BackHandler.removeEventListener('hardwareBackPress', handleBackButton);
+    }
+  }, [])
+
   const { navigate } = props.navigation;
   const { colors } = useTheme();
   const dispatch = useDispatch();

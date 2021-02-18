@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 import {
   View,
@@ -47,9 +47,11 @@ import {
 import Loader from '_components/Loader';
 import { AppText } from 'components/common';
 import { Icon } from 'react-native-elements';
-
+import RNExitApp from 'react-native-exit-app';
 export const itemWidth = wp(85);
 import { FETCH_BANNER } from '../../redux/actionTypes';
+import { BackHandler } from 'react-native';
+import { Alert } from 'react-native';
 const { width } = Dimensions.get('window');
 const Home = (props) => {
   const CAROUSEL = useRef(null);
@@ -93,6 +95,20 @@ const Home = (props) => {
 
   const panig = DATA.splice(0, 3)
   // console.log("BANNER PAGINATION ", panig)
+  const handleBackButton = () => {
+    // props.navigation.navigate(HOME)
+    RNExitApp.exitApp()
+
+  }
+
+  useEffect(() => {
+    BackHandler.addEventListener('hardwareBackPress', handleBackButton);
+
+    // returned function will be called on component unmount 
+    return () => {
+      BackHandler.removeEventListener('hardwareBackPress', handleBackButton);
+    }
+  }, [])
 
 
 

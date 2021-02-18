@@ -20,7 +20,19 @@ import { useTranslation } from 'react-i18next';
 import { withDataActions } from '../../redux/actions';
 import { DELETE_ADDRESS, EDIT_ADDRESS } from '../../redux/actionTypes';
 import UserProfileReducer from '../../redux/reducers/UserProfileReducer';
+import { BackHandler } from 'react-native';
 const MyAddressBook = (props) => {
+  const handleBackButton = () => {
+    props.navigation.goBack()
+    return true;
+  };
+  useEffect(() => {
+    BackHandler.addEventListener('hardwareBackPress', handleBackButton);
+    return () => {
+      BackHandler.removeEventListener('hardwareBackPress', handleBackButton);
+    }
+  }, [])
+
   const dispatch = useDispatch();
   const { t } = useTranslation(['MyAddressBook'])
   const { navigate } = props.navigation;

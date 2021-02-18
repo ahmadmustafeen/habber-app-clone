@@ -43,8 +43,22 @@ import { useTranslation } from 'react-i18next';
 import { Text } from 'react-native';
 import { NofeaturedBook } from '../../components/NofeaturedBook';
 import { Platform } from 'react-native';
+import { BackHandler } from 'react-native';
 
 const BookDetails = (props) => {
+
+
+  const handleBackButton = () => {
+    props.navigation.goBack()
+    return true;
+  };
+  useEffect(() => {
+    BackHandler.addEventListener('hardwareBackPress', handleBackButton);
+    return () => {
+      BackHandler.removeEventListener('hardwareBackPress', handleBackButton);
+    }
+  }, [])
+
   const { t } = useTranslation(["BookDetails"]);
   const { colors } = useTheme();
   const dispatch = useDispatch();
@@ -136,6 +150,13 @@ const BookDetails = (props) => {
   );
   const handleCounter = (action) => {
     //TODO : For restrict counter for maximum quantity and out of stock..
+    console.log(action, "ACTION")
+    // console.log(CartReducer[product_type][inCartPosition].cart_quantity, "ACTION")
+
+    if (action === 'sub' && inCartPosition !== -1 && CartReducer[product_type][inCartPosition].cart_quantity === 1) {
+      action = 'remove'
+
+    }
 
     dispatch(
       withDataActions(

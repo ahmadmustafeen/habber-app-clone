@@ -32,6 +32,7 @@ import NoBookAvailbe from '../../components/NoBookAvailable';
 import { SIGNIN_SCREEN } from '../../constants/Screens';
 import { Alert } from 'react-native';
 import { ADD_TO_CART, RE_ADD_TO_CART } from '../../redux/actionTypes';
+import { BackHandler } from 'react-native';
 const delivery_charges = 10;
 const AddToCart = (props) => {
   const { emptyy } = props
@@ -68,6 +69,17 @@ const AddToCart = (props) => {
       ),
     );
   };
+  const handleBackButton = () => {
+    props.navigation.goBack()
+    return true;
+  };
+  useEffect(() => {
+    BackHandler.addEventListener('hardwareBackPress', handleBackButton);
+    return () => {
+      BackHandler.removeEventListener('hardwareBackPress', handleBackButton);
+    }
+  }, [])
+
   return (
     <ScrollView>
 

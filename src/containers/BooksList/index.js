@@ -1,5 +1,5 @@
 import { BookListContainer, FilterChip } from '_components';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   ScrollView,
   StyleSheet,
@@ -20,8 +20,20 @@ import { FilterModal } from '_containers/Filter';
 import { useTheme } from '@react-navigation/native';
 import { AppText, Screen } from 'components/common';
 import { Icon } from 'react-native-elements';
+import { BackHandler } from 'react-native';
 
 const BooksList = (props) => {
+  const handleBackButton = () => {
+    props.navigation.goBack()
+    return true;
+  };
+  useEffect(() => {
+    BackHandler.addEventListener('hardwareBackPress', handleBackButton);
+    return () => {
+      BackHandler.removeEventListener('hardwareBackPress', handleBackButton);
+    }
+  }, [])
+
   const [filter, setFilter] = useState([]);
   const { label, data, product_type } = props.route.params;
   const { visible, toggleFilter } = useFilter();

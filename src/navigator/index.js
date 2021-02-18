@@ -75,7 +75,7 @@ const navigatorComponent = (splashScreen, ad, backUser, res, User) => {
     );
   }
   if (backUser) {
-    console.log(User, "BackUser")
+    console.log("BackUser", User, "BackUser")
 
     return (
       <RootStack.Navigator

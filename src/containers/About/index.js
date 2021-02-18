@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, ScrollView, StyleSheet, ImageBackground, I18nManager } from 'react-native';
 import { AppText, Screen } from '../../components/common';
 import { Color } from '_constants/Colors';
@@ -11,7 +11,19 @@ import { useTheme } from '@react-navigation/native';
 import { Icon } from 'react-native-elements';
 import WebView from 'react-native-webview';
 import { useSelector } from 'react-redux';
+import { BackHandler } from 'react-native';
 const About = (props) => {
+  const handleBackButton = () => {
+    props.navigation.goBack()
+    return true;
+  };
+  useEffect(() => {
+    BackHandler.addEventListener('hardwareBackPress', handleBackButton);
+    return () => {
+      BackHandler.removeEventListener('hardwareBackPress', handleBackButton);
+    }
+  }, [])
+
   const { StaticReducer } = useSelector((state) => {
     return { StaticReducer: state.StaticReducer }
   })

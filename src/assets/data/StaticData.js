@@ -37,7 +37,7 @@ export const signUp = {
 export const JOIN_US = {
   modalData: {
     heading: I18nManager.isRTL ? 'سوف نتصل بك قريبا!' : 'We Will Contact You Shortly!',
-    description: I18nManager.isRTL ? 'تم تقديم نموذج طلب الانضمام الخاص بك بنجاح' : 'Your Join Request Form is submitted Successfully',
+    description: I18nManager.isRTL ? 'تم تقديم نموذج طلب الانضمام الخاص بك بنجاح' : 'Your Join Request Form is Submitted Successfully',
     buttonLabel: I18nManager.isRTL ? 'استمر' : 'Continue',
   },
 };
@@ -45,7 +45,7 @@ export const JOIN_US = {
 export const CONTACT_US = {
   modalData: {
     heading: I18nManager.isRTL ? 'سوف نتصل بك قريبا' : 'We Will Contact You Shortly!',
-    description: I18nManager.isRTL ? 'تم تقديم نموذج تقديم طلب الاتصال الخاص بك بنجاح' : 'Your Contact Request Submission Form is submitted Successfully',
+    description: I18nManager.isRTL ? 'تم تقديم نموذج تقديم طلب الاتصال الخاص بك بنجاح' : 'Your Contact Request Submission Form is Submitted Successfully',
     buttonLabel: I18nManager.isRTL ? 'استمر' : 'Continue',
   },
 };
@@ -75,8 +75,8 @@ export const PASSWORD_CHANGE = {
 
 export const CREATE_ORDER_TEXT = {
   modalData: {
-    heading: I18nManager.isRTL ? 'تم إنشاء طلبك بنجاح!' : 'Order is Successfully Placed',
-    description: I18nManager.isRTL ? 'تم إنشاء طلبك بنجاح!' : 'Your Order is created successfully!',
+    heading: I18nManager.isRTL ? 'تم إنشاء طلبك بنجاح!' : 'Order Is Successfully Placed',
+    description: I18nManager.isRTL ? 'تم إنشاء طلبك بنجاح!' : 'Your Order Is Created Successfully!',
     buttonLabel: I18nManager.isRTL ? 'استمر' : 'Continue',
   },
 };

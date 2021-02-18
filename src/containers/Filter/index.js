@@ -11,6 +11,7 @@ import {
 import { Icon } from 'react-native-elements';
 import { useTranslation } from 'react-i18next';
 import { shallowEqual, useSelector } from 'react-redux';
+import { BackHandler } from 'react-native';
 // const items = [
 //   { label: 'Romance', value: 'romance' },
 //   { label: 'Horror', value: 'horror' },
@@ -46,6 +47,17 @@ const FilterModal = (props) => {
   const { colors } = useTheme();
   const { buttonLabel, visible, onApply, onToggle } = props;
   const [state, setState] = useState(new Set());
+  const handleBackButton = () => {
+    props.navigation.goBack()
+    return true;
+  };
+  useEffect(() => {
+    BackHandler.addEventListener('hardwareBackPress', handleBackButton);
+    return () => {
+      BackHandler.removeEventListener('hardwareBackPress', handleBackButton);
+    }
+  }, [])
+
   useEffect(() => {
     if (props.filters) {
       // setState(new Set())

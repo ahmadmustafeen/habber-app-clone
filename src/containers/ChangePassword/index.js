@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { InputWithLabel, ModalScreen } from '_components';
 import { Button, Screen } from '_components/common';
@@ -18,7 +18,19 @@ import { useTranslation } from 'react-i18next';
 import { validateIsTrue, validatePassword } from '../../helpers/Validators';
 import { checkIfLoading } from '../../redux/selectors';
 import { I18nManager } from 'react-native';
+import { BackHandler } from 'react-native';
 const ChangePassword = (props) => {
+  const handleBackButton = () => {
+    props.navigation.goBack()
+    return true;
+  };
+  useEffect(() => {
+    BackHandler.addEventListener('hardwareBackPress', handleBackButton);
+    return () => {
+      BackHandler.removeEventListener('hardwareBackPress', handleBackButton);
+    }
+  }, [])
+
   const { t } = useTranslation(['ChangePassword'])
   const { visible, toggleModal } = useModal();
   const onContinue = () => {

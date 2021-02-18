@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Header } from '_components/Header';
 import { ScrollView, View, Text, ImageBackground, I18nManager, StyleSheet } from 'react-native';
 import {
@@ -9,8 +9,20 @@ import { Icon } from 'react-native-elements';
 import { useTheme } from '@react-navigation/native';
 import { AppText, Button } from 'components/common';
 import { InputWithLabel } from 'components';
+import { BackHandler } from 'react-native';
 
 const CartNew = (props) => {
+    const handleBackButton = () => {
+        props.navigation.goBack()
+        return true;
+    };
+    useEffect(() => {
+        BackHandler.addEventListener('hardwareBackPress', handleBackButton);
+        return () => {
+            BackHandler.removeEventListener('hardwareBackPress', handleBackButton);
+        }
+    }, [])
+
     const [state, setState] = useState({
         cardName: "",
         cardNumber: "",
