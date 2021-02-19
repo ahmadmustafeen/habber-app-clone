@@ -60,10 +60,7 @@ export function* splashSaga({ payload }) {
     } else {
       yield put({ type: FETCH_AD_SUCCESS, payload: { ad: false, res } });
 
-      // NavigationService.navigate('Auth', {
-      //   screen: AD_SCREENS,
-      //   params: { res },
-      // });
+
     }
   } catch (error) {
     console.log('SPLASH ERROR: ', error);

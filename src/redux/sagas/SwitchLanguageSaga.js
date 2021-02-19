@@ -9,6 +9,11 @@ import { setItem, getItem } from '_helpers/Localstorage';
 export function* switchLangSaga({ payload }) {
   let userProfile = yield getItem('@userProfile');
   userProfile = JSON.parse(userProfile);
+
+  let adViewed = yield getItem('@adViewed');
+  adViewed = JSON.parse(adViewed);
+  console.log(!adViewed, "adViewed")
+  debugger;
   try {
     console.log("adsdasdasdas", payload);
     yield setItem('@userProfile', JSON.stringify({ ...userProfile, language: { iso: i18n.language } }));

@@ -49,7 +49,7 @@ const DrawerNav = () => {
     </Drawer.Navigator>
   );
 };
-const navigatorComponent = (splashScreen, ad, backUser, res, User) => {
+const navigatorComponent = (splashScreen, ad, backUser, res, User, adViewed) => {
   console.log(res);
 
 
@@ -64,7 +64,7 @@ const navigatorComponent = (splashScreen, ad, backUser, res, User) => {
       </RootStack.Navigator>
     );
   }
-  if (ad) {
+  if (ad && !adViewed) {
     return (
       <RootStack.Navigator
         screenOptions={{
@@ -122,6 +122,7 @@ const config = {
 const Navigator = (props, ref) => {
   const [existingUser, setExistingUser] = useState("")
   const [User, setUser] = useState("")
+  const [adViewed, setAdViewed] = useState("")
 
   useEffect(() => {
     retrieveData();
@@ -131,8 +132,12 @@ const Navigator = (props, ref) => {
     try {
       const valueString = await AsyncStorage.getItem('@userProfile');
       const value = JSON.parse(valueString);
+
+      const valueAddString = await AsyncStorage.getItem('@adViewed');
+      const valueAdd = JSON.parse(valueAddString);
       // setData(value);
       setExistingUser(!!value.language)
+      setAdViewed(!!value.language && !valueAdd.adViewed)
       setUser(value)
       console.log("ANSWER", value)
     } catch (error) {
@@ -156,7 +161,7 @@ const Navigator = (props, ref) => {
   console.log("Navigator Splash backuser", backUser);
   return (
     <NavigationContainer linking={linking} ref={ref} theme={MyTheme}>
-      {navigatorComponent(splashScreen, ad, existingUser, res, User)}
+      {navigatorComponent(splashScreen, ad, existingUser, res, User, adViewed)}
     </NavigationContainer>
   );
 };

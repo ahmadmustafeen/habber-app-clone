@@ -68,6 +68,7 @@ export function* splashAdSaga() {
 
 
       yield setItem('@cartREDUCER', JSON.stringify(null));
+
       yield all([
         // put({ type: SIGN_OUT_SUCCESS }),
         put({ type: FETCH_USER_PROFILE }),
@@ -81,6 +82,7 @@ export function* splashAdSaga() {
         screen: HOME,
       });
     } else if (userProfile) {
+      yield setItem('@adViewed', JSON.stringify(true));
       yield put({ type: GUESTUSER_TOKEN });
       const { UserProfileReducer } = yield select(({ UserProfileReducer }) => {
         return { UserProfileReducer };
@@ -96,6 +98,7 @@ export function* splashAdSaga() {
         screen: SIGNIN_SCREEN,
       });
     } else {
+
       if (!userProfile || !userProfile.language) {
         yield put({ type: GUESTUSER_TOKEN });
         yield setItem(
