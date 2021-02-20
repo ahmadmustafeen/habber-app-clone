@@ -125,7 +125,10 @@ const Navigator = (props, ref) => {
   const [adViewed, setAdViewed] = useState("")
 
   useEffect(() => {
-    retrieveData();
+    // retrieveData2().then(
+    retrieveData() &&
+      retrieveData2()
+
   }, []);
 
   const retrieveData = async () => {
@@ -133,18 +136,33 @@ const Navigator = (props, ref) => {
       const valueString = await AsyncStorage.getItem('@userProfile');
       const value = JSON.parse(valueString);
 
-      const valueAddString = await AsyncStorage.getItem('@adViewed');
-      const valueAdd = JSON.parse(valueAddString);
+      // const valueAddString = await AsyncStorage.getItem('@adViewed');
+      // const valueAdd = JSON.parse(valueAddString);
       // setData(value);
       setExistingUser(!!value.language)
-      setAdViewed(!!value.language && !valueAdd.adViewed)
+      // setAdViewed(!!value.language && !valueAdd.adViewed)
       setUser(value)
-      console.log("ANSWER", value)
     } catch (error) {
       console.log(error);
     }
   };
+  const retrieveData2 = async () => {
+    try {
+      // const valueString = await AsyncStorage.getItem('@userProfile');
+      // const value = JSON.parse(valueString);
 
+      const valueAddString = await AsyncStorage.getItem('@adViewed');
+      const valueAdd = JSON.parse(valueAddString);
+      // setData(value);
+      // setExistingUser(!!value.language)
+      console.log("NEW VALUE OF ADD", valueAdd)
+      setAdViewed(valueAdd)
+      // setUser(value)
+      // console.log("ANSWER", value)
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
 
 

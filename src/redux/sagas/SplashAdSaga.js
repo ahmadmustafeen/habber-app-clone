@@ -26,7 +26,7 @@ export function* splashAdSaga() {
 
     let cartREDUCER = yield getItem('@cartREDUCER');
     cartREDUCER = JSON.parse(cartREDUCER);
-    console.log(CartReducer, "cartREDUCER");
+    console.log(userProfile, "cartREDUCER");
     if (userProfile && !userProfile.currency) {
 
       const userProfilecheck = JSON.parse(userProfile);
