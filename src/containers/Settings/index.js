@@ -110,7 +110,7 @@ const Settings = (props) => {
   const onLanguageChange = (val) => {
     // (val.iso === 'ar' && I18nManager.isRTL) ? false :
 
-    dispatch(withDataActions({ ...UserProfileReducer, language: val }, SWITCH_LANG))
+    dispatch(withDataActions({ ...UserProfileReducer, language: val, setting: true }, SWITCH_LANG))
     // i18n.changeLanguage(val).then(() => {
     //   I18nManager.forceRTL(val === 'ar');
     //   RNRestart.Restart();

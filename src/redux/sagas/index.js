@@ -45,7 +45,8 @@ import {
   UPDATE_CART_PRICES_OFFLINE,
   FETCH_GENRE,
   GUESTUSER_TOKEN,
-  PAYMENT_FAILURE_SAGA
+  PAYMENT_FAILURE_SAGA,
+  SETTING_REMOVAL
 } from '../actionTypes';
 
 import { signupSaga } from './SignupSaga';
@@ -92,6 +93,7 @@ import { UpdateCartPriceSagaOffline } from './UpdateCartPriceOfflineSaga'
 import { FilterSaga } from './FilterSaga'
 import { GuestUser_token } from './GuestUser_token'
 import { PaymentFailureSaga } from './PaymentFailureSaga'
+import { SettingRemoval } from './SettingRemoval'
 
 
 function* actionWatcher() {
@@ -140,6 +142,7 @@ function* actionWatcher() {
   yield takeLatest("RESET_PASSWORD_SAGA", ResetPasswordSaga)
   yield takeLatest(GUESTUSER_TOKEN, GuestUser_token)
   yield takeLatest(PAYMENT_FAILURE_SAGA, PaymentFailureSaga)
+  yield takeLatest(SETTING_REMOVAL, SettingRemoval)
 }
 
 export default function* rootSaga() {

@@ -49,9 +49,11 @@ import { AppText } from 'components/common';
 import { Icon } from 'react-native-elements';
 import RNExitApp from 'react-native-exit-app';
 export const itemWidth = wp(85);
-import { FETCH_BANNER } from '../../redux/actionTypes';
+import { FETCH_BANNER, SETTING_REMOVAL } from '../../redux/actionTypes';
 import { BackHandler } from 'react-native';
 import { Alert } from 'react-native';
+import { SETTINGS_SCREEN } from '../../constants/Screens';
+import { withoutDataActions } from '../../redux/actions';
 const { width } = Dimensions.get('window');
 const Home = (props) => {
   const CAROUSEL = useRef(null);
@@ -106,10 +108,20 @@ const Home = (props) => {
 
     // returned function will be called on component unmount 
     return () => {
+      if (UserProfileReducer.setting) {
+        console.log('WORRKED')
+        props.navigation.navigate(SETTINGS_SCREEN)
+      }
       BackHandler.removeEventListener('hardwareBackPress', handleBackButton);
     }
   }, [])
+  useEffect(() => {
+    if (UserProfileReducer.setting) {
+      dispatch(withoutDataActions(SETTING_REMOVAL))
+      props.navigation.navigate(SETTINGS_SCREEN)
+    }
 
+  }, [UserProfileReducer]);
 
 
 

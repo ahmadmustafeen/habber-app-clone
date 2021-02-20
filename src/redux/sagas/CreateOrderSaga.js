@@ -67,7 +67,7 @@ export function* CreateOrderSaga({ type, payload }) {
     const response = yield call(() =>
       RestClient.post(API_ENDPOINTS.order, obj),
     );
-    // console.log('CREATE ORDER RESPONSE', response);
+    console.log('CREATE ORDER RESPONSE', response);
     if (response.problem === NETWORK_ERROR) {
       return yield put({ type: SHOW_NETWORK_MODAL });
     }

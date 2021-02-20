@@ -118,7 +118,7 @@ const DrawerMenu = (props) => {
                     <TitleBarWithIcon
                       label={t('signIn')}
                       color={colors.white}
-                      onPress={() => props.navigation.navigate(SIGNIN_SCREEN)}
+                      onPress={() => props.navigation.navigate('Auth')}
                       noIcon
                     />
                     <View style={styles.Horizontalrow} />
@@ -185,7 +185,7 @@ const DrawerMenu = (props) => {
             </View>
           </View>
           <View style={{ width: wp(100), paddingBottom: hp(10), alignItems: 'center', justifyContent: 'center', transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }] }}>
-            <AppText small white>Version 1.33</AppText>
+            <AppText small white>Version 1.34</AppText>
           </View>
         </View>
       </ScrollView>

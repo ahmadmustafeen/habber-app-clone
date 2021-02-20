@@ -4,7 +4,7 @@ import { Icon } from 'react-native-elements'
 import { WebView } from 'react-native-webview';
 import { Header, ModalScreen } from '../../components';
 import { Screen } from '../../components/common';
-import { HOME, INVOICE } from '../../constants/Screens';
+import { HOME, INVOICE, MY_ORDERS } from '../../constants/Screens';
 import { PAYMENT_FAILURE_SAGA } from '../../redux/actionTypes'
 import { useTheme } from '@react-navigation/native';
 import { I18nManager } from 'react-native';
@@ -27,6 +27,7 @@ export const Payment = (props) => {
 
   const handleBackButton = () => {
     // console.log(visible)
+    setModalVisible(true)
     dispatch(withDataActions({ id: props.route.params.orderDetails.id }, PAYMENT_FAILURE_SAGA))
     return true;
   };
@@ -79,7 +80,7 @@ Please Retry`,
   const onContinue = () => {
     setModalVisible(false)
     success ? (props.navigation.navigate(INVOICE, { item: props.route.params.orderDetails })) : props.navigation.navigate(HOME);
-    props.navigation.navigate(HOME)
+    props.navigation.navigate(MY_ORDERS)
     // toggleModal();
 
   };

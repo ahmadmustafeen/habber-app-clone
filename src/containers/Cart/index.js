@@ -244,7 +244,7 @@ const AddToCart = (props) => {
                     text: I18nManager.isRTL ? "تقدم" : "Proceed",
                     onPress: () => {
                       // (payload.checkout) ? NavigationService.navigate('Checkout', { screen: CHECKOUT }) :
-                      props.navigation.navigate(SIGNIN_SCREEN)
+                      props.navigation.navigate("Auth", { Screen: SIGNIN_SCREEN })
                     }
                   },
                 ]))}> {t("checkout")}

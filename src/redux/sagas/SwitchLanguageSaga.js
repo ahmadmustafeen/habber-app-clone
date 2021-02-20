@@ -13,16 +13,16 @@ export function* switchLangSaga({ payload }) {
   let adViewed = yield getItem('@adViewed');
   adViewed = JSON.parse(adViewed);
   console.log(!adViewed, "adViewed")
-  debugger;
+  // debugger;
   try {
     console.log("adsdasdasdas", payload);
-    yield setItem('@userProfile', JSON.stringify({ ...userProfile, language: { iso: i18n.language } }));
+    yield setItem('@userProfile', JSON.stringify({ ...userProfile, language: { iso: i18n.language }, setting: payload.setting }));
     yield i18n.changeLanguage(payload.language.iso);
     yield I18nManager.forceRTL(payload.language.iso == 'ar');
 
 
 
-    // yield setItem('@userProfile', JSON.stringify(payload));
+    // yield setItem('@setting', JSON.stringify(true));
     const CartReducer = yield select((state) => state.CartReducer);
 
     const UserProfileReducer = yield select((state) => state.UserProfileReducer);
@@ -37,7 +37,7 @@ export function* switchLangSaga({ payload }) {
     }
     yield put({
       type: SWITCH_LANG_SUCCESS,
-      payload: { ...userProfile, language: { iso: i18n.language } },
+      payload: { ...userProfile, language: { iso: i18n.language }, setting: true },
     });
 
     RNRestart.Restart();

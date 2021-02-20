@@ -19,7 +19,7 @@ export function* PaymentFailureSaga({ type, payload }) {
         console.log(response, "response")
         const { status, data, message } = response;
         if (status === 200) {
-            yield put({ type: SHOW_MODAL, payload: null });
+            // yield put({ type: SHOW_MODAL, payload: null });
             // NavigationService.navigate(HOME)
             // yield put({ type: SIGN_IN_SUCCESS, payload: { ...response.data.data } })
 
@@ -52,7 +52,7 @@ export function* PaymentFailureSaga({ type, payload }) {
 
         }
         else {
-            yield put({ type: SHOW_MODAL, payload: null });
+            // yield put({ type: SHOW_MODAL, payload: null });
             // yield put({ type: SHOW_MODAL, payload: null });
             // const text = I18nManager.isRTL ? 'لا يمكن تحديث ملف التعريف الخاص بك' : 'Your Profile cannot be Updated'
             // Platform.OS === 'ios' ?

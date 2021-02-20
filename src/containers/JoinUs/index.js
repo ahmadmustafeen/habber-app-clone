@@ -35,6 +35,7 @@ import { useTheme } from '@react-navigation/native';
 import { useTranslation } from 'react-i18next';
 import { checkIfLoading } from '../../redux/selectors';
 import { BackHandler } from 'react-native';
+import { Screen } from '../../components/common';
 const JoinUs = (props) => {
 
 
@@ -131,14 +132,15 @@ const JoinUs = (props) => {
   const { navigate } = props.navigation;
   const { colors } = useTheme()
   return (
-    <ScrollView>
+    <Screen noPadding>
+      <View key="header">
+        <Header {...props}
+          headerImage
+          headerLeft
+          backIcon
+        />
+      </View>
 
-      <Header {...props}
-        headerImage
-        headerLeft
-        backIcon
-
-      />
       <View key="content" style={styles.content}>
         <InputWithLabel
           color={'black'}
@@ -210,6 +212,11 @@ const JoinUs = (props) => {
             />
           </View>
         </View>
+        <ModalScreen
+          visible={visible}
+          onContinue={onContinue}
+          {...JOIN_US.modalData}
+        />
       </View>
       <View key="footer">
         <View>
@@ -221,12 +228,8 @@ const JoinUs = (props) => {
 
         </View>
       </View>
-      <ModalScreen
-        visible={visible}
-        onContinue={onContinue}
-        {...JOIN_US.modalData}
-      />
-    </ScrollView>
+
+    </Screen>
   );
 };
 

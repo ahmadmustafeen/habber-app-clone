@@ -19,6 +19,9 @@ import {
 import { ImageBackground } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { Screen } from '../../components/common';
+import { withoutDataActions } from '../../redux/actions';
+import { SETTING_REMOVAL } from '../../redux/actionTypes';
+import { SETTINGS_SCREEN } from '../../constants/Screens';
 
 const SignIn = (props) => {
   const { t } = useTranslation(['login']);
@@ -41,7 +44,13 @@ const SignIn = (props) => {
     };
   }, shallowEqual);
 
+  useEffect(() => {
+    if (UserProfileReducer.setting) {
+      // dispatch(withoutDataActions(SETTING_REMOVAL))
+      navigate('Drawer', { screen: 'Home' })
+    }
 
+  }, [UserProfileReducer]);
 
   const handleChange = (key, value) => {
     if (key === 'email' || key === 'phone') {
