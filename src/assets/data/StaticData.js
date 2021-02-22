@@ -10,6 +10,8 @@ import {
   Linking,
   Platform,
 } from 'react-native';
+
+
 export const forgotPassword = {
   forgot_password: I18nManager.isRTL ? 'هل نسيت كلمة المرور؟' : 'Forgot Password?',
   enter_email: I18nManager.isRTL ? 'أدخل عنوان البريد الإلكتروني الذي استخدمته لإنشاء حسابك وسنرسل لك رابطًا عبر البريد الإلكتروني لإعادة تعيين كلمة مرورك' :
