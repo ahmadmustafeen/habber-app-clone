@@ -170,7 +170,6 @@ const RequestBooks = (props) => {
           onCart={toggleCart}
           onSearch={toggleSearch}
           {...REQUEST_BOOK_MODAL.modalData}
-          description={book_type === 'educational' ? I18nManager.isRTL ? 'تم تقديم نموذج طلب كتابك التعليمي بنجاح' : 'Your Educational Book Request Form is Submitted Successfully' : I18nManager.isRTL ? 'تم إرسال نموذج طلب كتابك بنجاح' : 'Your Book Request Form is Submitted Successfully'}
         />
       </View>
 

@@ -21,8 +21,8 @@ export function* addressSaga({ type, payload }) {
     const { status, data, message } = response;
     if (data.success) {
       yield put({ type: ADD_ADDRESS_SUCCESS, });
-      yield put({ type: FETCH_ADDRESS }),
-        yield put({ type: SHOW_MODAL, payload: null });
+      yield put({ type: FETCH_ADDRESS });
+      yield put({ type: SHOW_MODAL, payload: null });
 
       // Alert.alert('Successfully Added new Address', message, [
       //   {
