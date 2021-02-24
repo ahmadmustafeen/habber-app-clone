@@ -119,7 +119,8 @@ Please Retry`,
         <ModalScreen
           visible={modalVisible}
           onContinue={onContinue}
-
+          iconName="cross"
+          iconType="entypo"
           heading={success ? I18nManager.isRTL ? "الدفع الناجح" : 'Payment Success' : I18nManager.isRTL ? "فشل الدفع" : 'Payment Failure'}
           description={success
             ? I18nManager.isRTL ? `تم الدفع الخاص بك بنجاح

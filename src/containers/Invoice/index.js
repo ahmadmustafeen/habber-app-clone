@@ -77,7 +77,7 @@ const Invoice = (props) => {
     const OrderBox = (props) => {
         return (
             <View style={[styles.detailCartHeader, { paddingVertical: hp(1), paddingHorizontal: wp(3) }]}>
-                <View style={{ flex: 2, justifyContent: 'center', alignItems: 'center', }}>
+                <View style={{ flex: 2, justifyContent: 'center' }}>
                     <AppText text small>
                         {props.name}
                     </AppText>
