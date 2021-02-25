@@ -38,8 +38,8 @@ const ModalSelectorCustom = (props) => {
             borderRadius: 5,
             borderWidth: 0.5,
             justifyContent: 'center',
-            borderColor: colors.primary,
-            backgroundColor: 'red'
+            // borderColor: colors.primary,
+            backgroundColor: 'rgba(0,0,0,0.05)'
         }}>
 
 
