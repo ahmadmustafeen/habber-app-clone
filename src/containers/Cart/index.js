@@ -81,108 +81,110 @@ const AddToCart = (props) => {
   }, [])
 
   return (
-    <ScrollView>
-
-      <Header
-        headerLeft
-        UpperCase
-        headerImage
-        backIcon
-        {...props}
-
-      />
-
-      <Screen>
-        <View key="header"></View>
-
-        <View key="content">
-          {(!(CartReducer.book.length + CartReducer.bookmark.length)) ?
-            <AppText  >{I18nManager.isRTL ? "لم يتم إضافة عناصر في عربة التسوق الخاصة بك حتى الآن" : "No items are added In your cart yet"}</AppText>
-
-            /* <NoBookAvailbe emptyy={I18nManager.isRTL ? "لم يتم إضافة عناصر في عربة التسوق الخاصة بك حتى الآن" : "No items are added In your cart yet"} */
-
-            : null}
-          <Loader loading={isLoading} />
-
-          {Object.values(CartReducer)
-            .filter((key) => Array.isArray(key))
-            .map((product_type) =>
-              product_type.map((product) => {
-                const {
-                  image,
-                  title,
-                  arabic_title,
-                  author_name,
-                  cart_price,
-                  cart_quantity,
-                } = product;
 
 
-                return (
-                  <View style={styles.profiletop}>
-                    <View style={styles.imgContainer}>
-                      <Image style={styles.image} source={{ uri: image }} />
-                    </View>
-                    <View style={styles.viewtxt}>
-                      <AppText bold size={18} style={styles.txt}>
-                        {I18nManager.isRTL ? arabic_title : title}
-                      </AppText>
-                      <AppText size={15} style={[styles.txt, styles.author]}>
-                        {I18nManager.isRTL ? "بواسطة" : "by"}: {author_name}
-                      </AppText>
-                      <AppText bold size={17} style={styles.pricetxt}>
-                        {I18nManager.isRTL ? "السعر" : "Price"}:
-{rtlLayout && price_product.symbol} {parseFloat(cart_price.toString().replace(',', '')).toFixed(2)} {rtlLayout || price_product.symbol}
-                      </AppText>
-                      <View
-                        style={{
-                          width: wp(30),
-                          height: hp(6),
-                          marginBottom: hp(3),
-                          marginTop: hp(3),
-                          marginLeft: wp(5)
-                        }}>
-                        <Counter
-                          value={cart_quantity}
-                          onIncrement={() => updateCartItem(product, 'add')}
-                          onDecrement={() => updateCartItem(product, 'sub')}
-                        />
-                      </View>
-                      <HorizontalRow
-                        style={{
-                          borderColor: 'rgb(200, 200, 200)',
-                          borderWidth: hp(0.1),
-                          width: wp(40),
 
-                        }}
-                      />
-                      <TouchableOpacity style={styles.removeContainer} onPress={() => updateCartItem(product, 'remove')}>
-                        <Icon
-                          size={18}
-                          color={colors.primary}
-                          name="trash-o"
-                          type="font-awesome"
-                        />
-                        <AppText
-                          bold
-                          size={17}
-                          primary
-                          style={[styles.txt, styles.removeTxt]}
+    <Screen noPadding>
+      <View key="header">
+        <Header
+          headerLeft
+          UpperCase
+          headerImage
+          backIcon
+          {...props}
 
-                        >
-                          {I18nManager.isRTL ? "إزالة" : "Remove"}
-                        </AppText>
-                      </TouchableOpacity>
+        />
 
-                    </View>
+      </View>
+
+      <View key="content" style={{ width: wp(90), alignSelf: 'center' }}>
+        {(!(CartReducer.book.length + CartReducer.bookmark.length)) ?
+          <AppText  >{I18nManager.isRTL ? "لم يتم إضافة عناصر في عربة التسوق الخاصة بك حتى الآن" : "No items are added In your cart yet"}</AppText>
+
+          /* <NoBookAvailbe emptyy={I18nManager.isRTL ? "لم يتم إضافة عناصر في عربة التسوق الخاصة بك حتى الآن" : "No items are added In your cart yet"} */
+
+          : null}
+        <Loader loading={isLoading} />
+
+        {Object.values(CartReducer)
+          .filter((key) => Array.isArray(key))
+          .map((product_type) =>
+            product_type.map((product) => {
+              const {
+                image,
+                title,
+                arabic_title,
+                author_name,
+                cart_price,
+                cart_quantity,
+              } = product;
+
+
+              return (
+                <View style={styles.profiletop}>
+                  <View style={styles.imgContainer}>
+                    <Image style={styles.image} source={{ uri: image }} />
                   </View>
-                )
+                  <View style={styles.viewtxt}>
+                    <AppText bold size={18} style={styles.txt}>
+                      {I18nManager.isRTL ? arabic_title : title}
+                    </AppText>
+                    <AppText size={15} style={[styles.txt, styles.author]}>
+                      {I18nManager.isRTL ? "بواسطة" : "by"}: {author_name}
+                    </AppText>
+                    <AppText bold size={17} style={styles.pricetxt}>
+                      {I18nManager.isRTL ? "السعر" : "Price"}:
+{rtlLayout && price_product.symbol} {parseFloat(cart_price.toString().replace(',', '')).toFixed(2)} {rtlLayout || price_product.symbol}
+                    </AppText>
+                    <View
+                      style={{
+                        width: wp(30),
+                        height: hp(6),
+                        marginBottom: hp(3),
+                        marginTop: hp(3),
+                        marginLeft: wp(5)
+                      }}>
+                      <Counter
+                        value={cart_quantity}
+                        onIncrement={() => updateCartItem(product, 'add')}
+                        onDecrement={() => updateCartItem(product, 'sub')}
+                      />
+                    </View>
+                    <HorizontalRow
+                      style={{
+                        borderColor: 'rgb(200, 200, 200)',
+                        borderWidth: hp(0.1),
+                        width: wp(40),
 
-              }),
-            )}
+                      }}
+                    />
+                    <TouchableOpacity style={styles.removeContainer} onPress={() => updateCartItem(product, 'remove')}>
+                      <Icon
+                        size={18}
+                        color={colors.primary}
+                        name="trash-o"
+                        type="font-awesome"
+                      />
+                      <AppText
+                        bold
+                        size={17}
+                        primary
+                        style={[styles.txt, styles.removeTxt]}
+
+                      >
+                        {I18nManager.isRTL ? "إزالة" : "Remove"}
+                      </AppText>
+                    </TouchableOpacity>
+
+                  </View>
+                </View>
+              )
+
+            }),
+          )}
 
 
-          {/* <View style={styles.totalcontainer}>
+        {/* <View style={styles.totalcontainer}>
             <View
               style={{
                 flex: 1,
@@ -225,34 +227,33 @@ const AddToCart = (props) => {
               </AppText>
             </View>
           </View> */}
-        </View>
-        <View key="footer">
-          {(!(CartReducer.book.length + CartReducer.bookmark.length)) ? null :
+      </View>
+      <View key="footer" style={{ width: wp(90), alignSelf: 'center' }}>
+        {(!(CartReducer.book.length + CartReducer.bookmark.length)) ? null :
 
-            <Button
-              bold
-              primary
-              style={styles.footerbtn}
-              onPress={() => (UserProfileReducer.token ? (
-                dispatch(
-                  withDataActions(CartReducer.book, RE_ADD_TO_CART),
-                ) &&
-                props.navigation.navigate(CHECKOUT)
-              ) :
-                Alert.alert((I18nManager.isRTL ? "" : ""), (I18nManager.isRTL ? "يرجى تسجيل الدخول أو التسجيل أولا للمتابعة" : "Kindly sign-in or sign-up first to continue"), [
-                  {
-                    text: I18nManager.isRTL ? "تقدم" : "Proceed",
-                    onPress: () => {
-                      // (payload.checkout) ? NavigationService.navigate('Checkout', { screen: CHECKOUT }) :
-                      props.navigation.navigate("Auth", { Screen: SIGNIN_SCREEN })
-                    }
-                  },
-                ]))}> {t("checkout")}
-            </Button>
-          }
-        </View>
-      </Screen >
-    </ScrollView >
+          <Button
+            bold
+            primary
+            style={styles.footerbtn}
+            onPress={() => (UserProfileReducer.token ? (
+              dispatch(
+                withDataActions(CartReducer.book, RE_ADD_TO_CART),
+              ) &&
+              props.navigation.navigate(CHECKOUT)
+            ) :
+              Alert.alert((I18nManager.isRTL ? "" : ""), (I18nManager.isRTL ? "يرجى تسجيل الدخول أو التسجيل أولا للمتابعة" : "Kindly sign-in or sign-up first to continue"), [
+                {
+                  text: I18nManager.isRTL ? "تقدم" : "Proceed",
+                  onPress: () => {
+                    // (payload.checkout) ? NavigationService.navigate('Checkout', { screen: CHECKOUT }) :
+                    props.navigation.navigate("Auth", { Screen: SIGNIN_SCREEN })
+                  }
+                },
+              ]))}> {t("checkout")}
+          </Button>
+        }
+      </View>
+    </Screen >
   );
 };
 

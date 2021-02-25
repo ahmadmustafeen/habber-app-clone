@@ -32,10 +32,11 @@ export function* SwitchCurrencySaga({ payload }) {
             )
             console.log(response, "SwitchCurrencySaga RESPONSE")
             // console.log("THIS IS THE RESPONSE", response)
-            if (response.status === 200) {
+            if (response.status !== 200) {
 
 
-                yield put({ type: FETCH_ADDRESS });
+                yield put({ type: SWITCH_CURRENCY_FAILURE, error });
+
 
             }
 
@@ -45,6 +46,7 @@ export function* SwitchCurrencySaga({ payload }) {
             type: SWITCH_CURRENCY_SUCCESS,
             payload,
         });
+        yield put({ type: FETCH_ADDRESS });
         // yield put({ type: SPLASH_ACTION })
         // yield put({ type: FETCH_BOOKCLUBS_SUCCESS, payload: [] })
         // yield put({ type: FETCH_ENGLISH_BOOKS_SUCCESS, payload: [] })

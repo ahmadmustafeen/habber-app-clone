@@ -57,6 +57,8 @@ export function* AddToCartSaga({ type, payload }) {
       yield put({ type: ADD_TO_CART_FAILURE });
     }
   } catch (error) {
+
+    NavigationService.navigate(CART_SCREEN);
     yield put({ type: ADD_TO_CART_FAILURE, error });
   }
 }

@@ -21,7 +21,7 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import { Screen } from '../../components/common';
 import { withoutDataActions } from '../../redux/actions';
 import { SETTING_REMOVAL } from '../../redux/actionTypes';
-import { SETTINGS_SCREEN } from '../../constants/Screens';
+import { HOME, SETTINGS_SCREEN } from '../../constants/Screens';
 
 const SignIn = (props) => {
   const { t } = useTranslation(['login']);
@@ -217,7 +217,7 @@ Login with Social media account`}
                 email: '',
                 password: '',
               })
-              navigate('Drawer', { screen: 'Home' })
+              navigate('Drawer', { screen: HOME })
             }}
           >
             {t('skip')}
