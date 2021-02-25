@@ -13,6 +13,7 @@ import RNRestart from 'react-native-restart';
 
 export function* SwitchCurrencySaga({ payload }) {
     try {
+        console.log(payload, "SwitchCurrencySaga")
         const CartReducer = yield select(
             ({ CartReducer }) => CartReducer,
         );
@@ -22,12 +23,14 @@ export function* SwitchCurrencySaga({ payload }) {
         if (userProfile.token) {
             form_data.append('first_name', userProfile.first_name);
             form_data.append('last_name', userProfile.last_name);
+            form_data.append('email', userProfile.email);
             form_data.append('phone', userProfile.phone);
             form_data.append('language_id', userProfile.language.id);
             form_data.append('currency_id', payload.currency.id);
             const response = yield call(() =>
                 RestClient.post(API_ENDPOINTS.user, form_data),
             )
+            console.log(response, "SwitchCurrencySaga RESPONSE")
             // console.log("THIS IS THE RESPONSE", response)
             if (response.status === 200) {
 

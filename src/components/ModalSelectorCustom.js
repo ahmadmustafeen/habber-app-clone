@@ -38,7 +38,8 @@ const ModalSelectorCustom = (props) => {
             borderRadius: 5,
             borderWidth: 0.5,
             justifyContent: 'center',
-            borderColor: colors.primary
+            borderColor: colors.primary,
+            backgroundColor: 'red'
         }}>
 
 
@@ -50,7 +51,6 @@ const ModalSelectorCustom = (props) => {
                 ]}
 
                 data={data}
-
 
 
                 initValue={initValue || "Select"}
@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
 
         justifyContent: 'center',
         alignSelf: 'flex-start',
-        // backgroundColor: 'transparent',
+        backgroundColor: 'transparent',
         color: 'black'
 
     },

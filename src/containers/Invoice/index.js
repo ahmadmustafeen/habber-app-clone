@@ -124,7 +124,7 @@ const Invoice = (props) => {
                         type="antdesign"
                     />} headerImage />
 
-            <View key="content">
+            <View key="content" style={{ paddingVertical: hp(3) }}>
                 <InvoiceItem headerLeft={I18nManager.isRTL ? "رقم التعريف الخاص بالطلب" : "Order ID"} headerRight={I18nManager.isRTL ? "تاريخ الطلب" : "Order Date"} textLeft={item.id} textRight={item.created_at.split('T')[0]} />
                 <View style={{ width: wp(80), alignSelf: "center", borderBottomColor: colors.primary, borderBottomWidth: hp(0.1) }} />
                 <InvoiceItem headerLeft={I18nManager.isRTL ? "اسم الزبون" : "Customer Name"}
@@ -205,7 +205,7 @@ const Invoice = (props) => {
 
 
 
-        </ScrollView>
+        </ScrollView >
     );
 };
 const styles = StyleSheet.create({
