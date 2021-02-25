@@ -82,9 +82,9 @@ const navigatorComponent = (splashScreen, ad, backUser, res, User, adViewed) => 
         screenOptions={{
           headerShown: false,
         }}>
-        {!User.token && <RootStack.Screen name="Auths" component={AuthNav} />}
+        {!User.token && <RootStack.Screen name="Auth" component={AuthNav} />}
         <RootStack.Screen name="Drawer" component={DrawerNav} />
-        <RootStack.Screen name="Auth" component={AuthNav} />
+        {User.token && <RootStack.Screen name="Auth" component={AuthNav} />}
 
 
       </RootStack.Navigator>
