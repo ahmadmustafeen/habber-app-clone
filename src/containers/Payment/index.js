@@ -119,8 +119,8 @@ Please Retry`,
         <ModalScreen
           visible={modalVisible}
           onContinue={onContinue}
-          iconName="cross"
-          iconType="entypo"
+          iconName={success ? false : "cross"}
+          iconType={success ? false : "entypo"}
           heading={success ? I18nManager.isRTL ? "الدفع الناجح" : 'Payment Success' : I18nManager.isRTL ? "فشل الدفع" : 'Payment Failure'}
           description={success
             ? I18nManager.isRTL ? `تم الدفع الخاص بك بنجاح
@@ -129,7 +129,8 @@ Completed`
             : I18nManager.isRTL ? `عفوًا! عملية الدفع فشلت
 الرجاء اعادة المحاولة`: `Ops! Payment Failed
 Please Retry`}
-          buttonLabel={I18nManager.isRTL ? 'يكمل' : 'Continue'}
+          image={success ? require("_assets/images/new-product.png") : false}
+          buttonLabel={success ? I18nManager.isRTL ? "اذهب إلى أوامري" : "GO TO MY ORDERS" : I18nManager.isRTL ? 'يكمل' : 'Continue'}
 
         />
       </View>

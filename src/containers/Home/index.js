@@ -100,6 +100,7 @@ const Home = (props) => {
   const handleBackButton = () => {
     // props.navigation.navigate(HOME)
     RNExitApp.exitApp()
+    // BackHandler.exitApp()
 
   }
 

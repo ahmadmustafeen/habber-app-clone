@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   View,
   StyleSheet,
@@ -32,8 +32,13 @@ import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import { AppText } from 'components/common';
 import PushNotification from 'react-native-push-notification';
 import { PUSH_NOTIFICATION_FUNCTION, PUSH_NOTIFICATION_FUNCTION_REDUCER, SWITCH_LANG } from '../../redux/actionTypes';
+import { BackHandler } from 'react-native';
 
 const LANGUAGES = [{ id: 1, iso: 'ar', name: 'Arabic' }, { id: 2, iso: 'en', name: 'English' }];
+
+
+
+
 const Settings = (props) => {
   const { colors } = useTheme();
   const { UserProfileReducer, FetchCurrencyReducer, FetchCountriesReducer } = useSelector((state) => {
@@ -71,6 +76,7 @@ const Settings = (props) => {
       symbol,
       onPress
     } = props
+
 
     return (
       <>
@@ -126,6 +132,16 @@ const Settings = (props) => {
     toggleDropdown('notifications');
   };
   const { t } = useTranslation(['Settings']);
+  const handleBackButton = () => {
+    props.navigation.goBack()
+    return true;
+  };
+  useEffect(() => {
+    BackHandler.addEventListener('hardwareBackPress', handleBackButton);
+    return () => {
+      BackHandler.removeEventListener('hardwareBackPress', handleBackButton);
+    }
+  }, [])
   return (
     <Screen noPadding>
       <View key="header">

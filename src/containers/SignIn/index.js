@@ -216,8 +216,8 @@ Login with Social media account`}
               setState({
                 email: '',
                 password: '',
-              })
-              navigate('Drawer', { screen: HOME })
+              });
+              (navigate(HOME) || (navigate('Drawer', { screen: HOME })))
             }}
           >
             {t('skip')}

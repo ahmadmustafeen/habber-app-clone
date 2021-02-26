@@ -137,9 +137,9 @@ const Invoice = (props) => {
                 <InvoiceItem headerLeft={I18nManager.isRTL ? "عنوان" : "Address"}
                     headerRight={I18nManager.isRTL ? "طريقة الدفع او السداد" : "Payment Method"}
                     textLeft={item.address_name} textRight={item.payment_type} />
-                <InvoiceItem headerLeft={I18nManager.isRTL ? "حالة الطلب" : "Order Status"}
+                {/* <InvoiceItem headerLeft={I18nManager.isRTL ? "حالة الطلب" : "Order Status"}
                     textLeft={item.status}
-                />
+                /> */}
                 <View style={[styles.detailCart]}>
                     <View style={[styles.detailCartHeader, { backgroundColor: colors.borderColor }]}>
                         <View style={{ flex: 3, justifyContent: 'center', alignItems: 'center', height: hp(5) }}>

@@ -63,9 +63,7 @@ export function* signinSaga({ payload }) {
         put({ type: HIDE_MODAL }),
       ]);
 
-      NavigationService.navigate('Drawer', {
-        screen: HOME,
-      });
+      if (!NavigationService.navigate(HOME)) NavigationService.navigate("Drawer", { Screen: HOME })
 
     } else {
 

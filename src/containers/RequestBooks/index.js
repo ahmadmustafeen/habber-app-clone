@@ -32,6 +32,19 @@ const options = {
   },
 };
 const RequestBooks = (props) => {
+
+
+
+  const handleBackButton = () => {
+    props.navigation.goBack()
+    return true;
+  };
+  useEffect(() => {
+    BackHandler.addEventListener('hardwareBackPress', handleBackButton);
+    return () => {
+      BackHandler.removeEventListener('hardwareBackPress', handleBackButton);
+    }
+  }, [])
   // console.log(Keyboard.removeCurrentListener(() => console.log("worked")))
 
   const { isLoading } = useSelector((state) => {

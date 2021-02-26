@@ -38,14 +38,16 @@ const MyOrders = (props) => {
 
 
 
-  useFocusEffect(
-    React.useCallback(() => {
-
-      BackHandler.addEventListener('hardwareBackPress', () => props.navigation.navigate(HOME, { screen: HOME, name: "Home" }));
-      return () =>
-        BackHandler.removeEventListener('hardwareBackPress', () => props.navigation.navigate(HOME));
-    }, [])
-  );
+  const handleBackButton = () => {
+    props.navigation.goBack()
+    return true;
+  };
+  useEffect(() => {
+    BackHandler.addEventListener('hardwareBackPress', handleBackButton);
+    return () => {
+      BackHandler.removeEventListener('hardwareBackPress', handleBackButton);
+    }
+  }, [])
 
 
   const renderItem = ({ item }) => {
