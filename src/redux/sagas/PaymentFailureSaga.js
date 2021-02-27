@@ -5,7 +5,7 @@ import { startAction, stopAction } from '_redux/actions';
 import { RestClient } from '_network/RestClient';
 import * as NavigationService from '../../../NavigationService';
 import { UPDATE_PASSWORD_FAILURE } from '_redux/actionTypes';
-import { FETCH_USER_PROFILE, SHOW_MODAL, SIGN_IN_SUCCESS, SPLASH_ACTION, UPDATE_PROFILE_FAILURE, UPDATE_PROFILE_SUCCESS } from '../actionTypes';
+import { FETCH_USER_CART_SUCCESS, FETCH_USER_PROFILE, SHOW_MODAL, SIGN_IN_SUCCESS, SPLASH_ACTION, UPDATE_PROFILE_FAILURE, UPDATE_PROFILE_SUCCESS } from '../actionTypes';
 import { MY_PROFILE } from '_constants/Screens';
 import { getItem, setItem } from '../../helpers/Localstorage';
 import { HOME } from '../../constants/Screens';
@@ -18,7 +18,10 @@ export function* PaymentFailureSaga({ type, payload }) {
         )
         console.log(response, "response")
         const { status, data, message } = response;
+        yield put({ type: FETCH_USER_CART_SUCCESS, payload: null });
         if (status === 200) {
+
+
             // yield put({ type: SHOW_MODAL, payload: null });
             // NavigationService.navigate(HOME)
             // yield put({ type: SIGN_IN_SUCCESS, payload: { ...response.data.data } })

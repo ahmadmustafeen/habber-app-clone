@@ -27,8 +27,9 @@ export const Payment = (props) => {
 
   const handleBackButton = () => {
     // console.log(visible)
-    setModalVisible(true)
-    dispatch(withDataActions({ id: props.route.params.orderDetails.id }, PAYMENT_FAILURE_SAGA))
+    props.navigation.goBack()
+    // setModalVisible(true)
+    // dispatch(withDataActions({ id: props.route.params.orderDetails.id }, PAYMENT_FAILURE_SAGA))
     return true;
   };
 
@@ -118,7 +119,7 @@ Please Retry`,
 
         <ModalScreen
           visible={modalVisible}
-          onContinue={onContinue}
+          onContinue={success ? onContinue : () => props.navigation.goBack()}
           iconName={success ? false : "cross"}
           iconType={success ? false : "entypo"}
           heading={success ? I18nManager.isRTL ? "الدفع الناجح" : 'Payment Success' : I18nManager.isRTL ? "فشل الدفع" : 'Payment Failure'}
@@ -130,7 +131,7 @@ Completed`
 الرجاء اعادة المحاولة`: `Ops! Payment Failed
 Please Retry`}
           image={success ? require("_assets/images/new-product.png") : false}
-          buttonLabel={success ? I18nManager.isRTL ? "اذهب إلى أوامري" : "GO TO MY ORDERS" : I18nManager.isRTL ? 'يكمل' : 'Continue'}
+          buttonLabel={success ? I18nManager.isRTL ? "اذهب إلى أوامري" : "GO TO MY ORDERS" : I18nManager.isRTL ? 'أعد المحاولة' : 'RETRY'}
 
         />
       </View>
