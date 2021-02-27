@@ -30,7 +30,9 @@ const TermsAndConditions = (props) => {
       </View>
 
       <View key="content" style={{ width: wp(90), alignSelf: "center" }}>
-        <WebView source={{ uri: link }} style={styles.staticPage} scalesPageToFit={true} />
+        <WebView source={{ uri: link }} style={styles.staticPage}
+          scalesPageToFit={Platform.OS === 'android' ? false : true}
+        />
       </View>
     </Screen>
   );
@@ -38,7 +40,7 @@ const TermsAndConditions = (props) => {
 const styles = StyleSheet.create({
   staticPage: {
     height: hp(70),
-    width: wp(100)
+    width: wp(90)
   }
 })
 export default TermsAndConditions;

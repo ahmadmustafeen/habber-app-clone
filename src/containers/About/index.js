@@ -12,6 +12,7 @@ import { Icon } from 'react-native-elements';
 import WebView from 'react-native-webview';
 import { useSelector } from 'react-redux';
 import { BackHandler } from 'react-native';
+import { Platform } from 'react-native';
 const About = (props) => {
   const handleBackButton = () => {
     props.navigation.goBack()
@@ -29,7 +30,12 @@ const About = (props) => {
   })
   const link = (I18nManager.isRTL ? StaticReducer.about_us_url_ar : StaticReducer.about_us_url)
   const { colors } = useTheme()
-
+  const SCRIPT = `
+const meta = document.createElement('meta');
+meta.setAttribute('content', ' initial-scale=1.0, maximum-scale=1.0, user-scalable=0');
+meta.setAttribute('name', 'viewport');
+document.head.appendChild(meta);
+`;
   return (
     <Screen noPadding>
       <View key="header">
@@ -51,7 +57,8 @@ const About = (props) => {
         <WebView
           source={{ uri: link }}
           style={styles.staticPage}
-
+          scalesPageToFit={Platform.OS === 'android' ? false : true}
+          injectedJavaScript={SCRIPT}
         />
       </View>
     </Screen>
