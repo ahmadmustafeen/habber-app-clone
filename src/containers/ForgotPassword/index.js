@@ -23,6 +23,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 import { validateIsTrue } from '../../helpers/Validators';
 import { I18nManager } from 'react-native';
 import { BackHandler } from 'react-native';
+import { Keyboard } from 'react-native';
 const ForgotPassword = (props) => {
   const dispatch = useDispatch();
   const { visible, toggleModal } = useModal();
@@ -44,13 +45,21 @@ const ForgotPassword = (props) => {
     props.navigation.goBack()
     return true;
   };
+  const _keyboardDidHide = () => {
+    Keyboard.dismiss()
+  }
   useEffect(() => {
     BackHandler.addEventListener('hardwareBackPress', handleBackButton);
     return () => {
       BackHandler.removeEventListener('hardwareBackPress', handleBackButton);
     }
   }, [])
-
+  useEffect(() => {
+    const keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', _keyboardDidHide);
+    return () => {
+      keyboardDidHideListener.remove();
+    }
+  }, []);
 
 
   const {

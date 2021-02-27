@@ -10,7 +10,7 @@ import * as NavigationService from '../../../NavigationService';
 import { startAction, stopAction } from '../actions';
 import { I18nManager } from 'react-native';
 import { Platform } from 'react-native';
-import { MY_PROFILE } from '../../constants/Screens';
+import { MY_ADDRESS_BOOK, MY_PROFILE } from '../../constants/Screens';
 export function* EditAddressSaga({ type, payload }) {
     try {
         yield put(startAction(type));
@@ -26,11 +26,11 @@ export function* EditAddressSaga({ type, payload }) {
             yield put({ type: FETCH_ADDRESS })
             const text = I18nManager.isRTL ? "عنوان تم تعديله بنجاح" : 'Successfully Edited Address'
             Platform.OS === 'ios' ?
-                Alert.alert(false ? ` ${text}` : text, '', [{ text: I18nManager.isRTL ? 'حسنا' : 'OK', onPress: () => NavigationService.navigate('MyProfile', { screen: MY_PROFILE }) }])
+                Alert.alert(false ? ` ${text}` : text, '', [{ text: I18nManager.isRTL ? 'حسنا' : 'OK', onPress: () => NavigationService.navigate(MY_ADDRESS_BOOK) }])
                 : (
                     I18nManager.isRTL ?
-                        Alert.alert(false ? `${text}` : '', text, [{ text: I18nManager.isRTL ? 'حسنا' : ' ', onPress: () => NavigationService.navigate('MyProfile', { screen: MY_PROFILE }) }, { text: I18nManager.isRTL ? '' : ' ', }, { text: I18nManager.isRTL ? ' ' : null }, { onPress: () => NavigationService.navigate('MyProfile', { screen: MY_PROFILE }) }])
-                        : Alert.alert(false ? `${text}` : text, '', [{ text: I18nManager.isRTL ? 'حسنا' : ' ', onPress: () => NavigationService.navigate('MyProfile', { screen: MY_PROFILE }) }, { text: I18nManager.isRTL ? '' : ' ', }, { text: I18nManager.isRTL ? ' ' : null, onPress: () => NavigationService.navigate('MyProfile', { screen: MY_PROFILE }) }, { onPress: () => NavigationService.navigate('MyProfile', { screen: MY_PROFILE }) }]
+                        Alert.alert(false ? `${text}` : '', text, [{ text: I18nManager.isRTL ? 'حسنا' : ' ', onPress: () => NavigationService.navigate(MY_ADDRESS_BOOK) }, { text: I18nManager.isRTL ? '' : ' ', }, { text: I18nManager.isRTL ? ' ' : null }, { onPress: () => NavigationService.navigate(MY_ADDRESS_BOOK) }])
+                        : Alert.alert(false ? `${text}` : text, '', [{ text: I18nManager.isRTL ? 'حسنا' : ' ', onPress: () => NavigationService.navigate(MY_ADDRESS_BOOK) }, { text: I18nManager.isRTL ? '' : ' ', }, { text: I18nManager.isRTL ? ' ' : null, onPress: () => NavigationService.navigate(MY_ADDRESS_BOOK) }, { onPress: () => NavigationService.navigate('MyProfile', { screen: MY_PROFILE }) }]
                         )
                 )
 

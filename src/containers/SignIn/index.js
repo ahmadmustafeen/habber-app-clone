@@ -23,6 +23,7 @@ import { withoutDataActions } from '../../redux/actions';
 import { SETTING_REMOVAL } from '../../redux/actionTypes';
 import { HOME, SETTINGS_SCREEN } from '../../constants/Screens';
 import { I18nManager } from 'react-native';
+import { Keyboard } from 'react-native';
 
 const SignIn = (props) => {
   const { t } = useTranslation(['login']);
@@ -67,7 +68,15 @@ const SignIn = (props) => {
   }, [props])
 
 
-
+  const _keyboardDidHide = () => {
+    Keyboard.dismiss()
+  }
+  useEffect(() => {
+    const keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', _keyboardDidHide);
+    return () => {
+      keyboardDidHideListener.remove();
+    }
+  }, []);
   const validate = () => {
 
     return (

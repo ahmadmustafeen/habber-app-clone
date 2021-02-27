@@ -36,6 +36,7 @@ import { useTranslation } from 'react-i18next';
 import { checkIfLoading } from '../../redux/selectors';
 import { BackHandler } from 'react-native';
 import { Screen } from '../../components/common';
+import { Keyboard } from 'react-native';
 const JoinUs = (props) => {
 
 
@@ -96,6 +97,20 @@ const JoinUs = (props) => {
 
   //   return true;
   // };
+
+
+
+  const _keyboardDidHide = () => {
+    Keyboard.dismiss()
+  }
+
+  useEffect(() => {
+    const keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', _keyboardDidHide);
+    return () => {
+      keyboardDidHideListener.remove();
+    }
+  }, []);
+
   const validate = () => {
     return (
       validateIsTrue(state.name, `${t('Please')} ${t('name')}`, false, t('ok')) &&

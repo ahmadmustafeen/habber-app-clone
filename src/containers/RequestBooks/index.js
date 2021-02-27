@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, Alert, ImageBackground, I18nManager, Image } from 'react-native';
 import ImagePicker from 'react-native-image-picker';
 
@@ -23,6 +23,7 @@ import { checkIfLoading } from '../../redux/selectors';
 import { Keyboard } from 'react-native';
 import { REQUEST_BOOK_MODAL } from '_assets/data/StaticData';
 import useModal from '_utils/customHooks/useModal';
+import { BackHandler } from 'react-native';
 const options = {
   title: 'Select Avatar',
   customButtons: [{ name: 'fb', title: 'Choose Photo from Facebook' }],
@@ -98,11 +99,21 @@ const RequestBooks = (props) => {
   const onSubmit = () => {
     validate() && dispatch(withDataActions(state, REQUEST_BOOK));
   };
-
+  const _keyboardDidHide = () => {
+    Keyboard.dismiss()
+  }
+  useEffect(() => {
+    const keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', _keyboardDidHide);
+    return () => {
+      keyboardDidHideListener.remove();
+    }
+  }, []);
   const setImage = () => {
     ImagePicker.showImagePicker(options, (response) => {
       console.log('Response = ', response);
-
+      if (response.fileSize > 5000000) {
+        return validateIsTrue(false, I18nManager.isRTL ? "الرجاء تحديد صورة أقل من 5 ميغا بايت" : "Please select a image less than 5mbs", false);
+      }
       if (response.didCancel) {
         console.log('User cancelled image picker');
       } else if (response.error) {

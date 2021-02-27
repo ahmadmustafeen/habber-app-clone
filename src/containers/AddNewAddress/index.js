@@ -25,11 +25,12 @@ import {
 } from '_helpers/Validators';
 import { checkIfLoading } from '../../redux/selectors';
 import { BackHandler } from 'react-native';
+import { MY_ADDRESS_BOOK } from '../../constants/Screens';
 const AddNewAddress = (props) => {
   const { visible, toggleModal } = useModal();
   const onContinue = () => {
     toggleModal();
-    props.navigation.goBack();
+    props.navigation.navigate(MY_ADDRESS_BOOK)
   };
   const { route, navigation } = props;
   console.log(props)

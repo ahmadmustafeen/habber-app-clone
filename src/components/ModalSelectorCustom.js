@@ -51,7 +51,7 @@ const ModalSelectorCustom = (props) => {
                 ]}
 
                 data={data}
-
+                key={data.label}
 
                 initValue={initValue || "Select"}
                 initValueTextStyle={{ color: (props.color || "black"), textAlign: I18nManager.isRTL ? 'right' : 'left' }}
