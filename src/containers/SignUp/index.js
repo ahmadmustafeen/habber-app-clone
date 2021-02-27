@@ -54,12 +54,14 @@ const SignUp = (props) => {
     }
     setState((state) => ({ ...state, [key]: value }));
   };
+
+
   const validate = () => {
     return (
       validateIsTrue(first_name, `${t('Please')} ${t('firstName')}`, false, t('ok')) &&
       validateIsTrue(last_name, `${t('Please')} ${t('lastName')}`, false, t('ok')) &&
-      validateIsTrue(validateEmail(email), I18nManager.isRTL ? "" : "Please Enter A Valid Email", false, t('ok')) &&
-      validateIsTrue(validatePassword(password), `${t('Please')} ${t('password')}`, false, t('ok')) &&
+      validateIsTrue(validateEmail(email), I18nManager.isRTL ? "يرجى إدخال البريد الإلكتروني الصحيح" : "Please Enter a Valid Email", false, t('ok')) &&
+      validateIsTrue(validatePassword(password) && password.length >= 8, `${t('Please')} ${t('password')}`, false, t('ok')) &&
       validateIsTrue((password_confirmation), I18nManager.isRTL ? "الرجاء إدخال تأكيد كلمة المرور" : "Please Enter Confirm Password", false, t('ok')) &&
       validateIsTrue((password === password_confirmation), I18nManager.isRTL ? "كلمة السر غير متطابقة" : "Password Does Not Match", false, t('ok'))
     )

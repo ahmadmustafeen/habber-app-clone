@@ -22,6 +22,7 @@ import { Screen } from '../../components/common';
 import { withoutDataActions } from '../../redux/actions';
 import { SETTING_REMOVAL } from '../../redux/actionTypes';
 import { HOME, SETTINGS_SCREEN } from '../../constants/Screens';
+import { I18nManager } from 'react-native';
 
 const SignIn = (props) => {
   const { t } = useTranslation(['login']);
@@ -70,8 +71,9 @@ const SignIn = (props) => {
   const validate = () => {
 
     return (
-      validateIsTrue(validateEmail(state.email), `${t('Please')} ${t('email')}`, false, t('ok')) &&
-      validateIsTrue(validatePassword(state.password), `${t('Please')} ${t('password')}`, false, t('ok'))
+      validateIsTrue((state.email), `${t('Please')} ${t('email')}`, false,) &&
+      validateIsTrue(validateEmail(state.email), I18nManager.isRTL ? "يرجى إدخال البريد الإلكتروني الصحيح" : "Please Enter a Valid Email", false) &&
+      validateIsTrue(validatePassword(state.password), `${t('Please')} ${t('password')}`, false,)
 
     )
   };
