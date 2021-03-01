@@ -21,6 +21,23 @@ const Favorites = (props) => {
   const dispatch = useDispatch();
   const Favourites = useSelector((state) => retrieveFavourites(state));
   const Favourite_length = Favourites.book.length + Favourites.bookmark.length
+
+
+  const {
+    UserProfileReducer
+  } = useSelector(
+    ({
+      UserProfileReducer
+    }) => {
+      return {
+        UserProfileReducer,
+
+      };
+    },
+  );
+
+
+
   const onAddToCart = (item) => {
     const { quantity, product_type, id: product_id } = item;
     // validateIsTrue(true, I18nManager.isRTL ? "تمت إضافة العنصر إلى عربة التسوق" : "Item is Added to Cart", false)
@@ -39,6 +56,7 @@ const Favorites = (props) => {
         {
           ...item,
           cart_quantity: 1,
+          cart_price: item.prices.find(price => price.id === UserProfileReducer.currency.id).price,
           quantity,
           product_id,
           product_type,

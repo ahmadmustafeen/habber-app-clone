@@ -285,11 +285,13 @@ const BookDetails = (props) => {
     <Screen noPadding contentPadding>
       <View key="header">
         <ImageBackground
-          style={{
+          style={[{
+
             flex: 1,
             paddingHorizontal: 10,
             transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }],
-          }}
+          },
+          Platform.OS === 'ios' ? { paddingTop: hp(3.3) } : { paddingTop: hp(2.8) }]}
           source={require('_assets/images/book-detail.png')}>
           <Header
             cartNumber={CartReducer.book.length + CartReducer.bookmark.length}

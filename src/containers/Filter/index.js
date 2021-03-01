@@ -12,6 +12,7 @@ import { Icon } from 'react-native-elements';
 import { useTranslation } from 'react-i18next';
 import { shallowEqual, useSelector } from 'react-redux';
 import { BackHandler } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
 // const items = [
 //   { label: 'Romance', value: 'romance' },
 //   { label: 'Horror', value: 'horror' },
@@ -105,7 +106,7 @@ const FilterModal = (props) => {
 
   return (
     <Modal animationType="fade" visible={visible}>
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
 
 
         <Header {...props} title={t("filter")}
@@ -130,35 +131,39 @@ const FilterModal = (props) => {
           {t('reset')}
         </AppText>
         <HorizontalRow style={styles.line} />
-        <AppText bold color={colors.placeholder} style={{ paddingVertical: 16, paddingHorizontal: wp(5) }}>
-          {t('filterByGenre')}
-        </AppText>
-        {items.map((item) => {
-          return (
-            <FilterText
-              style={{ paddingHorizontal: wp(2) }}
-              key={item.label}
-              title={t(item.label)}
-              // selected={state.has(item.value)}
-              selected={state.has(item.value)}
-              onPress={() => onselect(item.value)}
-            />
-          );
-        })}
+        <ScrollView>
+          <AppText bold color={colors.placeholder} style={{ paddingVertical: 16, paddingHorizontal: wp(5) }}>
+            {t('filterByGenre')}
+          </AppText>
 
+          {items.map((item) => {
+            return (
+              <FilterText
+                style={{ paddingHorizontal: wp(2) }}
+                key={item.label}
+                title={t(item.label)}
+                // selected={state.has(item.value)}
+                selected={state.has(item.value)}
+                onPress={() => onselect(item.value)}
+              />
+            );
+          })}
+
+
+        </ScrollView>
         <Button
           color="white"
-          style={{ position: 'absolute', width: wp(90), alignSelf: 'center', bottom: 30, }}
+          style={{ width: wp(90), alignSelf: 'center', }}
           onPress={() => onApply([...state])}>
           {t("apply")}
         </Button>
-      </View>
+      </ScrollView>
     </Modal>
   );
 };
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    // flex: 1,
     // padding: 20,
   },
   line: {

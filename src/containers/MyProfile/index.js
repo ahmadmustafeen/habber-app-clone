@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   View,
   ScrollView,
@@ -24,12 +24,30 @@ import { useTheme } from '@react-navigation/native';
 import { useSelector, shallowEqual } from 'react-redux';
 import { Icon } from 'react-native-elements';
 import { useTranslation } from 'react-i18next';
+import { BackHandler } from 'react-native';
 const MyProfile = (props) => {
   const { t } = useTranslation(['MyProfile']);
   const { first_name, last_name, email, profile_pic } = useSelector(
     ({ UserProfileReducer }) => UserProfileReducer,
     shallowEqual,
   );
+
+
+
+
+  const handleBackButton = () => {
+    props.navigation.goBack()
+    return true;
+  };
+  useEffect(() => {
+    BackHandler.addEventListener('hardwareBackPress', handleBackButton);
+    return () => {
+      BackHandler.removeEventListener('hardwareBackPress', handleBackButton);
+    }
+  }, [])
+
+
+
   const { colors } = useTheme();
   const { navigate } = props.navigation;
   return (

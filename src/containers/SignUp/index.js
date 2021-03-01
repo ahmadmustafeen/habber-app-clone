@@ -29,6 +29,7 @@ import { FORGOT_PASSWORD_SCREEN, TERMS_AND_CONDITIONS_SCREEN, BOOK_DETAILS_SCREE
 import { TouchableOpacity } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { I18nManager } from 'react-native';
+import { BackHandler } from 'react-native';
 
 const SignUp = (props) => {
 
@@ -74,6 +75,17 @@ const SignUp = (props) => {
   }
 
 
+
+  const handleBackButton = () => {
+    props.navigation.goBack()
+    return true;
+  };
+  useEffect(() => {
+    BackHandler.addEventListener('hardwareBackPress', handleBackButton);
+    return () => {
+      BackHandler.removeEventListener('hardwareBackPress', handleBackButton);
+    }
+  }, [])
 
   useEffect(() => {
     const keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', _keyboardDidHide);

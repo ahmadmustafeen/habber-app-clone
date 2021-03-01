@@ -69,6 +69,7 @@ const Header = (props, { adddok }) => {
     <ImageBackground
       style={{
         height: hp(21),
+        paddingVertical: hp(5),
         paddingHorizontal: wp(3),
         paddingBottom: hp(8),
         marginBottom: hp(1),

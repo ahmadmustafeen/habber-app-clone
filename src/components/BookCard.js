@@ -61,7 +61,7 @@ const BookCard = (props) => {
           !quantity
           &&
           <>
-            <View style={[styles.forgetPassImageContainet, I18nManager.isRTL && { right: wp(3), bottom: hp(6) }]}>
+            <View style={[styles.forgetPassImageContainet, I18nManager.isRTL && { right: wp(3), bottom: hp(3) }]}>
               <Image style={styles.image} source={require("../assets/images/noItem.png")} />
             </View>
 
@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
   },
   forgetPassImageContainet: {
     position: 'absolute',
-    bottom: hp(8),
+    bottom: hp(6),
     right: wp(1),
     aspectRatio: 1,
     height: hp(8.5)

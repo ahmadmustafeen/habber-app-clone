@@ -30,7 +30,8 @@ const AddNewAddress = (props) => {
   const { visible, toggleModal } = useModal();
   const onContinue = () => {
     toggleModal();
-    props.navigation.navigate(MY_ADDRESS_BOOK)
+    // props.navigation.navigate(MY_ADDRESS_BOOK)
+    props.navigation.goBack()
   };
   const { route, navigation } = props;
   console.log(props)

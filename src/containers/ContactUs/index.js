@@ -34,6 +34,7 @@ import { AppText, Button, Screen } from '../../components/common';
 import { useTranslation } from 'react-i18next';
 import { combineEpics } from 'redux-observable';
 import { BackHandler } from 'react-native';
+import { Keyboard } from 'react-native';
 
 // export const CONTACT_US = {
 //   modalData: {
@@ -133,7 +134,15 @@ const ContactUs = (props) => {
 
 
   };
-
+  const _keyboardDidHide = () => {
+    Keyboard.dismiss()
+  }
+  useEffect(() => {
+    const keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', _keyboardDidHide);
+    return () => {
+      keyboardDidHideListener.remove();
+    }
+  }, []);
   const onSubmit = () => {
     validate() && dispatch(withDataActions(state, SUBMIT_CONTACT_US));
   };
