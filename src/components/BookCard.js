@@ -49,27 +49,39 @@ const BookCard = (props) => {
         </View>
         <View style={styles.details}>
 
-          <View style={{ width: wp(26), marginRight: wp(5), justifyContent: 'space-around', height: '100%' }}>
+          <View style={{ width: wp(26), height: '100%' }}>
             <AppText small>{I18nManager.isRTL ? arabic_title : title}</AppText>
             <AppText small primary bold>
               {author_name}
             </AppText>
           </View>
+          {
+            !quantity
+            &&
+            <View style={[styles.forgetPassImageContainet]}>
+              <Image style={[styles.image]} source={require("../assets/images/noItem.png")} />
+            </View>
+          }
 
         </View>
         {
           !quantity
           &&
+          <View style={[styles.outOfStock, { backgroundColor: colors.primary }]}>
+            <AppText white size={12}>{I18nManager.isRTL ? "إنتهى من المخزن" : "Out Of Stock"}</AppText>
+          </View>
+        }
+        {/* {
+          !quantity
+          &&
           <>
             <View style={[styles.forgetPassImageContainet, I18nManager.isRTL && { right: wp(3), bottom: hp(3) }]}>
-              <Image style={styles.image} source={require("../assets/images/noItem.png")} />
+              <Image style={[styles.image]} source={require("../assets/images/noItem.png")} />
             </View>
 
-            <View style={[styles.outOfStock, { backgroundColor: colors.primary }]}>
-              <AppText white size={12}>{I18nManager.isRTL ? "إنتهى من المخزن" : "Out Of Stock"}</AppText>
-            </View>
+          
           </>
-        }
+        } */}
         <ModalImage ref={modalRef} source={{ uri: image }} />
       </View>
     </TouchableWithoutFeedback>
@@ -84,31 +96,35 @@ const styles = StyleSheet.create({
     margin: 3,
   },
   image: {
-    width: wp(11),
-    height: hp(6.5),
-    marginTop: 10,
-    marginLeft: 10
+    width: wp(10),
+    // height: hp(6.5),
+    // marginTop: 10,
+    // marginLeft: 10
   },
   imageContainer: {
     width: wp(40.85),
     aspectRatio: 0.9,
   },
   forgetPassImageContainet: {
-    position: 'absolute',
-    bottom: hp(6),
-    right: wp(1),
-    aspectRatio: 1,
-    height: hp(8.5)
+
+    //   position: 'absolute',
+    //   bottom: wp(6.5),
+    //   right: wp(0),
+    //   aspectRatio: 1,
+    //   height: hp(8.5)
   },
   details: {
     flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    // alignItems: 'center',
     paddingVertical: 10,
     // justifyContent: 'flex-end',
     paddingHorizontal: 10,
   },
   outOfStock: {
     alignItems: 'center',
-    height: hp(5),
+    height: wp(8),
     justifyContent: 'center',
     alignItems: 'center'
   }

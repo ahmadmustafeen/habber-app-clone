@@ -31,8 +31,9 @@ import { useTranslation } from 'react-i18next';
 import NoBookAvailbe from '../../components/NoBookAvailable';
 import { SIGNIN_SCREEN } from '../../constants/Screens';
 import { Alert } from 'react-native';
-import { ADD_TO_CART, RE_ADD_TO_CART } from '../../redux/actionTypes';
+import { ADD_TO_CART, FETCH_USER_CART_SUCCESS, RE_ADD_TO_CART } from '../../redux/actionTypes';
 import { BackHandler } from 'react-native';
+import { withoutDataActions } from '../../redux/actions';
 const delivery_charges = 10;
 const AddToCart = (props) => {
   const { emptyy } = props
@@ -79,6 +80,14 @@ const AddToCart = (props) => {
       BackHandler.removeEventListener('hardwareBackPress', handleBackButton);
     }
   }, [])
+
+
+  useEffect(() => {
+    // dispatch(withDataActions(null, FETCH_USER_CART_SUCCESS)) &&
+    dispatch(withoutDataActions(FETCH_USER_CART))
+  }, [])
+
+
 
   return (
 

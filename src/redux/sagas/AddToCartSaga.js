@@ -46,7 +46,7 @@ export function* AddToCartSaga({ type, payload }) {
     const {
       data: { data: res, message, status },
     } = response;
-
+    console.log(response, "CART ADDED SAGA")
     if (status) {
       yield all([
         put({ type: FETCH_USER_CART }),
