@@ -198,21 +198,22 @@ const BookDetails = (props) => {
   };
 
   const onAddToCart = () => {
-    dispatch(
-      withDataActions(
-        {
-          ...book,
-          cart_quantity: cartQuantity,
-          cart_price: cartQuantity * parseFloat(book.prices.find(price => price.id === UserProfileReducer.currency.id).price.toString().replace(",", "")),
-          // quantity: cartQuantity,
-          product_id,
-          action: 'cartadd',
-          product_type,
+    cartQuantity &&
+      dispatch(
+        withDataActions(
+          {
+            ...book,
+            cart_quantity: cartQuantity,
+            cart_price: cartQuantity * parseFloat(book.prices.find(price => price.id === UserProfileReducer.currency.id).price.toString().replace(",", "")),
+            // quantity: cartQuantity,
+            product_id,
+            action: 'cartadd',
+            product_type,
 
-        },
-        UPDATE_CART_ITEM,
-      ),
-    );
+          },
+          UPDATE_CART_ITEM,
+        ),
+      );
 
     if (
       cartQuantity === 0) {

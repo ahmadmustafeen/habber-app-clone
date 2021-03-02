@@ -27,9 +27,9 @@ export const Payment = (props) => {
 
   const handleBackButton = () => {
     // console.log(visible)
-    props.navigation.goBack()
-    // setModalVisible(true)
-    // dispatch(withDataActions({ id: props.route.params.orderDetails.id }, PAYMENT_FAILURE_SAGA))
+
+    setModalVisible(true)
+    dispatch(withDataActions({ id: props.route.params.orderDetails.id }, PAYMENT_FAILURE_SAGA))
     return true;
   };
 
@@ -80,7 +80,7 @@ Please Retry`,
   };
   const onContinue = () => {
     setModalVisible(false)
-    success ? (props.navigation.navigate(INVOICE, { item: props.route.params.orderDetails })) : props.navigation.navigate(HOME);
+    success ? (props.navigation.navigate(INVOICE, { item: props.route.params.orderDetails })) : props.navigation.goBack();
     props.navigation.navigate(MY_ORDERS)
     // toggleModal();
 

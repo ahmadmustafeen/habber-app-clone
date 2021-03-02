@@ -157,7 +157,7 @@ const EditProfile = (props) => {
             <Image style={styles.image} source={require("_assets/images/addsign.png")} />
           </TouchableOpacity>
         </View>
-        <View style={{ position: 'absolute', right: 0, top: hp(8) }}>
+        <View style={{ position: 'absolute', right: wp(0), top: hp(8) }}>
           <AppText primary bold onPress={() => setState({ ...state, profile_pic: '' })}>
             {I18nManager.isRTL ? "إعادة تعيين الصورة" : "Reset Image"}
           </AppText>

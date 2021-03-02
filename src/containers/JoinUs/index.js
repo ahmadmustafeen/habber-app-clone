@@ -112,6 +112,7 @@ const JoinUs = (props) => {
   }, []);
 
   const validate = () => {
+    // Alert.alert(state.details.trim().length)
     return (
       validateIsTrue(state.name, `${t('Please')} ${t('name')}`, false, t('ok')) &&
       validateIsTrue(state.email, `${t('Please')} ${t('email')}`, false, t('ok')) &&
@@ -120,7 +121,7 @@ const JoinUs = (props) => {
         I18nManager.isRTL ? "يجب أن يتراوح رقم الهاتف بين 11 رقمًا و 15 رقمًا" : "Phone Number should be between 11 digits to 15 digits", false) &&
       validateIsTrue(!!validatePhone(state.phone) && !isNaN(parseFloat(state.phone)), `${t('Please')} ${t('mobileNumber')}`, false, t('ok')) &&
       validateIsTrue(state.business_type, `${t('Please')} ${t('selectBusinessType')}`, false, t('ok')) &&
-      validateIsTrue(state.details, `${t('Please')} ${t('details')}`, false, t('ok')) &&
+      validateIsTrue((state.details.trim().length), `${t('Please')} ${t('details')}`, false, t('ok')) &&
       validateIsTrue(state.product_type.size, I18nManager.isRTL ? 'الرجاء تحديد نوع منتج واحد على الأقل' : 'Please select atleast one Product Type', false, t('ok'))
     )
 
@@ -141,6 +142,7 @@ const JoinUs = (props) => {
     props.navigation.goBack();
   };
   const onSubmit = () => {
+    // Alert.alert(((state.details.trim().length) > 0).toString())
     validate() &&
       dispatch(withDataActions(state, SUBMIT_JOIN_US));
   };

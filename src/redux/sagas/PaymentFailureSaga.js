@@ -18,7 +18,7 @@ export function* PaymentFailureSaga({ type, payload }) {
         )
         console.log(response, "response")
         const { status, data, message } = response;
-        yield put({ type: FETCH_USER_CART_SUCCESS, payload: null });
+        // yield put({ type: FETCH_USER_CART_SUCCESS, payload: null });
         if (status === 200) {
 
 
