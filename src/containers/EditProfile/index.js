@@ -158,7 +158,7 @@ const EditProfile = (props) => {
           </TouchableOpacity>
         </View>
         <View style={{ position: 'absolute', right: wp(0), top: hp(8) }}>
-          <AppText primary bold onPress={() => setState({ ...state, profile_pic: '' })}>
+          <AppText primary bold small onPress={() => setState({ ...state, profile_pic: '' })}>
             {I18nManager.isRTL ? "إعادة تعيين الصورة" : "Reset Image"}
           </AppText>
         </View>
