@@ -20,6 +20,12 @@ const PrivacyPolicy = (props) => {
     const link = (I18nManager.isRTL ? StaticReducer.privacy_policy_url_ar : StaticReducer.privacy_policy_url)
     const { colors } = useTheme()
 
+    const SCRIPT = `
+const meta = document.createElement('meta');
+meta.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0');
+meta.setAttribute('name', 'viewport');
+document.head.appendChild(meta);
+`;
     return (
         <Screen noPadding>
             <View key="header">
@@ -29,7 +35,7 @@ const PrivacyPolicy = (props) => {
             <View key="content" style={{ width: wp(90), alignSelf: "center" }}>
                 <WebView source={{ uri: link }} style={styles.staticPage}
                     scalesPageToFit={Platform.OS === 'android' ? false : true}
-
+                    injectedJavaScriptBeforeContentLoaded={SCRIPT}
                 />
             </View>
         </Screen>

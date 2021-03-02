@@ -30,9 +30,15 @@ const About = (props) => {
   })
   const link = (I18nManager.isRTL ? StaticReducer.about_us_url_ar : StaticReducer.about_us_url)
   const { colors } = useTheme()
+  //   const SCRIPT = `
+  // const meta = document.createElement('meta');
+  // meta.setAttribute('content', ' initial-scale=1.0, maximum-scale=1.0, user-scalable=0');
+  // meta.setAttribute('name', 'viewport');
+  // document.head.appendChild(meta);
+  // `;
   const SCRIPT = `
 const meta = document.createElement('meta');
-meta.setAttribute('content', ' initial-scale=1.0, maximum-scale=1.0, user-scalable=0');
+meta.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0');
 meta.setAttribute('name', 'viewport');
 document.head.appendChild(meta);
 `;
@@ -55,10 +61,12 @@ document.head.appendChild(meta);
 
       <View key="content" style={{ width: wp(90), alignSelf: "center" }}>
         <WebView
+          scrollEnabled={false}
+
           source={{ uri: link }}
           style={styles.staticPage}
           scalesPageToFit={Platform.OS === 'android' ? false : true}
-          injectedJavaScript={SCRIPT}
+          injectedJavaScriptBeforeContentLoaded={SCRIPT}
         />
       </View>
     </Screen>

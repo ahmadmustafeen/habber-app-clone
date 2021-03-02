@@ -14,6 +14,12 @@ import { useSelector } from 'react-redux';
 
 const SignUpTermCondition = (props) => {
 
+  const SCRIPT = `
+const meta = document.createElement('meta');
+meta.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0');
+meta.setAttribute('name', 'viewport');
+document.head.appendChild(meta);
+`;
 
 
   const { StaticReducer } = useSelector((state) => {
@@ -33,6 +39,7 @@ const SignUpTermCondition = (props) => {
       <View key="content" style={{ width: wp(90), alignSelf: "center" }}>
         <WebView source={{ uri: link }} style={[styles.staticPage]}
           scalesPageToFit={Platform.OS === 'android' ? false : true}
+          injectedJavaScriptBeforeContentLoaded={SCRIPT}
         />
       </View>
     </Screen>

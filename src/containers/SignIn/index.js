@@ -138,7 +138,7 @@ const SignIn = (props) => {
 
           <InputWithLabel
             white
-            placeholder="ahmadalajmi@gmail.com"
+
             label={t('email')}
             value={state.email}
             onChangeText={(value) => handleChange('email', value)}
@@ -148,7 +148,6 @@ const SignIn = (props) => {
           <InputWithLabel
             white
             secureTextEntry
-            placeholder="*********"
             label={t('password')}
             value={state.password}
             onChangeText={(value) => handleChange('password', value)}

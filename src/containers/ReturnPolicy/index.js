@@ -12,6 +12,12 @@ import { Icon } from 'react-native-elements';
 import WebView from 'react-native-webview';
 import { useSelector } from 'react-redux';
 
+const SCRIPT = `
+const meta = document.createElement('meta');
+meta.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0');
+meta.setAttribute('name', 'viewport');
+document.head.appendChild(meta);
+`;
 
 
 const ReturnPolicy = (props) => {
@@ -32,7 +38,7 @@ const ReturnPolicy = (props) => {
                 <WebView source={{ uri: link }} style={styles.staticPage}
 
                     scalesPageToFit={Platform.OS === 'android' ? false : true}
-
+                    injectedJavaScriptBeforeContentLoaded={SCRIPT}
                 />
             </View>
         </Screen>
