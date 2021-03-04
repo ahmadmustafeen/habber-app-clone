@@ -139,6 +139,8 @@ const SignUp = (props) => {
       showsHorizontalScrollIndicator={false}
       showsVerticalScrollIndicator={false}
       keyboardShouldPersistTaps="never"
+
+      bounces={false}
       enableResetScrollToCoords={false}>
       <BackgroundImage>
         <View key="header">

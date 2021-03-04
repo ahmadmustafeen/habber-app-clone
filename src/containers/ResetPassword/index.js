@@ -65,7 +65,7 @@ const ResetPassword = (props) => {
   }, shallowEqual);
   console.log(isLoading, "THIS")
   return (
-    <ScrollView contentContainerStyle={{ height: hp(100) }}>
+    <ScrollView contentContainerStyle={{ height: hp(100) }} bounces={false}>
       <ImageBackground
         style={{
           height: hp(100),

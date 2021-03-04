@@ -38,7 +38,7 @@ const About = (props) => {
   // `;
   const SCRIPT = `
 const meta = document.createElement('meta');
-meta.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0');
+meta.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no');
 meta.setAttribute('name', 'viewport');
 document.head.appendChild(meta);
 `;
@@ -75,7 +75,7 @@ document.head.appendChild(meta);
 const styles = StyleSheet.create({
   staticPage: {
     height: hp(70),
-    width: wp(100)
+    width: wp(90)
   }
 })
 export default About;

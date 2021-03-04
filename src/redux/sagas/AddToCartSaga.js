@@ -10,9 +10,11 @@ import { API_ENDPOINTS } from '_constants/Network';
 import { RestClient } from '_network/RestClient';
 import { CART_SCREEN } from '_constants/Screens';
 import { NETWORK_ERROR, SHOW_NETWORK_MODAL } from 'redux/actionTypes';
+import { RE_ADD_TO_CART } from '../actionTypes';
 
 export function* AddToCartSaga({ type, payload }) {
   try {
+    console.log(payload, "PAYLOAD")
     const { CartReducer, UserProfileReducer } = yield select(
       ({ CartReducer, UserProfileReducer }) => {
         return { CartReducer, UserProfileReducer };
@@ -39,7 +41,16 @@ export function* AddToCartSaga({ type, payload }) {
       total_price
       // total_price: (CartReducer.total_price + parseFloat(product[0].cart_price.toString().replace(',', '')))
     };
-    const response = yield call(() => RestClient.post(API_ENDPOINTS.cart, obj));
+    const response = yield call(() => RestClient.post(API_ENDPOINTS.cart, {
+      product,
+      total_price
+    }));
+    yield put({
+      type: RE_ADD_TO_CART, payload: {
+        product,
+        total_price
+      }
+    })
     if (response.problem === NETWORK_ERROR) {
       return yield put({ type: SHOW_NETWORK_MODAL });
     }

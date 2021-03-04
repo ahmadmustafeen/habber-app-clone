@@ -233,7 +233,16 @@ const BookDetails = (props) => {
     }
 
     dispatch(
-      withDataActions(CartReducer[product_type][inCartPosition], ADD_TO_CART),
+      withDataActions({
+        ...book,
+        cart_quantity: cartQuantity,
+        cart_price: cartQuantity * parseFloat(book.prices.find(price => price.id === UserProfileReducer.currency.id).price.toString().replace(",", "")),
+        // quantity: cartQuantity,
+        product_id,
+        action: 'cartadd',
+        product_type,
+
+      }, ADD_TO_CART),
     );
   };
   useEffect(() => {

@@ -267,8 +267,9 @@ const Checkout = (props) => {
               </AppText> */}
             {/* </View> */}
           </View>
-          <View style={{ height: hp(20), justifyContent: 'space-around' }}>
+          <View>
             <Button
+              style={{ marginVertical: hp(1) }}
               add
               fontSize={17}
               primary
@@ -279,6 +280,7 @@ const Checkout = (props) => {
             </Button>
             <Button
               fontSize={17}
+              style={{ marginVertical: hp(1) }}
               secondary
               color={'white'}
               bold

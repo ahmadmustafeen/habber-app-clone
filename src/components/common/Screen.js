@@ -16,15 +16,18 @@ const Screen = (props) => {
 
   return (
     <KeyboardAwareScrollView
-      //resetScrollToCoords={{ x: 0, y: 0 }}
+      // stickyHeaderIndices={[1]}
+      resetScrollToCoords={{ x: 0, y: 0 }}
       contentContainerStyle={{ flexGrow: 1 }}
       automaticallyAdjustContentInsets={true}
       keyboardDismissMode="on-drag"
-      scrollsToTop={false}
+      // scrollsToTop={false}
       showsHorizontalScrollIndicator={false}
       showsVerticalScrollIndicator={false}
       keyboardShouldPersistTaps="never"
-      enableResetScrollToCoords={false}>
+      bounces={false}
+      enableResetScrollToCoords={false}
+    >
       <View
         style={[
           styles.formContainer,

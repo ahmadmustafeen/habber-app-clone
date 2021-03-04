@@ -100,6 +100,7 @@ const SignIn = (props) => {
   }, shallowEqual);
   return (
 
+
     <KeyboardAwareScrollView
       //resetScrollToCoords={{ x: 0, y: 0 }}
       contentContainerStyle={{ flexGrow: 1 }}
@@ -109,7 +110,9 @@ const SignIn = (props) => {
       showsHorizontalScrollIndicator={false}
       showsVerticalScrollIndicator={false}
       keyboardShouldPersistTaps="never"
+      bounces={false}
       enableResetScrollToCoords={false}>
+
       <ImageBackground
         style={{
           height: hp(100),
@@ -119,8 +122,6 @@ const SignIn = (props) => {
         }}
         resizeMode="stretch"
         source={require('_assets/images/background.jpg')}>
-
-
         <View key="header">
           <AuthHeader {...props} customNavigate />
 
@@ -237,8 +238,8 @@ Login with Social media account`}
         <Text>hhh</Text>
       </TouchableOpacity> */}
       </ImageBackground>
-
     </KeyboardAwareScrollView>
+
 
   );
 };

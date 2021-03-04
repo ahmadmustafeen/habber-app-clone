@@ -73,16 +73,22 @@ const ForgotPassword = (props) => {
     };
   }, shallowEqual);
   return (
-    <ScrollView contentContainerStyle={{ height: hp(100) }}>
 
-      <ImageBackground
-        style={{
-          height: hp(100),
-          paddingHorizontal: wp(5),
-          paddingBottom: hp(3),
-        }}
-        resizeMode="stretch"
-        source={require('_assets/images/background.jpg')}>
+    <ImageBackground
+      style={{
+        height: hp(100),
+        paddingHorizontal: wp(5),
+        paddingBottom: hp(3),
+      }}
+
+      resizeMode="stretch"
+      source={require('_assets/images/background.jpg')}>
+      <ScrollView contentContainerStyle={{ height: hp(100) }}
+        showsHorizontalScrollIndicator={false}
+        showsVerticalScrollIndicator={false}
+        bounces={false}
+      >
+
         <View key="header">
           <AuthHeader {...props} />
           <AppText
@@ -123,8 +129,8 @@ const ForgotPassword = (props) => {
 
           />
         </View>
-      </ImageBackground>
-    </ScrollView>
+      </ScrollView>
+    </ImageBackground>
 
   );
 };
