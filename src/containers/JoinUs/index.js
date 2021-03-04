@@ -37,6 +37,7 @@ import { checkIfLoading } from '../../redux/selectors';
 import { BackHandler } from 'react-native';
 import { Screen } from '../../components/common';
 import { Keyboard } from 'react-native';
+import Loader from '../../components/Loader';
 const JoinUs = (props) => {
 
 
@@ -105,6 +106,7 @@ const JoinUs = (props) => {
   }
 
   useEffect(() => {
+    let check = false;
     const keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', _keyboardDidHide);
     return () => {
       keyboardDidHideListener.remove();
@@ -141,10 +143,11 @@ const JoinUs = (props) => {
     toggleModal();
     props.navigation.goBack();
   };
-  const onSubmit = () => {
+  const onSubmit = (check) => {
     // Alert.alert(((state.details.trim().length) > 0).toString())
-    validate() &&
+    validate() && !check &&
       dispatch(withDataActions(state, SUBMIT_JOIN_US));
+    check = true
   };
   const { navigate } = props.navigation;
   const { colors } = useTheme()
@@ -159,6 +162,7 @@ const JoinUs = (props) => {
       </View>
 
       <View key="content" style={styles.content}>
+        <Loader loading={isLoading} />
         <InputWithLabel
           color={'black'}
           style={styles.inputfield}
@@ -238,7 +242,7 @@ const JoinUs = (props) => {
       <View key="footer">
         <View>
           <View style={{ width: wp(80), alignSelf: 'center' }}>
-            <Button bold color="white" onPress={() => onSubmit()} loading={isLoading}>
+            <Button bold color="white" onPress={() => onSubmit(isLoading)} loading={isLoading}>
               {t('submit')}
             </Button>
           </View>
