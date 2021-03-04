@@ -17,6 +17,8 @@ import { RestClient } from 'network/RestClient';
 import { FETCH_ARABIC_BOOKS, FETCH_BOOKCLUBS, FETCH_BOOKMARKS, FETCH_ENGLISH_BOOKS, FETCH_ORDER_SUCCESS, FETCH_USER_CART_SUCCESS, GUESTUSER_TOKEN, SIGN_OUT_SUCCESS } from '../actionTypes';
 import { Platform } from 'react-native';
 import CartReducer from '../reducers/CartReducer';
+import { I18nManager } from 'react-native';
+import i18n from '../../utils/i18n';
 
 export function* splashAdSaga() {
   try {
@@ -38,6 +40,8 @@ export function* splashAdSaga() {
         }),
 
       );
+
+
       yield put({ type: FETCH_ENGLISH_BOOKS });
       yield put({ type: FETCH_ARABIC_BOOKS });
       yield put({ type: FETCH_BOOKCLUBS });

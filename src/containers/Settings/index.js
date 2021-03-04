@@ -33,6 +33,7 @@ import { AppText } from 'components/common';
 import PushNotification from 'react-native-push-notification';
 import { PUSH_NOTIFICATION_FUNCTION, PUSH_NOTIFICATION_FUNCTION_REDUCER, SWITCH_LANG } from '../../redux/actionTypes';
 import { BackHandler } from 'react-native';
+import { Alert } from 'react-native';
 
 const LANGUAGES = [{ id: 1, iso: 'ar', name: 'Arabic' }, { id: 2, iso: 'en', name: 'English' }];
 
@@ -114,9 +115,9 @@ const Settings = (props) => {
   };
 
   const onLanguageChange = (val) => {
-    // (val.iso === 'ar' && I18nManager.isRTL) ? false :
-
-    dispatch(withDataActions({ ...UserProfileReducer, language: val, setting: true }, SWITCH_LANG))
+    let old = I18nManager.isRTL ? 'ar' : 'en'
+    // Alert.alert(val.iso)
+    val.iso === old || dispatch(withDataActions({ ...UserProfileReducer, language: val, setting: true }, SWITCH_LANG))
     // i18n.changeLanguage(val).then(() => {
     //   I18nManager.forceRTL(val === 'ar');
     //   RNRestart.Restart();
