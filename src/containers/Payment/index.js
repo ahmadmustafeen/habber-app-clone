@@ -5,7 +5,7 @@ import { WebView } from 'react-native-webview';
 import { Header, ModalScreen } from '../../components';
 import { Screen } from '../../components/common';
 import { HOME, INVOICE, MY_ORDERS } from '../../constants/Screens';
-import { PAYMENT_FAILURE_SAGA } from '../../redux/actionTypes'
+import { FETCH_USER_CART_SUCCESS, PAYMENT_FAILURE_SAGA } from '../../redux/actionTypes'
 import { useTheme } from '@react-navigation/native';
 import { I18nManager } from 'react-native';
 import { BackHandler } from 'react-native';
@@ -67,6 +67,7 @@ Please Retry`,
 
     if (url.includes('payment/success') && !loading) {
       setSuccess(true);
+      dispatch(withDataActions(null, FETCH_USER_CART_SUCCESS))
       setModalVisible(true)
       // toggleModal();
     }
