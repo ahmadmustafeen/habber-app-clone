@@ -99,8 +99,8 @@ const Home = (props) => {
   // console.log("BANNER PAGINATION ", panig)
   const handleBackButton = () => {
     // props.navigation.navigate(HOME)
-    RNExitApp.exitApp()
-    // BackHandler.exitApp()
+    // RNExitApp.exitApp()
+    BackHandler.exitApp()
 
   }
 

@@ -23,6 +23,8 @@
 		81DBA72FD53E05D118F17D5D /* libPods-HEBBER_Mobile-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 36F5635F73D68F624273DE58 /* libPods-HEBBER_Mobile-tvOS.a */; };
 		940DC533258A197300D111BE /* HEBBER_Mobile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 940DC532258A197300D111BE /* HEBBER_Mobile.swift */; };
 		943488522584067D00A9A544 /* assets in Resources */ = {isa = PBXBuildFile; fileRef = 943488482584061600A9A544 /* assets */; };
+		E25702E325F10E11003863C4 /* BootSplash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E25702E225F10E11003863C4 /* BootSplash.storyboard */; };
+		E25702E425F10E11003863C4 /* BootSplash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E25702E225F10E11003863C4 /* BootSplash.storyboard */; };
 		E27966032551B0330058E6DB /* main.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = 008F07F21AC5B25A0029DE68 /* main.jsbundle */; };
 		F3B0945EF57FEDE9987D9EEC /* libPods-HEBBER_Mobile-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F8F674040BEA472B7A6682F /* libPods-HEBBER_Mobile-tvOSTests.a */; };
 /* End PBXBuildFile section */
@@ -116,6 +118,7 @@
 		D4D66B714A764E809C16C4C2 /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
 		DBA15B8B8F974107BE9456FE /* AntDesign.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = AntDesign.ttf; path = "../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf"; sourceTree = "<group>"; };
 		E23B13BB25B2B0280070C739 /* hebber-Icon-32x32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hebber-Icon-32x32.png"; sourceTree = "<group>"; };
+		E25702E225F10E11003863C4 /* BootSplash.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = BootSplash.storyboard; path = HEBBER_Mobile/BootSplash.storyboard; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 		EECD5B219F0AB68924985146 /* libPods-HEBBER_Mobile.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HEBBER_Mobile.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -188,6 +191,7 @@
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				E23B13BB25B2B0280070C739 /* hebber-Icon-32x32.png */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
+				E25702E225F10E11003863C4 /* BootSplash.storyboard */,
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
 				13B07FB71A68108700A75B9A /* main.m */,
 			);
@@ -464,6 +468,7 @@
 				943488522584067D00A9A544 /* assets in Resources */,
 				E27966032551B0330058E6DB /* main.jsbundle in Resources */,
 				05801C5325D3041300F5AE43 /* GoogleService-Info.plist in Resources */,
+				E25702E325F10E11003863C4 /* BootSplash.storyboard in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 			);
@@ -473,6 +478,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E25702E425F10E11003863C4 /* BootSplash.storyboard in Resources */,
 				2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */,
 				05801C5425D3041300F5AE43 /* GoogleService-Info.plist in Resources */,
 			);

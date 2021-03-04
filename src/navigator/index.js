@@ -15,6 +15,7 @@ import AdScreen from '../containers/AdScreen';
 import linking from './Linking'
 import Language from '../containers/Language';
 import AsyncStorage from '@react-native-community/async-storage';
+import { Alert } from 'react-native';
 const Drawer = createDrawerNavigator();
 const RootStack = createStackNavigator();
 
@@ -49,7 +50,7 @@ const DrawerNav = () => {
     </Drawer.Navigator>
   );
 };
-const navigatorComponent = (splashScreen, ad, backUser, res, User, adViewed) => {
+const navigatorComponent = (ad, backUser, res, User, adViewed) => {
   console.log(res);
 
 
@@ -57,13 +58,14 @@ const navigatorComponent = (splashScreen, ad, backUser, res, User, adViewed) => 
 
 
 
-  if (splashScreen) {
-    return (
-      <RootStack.Navigator screenOptions={{ headerShown: false }}>
-        <RootStack.Screen name="Splash" component={Splash} />
-      </RootStack.Navigator>
-    );
-  }
+  // if (!splashScreen) {
+  //   return (
+  //     <RootStack.Navigator screenOptions={{ headerShown: false }}>
+  //       <RootStack.Screen name="Splash" component={Splash} />
+  //     </RootStack.Navigator>
+  //   );
+  // }
+
   if (ad && !adViewed) {
     return (
       <RootStack.Navigator
@@ -167,19 +169,19 @@ const Navigator = (props, ref) => {
 
 
 
-  const { splashScreen, ad, backUser, UserProfileReducer, res } = useSelector(({ SplashReducer, UserProfileReducer }) => {
+  const { ad, backUser, UserProfileReducer, res } = useSelector(({ SplashReducer, UserProfileReducer }) => {
     return {
-      splashScreen: SplashReducer.splashScreen,
+      // splashScreen: SplashReducer.splashScreen,
       ad: existingUser ? SplashReducer.ad : false,
       res: SplashReducer.res,
       UserProfileReducer: UserProfileReducer,
       backUser: !!UserProfileReducer.language,
     };
   }, shallowEqual);
-  console.log("Navigator Splash backuser", backUser);
+  console.log("adViewed adViewed adViewed", adViewed);
   return (
     <NavigationContainer linking={linking} ref={ref} theme={MyTheme}>
-      {navigatorComponent(splashScreen, ad, existingUser, res, User, adViewed)}
+      {navigatorComponent(ad, existingUser, res, User, adViewed)}
     </NavigationContainer>
   );
 };
