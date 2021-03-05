@@ -114,7 +114,7 @@ const RequestBooks = (props) => {
       if (response.fileSize > 5000000) {
         return validateIsTrue(false, I18nManager.isRTL ? "الرجاء تحديد صورة أقل من 5 ميغا بايت" : "Please select a image less than 5mbs", false);
       }
-      if (response.didCancel) {
+      else if (response.didCancel) {
         console.log('User cancelled image picker');
       } else if (response.error) {
         console.log('ImagePicker Error: ', response.error);

@@ -19,6 +19,7 @@ import {
 } from 'react-native-responsive-screen';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
+import { HOME } from '../constants/Screens';
 
 const Header = (props, { adddok }) => {
   const { t } = useTranslation(['Header']);
@@ -57,7 +58,7 @@ const Header = (props, { adddok }) => {
     noTitle,
     noSearch,
     noCart,
-    capitalize,
+    capitalize, inVoiceBack,
 
   } = props;
 
@@ -110,7 +111,7 @@ const Header = (props, { adddok }) => {
             transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }],
 
           }}>
-          <TouchableOpacity onPress={backIcon ? () => navigation.goBack() : () => navigation.openDrawer()} >
+          <TouchableOpacity onPress={backIcon ? () => navigation.goBack() : inVoiceBack ? () => navigation.navigate(HOME) : () => navigation.openDrawer()} >
             <AppText bold small color={headerColor} UpperCase={UpperCase} capitalize={capitalize}  >
               {title || t(route.name)}
             </AppText>
@@ -180,7 +181,7 @@ const Header = (props, { adddok }) => {
             )}
         </View>
       </View>
-    </ImageBackground>
+    </ImageBackground >
     : (
       <View style={[styles.container, { alignItems: 'center' }]}>
         <View>

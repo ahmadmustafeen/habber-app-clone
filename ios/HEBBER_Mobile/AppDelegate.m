@@ -7,6 +7,9 @@
 #import <React/RCTI18nUtil.h>
 #import <UserNotifications/UserNotifications.h>
 #import <React/RCTLinkingManager.h>
+
+
+#import "RNBootSplash.h" // <- add the header import
 @import Firebase;
 #ifdef FB_SONARKIT_ENABLED
 #import <FlipperKit/FlipperClient.h>
@@ -16,8 +19,6 @@
 #import <SKIOSNetworkPlugin/SKIOSNetworkAdapter.h>
 #import <FlipperKitReactPlugin/FlipperKitReactPlugin.h>
 
-
-#import "RNBootSplash.h" // <- add the header import
 
 
 

@@ -16,7 +16,8 @@ import { BackHandler } from 'react-native';
 const Invoice = (props) => {
 
     const handleBackButton = () => {
-        props.navigation.navigate(HOME)
+        props.route.params.orderDetails ? props.navigation.goBack() :
+            props.navigation.navigate(HOME)
 
         return true;
     };
@@ -116,7 +117,9 @@ const Invoice = (props) => {
         <ScrollView>
 
             <Header  {...props} title={props.route.params.orderDetails && (I18nManager.isRTL ? "تفاصيل الطلب" : "Orders Detail")}
-                headerLeft={
+                inVoiceBack={!props.route.params.orderDetails}
+                backIcon={props.route.params.orderDetails}
+                headerLeft={props.route.params.orderDetails ||
                     <Icon
                         onPress={() => props.navigation.navigate(HOME)}
                         color={colors.primary}

@@ -376,7 +376,7 @@ const BookDetails = (props) => {
               <BDScreenText
                 capitalize
                 title={t("genre")}
-                value={book.genre.map((item) => item.title).join(' | ')}
+                value={I18nManager.isRTL ? book.genre.map((item) => item.arabic_title).join(' | ') : book.genre.map((item) => item.title).join(' | ')}
               />
             </>
           )
