@@ -237,7 +237,7 @@ const AddToCart = (props) => {
             </View>
           </View> */}
       </View>
-      <View key="footer" style={{ width: wp(90), alignSelf: 'center' }}>
+      <View key="footer" style={{ width: wp(90), alignSelf: 'center', marginBottom: hp(4) }}>
         {(!(CartReducer.book.length + CartReducer.bookmark.length)) ? null :
 
           <Button

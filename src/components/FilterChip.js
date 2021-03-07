@@ -9,8 +9,21 @@ import { AppText } from '_components/common'
 import { useTranslation } from 'react-i18next';
 import { TouchableOpacity } from 'react-native';
 import { I18nManager } from 'react-native';
+import { shallowEqual, useSelector } from 'react-redux';
 
 const FilterChip = (props) => {
+
+
+
+    const {
+        FilterGenreReducer,
+
+    } = useSelector((state) => {
+        return {
+            FilterGenreReducer: state.FilterGenreReducer,
+        }
+    }, shallowEqual);
+
     const { colors } = useTheme()
     const { filter, onIconPress, onCrossPress } = props
     const removeFilter = (item) => {
@@ -18,18 +31,22 @@ const FilterChip = (props) => {
         return filter
     }
     const { t } = useTranslation(["Filter"])
+    // console.log(item, "FILTER CHIP")
     return (
         <View style={styles.filterApply}>
             {filter.map((item) =>
+
+
                 <View key={item} style={[styles.filterView, { backgroundColor: colors.borderColor }]} >
                     <AppText size={13} style={{ marginRight: 16 }} capitalize>
-                        {t(item)}
+                        {I18nManager.isRTL ? FilterGenreReducer.find((filter) => filter.title == item).arabic_title : item}
                     </AppText>
                     <TouchableOpacity style={styles.filterCross} onPress={() => props.onCrossPress(item)} >
                         <Image source={require('_assets/images/remove.png')} />
                     </TouchableOpacity>
                 </View>
             )
+
             }
 
         </View>

@@ -33,10 +33,10 @@ const FilterModal = (props) => {
       FilterGenreReducer: state.FilterGenreReducer,
     }
   }, shallowEqual);
-  console.log(props, "FILTER MODAL")
+  console.log(FilterGenreReducer, "FILTER MODAL")
   const items = FilterGenreReducer.map((filter) => {
     return {
-      label: filter.title,
+      label: I18nManager.isRTL ? filter.arabic_title : filter.title,
       value: filter.title
     }
 
@@ -77,6 +77,7 @@ const FilterModal = (props) => {
   };
   useEffect(useState()[1]);
   const FilterText = (props) => {
+    console.log(props, "FILTER")
     var selected = props.selected;
     return (
       <TouchableOpacity onPress={props.onPress}>
@@ -137,6 +138,7 @@ const FilterModal = (props) => {
           </AppText>
 
           {items.map((item) => {
+            // console.log(item, "FILTER ITEM")
             return (
               <FilterText
                 style={{ paddingHorizontal: wp(2) }}

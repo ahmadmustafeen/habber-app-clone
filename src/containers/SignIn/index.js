@@ -49,7 +49,7 @@ const SignIn = (props) => {
   useEffect(() => {
     if (UserProfileReducer.setting) {
       // dispatch(withoutDataActions(SETTING_REMOVAL))
-      navigate('Drawer', { screen: 'Home' })
+      navigate('Drawer', { screen: SETTINGS_SCREEN })
     }
 
   }, [UserProfileReducer]);
@@ -100,28 +100,28 @@ const SignIn = (props) => {
   }, shallowEqual);
   return (
 
+    <ImageBackground
+      style={{
+        height: hp(100),
+        paddingHorizontal: wp(5),
+        paddingBottom: hp(5),
+        justifyContent: 'flex-end',
+      }}
+      resizeMode="stretch"
+      source={require('_assets/images/background.jpg')}>
+      <KeyboardAwareScrollView
+        //resetScrollToCoords={{ x: 0, y: 0 }}
+        contentContainerStyle={{ flexGrow: 1 }}
+        automaticallyAdjustContentInsets={true}
+        keyboardDismissMode="on-drag"
+        scrollsToTop={false}
+        showsHorizontalScrollIndicator={false}
+        showsVerticalScrollIndicator={false}
+        keyboardShouldPersistTaps="never"
+        bounces={false}
+        enableResetScrollToCoords={false}>
 
-    <KeyboardAwareScrollView
-      //resetScrollToCoords={{ x: 0, y: 0 }}
-      contentContainerStyle={{ flexGrow: 1 }}
-      automaticallyAdjustContentInsets={true}
-      keyboardDismissMode="on-drag"
-      scrollsToTop={false}
-      showsHorizontalScrollIndicator={false}
-      showsVerticalScrollIndicator={false}
-      keyboardShouldPersistTaps="never"
-      bounces={false}
-      enableResetScrollToCoords={false}>
 
-      <ImageBackground
-        style={{
-          height: hp(100),
-          paddingHorizontal: wp(5),
-          paddingBottom: hp(5),
-          justifyContent: 'flex-end',
-        }}
-        resizeMode="stretch"
-        source={require('_assets/images/background.jpg')}>
         <View key="header">
           <AuthHeader {...props} customNavigate />
 
@@ -237,8 +237,9 @@ Login with Social media account`}
         {/* <TouchableOpacity style={{ backgroundColor: 'red', width: wp(20) }} onPress={() => navigate('Drawer', { screen: 'Home' })}>
         <Text>hhh</Text>
       </TouchableOpacity> */}
-      </ImageBackground>
-    </KeyboardAwareScrollView>
+
+      </KeyboardAwareScrollView>
+    </ImageBackground>
 
 
   );
