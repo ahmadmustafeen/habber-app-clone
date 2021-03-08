@@ -114,16 +114,16 @@ const DrawerMenu = (props) => {
                   <View style={styles.Horizontalrow} />
                 </>
               ) : (
-                  <>
-                    <TitleBarWithIcon
-                      label={t('signIn')}
-                      color={colors.white}
-                      onPress={() => props.navigation.navigate('Auth')}
-                      noIcon
-                    />
-                    <View style={styles.Horizontalrow} />
-                  </>
-                )}
+                <>
+                  <TitleBarWithIcon
+                    label={t('signIn')}
+                    color={colors.white}
+                    onPress={() => props.navigation.navigate('Auth')}
+                    noIcon
+                  />
+                  <View style={styles.Horizontalrow} />
+                </>
+              )}
 
               <TitleBarWithIcon
                 label={t('favorite')}
@@ -184,9 +184,9 @@ const DrawerMenu = (props) => {
               />
             </View>
           </View>
-          <View style={{ width: wp(100), paddingBottom: hp(10), alignItems: 'center', justifyContent: 'center', transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }] }}>
+          {/* <View style={{ width: wp(100), paddingBottom: hp(10), alignItems: 'center', justifyContent: 'center', transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }] }}>
             <AppText small white>Version 1.37</AppText>
-          </View>
+          </View> */}
         </View>
       </ScrollView>
 
