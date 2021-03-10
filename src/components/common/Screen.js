@@ -56,15 +56,15 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     paddingHorizontal: 25,
-    paddingBottom: 20,
+    // paddingBottom: 20,
   },
   container: {
     flex: 1,
     margin: wp('5%'),
-    marginBottom: hp('0.75%%'),
+    marginBottom: hp('0.75%'),
   },
   header: {
-    marginBottom: hp('0.75%'),
+    // marginBottom: hp(0.75),
   },
   content: {
     flex: 1,

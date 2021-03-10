@@ -102,9 +102,10 @@ const SignIn = (props) => {
 
     <ImageBackground
       style={{
-        height: hp(100),
+        // height: hp(100),
+        flex: 1,
         paddingHorizontal: wp(5),
-        paddingBottom: hp(5),
+        // paddingBottom: hp(5),
         justifyContent: 'flex-end',
       }}
       resizeMode="stretch"
@@ -217,7 +218,7 @@ Login with Social media account`}
         </View>  */}
           </View>
         </View>
-        <View style={{ width: wp(20), alignSelf: 'flex-end' }}>
+        <View style={{ width: wp(20), marginBottom: wp(10), alignSelf: 'flex-end' }}>
           <AppText
             right
             underline
@@ -239,7 +240,7 @@ Login with Social media account`}
       </TouchableOpacity> */}
 
       </KeyboardAwareScrollView>
-    </ImageBackground>
+    </ImageBackground >
 
 
   );
