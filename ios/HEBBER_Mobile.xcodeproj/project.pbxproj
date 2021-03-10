@@ -23,6 +23,10 @@
 		81DBA72FD53E05D118F17D5D /* libPods-HEBBER_Mobile-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 36F5635F73D68F624273DE58 /* libPods-HEBBER_Mobile-tvOS.a */; };
 		940DC533258A197300D111BE /* HEBBER_Mobile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 940DC532258A197300D111BE /* HEBBER_Mobile.swift */; };
 		943488522584067D00A9A544 /* assets in Resources */ = {isa = PBXBuildFile; fileRef = 943488482584061600A9A544 /* assets */; };
+		E218F47C25F8EFEC00FA1660 /* Amiri-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E218F47425F8E9C900FA1660 /* Amiri-Bold.ttf */; };
+		E218F47D25F8EFEC00FA1660 /* Amiri-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E218F47625F8E9CA00FA1660 /* Amiri-BoldItalic.ttf */; };
+		E218F47E25F8EFEC00FA1660 /* Amiri-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E218F47525F8E9C900FA1660 /* Amiri-Italic.ttf */; };
+		E218F47F25F8EFEC00FA1660 /* Amiri-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E218F47725F8E9CA00FA1660 /* Amiri-Regular.ttf */; };
 		E25702E325F10E11003863C4 /* BootSplash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E25702E225F10E11003863C4 /* BootSplash.storyboard */; };
 		E25702E425F10E11003863C4 /* BootSplash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E25702E225F10E11003863C4 /* BootSplash.storyboard */; };
 		E257044A25F15B4B003863C4 /* bootsplash_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = E257044925F15B4B003863C4 /* bootsplash_logo.png */; };
@@ -118,6 +122,10 @@
 		CBB55FC0060C48859B04EEC0 /* Feather.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Feather.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Feather.ttf"; sourceTree = "<group>"; };
 		D4D66B714A764E809C16C4C2 /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
 		DBA15B8B8F974107BE9456FE /* AntDesign.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = AntDesign.ttf; path = "../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf"; sourceTree = "<group>"; };
+		E218F47425F8E9C900FA1660 /* Amiri-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Amiri-Bold.ttf"; sourceTree = "<group>"; };
+		E218F47525F8E9C900FA1660 /* Amiri-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Amiri-Italic.ttf"; sourceTree = "<group>"; };
+		E218F47625F8E9CA00FA1660 /* Amiri-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Amiri-BoldItalic.ttf"; sourceTree = "<group>"; };
+		E218F47725F8E9CA00FA1660 /* Amiri-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Amiri-Regular.ttf"; sourceTree = "<group>"; };
 		E23B13BB25B2B0280070C739 /* hebber-Icon-32x32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hebber-Icon-32x32.png"; sourceTree = "<group>"; };
 		E25702E225F10E11003863C4 /* BootSplash.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = BootSplash.storyboard; path = HEBBER_Mobile/BootSplash.storyboard; sourceTree = "<group>"; };
 		E257044925F15B4B003863C4 /* bootsplash_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bootsplash_logo.png; sourceTree = "<group>"; };
@@ -255,6 +263,10 @@
 		94A3226E2535FABB002B8D62 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				E218F47425F8E9C900FA1660 /* Amiri-Bold.ttf */,
+				E218F47625F8E9CA00FA1660 /* Amiri-BoldItalic.ttf */,
+				E218F47525F8E9C900FA1660 /* Amiri-Italic.ttf */,
+				E218F47725F8E9CA00FA1660 /* Amiri-Regular.ttf */,
 				94A3227E2535FB73002B8D62 /* AntDesign.ttf */,
 				94A3227B2535FB73002B8D62 /* Entypo.ttf */,
 				94A3227D2535FB73002B8D62 /* EvilIcons.ttf */,
@@ -468,6 +480,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E218F47C25F8EFEC00FA1660 /* Amiri-Bold.ttf in Resources */,
+				E218F47D25F8EFEC00FA1660 /* Amiri-BoldItalic.ttf in Resources */,
+				E218F47E25F8EFEC00FA1660 /* Amiri-Italic.ttf in Resources */,
+				E218F47F25F8EFEC00FA1660 /* Amiri-Regular.ttf in Resources */,
 				943488522584067D00A9A544 /* assets in Resources */,
 				E27966032551B0330058E6DB /* main.jsbundle in Resources */,
 				05801C5325D3041300F5AE43 /* GoogleService-Info.plist in Resources */,
@@ -862,7 +878,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = HEBBER_Mobile/HEBBER_Mobile.entitlements;
-				CURRENT_PROJECT_VERSION = 39;
+				CURRENT_PROJECT_VERSION = 40;
 				DEVELOPMENT_TEAM = GZHG762PM3;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = HEBBER_Mobile/Info.plist;
@@ -889,7 +905,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = HEBBER_Mobile/HEBBER_Mobile.entitlements;
-				CURRENT_PROJECT_VERSION = 39;
+				CURRENT_PROJECT_VERSION = 40;
 				DEVELOPMENT_TEAM = GZHG762PM3;
 				INFOPLIST_FILE = HEBBER_Mobile/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

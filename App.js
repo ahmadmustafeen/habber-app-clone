@@ -45,7 +45,7 @@ const App = () => {
   useEffect(() => {
     dispatch(withoutDataActions(SPLASH_ACTION))
     setTimeout(() => {
-      RNBootSplash.hide({ duration: 1000 })
+      // RNBootSplash.hide({ duration: 1000 })
     }, 2000)
 
   })

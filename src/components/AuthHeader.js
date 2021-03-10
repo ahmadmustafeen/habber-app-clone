@@ -7,6 +7,7 @@ import { Icon } from 'react-native-elements'; import {
 import { useTheme } from '@react-navigation/native';
 // import Language from '../containers/Language'
 import { LANGUAGE_SCREEN } from '../constants/Screens';
+import { Platform } from 'react-native';
 
 
 const AuthHeader = (props) => {
@@ -35,7 +36,7 @@ const AuthHeader = (props) => {
 }
 const styles = StyleSheet.create({
     container: {
-        marginTop: hp(7.6),
+        marginTop: Platform.OS === 'android' ? hp(5) : hp(7.6),
         flexDirection: 'row',
         height: hp(12),
         paddingBottom: hp(2)

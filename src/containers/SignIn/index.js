@@ -15,6 +15,7 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
+  heightPercentageToDP,
 } from 'react-native-responsive-screen';
 import { ImageBackground } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
@@ -24,6 +25,7 @@ import { SETTING_REMOVAL } from '../../redux/actionTypes';
 import { HOME, SETTINGS_SCREEN } from '../../constants/Screens';
 import { I18nManager } from 'react-native';
 import { Keyboard } from 'react-native';
+import { Platform } from 'react-native';
 
 const SignIn = (props) => {
   const { t } = useTranslation(['login']);
@@ -102,7 +104,7 @@ const SignIn = (props) => {
 
     <ImageBackground
       style={{
-        // height: hp(100),
+        height: hp(100),
         flex: 1,
         paddingHorizontal: wp(5),
         // paddingBottom: hp(5),
@@ -111,9 +113,11 @@ const SignIn = (props) => {
       resizeMode="stretch"
       source={require('_assets/images/background.jpg')}>
       <KeyboardAwareScrollView
-        //resetScrollToCoords={{ x: 0, y: 0 }}
-        contentContainerStyle={{ flexGrow: 1 }}
-        automaticallyAdjustContentInsets={true}
+        style={{ height: heightPercentageToDP(96) }}
+        resetScrollToCoords={{ x: 0, y: 0 }}
+        contentContainerStyle={{ height: heightPercentageToDP(96) }}
+        // automaticallyAdjustContentInsets={true
+        automaticallyAdjustContentInsets={false}
         keyboardDismissMode="on-drag"
         scrollsToTop={false}
         showsHorizontalScrollIndicator={false}
@@ -130,7 +134,7 @@ const SignIn = (props) => {
             {t('signInHeader')}
           </AppText>
 
-          <AppText white secondary style={{ marginBottom: 10 }}>
+          <AppText white secondary style={Platform.OS === 'ios' ? null : { marginBottom: 10 }}>
             {t('signInLabel')}
           </AppText>
         </View>
@@ -164,7 +168,7 @@ const SignIn = (props) => {
             {t('forgetPassword')}
           </AppText>
 
-          <View style={{ alignItems: 'center' }}>
+          <View style={{ alignItems: 'center', margin: 0 }}>
             <Button
               loading={isLoading}
               width={wp(60)}
@@ -181,7 +185,7 @@ const SignIn = (props) => {
               primary
               onPress={() => navigate(SIGNUP_SCREEN)}
               style={{
-                marginVertical: 20,
+                // marginVertical: wp(1),
               }}>
               {t('createAccount')}
             </AppText>
@@ -218,7 +222,7 @@ Login with Social media account`}
         </View>  */}
           </View>
         </View>
-        <View style={{ width: wp(20), marginBottom: wp(10), alignSelf: 'flex-end' }}>
+        <View style={[{ width: wp(20), paddingBottom: hp(3), alignSelf: 'flex-end' }, Platform.OS === 'ios' && { paddingBottom: hp(0), bottom: hp(0), }]}>
           <AppText
             right
             underline
@@ -248,18 +252,19 @@ Login with Social media account`}
 const styles = StyleSheet.create({
   content: {
     flex: 1,
-    paddingTop: hp(4),
+    paddingTop: Platform.OS === 'ios' ? hp(2) : hp(4),
     flexDirection: 'column',
   },
   bgImage: {
     flex: 1,
   },
   hellotxt: {
-    paddingTop: wp(16),
+    paddingTop: Platform.OS === 'ios' ? wp(0) : wp(10),
   },
   forgotPassword: {
+    marginTop: Platform.OS === 'ios' ? wp(-2) : wp(0),
     textAlign: 'right',
-    marginBottom: wp(4),
+    marginBottom: Platform.OS === 'ios' ? wp(2) : wp(4),
   },
 });
 export default SignIn;

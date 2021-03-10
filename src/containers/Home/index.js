@@ -36,6 +36,7 @@ import { useTheme } from '@react-navigation/native';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
+  widthPercentageToDP,
 } from 'react-native-responsive-screen';
 import { checkIfLoading } from '_redux/selectors';
 import {
@@ -124,8 +125,8 @@ const Home = (props) => {
 
   }, [UserProfileReducer]);
 
-
-
+  console.log(Dimensions.get('window').width * 0.95)
+  // Alert.alert(Dimensions.get('window').toString())
   const renderItem = ({ item, index }) => {
     return (
       <TouchableOpacity key={item.coverImageUri} style={styles.cardContainer}
@@ -192,6 +193,11 @@ const Home = (props) => {
       <Screen noPadding>
         <View key="header">
           <Header {...props} headerImage />
+
+
+        </View>
+
+        <View key="content" style={styles.container}>
           <Carousel
 
             ref={CAROUSEL}
@@ -207,6 +213,7 @@ const Home = (props) => {
             snapOnAndroid={true} //to enable snapping on android
             itemWidth={itemWidth}
             slideStyle={styles.slide}
+            // slideStyle={{ backgroundColor: 'red' }}
             loop
           />
           <Pagination
@@ -223,130 +230,126 @@ const Home = (props) => {
               borderRadius: 5,
             }}
           />
-
-        </View>
-
-        <View key="content" style={styles.container}>
-
           <Loader loading={isLoading} />
-
-          <DashboardComponent
-            data={ArabicBooksReducer.filter((book) => book.featured).splice(0, 8)}
-            label={t('arabicBook')}
-            renderComponent={(item) => (
-              <ThumbnailBook
-                url={item.item.image}
-                onPress={() =>
-                  navigate(BOOK_DETAILS_SCREEN, {
-                    ...item.item,
-                    product_type: item.item.product_type,
-                  })
-                }
-              />
-            )}
-            onIconPress={() =>
-              navigate(BOOKLIST_SCREEN, {
-                label: t('arabicBook'),
-                data: ArabicBooksReducer,
-                product_type: 'book',
-              })
-            }
-          />
-          <DashboardComponent
-            data={EnglishBooksReducer.filter((book) => book.featured).splice(0, 8)}
-            label={t('englishBook')}
-            renderComponent={(item) => (
-              <ThumbnailBook
-                url={item.item.image}
-                onPress={() =>
-                  navigate(BOOK_DETAILS_SCREEN, {
-                    ...item.item,
-                    product_type: item.item.product_type,
-                  })
-                }
-              />
-            )}
-            onIconPress={() =>
-              navigate(BOOKLIST_SCREEN, {
-                label: t('englishBook'),
-                data: EnglishBooksReducer,
-                product_type: 'book',
-              })
-            }
-          />
-          <DashboardComponent
-            data={BookClubReducer.filter((book) => book.featured).splice(0, 8)}
-            label={t('bookclub')}
-            renderComponent={(item) => (
-              <ThumbnailClub
-                url={item.item.bookclub_logo}
-                onPress={() =>
-                  navigate(BOOK_DETAILS_SCREEN, {
-                    ...item.item,
-                    product_type: item.item.product_type,
-                  })
-                }
-              />
-            )}
-            onIconPress={() =>
-              navigate(BOOKLIST_SCREEN, {
-                label: t('bookclub'),
-                data: BookClubReducer,
-                product_type: 'bookclub',
-              })
-            }
-          />
-          <DashboardComponent
-            data={BookmarksReducer.filter((book) => book.featured).splice(0, 8)}
-            renderComponent={(item) => (
-              <ThumbnailBookmarks
-                url={item.item.image}
-                onPress={() =>
-                  navigate(BOOK_DETAILS_SCREEN, {
-                    ...item.item,
-                    product_id: item.item.id,
-                    author_name: item.item.maker_name,
-                    product_type: item.item.product_type,
-                  })
-                }
-              />
-            )}
-            label={t('bookmark')}
-            onIconPress={() =>
-              navigate(BOOKLIST_SCREEN, {
-                label: t('bookmark'),
-                data: BookmarksReducer,
-                product_type: "bookmark",
-              })
-            }
-          />
-          <TitleBarWithIcon label={t('requestBook')} noIcon />
-          <View style={styles.requestBooksBtns}>
-            <View style={{ width: wp(32) }}>
-              <Button
-                style={{ paddingLeft: 5 }}
-                bold
-                color={colors.white}
-                borderRadius={2}
-                secondary
-                fontSize={13}
-                onPress={() =>
-                  navigate(REQUESTBOOKS_SCREEN, { book_type: 'random' })
-                }>
-                {t('requestBook')}
-              </Button>
-            </View>
-            <View style={{ width: wp(50) }}>
-              <Button
-                // bold
-                borderRadius={2}
-                primary
-                fontSize={13}
-                onPress={() =>
-                  navigate(REQUESTBOOKS_SCREEN, { book_type: 'educational' })
-                }>
-                {t('requestEducationalBook')}
-              </Button>
+          <View style={{ width: widthPercentageToDP(95), alignSelf: 'center' }}>
+            <DashboardComponent
+              data={ArabicBooksReducer.filter((book) => book.featured).splice(0, 8)}
+              label={t('arabicBook')}
+              renderComponent={(item) => (
+                <ThumbnailBook
+                  url={item.item.image}
+                  onPress={() =>
+                    navigate(BOOK_DETAILS_SCREEN, {
+                      ...item.item,
+                      product_type: item.item.product_type,
+                    })
+                  }
+                />
+              )}
+              onIconPress={() =>
+                navigate(BOOKLIST_SCREEN, {
+                  label: t('arabicBook'),
+                  data: ArabicBooksReducer,
+                  product_type: 'book',
+                })
+              }
+            />
+            <DashboardComponent
+              data={EnglishBooksReducer.filter((book) => book.featured).splice(0, 8)}
+              label={t('englishBook')}
+              renderComponent={(item) => (
+                <ThumbnailBook
+                  url={item.item.image}
+                  onPress={() =>
+                    navigate(BOOK_DETAILS_SCREEN, {
+                      ...item.item,
+                      product_type: item.item.product_type,
+                    })
+                  }
+                />
+              )}
+              onIconPress={() =>
+                navigate(BOOKLIST_SCREEN, {
+                  label: t('englishBook'),
+                  data: EnglishBooksReducer,
+                  product_type: 'book',
+                })
+              }
+            />
+            <DashboardComponent
+              data={BookClubReducer.filter((book) => book.featured).splice(0, 8)}
+              label={t('bookclub')}
+              renderComponent={(item) => (
+                <ThumbnailClub
+                  url={item.item.bookclub_logo}
+                  onPress={() =>
+                    navigate(BOOK_DETAILS_SCREEN, {
+                      ...item.item,
+                      product_type: item.item.product_type,
+                    })
+                  }
+                />
+              )}
+              onIconPress={() =>
+                navigate(BOOKLIST_SCREEN, {
+                  label: t('bookclub'),
+                  data: BookClubReducer,
+                  product_type: 'bookclub',
+                })
+              }
+            />
+            <DashboardComponent
+              data={BookmarksReducer.filter((book) => book.featured).splice(0, 8)}
+              renderComponent={(item) => (
+                <ThumbnailBookmarks
+                  url={item.item.image}
+                  onPress={() =>
+                    navigate(BOOK_DETAILS_SCREEN, {
+                      ...item.item,
+                      product_id: item.item.id,
+                      author_name: item.item.maker_name,
+                      product_type: item.item.product_type,
+                    })
+                  }
+                />
+              )}
+              label={t('bookmark')}
+              onIconPress={() =>
+                navigate(BOOKLIST_SCREEN, {
+                  label: t('bookmark'),
+                  data: BookmarksReducer,
+                  product_type: "bookmark",
+                })
+              }
+            />
+            <TitleBarWithIcon label={t('requestBook')} noIcon />
+            <View style={styles.requestBooksBtns}>
+              <View style={{ width: wp(32) }}>
+                <Button
+                  style={{ paddingLeft: 5 }}
+                  bold
+                  color={colors.white}
+                  borderRadius={2}
+                  secondary
+                  fontSize={13}
+                  onPress={() =>
+                    navigate(REQUESTBOOKS_SCREEN, { book_type: 'random' })
+                  }>
+                  {t('requestBook')}
+                </Button>
+              </View>
+              <View style={{ width: wp(50) }}>
+                <Button
+                  // bold
+                  borderRadius={2}
+                  primary
+                  fontSize={13}
+                  onPress={() =>
+                    navigate(REQUESTBOOKS_SCREEN, { book_type: 'educational' })
+                  }>
+                  {t('requestEducationalBook')}
+                </Button>
+              </View>
             </View>
           </View>
         </View>
@@ -364,9 +367,12 @@ const Home = (props) => {
 };
 const styles = StyleSheet.create({
   container: {
-    paddingStart: 10,
-    marginLeft: 10,
-    width: '95%',
+    // paddingStart: 10,
+    // marginLeft: 10,
+    paddingTop: hp(4),
+    alignSelf: 'center',
+    // width: widthPercentageToDP(95)
+    // width: '95%',
   },
 
   requestBooksBtns: {

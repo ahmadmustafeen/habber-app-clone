@@ -5,9 +5,12 @@ import {
 	widthPercentageToDP as wp,
 	heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
+import { Platform } from 'react-native';
+import { I18nManager } from 'react-native';
 
 const CommonStyles = StyleSheet.create({
 	title: {
+		// fontFamily: I18nManager.isRTL ? 'Amiri-Bold' : 'Oswald-Bold',
 		fontFamily: 'Oswald-Bold',
 		lineHeight: 50,
 		fontSize: wp('8%'),
@@ -15,11 +18,13 @@ const CommonStyles = StyleSheet.create({
 		textAlign: 'center',
 	},
 	subTitle: {
+		// fontFamily: I18nManager.isRTL ? 'Amiri-Bold' : 'Oswald-Bold',
 		fontFamily: 'Oswald-Bold',
 		fontSize: width / 18,
 		color: BLUE_COLOR,
 	},
 	simpleText: {
+		// fontFamily: I18nManager.isRTL ? 'Amiri-Bold' : 'Poppins-Medium',
 		fontFamily: 'Poppins-Medium',
 		fontSize: 15,
 		color: BLACK_COLOR,

@@ -44,6 +44,7 @@ import { Text } from 'react-native';
 import { NofeaturedBook } from '../../components/NofeaturedBook';
 import { Platform } from 'react-native';
 import { BackHandler } from 'react-native';
+import { ScrollView } from 'react-native';
 
 const BookDetails = (props) => {
 
@@ -292,7 +293,7 @@ const BookDetails = (props) => {
     }
   };
   return (
-    <Screen noPadding contentPadding>
+    <ScrollView noPadding contentPadding >
       <View key="header">
         <ImageBackground
           style={[{
@@ -347,7 +348,7 @@ const BookDetails = (props) => {
             )}
         </ImageBackground>
       </View>
-      <View key="content">
+      <View key="content" style={{ padding: wp(5) }}>
         {book_removed && <NofeaturedBook unavailabetitle={I18nManager.isRTL ? "الكتاب المميز غير متوفر حاليًا" : "THE FEATURED BOOK IS CURRENTLY UNAVAILABLE"}
           source={require("../../assets/images/nofeatured.png")} />}
 
@@ -381,18 +382,18 @@ const BookDetails = (props) => {
             </>
           )
           ) : (
-              <>
-                <AppText style={styles.infoProduct} bold primary size={15}>
-                  {t("productId")}: {book.bookmark_id}
-                </AppText>
-                <AppText style={styles.infoProduct} bold size={15}>
-                  {t("sizeInInches")} : {book.size}
-                </AppText>
-                <AppText style={styles.infoProduct} bold size={15}>
-                  {t("typeOfBookmark")} : {book.type_of_bookmark}
-                </AppText>
-              </>
-            )}
+            <>
+              <AppText style={styles.infoProduct} bold primary size={15}>
+                {t("productId")}: {book.bookmark_id}
+              </AppText>
+              <AppText style={styles.infoProduct} bold size={15}>
+                {t("sizeInInches")} : {book.size}
+              </AppText>
+              <AppText style={styles.infoProduct} bold size={15}>
+                {t("typeOfBookmark")} : {book.type_of_bookmark}
+              </AppText>
+            </>
+          )}
         </View>
         {!book_removed && <HorizontalRow style={styles.row} />}
         <View style={{ marginTop: 20, minHeight: hp(20) }}>
@@ -483,54 +484,54 @@ const BookDetails = (props) => {
 
         ) : (
 
-            <View
-              style={{
-                width: wp(90),
-                alignSelf: 'center',
-                paddingVertical: hp(2),
-              }}>
-              <AppText> {t("morebookclubs")}</AppText>
-              <View style={{ paddingVertical: hp(2) }}>
-                {true &&
-                  <DashboardComponent
-                    noTitle
-                    data={BookClubReducer.filter((book) => book.featured).splice(0, 8)}
-                    renderComponent={(item) => {
-                      console.log(item.item)
-                      if (product_type === 'book') {
-                        return (
-                          <ThumbnailClub
-                            onPress={() => {
-                              props.navigation.push(BOOK_DETAILS_SCREEN, {
-                                ...item.item,
-                                product_type: 'bookclub',
-                              });
-                            }}
-                            url={item.item.bookclub_logo}
-                          />
-                        );
-                      }
+          <View
+            style={{
+              width: wp(90),
+              alignSelf: 'center',
+              paddingVertical: hp(2),
+            }}>
+            <AppText> {t("morebookclubs")}</AppText>
+            <View style={{ paddingVertical: hp(2) }}>
+              {true &&
+                <DashboardComponent
+                  noTitle
+                  data={BookClubReducer.filter((book) => book.featured).splice(0, 8)}
+                  renderComponent={(item) => {
+                    console.log(item.item)
+                    if (product_type === 'book') {
                       return (
-                        <RelatedThumbnailBookmarks
+                        <ThumbnailClub
                           onPress={() => {
                             props.navigation.push(BOOK_DETAILS_SCREEN, {
                               ...item.item,
-                              product_type,
+                              product_type: 'bookclub',
                             });
                           }}
-                          url={item.item.image}
+                          url={item.item.bookclub_logo}
                         />
-
                       );
-                    }}
-                  />
-                }
-              </View>
+                    }
+                    return (
+                      <RelatedThumbnailBookmarks
+                        onPress={() => {
+                          props.navigation.push(BOOK_DETAILS_SCREEN, {
+                            ...item.item,
+                            product_type,
+                          });
+                        }}
+                        url={item.item.image}
+                      />
+
+                    );
+                  }}
+                />
+              }
             </View>
-          )
+          </View>
+        )
         }
       </View >
-    </Screen >
+    </ScrollView >
   );
 };
 

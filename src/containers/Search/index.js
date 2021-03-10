@@ -107,7 +107,7 @@ const Search = (props) => {
   }
 
   return (
-    <ScrollView keyboardShouldPersistTaps='always'>
+    <Screen noPadding keyboardShouldPersistTaps='always'>
 
       <Loader loading={isLoading} />
       <View
@@ -148,9 +148,12 @@ const Search = (props) => {
           /> */}
 
         </View>
+        {/* <View style={{ width: wp(100), marginLeft: wp(-2.5), backgroundColor: 'white', alignSelf: 'flex-start' }}>
+         
+        </View> */}
       </View>
       <View key="content">
-        <View style={{ width: wp(90), alignSelf: 'center' }}>
+        <View style={{ width: wp(90), alignSelf: 'center', }}>
           {(SearchBooksReducer.length > 0) &&
             <TitleBarWithIcon label={`${bookData.length} ${t('bookFound')}`}
               filter={filter} noIcon onIconPress={toggleFilter} centerLine />}
@@ -178,7 +181,7 @@ const Search = (props) => {
       </View>
 
 
-    </ScrollView>
+    </Screen>
 
 
   );

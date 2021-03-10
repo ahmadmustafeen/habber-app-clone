@@ -22,6 +22,7 @@ import {
 } from '_redux/actionTypes';
 import { FETCH_GENRE } from '../actionTypes';
 import { AD_SCREENS } from '../../constants/Screens';
+import RNBootSplash from "react-native-bootsplash";
 
 
 export function* splashSaga({ payload }) {
@@ -56,9 +57,18 @@ export function* splashSaga({ payload }) {
     console.log("response", !!res)
 
     if (!res && !payload) {
+      setTimeout(() => {
+        RNBootSplash.hide({ duration: 1000 })
+      }, 2000)
+      // RNBootSplash.hide({ duration: 1000 })
+
       yield put({ type: SKIP_AD });
       yield put({ type: FETCH_AD_FAILURE });
     } else {
+      // RNBootSplash.hide({ duration: 1000 })
+      setTimeout(() => {
+        RNBootSplash.hide({ duration: 1000 })
+      }, 2000)
       yield put({ type: FETCH_AD_SUCCESS, payload: { ad: false, res } });
       yield put({ type: SKIP_AD });
 

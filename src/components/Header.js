@@ -69,11 +69,13 @@ const Header = (props, { adddok }) => {
   return (headerImage ?
     <ImageBackground
       style={{
+        // marginTop: hp(-5),
+        minHeight: 0,
         height: hp(21),
         paddingVertical: hp(5),
         paddingHorizontal: wp(3),
         paddingBottom: hp(8),
-        marginBottom: hp(1),
+        // marginBottom: hp(1),
         justifyContent: 'flex-end',
       }}
       resizeMode="stretch"
@@ -84,14 +86,14 @@ const Header = (props, { adddok }) => {
           {headerLeft ? (
             headerLeft
           ) : (
-              <Icon
-                size={20}
-                onPress={() => navigation.openDrawer()}
-                color={headerColor}
-                name="menu"
-                type="feather"
-              />
-            )}
+            <Icon
+              size={20}
+              onPress={() => navigation.openDrawer()}
+              color={headerColor}
+              name="menu"
+              type="feather"
+            />
+          )}
         </View>
         <View>
           {backIcon ? (
@@ -127,58 +129,58 @@ const Header = (props, { adddok }) => {
           {headerRight ? (
             headerRight
           ) : (
-              <View style={[styles.right, (!!route && (route.name !== 'Search')) && I18nManager.isRTL && { width: wp(19.5), marginLeft: wp(-2) }]}>
-                <TouchableOpacity
-                  // onPress={() => {
+            <View style={[styles.right, (!!route && (route.name !== 'Search')) && I18nManager.isRTL && { width: wp(19.5), marginLeft: wp(-2) }]}>
+              <TouchableOpacity
+                // onPress={() => {
 
-                  // navigation.navigate(CART_SCREEN, {
-                  //   label: 'CART_SCREEN',
-                  //   CART_SCREEN,
-                  // });
-                  // }}
-                  onPress={
-                    onCart ? onCart : () => {
-                      navigation.navigate(CART_SCREEN, {
-                        label: 'CART_SCREEN',
-                        CART_SCREEN,
-                      })
-                    }
+                // navigation.navigate(CART_SCREEN, {
+                //   label: 'CART_SCREEN',
+                //   CART_SCREEN,
+                // });
+                // }}
+                onPress={
+                  onCart ? onCart : () => {
+                    navigation.navigate(CART_SCREEN, {
+                      label: 'CART_SCREEN',
+                      CART_SCREEN,
+                    })
                   }
-                >
-                  {!noCart ?
+                }
+              >
+                {!noCart ?
 
-                    <Image
-                      source={
-                        cartNumber
-                          ? require('../assets/images/filledcart.png')
-                          : (qua === 0 ? require('../assets/images/emptycart.png') : require('../assets/images/nocart3.png'))
-                      }
-                      style={{ marginRight: wp(3), marginHorizontal: wp(1) }}
-                    /> : null
-                  }
-                  {qua ? (
-                    <View style={I18nManager.isRTL ? styles.circleArabicCheck : styles.circleCheck}>
-                      <AppText style={{ transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }], }} size={13} bold color={"#0a2937"}>
-                        {qua}
-                      </AppText>
-                    </View>
-                  ) : null}
-                </TouchableOpacity>
-
-
-                { !noSearch ? (!!route && (route.name !== 'Search')) && (
-                  <Icon
-                    props={props}
-                    onPress={onSearch ? onSearch : () =>
-                      navigation.navigate(SEARCH, { label: 'SEARCH', SEARCH })
+                  <Image
+                    source={
+                      cartNumber
+                        ? require('../assets/images/filledcart.png')
+                        : (qua === 0 ? require('../assets/images/emptycart.png') : require('../assets/images/nocart3.png'))
                     }
-                    color={headerColor}
-                    name="search1"
-                    type="antdesign"
-                  />
+                    style={{ marginRight: wp(3), marginHorizontal: wp(1) }}
+                  /> : null
+                }
+                {qua ? (
+                  <View style={I18nManager.isRTL ? styles.circleArabicCheck : styles.circleCheck}>
+                    <AppText style={{ transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }], }} size={13} bold color={"#0a2937"}>
+                      {qua}
+                    </AppText>
+                  </View>
                 ) : null}
-              </View>
-            )}
+              </TouchableOpacity>
+
+
+              { !noSearch ? (!!route && (route.name !== 'Search')) && (
+                <Icon
+                  props={props}
+                  onPress={onSearch ? onSearch : () =>
+                    navigation.navigate(SEARCH, { label: 'SEARCH', SEARCH })
+                  }
+                  color={headerColor}
+                  name="search1"
+                  type="antdesign"
+                />
+              ) : null}
+            </View>
+          )}
         </View>
       </View>
     </ImageBackground >
@@ -188,13 +190,13 @@ const Header = (props, { adddok }) => {
           {headerLeft ? (
             headerLeft
           ) : (
-              <Icon
-                onPress={() => navigation.openDrawer()}
-                color={headerColor}
-                name="menu"
-                type="feather"
-              />
-            )}
+            <Icon
+              onPress={() => navigation.openDrawer()}
+              color={headerColor}
+              name="menu"
+              type="feather"
+            />
+          )}
         </View>
         <View>
           {backIcon ? (
@@ -227,48 +229,48 @@ const Header = (props, { adddok }) => {
           {headerRight ? (
             headerRight
           ) : (
-              <View style={[styles.right,]}>
-                <TouchableOpacity onPress={() => {
-                  navigation.navigate(CART_SCREEN, {
-                    label: 'CART_SCREEN',
-                    CART_SCREEN,
-                    // CARTNEW
-                  });
-                }}>
-                  <Image
-                    source={
-                      cartNumber
-                        ? require('../assets/images/filledcart.png')
-                        : (qua !== 0 ? require('../assets/images/nocart.png') : require('../assets/images/nocart.png'))
-                    }
-                  />
-                  {qua ? (
-                    <View style={I18nManager.isRTL ? styles.circleArabic : styles.circle}>
-                      <AppText size={13} style={{ transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }], }} bold white>
-                        {qua}
-                      </AppText>
-                    </View>
-                  ) : <View style={I18nManager.isRTL ? styles.circleArabic : styles.circle}>
-                      <AppText style={{ transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }], }} size={13} bold white>
-                        {0}
-                      </AppText>
-                    </View>}
-                </TouchableOpacity>
+            <View style={[styles.right,]}>
+              <TouchableOpacity onPress={() => {
+                navigation.navigate(CART_SCREEN, {
+                  label: 'CART_SCREEN',
+                  CART_SCREEN,
+                  // CARTNEW
+                });
+              }}>
+                <Image
+                  source={
+                    cartNumber
+                      ? require('../assets/images/filledcart.png')
+                      : (qua !== 0 ? require('../assets/images/nocart.png') : require('../assets/images/nocart.png'))
+                  }
+                />
+                {qua ? (
+                  <View style={I18nManager.isRTL ? styles.circleArabic : styles.circle}>
+                    <AppText size={13} style={{ transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }], }} bold white>
+                      {qua}
+                    </AppText>
+                  </View>
+                ) : <View style={I18nManager.isRTL ? styles.circleArabic : styles.circle}>
+                  <AppText style={{ transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }], }} size={13} bold white>
+                    {0}
+                  </AppText>
+                </View>}
+              </TouchableOpacity>
 
 
-                {(!!route && route.name) !== 'Search' && (
-                  <Icon
-                    props={props}
-                    onPress={() =>
-                      navigation.navigate(SEARCH, { label: 'SEARCH', SEARCH })
-                    }
-                    color={headerColor}
-                    name="search1"
-                    type="antdesign"
-                  />
-                )}
-              </View>
-            )}
+              {(!!route && route.name) !== 'Search' && (
+                <Icon
+                  props={props}
+                  onPress={() =>
+                    navigation.navigate(SEARCH, { label: 'SEARCH', SEARCH })
+                  }
+                  color={headerColor}
+                  name="search1"
+                  type="antdesign"
+                />
+              )}
+            </View>
+          )}
         </View>
       </View>
     )

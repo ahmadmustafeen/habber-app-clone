@@ -15,39 +15,44 @@ const Screen = (props) => {
   };
 
   return (
-    <KeyboardAwareScrollView
-      // stickyHeaderIndices={[1]}
-      resetScrollToCoords={{ x: 0, y: 0 }}
-      contentContainerStyle={{ flexGrow: 1 }}
-      automaticallyAdjustContentInsets={true}
-      keyboardDismissMode="on-drag"
-      // scrollsToTop={false}
-      showsHorizontalScrollIndicator={false}
-      showsVerticalScrollIndicator={false}
-      keyboardShouldPersistTaps="never"
-      bounces={false}
-      enableResetScrollToCoords={false}
-    >
-      <View
-        style={[
-          styles.formContainer,
-          { backgroundColor: props.backgroundColor },
-          noPadding && { paddingHorizontal: 0, paddingBottom: 0 },
-        ]}>
-        {getComponent('header').length ? (
-          <View style={styles.header}>{getComponent('header')}</View>
-        ) : null}
-        {getComponent('content').length ? (
-          <View
-            style={[styles.content, contentPadding && { paddingHorizontal: 20 }]}>
-            {getComponent('content')}
-          </View>
-        ) : null}
-        {getComponent('footer').length ? (
-          <View style={styles.footer}>{getComponent('footer')}</View>
-        ) : null}
-      </View>
-    </KeyboardAwareScrollView>
+    <>
+      {getComponent('header').length ? (
+        <View style={styles.header}>{getComponent('header')}</View>
+      ) : null}
+      <KeyboardAwareScrollView
+        stickyHeaderIndices={[1]}
+        // resetScrollToCoords={{ x: 0, y: 0 }}
+        contentContainerStyle={{ flexGrow: 1 }}
+        // automaticallyAdjustContentInsets={true}
+        keyboardDismissMode="on-drag"
+        scrollsToTop={true}
+        showsHorizontalScrollIndicator={false}
+        showsVerticalScrollIndicator={false}
+        keyboardShouldPersistTaps="never"
+        bounces={false}
+        enableResetScrollToCoords={false}
+      // style={{ backgroundColor: 'red' }}
+      >
+
+        <View
+          style={[
+            styles.formContainer,
+            { backgroundColor: props.backgroundColor },
+            noPadding && { paddingHorizontal: 0, paddingBottom: 0 },
+          ]}>
+
+          {getComponent('content').length ? (
+            <View
+              style={[styles.content, contentPadding && { paddingHorizontal: 20 }]}>
+              {getComponent('content')}
+            </View>
+          ) : null}
+          {getComponent('footer').length ? (
+            <View style={styles.footer}>{getComponent('footer')}</View>
+          ) : null}
+        </View>
+      </KeyboardAwareScrollView>
+    </>
   );
 };
 
@@ -64,7 +69,8 @@ const styles = StyleSheet.create({
     marginBottom: hp('0.75%'),
   },
   header: {
-    // marginBottom: hp(0.75),
+    // marginBottom: hp(4),
+
   },
   content: {
     flex: 1,
