@@ -112,7 +112,7 @@ const Home = (props) => {
     return () => {
       if (UserProfileReducer.setting) {
         console.log('WORRKED')
-        props.navigation.navigate(SETTINGS_SCREEN)
+        // props.navigation.navigate(SETTINGS_SCREEN)
       }
       BackHandler.removeEventListener('hardwareBackPress', handleBackButton);
     }

@@ -115,7 +115,7 @@ const SignIn = (props) => {
       <KeyboardAwareScrollView
         style={{ height: heightPercentageToDP(96) }}
         resetScrollToCoords={{ x: 0, y: 0 }}
-        contentContainerStyle={{ height: heightPercentageToDP(96) }}
+        contentContainerStyle={{ height: heightPercentageToDP(96), flexGrow: 1 }}
         // automaticallyAdjustContentInsets={true
         automaticallyAdjustContentInsets={false}
         keyboardDismissMode="on-drag"
@@ -124,7 +124,9 @@ const SignIn = (props) => {
         showsVerticalScrollIndicator={false}
         keyboardShouldPersistTaps="never"
         bounces={false}
-        enableResetScrollToCoords={false}>
+      // enableResetScrollToCoords={false}
+
+      >
 
 
         <View key="header">
@@ -134,7 +136,7 @@ const SignIn = (props) => {
             {t('signInHeader')}
           </AppText>
 
-          <AppText white secondary style={Platform.OS === 'ios' ? null : { marginBottom: 10 }}>
+          <AppText white secondary style={(Platform.OS === 'ios' && I18nManager.isRTL) ? null : { marginBottom: 10 }}>
             {t('signInLabel')}
           </AppText>
         </View>
@@ -222,7 +224,7 @@ Login with Social media account`}
         </View>  */}
           </View>
         </View>
-        <View style={[{ width: wp(20), paddingBottom: hp(3), alignSelf: 'flex-end' }, Platform.OS === 'ios' && { paddingBottom: hp(0), bottom: hp(0), }]}>
+        <View style={[{ width: wp(20), paddingBottom: hp(3), alignSelf: 'flex-end' }, (Platform.OS === 'ios' && I18nManager.isRTL) && { paddingBottom: hp(0), bottom: hp(0), }]}>
           <AppText
             right
             underline
@@ -252,19 +254,19 @@ Login with Social media account`}
 const styles = StyleSheet.create({
   content: {
     flex: 1,
-    paddingTop: Platform.OS === 'ios' ? hp(2) : hp(4),
+    paddingTop: (Platform.OS === 'ios' && I18nManager.isRTL) ? hp(2) : hp(4),
     flexDirection: 'column',
   },
   bgImage: {
     flex: 1,
   },
   hellotxt: {
-    paddingTop: Platform.OS === 'ios' ? wp(0) : wp(10),
+    paddingTop: (Platform.OS === 'ios' && I18nManager.isRTL) ? wp(0) : wp(10),
   },
   forgotPassword: {
-    marginTop: Platform.OS === 'ios' ? wp(-2) : wp(0),
+    marginTop: (Platform.OS === 'ios' && I18nManager.isRTL) ? wp(-2) : wp(0),
     textAlign: 'right',
-    marginBottom: Platform.OS === 'ios' ? wp(2) : wp(4),
+    marginBottom: (Platform.OS === 'ios' && I18nManager.isRTL) ? wp(2) : wp(4),
   },
 });
 export default SignIn;

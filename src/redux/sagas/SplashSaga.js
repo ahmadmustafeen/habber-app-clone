@@ -58,7 +58,7 @@ export function* splashSaga({ payload }) {
 
     if (!res && !payload) {
       setTimeout(() => {
-        RNBootSplash.hide({ duration: 1000 })
+        RNBootSplash.hide({ duration: 3000 })
       }, 2000)
       // RNBootSplash.hide({ duration: 1000 })
 
@@ -67,7 +67,7 @@ export function* splashSaga({ payload }) {
     } else {
       // RNBootSplash.hide({ duration: 1000 })
       setTimeout(() => {
-        RNBootSplash.hide({ duration: 1000 })
+        RNBootSplash.hide({ duration: 3000 })
       }, 2000)
       yield put({ type: FETCH_AD_SUCCESS, payload: { ad: false, res } });
       yield put({ type: SKIP_AD });

@@ -16,11 +16,10 @@
       android:icon="@mipmap/ic_launcher"
       android:roundIcon="@mipmap/ic_launcher_round"
       android:allowBackup="false"
-      android:theme="@style/AppTheme"
+      android:theme="@style/BootTheme"
       android:supportsRtl="true"
       android:requestLegacyExternalStorage="true"
       >
-
     <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
 
       <activity
@@ -31,11 +30,10 @@
         android:windowSoftInputMode="adjustResize"
 android:exported="true"
 >
-        <!-- <intent-filter>
+      <intent-filter>
             <action android:name="android.intent.action.MAIN" />
             <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter> -->
-
+        </intent-filter>
 
           <intent-filter android:label="Hebber">
         <action android:name="android.intent.action.VIEW" />
@@ -48,7 +46,7 @@ android:exported="true"
     </intent-filter>
 
       </activity>
-
+<!-- 
 <activity
       android:name="com.zoontek.rnbootsplash.RNBootSplashActivity"
       android:theme="@style/BootTheme"
@@ -57,7 +55,7 @@ android:exported="true"
         <action android:name="android.intent.action.MAIN" />
         <category android:name="android.intent.category.LAUNCHER" />
       </intent-filter>
-    </activity>
+    </activity> -->
 
 
 
