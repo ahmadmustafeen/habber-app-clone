@@ -39,7 +39,7 @@ const MyOrders = (props) => {
 
 
   const handleBackButton = () => {
-    props.navigation.goBack()
+    props.navigation.navigate(HOME)
     return true;
   };
   useEffect(() => {
