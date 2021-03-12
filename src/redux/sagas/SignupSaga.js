@@ -35,7 +35,7 @@ export function* signupSaga({ payload, type }) {
 
     } else {
       // Alert.alert('Registration Failed', data.message);
-      const text = I18nManager.isRTL ? 'هذا البريد الإلكتروني مأخوذ بالفعل! جرب واحدة أخرى...' : 'This email is already been taken! try another one...'
+      const text = I18nManager.isRTL ? 'هذا البريد الإلكتروني مأخوذ بالفعل! جرب واحدة أخرى...' : 'This email has already been taken! try another one...'
       Platform.OS === 'ios' ?
         Alert.alert(false ? ` ${text}` : text, '', [{ text: I18nManager.isRTL ? 'حسنا' : 'OK', }])
         : (

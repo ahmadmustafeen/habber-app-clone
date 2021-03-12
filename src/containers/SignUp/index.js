@@ -149,7 +149,6 @@ const SignUp = (props) => {
         <View key="content" style={styles.content}>
           <InputWithLabel
             white
-            placeholder="Khaled"
             label={t('firstName')}
             required
             value={first_name}
@@ -157,7 +156,6 @@ const SignUp = (props) => {
           />
           <InputWithLabel
             white
-            placeholder="Ammar"
             label={t('lastName')}
             required
             value={last_name}
@@ -165,7 +163,6 @@ const SignUp = (props) => {
           />
           <InputWithLabel
             white
-            placeholder="ahmadalajmi@gmail.com"
             label={t('email')}
             required
             value={email}
@@ -174,7 +171,6 @@ const SignUp = (props) => {
           <InputWithLabel
             white
             secureTextEntry
-            placeholder="*********"
             label={t('password')}
             required
             value={password}
@@ -183,7 +179,6 @@ const SignUp = (props) => {
           <InputWithLabel
             white
             secureTextEntry
-            placeholder="*********"
             label={t('confirmPassword')}
             required
             value={password_confirmation}

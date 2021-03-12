@@ -48,7 +48,7 @@ export function* UpdateProfileSaga({ type, payload }) {
       //   ]
       // );
 
-      const text = I18nManager.isRTL ? 'بيانات الاعتماد غير صالحة' : 'Your Profile have been Updated'
+      const text = I18nManager.isRTL ? 'بيانات الاعتماد غير صالحة' : 'Your Profile has been updated'
       Platform.OS === 'ios' ?
         Alert.alert(false ? ` ${text}` : text, '', [{ text: I18nManager.isRTL ? 'حسنا' : 'OK', onPress: () => NavigationService.navigate('MyProfile', { screen: MY_PROFILE }) }])
         : (

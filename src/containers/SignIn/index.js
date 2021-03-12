@@ -48,13 +48,6 @@ const SignIn = (props) => {
     };
   }, shallowEqual);
 
-  useEffect(() => {
-    if (UserProfileReducer.setting) {
-      // dispatch(withoutDataActions(SETTING_REMOVAL))
-      navigate('Drawer', { screen: SETTINGS_SCREEN })
-    }
-
-  }, [UserProfileReducer]);
 
   const handleChange = (key, value) => {
     if (key === 'email' || key === 'phone') {
@@ -79,6 +72,14 @@ const SignIn = (props) => {
       keyboardDidHideListener.remove();
     }
   }, []);
+  console.log(UserProfileReducer, "USERPROGILEASDSADA")
+  useEffect(() => {
+    if (UserProfileReducer.setting) {
+      // dispatch(withoutDataActions(SETTING_REMOVAL))
+      navigate('Drawer')
+    }
+
+  }, [UserProfileReducer]);
   const validate = () => {
 
     return (

@@ -84,9 +84,9 @@ const navigatorComponent = (ad, backUser, res, User, adViewed) => {
         screenOptions={{
           headerShown: false,
         }}>
-        {!User.token && <RootStack.Screen name="Auth" component={AuthNav} />}
+        {(!User.setting || !User.token) && <RootStack.Screen name="Auth" component={AuthNav} />}
         <RootStack.Screen name="Drawer" component={DrawerNav} />
-        {User.token && <RootStack.Screen name="Auth" component={AuthNav} />}
+        {(User.token) && <RootStack.Screen name="Auth" component={AuthNav} />}
 
 
       </RootStack.Navigator>

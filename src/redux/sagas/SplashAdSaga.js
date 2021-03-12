@@ -1,5 +1,6 @@
 import { Alert } from 'react-native';
 
+import RNBootSplash from "react-native-bootsplash";
 import * as NavigationService from '../../../NavigationService';
 import { SIGNIN_SCREEN, LANGUAGE_SCREEN, HOME } from '_constants/Screens';
 import { getItem, setItem } from 'helpers/Localstorage';
@@ -21,6 +22,7 @@ import { I18nManager } from 'react-native';
 import i18n from '../../utils/i18n';
 
 export function* splashAdSaga() {
+
   try {
 
     const backUser = yield getItem('@backUser');
@@ -30,6 +32,7 @@ export function* splashAdSaga() {
     cartREDUCER = JSON.parse(cartREDUCER);
     console.log(userProfile, "cartREDUCER");
     if (userProfile && !userProfile.currency) {
+
 
       const userProfilecheck = JSON.parse(userProfile);
       yield setItem(
@@ -48,6 +51,8 @@ export function* splashAdSaga() {
       yield put({ type: FETCH_BOOKMARKS });
     }
     else if (!userProfile) {
+
+
       yield setItem(
         '@userProfile',
         JSON.stringify({
@@ -68,6 +73,8 @@ export function* splashAdSaga() {
     });
     console.log(userProfile, "userProfile");
     if (userProfile && userProfile.token) {
+
+
       RestClient.setHeader('Authorization', `Bearer ${userProfile.token}`);
 
 
@@ -86,6 +93,8 @@ export function* splashAdSaga() {
         screen: HOME,
       });
     } else if (userProfile) {
+
+
       yield setItem('@adViewed', JSON.stringify(true));
       yield put({ type: GUESTUSER_TOKEN });
       const { UserProfileReducer } = yield select(({ UserProfileReducer }) => {
@@ -104,6 +113,8 @@ export function* splashAdSaga() {
     } else {
 
       if (!userProfile || !userProfile.language) {
+
+
         yield put({ type: GUESTUSER_TOKEN });
         yield setItem(
           '@userProfile',
@@ -115,9 +126,12 @@ export function* splashAdSaga() {
         );
       }
       return NavigationService.navigate('Auth', {
+
         screen: LANGUAGE_SCREEN,
       });
     }
+
+
   } catch (error) {
     console.log('ERROR SPLASH AD SAGA', error);
     Alert.alert('Error', error);

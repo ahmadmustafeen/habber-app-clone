@@ -104,7 +104,7 @@ const EditProfile = (props) => {
     ImagePicker.showImagePicker(imageOptions, (response) => {
       console.log('Response = ', response);
       if (response.fileSize > 5000000) {
-        return validateIsTrue(false, I18nManager.isRTL ? "الرجاء تحديد صورة أقل من 5 ميغا بايت" : "Please select a image less than 5mbs", false);
+        return validateIsTrue(false, I18nManager.isRTL ? "الرجاء تحديد صورة أقل من 5 ميغا بايت" : "Please select a image less than 5MBs", false);
       }
       if (response.didCancel) {
         console.log('User cancelled image picker');

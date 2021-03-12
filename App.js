@@ -12,15 +12,29 @@ import { googleConfigure } from './src/services/googleLoginController';
 import Linking from './src/navigator/Linking'
 import { I18nManager } from 'react-native';
 import NetInfo from "@react-native-community/netinfo";
-import { useDispatch } from 'react-redux';
+import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import { withDataActions, withoutDataActions } from './src/redux/actions';
 import { HIDE_NETWORK_MODAL, SPLASH_ACTION } from './src/redux/actionTypes';
 import RNBootSplash from "react-native-bootsplash";
+import UserProfileReducer from './src/redux/reducers/UserProfileReducer';
+import { Alert } from 'react-native';
 
 const App = () => {
   const dispatch = useDispatch()
   const { network, toggleModal } = useNetworkModal();
   const [internet, setInternet] = useState(true);
+
+
+  const {
+    UserProfileReducer,
+
+  } = useSelector((state) => {
+    return {
+      UserProfileReducer: state.UserProfileReducer,
+
+    };
+  }, shallowEqual);
+
   useEffect(() => {
     googleConfigure();
 
@@ -35,7 +49,9 @@ const App = () => {
 
     });
     return () => {
-      // RNBootSplash.hide({ duration: 1 });
+      // RNBootSplash.hide({ duration: 1 }); setTimeout(() => {
+
+
       unsubscribe();
 
       // RNBootSplash.hide({ duration: 200 });
@@ -44,11 +60,17 @@ const App = () => {
 
   useEffect(() => {
     dispatch(withoutDataActions(SPLASH_ACTION))
+  }, [])
+  useEffect(() => {
+    // dispatch(withoutDataActions(SPLASH_ACTION))
     setTimeout(() => {
-      // RNBootSplash.hide({ duration: 1000 })
+
+      if (UserProfileReducer.setting !== null) {
+        RNBootSplash.hide({ duration: 2000 })
+      }
     }, 2000)
 
-  })
+  }, [UserProfileReducer])
   // useEffect(() => {
   //   const init = async () => {
   //     // …do multiple sync or async tasks
@@ -75,22 +97,7 @@ const App = () => {
       <StatusBar barStyle="light-content" />
       <Navigator ref={navigationRef} />
       <View>
-        {/* <LoginButton
-          publishPermissions={['email']}
-          onLoginFinished={(error, result) => {
-            if (error) {
-              alert('Login failed with error: ' + error.message);
-            } else if (result.isCancelled) {
-              alert('Login was cancelled');
-            } else {
-              alert(
-                'Login was successful with permissions: ' +
-                  result.grantedPermissions,
-              );
-            }
-          }}
-          onLogoutFinished={() => alert('User logged out')}
-        /> */}
+
       </View>
       <ModalScreen
         image={require('./src/assets/images/nointernet.png')}

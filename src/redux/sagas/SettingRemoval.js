@@ -7,7 +7,7 @@ import { RestClient } from '_network/RestClient';
 import { SIGN_OUT_SUCCESS, SIGN_OUT_FAILURE } from '_redux/actionTypes';
 import * as NavigationService from '../../../NavigationService';
 import { SIGNUP_SCREEN } from '../../constants/Screens';
-import { FETCH_ADDRESS_SUCCESS, FETCH_ORDER_SUCCESS, FETCH_USER_CART_SUCCESS } from '../actionTypes';
+import { FETCH_ADDRESS_SUCCESS, FETCH_ORDER_SUCCESS, FETCH_USER_CART_SUCCESS, FETCH_USER_PROFILE_SUCCESS } from '../actionTypes';
 export function* SettingRemoval() {
     try {
         let userProfile = yield getItem('@userProfile');
@@ -16,7 +16,10 @@ export function* SettingRemoval() {
         console.log(signedOutUserProfile, "userProfile");
 
         yield setItem('@userProfile', JSON.stringify({ ...userProfile, setting: false }));
-
+        yield put({
+            type: FETCH_USER_PROFILE_SUCCESS,
+            payload: { ...userProfile, setting: false },
+        });
     } catch (error) {
         yield put({ type: SIGN_OUT_FAILURE, error });
     }

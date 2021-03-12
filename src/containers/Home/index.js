@@ -117,6 +117,7 @@ const Home = (props) => {
       BackHandler.removeEventListener('hardwareBackPress', handleBackButton);
     }
   }, [])
+  console.log(UserProfileReducer, "UserProfileReducer")
   useEffect(() => {
     if (UserProfileReducer.setting) {
       dispatch(withoutDataActions(SETTING_REMOVAL))
