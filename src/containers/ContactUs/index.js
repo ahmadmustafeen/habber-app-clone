@@ -127,7 +127,7 @@ const ContactUs = (props) => {
       validateIsTrue(((state.phone.length === 0) || validatePhone(state.phone)),
         I18nManager.isRTL ? "يجب أن يتراوح رقم الهاتف بين 11 رقمًا و 15 رقمًا" : "Phone Number should be between 11 digits to 15 digits", false)
 
-      && validateIsTrue(state.message, `${t('Please')} ${t('message')}`, false, t('ok'))
+      && validateIsTrue(state.message.trim().length, `${t('Please')} ${t('message')}`, false, t('ok'))
     )
 
 
@@ -232,15 +232,15 @@ const ContactUs = (props) => {
             source={require('_assets/images/footer.png')}>
 
             <View style={[styles.textwithIconContainer, { transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }], }, I18nManager.isRTL && {
-              marginTop: hp(10.0),
+              // marginTop: hp(10.0),
               width: wp(75)
             }]}>
 
               <TextWithIcon
-                small
+                size={13}
                 iconName="whatsapp"
                 iconType="font-awesome"
-                iconSize={23}
+                iconSize={18}
                 title={t('supportChat')}
                 value={`${resookkk.substr(0, 4) + " " + resookkk.substr(4)}`}
                 onPress={() =>
@@ -251,10 +251,10 @@ const ContactUs = (props) => {
               />
 
               <TextWithIcon
-                small
+                size={13}
                 iconName="phone-call"
                 iconType="feather"
-                iconSize={23}
+                iconSize={18}
                 title={t('phoneNumber')}
                 // value={(Number(FetchSiteReducer.phone_no))}
                 // value={FetchSiteReducer.phone_no == 5 ? FetchSiteReducer.phone_no + " " : FetchSiteReducer.phone_no}
@@ -267,10 +267,10 @@ const ContactUs = (props) => {
                 }
               />
               <TextWithIcon
-                small
+                size={13}
                 iconName="mail"
                 iconType="octicons"
-                iconSize={23}
+                iconSize={18}
                 onPress={() =>
                   Linking.openURL(`mailto:${FetchSiteReducer.email}`)
                 }

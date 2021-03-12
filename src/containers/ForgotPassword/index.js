@@ -106,7 +106,6 @@ const ForgotPassword = (props) => {
         <View key="content">
           <InputWithLabel
             white
-            placeholder="ahmadalajmi@gmail.com"
             label={t('email')}
             value={email}
             onChangeText={(val) => { setEmail(val.replace(" ", "")) }}

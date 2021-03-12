@@ -29,14 +29,15 @@ import { MY_ADDRESS_BOOK } from '../../constants/Screens';
 const AddNewAddress = (props) => {
   const { visible, toggleModal } = useModal();
   const onContinue = () => {
-    toggleModal();
-    // props.navigation.navigate(MY_ADDRESS_BOOK)
-    props.navigation.goBack()
+    if (visible) {
+      props.navigation.goBack()
+    }
+    toggleModal()
+
+
   };
+
   const { route, navigation } = props;
-  console.log(props)
-
-
   const _keyboardDidHide = () => {
     Keyboard.dismiss()
   }

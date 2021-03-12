@@ -315,7 +315,7 @@ const BookDetails = (props) => {
                 type="ant-design"
               />
             }
-            title={(type ? props.route.params.name : true)}
+            title={(type ? I18nManager.isRTL ? props.route.params.arabic_name : props.route.params.name : true)}
             color={colors.secondary}
           />
           {(!type && (product_type === 'book' || product_type === 'bookmark')) ?

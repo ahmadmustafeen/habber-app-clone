@@ -51,62 +51,62 @@ const MyProfile = (props) => {
   const { colors } = useTheme();
   const { navigate } = props.navigation;
   return (
-    <ScrollView>
 
-      <Header
-        headerImage
-        {...props}
-      />
 
-      <Screen>
-        <View key="header"></View>
-        <View key="content">
-          <View style={styles.profiletop}>
-            <View
-              style={[styles.imgContainer, { borderColor: colors.borderColor }]}>
-              <Image
-                style={styles.image}
-                source={profile_pic ? { uri: profile_pic } : require('_assets/images/noUser.png')}
 
-              />
-            </View>
-            <View style={{ flexDirection: 'column', marginTop: hp(2), width: wp(60) }}>
-              <AppText bold small style={styles.txt}>
-                {`${first_name} ${last_name}`}
-              </AppText>
-              <AppText small style={styles.txt}>
-                {email}
-              </AppText>
-            </View>
-            <TouchableOpacity
-              style={{ position: 'absolute', right: wp(5), top: hp(-3) }}
-              onPress={() => navigate(EDIT_PROFILE)}>
-              {I18nManager.isRTL ?
-                <Image source={require('../../assets/images/editbtnAR.png')} /> :
-                <Image source={require('../../assets/images/editbtn.png')} />}
-            </TouchableOpacity>
+    <Screen>
+      <View key="header">
+        <Header
+          headerImage
+          {...props}
+        />
+      </View>
+      <View key="content">
+        <View style={styles.profiletop}>
+          <View
+            style={[styles.imgContainer, { borderColor: colors.borderColor }]}>
+            <Image
+              style={styles.image}
+              source={profile_pic ? { uri: profile_pic } : require('_assets/images/noUser.png')}
+
+            />
           </View>
-          <HorizontalRow
-            style={[styles.row, { borderBottomColor: colors.borderColor }]}
-          />
-          <View style={styles.btnview}>
-            <Button
-              icon
-              fontSize={13}
-              style={{ marginBottom: 15 }}
-              onPress={() => navigate(MY_ADDRESS_BOOK)}>
-              {t('myAddressBook')}
-            </Button>
-            <Button
-              fontSize={13}
-              icon
-              onPress={() => navigate(CHANGE_PASSWORD)}>
-              {t('changePassword')}
-            </Button>
+          <View style={{ flexDirection: 'column', marginTop: hp(2), width: wp(60) }}>
+            <AppText bold small style={styles.txt}>
+              {`${first_name} ${last_name}`}
+            </AppText>
+            <AppText small style={styles.txt}>
+              {email}
+            </AppText>
           </View>
+          <TouchableOpacity
+            style={{ position: 'absolute', right: wp(5), top: wp(3) }}
+            onPress={() => navigate(EDIT_PROFILE)}>
+            {I18nManager.isRTL ?
+              <Image source={require('../../assets/images/editbtnAR.png')} /> :
+              <Image source={require('../../assets/images/editbtn.png')} />}
+          </TouchableOpacity>
         </View>
-      </Screen>
-    </ScrollView>
+        <HorizontalRow
+          style={[styles.row, { borderBottomColor: colors.borderColor }]}
+        />
+        <View style={styles.btnview}>
+          <Button
+            icon
+            fontSize={13}
+            style={{ marginBottom: 15 }}
+            onPress={() => navigate(MY_ADDRESS_BOOK)}>
+            {t('myAddressBook')}
+          </Button>
+          <Button
+            fontSize={13}
+            icon
+            onPress={() => navigate(CHANGE_PASSWORD)}>
+            {t('changePassword')}
+          </Button>
+        </View>
+      </View>
+    </Screen>
   );
 };
 
@@ -132,18 +132,18 @@ const styles = StyleSheet.create({
   },
   editbtn: {
     width: 80,
-    paddingVertical: 5,
+    // paddingVertical: 5,
     textAlign: 'center',
     position: 'absolute',
-    right: 10,
-    top: -20,
+    // right: 10,
+    // top: -20,
     color: 'black',
   },
   profiletop: {
     width: '100%',
     flexDirection: 'row',
     marginBottom: 20,
-    marginTop: 20,
+    paddingTop: hp(5),
   },
   row: {
     // width: wp(0),

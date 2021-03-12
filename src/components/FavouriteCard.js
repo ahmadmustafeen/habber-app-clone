@@ -35,7 +35,7 @@ const FavouriteCard = (props) => {
             {I18nManager.isRTL ? props.item.arabic_title : props.item.title}
           </AppText>
           <AppText bold small style={[styles.txt, styles.author]}>
-            {I18nManager.isRTL ? "بواسطة" : "by"} {props.item.author_name}
+            {I18nManager.isRTL ? "بواسطة" : "by"} {!!props.item.author_name ? I18nManager.isRTL ? props.item.arabic_author_name : props.item.author_name : I18nManager.isRTL ? props.item.arabic_maker_name : props.item.maker_name}
           </AppText>
           <AppText bold style={styles.pricetxt}>
             {I18nManager.isRTL ? "السعر:" : "Price:"} {rtlLayout && UserProfileReducer.currency.symbol} {(parseFloat(props.item.prices.find((price) => price.iso === UserProfileReducer.currency.iso).price.toString().replace(",", ""))).toFixed(2)} {rtlLayout || UserProfileReducer.currency.symbol}
@@ -48,7 +48,7 @@ const FavouriteCard = (props) => {
             style={styles.pricetxt}
             onPress={props.item.quantity ? props.onAddToCart : () => console.log("NO QUANTITY")}
             round>
-            {props.item.quantity ? (I18nManager.isRTL ? "أضف إلى السلة" : "Add To Cart") : (I18nManager.isRTL ? "إنتهى من المخزن" : "Out Of Stock")}
+            {props.item.quantity ? (I18nManager.isRTL ? "أضف إلى السلة" : "Add To Cart") : (I18nManager.isRTL ? "الكمية نفذت" : "Out of Stock")}
           </Button> :
             <Button
               bold
@@ -63,7 +63,7 @@ const FavouriteCard = (props) => {
             //   quantity && onAddToCart();
             // }}>
             >
-              {props.item.quantity ? t('addToCart') : "Out of Stock"}
+              {props.item.quantity ? t('addToCart') : I18nManager.isRTL ? "الكمية نفذت" : "Out of Stock"}
             </Button>
 
           }

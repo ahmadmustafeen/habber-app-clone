@@ -24,6 +24,7 @@ import {
 } from '../constants/Screens';
 import ResetPassword from '../containers/ResetPassword';
 import AdScreens from '../containers/AdScreens';
+import SignUpPolicy from '../containers/SignUpPolicy';
 const AuthScreen = createStackNavigator();
 export const AuthNav = () => {
   return (
@@ -46,6 +47,10 @@ export const AuthNav = () => {
       <AuthScreen.Screen
         name={SIGNUP_TERM_CODITION}
         component={SignUpTermCondition}
+      />
+      <AuthScreen.Screen
+        name={"SignUpPolicy"}
+        component={SignUpPolicy}
       />
     </AuthScreen.Navigator>
   );

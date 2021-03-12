@@ -21,6 +21,7 @@ const BookDetailsCard = (props) => {
     isbn,
     maker_name,
     author_name,
+    arabic_author_name,
     image,
     price,
     title, arabic_title,
@@ -30,7 +31,7 @@ const BookDetailsCard = (props) => {
     product_type,
     prices,
     favourite,
-    onClickShare,
+    onClickShare, arabic_maker_name,
     onGoodReads,
     subheading
   } = props;
@@ -75,7 +76,7 @@ const BookDetailsCard = (props) => {
           <AppText
             size={15}
             style={{ paddingBottom: wp(10), fontStyle: 'italic' }}>
-            {t('by')} {product_type === "book" ? author_name : maker_name}
+            {t('by')} {product_type === "book" ? I18nManager.isRTL ? arabic_author_name : author_name : I18nManager.isRTL ? arabic_maker_name : maker_name}
           </AppText>
           <AppText bold size={17}>
             {t('price')} {rtlLayout && price_product.symbol}

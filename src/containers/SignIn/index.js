@@ -105,7 +105,7 @@ const SignIn = (props) => {
 
     <ImageBackground
       style={{
-        height: hp(100),
+        // height: hp(100),
         flex: 1,
         paddingHorizontal: wp(5),
         // paddingBottom: hp(5),

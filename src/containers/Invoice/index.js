@@ -128,6 +128,12 @@ const Invoice = (props) => {
                     />} headerImage />
 
             <View key="content" style={{ paddingVertical: hp(3) }}>
+                {props.route.params.orderDetails && <>
+                    <InvoiceItem headerLeft={I18nManager.isRTL ? "حالة الطلب" : "Order Status"}
+                        headerRight={item.status}
+                    />
+                    <View style={{ width: wp(80), alignSelf: "center", borderBottomColor: colors.primary, borderBottomWidth: hp(0.1) }} />
+                </>}
                 <InvoiceItem headerLeft={I18nManager.isRTL ? "رقم التعريف الخاص بالطلب" : "Order ID"} headerRight={I18nManager.isRTL ? "تاريخ الطلب" : "Order Date"} textLeft={item.id} textRight={item.created_at.split('T')[0]} />
                 <View style={{ width: wp(80), alignSelf: "center", borderBottomColor: colors.primary, borderBottomWidth: hp(0.1) }} />
                 <InvoiceItem headerLeft={I18nManager.isRTL ? "اسم الزبون" : "Customer Name"}
@@ -140,9 +146,7 @@ const Invoice = (props) => {
                 <InvoiceItem headerLeft={I18nManager.isRTL ? "عنوان" : "Address"}
                     headerRight={I18nManager.isRTL ? "طريقة الدفع او السداد" : "Payment Method"}
                     textLeft={item.address_name} textRight={item.payment_type} />
-                {/* <InvoiceItem headerLeft={I18nManager.isRTL ? "حالة الطلب" : "Order Status"}
-                    textLeft={item.status}
-                /> */}
+
                 <View style={[styles.detailCart]}>
                     <View style={[styles.detailCartHeader, { backgroundColor: colors.borderColor }]}>
                         <View style={{ flex: 3, justifyContent: 'center', alignItems: 'center', height: hp(5) }}>

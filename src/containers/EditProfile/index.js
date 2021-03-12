@@ -138,7 +138,7 @@ const EditProfile = (props) => {
   const link = state.profile_pic ? state.profile_pic.uri : UserProfileReducer.profile_pic
   const { colors } = useTheme();
   return (
-    <KeyboardAwareScrollView>
+    <Screen noPadding>
 
       <View key="header">
         <Header {...props} headerImage backIcon headerLeft />
@@ -157,7 +157,7 @@ const EditProfile = (props) => {
             <Image style={styles.image} source={require("_assets/images/addsign.png")} />
           </TouchableOpacity>
         </View>
-        <View style={{ position: 'absolute', right: wp(0), top: hp(8) }}>
+        <View style={{ position: 'absolute', right: wp(0), top: hp(7), width: wp(30), justifyContent: 'center' }}>
           <AppText primary bold small onPress={() => setState({ ...state, profile_pic: '' })}>
             {I18nManager.isRTL ? "إعادة تعيين الصورة" : "Reset Image"}
           </AppText>
@@ -193,12 +193,12 @@ const EditProfile = (props) => {
       </View>
 
 
-      <View style={[styles.content, { marginTop: hp(10) }]}>
+      <View style={[styles.content, { paddingBottom: hp(3) }]} key="footer">
         <Button loading={isLoading} appColor color={"white"} bold primary onPress={() => save()}>
           {t('save')}
         </Button>
       </View>
-    </KeyboardAwareScrollView>
+    </Screen>
   );
 };
 

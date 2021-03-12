@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+
+import { ImageBackground } from 'react-native';
 import { View, StyleSheet, Alert, Keyboard } from 'react-native';
 import { useDispatch, useSelector, shallowEqual } from 'react-redux';
 import { useTranslation } from 'react-i18next';
@@ -62,7 +64,7 @@ const SignUp = (props) => {
       validateIsTrue(first_name, `${t('Please')} ${t('firstName')}`, false, t('ok')) &&
       validateIsTrue(last_name, `${t('Please')} ${t('lastName')}`, false, t('ok')) &&
       validateIsTrue(validateEmail(email), I18nManager.isRTL ? "يرجى إدخال البريد الإلكتروني الصحيح" : "Please Enter a Valid Email", false, t('ok')) &&
-      validateIsTrue(validatePassword(password) && password.length >= 8, `${t('Please')} ${t('password')}`, false, t('ok')) &&
+      validateIsTrue(validateIsTrue(password) && password.length >= 8, I18nManager.isRTL ? 'يجب أن تتكون كلمة المرور من 8 أحرف على الأقل' : 'Password should be atleast 8 characters', false, t('ok')) &&
       validateIsTrue((password_confirmation), I18nManager.isRTL ? "الرجاء إدخال تأكيد كلمة المرور" : "Please Enter Confirm Password", false, t('ok')) &&
       validateIsTrue((password === password_confirmation), I18nManager.isRTL ? "كلمة السر غير متطابقة" : "Password Does Not Match", false, t('ok'))
     )
@@ -130,19 +132,29 @@ const SignUp = (props) => {
   //   }
   // };
   return (
-    <KeyboardAwareScrollView
-      //resetScrollToCoords={{ x: 0, y: 0 }}
-      contentContainerStyle={{ flexGrow: 1 }}
-      automaticallyAdjustContentInsets={true}
-      keyboardDismissMode="on-drag"
-      scrollsToTop={false}
-      showsHorizontalScrollIndicator={false}
-      showsVerticalScrollIndicator={false}
-      keyboardShouldPersistTaps="never"
+    <ImageBackground
+      style={{
+        // height: hp(100),
+        flex: 1,
+        paddingHorizontal: wp(5),
+        // paddingBottom: hp(5),
+        justifyContent: 'flex-end',
+      }}
+      resizeMode="stretch"
+      source={require('_assets/images/background.jpg')}>
+      <KeyboardAwareScrollView
+        //resetScrollToCoords={{ x: 0, y: 0 }}
+        contentContainerStyle={{ flexGrow: 1 }}
+        automaticallyAdjustContentInsets={true}
+        keyboardDismissMode="on-drag"
+        scrollsToTop={false}
+        showsHorizontalScrollIndicator={false}
+        showsVerticalScrollIndicator={false}
+        keyboardShouldPersistTaps="never"
 
-      bounces={false}
-      enableResetScrollToCoords={false}>
-      <BackgroundImage>
+        bounces={false}
+        enableResetScrollToCoords={false}>
+
         <View key="header">
           <AuthHeader {...props} />
         </View>
@@ -184,17 +196,31 @@ const SignUp = (props) => {
             value={password_confirmation}
             onChangeText={(value) => handleChange('password_confirmation', value)}
           />
-          <View style={{ alignItems: 'center' }}>
+          <View style={{ alignItems: 'center', paddingBottom: hp(5) }}>
             <AppText white secondary size={17}>
               {t('bycreating')}
             </AppText>
-            <TouchableOpacity onPress={() => navigation.navigate(SIGNUP_TERM_CODITION)}
+            {/* <TouchableOpacity onPress={() => navigation.navigate(SIGNUP_TERM_CODITION)}> */}
 
-            >
-              <AppText underline style={styles.termsandservices} size={17}>
-                {t('termAndService')}
-              </AppText>
-            </TouchableOpacity>
+
+            {/* <AppText underline style={styles.termsandservices} size={17}
+              linkOne={() => navigation.navigate(SIGNUP_TERM_CODITION)}
+              linkTwo={() => navigation.navigate(SIGNUP_TERM_CODITION)}>
+              {t('termAndService')}
+            </AppText> */}
+            {/* </TouchableOpacity> */}
+
+            <View style={{ flexDirection: 'row', paddingBottom: hp(3) }}>
+              <TouchableOpacity onPress={() => navigation.navigate(SIGNUP_TERM_CODITION)}>
+                <AppText primary underline size={17}>{I18nManager.isRTL ? "أحكام وشروط" : "Terms and Condition"}</AppText>
+              </TouchableOpacity>
+              <AppText primary underline size={17}> {I18nManager.isRTL ? "و" : "And"} </AppText>
+              <TouchableOpacity onPress={() => navigation.navigate("SignUpPolicy")}>
+                <AppText primary underline size={17}>{I18nManager.isRTL ? "سياسة خاصة" : "Privacy Policy"}</AppText>
+              </TouchableOpacity>
+            </View>
+
+
 
             <Button round width="60%" onPress={onSignUp} loading={isLoading}>
               {t('signUp')}
@@ -230,8 +256,8 @@ const SignUp = (props) => {
             {...signUp.modalData}
           />
         </View>
-      </BackgroundImage >
-    </KeyboardAwareScrollView>
+      </KeyboardAwareScrollView>
+    </ImageBackground >
   );
 };
 
@@ -240,7 +266,8 @@ const styles = StyleSheet.create({
     marginTop: hp(5.4),
   },
   termsandservices: {
-    color: '#c27e12',
+    // color: '#c27e12',
+    color: 'white',
     marginTop: 5,
     marginBottom: 25,
   },

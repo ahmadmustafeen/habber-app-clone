@@ -47,7 +47,7 @@ const BookmarkCard = (props) => {
                         </AppText>
                         :
                         <View style={[styles.outOfStock, { backgroundColor: colors.primary }]}>
-                            <AppText color="white" bold size={8}>{I18nManager.isRTL ? "إنتهى من المخزن" : "Out Of Stock"}</AppText>
+                            <AppText color="white" bold size={8}>{I18nManager.isRTL ? "الكمية نفذت" : "Out Of Stock"}</AppText>
                         </View>
                     }
                 </View>

@@ -123,7 +123,11 @@ const AddToCart = (props) => {
                 image,
                 title,
                 arabic_title,
+                arabic_author_name,
+                arabic_maker_name,
+
                 author_name,
+                maker_name,
                 cart_price,
                 cart_quantity,
               } = product;
@@ -139,7 +143,7 @@ const AddToCart = (props) => {
                       {I18nManager.isRTL ? arabic_title : title}
                     </AppText>
                     <AppText size={15} style={[styles.txt, styles.author]}>
-                      {I18nManager.isRTL ? "بواسطة" : "by"}: {author_name}
+                      {I18nManager.isRTL ? "بواسطة" : "by"}: {author_name ? I18nManager.isRTL ? arabic_author_name : author_name : I18nManager.isRTL ? arabic_maker_name : maker_name}
                     </AppText>
                     <AppText bold size={17} style={styles.pricetxt}>
                       {I18nManager.isRTL ? "السعر" : "Price"}:

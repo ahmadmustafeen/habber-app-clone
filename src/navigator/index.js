@@ -79,18 +79,42 @@ const navigatorComponent = (ad, backUser, res, User, adViewed) => {
   if (backUser) {
     console.log("BackUser", User, "BackUser")
 
-    return (
-      <RootStack.Navigator
-        screenOptions={{
-          headerShown: false,
-        }}>
-        {(!User.setting || !User.token) && <RootStack.Screen name="Auth" component={AuthNav} />}
+    if (User.setting) {
+
+      return (
+        <RootStack.Navigator
+          screenOptions={{
+            headerShown: false,
+          }}>
+          {/* {(!User.token) && <RootStack.Screen name="Auth" component={AuthNav} />}
         <RootStack.Screen name="Drawer" component={DrawerNav} />
-        {(User.token) && <RootStack.Screen name="Auth" component={AuthNav} />}
+        {(User.token) && <RootStack.Screen name="Auth" component={AuthNav} />} */}
 
+          {(!User.setting) && <RootStack.Screen name="Auth" component={AuthNav} />}
+          <RootStack.Screen name="Drawer" component={DrawerNav} />
+          {(User.setting) && <RootStack.Screen name="Auth" component={AuthNav} />}
 
-      </RootStack.Navigator>
-    );
+        </RootStack.Navigator>
+      );
+
+    }
+    else {
+      return (
+        <RootStack.Navigator
+          screenOptions={{
+            headerShown: false,
+          }}>
+          {/* {(!User.token) && <RootStack.Screen name="Auth" component={AuthNav} />}
+        <RootStack.Screen name="Drawer" component={DrawerNav} />
+        {(User.token) && <RootStack.Screen name="Auth" component={AuthNav} />} */}
+
+          {(!User.token) && <RootStack.Screen name="Auth" component={AuthNav} />}
+          <RootStack.Screen name="Drawer" component={DrawerNav} />
+          {(User.token) && <RootStack.Screen name="Auth" component={AuthNav} />}
+
+        </RootStack.Navigator>
+      );
+    }
   }
   return (
     <RootStack.Navigator
