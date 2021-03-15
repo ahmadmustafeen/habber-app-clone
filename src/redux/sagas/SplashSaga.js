@@ -56,9 +56,9 @@ export function* splashSaga({ payload }) {
     } = response;
     console.log("response", !!res)
     if (response) {
-      setTimeout(() => {
-        RNBootSplash.hide({ duration: 3000 })
-      }, 2000)
+      // setTimeout(() => {
+      //   RNBootSplash.hide({ duration: 3000 })
+      // }, 2000)
     }
     if (!res && !payload) {
 

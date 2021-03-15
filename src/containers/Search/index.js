@@ -6,6 +6,7 @@ import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
+  heightPercentageToDP,
 } from 'react-native-responsive-screen';
 import { Screen, AppText } from '_components/common';
 import { withDataActions } from '_redux/actions';
@@ -112,7 +113,7 @@ const Search = (props) => {
       <Loader loading={isLoading} />
       <View
         key="header"
-        style={{ backgroundColor: colors.secondary, padding: 10, transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }], }}>
+        style={{ backgroundColor: colors.secondary, padding: heightPercentageToDP(2), paddingTop: heightPercentageToDP(3), transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }], }}>
         <Header backIcon headerLeft {...props} />
         <View style={{ transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }] }}>
           <TextInput

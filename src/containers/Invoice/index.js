@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import { ScrollView, StyleSheet, View, ImageBackground, I18nManager, Text, } from 'react-native';
-import { Header } from '_components';
+import { Header, } from '_components';
+import { Screen } from '_components/common';
+
 import {
     widthPercentageToDP as wp,
     heightPercentageToDP as hp
@@ -9,7 +11,7 @@ import { useFocusEffect, useTheme } from '@react-navigation/native';
 import { AppText } from 'components/common';
 import { shallowEqual, useSelector } from 'react-redux';
 import { Icon } from 'react-native-elements'
-import { HOME } from '../../constants/Screens';
+import { HOME, MY_ORDERS } from '../../constants/Screens';
 import { BackHandler } from 'react-native';
 // import { parse } from '@babel/core';
 
@@ -114,19 +116,21 @@ const Invoice = (props) => {
     // console.log(delivery_charges)
 
     return (
-        <ScrollView>
+        <Screen noPadding>
+            <View key="header">
+                <Header  {...props} title={props.route.params.orderDetails && (I18nManager.isRTL ? "تفاصيل الطلب" : "Orders Detail")}
+                    inVoiceBack={(!props.route.params.orderDetails) ? (() => props.navigation.navigate(HOME)) : (() => props.navigation.navigate(MY_ORDERS))}
+                    backIcon={props.route.params.orderDetails}
 
-            <Header  {...props} title={props.route.params.orderDetails && (I18nManager.isRTL ? "تفاصيل الطلب" : "Orders Detail")}
-                inVoiceBack={!props.route.params.orderDetails}
-                backIcon={props.route.params.orderDetails}
-                headerLeft={props.route.params.orderDetails ||
-                    <Icon
-                        onPress={() => props.navigation.navigate(HOME)}
-                        color={colors.primary}
-                        name={I18nManager.isRTL ? "leftcircleo" : "leftcircleo"}
-                        type="antdesign"
-                    />} headerImage />
-
+                    // goHomeTitle={!props.route.params.orderDetails}
+                    headerLeft={props.route.params.orderDetails ||
+                        <Icon
+                            onPress={() => props.navigation.navigate(HOME)}
+                            color={colors.primary}
+                            name={I18nManager.isRTL ? "leftcircleo" : "leftcircleo"}
+                            type="antdesign"
+                        />} headerImage />
+            </View>
             <View key="content" style={{ paddingVertical: hp(3) }}>
                 {props.route.params.orderDetails && <>
                     <InvoiceItem headerLeft={I18nManager.isRTL ? "حالة الطلب" : "Order Status"}
@@ -212,7 +216,7 @@ const Invoice = (props) => {
 
 
 
-        </ScrollView >
+        </Screen >
     );
 };
 const styles = StyleSheet.create({

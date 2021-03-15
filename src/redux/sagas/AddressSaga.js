@@ -8,7 +8,7 @@ import { NETWORK_ERROR, SHOW_NETWORK_MODAL } from 'redux/actionTypes';
 import { ADD_ADDRESS_FAILURE, ADD_ADDRESS_SUCCESS, FETCH_ADDRESS, SHOW_MODAL } from '_redux/actionTypes';
 import * as NavigationService from '../../../NavigationService';
 import { startAction, stopAction } from '../actions';
-import { CHECKOUT, SIGNIN_SCREEN } from '../../constants/Screens';
+import { ADD_NEW_ADDRESS, CHECKOUT, SIGNIN_SCREEN } from '../../constants/Screens';
 export function* addressSaga({ type, payload }) {
   yield put(startAction(type));
   try {
@@ -23,7 +23,7 @@ export function* addressSaga({ type, payload }) {
       yield put({ type: ADD_ADDRESS_SUCCESS, });
       yield put({ type: FETCH_ADDRESS });
       yield put({ type: SHOW_MODAL, payload: null });
-
+      NavigationService.navigate('AddNewAddress', { screen: ADD_NEW_ADDRESS })
       // Alert.alert('Successfully Added new Address', message, [
       //   {
       //     onPress: () => {

@@ -160,71 +160,72 @@ const ContactUs = (props) => {
             {...props} />
 
         </View>
-        <View key="content" style={styles.content}>
-          <InputWithLabel
-            containerStyle={styles.inputWithLabel}
-            borderColor={colors.borderColor}
-            color={"black"}
-            placeholder={t('Namestaric')}
-            required
-            value={state.name}
-            onChangeText={(val) => setStateHandler('name', val)}
-          />
-          <InputWithLabel
-            borderColor={colors.borderColor}
-            containerStyle={styles.inputWithLabel}
-            placeholder={t('emailstaric')}
-            required
-            color={"black"}
-            value={state.email}
-            onChangeText={(val) => setStateHandler('email', val)}
-          />
-          <InputWithLabel
-            borderColor={colors.borderColor}
-            containerStyle={styles.inputWithLabel}
-            placeholder={t('mobileNumberOptional')}
-            color={"black"}
-            required
-            value={state.phone}
-            onChangeText={(val) => setStateHandler('phone', (val.length == 4 ? val + " " : val))}
-          />
-          <TextInput
+        <View key="content" >
+          <View style={styles.content}>
+            <InputWithLabel
+              containerStyle={styles.inputWithLabel}
+              borderColor={colors.borderColor}
+              color={"black"}
+              placeholder={t('Namestaric')}
+              required
+              value={state.name}
+              onChangeText={(val) => setStateHandler('name', val)}
+            />
+            <InputWithLabel
+              borderColor={colors.borderColor}
+              containerStyle={styles.inputWithLabel}
+              placeholder={t('emailstaric')}
+              required
+              color={"black"}
+              value={state.email}
+              onChangeText={(val) => setStateHandler('email', val)}
+            />
+            <InputWithLabel
+              borderColor={colors.borderColor}
+              containerStyle={styles.inputWithLabel}
+              placeholder={t('mobileNumberOptional')}
+              color={"black"}
+              required
+              value={state.phone}
+              onChangeText={(val) => setStateHandler('phone', (val.length == 4 ? val + " " : val))}
+            />
+            <TextInput
 
-            style={[styles.textArea, I18nManager.isRTL && { textAlign: 'right' }]}
-            underlineColorAndroid="transparent"
-            placeholder={t('Messangestaric')}
-            placeholderTextColor="grey"
-            numberOfLines={10}
-            multiline
-            value={state.message}
-            onChangeText={(val) => setStateHandler('message', val)}
-          />
-          <ModalScreen
-            headerLeft
-            // image={require("")}
-            visible={visible}
-            onContinue={onContinue}
-            {...CONTACT_US.modalData}
-          />
-          <Button color="white"
-            bold
-            onPress={onSubmit}
-            loading={isLoading}
-            style={{
-              width: wp(90),
-              alignSelf: 'center',
-              marginTop: hp(3)
-            }}>
-            {t('Submit')}
-          </Button>
-        </View>
-        <View key="footer"  >
+              style={[styles.textArea, I18nManager.isRTL && { textAlign: 'right' }]}
+              underlineColorAndroid="transparent"
+              placeholder={t('Messangestaric')}
+              placeholderTextColor="grey"
+              numberOfLines={10}
+              multiline
+              value={state.message}
+              onChangeText={(val) => setStateHandler('message', val)}
+            />
+            <ModalScreen
+              headerLeft
+              // image={require("")}
+              visible={visible}
+              onContinue={onContinue}
+              {...CONTACT_US.modalData}
+            />
+            <Button color="white"
+              bold
+              onPress={onSubmit}
+              loading={isLoading}
+              style={{
+                width: wp(90),
+                alignSelf: 'center',
+                marginTop: hp(3)
+              }}>
+              {t('Submit')}
+            </Button>
+            {/* {/* </View> */}
+          </View>
           <ImageBackground
             style={{
               marginTop: hp(4),
               height: hp(28),
               paddingHorizontal: wp(3),
-              // paddingBottom: hp(2),
+              paddingBottom: hp(2),
               justifyContent: 'flex-end',
               transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }],
             }}

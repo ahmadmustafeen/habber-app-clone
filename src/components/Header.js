@@ -59,7 +59,7 @@ const Header = (props, { adddok }) => {
     noSearch,
     noCart,
     capitalize, inVoiceBack,
-
+    goHomeTitle
   } = props;
 
 
@@ -113,7 +113,7 @@ const Header = (props, { adddok }) => {
             transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }],
 
           }}>
-          <TouchableOpacity onPress={backIcon ? () => navigation.goBack() : inVoiceBack ? () => navigation.navigate(HOME) : () => navigation.openDrawer()} >
+          <TouchableOpacity onPress={inVoiceBack ? inVoiceBack : backIcon ? () => navigation.goBack() : (inVoiceBack ? () => navigation.navigate(HOME) : () => navigation.openDrawer())} >
             <AppText bold small color={headerColor} UpperCase={UpperCase} capitalize={capitalize}  >
               {title || t(route.name)}
             </AppText>

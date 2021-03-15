@@ -293,8 +293,11 @@ const BookDetails = (props) => {
     }
   };
   return (
-    <ScrollView noPadding contentPadding >
+    <Screen noPadding>
       <View key="header">
+
+      </View>
+      <View key="content" >
         <ImageBackground
           style={[{
 
@@ -347,111 +350,171 @@ const BookDetails = (props) => {
               </View>
             )}
         </ImageBackground>
-      </View>
-      <View key="content" style={{ padding: wp(5) }}>
-        {book_removed && <NofeaturedBook unavailabetitle={I18nManager.isRTL ? "الكتاب المميز غير متوفر حاليًا" : "THE FEATURED BOOK IS CURRENTLY UNAVAILABLE"}
-          source={require("../../assets/images/nofeatured.png")} />}
+        <View style={{ width: wp(90), alignSelf: 'center' }}>
+          {book_removed && <NofeaturedBook unavailabetitle={I18nManager.isRTL ? "الكتاب المميز غير متوفر حاليًا" : "THE FEATURED BOOK IS CURRENTLY UNAVAILABLE"}
+            source={require("../../assets/images/nofeatured.png")} />}
 
-        {(type === 'bookclub' && !book_removed) &&
-          (
-            <View style={{ paddingTop: hp(3), transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }], }}>
-              <BookDetailsCard
-                onClickFavourite={handleFavouriteClick}
-                favourite={isFavourite}
-                onClickShare={onShare}
-                onGoodReads={() => Linking.openURL('https://www.goodreads.com/book/isbn/' + book.isbn)}
-                {...book}
-              />
-            </View>
-          )
-        }
-        {!book_removed &&
-          <HorizontalRow style={styles.row} />
-        }
-        <View >
-          {((product_type !== 'bookmark')) ? (!book_removed && (
-            <>
-              <BDScreenText primary title={t('isbn')} value={book.isbn} />
-              <BDScreenText title={t('totalPages')} value={book.total_pages} />
-              <BDScreenText title={t('coverType')} value={book.cover_type} />
-              <BDScreenText
-                capitalize
-                title={t("genre")}
-                value={I18nManager.isRTL ? book.genre.map((item) => item.arabic_title).join(' | ') : book.genre.map((item) => item.title).join(' | ')}
-              />
-            </>
-          )
-          ) : (
-            <>
-              <AppText style={styles.infoProduct} bold primary size={15}>
-                {t("productId")}: {book.bookmark_id}
-              </AppText>
-              <AppText style={styles.infoProduct} bold size={15}>
-                {t("sizeInInches")} : {book.size}
-              </AppText>
-              <AppText style={styles.infoProduct} bold size={15}>
-                {t("typeOfBookmark")} : {book.type_of_bookmark}
-              </AppText>
-            </>
-          )}
-        </View>
-        {!book_removed && <HorizontalRow style={styles.row} />}
-        <View style={{ marginTop: 20, minHeight: hp(20) }}>
-          {!book_removed &&
-            <AppText bold style={{ marginBottom: 10 }}>
-              {t('description')}
-            </AppText>
+          {(type === 'bookclub' && !book_removed) &&
+            (
+              <View style={{ paddingTop: hp(3), transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }], }}>
+                <BookDetailsCard
+                  onClickFavourite={handleFavouriteClick}
+                  favourite={isFavourite}
+                  onClickShare={onShare}
+                  onGoodReads={() => Linking.openURL('https://www.goodreads.com/book/isbn/' + book.isbn)}
+                  {...book}
+                />
+              </View>
+            )
           }
-          <AppText size={14}>{book.description}</AppText>
-        </View>
-      </View>
-      <View key="footer" style={{ paddingHorizontal: 20, paddingBottom: 20 }}>
-        <View style={styles.counter}>
-          {quantity ? (
-            <Counter
-              onIncrement={() => handleCounter('add')}
-              onDecrement={() => handleCounter('sub')}
-              // value={
-              //   inCartPosition !== -1
-              //     ? CartReducer[product_type][inCartPosition].cart_quantity
-              //     : '0'
-              // }
-              value={cartQuantity}
-            />
-          ) : null}
-        </View>
-        {!book_removed &&
-          <View style={{ width: wp(75), alignSelf: 'center' }}>
-            <Button
-              bold
-              color={colors.white}
-              outOfStock={!quantity}
-              inStock={!!quantity}
-              secondary
-              onPress={() => {
-                quantity && onAddToCart();
-              }}>
-              {quantity ? t('addToCart') : t('outOfStock')}
-            </Button>
+          {!book_removed &&
+            <HorizontalRow style={styles.row} />
+          }
+          <View >
+            {((product_type !== 'bookmark')) ? (!book_removed && (
+              <>
+                <BDScreenText primary title={t('isbn')} value={book.isbn} />
+                <BDScreenText title={t('totalPages')} value={book.total_pages} />
+                <BDScreenText title={t('coverType')} value={book.cover_type} />
+                <BDScreenText
+                  capitalize
+                  title={t("genre")}
+                  value={I18nManager.isRTL ? book.genre.map((item) => item.arabic_title).join(' | ') : book.genre.map((item) => item.title).join(' | ')}
+                />
+              </>
+            )
+            ) : (
+              <>
+                <AppText style={styles.infoProduct} bold primary size={15}>
+                  {t("productId")}: {book.bookmark_id}
+                </AppText>
+                <AppText style={styles.infoProduct} bold size={15}>
+                  {t("sizeInInches")} : {book.size}
+                </AppText>
+                <AppText style={styles.infoProduct} bold size={15}>
+                  {t("typeOfBookmark")} : {book.type_of_bookmark}
+                </AppText>
+              </>
+            )}
           </View>
-        }
-        {(type !== 'bookclub') ? (
-          <View
-            style={{
-              width: wp(90),
-              alignSelf: 'center',
-              paddingVertical: hp(2),
-            }}>
-            {true && <>
-              <AppText> {t("youMayAlsoLike")}</AppText>
-              <View style={{ paddingVertical: hp(2) }}>
-                <DashboardComponent
-                  noTitle
-                  data={EnglishBooksReducer.filter((book) => book.featured)}
-                  renderComponent={(item) => {
-                    if (product_type === 'book') {
+          {!book_removed && <HorizontalRow style={styles.row} />}
+          <View style={{ marginTop: 20, minHeight: hp(20) }}>
+            {!book_removed &&
+              <AppText bold style={{ marginBottom: 10 }}>
+                {t('description')}
+              </AppText>
+            }
+            <AppText size={14}>{book.description}</AppText>
+          </View>
+        </View>
+        <View key="footer" style={{ paddingHorizontal: 20, paddingBottom: 20 }}>
+          <View style={styles.counter}>
+            {quantity ? (
+              <Counter
+                onIncrement={() => handleCounter('add')}
+                onDecrement={() => handleCounter('sub')}
+                // value={
+                //   inCartPosition !== -1
+                //     ? CartReducer[product_type][inCartPosition].cart_quantity
+                //     : '0'
+                // }
+                value={cartQuantity}
+              />
+            ) : null}
+          </View>
+          {!book_removed &&
+            <View style={{ width: wp(75), alignSelf: 'center' }}>
+              <Button
+                bold
+                color={colors.white}
+                outOfStock={!quantity}
+                inStock={!!quantity}
+                secondary
+                onPress={() => {
+                  quantity && onAddToCart();
+                }}>
+                {quantity ? t('addToCart') : t('outOfStock')}
+              </Button>
+            </View>
+          }
+          {(type !== 'bookclub') ? (
+            <View
+              style={{
+                width: wp(90),
+                alignSelf: 'center',
+                paddingVertical: hp(2),
+              }}>
+              {true && <>
+                <AppText> {t("youMayAlsoLike")}</AppText>
+                <View style={{ paddingVertical: hp(2) }}>
+                  <DashboardComponent
+                    noTitle
+                    data={EnglishBooksReducer.filter((book) => book.featured)}
+                    renderComponent={(item) => {
+                      if (product_type === 'book') {
+                        return (
+                          <RelatedThumbnailBook
+                            onPress={() => {
+                              props.navigation.push(BOOK_DETAILS_SCREEN, {
+                                ...item.item,
+                                product_type,
+                              });
+                            }}
+                            url={item.item.image}
+                          />
+                        );
+                      }
                       return (
-                        <RelatedThumbnailBook
+                        <RelatedThumbnailBookmarks
+                          onPress={() => {
+                            props.navigation.push(BOOK_DETAILS_SCREEN, {
+                              ...item.item,
+                              // product_type: 'book'
+                              // product_type: "bookmark",
+                            });
+                          }}
+                          url={item.item.image}
+                        />
+                      );
+                    }}
+                  />
+
+                </View>
+              </>}
+
+            </View>
+
+          ) : (
+
+            <View
+              style={{
+                width: wp(90),
+                alignSelf: 'center',
+                paddingVertical: hp(2),
+              }}>
+              <AppText> {t("morebookclubs")}</AppText>
+              <View style={{ paddingVertical: hp(2) }}>
+                {true &&
+                  <DashboardComponent
+                    noTitle
+                    data={BookClubReducer.filter((book) => book.featured).splice(0, 8)}
+                    renderComponent={(item) => {
+                      console.log(item.item)
+                      if (product_type === 'book') {
+                        return (
+                          <ThumbnailClub
+                            onPress={() => {
+                              props.navigation.push(BOOK_DETAILS_SCREEN, {
+                                ...item.item,
+                                product_type: 'bookclub',
+                              });
+                            }}
+                            url={item.item.bookclub_logo}
+                          />
+                        );
+                      }
+                      return (
+                        <RelatedThumbnailBookmarks
                           onPress={() => {
                             props.navigation.push(BOOK_DETAILS_SCREEN, {
                               ...item.item,
@@ -460,78 +523,18 @@ const BookDetails = (props) => {
                           }}
                           url={item.item.image}
                         />
-                      );
-                    }
-                    return (
-                      <RelatedThumbnailBookmarks
-                        onPress={() => {
-                          props.navigation.push(BOOK_DETAILS_SCREEN, {
-                            ...item.item,
-                            // product_type: 'book'
-                            // product_type: "bookmark",
-                          });
-                        }}
-                        url={item.item.image}
-                      />
-                    );
-                  }}
-                />
 
+                      );
+                    }}
+                  />
+                }
               </View>
-            </>}
-
-          </View>
-
-        ) : (
-
-          <View
-            style={{
-              width: wp(90),
-              alignSelf: 'center',
-              paddingVertical: hp(2),
-            }}>
-            <AppText> {t("morebookclubs")}</AppText>
-            <View style={{ paddingVertical: hp(2) }}>
-              {true &&
-                <DashboardComponent
-                  noTitle
-                  data={BookClubReducer.filter((book) => book.featured).splice(0, 8)}
-                  renderComponent={(item) => {
-                    console.log(item.item)
-                    if (product_type === 'book') {
-                      return (
-                        <ThumbnailClub
-                          onPress={() => {
-                            props.navigation.push(BOOK_DETAILS_SCREEN, {
-                              ...item.item,
-                              product_type: 'bookclub',
-                            });
-                          }}
-                          url={item.item.bookclub_logo}
-                        />
-                      );
-                    }
-                    return (
-                      <RelatedThumbnailBookmarks
-                        onPress={() => {
-                          props.navigation.push(BOOK_DETAILS_SCREEN, {
-                            ...item.item,
-                            product_type,
-                          });
-                        }}
-                        url={item.item.image}
-                      />
-
-                    );
-                  }}
-                />
-              }
             </View>
-          </View>
-        )
-        }
-      </View >
-    </ScrollView >
+          )
+          }
+        </View >
+      </View>
+    </Screen >
   );
 };
 

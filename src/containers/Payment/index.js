@@ -100,7 +100,10 @@ Please Retry`,
             color={colors.primary}
             name={I18nManager.isRTL ? "leftcircleo" : "leftcircleo"}
             type="antdesign"
-          />} headerImage />
+          />}
+          inVoiceBack={handleBackButton}
+
+          headerImage />
       </View>
       <View key="content" style={{ flex: 1, backgroundColor: 'silver' }}>
         <WebView

@@ -137,7 +137,7 @@ const SignIn = (props) => {
             {t('signInHeader')}
           </AppText>
 
-          <AppText white secondary style={(Platform.OS === 'ios' && I18nManager.isRTL) ? null : { marginBottom: 10 }}>
+          <AppText white secondary style={(Platform.OS === 'ios' && I18nManager.isRTL) ? null : { marginBottom: hp(0) }}>
             {t('signInLabel')}
           </AppText>
         </View>
@@ -188,7 +188,7 @@ const SignIn = (props) => {
               primary
               onPress={() => navigate(SIGNUP_SCREEN)}
               style={{
-                // marginVertical: wp(1),
+                marginVertical: wp(1),
               }}>
               {t('createAccount')}
             </AppText>
@@ -225,7 +225,7 @@ Login with Social media account`}
         </View>  */}
           </View>
         </View>
-        <View style={[{ width: wp(20), paddingBottom: hp(3), alignSelf: 'flex-end' }, (Platform.OS === 'ios' && I18nManager.isRTL) && { paddingBottom: hp(0), bottom: hp(0), }]}>
+        <View style={[{ width: wp(20), paddingBottom: hp(3), alignSelf: 'flex-end' }]}>
           <AppText
             right
             underline
@@ -255,19 +255,21 @@ Login with Social media account`}
 const styles = StyleSheet.create({
   content: {
     flex: 1,
-    paddingTop: (Platform.OS === 'ios' && I18nManager.isRTL) ? hp(2) : hp(4),
+    paddingTop: hp(4),
     flexDirection: 'column',
   },
   bgImage: {
     flex: 1,
   },
   hellotxt: {
-    paddingTop: (Platform.OS === 'ios' && I18nManager.isRTL) ? wp(0) : wp(10),
+    // paddingTop: (Platform.OS === 'ios' && I18nManager.isRTL) ? wp(0) : wp(10),
+    paddingTop: wp(10)
   },
   forgotPassword: {
-    marginTop: (Platform.OS === 'ios' && I18nManager.isRTL) ? wp(-2) : wp(0),
+    // marginTop: (Platform.OS === 'ios' && I18nManager.isRTL) ? wp(-2) : wp(0),
     textAlign: 'right',
-    marginBottom: (Platform.OS === 'ios' && I18nManager.isRTL) ? wp(2) : wp(4),
+    // marginBottom: (Platform.OS === 'ios' && I18nManager.isRTL) ? wp(2) : wp(4),
+    marginBottom: wp(2)
   },
 });
 export default SignIn;

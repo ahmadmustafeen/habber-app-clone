@@ -89,9 +89,9 @@ export function* splashAdSaga() {
         put({ type: FETCH_ORDER }),
       ]);
 
-      // return NavigationService.navigate('Drawer', {
-      //   screen: HOME,
-      // });
+      return NavigationService.navigate('Drawer', {
+        screen: HOME,
+      });
     } else if (userProfile) {
 
 
@@ -107,9 +107,9 @@ export function* splashAdSaga() {
           total_price: 0,
         })
       })
-      // return NavigationService.navigate('Auth', {
-      //   screen: SIGNIN_SCREEN,
-      // });
+      return NavigationService.navigate('Auth', {
+        screen: SIGNIN_SCREEN,
+      });
     } else {
 
       if (!userProfile || !userProfile.language) {
@@ -124,11 +124,12 @@ export function* splashAdSaga() {
             notification: 1,
           }),
         );
-      }
-      // return NavigationService.navigate('Auth', {
 
-      //   screen: LANGUAGE_SCREEN,
-      // });
+        return NavigationService.navigate('Auth', {
+
+          screen: LANGUAGE_SCREEN,
+        });
+      }
     }
 
 

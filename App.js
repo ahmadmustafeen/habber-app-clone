@@ -20,6 +20,9 @@ import UserProfileReducer from './src/redux/reducers/UserProfileReducer';
 import { Alert } from 'react-native';
 
 const App = () => {
+  useEffect(() => {
+    dispatch(withoutDataActions(SPLASH_ACTION))
+  }, [])
   const dispatch = useDispatch()
   const { network, toggleModal } = useNetworkModal();
   const [internet, setInternet] = useState(true);
@@ -58,16 +61,14 @@ const App = () => {
     }
   });
 
-  useEffect(() => {
-    dispatch(withoutDataActions(SPLASH_ACTION))
-  }, [])
+
   useEffect(() => {
     // dispatch(withoutDataActions(SPLASH_ACTION))
     setTimeout(() => {
 
-      if (UserProfileReducer.setting !== null) {
-        RNBootSplash.hide({ duration: 2000 })
-      }
+      //   if (UserProfileReducer.setting !== null) {
+      //     RNBootSplash.hide({ duration: 2000 })
+      //   }
     }, 2000)
 
   }, [UserProfileReducer])

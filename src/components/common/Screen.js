@@ -1,9 +1,12 @@
 import React from 'react';
+import { Platform } from 'react-native';
+import { ScrollView } from 'react-native';
 import { StyleSheet, View } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
+  heightPercentageToDP,
 } from 'react-native-responsive-screen';
 
 const Screen = (props) => {
@@ -20,20 +23,32 @@ const Screen = (props) => {
         <View style={styles.header}>{getComponent('header')}</View>
       ) : null}
       <KeyboardAwareScrollView
-        stickyHeaderIndices={[1]}
-        // resetScrollToCoords={{ x: 0, y: 0 }}
+        // stickyHeaderIndices={[1]}
+        // // resetScrollToCoords={{ x: 0, y: 0 }}
         contentContainerStyle={{ flexGrow: 1 }}
-        // automaticallyAdjustContentInsets={true}
+        // // automaticallyAdjustContentInsets={true}
+        // keyboardDismissMode="on-drag"
+        // scrollsToTop={true}
+        // showsHorizontalScrollIndicator={false}
+        // showsVerticalScrollIndicator={false}
+        // keyboardShouldPersistTaps="never"
+        // bounces={false}
+        // enableResetScrollToCoords={false}
+        resetScrollToCoords={{ x: 0, y: 0 }}
+        // contentContainerStyle={{ height: heightPercentageToDP(96), flexGrow: 1 }}
+        // automaticallyAdjustContentInsets={true
+        automaticallyAdjustContentInsets={false}
         keyboardDismissMode="on-drag"
-        scrollsToTop={true}
+        scrollsToTop={false}
+        // behavior={Platform.OS == "ios" ? "padding" : "height"}
+        behavior={"padding"}
         showsHorizontalScrollIndicator={false}
+        // keyboardVerticalOffset={100}
         showsVerticalScrollIndicator={false}
         keyboardShouldPersistTaps="never"
         bounces={false}
-        enableResetScrollToCoords={false}
       // style={{ backgroundColor: 'red' }}
       >
-
         <View
           style={[
             styles.formContainer,
@@ -52,6 +67,7 @@ const Screen = (props) => {
           ) : null}
         </View>
       </KeyboardAwareScrollView>
+      {/* </ScrollView> */}
     </>
   );
 };
@@ -77,6 +93,7 @@ const styles = StyleSheet.create({
   },
   footer: {
     marginTop: 0,
+    paddingVertical: heightPercentageToDP(3)
   },
 });
 

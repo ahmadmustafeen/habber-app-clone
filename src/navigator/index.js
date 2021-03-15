@@ -51,7 +51,7 @@ const DrawerNav = () => {
   );
 };
 const navigatorComponent = (ad, backUser, res, User, adViewed) => {
-  console.log(res);
+  // Alert.alert("navigatorComponent")
 
 
 

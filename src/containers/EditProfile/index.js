@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, } from 'react';
 import {
   View,
   StyleSheet,
@@ -6,6 +6,7 @@ import {
   Alert,
   I18nManager,
   TouchableOpacity,
+
 } from 'react-native';
 import ImagePicker from 'react-native-image-picker';
 import { withDataActions } from '_redux/actions';
@@ -145,52 +146,65 @@ const EditProfile = (props) => {
 
 
       </View>
-      <View key="content" style={styles.content}>
-        <View style={styles.profiletop}>
-          <View style={styles.imgContainer}>
-            <Image
-              style={styles.image}
-              source={getProfilePic()}
-            />
+      <View key="content" style={{ flex: 1, width: wp(90), alignSelf: 'center' }} >
+        <KeyboardAwareScrollView
+          // style={}
+          automaticallyAdjustContentInsets={true}
+          keyboardDismissMode="on-drag"
+          scrollsToTop={false}
+          showsHorizontalScrollIndicator={false}
+          showsVerticalScrollIndicator={false}
+          keyboardShouldPersistTaps="never"
+          bounces={false}
+        >
+          <View style={styles.profiletop}>
+            <View style={styles.imgContainer}>
+              <Image
+                style={styles.image}
+                source={getProfilePic()}
+              />
+            </View>
+            <TouchableOpacity style={styles.addIcon} onPress={setImage}>
+              <Image style={styles.image} source={require("_assets/images/addsign.png")} />
+            </TouchableOpacity>
           </View>
-          <TouchableOpacity style={styles.addIcon} onPress={setImage}>
-            <Image style={styles.image} source={require("_assets/images/addsign.png")} />
-          </TouchableOpacity>
-        </View>
-        <View style={{ position: 'absolute', right: wp(0), top: hp(7), width: wp(30), justifyContent: 'center' }}>
-          <AppText primary bold small onPress={() => setState({ ...state, profile_pic: '' })}>
-            {I18nManager.isRTL ? "إعادة تعيين الصورة" : "Reset Image"}
-          </AppText>
-        </View>
-        <HorizontalRow style={[styles.HorizontalRow, { borderBottomColor: colors.borderColor }]} />
-        <View style={{ marginTop: 20 }}>
+          <View style={{ position: 'absolute', right: wp(0), top: hp(7), width: wp(30), justifyContent: 'center' }}>
+            <AppText primary bold small onPress={() => setState({ ...state, profile_pic: '' })}>
+              {I18nManager.isRTL ? "إعادة تعيين الصورة" : "Reset Image"}
+            </AppText>
+          </View>
+          <HorizontalRow style={[styles.HorizontalRow, { borderBottomColor: colors.borderColor }]} />
+          <View style={{ paddingVertical: hp(5) }}>
 
-          <InputWithLabel
 
-            style={{ margin: hp(0), padding: hp(0), backgroundColor: 'red' }}
+            <InputWithLabel
 
-            color="black"
-            value={state.first_name}
-            placeholder="Khaled"
-            label={t('firstName')}
-            onChangeText={(val) => setStateHandler('first_name', val)}
-          />
-          <InputWithLabel
-            color="black"
-            value={state.last_name}
-            placeholder="Ammer"
-            label={t("lastName")}
-            onChangeText={(val) => setStateHandler('last_name', val)}
-          />
-          <InputWithLabel
-            color="black"
-            value={state.email}
-            placeholder="Khaled.ammar@gmail.com"
-            label={t('phone')}
-            onChangeText={(val) => setStateHandler('email', val)}
-          />
-        </View>
-      </View>
+              style={{ margin: hp(0), padding: hp(0), backgroundColor: 'red' }}
+
+              color="black"
+              value={state.first_name}
+              placeholder="Khaled"
+              label={t('firstName')}
+              onChangeText={(val) => setStateHandler('first_name', val)}
+            />
+            <InputWithLabel
+              color="black"
+              value={state.last_name}
+              placeholder="Ammer"
+              label={t("lastName")}
+              onChangeText={(val) => setStateHandler('last_name', val)}
+            />
+            <InputWithLabel
+              color="black"
+              value={state.email}
+              placeholder="Khaled.ammar@gmail.com"
+              label={t('phone')}
+              onChangeText={(val) => setStateHandler('email', val)}
+            />
+
+          </View>
+        </KeyboardAwareScrollView>
+      </View >
 
 
       <View style={[styles.content, { paddingBottom: hp(3) }]} key="footer">
@@ -198,7 +212,7 @@ const EditProfile = (props) => {
           {t('save')}
         </Button>
       </View>
-    </Screen>
+    </Screen >
   );
 };
 
@@ -237,7 +251,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   button: {
-    marginTop: hp(-10),
+    // marginTop: hp(-10),
   },
   addIcon: {
     position: 'absolute',

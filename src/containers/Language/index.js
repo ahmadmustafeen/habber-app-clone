@@ -12,12 +12,15 @@ import {
 } from 'react-native-responsive-screen';
 import { I18nManager } from 'react-native';
 import { BackHandler } from 'react-native';
+import { Alert } from 'react-native';
 const Language = (props) => {
+  // Alert.alert("HOME")
   const handleBackButton = () => {
     props.navigation.goBack()
     return true;
   };
   useEffect(() => {
+
     BackHandler.addEventListener('hardwareBackPress', handleBackButton);
     return () => {
       BackHandler.removeEventListener('hardwareBackPress', handleBackButton);

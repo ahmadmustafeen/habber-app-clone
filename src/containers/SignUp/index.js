@@ -144,16 +144,28 @@ const SignUp = (props) => {
       source={require('_assets/images/background.jpg')}>
       <KeyboardAwareScrollView
         //resetScrollToCoords={{ x: 0, y: 0 }}
-        contentContainerStyle={{ flexGrow: 1 }}
-        automaticallyAdjustContentInsets={true}
+        // contentContainerStyle={{ flexGrow: 1 }}
+        // automaticallyAdjustContentInsets={true}
+        // keyboardDismissMode="on-drag"
+        // scrollsToTop={false}
+        // showsHorizontalScrollIndicator={false}
+        // showsVerticalScrollIndicator={false}
+        // keyboardShouldPersistTaps="never"
+
+        // bounces={false}
+        // enableResetScrollToCoords={false}>
+
+        resetScrollToCoords={{ x: 0, y: 0 }}
+        // contentContainerStyle={{ height: heightPercentageToDP(96), flexGrow: 1 }}
+        // automaticallyAdjustContentInsets={true
+        automaticallyAdjustContentInsets={false}
         keyboardDismissMode="on-drag"
         scrollsToTop={false}
         showsHorizontalScrollIndicator={false}
         showsVerticalScrollIndicator={false}
         keyboardShouldPersistTaps="never"
-
         bounces={false}
-        enableResetScrollToCoords={false}>
+      >
 
         <View key="header">
           <AuthHeader {...props} />

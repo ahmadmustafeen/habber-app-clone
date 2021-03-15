@@ -70,13 +70,14 @@ const BooksList = (props) => {
         <Header {...props}
           subheading
           headerImage
-          headerLeft={(
-            <Icon
-              onPress={() => props.navigation.goBack()}
-              color={colors.primary}
-              name="leftcircleo"
-              type="ant-design"
-            />)}
+          // backIcon
+          // headerLeft={(
+          //   <Icon
+          //     onPress={() => props.navigation.goBack()}
+          //     color={colors.primary}
+          //     name="leftcircleo"
+          //     type="ant-design"
+          //   />)}
           capitalize
           title={
 
