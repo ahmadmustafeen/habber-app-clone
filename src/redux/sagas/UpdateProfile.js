@@ -19,6 +19,7 @@ export function* UpdateProfileSaga({ type, payload }) {
     if (payload.profile_pic.uri) (form_data.append('profile_pic', payload.profile_pic));
 
     form_data.append('language_id', payload.language_id);
+    form_data.append('flag', payload.flag);
     form_data.append('currency_id', payload.currency_id);
     console.log(form_data)
     const response = yield call(() =>

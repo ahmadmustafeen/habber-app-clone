@@ -70,7 +70,8 @@ const BooksList = (props) => {
         <Header {...props}
           subheading
           headerImage
-          // backIcon
+          backIcon
+          headerLeft
           // headerLeft={(
           //   <Icon
           //     onPress={() => props.navigation.goBack()}

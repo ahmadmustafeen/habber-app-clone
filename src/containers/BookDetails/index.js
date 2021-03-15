@@ -74,7 +74,7 @@ const BookDetails = (props) => {
     UserProfileReducer2,
     EnglishBooksReducer2,
     ArabicBooksReducer2,
-    BookmarksReducer2,
+    BookmarksReducer2, BookmarksReducer,
     BookClubReducer,
     FetchSiteReducer2,
     BannerReducer
@@ -85,6 +85,7 @@ const BookDetails = (props) => {
       EnglishBooksReducer2: state.EnglishBooksReducer,
       ArabicBooksReducer2: state.ArabicBooksReducer,
       BookmarksReducer2: state.BookmarksReducer,
+      BookmarksReducer: state.BookmarksReducer,
       BookClubReducer: state.BookClubReducer,
       BannerReducer: state.BannerReducer,
 
@@ -96,7 +97,7 @@ const BookDetails = (props) => {
   if (product_type2 === 'book') book = (CombinedReducer.find((item) => item.id == id2))
 
 
-  console.log(book, "THIS IS BOOK")
+  console.log(BookmarksReducer2, EnglishBooksReducer2, "THIS IS BOOK")
   if (book === null) book = props.route.params;
   // (book.product_type === 'bookclub') ? book = book.book : null
   var { id: product_id = 33, quantity, product_type, price, bookClub, type } = book;
@@ -447,11 +448,11 @@ const BookDetails = (props) => {
               {true && <>
                 <AppText> {t("youMayAlsoLike")}</AppText>
                 <View style={{ paddingVertical: hp(2) }}>
-                  <DashboardComponent
-                    noTitle
-                    data={EnglishBooksReducer.filter((book) => book.featured)}
-                    renderComponent={(item) => {
-                      if (product_type === 'book') {
+                  {product_type === 'book' ?
+                    <DashboardComponent
+                      noTitle
+                      data={EnglishBooksReducer2.filter((item) => item.featured)}
+                      renderComponent={(item) => {
                         return (
                           <RelatedThumbnailBook
                             onPress={() => {
@@ -461,24 +462,28 @@ const BookDetails = (props) => {
                               });
                             }}
                             url={item.item.image}
-                          />
-                        );
-                      }
-                      return (
-                        <RelatedThumbnailBookmarks
-                          onPress={() => {
-                            props.navigation.push(BOOK_DETAILS_SCREEN, {
-                              ...item.item,
-                              // product_type: 'book'
-                              // product_type: "bookmark",
-                            });
-                          }}
-                          url={item.item.image}
-                        />
-                      );
-                    }}
-                  />
+                          />)
+                      }} />
+                    :
+                    <DashboardComponent
+                      noTitle
+                      data={BookmarksReducer2.filter((item) => item.featured)}
+                      renderComponent={(item) => {
+                        return (
 
+                          <RelatedThumbnailBookmarks
+                            onPress={() => {
+                              props.navigation.push(BOOK_DETAILS_SCREEN, {
+                                ...item.item,
+                                // product_type: 'book'
+                                // product_type: "bookmark",
+                              });
+                            }}
+                            url={item.item.image}
+                          />
+                        )
+                      }}
+                    />}
                 </View>
               </>}
 

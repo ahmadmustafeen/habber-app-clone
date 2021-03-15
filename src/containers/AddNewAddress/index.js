@@ -28,12 +28,19 @@ import { BackHandler } from 'react-native';
 import { MY_ADDRESS_BOOK } from '../../constants/Screens';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 const AddNewAddress = (props) => {
-  const { visible, toggleModal } = useModal();
+  const [visible, setVisible] = useState(!!props.route.params && !!props.route.params.payload && props.route.params.payload.route)
+  // console.log(props.route.params && props.route.params.payload && props.route.params.payload.route, "PROPS")
+  // const { visible, toggleModal } = useModal();
+
+  useEffect(() => {
+    setVisible(!!props.route.params && !!props.route.params.payload && props.route.params.payload.route)
+  }, [props.route.params])
+
   const onContinue = () => {
-    if (visible) {
-      props.navigation.goBack()
-    }
-    toggleModal()
+
+    props.navigation.goBack()
+
+    // toggleModal()
 
 
   };

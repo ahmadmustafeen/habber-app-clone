@@ -79,6 +79,7 @@ const EditProfile = (props) => {
     language_id: UserProfileReducer.language.iso === "ar" ? 1 : 2,
     currency_id: UserProfileReducer.currency.id,
     token: UserProfileReducer.token,
+    flag: false
   });
   const validate = () => {
     //todo - use validation method from src > helpers
@@ -125,13 +126,17 @@ const EditProfile = (props) => {
     });
   };
 
-  const getProfilePic = () => {
+  const getProfilePic = (params) => {
     if (state.profile_pic.uri) {
       return { uri: state.profile_pic.uri }
     }
-    if (UserProfileReducer.profile_pic) {
+    if (state.flag) {
+      return require('_assets/images/noUser.png')
+    }
+    if (UserProfileReducer.profile_pic !== "") {
       return { uri: UserProfileReducer.profile_pic }
     }
+
     return require('_assets/images/noUser.png')
 
   }
@@ -161,7 +166,7 @@ const EditProfile = (props) => {
             <View style={styles.imgContainer}>
               <Image
                 style={styles.image}
-                source={getProfilePic()}
+                source={getProfilePic(state.profile_pic)}
               />
             </View>
             <TouchableOpacity style={styles.addIcon} onPress={setImage}>
@@ -169,7 +174,7 @@ const EditProfile = (props) => {
             </TouchableOpacity>
           </View>
           <View style={{ position: 'absolute', right: wp(0), top: hp(7), width: wp(30), justifyContent: 'center' }}>
-            <AppText primary bold small onPress={() => setState({ ...state, profile_pic: '' })}>
+            <AppText primary bold small onPress={() => setState({ ...state, flag: true, profile_pic: "" })}>
               {I18nManager.isRTL ? "إعادة تعيين الصورة" : "Reset Image"}
             </AppText>
           </View>

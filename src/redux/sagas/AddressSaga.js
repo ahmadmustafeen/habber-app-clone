@@ -22,8 +22,9 @@ export function* addressSaga({ type, payload }) {
     if (data.success) {
       yield put({ type: ADD_ADDRESS_SUCCESS, });
       yield put({ type: FETCH_ADDRESS });
-      yield put({ type: SHOW_MODAL, payload: null });
-      NavigationService.navigate('AddNewAddress', { screen: ADD_NEW_ADDRESS })
+      NavigationService.navigate('AddNewAddress', { screen: ADD_NEW_ADDRESS, payload: { route: true } })
+      // yield put({ type: SHOW_MODAL, payload: null });
+
       // Alert.alert('Successfully Added new Address', message, [
       //   {
       //     onPress: () => {

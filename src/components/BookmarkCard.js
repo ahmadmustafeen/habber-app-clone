@@ -64,6 +64,7 @@ const styles = StyleSheet.create({
     containerStyle: {
         width: wp(20.6),
         aspectRatio: 0.27,
+        height: '100%'
     },
     imageContainer: {
         width: wp(20.6),
