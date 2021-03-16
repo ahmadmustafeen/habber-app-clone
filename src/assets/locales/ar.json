@@ -74,7 +74,8 @@
     "Filter": "تصفية",
     "AboutUs": "من نحن",
     "Checkout": "الدفع",
-    "PaymentView": "دفع"
+    "PaymentView": "دفع",
+    "Invoice": "فاتورة"
   },
   "BookDetails": {
     "isbn": "الرقم العالمي الموحد",

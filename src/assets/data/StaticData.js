@@ -29,7 +29,7 @@ export const signUp = {
   TermsAndPolicies: I18nManager.isRTL ? 'شروط الخدمات وسياسة الخصوصية' : 'Terms of Services and Privacy Policy',
   sign_up: I18nManager.isRTL ? '' : 'SIGN UP',
   modalData: {
-    heading: I18nManager.isRTL ? 'مرحبًا بك في HEBBER!' : 'Welcome to HEBBER!',
+    heading: I18nManager.isRTL ? 'مرحبًا بك في حبر!' : 'Welcome to HEBBER!',
     description: I18nManager.isRTL ? 'تم تسجيل هويتك بنجاح' : 'Your ID Has Been Registered Successfully',
     buttonLabel: I18nManager.isRTL ? 'استمر' : 'Continue',
   },

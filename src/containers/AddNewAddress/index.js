@@ -170,7 +170,7 @@ const AddNewAddress = (props) => {
           keyboardDismissMode="on-drag"
           scrollsToTop={false}
           keyboardVerticalOffset={100}
-          behavior={"padding"}
+          behavior={"height"}
           showsHorizontalScrollIndicator={false}
           showsVerticalScrollIndicator={false}
           keyboardShouldPersistTaps="never"

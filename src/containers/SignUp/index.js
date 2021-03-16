@@ -64,7 +64,7 @@ const SignUp = (props) => {
       validateIsTrue(first_name, `${t('Please')} ${t('firstName')}`, false, t('ok')) &&
       validateIsTrue(last_name, `${t('Please')} ${t('lastName')}`, false, t('ok')) &&
       validateIsTrue(validateEmail(email), I18nManager.isRTL ? "يرجى إدخال البريد الإلكتروني الصحيح" : "Please Enter a Valid Email", false, t('ok')) &&
-      validateIsTrue(validateIsTrue(password) && password.length >= 8, I18nManager.isRTL ? 'يجب أن تتكون كلمة المرور من 8 أحرف على الأقل' : 'Password should be atleast 8 characters', false, t('ok')) &&
+      validateIsTrue((password && password.length >= 8), I18nManager.isRTL ? 'يجب أن تتكون كلمة المرور من 8 أحرف على الأقل' : 'Password should be atleast 8 characters', false) &&
       validateIsTrue((password_confirmation), I18nManager.isRTL ? "الرجاء إدخال تأكيد كلمة المرور" : "Please Enter Confirm Password", false, t('ok')) &&
       validateIsTrue((password === password_confirmation), I18nManager.isRTL ? "كلمة السر غير متطابقة" : "Password Does Not Match", false, t('ok'))
     )
