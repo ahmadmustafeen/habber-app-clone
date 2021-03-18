@@ -6,6 +6,8 @@ import {
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 import { Icon } from 'react-native-elements';
+import { I18nManager } from 'react-native';
+import { Platform } from 'react-native';
 
 const AppText = (props) => {
   const { colors } = useTheme();
@@ -46,6 +48,7 @@ const AppText = (props) => {
       />
       }
       <Text
+
         {...props}
         style={[
           styles.TextStyle,
@@ -63,9 +66,12 @@ const AppText = (props) => {
           right && { textAlign: 'right' },
           small && { fontSize: 17 },
           subheading && { fontSize: 20 },
-          capitalize && { textTransform: 'capitalize' }
+          capitalize && { textTransform: 'capitalize' },
+          // { fontFamily: 'Amiri-Regular' }
+          (I18nManager.isRTL) && { fontFamily: 'Amiri-Regular' }
+        ]}
 
-        ]}>
+      >
         {children}
       </Text>
     </>

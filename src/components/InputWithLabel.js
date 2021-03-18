@@ -10,15 +10,16 @@ import {
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 import { color } from 'react-native-reanimated';
+import { TouchableOpacity } from 'react-native';
 const InputWithLabel = (props) => {
   const { colors } = useTheme();
 
-  const { containerStyle, white, label, inputRef, required, maxLength, primary, borderColor, fontSize, subheading } = props;
+  const { containerStyle, white, label, inputRef, required, maxLength, primary, borderColor, onPress, fontSize, subheading } = props;
 
   return (
-    <View style={[styles.inputContainerStyle, containerStyle,]}>
+    <TouchableOpacity style={[styles.inputContainerStyle, containerStyle, { zIndex: 999 }]} onPress={onPress}>
       { label && (
-        <AppText style={[subheading && { fontSize: 17 }]} white={white} secondary={!primary} primary={primary}  >
+        <AppText onPress={onPress} style={[subheading && { fontSize: 17 }]} white={white} secondary={!primary} primary={primary}  >
           {`${label} ` || `Label Name`}
           {required ? <AppText white>*</AppText> : null}
         </AppText>
@@ -36,9 +37,11 @@ const InputWithLabel = (props) => {
         style={[styles.inputFieldStyle,
         { borderColor: (borderColor || colors.primary) },
         { fontSize: (fontSize || 15) },
-        { color: (props.color || "white"), textAlign: I18nManager.isRTL ? 'right' : 'left' }]}
+        { color: (props.color || "white"), textAlign: I18nManager.isRTL ? 'right' : 'left' },
+
+        ]}
       />
-    </View >
+    </TouchableOpacity >
   );
 };
 

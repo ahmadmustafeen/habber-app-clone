@@ -73,6 +73,7 @@ const ChangePassword = (props) => {
     return (
       validateIsTrue(state.old_password, `${t('Please')} ${t('password')}`, false, t('ok')) &&
       validateIsTrue(state.password, `${t('Please')} ${t('newPassword')}`, false, t('ok')) &&
+      validateIsTrue(state.password.length >= 8, I18nManager.isRTL ? 'يجب أن تتكون كلمة المرور من 8 أحرف على الأقل' : 'Password should be atleast 8 characters', false) &&
       validateIsTrue(state.password_confirmation, I18nManager.isRTL ? "الرجاء إدخال تأكيد كلمة المرور" : "Please Enter Confirm Password", false, t('ok')) &&
       validatePassword(state.password) &&
       validateIsTrue((state.password === state.password_confirmation), I18nManager.isRTL ? "كلمة السر غير متطابقة!" : "Password does not match!", false, t('ok'))

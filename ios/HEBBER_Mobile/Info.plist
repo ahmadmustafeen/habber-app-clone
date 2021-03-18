@@ -74,9 +74,9 @@
 		</dict>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string></string>
+	<string/>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string/>
 	<key>UIAppFonts</key>
 	<array>
 		<string>AntDesign.ttf</string>
@@ -99,6 +99,8 @@
 		<string>Amiri-BoldItalic.ttf</string>
 		<string>Amiri-Italic.ttf</string>
 		<string>Amiri-Regular.ttf</string>
+		<string>amiri-bold.ttf</string>
+		<string>GESS-Light.ttf</string>
 	</array>
 	<key>UIBackgroundModes</key>
 	<array>

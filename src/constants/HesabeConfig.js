@@ -1,6 +1,7 @@
+
 const PRODUCTION_URL = 'https://api.hesabe.com';
 const TEST_URL = 'https://sandbox.hesabe.com';
-export const HSB_BASE_URL = TEST_URL;
+export const HSB_BASE_URL = PRODUCTION_URL;
 
 export const HSB_MERCHANT_ID =
   HSB_BASE_URL !== TEST_URL ? '26231920' : '842217';

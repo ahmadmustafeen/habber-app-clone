@@ -151,7 +151,7 @@ const AddNewAddress = (props) => {
 
   };
   return (
-    <Screen noPadding>
+    <View noPadding>
 
 
       <View key="header">
@@ -163,18 +163,20 @@ const AddNewAddress = (props) => {
           title={!!(props.route.params) ? props.route.params.checkout ? (I18nManager.isRTL ? "الدفع" : "CHECKOUT") : (I18nManager.isRTL ? "تعديل العنوان" : "EDIT ADDRESS") : (I18nManager.isRTL ? "اضف عنوان" : "Add Address")} />
 
       </View>
-      <View key="content" style={{ width: wp(90), alignSelf: 'center' }}>
+      <View key="content" style={{ width: wp(90), alignSelf: 'center', }}>
         <KeyboardAwareScrollView
-
-          automaticallyAdjustContentInsets={true}
+          style={{ flexGrow: 1 }}
+          // automaticallyAdjustContentInsets={true}
           keyboardDismissMode="on-drag"
           scrollsToTop={false}
-          keyboardVerticalOffset={100}
-          behavior={"height"}
+          // keyboardVerticalOffset={100}
+          behavior={"padding"}
+          enableAutoAutomaticScroll={true}
           showsHorizontalScrollIndicator={false}
           showsVerticalScrollIndicator={false}
           keyboardShouldPersistTaps="never"
-          bounces={false}
+        // keyboardShouldPersistTaps='always'
+        // bounces={false}
         >
           <InputWithLabel color={"black"}
             value={state.address_name}
@@ -248,14 +250,14 @@ const AddNewAddress = (props) => {
           {...ADD_NEW_ADDRESS.modalData}
         />
       </View>
-      <View key="footer" style={{ width: wp(90), paddingBottom: hp(5), alignSelf: 'center' }}>
+      <View key="footer" style={{ width: wp(90), alignSelf: 'center' }}>
         <Button primary color={"white"} onPress={() => AddAddress()} loading={isLoading || isLoading2} bold>
           {/* {t('Add Address')} */}
           {!!(props.route.params) ? props.route.params.checkout ?
             I18nManager.isRTL ? "استخدم هذا العنوان" : "USE THIS ADDRESS" : I18nManager.isRTL ? "تعديل العنوان" : "Edit Address" : t('addAddress')}
         </Button>
       </View>
-    </Screen >
+    </View >
   );
 };
 
