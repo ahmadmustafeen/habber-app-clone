@@ -53,7 +53,20 @@ const DrawerNav = () => {
 const navigatorComponent = (ad, backUser, res, User, adViewed) => {
   // Alert.alert("navigatorComponent")
 
+  // return (
+  //   <RootStack.Navigator
+  //     screenOptions={{
+  //       headerShown: false,
+  //     }}>
+  //     {!backUser && <RootStack.Screen name={LANGUAGE_SCREEN} component={Language} />}
+  //     {(ad && !adViewed) && <RootStack.Screen name={AD_SCREEN} component={AdScreen} initialParams={{ image: res.image }} />}
+  //     {(!User.token) && <RootStack.Screen name="Auth" component={AuthNav} />}
+  //     <RootStack.Screen name="Drawer" component={DrawerNav} />
+  //     {(User.token) && <RootStack.Screen name="Auth" component={AuthNav} />}
 
+
+  //   </RootStack.Navigator>
+  // );
 
 
 
@@ -66,7 +79,7 @@ const navigatorComponent = (ad, backUser, res, User, adViewed) => {
   //   );
   // }
 
-  if (ad && !adViewed) {
+  if (ad) {
     return (
       <RootStack.Navigator
         screenOptions={{
@@ -76,46 +89,47 @@ const navigatorComponent = (ad, backUser, res, User, adViewed) => {
       </RootStack.Navigator>
     );
   }
-  if (backUser) {
-    console.log("BackUser", User, "BackUser")
+  else
+    if (backUser) {
+      console.log("BackUser", User, "BackUser")
 
-    if (User.setting) {
+      if (User.setting) {
 
-      return (
-        <RootStack.Navigator
-          screenOptions={{
-            headerShown: false,
-          }}>
-          {/* {(!User.token) && <RootStack.Screen name="Auth" component={AuthNav} />}
+        return (
+          <RootStack.Navigator
+            screenOptions={{
+              headerShown: false,
+            }}>
+            {/* {(!User.token) && <RootStack.Screen name="Auth" component={AuthNav} />}
         <RootStack.Screen name="Drawer" component={DrawerNav} />
         {(User.token) && <RootStack.Screen name="Auth" component={AuthNav} />} */}
 
-          {(!User.setting) && <RootStack.Screen name="Auth" component={AuthNav} />}
-          <RootStack.Screen name="Drawer" component={DrawerNav} />
-          {(User.setting) && <RootStack.Screen name="Auth" component={AuthNav} />}
+            {(!User.setting) && <RootStack.Screen name="Auth" component={AuthNav} />}
+            <RootStack.Screen name="Drawer" component={DrawerNav} />
+            {(User.setting) && <RootStack.Screen name="Auth" component={AuthNav} />}
 
-        </RootStack.Navigator>
-      );
+          </RootStack.Navigator>
+        );
 
-    }
-    else {
-      return (
-        <RootStack.Navigator
-          screenOptions={{
-            headerShown: false,
-          }}>
-          {/* {(!User.token) && <RootStack.Screen name="Auth" component={AuthNav} />}
+      }
+      else {
+        return (
+          <RootStack.Navigator
+            screenOptions={{
+              headerShown: false,
+            }}>
+            {/* {(!User.token) && <RootStack.Screen name="Auth" component={AuthNav} />}
         <RootStack.Screen name="Drawer" component={DrawerNav} />
         {(User.token) && <RootStack.Screen name="Auth" component={AuthNav} />} */}
 
-          {(!User.token) && <RootStack.Screen name="Auth" component={AuthNav} />}
-          <RootStack.Screen name="Drawer" component={DrawerNav} />
-          {(User.token) && <RootStack.Screen name="Auth" component={AuthNav} />}
+            {(!User.token) && <RootStack.Screen name="Auth" component={AuthNav} />}
+            <RootStack.Screen name="Drawer" component={DrawerNav} />
+            {(User.token) && <RootStack.Screen name="Auth" component={AuthNav} />}
 
-        </RootStack.Navigator>
-      );
+          </RootStack.Navigator>
+        );
+      }
     }
-  }
   return (
     <RootStack.Navigator
       screenOptions={{
@@ -148,20 +162,21 @@ const config = {
 const Navigator = (props, ref) => {
   const [existingUser, setExistingUser] = useState("")
   const [User, setUser] = useState("")
+  const [loaded, setLoaded] = useState(false)
   const [adViewed, setAdViewed] = useState("")
 
   useEffect(() => {
     // retrieveData2().then(
-    retrieveData() &&
-      retrieveData2()
+    retrieveData().then(() => retrieveData2().then(() => setLoaded(true))
 
+    )
   }, []);
 
   const retrieveData = async () => {
     try {
       const valueString = await AsyncStorage.getItem('@userProfile');
       const value = JSON.parse(valueString);
-
+      setLanguage_presence(!backUser)
       // const valueAddString = await AsyncStorage.getItem('@adViewed');
       // const valueAdd = JSON.parse(valueAddString);
       // setData(value);
@@ -172,6 +187,7 @@ const Navigator = (props, ref) => {
       console.log(error);
     }
   };
+  const [language_presence, setLanguage_presence] = useState(true)
   const retrieveData2 = async () => {
     try {
       // const valueString = await AsyncStorage.getItem('@userProfile');
@@ -202,10 +218,29 @@ const Navigator = (props, ref) => {
       backUser: !!UserProfileReducer.language,
     };
   }, shallowEqual);
-  console.log("adViewed adViewed adViewed", adViewed);
+  // var language_presence = UserProfileReducer.language_presence
+
   return (
     <NavigationContainer linking={linking} ref={ref} theme={MyTheme}>
-      {navigatorComponent(ad, existingUser, res, User, adViewed)}
+
+      {/* <RootStack.Navigator
+        screenOptions={{
+          headerShown: false,
+        }}>
+        {language_presence && <RootStack.Screen name={LANGUAGE_SCREEN} component={Language} />}
+        {(ad && !adViewed) && <RootStack.Screen name={AD_SCREEN} component={AdScreen} initialParams={{ image: res.image }} />}
+        {(!User.token) && <RootStack.Screen name="Auth" component={AuthNav} />}
+        <RootStack.Screen name="Drawer" component={DrawerNav} />
+        {(User.token) && <RootStack.Screen name="Auth" component={AuthNav} />}
+
+
+      </RootStack.Navigator> */}
+
+      {
+        loaded ?
+          navigatorComponent(ad, existingUser, res, User, adViewed)
+          : null
+      }
     </NavigationContainer>
   );
 };

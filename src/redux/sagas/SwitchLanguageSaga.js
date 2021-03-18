@@ -36,7 +36,7 @@ export function* switchLangSaga({ payload }) {
     }
     yield put({
       type: SWITCH_LANG_SUCCESS,
-      payload: { ...userProfile, language: { iso: i18n.language }, setting: true },
+      payload: { ...userProfile, language: { iso: i18n.language }, setting: true, language_presence: false },
     });
     yield I18nManager.forceRTL(payload.language.iso == 'ar');
 

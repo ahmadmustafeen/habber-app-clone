@@ -17,10 +17,12 @@
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2DCD954D1E0B4F2C00145EB5 /* HEBBER_MobileTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* HEBBER_MobileTests.m */; };
+		536EE217A0E64028AA10EAC4 /* amiri-bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 59BBB7EEFC1849838C493970 /* amiri-bold.ttf */; };
 		5AF32A193679A3A0124AAAE3 /* libPods-HEBBER_Mobile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EECD5B219F0AB68924985146 /* libPods-HEBBER_Mobile.a */; };
 		7806BBA0FE9C80C6F2E1B081 /* libPods-HEBBER_Mobile-HEBBER_MobileTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 924C048B6C7D46038BB60AF1 /* libPods-HEBBER_Mobile-HEBBER_MobileTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		81DBA72FD53E05D118F17D5D /* libPods-HEBBER_Mobile-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 36F5635F73D68F624273DE58 /* libPods-HEBBER_Mobile-tvOS.a */; };
+		83D10A2D2BBF46469F161A7A /* GESS-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E8EAE3E985A840DA83496E59 /* GESS-Light.ttf */; };
 		940DC533258A197300D111BE /* HEBBER_Mobile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 940DC532258A197300D111BE /* HEBBER_Mobile.swift */; };
 		943488522584067D00A9A544 /* assets in Resources */ = {isa = PBXBuildFile; fileRef = 943488482584061600A9A544 /* assets */; };
 		E218F47C25F8EFEC00FA1660 /* Amiri-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E218F47425F8E9C900FA1660 /* Amiri-Bold.ttf */; };
@@ -32,8 +34,6 @@
 		E257044A25F15B4B003863C4 /* bootsplash_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = E257044925F15B4B003863C4 /* bootsplash_logo.png */; };
 		E27966032551B0330058E6DB /* main.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = 008F07F21AC5B25A0029DE68 /* main.jsbundle */; };
 		F3B0945EF57FEDE9987D9EEC /* libPods-HEBBER_Mobile-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F8F674040BEA472B7A6682F /* libPods-HEBBER_Mobile-tvOSTests.a */; };
-		536EE217A0E64028AA10EAC4 /* amiri-bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 59BBB7EEFC1849838C493970 /* amiri-bold.ttf */; };
-		83D10A2D2BBF46469F161A7A /* GESS-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E8EAE3E985A840DA83496E59 /* GESS-Light.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +82,7 @@
 		4F8F674040BEA472B7A6682F /* libPods-HEBBER_Mobile-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HEBBER_Mobile-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		521A145C1F7941D4A838B444 /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
 		5659C615B7604A5BB25478E4 /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialCommunityIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
+		59BBB7EEFC1849838C493970 /* amiri-bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "amiri-bold.ttf"; path = "../src/assets/font/amiri-bold.ttf"; sourceTree = "<group>"; };
 		5F072C94045481CE5A6BC1CE /* Pods-HEBBER_Mobile-HEBBER_MobileTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HEBBER_Mobile-HEBBER_MobileTests.release.xcconfig"; path = "Target Support Files/Pods-HEBBER_Mobile-HEBBER_MobileTests/Pods-HEBBER_Mobile-HEBBER_MobileTests.release.xcconfig"; sourceTree = "<group>"; };
 		61958EE185104DEB9F9462D1 /* Roboto-BoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-BoldItalic.ttf"; path = "../src/assets/font/Roboto-BoldItalic.ttf"; sourceTree = "<group>"; };
 		62DB37B79485418BBE527F4A /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Solid.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf"; sourceTree = "<group>"; };
@@ -135,14 +136,13 @@
 		E23B13BB25B2B0280070C739 /* hebber-Icon-32x32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hebber-Icon-32x32.png"; sourceTree = "<group>"; };
 		E25702E225F10E11003863C4 /* BootSplash.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = BootSplash.storyboard; path = HEBBER_Mobile/BootSplash.storyboard; sourceTree = "<group>"; };
 		E257044925F15B4B003863C4 /* bootsplash_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bootsplash_logo.png; sourceTree = "<group>"; };
+		E8EAE3E985A840DA83496E59 /* GESS-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "GESS-Light.ttf"; path = "../src/assets/font/GESS-Light.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 		EECD5B219F0AB68924985146 /* libPods-HEBBER_Mobile.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HEBBER_Mobile.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1C6D0A3F2404C47BE54824A /* Fontisto.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Fontisto.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Fontisto.ttf"; sourceTree = "<group>"; };
 		F80F1F8E94724205AAF309D2 /* FontAwesome5_Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Regular.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf"; sourceTree = "<group>"; };
 		FE6DB927EE6148B9A0681968 /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
-		59BBB7EEFC1849838C493970 /* amiri-bold.ttf */ = {isa = PBXFileReference; name = "amiri-bold.ttf"; path = "../src/assets/font/amiri-bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		E8EAE3E985A840DA83496E59 /* GESS-Light.ttf */ = {isa = PBXFileReference; name = "GESS-Light.ttf"; path = "../src/assets/font/GESS-Light.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -894,7 +894,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = HEBBER_Mobile/HEBBER_Mobile.entitlements;
-				CURRENT_PROJECT_VERSION = 42;
+				CURRENT_PROJECT_VERSION = 43;
 				DEVELOPMENT_TEAM = GZHG762PM3;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = HEBBER_Mobile/Info.plist;
@@ -921,7 +921,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = HEBBER_Mobile/HEBBER_Mobile.entitlements;
-				CURRENT_PROJECT_VERSION = 42;
+				CURRENT_PROJECT_VERSION = 43;
 				DEVELOPMENT_TEAM = GZHG762PM3;
 				INFOPLIST_FILE = HEBBER_Mobile/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
