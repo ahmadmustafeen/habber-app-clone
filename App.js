@@ -63,11 +63,10 @@ const App = () => {
 
 
   useEffect(() => {
-    // dispatch(withoutDataActions(SPLASH_ACTION))
     setTimeout(() => {
 
       //   if (UserProfileReducer.setting !== null) {
-      //     RNBootSplash.hide({ duration: 2000 })
+      RNBootSplash.hide({ duration: 2000 })
       //   }
     }, 2000)
 

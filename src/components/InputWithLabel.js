@@ -25,7 +25,7 @@ const InputWithLabel = (props) => {
         </AppText>
       )}
       <TextInput
-
+        autoCorrect={false}
         {...props}
         ref={(r) => {
           inputRef && inputRef(r);

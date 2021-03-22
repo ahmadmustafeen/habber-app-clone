@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Platform } from 'react-native';
+import { Alert } from 'react-native';
+import { Dimensions } from 'react-native';
 import { ScrollView } from 'react-native';
 import { StyleSheet, View } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
@@ -16,38 +18,45 @@ const Screen = (props) => {
     const { children } = props;
     return children.filter((view) => view.key === key);
   };
-
+  const [verticalOffSet, setVerticalOffSet] = useState(false)
   return (
     <>
       {getComponent('header').length ? (
         <View style={styles.header}>{getComponent('header')}</View>
       ) : null}
       <KeyboardAwareScrollView
-        // stickyHeaderIndices={[1]}
-        // // resetScrollToCoords={{ x: 0, y: 0 }}
-        contentContainerStyle={{ flexGrow: 1 }}
-        // // automaticallyAdjustContentInsets={true}
-        // keyboardDismissMode="on-drag"
-        // scrollsToTop={true}
-        // showsHorizontalScrollIndicator={false}
-        // showsVerticalScrollIndicator={false}
-        // keyboardShouldPersistTaps="never"
-        // bounces={false}
-        // enableResetScrollToCoords={false}
-        resetScrollToCoords={{ x: 0, y: 0 }}
-        // contentContainerStyle={{ height: heightPercentageToDP(96), flexGrow: 1 }}
-        // automaticallyAdjustContentInsets={true
+        onKeyboardWillShow={() => {
+          setVerticalOffSet(true)
+        }}
+        onKeyboardWillHide={() => {
+          setVerticalOffSet(false)
+        }}
+        style={{
+
+        }}
+        // contentContainerStyle={[{ flexGrow: 1 },]}
+        // resetScrollToCoords={{ x: 0, y: 0 }}
         automaticallyAdjustContentInsets={false}
-        keyboardDismissMode="on-drag"
+        // keyboardDismissMode="on-drag"
+        // keyboardVerticalOffset={-100}
         scrollsToTop={false}
-        // behavior={Platform.OS == "ios" ? "padding" : "height"}
         behavior={"padding"}
         showsHorizontalScrollIndicator={false}
-        // keyboardVerticalOffset={100}
         showsVerticalScrollIndicator={false}
-        keyboardShouldPersistTaps="never"
+        keyboardShouldPersistTaps="always"
         bounces={false}
-      // style={{ backgroundColor: 'red' }}
+
+
+      // resetScrollToCoords={{ x: 0, y: 0 }}
+      // contentContainerStyle={{ height: heightPercentageToDP(96), flexGrow: 1 }}
+      // automaticallyAdjustContentInsets={true
+      // automaticallyAdjustContentInsets={false}
+      // keyboardDismissMode="on-drag"
+      // scrollsToTop={false}
+      // showsHorizontalScrollIndicator={false}
+      // showsVerticalScrollIndicator={false}
+      // keyboardShouldPersistTaps="never"
+      // bounces={false}
       >
         <View
           style={[
@@ -77,6 +86,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     paddingHorizontal: 25,
+    // flexGrow: 1
     // paddingBottom: 20,
   },
   container: {
@@ -90,6 +100,7 @@ const styles = StyleSheet.create({
   },
   content: {
     flex: 1,
+    // flexGrow: 1
   },
   footer: {
     marginTop: 0,

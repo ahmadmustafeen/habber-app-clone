@@ -103,31 +103,33 @@ const SignIn = (props) => {
   }, shallowEqual);
   return (
 
-    <ImageBackground
-      style={{
-        // height: hp(100),
-        flex: 1,
-        paddingHorizontal: wp(5),
-        // paddingBottom: hp(5),
-        justifyContent: 'flex-end',
-      }}
-      resizeMode="stretch"
-      source={require('_assets/images/background.jpg')}>
-      <KeyboardAwareScrollView
-        style={{ height: heightPercentageToDP(96) }}
-        resetScrollToCoords={{ x: 0, y: 0 }}
-        contentContainerStyle={{ height: heightPercentageToDP(96), flexGrow: 1 }}
-        // automaticallyAdjustContentInsets={true
-        automaticallyAdjustContentInsets={false}
-        keyboardDismissMode="on-drag"
-        scrollsToTop={false}
-        showsHorizontalScrollIndicator={false}
-        showsVerticalScrollIndicator={false}
-        keyboardShouldPersistTaps="never"
-        bounces={false}
-      // enableResetScrollToCoords={false}
 
-      >
+    <KeyboardAwareScrollView
+      style={{ height: heightPercentageToDP(96) }}
+      resetScrollToCoords={{ x: 0, y: 0 }}
+      contentContainerStyle={{ flexGrow: 1, }}
+      // automaticallyAdjustContentInsets={true
+      automaticallyAdjustContentInsets={false}
+      keyboardDismissMode="on-drag"
+      scrollsToTop={false}
+      showsHorizontalScrollIndicator={false}
+      showsVerticalScrollIndicator={false}
+      keyboardShouldPersistTaps="never"
+      bounces={false}
+    // enableResetScrollToCoords={false}
+
+    >
+      <ImageBackground
+        style={{
+          // paddingTop: hp(2),
+          // height: hp(96),
+          flex: 1,
+          paddingHorizontal: wp(5),
+          // paddingBottom: hp(5),
+          justifyContent: 'flex-end',
+        }}
+        resizeMode="stretch"
+        source={require('_assets/images/background.jpg')}>
 
 
         <View key="header">
@@ -162,14 +164,16 @@ const SignIn = (props) => {
             onChangeText={(value) => handleChange('password', value)}
           />
 
+          <View style={{ width: I18nManager.isRTL ? wp(30) : wp(50), alignSelf: 'flex-end' }}>
+            <AppText
+              underline
+              style={[styles.forgotPassword, { color: colors.primary }]}
+              size={18}
+              onPress={() => navigate(FORGOT_PASSWORD_SCREEN)}>
+              {t('forgetPassword')}
+            </AppText>
+          </View>
 
-          <AppText
-            underline
-            style={[styles.forgotPassword, { color: colors.primary }]}
-            size={18}
-            onPress={() => navigate(FORGOT_PASSWORD_SCREEN)}>
-            {t('forgetPassword')}
-          </AppText>
 
           <View style={{ alignItems: 'center', margin: 0 }}>
             <Button
@@ -225,7 +229,7 @@ Login with Social media account`}
         </View>  */}
           </View>
         </View>
-        <View style={[{ width: wp(20), paddingBottom: hp(3), alignSelf: 'flex-end' }]}>
+        <View style={[{ width: wp(20), paddingBottom: hp(2), marginTop: hp(-10), alignSelf: 'flex-end' }]}>
           <AppText
             right
             underline
@@ -245,9 +249,9 @@ Login with Social media account`}
         {/* <TouchableOpacity style={{ backgroundColor: 'red', width: wp(20) }} onPress={() => navigate('Drawer', { screen: 'Home' })}>
         <Text>hhh</Text>
       </TouchableOpacity> */}
+      </ImageBackground >
+    </KeyboardAwareScrollView>
 
-      </KeyboardAwareScrollView>
-    </ImageBackground >
 
 
   );
@@ -255,21 +259,21 @@ Login with Social media account`}
 const styles = StyleSheet.create({
   content: {
     flex: 1,
-    paddingTop: hp(4),
+    paddingTop: I18nManager.isRTL ? hp(0) : hp(4),
     flexDirection: 'column',
   },
   bgImage: {
     flex: 1,
   },
   hellotxt: {
-    // paddingTop: (Platform.OS === 'ios' && I18nManager.isRTL) ? wp(0) : wp(10),
-    paddingTop: wp(10)
+    paddingTop: (I18nManager.isRTL) ? wp(3) : wp(10),
+    // paddingTop: wp(10)
   },
   forgotPassword: {
     // marginTop: (Platform.OS === 'ios' && I18nManager.isRTL) ? wp(-2) : wp(0),
     textAlign: 'right',
-    // marginBottom: (Platform.OS === 'ios' && I18nManager.isRTL) ? wp(2) : wp(4),
-    marginBottom: wp(2)
+    marginBottom: (I18nManager.isRTL) ? wp(0) : wp(2),
+    // marginBottom: wp(2)
   },
 });
 export default SignIn;

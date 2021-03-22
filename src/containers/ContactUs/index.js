@@ -189,6 +189,7 @@ const ContactUs = (props) => {
               value={state.phone}
               onChangeText={(val) => setStateHandler('phone', (val.length == 4 ? val + " " : val))}
             />
+
             <TextInput
 
               style={[styles.textArea, I18nManager.isRTL && { textAlign: 'right' }]}

@@ -132,41 +132,41 @@ const SignUp = (props) => {
   //   }
   // };
   return (
-    <ImageBackground
-      style={{
-        // height: hp(100),
-        flex: 1,
-        paddingHorizontal: wp(5),
-        // paddingBottom: hp(5),
-        justifyContent: 'flex-end',
-      }}
-      resizeMode="stretch"
-      source={require('_assets/images/background.jpg')}>
-      <KeyboardAwareScrollView
-        //resetScrollToCoords={{ x: 0, y: 0 }}
-        // contentContainerStyle={{ flexGrow: 1 }}
-        // automaticallyAdjustContentInsets={true}
-        // keyboardDismissMode="on-drag"
-        // scrollsToTop={false}
-        // showsHorizontalScrollIndicator={false}
-        // showsVerticalScrollIndicator={false}
-        // keyboardShouldPersistTaps="never"
 
-        // bounces={false}
-        // enableResetScrollToCoords={false}>
+    <KeyboardAwareScrollView
+      //resetScrollToCoords={{ x: 0, y: 0 }}
+      // contentContainerStyle={{ flexGrow: 1 }}
+      // automaticallyAdjustContentInsets={true}
+      // keyboardDismissMode="on-drag"
+      // scrollsToTop={false}
+      // showsHorizontalScrollIndicator={false}
+      // showsVerticalScrollIndicator={false}
+      // keyboardShouldPersistTaps="never"
 
-        resetScrollToCoords={{ x: 0, y: 0 }}
-        // contentContainerStyle={{ height: heightPercentageToDP(96), flexGrow: 1 }}
-        // automaticallyAdjustContentInsets={true
-        automaticallyAdjustContentInsets={false}
-        keyboardDismissMode="on-drag"
-        scrollsToTop={false}
-        showsHorizontalScrollIndicator={false}
-        showsVerticalScrollIndicator={false}
-        keyboardShouldPersistTaps="never"
-        bounces={false}
-      >
+      // bounces={false}
+      // enableResetScrollToCoords={false}>
 
+      resetScrollToCoords={{ x: 0, y: 0 }}
+      // contentContainerStyle={{ height: heightPercentageToDP(96), flexGrow: 1 }}
+      // automaticallyAdjustContentInsets={true
+      automaticallyAdjustContentInsets={false}
+      keyboardDismissMode="on-drag"
+      scrollsToTop={false}
+      showsHorizontalScrollIndicator={false}
+      showsVerticalScrollIndicator={false}
+      keyboardShouldPersistTaps="never"
+      bounces={false}
+    >
+      <ImageBackground
+        style={{
+          // height: hp(100),
+          flex: 1,
+          paddingHorizontal: wp(5),
+          // paddingBottom: hp(5),
+          justifyContent: 'flex-end',
+        }}
+        resizeMode="stretch"
+        source={require('_assets/images/background.jpg')}>
         <View key="header">
           <AuthHeader {...props} />
         </View>
@@ -268,8 +268,8 @@ const SignUp = (props) => {
             {...signUp.modalData}
           />
         </View>
-      </KeyboardAwareScrollView>
-    </ImageBackground >
+      </ImageBackground >
+    </KeyboardAwareScrollView>
   );
 };
 
