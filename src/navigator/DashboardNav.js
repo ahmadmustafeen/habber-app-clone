@@ -55,6 +55,7 @@ import Invoice from "../containers/Invoice"
 import CartNew from "../containers/CartNew"
 import TermsAndConditions from "../containers/TermsAndConditions"
 import SignUpTermCondition from '../containers/SignUpTermCondition/index'
+import AddAddress from '../containers/AddAddress'
 import { Payment } from '../containers/Payment';
 
 const Stack = createStackNavigator();
@@ -73,7 +74,10 @@ export const DashboardNav = () => {
       <Stack.Screen name={REQUESTBOOKS_SCREEN} component={RequestBooks} />
       <Stack.Screen name={MY_PROFILE} component={MyProfile} />
       <Stack.Screen name={MY_ADDRESS_BOOK} component={MyAddressBook} />
+
       <Stack.Screen name={ADD_NEW_ADDRESS} component={AddNewAddress} />
+      {/* <Stack.Screen name={ADD_NEW_ADDRESS} component={AddAddress} /> */}
+
       <Stack.Screen name={CHANGE_PASSWORD} component={ChangePassword} />
       <Stack.Screen name={RESET_PASSWORD_SCREEN} component={ResetPassword} />
       <Stack.Screen name={EDIT_PROFILE} component={EditProfile} />

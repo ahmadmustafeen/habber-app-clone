@@ -144,8 +144,8 @@ const EditProfile = (props) => {
   const link = state.profile_pic ? state.profile_pic.uri : UserProfileReducer.profile_pic
   const { colors } = useTheme();
   return (
-    <Screen noPadding>
-
+    // <Screen noPadding>
+    <KeyboardAwareScrollView bounces={false}>
       <View key="header">
         <Header {...props} headerImage backIcon headerLeft />
 
@@ -218,7 +218,8 @@ const EditProfile = (props) => {
           {t('save')}
         </Button>
       </View>
-    </Screen >
+    </KeyboardAwareScrollView>
+
   );
 };
 
