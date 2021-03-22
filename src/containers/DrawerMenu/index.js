@@ -30,6 +30,7 @@ import {
 } from '../../constants/Screens';
 import { colors } from 'react-native-elements';
 import { Color } from 'constants/Colors';
+import { Platform } from 'react-native';
 
 const DrawerIcon = (props) => {
   const { name, onPress } = props;
@@ -66,7 +67,7 @@ const DrawerMenu = (props) => {
       style={styles.bgImage}
       resizeMode={'stretch'}
       source={require('_assets/images/drawer_menu.png')}>
-      <ScrollView showsVerticalScrollIndicator={false}
+      <View showsVerticalScrollIndicator={false}
         showsHorizontalScrollIndicator={false}>
         <View>
           <View style={styles.container}>
@@ -77,7 +78,7 @@ const DrawerMenu = (props) => {
                   source={require('../../assets/images/logo.png')}
                 />
               </View>
-              <View style={styles.row}>
+              <View style={[styles.row, I18nManager.isRTL ? styles.arabicrow : styles.englishrow]}>
                 <View style={styles.imageProfile}>
                   <Image
                     style={styles.imageAvatar}
@@ -95,8 +96,9 @@ const DrawerMenu = (props) => {
                 </AppText>
               </View>
             </View>
-            <View>
+            <View style={[I18nManager.isRTL ? styles.arabiccontainer : styles.englishcontainer]}>
               <TitleBarWithIcon
+
                 label={t('home')}
                 color={colors.white}
                 onPress={() => props.navigation.navigate(HOME)}
@@ -168,7 +170,7 @@ const DrawerMenu = (props) => {
               style={{
                 flexDirection: 'row',
                 justifyContent: 'space-around',
-                width: wp(70),
+                width: wp(60),
               }}>
               <DrawerIcon
                 name="snapchat"
@@ -188,7 +190,7 @@ const DrawerMenu = (props) => {
             <AppText small white>Version 1.37</AppText>
           </View> */}
         </View>
-      </ScrollView>
+      </View>
 
     </ImageBackground >
   );
@@ -221,6 +223,7 @@ const styles = StyleSheet.create({
   poweredbyline: {
     marginTop: hp(3),
     marginBottom: hp(2),
+    paddingHorizontal: wp(4)
   },
   row: {
     marginVertical: hp(0.5),
@@ -251,5 +254,18 @@ const styles = StyleSheet.create({
     height: 1,
     borderBottomWidth: 0.5,
   },
+  arabicrow: {
+    paddingVertical: hp(0)
+  },
+  englishrow: {
+    paddingVertical: Platform.OS === 'ios' ? hp(0) : hp(0)
+  },
+  arabiccontainer: {
+    paddingVertical: hp(0.5)
+  },
+  englishcontainer: {
+    paddingVertical: Platform.OS === 'ios' ? hp(4) : hp(2),
+    // paddingBottom: Platform.OS === 'ios' ? hp(4) : hp(1)
+  }
 });
 export default DrawerMenu;

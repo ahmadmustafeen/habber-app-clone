@@ -61,11 +61,12 @@ const AppText = (props) => {
           primary && { color: colors.primary },
           white && { color: colors.white },
           underline && { textDecorationLine: 'underline' },
-          size && { fontSize: parseInt(size) },
+
           center && { textAlign: 'center' },
           right && { textAlign: 'right' },
           small && { fontSize: 17 },
           subheading && { fontSize: 20 },
+          size && { fontSize: parseInt(size) },
           capitalize && { textTransform: 'capitalize' },
           // { fontFamily: 'Amiri-Regular' }
           (I18nManager.isRTL) && { fontFamily: 'Amiri-Regular' }

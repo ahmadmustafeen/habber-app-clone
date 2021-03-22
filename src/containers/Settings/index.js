@@ -298,6 +298,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   content: {
+    paddingTop: hp(1),
     width: wp(90),
     alignSelf: 'center',
   },

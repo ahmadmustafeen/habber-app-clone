@@ -20,6 +20,7 @@ import { Icon } from 'react-native-elements';
 const TitleBarWithIcon = (props) => {
   const { colors } = useTheme();
   const {
+    small,
     containerStyle,
     label,
     onIconPress,
@@ -27,7 +28,6 @@ const TitleBarWithIcon = (props) => {
     color,
     iconName,
     noIcon,
-    small,
     horizontalLine,
     filter,
     selectedFilter,
@@ -59,7 +59,9 @@ const TitleBarWithIcon = (props) => {
 
           },
         ]}>
-        <AppText subheading primary={!color} bold {...props}>
+        <AppText subheading primary={!color} bold {...props}
+          size={16}
+        >
           {label || 'Title'}
           {/* {horizontalLine ? <View
             style={{
@@ -71,6 +73,7 @@ const TitleBarWithIcon = (props) => {
               borderBottomColor: 'rgba(0,0,0,0.5),',
 
             }}></View> : null} */}
+
         </AppText>
         {centerLine && (
           <View style={{
