@@ -144,24 +144,26 @@ const ChangePassword = (props) => {
           onCart={toggleCart}
           onSearch={toggleSearch}
         />
+        <View style={{ flex: 1, justifyContent: 'flex-end' }}>
+          <Button
+            loading={isLoading}
+            style={styles.button}
+            appColor
+            bold
+            color={colors.white}
+            onPress={() => passChange()}>
+            {t('save')}
+          </Button>
+        </View>
       </View>
 
-      <View style={{ marginBottom: hp(5) }} key="footer">
-        <Button
-          loading={isLoading}
-          style={styles.button}
-          appColor
-          bold
-          color={colors.white}
-          onPress={() => passChange()}>
-          {t('save')}
-        </Button>
-      </View>
+
     </Screen >
   );
 };
 const styles = StyleSheet.create({
   container: {
+    minHeight: hp(70),
     width: wp(90),
     alignSelf: 'center',
     flex: 1

@@ -68,14 +68,14 @@ const BookDetailsCard = (props) => {
         <View style={{
           transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }],
           // subheading: { fontSize: 20 },
-          marginTop: wp(7)
+          marginTop: wp(7),
         }}>
           <AppText bold size={17}>
             {I18nManager.isRTL ? arabic_title : title}
           </AppText>
           <AppText
             size={15}
-            style={{ paddingBottom: wp(10), fontStyle: 'italic' }}>
+            style={{ paddingBottom: wp(6), fontStyle: 'italic' }}>
             {t('by')} {product_type === "book" ? I18nManager.isRTL ? arabic_author_name : author_name : I18nManager.isRTL ? arabic_maker_name : maker_name}
           </AppText>
           <AppText bold size={17}>
@@ -130,7 +130,7 @@ const styles = StyleSheet.create({
   },
   imgContainer: {
     aspectRatio: 0.6 / 1,
-    height: hp(30),
+    height: hp(31),
 
   },
   image: {

@@ -149,7 +149,9 @@ const Settings = (props) => {
 
         <Header {...props} headerImage />
       </View>
-      <View key="content" style={styles.content}>
+      <View key="content" style={[styles.content, {
+
+      }]}>
         <SettingsComponent
           label={t("language")}
           rightComponent={
@@ -243,19 +245,20 @@ const Settings = (props) => {
           onIconPress={() => navigation.navigate(JOINUS)}
           label={t('joinUs')}
         />
-      </View>
 
-      <View
-        key="footer"
-        style={{ width: wp(90), alignSelf: 'center', paddingBottom: 20 }}
-      // style={styles.content}
 
-      >
-        {UserProfileReducer.token && (
-          <Button bold color="white" onPress={onLogout}>
-            {I18nManager.isRTL ? "تسجيل خروج" : "LOGOUT"}
-          </Button>
-        )}
+        <View
+          // key="footer"
+          style={{ width: wp(90), flex: 1, alignSelf: 'center', justifyContent: 'flex-end', paddingBottom: 20 }}
+        // style={styles.content}
+
+        >
+          {UserProfileReducer.token && (
+            <Button bold color="white" onPress={onLogout}>
+              {I18nManager.isRTL ? "تسجيل خروج" : "LOGOUT"}
+            </Button>
+          )}
+        </View>
       </View>
     </Screen >
   );
@@ -300,6 +303,7 @@ const styles = StyleSheet.create({
   content: {
     paddingTop: hp(1),
     width: wp(90),
+    minHeight: hp(75),
     alignSelf: 'center',
   },
 });

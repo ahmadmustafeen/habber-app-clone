@@ -238,18 +238,19 @@ const JoinUs = (props) => {
           onContinue={onContinue}
           {...JOIN_US.modalData}
         />
-      </View>
-      <View key="footer" style={{ marginBottom: hp(5) }}>
 
-        <View style={{ width: wp(80), alignSelf: 'center' }}>
-          <Button bold color="white" onPress={() => onSubmit(isLoading)} loading={isLoading}>
-            {t('submit')}
-          </Button>
+        <View style={{ marginBottom: hp(5) }}>
 
+          <View style={{ width: wp(80), alignSelf: 'center' }}>
+            <Button bold color="white" onPress={() => onSubmit(isLoading)} loading={isLoading}>
+              {t('submit')}
+            </Button>
+
+          </View>
         </View>
       </View>
 
-    </Screen>
+    </Screen >
   );
 };
 

@@ -71,11 +71,12 @@ const Screen = (props) => {
               {getComponent('content')}
             </View>
           ) : null}
-          {getComponent('footer').length ? (
-            <View style={styles.footer}>{getComponent('footer')}</View>
-          ) : null}
+
         </View>
       </KeyboardAwareScrollView>
+      {getComponent('footer').length ? (
+        <View style={styles.footer}>{getComponent('footer')}</View>
+      ) : null}
       {/* </ScrollView> */}
     </>
   );

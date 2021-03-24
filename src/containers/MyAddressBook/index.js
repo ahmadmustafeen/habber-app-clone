@@ -90,7 +90,7 @@ const MyAddressBook = (props) => {
               {email}
             </AppText>
           </View>
-          <TouchableOpacity style={{ position: 'absolute', right: wp(2.5), top: hp(-2.0) }} onPress={() => navigate(EDIT_PROFILE)}>
+          <TouchableOpacity style={{ position: 'absolute', right: wp(2.5), top: wp(-5.5) }} onPress={() => navigate(EDIT_PROFILE)}>
             {I18nManager.isRTL ?
               <Image source={require('../../assets/images/editbtnAR.png')} /> :
               <Image source={require('../../assets/images/editbtn.png')} />}
@@ -128,6 +128,9 @@ const MyAddressBook = (props) => {
               ListFooterComponent={() => <View style={{ paddingBottom: 50 }} />}
             />
           </View>
+
+        </View>
+        <View style={{ width: wp(85), paddingBottom: hp(2), alignSelf: 'center' }}>
           <Button
             add
             fontSize={17}
@@ -137,6 +140,8 @@ const MyAddressBook = (props) => {
           </Button>
         </View>
       </View>
+
+
     </Screen>
   );
 };
@@ -159,7 +164,7 @@ const styles = StyleSheet.create({
     width: wp(85),
     flexDirection: 'row',
     marginBottom: 20,
-    marginTop: hp(6),
+    marginTop: hp(8),
   },
   editbtn: {
     backgroundColor: '#c27e12',

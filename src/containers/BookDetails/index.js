@@ -274,7 +274,7 @@ const BookDetails = (props) => {
       const result = await Share.share({
         // cdmessage: "Habber",
         message:
-          "http://habber.attribes.com/social_share?redirec_url=BookDetails/" + (type ? old_product.id : product_id) + "/" + (type ? type : product_type)
+          "http://line-kw.com/hebr.line-kw.com/public/social_share?redirec_url=BookDetails/" + (type ? old_product.id : product_id) + "/" + (type ? type : product_type)
         // Platform.OS === 'ios' ?
         //   ('habber://BookDetails/' + (type ? old_product.id : product_id) + "/" + (type ? type : product_type)) :
         //   (('http://sturdycyber.cf/index.php?id=' + (type ? old_product.id : product_id) + "&type=" + (type ? type : product_type)))

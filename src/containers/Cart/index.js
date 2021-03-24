@@ -106,7 +106,7 @@ const AddToCart = (props) => {
 
       </View>
 
-      <View key="content" style={{ width: wp(90), alignSelf: 'center' }}>
+      <View key="content" style={{ width: wp(90), minHeight: hp(75), alignSelf: 'center' }}>
         {(!(CartReducer.book.length + CartReducer.bookmark.length)) ?
           <AppText  >{I18nManager.isRTL ? "لم يتم إضافة عناصر في عربة التسوق الخاصة بك حتى الآن" : "No items are added In your cart yet"}</AppText>
 
@@ -240,31 +240,32 @@ const AddToCart = (props) => {
               </AppText>
             </View>
           </View> */}
-      </View>
-      <View key="footer" style={{ width: wp(90), alignSelf: 'center', marginBottom: hp(4) }}>
-        {(!(CartReducer.book.length + CartReducer.bookmark.length)) ? null :
+        <View style={{ width: wp(90), flex: 1, justifyContent: 'flex-end', alignSelf: 'center', marginBottom: hp(4) }}>
+          {(!(CartReducer.book.length + CartReducer.bookmark.length)) ? null :
 
-          <Button
-            bold
-            primary
-            style={styles.footerbtn}
-            onPress={() => (UserProfileReducer.token ? (
-              dispatch(
-                withDataActions(CartReducer.book, RE_ADD_TO_CART),
-              ) &&
-              props.navigation.navigate(CHECKOUT)
-            ) :
-              Alert.alert((I18nManager.isRTL ? "" : ""), (I18nManager.isRTL ? "يرجى تسجيل الدخول أو التسجيل أولا للمتابعة" : "Kindly sign-in or sign-up first to continue"), [
-                {
-                  text: I18nManager.isRTL ? "تقدم" : "Proceed",
-                  onPress: () => {
-                    // (payload.checkout) ? NavigationService.navigate('Checkout', { screen: CHECKOUT }) :
-                    props.navigation.navigate("Auth", { Screen: SIGNIN_SCREEN })
-                  }
-                },
-              ]))}> {t("checkout")}
-          </Button>
-        }
+            <Button
+              bold
+              primary
+              style={styles.footerbtn}
+              onPress={() => (UserProfileReducer.token ? (
+                dispatch(
+                  withDataActions(CartReducer.book, RE_ADD_TO_CART),
+                ) &&
+                props.navigation.navigate(CHECKOUT)
+              ) :
+                Alert.alert((I18nManager.isRTL ? "" : ""), (I18nManager.isRTL ? "يرجى تسجيل الدخول أو التسجيل أولا للمتابعة" : "Kindly sign-in or sign-up first to continue"), [
+                  {
+                    text: I18nManager.isRTL ? "تقدم" : "Proceed",
+                    onPress: () => {
+                      // (payload.checkout) ? NavigationService.navigate('Checkout', { screen: CHECKOUT }) :
+                      props.navigation.navigate("Auth", { Screen: SIGNIN_SCREEN })
+                    }
+                  },
+                ]))}> {t("checkout")}
+            </Button>
+          }
+        </View>
+
       </View>
     </Screen >
   );

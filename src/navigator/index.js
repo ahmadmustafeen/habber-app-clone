@@ -79,7 +79,7 @@ const navigatorComponent = (ad, backUser, res, User, adViewed) => {
   //   );
   // }
 
-  if (ad) {
+  if (ad && !User.setting) {
     return (
       <RootStack.Navigator
         screenOptions={{

@@ -171,7 +171,10 @@ const AddNewAddress = (props) => {
         title={!!(props.route.params) ? props.route.params.checkout ? (I18nManager.isRTL ? "الدفع" : "CHECKOUT") : (I18nManager.isRTL ? "تعديل العنوان" : "EDIT ADDRESS") : (I18nManager.isRTL ? "اضف عنوان" : "Add Address")} /> */}
 
       {/* </View>  */}
-      <KeyboardAwareScrollView bounces={false}  >
+      <KeyboardAwareScrollView bounces={false}
+        showsHorizontalScrollIndicator={false}
+        showsVerticalScrollIndicator={false}
+      >
 
         <Header {...props} backIcon headerLeft headerImage
           noSearch={!!((props.route.params) ? props.route.params.checkout ? true : null : null)}
@@ -196,58 +199,60 @@ const AddNewAddress = (props) => {
         // bounces={false}
         > */}
 
+        <View style={{ width: wp(90), alignSelf: 'center' }}>
 
-        <InputWithLabel color={"black"}
-          value={state.address_name}
-          placeholder={t('addressName')}
-          required
-          onChangeText={(val) => setStateHandler('address_name', val)} />
-        {/* <InputWithLabel color={"black"} placeholder="Country*" required /> */}
-        <ModalSelectorCustom
-          data={countries_list}
-          onChangeText={value => setState({ ...state, country_id: value.key })}
-          initValue={selectedCountry.name || t('country')}
-          color={selectedCountry.name ? "black" : "grey"} />
-        <ModalSelectorCustom
-          data={selectedCountry.city}
-          onChangeText={value => setState({ ...state, city_id: value.id })}
-          initValue={city ? city.label : false || t('state')}
-          color={state.city_id ? "black" : "grey"} />
-        <InputWithLabel
-          color={"black"}
-          value={state.state}
-          placeholder={t('city')}
-          required
-          onChangeText={(val) => setStateHandler('state', val)}
-        />
-        <InputWithLabel color={"black"}
-          value={state.address_line1}
-          placeholder={t('addressLine1')}
-          required
-          onChangeText={(val) => setStateHandler('address_line1', val)}
-        />
-        <InputWithLabel color={"black"}
-          value={state.address_line2}
-          placeholder={t('addressline2')}
-          autoCompleteType='off'
-          required
-          onChangeText={(val) => setStateHandler('address_line2', val)}
-        />
-        <InputWithLabel color={"black"}
+          <InputWithLabel color={"black"}
+            value={state.address_name}
+            placeholder={t('addressName')}
+            required
+            onChangeText={(val) => setStateHandler('address_name', val)} />
+          {/* <InputWithLabel color={"black"} placeholder="Country*" required /> */}
+          <ModalSelectorCustom
+            data={countries_list}
+            onChangeText={value => setState({ ...state, country_id: value.key })}
+            initValue={selectedCountry.name || t('country')}
+            color={selectedCountry.name ? "black" : "grey"} />
+          <ModalSelectorCustom
+            data={selectedCountry.city}
+            onChangeText={value => setState({ ...state, city_id: value.id })}
+            initValue={city ? city.label : false || t('state')}
+            color={state.city_id ? "black" : "grey"} />
+          <InputWithLabel
+            color={"black"}
+            value={state.state}
+            placeholder={t('city')}
+            required
+            onChangeText={(val) => setStateHandler('state', val)}
+          />
+          <InputWithLabel color={"black"}
+            value={state.address_line1}
+            placeholder={t('addressLine1')}
+            required
+            onChangeText={(val) => setStateHandler('address_line1', val)}
+          />
+          <InputWithLabel color={"black"}
+            value={state.address_line2}
+            placeholder={t('addressline2')}
+            autoCompleteType='off'
+            required
+            onChangeText={(val) => setStateHandler('address_line2', val)}
+          />
+          <InputWithLabel color={"black"}
 
-          value={state.post_code}
-          placeholder={t('postalCode')}
-          required
-          onChangeText={(val) => setStateHandler('post_code', val)}
-        />
-        <InputWithLabel color={"black"}
-          value={state.phone}
-          placeholder={t('mobileNumber')}
-          required
-          onChangeText={(val) => setStateHandler('phone', val)}
-        />
-        {/* </View> */}
-        {/* </KeyboardAwareScrollView> */}
+            value={state.post_code}
+            placeholder={t('postalCode')}
+            required
+            onChangeText={(val) => setStateHandler('post_code', val)}
+          />
+          <InputWithLabel color={"black"}
+            value={state.phone}
+            placeholder={t('mobileNumber')}
+            required
+            onChangeText={(val) => setStateHandler('phone', val)}
+          />
+          {/* </View> */}
+          {/* </KeyboardAwareScrollView> */}
+        </View>
         <ModalScreen
           // image={require("")}
           visible={visible}

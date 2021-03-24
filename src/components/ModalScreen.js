@@ -43,7 +43,7 @@ const ModalScreen = props => {
           </View>
           <View
             key="content"
-            style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+            style={{ flex: 1, paddingTop: hp(8), alignItems: 'center', justifyContent: 'center' }}>
 
             {image ? <Image
               // source={require("../assets/images/forgetPassword.png")}

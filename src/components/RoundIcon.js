@@ -26,7 +26,7 @@ const RoundIcon = (props) => {
           width: 90,
         },
         small && {
-          width: widthPercentageToDP(2),
+          width: wp(9),
         },
       ]}
       {...props}

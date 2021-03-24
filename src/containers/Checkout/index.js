@@ -267,7 +267,7 @@ const Checkout = (props) => {
               </AppText> */}
             {/* </View> */}
           </View>
-          <View>
+          <View style={{ paddingBottom: hp(5) }}>
             <Button
               style={{ marginVertical: hp(1) }}
               add
