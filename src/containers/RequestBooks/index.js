@@ -201,13 +201,14 @@ const RequestBooks = (props) => {
           }
           onSearch={toggleSearch}
         />
+        <View style={{ flex: 1, justifyContent: 'flex-end', }}>
+          <Button color="white" bold primary onPress={onSubmit} style={{ marginTop: hp(-5) }} loading={isLoading} >
+            {t('sendRequest')}
+          </Button>
+        </View>
       </View>
 
-      <View key="footer" style={[styles.content, { paddingBottom: hp(2) }]}>
-        <Button color="white" bold primary onPress={onSubmit} style={{ marginTop: hp(0) }} loading={isLoading} >
-          {t('sendRequest')}
-        </Button>
-      </View>
+
     </Screen>
 
   );
@@ -220,6 +221,7 @@ const styles = StyleSheet.create({
   content: {
 
     width: wp(90),
+    minHeight: hp(70),
     alignSelf: 'center'
   },
   image: {

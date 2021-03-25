@@ -242,7 +242,7 @@ const ContactUs = (props) => {
                 size={13}
                 iconName="whatsapp"
                 iconType="font-awesome"
-                iconSize={18}
+                iconSize={15}
                 title={t('supportChat')}
                 value={`${resookkk.substr(0, 4) + " " + resookkk.substr(4)}`}
                 onPress={() =>
@@ -256,7 +256,7 @@ const ContactUs = (props) => {
                 size={13}
                 iconName="phone-call"
                 iconType="feather"
-                iconSize={18}
+                iconSize={15}
                 title={t('phoneNumber')}
                 // value={(Number(FetchSiteReducer.phone_no))}
                 // value={FetchSiteReducer.phone_no == 5 ? FetchSiteReducer.phone_no + " " : FetchSiteReducer.phone_no}
@@ -272,7 +272,7 @@ const ContactUs = (props) => {
                 size={13}
                 iconName="mail"
                 iconType="octicons"
-                iconSize={18}
+                iconSize={15}
                 onPress={() =>
                   Linking.openURL(`mailto:${FetchSiteReducer.email}`)
                 }
@@ -318,6 +318,7 @@ const styles = StyleSheet.create({
   },
   inputWithLabel: {
     marginVertical: hp(0.5),
+    // backgroundColor:'red'
     height: hp(7)
   }
 });

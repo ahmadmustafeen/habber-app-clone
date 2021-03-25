@@ -118,8 +118,8 @@ const EditProfile = (props) => {
         setStateHandler('profile_pic', {
           uri: Platform.OS == 'ios' ? response.uri.replace("file://", "/private") : response.uri,
 
-          type: response.type,
-          name: Platform.OS == 'ios' ? "placeholder_text" : response.fileName,
+          type: response.type ? response.type : "png",
+          name: Platform.OS == 'ios' ? "placeholder_text.png" : response.fileName,
         });
 
       }

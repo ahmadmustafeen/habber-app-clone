@@ -34,10 +34,10 @@ export function* UpdateCartPriceSaga({ type, payload }) {
         let books = [...ArabicBooksReducer, ...EnglishBooksReducer]
         let userProfile = yield getItem('@userProfile');
         userProfile = JSON.parse(userProfile);
-        console.log(userProfile, "SHOULD M<ATCH")
+        console.log(UserProfileReducer, "SHOULD M<ATCH")
 
         const productBook = CartReducer.book.map((book) => {
-            let price = (books.find(bookss => book.id === bookss.id).prices.find((id) => userProfile.currency.id === id.id).price)
+            let price = (books.find(bookss => book.id === bookss.id).prices.find((id) => UserProfileReducer.currency.id === id.id).price)
             price = parseFloat(parseFloat(price.toString().replace(",", ""))).toFixed(2)
 
             return {
@@ -49,7 +49,7 @@ export function* UpdateCartPriceSaga({ type, payload }) {
         })
         console.log(productBook, "found")
         const productBookmark = CartReducer.bookmark.map((book) => {
-            let price = (books.find(bookss => book.id === bookss.id).prices.find((id) => userProfile.currency.id === id.id).price)
+            let price = (books.find(bookss => book.id === bookss.id).prices.find((id) => UserProfileReducer.currency.id === id.id).price)
             price = parseFloat(parseFloat(price.toString().replace(",", ""))).toFixed(2)
 
             return {
@@ -70,7 +70,7 @@ export function* UpdateCartPriceSaga({ type, payload }) {
 
         if (!userProfile.token) {
             const Productbooks = CartReducer.book.map((book) => {
-                let price = (books.find(bookss => book.id === bookss.id).prices.find((id) => userProfile.currency.id === id.id).price)
+                let price = (books.find(bookss => book.id === bookss.id).prices.find((id) => UserProfileReducer.currency.id === id.id).price)
                 price = parseFloat(parseFloat(price.toString().replace(",", ""))).toFixed(2)
 
                 return {
@@ -81,7 +81,7 @@ export function* UpdateCartPriceSaga({ type, payload }) {
             })
             console.log(Productbooks, "THIS")
             const Productbookmarks = CartReducer.bookmark.map((book) => {
-                let price = (books.find(bookss => book.id === bookss.id).prices.find((id) => userProfile.currency.id === id.id).price)
+                let price = (books.find(bookss => book.id === bookss.id).prices.find((id) => UserProfileReducer.currency.id === id.id).price)
                 price = parseFloat(parseFloat(price.toString().replace(",", ""))).toFixed(2)
 
                 return {
@@ -103,7 +103,7 @@ export function* UpdateCartPriceSaga({ type, payload }) {
             return false
         }
         const Productbooks = CartReducer.book.map((book) => {
-            let price = (books.find(bookss => book.id === bookss.id).prices.find((id) => userProfile.currency.id === id.id).price)
+            let price = (books.find(bookss => book.id === bookss.id).prices.find((id) => UserProfileReducer.currency.id === id.id).price)
             price = parseFloat(parseFloat(price.toString().replace(",", ""))).toFixed(2)
 
             return {
@@ -114,7 +114,7 @@ export function* UpdateCartPriceSaga({ type, payload }) {
         })
         console.log(Productbooks, "THIS")
         const Productbookmarks = CartReducer.bookmark.map((book) => {
-            let price = (books.find(bookss => book.id === bookss.id).prices.find((id) => userProfile.currency.id === id.id).price)
+            let price = (books.find(bookss => book.id === bookss.id).prices.find((id) => UserProfileReducer.currency.id === id.id).price)
             price = parseFloat(parseFloat(price.toString().replace(",", ""))).toFixed(2)
 
             return {

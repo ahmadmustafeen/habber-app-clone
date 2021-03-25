@@ -20,13 +20,21 @@ import {
   FETCH_BANNER,
   FETCH_STATIC
 } from '_redux/actionTypes';
-import { FETCH_GENRE } from '../actionTypes';
+import { FETCH_GENRE, SIGN_IN_SUCCESS } from '../actionTypes';
 import { AD_SCREENS } from '../../constants/Screens';
 import RNBootSplash from "react-native-bootsplash";
+import { getItem } from '../../helpers/Localstorage';
 
 
 export function* splashSaga({ payload }) {
   try {
+
+    let UserProfileReducer = yield getItem('@userProfile');
+    yield put({ type: SIGN_IN_SUCCESS, payload: { ...(JSON.parse(UserProfileReducer)) } })
+
+
+
+
     const response = yield call(() => RestClient.get(API_ENDPOINTS.ads));
     if (response.status === 521) {
       return Alert.alert("Server is down")

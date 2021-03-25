@@ -91,7 +91,8 @@ Please Retry`,
   //   props.navigation.goBack();
   // };
   return (
-    <Screen noPadding>
+    // <Screen noPadding>
+    <>
       <View key="header">
         <Header {...props}
           headerRight
@@ -139,6 +140,7 @@ Please Retry`}
 
         />
       </View>
-    </Screen>
+    </>
+    // </Screen>
   );
 };

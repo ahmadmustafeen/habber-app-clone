@@ -1,5 +1,7 @@
 import { useTheme } from '@react-navigation/native';
 import React from 'react';
+import { I18nManager } from 'react-native';
+import { Platform } from 'react-native';
 import { View, StyleSheet, TouchableOpacity } from 'react-native'
 import { Icon } from 'react-native-elements';
 import {
@@ -39,14 +41,14 @@ const TextWithIcon = (props) => {
             />
 
             <View style={styles.text}>
-
+                <AppText
+                    size={size}
+                    small={small}
+                    large={large}
+                    color={color || colors.primary}>
+                    {`${title} ${value}`}</AppText>
             </View>
-            <AppText
-                size={size}
-                small={small}
-                large={large}
-                color={color || colors.primary}>
-                {`${title} ${value}`}</AppText>
+
 
         </TouchableOpacity>
     )
@@ -58,7 +60,10 @@ const styles = StyleSheet.create({
 
     },
     text: {
-        paddingLeft: wp(5)
+        // backgroundColor: 'red',
+        alignItems: 'center',
+        marginTop: I18nManager.isRTL && Platform.OS === 'android' ? hp(-2) : hp(0),
+        paddingLeft: wp(5),
     }
 })
 export { TextWithIcon }

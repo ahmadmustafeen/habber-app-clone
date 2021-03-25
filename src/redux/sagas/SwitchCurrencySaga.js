@@ -27,6 +27,7 @@ export function* SwitchCurrencySaga({ payload }) {
             form_data.append('phone', userProfile.phone);
             form_data.append('language_id', userProfile.language.id);
             form_data.append('currency_id', payload.currency.id);
+            form_data.append('flag', false);
             const response = yield call(() =>
                 RestClient.post(API_ENDPOINTS.user, form_data),
             )
@@ -39,9 +40,10 @@ export function* SwitchCurrencySaga({ payload }) {
 
 
             }
-
+            // yield setItem('@userProfile', JSON.stringify({ ...userProfile, currency: payload.currency }));
         }
-        yield setItem('@userProfile', JSON.stringify(payload));
+        console.log("{ ...userProfile, currency: payload.currency }", { ...userProfile, currency: payload.currency })
+        yield setItem('@userProfile', JSON.stringify({ ...userProfile, currency: payload.currency }));
         yield put({
             type: SWITCH_CURRENCY_SUCCESS,
             payload,

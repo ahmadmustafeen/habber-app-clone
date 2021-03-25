@@ -96,10 +96,14 @@ export function* splashAdSaga() {
 
 
       yield setItem('@adViewed', JSON.stringify(true));
+      // yield put({
+      //   type: FETCH_USER_PROFILE,
+      // });
       yield put({ type: GUESTUSER_TOKEN });
-      const { UserProfileReducer } = yield select(({ UserProfileReducer }) => {
-        return { UserProfileReducer };
-      });
+      // const { UserProfileReducer } = yield select(({ UserProfileReducer }) => {
+      //   return { UserProfileReducer };
+      // });
+      console.log(userProfile, "UserProfileReducerUserProfileReducerUserProfileReducer")
       yield put({
         type: FETCH_USER_CART_SUCCESS, payload: (cartREDUCER ? cartREDUCER : {
           book: [],
@@ -111,16 +115,16 @@ export function* splashAdSaga() {
       //   screen: SIGNIN_SCREEN,
       // });
     } else {
+      yield put({ type: GUESTUSER_TOKEN });
+      if (!userProfile || !userProfile.currency) {
 
-      if (!userProfile || !userProfile.language) {
 
-
-        yield put({ type: GUESTUSER_TOKEN });
         yield setItem(
           '@userProfile',
           JSON.stringify({
             // ...userProfile,
             currency: { id: 1, iso: 'KWD', name: 'Kuwaiti dinar', symbol: 'KD' },
+            // currency: userProfile.currency,
             notification: 1,
           }),
         );
@@ -130,6 +134,7 @@ export function* splashAdSaga() {
         //   screen: LANGUAGE_SCREEN,
         // });
       }
+
     }
 
 
