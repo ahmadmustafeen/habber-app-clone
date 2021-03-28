@@ -3,12 +3,13 @@ import {
   FETCH_USER_CART_SUCCESS,
   UPDATE_FAVOURITE,
 } from '_redux/actionTypes';
+import { FETCH_USER_FAVOURITE_SUCCESS } from '../actionTypes';
 const initialState = {
   book: [],
   bookmark: [],
 };
 
-export default (state = initialState, {type, payload}) => {
+export default (state = initialState, { type, payload }) => {
   switch (type) {
     case UPDATE_FAVOURITE: {
       const alreadyAvailable = state[payload.product_type].findIndex(
@@ -20,14 +21,19 @@ export default (state = initialState, {type, payload}) => {
           [payload.product_type]: [...state[payload.product_type], payload],
         };
       } else {
-        const updatedState = {...state};
+        const updatedState = { ...state };
         updatedState[payload.product_type].splice(alreadyAvailable, 1);
         return updatedState;
       }
     }
 
-    case FETCH_USER_CART_SUCCESS: {
-      console.log('38', payload);
+    case FETCH_USER_FAVOURITE_SUCCESS: {
+      payload.data.map(item => { return state[item.product_type].push(item) })
+      return state
+
+
+
+      return { ...state, ...payload.data };
     }
     default:
       return state;

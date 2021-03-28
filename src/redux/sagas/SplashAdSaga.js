@@ -15,7 +15,7 @@ import {
 } from '_redux/actionTypes';
 import { all, put, select } from 'redux-saga/effects';
 import { RestClient } from 'network/RestClient';
-import { FETCH_ARABIC_BOOKS, FETCH_BOOKCLUBS, FETCH_BOOKMARKS, FETCH_ENGLISH_BOOKS, FETCH_ORDER_SUCCESS, FETCH_USER_CART_SUCCESS, GUESTUSER_TOKEN, SIGN_OUT_SUCCESS } from '../actionTypes';
+import { FETCH_ARABIC_BOOKS, FETCH_BOOKCLUBS, FETCH_BOOKMARKS, FETCH_ENGLISH_BOOKS, FETCH_ORDER_SUCCESS, FETCH_USER_CART_SUCCESS, GUESTUSER_TOKEN, SIGN_IN_SUCCESS, SIGN_OUT_SUCCESS } from '../actionTypes';
 import { Platform } from 'react-native';
 import CartReducer from '../reducers/CartReducer';
 import { I18nManager } from 'react-native';
@@ -27,14 +27,18 @@ export function* splashAdSaga() {
 
     const backUser = yield getItem('@backUser');
     let userProfile = yield getItem('@userProfile');
-
+    userProfile = JSON.parse(userProfile);
     let cartREDUCER = yield getItem('@cartREDUCER');
     cartREDUCER = JSON.parse(cartREDUCER);
+
+
+    let UserProfileReducer = yield getItem('@userProfile');
+    yield put({ type: SIGN_IN_SUCCESS, payload: { ...(JSON.parse(UserProfileReducer)) } })
     console.log(userProfile, "cartREDUCER");
     if (userProfile && !userProfile.currency) {
 
 
-      const userProfilecheck = JSON.parse(userProfile);
+      const userProfilecheck = (userProfile);
       yield setItem(
         '@userProfile',
         JSON.stringify({
@@ -66,12 +70,11 @@ export function* splashAdSaga() {
       yield put({ type: FETCH_BOOKCLUBS });
       yield put({ type: FETCH_BOOKMARKS });
     }
-    userProfile = JSON.parse(userProfile);
-    yield put({
-      type: FETCH_USER_PROFILE_SUCCESS,
-      payload: userProfile,
-    });
-    console.log(userProfile, "userProfile");
+    // yield put({
+    //   type: FETCH_USER_PROFILE_SUCCESS,
+    //   payload: userProfile,
+    // });
+    // console.log("userProfileuserProfileuserProfileuserProfile", userProfile, "userProfile");
     if (userProfile && userProfile.token) {
 
 
@@ -103,7 +106,7 @@ export function* splashAdSaga() {
       // const { UserProfileReducer } = yield select(({ UserProfileReducer }) => {
       //   return { UserProfileReducer };
       // });
-      console.log(userProfile, "UserProfileReducerUserProfileReducerUserProfileReducer")
+      // console.log(userProfile, "UserProfileReducerUserProfileReducerUserProfileReducer")
       yield put({
         type: FETCH_USER_CART_SUCCESS, payload: (cartREDUCER ? cartREDUCER : {
           book: [],
@@ -116,24 +119,25 @@ export function* splashAdSaga() {
       // });
     } else {
       yield put({ type: GUESTUSER_TOKEN });
-      if (!userProfile || !userProfile.currency) {
+      // if (!userProfile) {
 
 
-        yield setItem(
-          '@userProfile',
-          JSON.stringify({
-            // ...userProfile,
-            currency: { id: 1, iso: 'KWD', name: 'Kuwaiti dinar', symbol: 'KD' },
-            // currency: userProfile.currency,
-            notification: 1,
-          }),
-        );
+      //   yield setItem(
+      //     '@userProfile',
+      //     JSON.stringify({
+      //       // ...userProfile,
+      //       currency: { id: 1, iso: 'KWD', name: 'Kuwaiti dinar', symbol: 'KD' },
+      //       // currency: userProfile.currency,
+      //       notification: 1,
+      //     }),
+      //   );
 
-        // return NavigationService.navigate('Auth', {
+      //   // return NavigationService.navigate('Auth', {
 
-        //   screen: LANGUAGE_SCREEN,
-        // });
-      }
+      //   //   screen: LANGUAGE_SCREEN,
+      //   // });
+      // }
+
 
     }
 

@@ -83,6 +83,7 @@ const Home = (props) => {
       isLoading: checkIfLoading(
         state,
         FETCH_ENGLISH_BOOKS,
+        "type",
         FETCH_ARABIC_BOOKS,
         FETCH_BOOKCLUBS,
         FETCH_BOOKMARKS,

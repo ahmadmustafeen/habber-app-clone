@@ -14,9 +14,9 @@ import { FETCH_AD_SUCCESS, FETCH_AD_SUCCESS_REFURB, SKIP_AD } from '../../redux/
 const AdScreen = (props) => {
   const { colors } = useTheme();
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(withoutDataActions(SKIP_AD))
-  }, [])
+  // useEffect(() => {
+  //   dispatch(withoutDataActions(SKIP_AD))
+  // }, [])
   const { navigate } = props.navigation;
   console.log('AD PROPS', props.route.params.image);
   const handleBackButton = () => {
@@ -51,7 +51,7 @@ const AdScreen = (props) => {
         }}
         // onPress={() => NavigationService.navigate(AD_SCREEN, { screen: 'Home' })}
         // onPress={() => console.log(props.navigation.goBack())}
-        onPress={() => (dispatch(withDataActions({ ad: false }, FETCH_AD_SUCCESS_REFURB)) && (dispatch(withDataActions({ ad: false }, SKIP_AD))))}
+        onPress={() => (dispatch(withDataActions({ ad: false }, FETCH_AD_SUCCESS_REFURB)) && (dispatch(withoutDataActions(SKIP_AD))))}
 
       // dispatch(withDataActions(SKIP_AD))
       // dispatch(withoutDataActions(FETCH_AD_FAILURE))

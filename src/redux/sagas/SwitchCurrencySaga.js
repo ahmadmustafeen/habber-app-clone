@@ -9,40 +9,20 @@ import { FETCH_ADDRESS, FETCH_ADDRESS_SUCCESS, FETCH_ARABIC_BOOKS, FETCH_BANNER,
 import { RestClient } from '../../network/RestClient';
 import { API_ENDPOINTS } from '../../constants/Network';
 import RNRestart from 'react-native-restart';
+import { startAction, stopAction } from '../actions';
+import { Alert } from 'react-native';
 
 
-export function* SwitchCurrencySaga({ payload }) {
+export function* SwitchCurrencySaga({ payload, type }) {
     try {
+        yield put(startAction("type"));
         console.log(payload, "SwitchCurrencySaga")
         const CartReducer = yield select(
             ({ CartReducer }) => CartReducer,
         );
         let userProfile = yield getItem('@userProfile');
         userProfile = JSON.parse(userProfile);
-        const form_data = new FormData();
-        if (userProfile.token) {
-            form_data.append('first_name', userProfile.first_name);
-            form_data.append('last_name', userProfile.last_name);
-            form_data.append('email', userProfile.email);
-            form_data.append('phone', userProfile.phone);
-            form_data.append('language_id', userProfile.language.id);
-            form_data.append('currency_id', payload.currency.id);
-            form_data.append('flag', false);
-            const response = yield call(() =>
-                RestClient.post(API_ENDPOINTS.user, form_data),
-            )
-            console.log(response, "SwitchCurrencySaga RESPONSE")
-            // console.log("THIS IS THE RESPONSE", response)
-            if (response.status !== 200) {
 
-
-                yield put({ type: SWITCH_CURRENCY_FAILURE, error });
-
-
-            }
-            // yield setItem('@userProfile', JSON.stringify({ ...userProfile, currency: payload.currency }));
-        }
-        console.log("{ ...userProfile, currency: payload.currency }", { ...userProfile, currency: payload.currency })
         yield setItem('@userProfile', JSON.stringify({ ...userProfile, currency: payload.currency }));
         yield put({
             type: SWITCH_CURRENCY_SUCCESS,
@@ -64,12 +44,46 @@ export function* SwitchCurrencySaga({ payload }) {
         yield put({ type: FETCH_BOOKMARKS })
         yield put({ type: FETCH_BANNER })
         yield put({ type: UPDATE_CART_PRICES_OFFLINE, payload: CartReducer })
+
+
+        const form_data = new FormData();
+        if (userProfile.token) {
+            form_data.append('first_name', userProfile.first_name);
+            form_data.append('last_name', userProfile.last_name);
+            form_data.append('email', userProfile.email);
+            form_data.append('phone', userProfile.phone);
+            form_data.append('language_id', userProfile.language.id);
+            form_data.append('currency_id', payload.currency.id);
+            form_data.append('flag', 0);
+            const response = yield call(() =>
+                RestClient.post(API_ENDPOINTS.user, form_data),
+            )
+            console.log(response, "SwitchCurrencySaga RESPONSE")
+            // console.log("THIS IS THE RESPONSE", response)
+            if (response.status !== 200) {
+
+
+                yield put({ type: SWITCH_CURRENCY_FAILURE, error });
+
+
+            }
+            else {
+                // Alert.alert("UPDATED FROM API")
+            }
+            // yield setItem('@userProfile', JSON.stringify({ ...userProfile, currency: payload.currency }));
+        }
+        console.log("{ ...userProfile, currency: payload.currency }", { ...userProfile, currency: payload.currency })
+
         // RNRestart.Restart()
 
 
 
     } catch (error) {
         yield put({ type: SWITCH_CURRENCY_FAILURE, error });
+    }
+    finally {
+        yield put(stopAction("type"));
+        // stopAction(type)
     }
 
 }

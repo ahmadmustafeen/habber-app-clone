@@ -24,13 +24,13 @@ import { FETCH_GENRE, SIGN_IN_SUCCESS } from '../actionTypes';
 import { AD_SCREENS } from '../../constants/Screens';
 import RNBootSplash from "react-native-bootsplash";
 import { getItem } from '../../helpers/Localstorage';
+import navigator from '../../navigator';
 
 
 export function* splashSaga({ payload }) {
   try {
 
-    let UserProfileReducer = yield getItem('@userProfile');
-    yield put({ type: SIGN_IN_SUCCESS, payload: { ...(JSON.parse(UserProfileReducer)) } })
+
 
 
 
@@ -49,7 +49,7 @@ export function* splashSaga({ payload }) {
     yield put({ type: FETCH_STATIC });
     yield put({ type: FETCH_GENRE });
     yield put({ type: FETCH_BANNER });
-
+    // yield put({ type: SKIP_AD });
     if (response.problem === NETWORK_ERROR) {
       yield put({ type: SKIP_AD });
       yield put({ type: FETCH_AD_FAILURE });
@@ -62,23 +62,37 @@ export function* splashSaga({ payload }) {
       status,
       data: { data: res, message },
     } = response;
-    console.log("response", !!res)
+    console.log("response", !!response)
     if (response) {
       // setTimeout(() => {
       //   RNBootSplash.hide({ duration: 3000 })
       // }, 2000)
     }
+
+
+    let userProfile = yield getItem('@userProfile');
+    userProfile = JSON.parse(userProfile);
+
+    if (userProfile.setting) {
+      yield put({ type: SKIP_AD });
+    }
+
     if (!res && !payload) {
 
       // RNBootSplash.hide({ duration: 1000 })
 
-      yield put({ type: SKIP_AD });
+
       yield put({ type: FETCH_AD_FAILURE });
     } else {
       // RNBootSplash.hide({ duration: 1000 })
 
       yield put({ type: FETCH_AD_SUCCESS, payload: { ad: false, res } });
-      yield put({ type: SKIP_AD });
+      // NavigationService.navigate('Auth', {
+      //   screen: AD_SCREEN,
+      //   params: { image: res.image }
+
+
+      // });
 
     }
   } catch (error) {
