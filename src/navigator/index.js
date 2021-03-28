@@ -163,14 +163,28 @@ const Navigator = (props, ref) => {
   const [existingUser, setExistingUser] = useState("")
   const [User, setUser] = useState("")
   const [loaded, setLoaded] = useState(false)
+  const [adUrl, setAdUrl] = useState("")
   const [adViewed, setAdViewed] = useState("")
 
   useEffect(() => {
     // retrieveData2().then(
-    retrieveData().then(() => retrieveData2().then(() => setLoaded(true))
+    Add().then(() => retrieveData().then(() => retrieveData2().then(() => setLoaded(true)))
 
     )
   }, []);
+
+  const Add = async () => {
+    try {
+      let response = await fetch(
+        'https://line-kw.com/hebr.line-kw.com/public/api/v1/ads'
+      );
+      let json = await response.json();
+      setAdUrl(json?.data)
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
 
   const retrieveData = async () => {
     try {
@@ -238,7 +252,7 @@ const Navigator = (props, ref) => {
 
       {
         loaded ?
-          navigatorComponent(ad, existingUser, res, User, adViewed)
+          navigatorComponent((res && existingUser), existingUser, adUrl, User, adViewed)
           : null
       }
     </NavigationContainer>

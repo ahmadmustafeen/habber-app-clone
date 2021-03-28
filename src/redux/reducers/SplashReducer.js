@@ -10,6 +10,7 @@ import {
 const initialState = {
   splashScreen: true,
   ad: false,
+  res: true,
 };
 
 export default (state = initialState, action) => {
