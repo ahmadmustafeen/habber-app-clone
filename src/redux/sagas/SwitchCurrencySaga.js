@@ -51,7 +51,8 @@ export function* SwitchCurrencySaga({ payload, type }) {
             form_data.append('first_name', userProfile.first_name);
             form_data.append('last_name', userProfile.last_name);
             form_data.append('email', userProfile.email);
-            form_data.append('phone', userProfile.phone);
+            // userProfile.phone
+            // form_data.append('phone', userProfile.phone);
             form_data.append('language_id', userProfile.language.id);
             form_data.append('currency_id', payload.currency.id);
             form_data.append('flag', 0);

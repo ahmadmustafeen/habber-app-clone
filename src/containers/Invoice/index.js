@@ -118,8 +118,13 @@ const Invoice = (props) => {
     return (
         <Screen noPadding>
             <View key="header">
-                <Header  {...props} title={props.route.params.orderDetails && (I18nManager.isRTL ? "تفاصيل الطلب" : "Orders Detail")}
-                    inVoiceBack={(!props.route.params.orderDetails) ? (() => props.navigation.navigate(HOME)) : (() => props.navigation.navigate(MY_ORDERS))}
+                <Header  {...props}
+                    title={props.route.params.orderDetails && (I18nManager.isRTL ? "تفاصيل الطلب" : "Orders Detail")}
+                    inVoiceBack={
+                        (!props.route.params.orderDetails) ?
+                            (() => props.navigation.navigate(HOME)) :
+                            (() => props.navigation.navigate(MY_ORDERS))
+                    }
                     backIcon={props.route.params.orderDetails}
 
                     // goHomeTitle={!props.route.params.orderDetails}

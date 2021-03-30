@@ -29,6 +29,7 @@ import { MY_ADDRESS_BOOK } from '../../constants/Screens';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { Dimensions } from 'react-native';
 const AddNewAddress = (props) => {
+  const [click, setClick] = useState(false)
   const [visible, setVisible] = useState(!!props.route.params && !!props.route.params.payload && props.route.params.payload.route)
   // console.log(props.route.params && props.route.params.payload && props.route.params.payload.route, "PROPS")
   // const { visible, toggleModal } = useModal();
@@ -142,17 +143,20 @@ const AddNewAddress = (props) => {
 
 
   const AddAddress = () => {
+    if (!click) {
+      if (validate()) {
+        setClick(true);
+        item ?
+          dispatch(withDataActions({ ...state, id: item.id }, EDIT_ADDRESS))
+          :
+          dispatch(withDataActions({ ...state, checkout: props.route.params ? true : false }, ADD_ADDRESS_SAGA))
+      }
 
-
-
-
-    if (validate()) {
-
-      item ?
-        dispatch(withDataActions({ ...state, id: item.id }, EDIT_ADDRESS))
-        :
-        dispatch(withDataActions({ ...state, checkout: props.route.params ? true : false }, ADD_ADDRESS_SAGA))
     }
+
+
+
+
 
 
   };

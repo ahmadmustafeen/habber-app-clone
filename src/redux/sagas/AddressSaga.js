@@ -10,8 +10,9 @@ import * as NavigationService from '../../../NavigationService';
 import { startAction, stopAction } from '../actions';
 import { ADD_NEW_ADDRESS, CHECKOUT, SIGNIN_SCREEN } from '../../constants/Screens';
 export function* addressSaga({ type, payload }) {
-  yield put(startAction(type));
+
   try {
+    yield put(startAction(type));
     const response = yield call(() =>
       RestClient.post(API_ENDPOINTS.addresses, payload),
     );

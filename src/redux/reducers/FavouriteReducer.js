@@ -28,12 +28,18 @@ export default (state = initialState, { type, payload }) => {
     }
 
     case FETCH_USER_FAVOURITE_SUCCESS: {
+      if (payload === null) {
+        return {
+          book: [],
+          bookmark: [],
+        }
+      }
       payload.data.map(item => { return state[item.product_type].push(item) })
       return state
 
 
 
-      return { ...state, ...payload.data };
+      // return { ...state, ...payload.data };
     }
     default:
       return state;

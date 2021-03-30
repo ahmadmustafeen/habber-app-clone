@@ -98,7 +98,7 @@ const Header = (props, { adddok }) => {
         <View>
           {backIcon ? (
             <Icon
-              onPress={onModalPress ? onModalPress : () => navigation.goBack()}
+              onPress={inVoiceBack ? inVoiceBack : onModalPress ? onModalPress : () => navigation.goBack()}
               color="#c27e12"
               name="leftcircleo"
               type="ant-design"
@@ -113,7 +113,7 @@ const Header = (props, { adddok }) => {
             transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }],
 
           }}>
-          <TouchableOpacity onPress={inVoiceBack ? inVoiceBack : backIcon ? () => navigation.goBack() : (inVoiceBack ? () => navigation.navigate(HOME) : () => navigation.openDrawer())} >
+          <TouchableOpacity onPress={inVoiceBack ? inVoiceBack : (backIcon ? () => navigation.goBack() : (inVoiceBack ? () => navigation.navigate(HOME) : () => navigation.openDrawer()))} >
             <AppText bold small color={headerColor} UpperCase={UpperCase} capitalize={capitalize}  >
               {title || t(route.name)}
             </AppText>

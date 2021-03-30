@@ -1,4 +1,4 @@
-import { takeLatest, all } from 'redux-saga/effects';
+import { takeLatest, all, take } from 'redux-saga/effects';
 import {
   FORGOT_PASSWORD,
   SIGN_IN,

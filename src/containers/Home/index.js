@@ -50,7 +50,7 @@ import { AppText } from 'components/common';
 import { Icon } from 'react-native-elements';
 import RNExitApp from 'react-native-exit-app';
 export const itemWidth = wp(85);
-import { FETCH_BANNER, SETTING_REMOVAL, UPDATE_FAVOURITE } from '../../redux/actionTypes';
+import { ADD_ADDRESS_SAGA, FETCH_BANNER, SETTING_REMOVAL, UPDATE_FAVOURITE } from '../../redux/actionTypes';
 import { BackHandler } from 'react-native';
 import { Alert } from 'react-native';
 import { SETTINGS_SCREEN } from '../../constants/Screens';
@@ -85,6 +85,7 @@ const Home = (props) => {
         FETCH_ENGLISH_BOOKS,
         "type",
         FETCH_ARABIC_BOOKS,
+        ADD_ADDRESS_SAGA,
         FETCH_BOOKCLUBS,
         FETCH_BOOKMARKS, UPDATE_FAVOURITE,
         FETCH_BANNER
