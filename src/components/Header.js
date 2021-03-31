@@ -16,6 +16,7 @@ import { CART_SCREEN, SEARCH } from 'constants/Screens';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
+  widthPercentageToDP,
 } from 'react-native-responsive-screen';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
@@ -138,6 +139,7 @@ const Header = (props, { adddok }) => {
                 //   CART_SCREEN,
                 // });
                 // }}
+                style={{ width: widthPercentageToDP(8), aspectRatio: 1 }}
                 onPress={
                   onCart ? onCart : () => {
                     navigation.navigate(CART_SCREEN, {
@@ -155,7 +157,7 @@ const Header = (props, { adddok }) => {
                         ? require('../assets/images/filledcart.png')
                         : (qua === 0 ? require('../assets/images/emptycart.png') : require('../assets/images/nocart3.png'))
                     }
-                    style={{ marginRight: wp(3), marginHorizontal: wp(1) }}
+                    style={{ marginRight: wp(3), marginHorizontal: wp(1), width: '100%', height: '100%' }}
                   /> : null
                 }
                 {qua ? (
@@ -236,8 +238,11 @@ const Header = (props, { adddok }) => {
                   CART_SCREEN,
                   // CARTNEW
                 });
-              }}>
+              }}
+                style={{ width: widthPercentageToDP(8), aspectRatio: 1.2 }}
+              >
                 <Image
+                  style={{ width: '100%', height: '100%' }}
                   source={
                     cartNumber
                       ? require('../assets/images/filledcart.png')
@@ -296,8 +301,8 @@ const styles = StyleSheet.create({
   },
   circle: {
     position: 'absolute',
-    right: wp(1.6),
-    top: hp(0.1),
+    right: wp(1.2),
+    top: hp(0.03),
     width: wp(2.5),
     // height: wp(4.5),
   },

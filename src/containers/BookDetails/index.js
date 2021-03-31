@@ -97,8 +97,9 @@ const BookDetails = (props) => {
   if (product_type2 === 'book') book = (CombinedReducer.find((item) => item.id == id2))
 
 
-  console.log(BookmarksReducer2, EnglishBooksReducer2, "THIS IS BOOK")
-  if (book === null) book = props.route.params;
+
+  if (book == null) book = props.route.params;
+  console.log(props.route.params, "THIS IS BOOK")
   // (book.product_type === 'bookclub') ? book = book.book : null
   var { id: product_id = 33, quantity, product_type, price, bookClub, type } = book;
   var old_product;

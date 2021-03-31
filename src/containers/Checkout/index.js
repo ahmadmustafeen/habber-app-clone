@@ -104,7 +104,7 @@ const Checkout = (props) => {
             {I18nManager.isRTL ? "حدد خيار الدفع" : "Select Payment Option"}
           </AppText>
           <View style={styles.addressbook}>
-            <View style={styles.addressbookimg}>
+            <View style={[styles.addressbookimg, { width: wp(8), aspectRatio: 1.2 }]}>
               <Image
                 style={styles.img}
                 source={require('_assets/images/onlinepayment.png')}></Image>
@@ -285,7 +285,7 @@ const Checkout = (props) => {
               color={'white'}
               bold
               loading={isLoading}
-              onPress={() => { if (!click) { setClick(true) && ((!!state.address) && (!!state.paymentMethod)) ? (dispatch(withDataActions({ address: state.address, paymentMethod: state.paymentMethod }, CREATE_ORDER))) : ((state.paymentMethod) ? Alert.alert(I18nManager.isRTL ? "حدد أو أدخل عنوانًا للمتابعة" : "Select or Enter an Address to Continue") : Alert.alert(I18nManager.isRTL ? "اختار طريقة الدفع" : "Select Payment Method")) } }}>
+              onPress={() => { if (!click) { ((!!state.address) && (!!state.paymentMethod)) ? setClick(true) && (dispatch(withDataActions({ address: state.address, paymentMethod: state.paymentMethod }, CREATE_ORDER))) : ((state.paymentMethod) ? Alert.alert(I18nManager.isRTL ? "حدد أو أدخل عنوانًا للمتابعة" : "Select or Enter an Address to Continue") : Alert.alert(I18nManager.isRTL ? "اختار طريقة الدفع" : "Select Payment Method")) } }}>
               {I18nManager.isRTL ? "ادفع الآن" : "PAY NOW"}
             </Button>
             <ModalScreen

@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { View, TouchableOpacity, StyleSheet, Text, Image } from 'react-native'
+import { widthPercentageToDP } from 'react-native-responsive-screen';
 
 const RadioButton = (props) => {
     const { key, title, value, onPress, selected, style, noTitle, showSelect, currentValue, elementValue } = props;
@@ -10,8 +11,8 @@ const RadioButton = (props) => {
         <View key={key} style={style || styles.buttonContainer}  >
             {/* <TouchableOpacity
                 style={selected ? styles.checkedCircle : styles.circle} onPress={onPress} /> */}
-            <TouchableOpacity onPress={onPress}>
-                <Image source={
+            <TouchableOpacity onPress={onPress} style={{ width: widthPercentageToDP(5), aspectRatio: 1 }}>
+                <Image style={{ width: '100%', height: '100%' }} source={
                     selected ? require('../assets/images/tick.png') :
                         require('../assets/images/Ellipse55.png')
                 } />
