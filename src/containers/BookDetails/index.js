@@ -156,10 +156,10 @@ const BookDetails = (props) => {
     (el) => el.product_id === product_id,
   );
   const [cartQuantity, SetCartQuantity] = useState(
-    // inCartPosition !== -1
-    //   ? CartReducer[product_type][inCartPosition].cart_quantity
-    //   :
-    2
+    inCartPosition !== -1
+      ? CartReducer[product_type][inCartPosition].cart_quantity
+      :
+      1
   )
 
   const handleCounter = (action) => {
@@ -263,7 +263,7 @@ const BookDetails = (props) => {
       ) !== -1
         ? CartReducer[product_type][CartReducer[product_type].findIndex(
           (el) => el.product_id === product_id,
-        )].cart_quantity : 0))
+        )].cart_quantity : 1))
     });
 
   })
