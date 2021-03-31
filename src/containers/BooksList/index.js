@@ -21,13 +21,27 @@ import { useTheme } from '@react-navigation/native';
 import { AppText, Screen } from 'components/common';
 import { Icon } from 'react-native-elements';
 import { BackHandler } from 'react-native';
+import { withoutDataActions } from '../../redux/actions';
+import { FETCH_ARABIC_BOOKS, FETCH_BOOKCLUBS, FETCH_BOOKMARKS, FETCH_ENGLISH_BOOKS } from '../../redux/actionTypes';
+import { useDispatch } from 'react-redux';
 
 const BooksList = (props) => {
   const handleBackButton = () => {
     props.navigation.goBack()
     return true;
   };
+  const dispatch = useDispatch()
   useEffect(() => {
+    dispatch(withoutDataActions(FETCH_ENGLISH_BOOKS))
+    dispatch(withoutDataActions(FETCH_ARABIC_BOOKS))
+    dispatch(withoutDataActions(FETCH_BOOKMARKS))
+    dispatch(withoutDataActions(FETCH_BOOKCLUBS))
+  }
+    , [])
+  useEffect(() => {
+
+
+
     BackHandler.addEventListener('hardwareBackPress', handleBackButton);
     return () => {
       BackHandler.removeEventListener('hardwareBackPress', handleBackButton);
@@ -36,6 +50,7 @@ const BooksList = (props) => {
 
   const [filter, setFilter] = useState([]);
   const { label, data, product_type } = props.route.params;
+  // console.log(data, "BOOKLIST DATA")
   const { visible, toggleFilter } = useFilter();
   const [bookData, setBookData] = useState(data);
   const removeFilter = (deleteFilter) => {

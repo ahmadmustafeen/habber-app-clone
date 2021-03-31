@@ -106,7 +106,14 @@ const Home = (props) => {
     // BackHandler.exitApp()
 
   }
-
+  useEffect(() => {
+    dispatch(withoutDataActions(FETCH_ENGLISH_BOOKS))
+    dispatch(withoutDataActions(FETCH_ARABIC_BOOKS))
+    dispatch(withoutDataActions(FETCH_BOOKMARKS))
+    dispatch(withoutDataActions(FETCH_BANNER))
+    dispatch(withoutDataActions(FETCH_BOOKCLUBS))
+  }
+    , [])
   useEffect(() => {
     BackHandler.addEventListener('hardwareBackPress', handleBackButton);
 
