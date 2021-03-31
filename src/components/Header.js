@@ -139,7 +139,7 @@ const Header = (props, { adddok }) => {
                 //   CART_SCREEN,
                 // });
                 // }}
-                style={{ width: widthPercentageToDP(8), aspectRatio: 1 }}
+                // style={{ width: widthPercentageToDP(8), aspectRatio: 1 }}
                 onPress={
                   onCart ? onCart : () => {
                     navigation.navigate(CART_SCREEN, {
@@ -157,7 +157,7 @@ const Header = (props, { adddok }) => {
                         ? require('../assets/images/filledcart.png')
                         : (qua === 0 ? require('../assets/images/emptycart.png') : require('../assets/images/nocart3.png'))
                     }
-                    style={{ marginRight: wp(3), marginHorizontal: wp(1), width: '100%', height: '100%' }}
+                  // style={{ marginRight: wp(3), marginHorizontal: wp(1), width: '100%', height: '100%' }}
                   /> : null
                 }
                 {qua ? (
@@ -316,7 +316,7 @@ const styles = StyleSheet.create({
   },
   circleCheck: {
     position: 'absolute',
-    right: wp(4.6),
+    right: wp(1.8),
     top: hp(0.1),
     width: wp(2.5),
     // height: wp(4.5),

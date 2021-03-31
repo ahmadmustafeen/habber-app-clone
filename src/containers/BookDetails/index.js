@@ -155,9 +155,11 @@ const BookDetails = (props) => {
   let inCartPosition = CartReducer[product_type].findIndex(
     (el) => el.product_id === product_id,
   );
-  const [cartQuantity, SetCartQuantity] = useState(inCartPosition !== -1
-    ? CartReducer[product_type][inCartPosition].cart_quantity
-    : 0
+  const [cartQuantity, SetCartQuantity] = useState(
+    // inCartPosition !== -1
+    //   ? CartReducer[product_type][inCartPosition].cart_quantity
+    //   :
+    2
   )
 
   const handleCounter = (action) => {
