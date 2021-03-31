@@ -165,7 +165,7 @@ const BookDetails = (props) => {
   const handleCounter = (action) => {
     console.log(book.quantity)
     console.log(action, "action")
-    action === 'add' ? cartQuantity < book.quantity && SetCartQuantity(cartQuantity => cartQuantity + 1) : cartQuantity > 0 && SetCartQuantity(cartQuantity => cartQuantity - 1)
+    action === 'add' ? cartQuantity < book.quantity && SetCartQuantity(cartQuantity => cartQuantity + 1) : cartQuantity > 1 && SetCartQuantity(cartQuantity => cartQuantity - 1)
 
     // if (action === 'sub' && inCartPosition !== -1 && CartReducer[product_type][inCartPosition].cart_quantity === 1) {
     //   action = 'remove'
