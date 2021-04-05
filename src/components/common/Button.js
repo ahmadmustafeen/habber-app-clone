@@ -35,6 +35,7 @@ const Button = (props) => {
       style={[
         {
           justifyContent: 'center',
+          // alignItems: 'center',
           height: 45,
           width: width || '100%',
           borderRadius: round ? 35 : 5,
@@ -66,7 +67,7 @@ const Button = (props) => {
         </View>
       }
       {inStock &&
-        <View style={{ position: "absolute", left: wp(13), width: 20, height: 25, zIndex: 1, top: hp(1.25) }}>
+        <View style={{ position: "absolute", left: wp(13), width: 20, aspectRatio: 1, zIndex: 1, top: hp(1.75) }}>
           <Image style={{ width: "100%", height: "100%" }} source={require("../../assets/images/emptycart.png")} />
         </View>
       }

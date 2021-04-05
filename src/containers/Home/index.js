@@ -50,18 +50,37 @@ import { AppText } from 'components/common';
 import { Icon } from 'react-native-elements';
 import RNExitApp from 'react-native-exit-app';
 export const itemWidth = wp(85);
-import { ADD_ADDRESS_SAGA, FETCH_BANNER, SETTING_REMOVAL, UPDATE_FAVOURITE } from '../../redux/actionTypes';
+import { ADD_ADDRESS_SAGA, FETCH_BANNER, FETCH_ORDER, SETTING_REMOVAL, SPLASH_ACTION, UPDATE_FAVOURITE } from '../../redux/actionTypes';
 import { BackHandler } from 'react-native';
 import { Alert } from 'react-native';
 import { SETTINGS_SCREEN } from '../../constants/Screens';
 import { withoutDataActions } from '../../redux/actions';
 const { width } = Dimensions.get('window');
+import { useRoute } from '@react-navigation/native';
 const Home = (props) => {
+  console.log(props.route.name, "PROPS HOME")
   const CAROUSEL = useRef(null);
   const { navigate } = props.navigation;
   const [images] = useState(sliderImages);
   const [activeSlide, setActiveSlide] = useState(0)
   const { t } = useTranslation();
+  const route = useRoute();
+
+  // if (props.route.name === "Home") {
+  // }
+  useEffect(() => {
+    // () && (
+
+    // dispatch(withoutDataActions(FETCH_ENGLISH_BOOKS)),
+    //   dispatch(withoutDataActions(FETCH_ARABIC_BOOKS)),
+    //   dispatch(withoutDataActions(FETCH_BOOKMARKS)),
+    //   // dispatch(withoutDataActions(FETCH_BANNER))
+    //   dispatch(withoutDataActions(FETCH_BOOKCLUBS))
+
+    // )
+    //   // dispatch(withoutDataActions(SPLASH_ACTION))
+  }
+    , [route.name])
   const {
     UserProfileReducer,
     EnglishBooksReducer,
@@ -69,7 +88,7 @@ const Home = (props) => {
     BookmarksReducer,
     BookClubReducer,
     FetchSiteReducer,
-    isLoading,
+    isLoading = false,
     BannerReducer
   } = useSelector((state) => {
     return {
@@ -87,7 +106,9 @@ const Home = (props) => {
         FETCH_ARABIC_BOOKS,
         ADD_ADDRESS_SAGA,
         FETCH_BOOKCLUBS,
-        FETCH_BOOKMARKS, UPDATE_FAVOURITE,
+        // FETCH_ORDER,
+        FETCH_BOOKMARKS,
+        UPDATE_FAVOURITE,
         FETCH_BANNER
       ),
     };
@@ -106,14 +127,7 @@ const Home = (props) => {
     // BackHandler.exitApp()
 
   }
-  useEffect(() => {
-    dispatch(withoutDataActions(FETCH_ENGLISH_BOOKS))
-    dispatch(withoutDataActions(FETCH_ARABIC_BOOKS))
-    dispatch(withoutDataActions(FETCH_BOOKMARKS))
-    dispatch(withoutDataActions(FETCH_BANNER))
-    dispatch(withoutDataActions(FETCH_BOOKCLUBS))
-  }
-    , [])
+
   useEffect(() => {
     BackHandler.addEventListener('hardwareBackPress', handleBackButton);
 

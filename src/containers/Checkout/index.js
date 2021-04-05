@@ -33,7 +33,7 @@ import { CREATE_ORDER_TEXT } from '../../assets/data/StaticData';
 import { CART_SCREEN, CHECKOUT, HOME } from '../../constants/Screens';
 
 const Checkout = (props) => {
-  const [click, setClick] = useState(false)
+
   const { visible, toggleModal } = useModal();
   const { t } = useTranslation(['Cart'])
   const { colors } = useTheme();
@@ -46,6 +46,7 @@ const Checkout = (props) => {
       isLoading: checkIfLoading(state, CREATE_ORDER),
     };
   }, shallowEqual);
+  const [click, setClick] = useState(!(CartReducer.book || CartReducer.bookmark))
   const [state, setState] = useState({
     paymentMethod: '',
     address: '',
@@ -285,7 +286,7 @@ const Checkout = (props) => {
               color={'white'}
               bold
               loading={isLoading}
-              onPress={() => { if (!click) { ((!!state.address) && (!!state.paymentMethod)) ? setClick(true) && (dispatch(withDataActions({ address: state.address, paymentMethod: state.paymentMethod }, CREATE_ORDER))) : ((state.paymentMethod) ? Alert.alert(I18nManager.isRTL ? "حدد أو أدخل عنوانًا للمتابعة" : "Select or Enter an Address to Continue") : Alert.alert(I18nManager.isRTL ? "اختار طريقة الدفع" : "Select Payment Method")) } }}>
+              onPress={() => { if (!click) { ((!!state.address) && (!!state.paymentMethod)) ? (dispatch(withDataActions({ address: state.address, paymentMethod: state.paymentMethod }, CREATE_ORDER))) && setClick(true) : ((state.paymentMethod) ? Alert.alert(I18nManager.isRTL ? "حدد أو أدخل عنوانًا للمتابعة" : "Select or Enter an Address to Continue") : Alert.alert(I18nManager.isRTL ? "اختار طريقة الدفع" : "Select Payment Method")) } }}>
               {I18nManager.isRTL ? "ادفع الآن" : "PAY NOW"}
             </Button>
             <ModalScreen

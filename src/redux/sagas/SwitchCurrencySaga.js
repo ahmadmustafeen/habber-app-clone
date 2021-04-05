@@ -23,7 +23,11 @@ export function* SwitchCurrencySaga({ payload, type }) {
         let userProfile = yield getItem('@userProfile');
         userProfile = JSON.parse(userProfile);
 
+
+
+
         yield setItem('@userProfile', JSON.stringify({ ...userProfile, currency: payload.currency }));
+
         yield put({
             type: SWITCH_CURRENCY_SUCCESS,
             payload,

@@ -130,7 +130,7 @@ const Header = (props, { adddok }) => {
           {headerRight ? (
             headerRight
           ) : (
-            <View style={[styles.right, (!!route && (route.name !== 'Search')) && I18nManager.isRTL && { width: wp(19.5), marginLeft: wp(-2) }]}>
+            <View style={[styles.right, { width: wp(18) }, (!!route && (route.name !== 'Search')) && I18nManager.isRTL && { width: wp(19.5), marginLeft: wp(-2) }]}>
               <TouchableOpacity
                 // onPress={() => {
 
@@ -139,7 +139,7 @@ const Header = (props, { adddok }) => {
                 //   CART_SCREEN,
                 // });
                 // }}
-                // style={{ width: widthPercentageToDP(8), aspectRatio: 1 }}
+                style={qua === 0 ? { width: widthPercentageToDP(5.5), aspectRatio: 0.95, } : { width: widthPercentageToDP(7), aspectRatio: 1.15, }}
                 onPress={
                   onCart ? onCart : () => {
                     navigation.navigate(CART_SCREEN, {
@@ -152,18 +152,21 @@ const Header = (props, { adddok }) => {
                 {!noCart ?
 
                   <Image
+
                     source={
                       cartNumber
                         ? require('../assets/images/filledcart.png')
-                        : (qua === 0 ? require('../assets/images/emptycart.png') : require('../assets/images/nocart3.png'))
+                        : (qua === 0 ? require('../assets/images/emptycart.png') :
+                          require('../assets/images/nocart3.png'))
                     }
-                  // style={{ marginRight: wp(3), marginHorizontal: wp(1), width: '100%', height: '100%' }}
+                    style={{ marginHorizontal: wp(0), width: '100%', height: '100%' }}
                   /> : null
                 }
                 {qua ? (
                   <View style={I18nManager.isRTL ? styles.circleArabicCheck : styles.circleCheck}>
                     <AppText style={{ transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }], }} size={13} bold color={"#0a2937"}>
                       {qua}
+                      {/* 10 */}
                     </AppText>
                   </View>
                 ) : null}
@@ -231,7 +234,7 @@ const Header = (props, { adddok }) => {
           {headerRight ? (
             headerRight
           ) : (
-            <View style={[styles.right,]}>
+            <View style={[styles.right, { width: hp(10.5), }]}>
               <TouchableOpacity onPress={() => {
                 navigation.navigate(CART_SCREEN, {
                   label: 'CART_SCREEN',
@@ -253,6 +256,7 @@ const Header = (props, { adddok }) => {
                   <View style={I18nManager.isRTL ? styles.circleArabic : styles.circle}>
                     <AppText size={13} style={{ transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }], }} bold white>
                       {qua}
+
                     </AppText>
                   </View>
                 ) : <View style={I18nManager.isRTL ? styles.circleArabic : styles.circle}>
@@ -301,32 +305,49 @@ const styles = StyleSheet.create({
   },
   circle: {
     position: 'absolute',
-    right: wp(1.2),
-    top: hp(0.03),
-    width: wp(2.5),
+    right: wp(0.4),
+    width: '100%',
+    width: wp(4.5),
+    justifyContent: 'center',
+    alignItems: 'center',
+    // top: hp(0.03),
+    // backgroundColor: 'red'
+    // width: wp(2.5),
     // height: wp(4.5),
   },
   circleArabic: {
     position: 'absolute',
     // right: wp(4.0),
+    width: wp(4.5),
     left: wp(1.0),
-    top: hp(0.2),
-    width: wp(3),
+    // top: hp(-0.2),
+    justifyContent: 'center',
+    alignItems: 'center',
+    // width: wp(3),
+    // backgroundColor: 'red',
     // height: wp(3),
   },
   circleCheck: {
     position: 'absolute',
-    right: wp(1.8),
-    top: hp(0.1),
-    width: wp(2.5),
+    right: wp(0.2),
+    justifyContent: 'center',
+    alignItems: 'center',
+    top: hp(-0.2),
+    // backgroundColor: 'red',
+    // backgroundColor: 'red',
+    width: wp(4.5),
     // height: wp(4.5),
   },
   circleArabicCheck: {
     position: 'absolute',
     // right: wp(4.0),
-    left: wp(1.9),
-    top: hp(0.2),
-    width: wp(3),
+    // backgroundColor: 'red',
+    // left: wp(1.9),
+    top: hp(-0.2),
+    width: wp(4.5),
+    // width: wp(3),
+    justifyContent: 'center',
+    alignItems: 'center',
     // height: wp(3),
   },
 });

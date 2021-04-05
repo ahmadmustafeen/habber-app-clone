@@ -27,6 +27,11 @@ import { useDispatch } from 'react-redux';
 
 const BooksList = (props) => {
   const handleBackButton = () => {
+    dispatch(withoutDataActions(FETCH_ENGLISH_BOOKS))
+    dispatch(withoutDataActions(FETCH_ARABIC_BOOKS))
+    dispatch(withoutDataActions(FETCH_BOOKMARKS))
+    // dispatch(withoutDataActions(FETCH_BANNER))
+    dispatch(withoutDataActions(FETCH_BOOKCLUBS))
     props.navigation.goBack()
     return true;
   };

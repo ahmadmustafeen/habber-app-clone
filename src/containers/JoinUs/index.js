@@ -112,7 +112,7 @@ const JoinUs = (props) => {
       keyboardDidHideListener.remove();
     }
   }, []);
-
+  const [click, setClick] = useState(false)
   const validate = () => {
     // Alert.alert(state.details.trim().length)
     return (
@@ -143,11 +143,12 @@ const JoinUs = (props) => {
     toggleModal();
     props.navigation.goBack();
   };
-  const onSubmit = (check) => {
+  const onSubmit = () => {
     // Alert.alert(((state.details.trim().length) > 0).toString())
-    validate() && !check &&
+    if (validate() && !click) {
+      setClick(true)
       dispatch(withDataActions(state, SUBMIT_JOIN_US));
-    check = true
+    }
   };
   const { navigate } = props.navigation;
   const { colors } = useTheme()
@@ -242,7 +243,7 @@ const JoinUs = (props) => {
         <View style={{ marginBottom: hp(5) }}>
 
           <View style={{ width: wp(80), alignSelf: 'center' }}>
-            <Button bold color="white" onPress={() => onSubmit(isLoading)} loading={isLoading}>
+            <Button bold color="white" onPress={() => onSubmit(click)} loading={isLoading}>
               {t('submit')}
             </Button>
 

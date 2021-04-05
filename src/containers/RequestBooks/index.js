@@ -24,6 +24,8 @@ import { Keyboard } from 'react-native';
 import { REQUEST_BOOK_MODAL } from '_assets/data/StaticData';
 import useModal from '_utils/customHooks/useModal';
 import { BackHandler } from 'react-native';
+import { withoutDataActions } from '../../redux/actions';
+import { FETCH_ARABIC_BOOKS, FETCH_BOOKCLUBS, FETCH_BOOKMARKS, FETCH_ENGLISH_BOOKS } from '../../redux/actionTypes';
 const options = {
   title: 'Select Avatar',
   customButtons: [{ name: 'fb', title: 'Choose Photo from Facebook' }],
@@ -35,8 +37,12 @@ const options = {
 const RequestBooks = (props) => {
 
 
-
   const handleBackButton = () => {
+    dispatch(withoutDataActions(FETCH_ENGLISH_BOOKS))
+    dispatch(withoutDataActions(FETCH_ARABIC_BOOKS))
+    dispatch(withoutDataActions(FETCH_BOOKMARKS))
+    // dispatch(withoutDataActions(FETCH_BANNER))
+    dispatch(withoutDataActions(FETCH_BOOKCLUBS))
     props.navigation.goBack()
     return true;
   };
@@ -95,9 +101,9 @@ const RequestBooks = (props) => {
       validateIsTrue(author_name, `${t('Please')} ${t('author')}`, false, t('ok'))
     )
   };
-
+  const [click, setClick] = useState(false)
   const onSubmit = () => {
-    validate() && dispatch(withDataActions(state, REQUEST_BOOK));
+    if (!click) validate() && dispatch(withDataActions(state, REQUEST_BOOK)) && setClick(true)
   };
   const _keyboardDidHide = () => {
     Keyboard.dismiss()

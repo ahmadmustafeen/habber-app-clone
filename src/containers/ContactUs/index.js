@@ -143,8 +143,13 @@ const ContactUs = (props) => {
       keyboardDidHideListener.remove();
     }
   }, []);
+
+
+  const [click, setClick] = useState(false)
+
+
   const onSubmit = () => {
-    validate() && dispatch(withDataActions(state, SUBMIT_CONTACT_US));
+    if (!click && validate()) { dispatch(withDataActions(state, SUBMIT_CONTACT_US)) && setClick(true) };
   };
   const { colors } = useTheme();
   return (
