@@ -27,22 +27,22 @@ import { useDispatch } from 'react-redux';
 
 const BooksList = (props) => {
   const handleBackButton = () => {
-    dispatch(withoutDataActions(FETCH_ENGLISH_BOOKS))
-    dispatch(withoutDataActions(FETCH_ARABIC_BOOKS))
-    dispatch(withoutDataActions(FETCH_BOOKMARKS))
-    // dispatch(withoutDataActions(FETCH_BANNER))
-    dispatch(withoutDataActions(FETCH_BOOKCLUBS))
+    // dispatch(withoutDataActions(FETCH_ENGLISH_BOOKS))
+    // dispatch(withoutDataActions(FETCH_ARABIC_BOOKS))
+    // dispatch(withoutDataActions(FETCH_BOOKMARKS))
+    // // dispatch(withoutDataActions(FETCH_BANNER))
+    // dispatch(withoutDataActions(FETCH_BOOKCLUBS))
     props.navigation.goBack()
     return true;
   };
   const dispatch = useDispatch()
-  useEffect(() => {
+  const refreshData = () => {
     dispatch(withoutDataActions(FETCH_ENGLISH_BOOKS))
     dispatch(withoutDataActions(FETCH_ARABIC_BOOKS))
     dispatch(withoutDataActions(FETCH_BOOKMARKS))
     dispatch(withoutDataActions(FETCH_BOOKCLUBS))
   }
-    , [])
+
   useEffect(() => {
 
 
@@ -84,7 +84,7 @@ const BooksList = (props) => {
   const { colors } = useTheme();
 
   return (
-    <Screen noPadding>
+    <Screen noPadding refresh={refreshData}>
       <View key='header'>
 
         <Header {...props}

@@ -27,9 +27,9 @@ export function* PostToFavouriteSaga({ type, payload }) {
         };
       },
     );
-    if (!UserProfileReducer.token) {
-      return;
-    }
+    // if (!UserProfileReducer.token) {
+    //   return;
+    // }
     const response = yield call(() =>
       notFavourite
         ? RestClient.post(API_ENDPOINTS.favourites, payload)

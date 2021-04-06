@@ -20,6 +20,7 @@ const Favorites = (props) => {
   const { t } = useTranslation(['Favorites'])
   const dispatch = useDispatch();
   const Favourites = useSelector((state) => retrieveFavourites(state));
+  console.log("favouriutes", Favourites)
   const Favourite_length = Favourites.book.length + Favourites.bookmark.length
 
 

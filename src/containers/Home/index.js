@@ -81,6 +81,7 @@ const Home = (props) => {
     //   // dispatch(withoutDataActions(SPLASH_ACTION))
   }
     , [route.name])
+
   const {
     UserProfileReducer,
     EnglishBooksReducer,
@@ -113,6 +114,12 @@ const Home = (props) => {
       ),
     };
   }, shallowEqual);
+  const refreshData = () => {
+    dispatch(withoutDataActions(FETCH_ENGLISH_BOOKS))
+    dispatch(withoutDataActions(FETCH_ARABIC_BOOKS))
+    dispatch(withoutDataActions(FETCH_BOOKMARKS))
+    dispatch(withoutDataActions(FETCH_BOOKCLUBS))
+  }
   // console.log("BookmarkReducer  home ", BookmarksReducer);
   const dispatch = useDispatch();
   const { colors } = useTheme();
@@ -214,7 +221,7 @@ const Home = (props) => {
 
   return (
     <>
-      <Screen noPadding>
+      <Screen noPadding refresh={refreshData}>
         <View key="header">
           <Header {...props} headerImage />
 

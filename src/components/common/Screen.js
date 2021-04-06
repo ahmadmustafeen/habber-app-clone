@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Platform } from 'react-native';
 import { Alert } from 'react-native';
 import { Dimensions } from 'react-native';
-import { ScrollView } from 'react-native';
+import { RefreshControl, ScrollView } from 'react-native';
 import { StyleSheet, View } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import {
@@ -12,6 +12,17 @@ import {
 } from 'react-native-responsive-screen';
 
 const Screen = (props) => {
+
+  const [refreshing, setRefreshing] = useState(false);
+
+  const wait = (timeout) => {
+    return new Promise(resolve => setTimeout(resolve, timeout));
+  }
+  const onRefresh = React.useCallback(() => {
+    props?.refresh && props.refresh()
+    // setRefreshing(true);
+    // wait(2000).then(() => setRefreshing(false));
+  }, []);
   const { noPadding, contentPadding } = props;
 
   const getComponent = (key) => {
@@ -25,6 +36,14 @@ const Screen = (props) => {
         <View style={styles.header}>{getComponent('header')}</View>
       ) : null}
       <KeyboardAwareScrollView
+
+        refreshControl={props.refresh &&
+          <RefreshControl
+            refreshing={false}
+            onRefresh={onRefresh}
+          />
+        }
+
         onKeyboardWillShow={() => {
           setVerticalOffSet(true)
         }}
