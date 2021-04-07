@@ -3,6 +3,7 @@ import { ScrollView, StyleSheet, View, ImageBackground, I18nManager, Text, } fro
 import { Header, } from '_components';
 import { Screen } from '_components/common';
 
+import { useTranslation } from 'react-i18next';
 import {
     widthPercentageToDP as wp,
     heightPercentageToDP as hp
@@ -115,6 +116,7 @@ const Invoice = (props) => {
     delivery_charges = (parseFloat(item.total_price.toString().replace(",", ""))).toFixed(2) - delivery_charges
     // console.log(delivery_charges)
 
+    const { t } = useTranslation(['Order'])
     return (
         <Screen noPadding>
             <View key="header">
@@ -139,7 +141,7 @@ const Invoice = (props) => {
             <View key="content" style={{ paddingVertical: hp(3) }}>
                 {props.route.params.orderDetails && <>
                     <InvoiceItem headerLeft={I18nManager.isRTL ? "حالة الطلب" : "Order Status"}
-                        headerRight={item.status}
+                        headerRight={t(item.status)}
                     />
                     <View style={{ width: wp(80), alignSelf: "center", borderBottomColor: colors.primary, borderBottomWidth: hp(0.1) }} />
                 </>}

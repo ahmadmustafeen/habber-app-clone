@@ -66,7 +66,7 @@ const MyOrders = (props) => {
 
           {/* <AppText size={14} style={styles.apptextpadding}>{item.address_name}</AppText> */}
 
-          <AppText size={16} style={styles.statuspadding}><AppText bold size={17}>{I18nManager.isRTL ? "الحالة" : "Status"}: </AppText>{item.status}</AppText>
+          <AppText size={16} style={styles.statuspadding}><AppText bold size={17}>{I18nManager.isRTL ? "الحالة" : "Status"}: </AppText>{t(item.status)}</AppText>
         </View>
         <View style={styles.totalContainer}>
           <AppText size={16} style={styles.apptextpadding}><AppText size={17} bold>{I18nManager.isRTL ? "مجموع" : "Total"}:

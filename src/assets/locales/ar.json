@@ -160,7 +160,13 @@
   "Order": {
     "noBookAvailable": "لا يوجد كتاب",
     "nothingshown": "لا يوجد شيء لعرضه هنا!",
-    "EnterSomething": "أدخل شيئا للبحث"
+    "EnterSomething": "أدخل شيئا للبحث",
+    "Pending": "قيد الانتظار",
+    "Confirmed": "مؤكد",
+    "Delivered": "تم التوصيل",
+    "Cancelled": "ألغيت",
+    "Shipped": "شحنها",
+    "Payment Failed": "عملية الدفع فشلت"
   },
   "MyProfile": {
     "myAddressBook": "عناويني",
