@@ -96,7 +96,9 @@ const styles = StyleSheet.create({
     margin: 3,
   },
   image: {
-    width: wp(10),
+    // width: wp(10),
+    width: '100%',
+    height: '100%',
     // height: hp(6.5),
     // marginTop: 10,
     // marginLeft: 10
@@ -110,8 +112,8 @@ const styles = StyleSheet.create({
     //   position: 'absolute',
     //   bottom: wp(6.5),
     //   right: wp(0),
-    //   aspectRatio: 1,
-    //   height: hp(8.5)
+    width: wp(12.5),
+    aspectRatio: 1,
   },
   details: {
     flex: 1,
