@@ -115,6 +115,7 @@ const Home = (props) => {
     };
   }, shallowEqual);
   const refreshData = () => {
+    dispatch(withoutDataActions(FETCH_BANNER))
     dispatch(withoutDataActions(FETCH_ENGLISH_BOOKS))
     dispatch(withoutDataActions(FETCH_ARABIC_BOOKS))
     dispatch(withoutDataActions(FETCH_BOOKMARKS))

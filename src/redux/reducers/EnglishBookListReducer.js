@@ -7,8 +7,12 @@ const initialState = [
 export default (state = initialState, action) => {
   switch (action.type) {
     case FETCH_ENGLISH_BOOKS_SUCCESS: {
+      if (action.payload === null) {
+        return initialState
+      }
       return [...action.payload];
     }
+
 
     default:
       return state;

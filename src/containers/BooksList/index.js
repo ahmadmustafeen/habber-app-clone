@@ -22,10 +22,13 @@ import { AppText, Screen } from 'components/common';
 import { Icon } from 'react-native-elements';
 import { BackHandler } from 'react-native';
 import { withoutDataActions } from '../../redux/actions';
-import { FETCH_ARABIC_BOOKS, FETCH_BOOKCLUBS, FETCH_BOOKMARKS, FETCH_ENGLISH_BOOKS } from '../../redux/actionTypes';
-import { useDispatch } from 'react-redux';
+import { FETCH_ARABIC_BOOKS, FETCH_ARABIC_BOOKS_SUCCESS, FETCH_BOOKCLUBS, FETCH_BOOKCLUBS_SUCCESS, FETCH_BOOKMARKS, FETCH_BOOKMARKS_SUCCESS, FETCH_ENGLISH_BOOKS, FETCH_ENGLISH_BOOKS_SUCCESS } from '../../redux/actionTypes';
+import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 
 const BooksList = (props) => {
+
+  const { label, data, product_type } = props.route.params;
+  const [bookData, setBookData] = useState([]);
   const handleBackButton = () => {
     // dispatch(withoutDataActions(FETCH_ENGLISH_BOOKS))
     // dispatch(withoutDataActions(FETCH_ARABIC_BOOKS))
@@ -36,15 +39,24 @@ const BooksList = (props) => {
     return true;
   };
   const dispatch = useDispatch()
+  const [filter, setFilter] = useState([]);
   const refreshData = () => {
+    dispatch(withoutDataActions(FETCH_ENGLISH_BOOKS_SUCCESS, null))
+    dispatch(withoutDataActions(FETCH_ARABIC_BOOKS_SUCCESS, null))
+    dispatch(withoutDataActions(FETCH_BOOKMARKS_SUCCESS, null))
+    dispatch(withoutDataActions(FETCH_BOOKCLUBS_SUCCESS, null))
     dispatch(withoutDataActions(FETCH_ENGLISH_BOOKS))
     dispatch(withoutDataActions(FETCH_ARABIC_BOOKS))
     dispatch(withoutDataActions(FETCH_BOOKMARKS))
     dispatch(withoutDataActions(FETCH_BOOKCLUBS))
+
+    setFilter([])
+
+
   }
 
   useEffect(() => {
-
+    refreshData()
 
 
     BackHandler.addEventListener('hardwareBackPress', handleBackButton);
@@ -53,11 +65,42 @@ const BooksList = (props) => {
     }
   }, [])
 
-  const [filter, setFilter] = useState([]);
-  const { label, data, product_type } = props.route.params;
-  // console.log(data, "BOOKLIST DATA")
+  console.log(filter, "GILTER")
+  const {
+    UserProfileReducer,
+    EnglishBooksReducer,
+    ArabicBooksReducer,
+    BookmarksReducer,
+    BookClubReducer,
+    FetchSiteReducer,
+  } = useSelector((state) => {
+    return {
+      UserProfileReducer: state.UserProfileReducer,
+      FetchSiteReducer: state.FetchSiteReducer,
+      EnglishBooksReducer: state.EnglishBooksReducer,
+      ArabicBooksReducer: state.ArabicBooksReducer,
+      BookmarksReducer: state.BookmarksReducer,
+      BookClubReducer: state.BookClubReducer,
+    };
+  }, shallowEqual);
+
+  useEffect(() => {
+    if (label === 'ENGLISH BOOKS') {
+      setBookData(EnglishBooksReducer)
+    }
+    if (label === 'ARABIC BOOKS') {
+      setBookData(ArabicBooksReducer)
+    }
+    if (label === 'BOOK CLUBS') {
+      setBookData(BookClubReducer)
+    }
+    if (label === 'BOOKMARKS') {
+      setBookData(BookmarksReducer)
+    }
+  }, [EnglishBooksReducer, ArabicBooksReducer, BookClubReducer, BookmarksReducer])
+
   const { visible, toggleFilter } = useFilter();
-  const [bookData, setBookData] = useState(data);
+
   const removeFilter = (deleteFilter) => {
     var filtered = filter.filter(function (item) { return item !== deleteFilter; });
     setFilter(filtered);

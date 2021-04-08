@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>HEBBER_Mobile.ipa</key>
+	<array>
+		<dict>
+			<key>architectures</key>
+			<array>
+				<string>armv7</string>
+				<string>arm64</string>
+			</array>
+			<key>certificate</key>
+			<dict>
+				<key>SHA1</key>
+				<string>968E85C57F283AAB3BD5E0A89B987AF9704FA3A4</string>
+				<key>dateExpires</key>
+				<string>24/12/2021</string>
+				<key>type</key>
+				<string>Apple Distribution</string>
+			</dict>
+			<key>entitlements</key>
+			<dict>
+				<key>application-identifier</key>
+				<string>GZHG762PM3.com.attribes.Habber</string>
+				<key>aps-environment</key>
+				<string>production</string>
+				<key>com.apple.developer.team-identifier</key>
+				<string>GZHG762PM3</string>
+				<key>get-task-allow</key>
+				<false/>
+			</dict>
+			<key>name</key>
+			<string>HEBBER_Mobile.app</string>
+			<key>profile</key>
+			<dict>
+				<key>UUID</key>
+				<string>e978b40b-699f-4dff-9c10-e0bf22a1dd7b</string>
+				<key>name</key>
+				<string>iOS Team Ad Hoc Provisioning Profile: com.attribes.Habber</string>
+			</dict>
+			<key>team</key>
+			<dict>
+				<key>id</key>
+				<string>GZHG762PM3</string>
+				<key>name</key>
+				<string>Asad Khan</string>
+			</dict>
+		</dict>
+	</array>
+</dict>
+</plist>

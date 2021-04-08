@@ -63,7 +63,7 @@ const Screen = (props) => {
         showsHorizontalScrollIndicator={false}
         showsVerticalScrollIndicator={false}
         keyboardShouldPersistTaps="always"
-        bounces={false}
+        bounces={!props.refresh ? false : true}
 
 
       // resetScrollToCoords={{ x: 0, y: 0 }}
