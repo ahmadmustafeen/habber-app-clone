@@ -27,7 +27,7 @@ import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 
 const BooksList = (props) => {
 
-  const { label, data, product_type } = props.route.params;
+  const { label, labelOriginal, data, product_type } = props.route.params;
   const [bookData, setBookData] = useState([]);
   const handleBackButton = () => {
     // dispatch(withoutDataActions(FETCH_ENGLISH_BOOKS))
@@ -41,10 +41,6 @@ const BooksList = (props) => {
   const dispatch = useDispatch()
   const [filter, setFilter] = useState([]);
   const refreshData = () => {
-    dispatch(withoutDataActions(FETCH_ENGLISH_BOOKS_SUCCESS, null))
-    dispatch(withoutDataActions(FETCH_ARABIC_BOOKS_SUCCESS, null))
-    dispatch(withoutDataActions(FETCH_BOOKMARKS_SUCCESS, null))
-    dispatch(withoutDataActions(FETCH_BOOKCLUBS_SUCCESS, null))
     dispatch(withoutDataActions(FETCH_ENGLISH_BOOKS))
     dispatch(withoutDataActions(FETCH_ARABIC_BOOKS))
     dispatch(withoutDataActions(FETCH_BOOKMARKS))
@@ -65,7 +61,6 @@ const BooksList = (props) => {
     }
   }, [])
 
-  console.log(filter, "GILTER")
   const {
     UserProfileReducer,
     EnglishBooksReducer,
@@ -85,17 +80,24 @@ const BooksList = (props) => {
   }, shallowEqual);
 
   useEffect(() => {
-    if (label === 'ENGLISH BOOKS') {
-      setBookData(EnglishBooksReducer)
-    }
-    if (label === 'ARABIC BOOKS') {
-      setBookData(ArabicBooksReducer)
-    }
-    if (label === 'BOOK CLUBS') {
-      setBookData(BookClubReducer)
-    }
-    if (label === 'BOOKMARKS') {
-      setBookData(BookmarksReducer)
+    console.log(label, "label");
+    switch (labelOriginal) {
+      case 'englishBook': {
+        setBookData(EnglishBooksReducer)
+        break;
+      }
+      case 'arabicBook': {
+        setBookData(ArabicBooksReducer)
+        break
+      };
+      case 'bookclub': {
+        setBookData(BookClubReducer)
+        break
+      };
+      case 'bookmark': {
+        setBookData(BookmarksReducer)
+        break
+      };
     }
   }, [EnglishBooksReducer, ArabicBooksReducer, BookClubReducer, BookmarksReducer])
 

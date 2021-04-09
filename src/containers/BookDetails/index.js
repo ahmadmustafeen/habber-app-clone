@@ -34,6 +34,7 @@ import { BOOK_DETAILS_SCREEN } from '../../constants/Screens';
 import {
   ADD_TO_CART,
   FETCH_RELATED_BOOKS,
+  FETCH_RELATED_BOOKMARKS,
   UPDATE_FAVOURITE,
   UPDATE_CART_ITEM,
 } from '_redux/actionTypes';
@@ -122,7 +123,10 @@ const BookDetails = (props) => {
   }
 
   useEffect(() => {
-    dispatch(withDataActions({ product_id }, FETCH_RELATED_BOOKS));
+    product_type === 'book' ?
+      dispatch(withDataActions({ product_id }, FETCH_RELATED_BOOKS)) :
+      dispatch(withDataActions({ product_id }, FETCH_RELATED_BOOKMARKS))
+
   }, []);
   const {
     CartReducer,
@@ -151,6 +155,7 @@ const BookDetails = (props) => {
       };
     },
   );
+  console.log(FetchRelatedBookList, "FetchRelatedBookList")
   useEffect(() => console.log("WORKED BACK ICON"))
   let inCartPosition = CartReducer[product_type].findIndex(
     (el) => el.product_id === product_id,
@@ -455,7 +460,7 @@ const BookDetails = (props) => {
                     <DashboardComponent
                       noTitle
                       // data={EnglishBooksReducer2.filter((item) => item.featured)}
-                      data={FetchRelatedBookList}
+                      data={FetchRelatedBookList.splice(0, 8)}
                       renderComponent={(item) => {
                         return (
                           <RelatedThumbnailBook
@@ -471,7 +476,7 @@ const BookDetails = (props) => {
                     :
                     <DashboardComponent
                       noTitle
-                      data={BookmarksReducer2.filter((item) => item.featured)}
+                      data={FetchRelatedBookList.splice(0, 8)}
                       renderComponent={(item) => {
                         return (
 

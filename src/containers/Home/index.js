@@ -267,6 +267,7 @@ const Home = (props) => {
             <DashboardComponent
               data={ArabicBooksReducer.filter((book) => book.featured).splice(0, 8)}
               label={t('arabicBook')}
+
               renderComponent={(item) => (
                 <ThumbnailBook
                   url={item.item.image}
@@ -281,6 +282,7 @@ const Home = (props) => {
               onIconPress={() =>
                 navigate(BOOKLIST_SCREEN, {
                   label: t('arabicBook'),
+                  labelOriginal: 'arabicBook',
                   data: ArabicBooksReducer,
                   product_type: 'book',
                 })
@@ -303,6 +305,7 @@ const Home = (props) => {
               onIconPress={() =>
                 navigate(BOOKLIST_SCREEN, {
                   label: t('englishBook'),
+                  labelOriginal: 'englishBook',
                   data: EnglishBooksReducer,
                   product_type: 'book',
                 })
@@ -326,6 +329,7 @@ const Home = (props) => {
                 navigate(BOOKLIST_SCREEN, {
                   label: t('bookclub'),
                   data: BookClubReducer,
+                  labelOriginal: 'bookclub',
                   product_type: 'bookclub',
                 })
               }
@@ -349,6 +353,7 @@ const Home = (props) => {
               onIconPress={() =>
                 navigate(BOOKLIST_SCREEN, {
                   label: t('bookmark'),
+                  labelOriginal: ('bookmark'),
                   data: BookmarksReducer,
                   product_type: "bookmark",
                 })

@@ -46,7 +46,8 @@ import {
   FETCH_GENRE,
   GUESTUSER_TOKEN,
   PAYMENT_FAILURE_SAGA,
-  SETTING_REMOVAL
+  SETTING_REMOVAL,
+  FETCH_RELATED_BOOKMARKS
 } from '../actionTypes';
 
 import { signupSaga } from './SignupSaga';
@@ -94,6 +95,7 @@ import { FilterSaga } from './FilterSaga'
 import { GuestUser_token } from './GuestUser_token'
 import { PaymentFailureSaga } from './PaymentFailureSaga'
 import { SettingRemoval } from './SettingRemoval'
+import { RelatedBookmarksSaga } from './RelatedBookmarksSaga';
 
 
 function* actionWatcher() {
@@ -143,6 +145,7 @@ function* actionWatcher() {
   yield takeLatest(GUESTUSER_TOKEN, GuestUser_token)
   yield takeLatest(PAYMENT_FAILURE_SAGA, PaymentFailureSaga)
   yield takeLatest(SETTING_REMOVAL, SettingRemoval)
+  yield takeLatest(FETCH_RELATED_BOOKMARKS, RelatedBookmarksSaga)
 }
 
 export default function* rootSaga() {
