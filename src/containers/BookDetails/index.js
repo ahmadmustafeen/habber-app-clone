@@ -454,7 +454,8 @@ const BookDetails = (props) => {
                   {product_type === 'book' ?
                     <DashboardComponent
                       noTitle
-                      data={EnglishBooksReducer2.filter((item) => item.featured)}
+                      // data={EnglishBooksReducer2.filter((item) => item.featured)}
+                      data={FetchRelatedBookList}
                       renderComponent={(item) => {
                         return (
                           <RelatedThumbnailBook
