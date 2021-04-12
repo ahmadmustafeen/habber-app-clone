@@ -3,7 +3,7 @@ import { View, TouchableOpacity, StyleSheet, Text, Image } from 'react-native'
 import { widthPercentageToDP } from 'react-native-responsive-screen';
 
 const RadioButton = (props) => {
-    const { key, title, value, onPress, selected, style, noTitle, showSelect, currentValue, elementValue } = props;
+    const { key, title, value, onPress, selected, style, noTitle, showSelect, currentValue, elementValue, iconStyle } = props;
 
     console.log(selected);
     return (
@@ -11,7 +11,7 @@ const RadioButton = (props) => {
         <View key={key} style={style || styles.buttonContainer}  >
             {/* <TouchableOpacity
                 style={selected ? styles.checkedCircle : styles.circle} onPress={onPress} /> */}
-            <TouchableOpacity onPress={onPress} style={{ width: widthPercentageToDP(5), aspectRatio: 1 }}>
+            <TouchableOpacity onPress={onPress} style={[{ width: widthPercentageToDP(5), aspectRatio: 1, justifyContent: 'center' }, iconStyle]}>
                 <Image style={{ width: '100%', height: '100%' }} source={
                     selected ? require('../assets/images/tick.png') :
                         require('../assets/images/Ellipse55.png')
@@ -30,7 +30,9 @@ const styles = StyleSheet.create({
     },
     buttonContainer: {
         marginVertical: 20,
-        flexDirection: 'row'
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
     },
     checkedText: {
         color: '#794F9B',
@@ -53,9 +55,9 @@ const styles = StyleSheet.create({
     },
 
     radioButton: {
-        position: 'absolute',
-        right: 10,
-        top: 10
+        // position: 'absolute',
+        // right: 10,
+        // top: 10
     },
 })
 export { RadioButton }

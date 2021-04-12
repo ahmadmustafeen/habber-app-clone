@@ -341,7 +341,7 @@ const BookDetails = (props) => {
                   favourite={isFavourite}
                   {...book}
                   onClickShare={onShare}
-                  onGoodReads={product_type === 'book' ? () => Linking.openURL('https://www.goodreads.com/book/isbn/' + book.isbn)
+                  onGoodReads={product_type === 'book' ? () => Linking.openURL('https://www.goodreads.com/book/isbn/' + (book.isbn.replace("-", "")).replace("-", "").replace("-", "").replace("-", "").replace("-", "").replace("-", ""))
                     : null}
                 />
               </View>)

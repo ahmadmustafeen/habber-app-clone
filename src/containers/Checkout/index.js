@@ -110,12 +110,13 @@ const Checkout = (props) => {
                 style={styles.img}
                 source={require('_assets/images/onlinepayment.png')}></Image>
             </View>
-            <AppText size={16}> {I18nManager.isRTL ? "الدفع الالكتروني" : "Online Payment"}</AppText>
+            <AppText size={16} > {I18nManager.isRTL ? "الدفع الالكتروني" : "Online Payment"}</AppText>
             <RadioButton
               hideTitle
               selected={state.paymentMethod === 'online'}
               onPress={() => setStateHandler('paymentMethod', 'online')}
               style={styles.radioButton}
+
             />
           </View>
           <View style={styles.addressbook}>
@@ -327,8 +328,13 @@ const styles = StyleSheet.create({
   },
   radioButton: {
     position: 'absolute',
+    alignSelf: 'flex-end',
+    width: wp(37),
+    alignItems: 'flex-end',
+    justifyContent: 'center',
+    // backgroundColor: 'red'
     right: 30,
-    top: 10,
+    top: I18nManager.isRTL ? hp(3) : hp(1.5),
   },
   image: {
     width: '100%',
@@ -357,7 +363,6 @@ const styles = StyleSheet.create({
   addressbookheading: {
     marginBottom: 15,
     // marginLeft: 15,
-    backgroundColor: 'red',
   },
   addressbook: {
     borderRadius: 5,
