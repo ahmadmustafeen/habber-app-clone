@@ -36,7 +36,10 @@ const Header = (props, { adddok }) => {
       }
     },
   )
-  const qua = CartReducer.book.length + CartReducer.bookmark.length
+  // const qua = CartReducer.book.length + CartReducer.bookmark.length
+  let qua = 0;
+  CartReducer.book.map((book) => qua = qua + book.cart_quantity)
+  CartReducer.bookmark.map((book) => qua = qua + book.cart_quantity)
   // console.log(qua)
   const { colors } = useTheme();
   const {
@@ -164,7 +167,7 @@ const Header = (props, { adddok }) => {
                 }
                 {qua ? (
                   <View style={I18nManager.isRTL ? styles.circleArabicCheck : styles.circleCheck}>
-                    <AppText style={{ transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }], }} size={13} bold color={"#0a2937"}>
+                    <AppText style={{ transform: [{ scaleX: I18nManager.isRTL ? -1 : 1 }], }} size={11} bold color={"#0a2937"}>
                       {qua}
                       {/* 10 */}
                     </AppText>

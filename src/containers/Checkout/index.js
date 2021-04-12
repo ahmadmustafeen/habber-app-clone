@@ -201,12 +201,12 @@ const Checkout = (props) => {
 
             <View style={styles.row}>
               <AppText bold>{I18nManager.isRTL ? "المجموع الفرعي" : "Sub Total"} </AppText>
-              <View style={I18nManager.isRTL && styles.pricerow}><AppText bold>{CheckoutData && (parseFloat(CheckoutData.total_price.toString().replace(",", ""))).toFixed(2)}</AppText></View>
+              <View style={I18nManager.isRTL && styles.pricerow}><AppText bold>{rtlLayout && price_product.symbol} {CheckoutData && (parseFloat(CheckoutData.total_price.toString().replace(",", ""))).toFixed(2)} {!rtlLayout && price_product.symbol}</AppText></View>
             </View>
 
             <View style={styles.row}>
               <AppText bold>{I18nManager.isRTL ? "رسوم التوصيل" : "Delivery Charges"} </AppText>
-              <View style={I18nManager.isRTL && styles.pricerow}><AppText bold>{(parseFloat(Address_VAL.shipping_charges.toString().replace(",", ""))).toFixed(2)}</AppText></View>
+              <View style={I18nManager.isRTL && styles.pricerow}><AppText bold>{rtlLayout && price_product.symbol} {(parseFloat(Address_VAL.shipping_charges.toString().replace(",", ""))).toFixed(2)} {!rtlLayout && price_product.symbol}</AppText></View>
             </View>
 
             <HorizontalRow
@@ -221,7 +221,7 @@ const Checkout = (props) => {
             />
             <View style={styles.row}>
               <AppText bold>{I18nManager.isRTL ? "مجموع" : "Total"} </AppText>
-              <View style={I18nManager.isRTL && styles.pricerow}><AppText bold>{CheckoutData && parseFloat((parseFloat(CheckoutData.total_price.toString().replace(",", ""))) + (parseFloat(Address_VAL.shipping_charges.toString().replace(",", "")))).toFixed(2)}</AppText></View>
+              <View style={I18nManager.isRTL && styles.pricerow}><AppText bold>{rtlLayout && price_product.symbol} {CheckoutData && parseFloat((parseFloat(CheckoutData.total_price.toString().replace(",", ""))) + (parseFloat(Address_VAL.shipping_charges.toString().replace(",", "")))).toFixed(2)} {!rtlLayout && price_product.symbol}</AppText></View>
             </View>
 
 
@@ -324,7 +324,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between'
   },
   pricerow: {
-    width: wp(20)
+    width: wp(24)
   },
   radioButton: {
     position: 'absolute',

@@ -56,7 +56,6 @@ const AddToCart = (props) => {
   const updateCartItem = (book, action) => {
     if (action === 'sub' && book.cart_quantity === 1) {
       action = 'remove'
-
     }
     let price = (book.prices.find((item) => item.iso === UserProfileReducer.currency.iso).price);
     dispatch(
@@ -69,6 +68,9 @@ const AddToCart = (props) => {
         UPDATE_CART_ITEM,
       ),
     );
+    dispatch(
+      withDataActions(CartReducer.book, RE_ADD_TO_CART),
+    )
   };
   const handleBackButton = () => {
     props.navigation.goBack()
