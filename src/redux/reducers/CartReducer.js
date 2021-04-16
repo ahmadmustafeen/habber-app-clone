@@ -17,6 +17,7 @@ export default (state = initialState, { type, payload }) => {
 
   switch (type) {
     case UPDATE_CART_ITEM: {
+      console.log("cartredcuer", payload)
       const alreadyAvailable = state[payload.product_type].findIndex(
         (obj) => obj.product_id === payload.product_id,
       );
@@ -44,7 +45,7 @@ export default (state = initialState, { type, payload }) => {
       if (payload.action === 'add') {
         product.cart_quantity < product.quantity && product.cart_quantity++;
       } else if (payload.action === 'cartadd') {
-        payload.cart_quantity < payload.quantity ? product.cart_quantity = payload.cart_quantity : product.cart_quantity = 0;
+        (payload.cart_quantity < (payload.quantity + 1)) ? product.cart_quantity = payload.cart_quantity : product.cart_quantity = 0;
       }
       else if (payload.action === 'sub') {
         product.cart_quantity > 0 ? (product.cart_quantity -= 1) : null;
@@ -68,6 +69,7 @@ export default (state = initialState, { type, payload }) => {
 
           0,
         );
+      console.log("RETURN REDUCER", { ...updatedState })
       return { ...updatedState };
     }
 

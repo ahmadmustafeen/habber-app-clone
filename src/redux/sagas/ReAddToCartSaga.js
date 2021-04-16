@@ -66,7 +66,7 @@ export function* ReAddToCartSaga({ type, payload }) {
         console.log('CartSAGA  Response . . . .  .', response);
         if (status) {
             yield all([
-                put({ type: FETCH_USER_CART }),
+                // put({ type: FETCH_USER_CART }),
                 put({ type: RE_ADD_TO_CART_SUCCESS }),
             ]);
             // NavigationService.navigate(CHECKOUT);

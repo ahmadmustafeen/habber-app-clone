@@ -8,7 +8,7 @@ import {
 
 import { retrieveFavourites } from '../../redux/selectors';
 import { withDataActions } from '../../redux/actions';
-import { UPDATE_CART_ITEM, UPDATE_FAVOURITE } from '../../redux/actionTypes';
+import { ADD_TO_CART, UPDATE_CART_ITEM, UPDATE_FAVOURITE } from '../../redux/actionTypes';
 import { FavouriteCard, Header } from '../../components';
 import { AppText, Screen } from '../../components/common';
 import { useTranslation } from 'react-i18next';
@@ -65,6 +65,18 @@ const Favorites = (props) => {
         },
         UPDATE_CART_ITEM,
       ),
+      dispatch(
+        withDataActions({
+          ...item,
+          cart_quantity: 1,
+          cart_price: 1 * parseFloat(item.prices.find(price => price.id === UserProfileReducer.currency.id).price.toString().replace(",", "")),
+          // quantity: cartQuantity,
+          product_id,
+          action: 'cartadd',
+          product_type,
+
+        }, ADD_TO_CART),
+      )
     );
   };
   const handleBackButton = () => {

@@ -14,7 +14,6 @@ import { RE_ADD_TO_CART } from '../actionTypes';
 
 export function* AddToCartSaga({ type, payload }) {
   try {
-    console.log(payload, "PAYLOAD")
     const { CartReducer, UserProfileReducer } = yield select(
       ({ CartReducer, UserProfileReducer }) => {
         return { CartReducer, UserProfileReducer };
@@ -25,6 +24,7 @@ export function* AddToCartSaga({ type, payload }) {
       NavigationService.navigate(CART_SCREEN);
       return;
     }
+    console.log(CartReducer, "CARDREDUCER")
     const product = CartReducer[payload.product_type].map((item) => {
       return {
         product_id: item.id,
@@ -41,16 +41,17 @@ export function* AddToCartSaga({ type, payload }) {
       total_price
       // total_price: (CartReducer.total_price + parseFloat(product[0].cart_price.toString().replace(',', '')))
     };
+    console.log(obj, "obj")
     const response = yield call(() => RestClient.post(API_ENDPOINTS.cart, {
       product,
       total_price
     }));
-    yield put({
-      type: RE_ADD_TO_CART, payload: {
-        product,
-        total_price
-      }
-    })
+    // yield put({
+    //   type: RE_ADD_TO_CART, payload: {
+    //     product,
+    //     total_price
+    //   }
+    // })
     if (response.problem === NETWORK_ERROR) {
       return yield put({ type: SHOW_NETWORK_MODAL });
     }
@@ -60,7 +61,7 @@ export function* AddToCartSaga({ type, payload }) {
     console.log(response, "CART ADDED SAGA")
     if (status) {
       yield all([
-        put({ type: FETCH_USER_CART }),
+        // put({ type: FETCH_USER_CART }),
         put({ type: ADD_TO_CART_SUCCESS }),
       ]);
       NavigationService.navigate(CART_SCREEN);

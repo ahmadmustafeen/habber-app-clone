@@ -155,8 +155,6 @@ const BookDetails = (props) => {
       };
     },
   );
-  console.log(FetchRelatedBookList, "FetchRelatedBookList")
-  useEffect(() => console.log("WORKED BACK ICON"))
   let inCartPosition = CartReducer[product_type].findIndex(
     (el) => el.product_id === product_id,
   );
@@ -166,47 +164,10 @@ const BookDetails = (props) => {
       :
       1
   )
-
   const handleCounter = (action) => {
-    console.log(book.quantity)
-    console.log(action, "action")
     action === 'add' ? cartQuantity < book.quantity && SetCartQuantity(cartQuantity => cartQuantity + 1) : cartQuantity > 1 && SetCartQuantity(cartQuantity => cartQuantity - 1)
 
-    // if (action === 'sub' && inCartPosition !== -1 && CartReducer[product_type][inCartPosition].cart_quantity === 1) {
-    //   action = 'remove'
-    //   dispatch(
-    //     withDataActions(
-    //       {
-    //         ...book,
-    //         cart_quantity: 1,
-    //         cart_price: book.prices.find(price => price.id === UserProfileReducer.currency.id).price,
-    //         quantity: cartQuantity,
-    //         product_id,
-    //         action,
-    //         product_type,
-
-    //       },
-    //       UPDATE_CART_ITEM,
-    //     ),
-    //   );
-    // }
-
-
-
-
-
-    //TODO : For restrict counter for maximum quantity and out of stock..
-    console.log(action, "ACTION")
-    // console.log(CartReducer[product_type][inCartPosition].cart_quantity, "ACTION")
-
-    // if (action === 'sub' && inCartPosition !== -1 && CartReducer[product_type][inCartPosition].cart_quantity === 1) {
-    //   action = 'remove'
-
-    // }
-
-
   };
-
   const onAddToCart = () => {
     cartQuantity &&
       dispatch(
@@ -215,7 +176,6 @@ const BookDetails = (props) => {
             ...book,
             cart_quantity: cartQuantity,
             cart_price: cartQuantity * parseFloat(book.prices.find(price => price.id === UserProfileReducer.currency.id).price.toString().replace(",", "")),
-            // quantity: cartQuantity,
             product_id,
             action: 'cartadd',
             product_type,
@@ -225,8 +185,7 @@ const BookDetails = (props) => {
         ),
       );
 
-    if (
-      cartQuantity === 0) {
+    if (cartQuantity === 0) {
       const text = I18nManager.isRTL ? "الرجاء إضافة الكمية" : "Please add quantity"
       Platform.OS === 'ios' ?
         Alert.alert(false ? ` ${text}` : text, '', [{ text: I18nManager.isRTL ? 'حسنا' : 'OK', }])
@@ -247,7 +206,6 @@ const BookDetails = (props) => {
         ...book,
         cart_quantity: cartQuantity,
         cart_price: cartQuantity * parseFloat(book.prices.find(price => price.id === UserProfileReducer.currency.id).price.toString().replace(",", "")),
-        // quantity: cartQuantity,
         product_id,
         action: 'cartadd',
         product_type,
@@ -261,8 +219,7 @@ const BookDetails = (props) => {
       inCartPosition = CartReducer[product_type].findIndex(
         (el) => el.product_id === product_id,
       );
-      // console.log((inCartPosition !== -1
-      //   ? CartReducer[product_type][inCartPosition].cart_quantity : 0), "THIS ", inCartPosition)
+
       SetCartQuantity((CartReducer[product_type].findIndex(
         (el) => el.product_id === product_id,
       ) !== -1
@@ -280,13 +237,9 @@ const BookDetails = (props) => {
   const onShare = async () => {
     try {
       const result = await Share.share({
-        // cdmessage: "Habber",
         message:
           "http://line-kw.com/hebr.line-kw.com/public/social_share?redirec_url=BookDetails/" + (type ? old_product.id : product_id) + "/" + (type ? type : product_type)
-        // Platform.OS === 'ios' ?
-        //   ('habber://BookDetails/' + (type ? old_product.id : product_id) + "/" + (type ? type : product_type)) :
-        //   (('http://sturdycyber.cf/index.php?id=' + (type ? old_product.id : product_id) + "&type=" + (type ? type : product_type)))
-        // <iframe src="paulsawesomeapp://page1"> </iframe>
+
       });
       if (result.action === Share.sharedAction) {
         if (result.activityType) {
@@ -304,7 +257,6 @@ const BookDetails = (props) => {
   return (
     <Screen noPadding>
       <View key="header">
-
       </View>
       <View key="content" >
         <ImageBackground
@@ -413,7 +365,7 @@ const BookDetails = (props) => {
                 {t('description')}
               </AppText>
             }
-            <AppText size={14}>{book.description}</AppText>
+            <AppText size={14}> {I18nManager.isRTL ? book.arabic_description : book.description}</AppText>
           </View>
         </View>
         <View key="footer" style={{ paddingHorizontal: 20, paddingBottom: 20 }}>
@@ -422,11 +374,6 @@ const BookDetails = (props) => {
               <Counter
                 onIncrement={() => handleCounter('add')}
                 onDecrement={() => handleCounter('sub')}
-                // value={
-                //   inCartPosition !== -1
-                //     ? CartReducer[product_type][inCartPosition].cart_quantity
-                //     : '0'
-                // }
                 value={cartQuantity}
               />
             ) : null}
@@ -459,8 +406,7 @@ const BookDetails = (props) => {
                   {product_type === 'book' ?
                     <DashboardComponent
                       noTitle
-                      // data={EnglishBooksReducer2.filter((item) => item.featured)}
-                      data={FetchRelatedBookList.splice(0, 8)}
+                      data={FetchRelatedBookList.filter((book) => book).splice(0, 8)}
                       renderComponent={(item) => {
                         return (
                           <RelatedThumbnailBook
@@ -476,7 +422,7 @@ const BookDetails = (props) => {
                     :
                     <DashboardComponent
                       noTitle
-                      data={FetchRelatedBookList.splice(0, 8)}
+                      data={FetchRelatedBookList.filter((book) => book).splice(0, 8)}
                       renderComponent={(item) => {
                         return (
 
@@ -484,8 +430,6 @@ const BookDetails = (props) => {
                             onPress={() => {
                               props.navigation.push(BOOK_DETAILS_SCREEN, {
                                 ...item.item,
-                                // product_type: 'book'
-                                // product_type: "bookmark",
                               });
                             }}
                             url={item.item.image}
@@ -495,11 +439,8 @@ const BookDetails = (props) => {
                     />}
                 </View>
               </>}
-
             </View>
-
           ) : (
-
             <View
               style={{
                 width: wp(90),
@@ -537,7 +478,6 @@ const BookDetails = (props) => {
                           }}
                           url={item.item.image}
                         />
-
                       );
                     }}
                   />
@@ -551,7 +491,6 @@ const BookDetails = (props) => {
     </Screen >
   );
 };
-
 const styles = StyleSheet.create({
   counter: {
     flexDirection: 'row',
