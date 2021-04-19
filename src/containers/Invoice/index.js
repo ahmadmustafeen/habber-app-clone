@@ -113,7 +113,7 @@ const Invoice = (props) => {
     item.books.map(book => delivery_charges += parseFloat(book.cart_price.toString().replace(",", "")))
     item.bookmarks.map(book => delivery_charges += parseFloat(book.cart_price.toString().replace(",", "")))
     // item.bookmarks.map(book => delivery_charges += (parseFloat(parseFloat(book.price.toString().replace(',', '')))).toFixed(2))
-    delivery_charges = (parseFloat(item.total_price.toString().replace(",", ""))).toFixed(2) - delivery_charges
+    // delivery_charges = (parseFloat(item.total_price.toString().replace(",", ""))).toFixed(2) - delivery_charges
     // console.log(delivery_charges)
 
     const { t } = useTranslation(['Order'])
@@ -211,7 +211,7 @@ const Invoice = (props) => {
                         </View>
                         <View style={[I18nManager.isRTL && { width: wp(35), marginRight: wp(-2), }, { justifyContent: 'center', height: hp(5) }]}>
                             <AppText white bold secondary small >
-                                {rtlLayout || item.currency_iso} {(parseFloat(item.total_price.toString().replace(",", ""))).toFixed(2)} {rtlLayout && item.currency_iso}
+                                {rtlLayout || item.currency_iso} {((parseFloat(item.total_price.toString().replace(",", ""))) + (parseFloat(item.shipping_charges.toString().replace(",", "")))).toFixed(2)} {rtlLayout && item.currency_iso}
                             </AppText>
                         </View>
 

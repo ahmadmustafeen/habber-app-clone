@@ -89,10 +89,11 @@ const DrawerMenu = (props) => {
 
                 <AppText white bold size={16} style={styles.txt}>
                   {UserProfileReducer.first_name
-                    ? UserProfileReducer.first_name +
-                    ' ' +
-                    UserProfileReducer.last_name
+                    ? (UserProfileReducer.first_name +
+                      ' ' +
+                      UserProfileReducer.last_name).slice(0, 15)
                     : t('guestUser')}
+
                 </AppText>
               </View>
             </View>
