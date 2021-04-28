@@ -34,19 +34,7 @@ const Invoice = (props) => {
         }
     }, [])
 
-    // useFocusEffect(
 
-    //     React.useCallback(() => {
-
-    //         console.log("ADSDASDA", props);
-    //         BackHandler.addEventListener('hardwareBackPress', () => console.log("adsdas"));
-    //         return () => {
-    //             BackHandler.removeEventListener('hardwareBackPress', () => console.log("adsdas"));
-    //             props.navigation.navigate(HOME)
-    //         }
-    //     }, [])
-    // );
-    console.log(props, "ORDER DATA")
     const {
         UserProfileReducer,
     } = useSelector((state) => {
@@ -56,6 +44,13 @@ const Invoice = (props) => {
     }, shallowEqual);
     const item = props.route.params.item
     console.log("item", item)
+
+    let total_price = 0;
+    item.books.map((book) => total_price += (parseFloat(book.cart_price.toString().replace(",", ""))))
+    item.bookmarks.map((book) => total_price += (parseFloat(book.cart_price.toString().replace(",", ""))))
+
+
+
     console.log(item, UserProfileReducer)
     const { colors } = useTheme()
     const InvoiceItem = (props) => {
@@ -109,12 +104,6 @@ const Invoice = (props) => {
     var rtlLayout = false;
     (UserProfileReducer.currency.iso === "USD" || UserProfileReducer.currency.iso === "GBP" || UserProfileReducer.currency.iso === "EUR") && (rtlLayout = true)
 
-    var delivery_charges = 0;
-    item.books.map(book => delivery_charges += parseFloat(book.cart_price.toString().replace(",", "")))
-    item.bookmarks.map(book => delivery_charges += parseFloat(book.cart_price.toString().replace(",", "")))
-    // item.bookmarks.map(book => delivery_charges += (parseFloat(parseFloat(book.price.toString().replace(',', '')))).toFixed(2))
-    // delivery_charges = (parseFloat(item.total_price.toString().replace(",", ""))).toFixed(2) - delivery_charges
-    // console.log(delivery_charges)
 
     const { t } = useTranslation(['Order'])
     return (
@@ -184,10 +173,10 @@ const Invoice = (props) => {
                     </View>
                     {item.books.map(book => {
                         // (book.find(bookss => book.id === bookss.id).prices.find((id) => book.currency.id === id.id).price)
-                        return <OrderBox key={book.id} name={I18nManager.isRTL ? book.arabic_title : book.title} price={((parseFloat(book.cart_price)) / parseFloat(book.cart_quantity)).toFixed(2)} quantity={book.cart_quantity} subtotal={(((book.cart_price).toFixed(2)))} />
+                        return <OrderBox key={book.id} name={I18nManager.isRTL ? book.arabic_title : book.title} price={((parseFloat(book.cart_price.toString().replace(",", ""))) / parseFloat(book.cart_quantity.toString().replace(",", ""))).toFixed(2)} quantity={book.cart_quantity} subtotal={((parseFloat(book.cart_price.toString().replace(",", "")).toFixed(2)))} />
                     })
                     }
-                    {item.bookmarks.map(book => { return <OrderBox key={book.id} name={book.title} price={((book.cart_price) / book.cart_quantity).toFixed(2)} quantity={(parseFloat(book.cart_quantity))} subtotal={(((book.cart_price).toFixed(2)))} /> })}
+                    {item.bookmarks.map(book => { return <OrderBox key={book.id} name={book.title} price={(((parseFloat(book.cart_price.toString().replace(",", ""))) / parseFloat(book.cart_quantity.toString().replace(",", "")))).toFixed(2)} quantity={(parseFloat(book.cart_quantity))} subtotal={((parseFloat(book.cart_price.toString().replace(",", "")).toFixed(2)))} /> })}
 
                     <View style={[styles.detailCartHeader, { backgroundColor: colors.secondary, justifyContent: 'space-between', paddingHorizontal: wp(5) }]}>
                         <View style={{ justifyContent: 'center', alignItems: 'center', }}>
@@ -211,7 +200,9 @@ const Invoice = (props) => {
                         </View>
                         <View style={[I18nManager.isRTL && { width: wp(35), marginRight: wp(-2), }, { justifyContent: 'center', height: hp(5) }]}>
                             <AppText white bold secondary small >
-                                {rtlLayout || item.currency_iso} {((parseFloat(item.total_price.toString().replace(",", ""))) + (parseFloat(item.shipping_charges.toString().replace(",", "")))).toFixed(2)} {rtlLayout && item.currency_iso}
+                                {rtlLayout || item.currency_iso} {(total_price + (parseFloat(item.shipping_charges.toString().replace(",", "")))).toFixed(2)}{rtlLayout && item.currency_iso}
+                                {/* {((parseFloat(item.total_price.toString().replace(",", ""))) + (parseFloat(item.shipping_charges.toString().replace(",", "")))).toFixed(2)} */}
+
                             </AppText>
                         </View>
 

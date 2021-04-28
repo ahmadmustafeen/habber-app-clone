@@ -51,6 +51,10 @@ const MyOrders = (props) => {
 
 
   const renderItem = ({ item }) => {
+    let total_price = 0;
+    item.books.map((book) => total_price += (parseFloat(book.cart_price.toString().replace(",", ""))))
+    item.bookmarks.map((book) => total_price += (parseFloat(book.cart_price.toString().replace(",", ""))))
+
 
     return (
       <View style={styles.profiletop}>
@@ -70,7 +74,7 @@ const MyOrders = (props) => {
         </View>
         <View style={styles.totalContainer}>
           <AppText size={16} style={styles.apptextpadding}><AppText size={17} bold>{I18nManager.isRTL ? "مجموع" : "Total"}:
-           </AppText> {item.currency_iso} {((parseFloat(item.total_price.toString().replace(",", ""))) + (parseFloat(item.shipping_charges.toString().replace(",", "")))).toFixed(2)}</AppText>
+           </AppText> {item.currency_iso} {((parseFloat(total_price.toString().replace(",", ""))) + (parseFloat(item.shipping_charges.toString().replace(",", "")))).toFixed(2)}</AppText>
           <AppText size={16} style={styles.apptextpadding}>{item.created_at.split('T')[0]}</AppText>
 
           <Loader loading={isLoading} />
